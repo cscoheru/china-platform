@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "87a53dd0fde8b26c336cfa560443f0251c12f121",
-    "commit_sha_short": "87a53dd0fde8",
-    "commit_timestamp_utc": "2026-08-24T20:23:55+08:00",
+    "commit_sha": "a95acaf15ef36bb1bac3c913dbc73b4d28515923",
+    "commit_sha_short": "a95acaf15ef3",
+    "commit_timestamp_utc": "2026-08-24T21:36:50+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -183,6 +183,12 @@
       "path": "docs/18-stage1-s14-nbs-connector-plan-20260824.md",
       "size_bytes": 7101,
       "sha256": "82f239a136c887e182943916bd61ee85552b54e214d1ba747a69c7b8fbb2f860",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/19-stage1-s15-shenzhen-bulletin-plan-20260824.md",
+      "size_bytes": 10584,
+      "sha256": "f7b90366a21fa5dcaf24618a0a4b0d5e2c6cabae03414489349ab1dc119d9560",
       "role": "documentation"
     },
     {
@@ -2682,12 +2688,12 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 445,
+  "artifact_count": 446,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 19,
+    "documentation": 20,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 2,
@@ -2723,7 +2729,7 @@
   "pytest_run": {
     "command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m pytest -q --tb=line --no-header -p no:cacheprovider",
     "exit_code": 0,
-    "stdout_tail": "........................................................................ [ 27%]\n........................................................................ [ 54%]\n........................................................................ [ 81%]\n................................................                         [100%]\n264 passed in 456.36s (0:07:36)\n",
+    "stdout_tail": "........................................................................ [ 27%]\n........................................................................ [ 54%]\n........................................................................ [ 81%]\n................................................                         [100%]\n264 passed in 491.49s (0:08:11)\n",
     "stderr_tail": "",
     "stats": {
       "passed": 264,
