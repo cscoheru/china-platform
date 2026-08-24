@@ -1,0 +1,79 @@
+# ===== OS / 编辑器 =====
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.venv/
+venv/
+env/
+
+# ===== Node =====
+node_modules/
+.next/
+out/
+.pnpm-store/
+
+# ===== Build / Dist =====
+build/
+dist/
+target/
+
+# ===== 数据层（按 PRD 9.2 原始资料不可变；处理产物不入库） =====
+# data/raw/ 原始资料按规范应该入对象存储；本仓库只保留样本 + 提取产物
+# 已下载的原始文件在 data/raw/ 不进 git（小样本 spike 除外）
+data/raw/01-national-yearbook/*.xlsx
+data/raw/01-national-yearbook/*.xls
+data/raw/02-provincial-yearbook/*.xlsx
+data/raw/02-provincial-yearbook/*.xls
+data/raw/03-municipal-bulletin/*.pdf
+data/raw/04-scanned-pdf/*.pdf
+data/extracts/*/raw/
+data/processed/*/
+
+# ===== 敏感（PRD 11.5：密钥不进入仓库） =====
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+credentials/
+
+# ===== 日志 =====
+*.log
+logs/
+
+# ===== 临时 =====
+*.tmp
+*.bak
+*.orig
+
+# ===== OCR / 模型 cache =====
+.tesseract-cache/
+*.traineddata
+
+# ===== Prisma / SQL dumps =====
+*.sql.gz
+*.dump
+
+# ===== 大型 PDF/Excel（>10MB spike 用 git-lfs，否则不进） =====
+*.pdf
+*.xlsx
+*.xls
+!docs/**/*.pdf

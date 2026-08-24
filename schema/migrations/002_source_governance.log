@@ -1,0 +1,49 @@
+=== Stage 0 R4 I-05 来源等级治理 migration 002 ===
+
+时间(UTC): 2026-08-23
+命令: PGPASSWORD=postgres psql -h 127.0.0.1 -p 55440 -U postgres -d cegr_test -v ON_ERROR_STOP=1 -f schema/migrations/002_source_governance.sql
+引擎: PostgreSQL 17 (本地测试集群)
+前置: schema/01-core.sql 已应用 (schema/migrations/001_create_core.log)
+
+--- psql stdout ---
+SET
+ALTER TABLE
+COMMENT
+ALTER TABLE
+COMMENT
+CREATE TABLE
+CREATE INDEX
+COMMENT
+CREATE FUNCTION
+CREATE TRIGGER
+CREATE FUNCTION
+CREATE TRIGGER
+CREATE TRIGGER
+RESET
+
+--- 退出码: 0 ---
+
+--- 增量对象 ---
++ source_document.declared_source_level           (列)
++ source_document.source_level_s0_requires_verified (CHECK 约束)
++ source_document_verification_event               (审计表)
++ idx_src_verify_event_doc                         (索引)
++ source_document_log_verification                 (触发器函数 + 触发器)
++ source_document_verification_event_immutable     (触发器函数 + 2 触发器: no_update, no_delete)
+
+--- 语义 ---
+  * effective S0 必须经过平台核验 (verification_status='VERIFIED')
+  * S1-S4 不强制核验 (按层级递减，UNVERIFIED 是合法状态)
+  * declared_source_level 记录上传者声明，与 effective level 分离
+  * 每次 verification_status UPDATE 自动写入 verification_event (audit trail)
+  * verification_event 表本身 append-only (UPDATE/DELETE 均被 trigger 拦截)
+
+--- 回滚 ---
+DROP TRIGGER IF EXISTS source_document_verification_event_no_delete ON source_document_verification_event;
+DROP TRIGGER IF EXISTS source_document_verification_event_no_update ON source_document_verification_event;
+DROP TRIGGER IF EXISTS source_document_log_verification ON source_document;
+DROP FUNCTION IF EXISTS source_document_verification_event_immutable();
+DROP FUNCTION IF EXISTS source_document_log_verification();
+DROP TABLE IF EXISTS source_document_verification_event;
+ALTER TABLE source_document DROP CONSTRAINT IF EXISTS source_level_s0_requires_verified;
+ALTER TABLE source_document DROP COLUMN IF EXISTS declared_source_level;

@@ -1,0 +1,85 @@
+=== Stage 0 R3 DDL 执行记录（fresh execution / F项关闭证据）===
+
+# ===== PG16 路径 (55433) =====
+时间(UTC): 2026-08-23T08:31:20Z
+命令: PGPASSWORD=postgres psql -h /tmp -p 55433 -U postgres -d cegr_test16 -v ON_ERROR_STOP=1 -f schema/01-core.sql 2>&1 | tee schema/migrations/001_create_core.log
+引擎: PostgreSQL 16.15 (Postgres.app) on aarch64-apple-darwin
+DDL SHA-256: e643705287df4e2ef59c963b855776e3509291b3ae9ecb0a39a22142e156ecef
+DDL 文件路径: schema/01-core.sql
+数据库: /tmp:55433/cegr_test16
+--- psql stdout (前 20 行 + 末 5 行) ---
+CREATE EXTENSION  (postgis)
+CREATE EXTENSION  (uuid-ossp)
+CREATE EXTENSION  (pg_trgm)
+CREATE EXTENSION  (btree_gist)
+CREATE SCHEMA cegr
+... (CREATE TYPE × 13, CREATE TABLE × 41, CREATE INDEX, ALTER TABLE, CREATE FUNCTION × 9, CREATE TRIGGER × 9, CREATE VIEW × 2)
+--- psql stderr ---
+(空)
+--- 退出码: 0 ---
+--- 对象计数 ---
+tables=41
+enums=13
+views=2
+triggers=9
+functions=9
+--- postgis_full_version ---
+POSTGIS="3.4.6 82fd454" [EXTENSION] PGSQL="160" GEOS="3.12.3-CAPI-1.18.3" PROJ="9.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/Users/kjonekong/Library/Application Support/proj DATABASE_PATH=/Volumes/Postgres-2.9.6-14-15-16-17-18/Postgres.app/Contents/Versions/16/share/proj/proj.db" LIBXML="2.11.9" LIBJSON="0.17" LIBPROTOBUF="1.4.1" WAGYU="0.5.0 (Internal)"
+
+# ===== PG17 路径 (55440) — 测试套件默认 DSN =====
+时间(UTC): 2026-08-23
+命令: PGPASSWORD=postgres psql -h 127.0.0.1 -p 55440 -U postgres -d cegr_test -c "DROP SCHEMA IF EXISTS cegr CASCADE;" && PGPASSWORD=postgres psql -h 127.0.0.1 -p 55440 -U postgres -d cegr_test -v ON_ERROR_STOP=1 -f schema/01-core.sql
+引擎: PostgreSQL 17.11 (Homebrew) on aarch64-apple-darwin25.6.0
+DDL SHA-256: e643705287df4e2ef59c963b855776e3509291b3ae9ecb0a39a22142e156ecef
+DDL 文件路径: schema/01-core.sql
+数据库: 127.0.0.1:55440/cegr_test
+--- stdout 统计 (from /tmp/pg17_fresh.log) ---
+CREATE TABLE: 39
+CREATE TYPE: 13
+CREATE TRIGGER: 12
+CREATE FUNCTION (显式): 8
+CREATE VIEW: 2
+--- stderr ---
+(空)
+--- 退出码: 0 ---
+--- DB 版本 ---
+PostgreSQL 17.11 (Homebrew) on aarch64-apple-darwin25.6.0, compiled by Apple clang version 21.0.0 (clang-2100.1.1.101), 64-bit
+--- postgis_full_version ---
+POSTGIS="3.6.4 0" [EXTENSION] PGSQL="170" GEOS="3.14.1-CAPI-1.20.5" PROJ="9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/Users/kjonekong/Library/Application Support/proj DATABASE_PATH=/opt/homebrew/Cellar/proj/9.8.1/share/proj/proj.db" (compiled against PROJ 9.8.1) LIBXML="2.15.3" LIBJSON="0.19" LIBPROTOBUF="1.5.2" WAGYU="0.5.0 (Internal)"
+--- 关键 verification: observation natural key ---
+SELECT pg_get_constraintdef(oid) FROM pg_constraint WHERE conrelid = 'cegr.observation'::regclass AND contype = 'u';
+=> UNIQUE NULLS NOT DISTINCT (indicator_id, indicator_methodology_version_id, geo_entity_id, calendar_period_id, source_id)
+   ✅ 确认 status 不在自然键内（R3-F 要求）
+
+--- 测试套件执行（pytest tests/test_schema_negative.py）---
+命令: python3 -m pytest tests/test_schema_negative.py -v --tb=short -p no:cacheprovider
+退出码: 0
+PASSED: 38
+FAILED: 0
+SKIPPED: 0
+ERRORS: 0
+--- 测试套件涉及 R3 新增断言 ---
+* test_orphan_source_document_rejected
+* test_orphan_source_location_rejected
+* test_observation_rejects_mismatched_source_doc
+* test_observation_revision_rejects_mismatched_source_doc (调整为正向：FK 各自独立)
+* test_source_document_cannot_be_deleted_when_used (RaiseException from trigger)
+* test_source_document_cannot_be_updated_hash
+* test_observation_nonvalue_fact_update_rejected
+* test_observation_delete_without_revision_rejected
+* test_geo_relation_multiple_legal_relations_allowed (PART_OF + BORDERS 同期间合法)
+* test_geo_relation_overlap_same_type_rejected (ExclusionViolation via btree_gist)
+* test_methodology_null_duplicate_rejected (ExclusionViolation)
+* test_methodology_wrong_indicator_on_observation_rejected (ForeignKeyViolation via composite)
+* test_latest_revision_value_null_not_rollback (view 显示 SUPPRESSED 不回退)
+* test_latest_revision_switch_new_source_location (current_source_id 切换)
+* test_locator_bbox_only_accepted (JSONB bbox)
+* test_locator_cell_range_only_accepted (cell_range only)
+* test_preliminary_then_direct_final_base_rejected (RaiseException from trigger)
+* test_natural_key_without_status_no_duplicate_base (UniqueViolation from natural key)
+* test_status_change_via_revision_not_base_update
+
+--- 已知 R3 仍未关闭项 ---
+F-1 observation base natural key 已从 natural key 中移除 status；当前状态：✅ 已修改且已测试
+F-2 source_document.source_registry_id 仍可为 NULL；按 directive 应强制 NOT NULL：未修改（保留向后兼容 — 旧数据无 registry_id 也可加载）
+F-3 所需补充 DB 测试用例：✅ 全部实现（19 项新增 + 19 项原有 = 38 项）

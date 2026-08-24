@@ -1,0 +1,112 @@
+{
+  "sample": {
+    "city": "深圳",
+    "year": 2024,
+    "source_url": "https://www.sz.gov.cn/zfgb/2025/gb1374/content/post_12212437.html",
+    "source_type": "html",
+    "file_hash_sha256": "d5e2c73196b43cecc8efa20e174d30bf78c382e21a1cda956f0637aeb9022d29",
+    "file_name": "sample.html",
+    "file_size_bytes": 62831,
+    "page_or_section_locator": "sz.gov.cn government bulletin HTML",
+    "fetched_at": "2026-04-01T00:00:00Z",
+    "extraction_method": "beautifulsoup + section-aware regex on prose"
+  },
+  "rows": [
+    {
+      "indicator": "地区生产总值(GDP)",
+      "period": "2024",
+      "value": 36801.87,
+      "unit": "亿元",
+      "comparison_basis": "当年价格",
+      "context_quote": "根据广东省地区生产总值统一核算结果，2024年深圳地区生产总值36801.87亿元，比上年增长5.8%。其中，第一产业增加值26.37亿元，增长1.5%；第二产业增加值13909.28亿元，增长8.3%；第三产业增加值22866.22亿元，增长4.3%。第一产业增加值占全市地区生产总值比重为0.1%，第二产业增加值比重为37.8%，第三产业增加值比重为62.1%。全年人均地区生产总值205714元",
+      "source_url": "https://www.sz.gov.cn/zfgb/2025/gb1374/content/post_12212437.html",
+      "locator": "一、综合",
+      "extraction_method": "beautifulsoup + regex on prose paragraph",
+      "confidence": 0.97
+    },
+    {
+      "indicator": "地区生产总值(GDP)增速",
+      "period": "2024",
+      "value": 5.8,
+      "unit": "%",
+      "comparison_basis": "可比价格",
+      "context_quote": "根据广东省地区生产总值统一核算结果，2024年深圳地区生产总值36801.87亿元，比上年增长5.8%。其中，第一产业增加值26.37亿元，增长1.5%；第二产业增加值13909.28亿元，增长8.3%；第三产业增加值22866.22亿元，增长4.3%。第一产业增加值占全市地区生产总值比重为0.1%，第二产业增加值比重为37.8%，第三产业增加值比重为62.1%。全年人均地区生产总值205714元",
+      "source_url": "https://www.sz.gov.cn/zfgb/2025/gb1374/content/post_12212437.html",
+      "locator": "一、综合",
+      "extraction_method": "beautifulsoup + regex on prose paragraph",
+      "confidence": 0.97
+    },
+    {
+      "indicator": "常住人口",
+      "period": "2024年末",
+      "value": 1798.95,
+      "unit": "万人",
+      "comparison_basis": null,
+      "context_quote": "全市年末常住人口1798.95万人，比上年末增加19.94万人。其中，常住户籍人口631.01万人，占常住人口比重35.1%；常住非户籍人口1167.94万人，占常住人口比重64.9%。",
+      "source_url": "https://www.sz.gov.cn/zfgb/2025/gb1374/content/post_12212437.html",
+      "locator": "一、综合",
+      "extraction_method": "beautifulsoup + regex on prose paragraph",
+      "confidence": 0.97
+    },
+    {
+      "indicator": "固定资产投资增速",
+      "period": "2024",
+      "value": 2.4,
+      "unit": "%",
+      "comparison_basis": null,
+      "context_quote": "全年固定资产投资比上年增长2.4%。其中，设备工器具投资增长54.3%。在固定资产投资中，第一产业投资比上年增长77.9%；第二产业投资增长19.9%；第三产业投资下降3.0%。工业投资增长20.1%，占固定资产投资比重为27.6%。基础设施投资增长8.8%，占固定资产投资比重22.1%。",
+      "source_url": "https://www.sz.gov.cn/zfgb/2025/gb1374/content/post_12212437.html",
+      "locator": "六、固定资产投资",
+      "extraction_method": "beautifulsoup + regex on prose paragraph",
+      "confidence": 0.95
+    },
+    {
+      "indicator": "社会消费品零售总额",
+      "period": "2024",
+      "value": 10637.7,
+      "unit": "亿元",
+      "comparison_basis": "当年价格",
+      "context_quote": "全年社会消费品零售总额10637.70亿元，比上年增长1.1%。按消费类型分，商品零售额9468.88亿元，增长1.0%；餐饮收入1168.82亿元，增长1.5%。",
+      "source_url": "https://www.sz.gov.cn/zfgb/2025/gb1374/content/post_12212437.html",
+      "locator": "五、国内贸易",
+      "extraction_method": "beautifulsoup + regex on prose paragraph",
+      "confidence": 0.95
+    },
+    {
+      "indicator": "货物进出口总额",
+      "period": "2024",
+      "value": 45048.24,
+      "unit": "亿元",
+      "comparison_basis": "当年价格",
+      "context_quote": "全年货物进出口总额45048.24亿元，比上年增长16.4%。其中，出口总额28122.16亿元，增长14.6%；进口总额16926.08亿元，增长19.6%。出口总额连续三十二年居内地大中城市首位。高新技术产品出口11604.67亿元，增长10.5%，占出口总额比重为41.3%。",
+      "source_url": "https://www.sz.gov.cn/zfgb/2025/gb1374/content/post_12212437.html",
+      "locator": "七、对外经济",
+      "extraction_method": "beautifulsoup + regex on prose paragraph",
+      "confidence": 0.95
+    },
+    {
+      "indicator": "人均地区生产总值",
+      "period": "2024",
+      "value": 205714.0,
+      "unit": "元",
+      "comparison_basis": "当年价格",
+      "context_quote": "根据广东省地区生产总值统一核算结果，2024年深圳地区生产总值36801.87亿元，比上年增长5.8%。其中，第一产业增加值26.37亿元，增长1.5%；第二产业增加值13909.28亿元，增长8.3%；第三产业增加值22866.22亿元，增长4.3%。第一产业增加值占全市地区生产总值比重为0.1%，第二产业增加值比重为37.8%，第三产业增加值比重为62.1%。全年人均地区生产总值205714元",
+      "source_url": "https://www.sz.gov.cn/zfgb/2025/gb1374/content/post_12212437.html",
+      "locator": "一、综合",
+      "extraction_method": "beautifulsoup + regex on prose paragraph",
+      "confidence": 0.95
+    },
+    {
+      "indicator": "地方一般公共预算收入",
+      "period": "2024",
+      "value": 3914.18,
+      "unit": "亿元",
+      "comparison_basis": "当年价格",
+      "context_quote": "全年全市地方一般公共预算收入3914.18亿元，比上年下降4.8%；地方一般公共预算支出4700.87亿元，下降6.2%。",
+      "source_url": "https://www.sz.gov.cn/zfgb/2025/gb1374/content/post_12212437.html",
+      "locator": "八、财政金融",
+      "extraction_method": "beautifulsoup + regex on prose paragraph",
+      "confidence": 0.97
+    }
+  ]
+}

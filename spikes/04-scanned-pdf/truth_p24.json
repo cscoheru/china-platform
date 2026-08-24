@@ -1,0 +1,888 @@
+{
+  "truth_id": "safc1909_p24_france_trade_1843_1872",
+  "table": "Total imports and exports of merchandise, and imports and exports of gold and silver (FRANCE, continued)",
+  "page_pdf_1indexed": 24,
+  "rows": 30,
+  "years": [
+    1843,
+    1872
+  ],
+  "sign_convention": "excess = exports - imports; negative = excess of imports, positive = excess of exports; printed as - or + beside the excess value",
+  "unit_all_columns": "1,000 dollars (printed '1,000 dollars.' beneath every numeric column header)",
+  "columns": [
+    {
+      "key": "year",
+      "group_l1": null,
+      "group_l2": null,
+      "leaf": "YEAR."
+    },
+    {
+      "key": "gt_imports",
+      "group_l1": "MERCHANDISE",
+      "group_l2": "General trade",
+      "leaf": "Imports"
+    },
+    {
+      "key": "gt_exports",
+      "group_l1": "MERCHANDISE",
+      "group_l2": "General trade",
+      "leaf": "Exports"
+    },
+    {
+      "key": "gt_excess",
+      "group_l1": "MERCHANDISE",
+      "group_l2": "General trade",
+      "leaf": "Excess of imports (-) or exports (+)"
+    },
+    {
+      "key": "st_imports",
+      "group_l1": "MERCHANDISE",
+      "group_l2": "Special trade",
+      "leaf": "Imports"
+    },
+    {
+      "key": "st_exports",
+      "group_l1": "MERCHANDISE",
+      "group_l2": "Special trade",
+      "leaf": "Exports"
+    },
+    {
+      "key": "st_excess",
+      "group_l1": "MERCHANDISE",
+      "group_l2": "Special trade",
+      "leaf": "Excess of imports (-) or exports (+)"
+    },
+    {
+      "key": "gold_imports",
+      "group_l1": "PRECIOUS METALS",
+      "group_l2": "Gold",
+      "leaf": "Imports"
+    },
+    {
+      "key": "gold_exports",
+      "group_l1": "PRECIOUS METALS",
+      "group_l2": "Gold",
+      "leaf": "Exports"
+    },
+    {
+      "key": "gold_excess",
+      "group_l1": "PRECIOUS METALS",
+      "group_l2": "Gold",
+      "leaf": "Excess of imports (-) or exports (+)"
+    },
+    {
+      "key": "silver_imports",
+      "group_l1": "PRECIOUS METALS",
+      "group_l2": "Silver",
+      "leaf": "Imports"
+    },
+    {
+      "key": "silver_exports",
+      "group_l1": "PRECIOUS METALS",
+      "group_l2": "Silver",
+      "leaf": "Exports"
+    },
+    {
+      "key": "silver_excess",
+      "group_l1": "PRECIOUS METALS",
+      "group_l2": "Silver",
+      "leaf": "Excess of imports (-) or exports (+)"
+    },
+    {
+      "key": "gs_imports",
+      "group_l1": "PRECIOUS METALS",
+      "group_l2": "Gold and silver",
+      "leaf": "Imports"
+    },
+    {
+      "key": "gs_exports",
+      "group_l1": "PRECIOUS METALS",
+      "group_l2": "Gold and silver",
+      "leaf": "Exports"
+    },
+    {
+      "key": "gs_excess",
+      "group_l1": "PRECIOUS METALS",
+      "group_l2": "Gold and silver",
+      "leaf": "Excess of imports (-) or exports (+)"
+    }
+  ],
+  "construction": {
+    "method": "human transcription from rendered page (300 dpi full-page pass, 600 dpi row-band passes, zoomed single-cell re-reads)",
+    "arbitration": "connected-component glyph analysis at 600 dpi (font metrics: serif-1 width 15-21px, open-4 width 9-12px) plus right-alignment digit counting",
+    "verification": "five printed-table identities hold exactly (excess=exports-imports for 5 groups; gold+silver=gs for 3 leaves); all 30 rows verified programmatically at build time",
+    "contested_cells": [
+      {
+        "cell": "1847 gt_imports",
+        "adopted": 249000,
+        "alternatives": [
+          249700
+        ],
+        "evidence": "component glyph sequence at 600 dpi = 2,4,9,0,0,0 (no 7th digit); identity 202500-249000=-46500 matches printed excess"
+      },
+      {
+        "cell": "1847 st_imports",
+        "adopted": 184500,
+        "alternatives": [
+          181500
+        ],
+        "evidence": "third glyph nearly inkless (dropout at binarization); identity 138900-184500=-45600 matches printed excess; zoom reads favored 181500 — flagged print_degraded"
+      },
+      {
+        "cell": "1852 silver_imports",
+        "adopted": 34700,
+        "alternatives": [
+          31700
+        ],
+        "evidence": "gs decomposition 46100-11400=34700 and excess 35200-34700=+500 both match printed values; zoom read 31700 (4 read as 1)"
+      },
+      {
+        "cell": "1853 gold_imports",
+        "adopted": 61500,
+        "alternatives": [
+          91500
+        ],
+        "evidence": "gs decomposition 83200-21700=61500 and excess 5700-61500=-55800 both match printed values"
+      },
+      {
+        "cell": "1853 silver_exports",
+        "adopted": 34300,
+        "alternatives": [
+          31300
+        ],
+        "evidence": "gs decomposition 40000-5700=34300 and excess 34300-21700=+12600 both match printed values"
+      },
+      {
+        "cell": "1857 st_imports",
+        "adopted": 351500,
+        "alternatives": [
+          361500
+        ],
+        "evidence": "digit-2 component width 14px matches 5 (13-16) not 6; identity 350100-351500=-1400 matches printed excess"
+      },
+      {
+        "cell": "1857 st_excess",
+        "adopted": -1400,
+        "alternatives": [
+          -11400
+        ],
+        "evidence": "right-alignment: value starts one digit-slot right of 5-digit rows (start x 2041 vs 2012); 4 digit glyphs = 1,4,0,0"
+      },
+      {
+        "cell": "1861 st_exports",
+        "adopted": 371500,
+        "alternatives": [
+          371800
+        ],
+        "evidence": "digit-4 component width 21px matches 5 (17-23) not 8 (12-15); identity 471100-371500=-99600 matches printed excess"
+      },
+      {
+        "cell": "1861 st_excess",
+        "adopted": -99600,
+        "alternatives": [
+          -99300
+        ],
+        "evidence": "two independent zoom reads -99,600; closes identity with 371500 partner"
+      },
+      {
+        "cell": "1864 st_exports",
+        "adopted": 563500,
+        "alternatives": [
+          561400,
+          564400
+        ],
+        "evidence": "verified-band component sequence 5,6,3,5,0(+faint 0); identity 487000+76500=563500"
+      },
+      {
+        "cell": "1864 st_excess",
+        "adopted": 76500,
+        "alternatives": [
+          74400
+        ],
+        "evidence": "two independent zoom reads +76,500; identity with 563500 partner closes"
+      },
+      {
+        "cell": "1863 gold_imports",
+        "adopted": 71400,
+        "alternatives": [
+          74400
+        ],
+        "evidence": "gs decomposition 102500-31100=71400 and excess 69000-71400=-2400 both match printed values"
+      },
+      {
+        "cell": "1852 st_excess",
+        "adopted": 21600,
+        "alternatives": [
+          51600
+        ],
+        "evidence": "6x zoom: leading digit shows flat bottom bar of 2, second glyph plain stem = 1; identity 212600-191000=21600"
+      },
+      {
+        "cell": "1866 gt_excess",
+        "adopted": 84100,
+        "alternatives": [
+          81100
+        ],
+        "evidence": "two independent contact-sheet reads show open-top 4 after the 8; identity 826200-742100=84100"
+      },
+      {
+        "cell": "1871 st_excess",
+        "adopted": -134000,
+        "alternatives": [
+          -131000
+        ],
+        "evidence": "digit-3 component width 11px matches open-4 (9-12) not serif-1 (15-21); trailing zero split into two arcs (w10+w12) same pattern as neighboring rows; identity 554400-688400=-134000; st_imports 688400 read at 6x zoom (double-loop 8)"
+      }
+    ],
+    "contested_count": 15,
+    "contested_excluded_from_scoring": false,
+    "note_contested": "contested cells carry the adopted reading and documented alternatives; the evaluator additionally reports metrics excluding contested cells as a sensitivity check"
+  },
+  "geometry_600dpi": {
+    "year_band_x": [
+      130,
+      270
+    ],
+    "column_x_windows": {
+      "gt_imports": [
+        560,
+        845
+      ],
+      "gt_exports": [
+        855,
+        1125
+      ],
+      "gt_excess": [
+        1140,
+        1410
+      ],
+      "st_imports": [
+        1425,
+        1670
+      ],
+      "st_exports": [
+        1685,
+        1930
+      ],
+      "st_excess": [
+        1975,
+        2250
+      ],
+      "gold_imports": [
+        2270,
+        2515
+      ],
+      "gold_exports": [
+        2530,
+        2790
+      ],
+      "gold_excess": [
+        2825,
+        3090
+      ],
+      "silver_imports": [
+        3110,
+        3335
+      ],
+      "silver_exports": [
+        3355,
+        3640
+      ],
+      "silver_excess": [
+        3660,
+        3935
+      ],
+      "gs_imports": [
+        3955,
+        4200
+      ],
+      "gs_exports": [
+        4215,
+        4460
+      ],
+      "gs_excess": [
+        4475,
+        4750
+      ]
+    },
+    "row_ink_peaks_y": {
+      "1843": 1316,
+      "1844": 1367,
+      "1845": 1417,
+      "1846": 1467,
+      "1847": 1517,
+      "1848": 1568,
+      "1849": 1618,
+      "1850": 1669,
+      "1851": 1718,
+      "1852": 1769,
+      "1853": 1819,
+      "1854": 1869,
+      "1855": 1919,
+      "1856": 1969,
+      "1857": 2020,
+      "1858": 2070,
+      "1859": 2120,
+      "1860": 2170,
+      "1861": 2220,
+      "1862": 2270,
+      "1863": 2321,
+      "1864": 2371,
+      "1865": 2421,
+      "1866": 2471,
+      "1867": 2521,
+      "1868": 2571,
+      "1869": 2621,
+      "1870": 2671,
+      "1871": 2720,
+      "1872": 2771
+    },
+    "glyph_band_offset_from_peak": [
+      -38,
+      2
+    ],
+    "note": "300 dpi values = divide by 2; peaks measured on year-column ink profile; bands verified against GT-column ink rows"
+  },
+  "rows_data": [
+    {
+      "year": 1843,
+      "gt_imports": 229100,
+      "gt_exports": 191500,
+      "gt_excess": -37600,
+      "st_imports": 163200,
+      "st_exports": 132600,
+      "st_excess": -30600,
+      "gold_imports": 1900,
+      "gold_exports": 9800,
+      "gold_excess": 7900,
+      "silver_imports": 30200,
+      "silver_exports": 10300,
+      "silver_excess": -19900,
+      "gs_imports": 32100,
+      "gs_exports": 20100,
+      "gs_excess": -12000
+    },
+    {
+      "year": 1844,
+      "gt_imports": 230200,
+      "gt_exports": 221300,
+      "gt_excess": -8900,
+      "st_imports": 167400,
+      "st_exports": 152500,
+      "st_excess": -14900,
+      "gold_imports": 1000,
+      "gold_exports": 2000,
+      "gold_excess": 1000,
+      "silver_imports": 29200,
+      "silver_exports": 13300,
+      "silver_excess": -15900,
+      "gs_imports": 30200,
+      "gs_exports": 15300,
+      "gs_excess": -14900
+    },
+    {
+      "year": 1845,
+      "gt_imports": 239300,
+      "gt_exports": 229200,
+      "gt_excess": -10100,
+      "st_imports": 165200,
+      "st_exports": 163700,
+      "st_excess": -1500,
+      "gold_imports": 1000,
+      "gold_exports": 3600,
+      "gold_excess": 2600,
+      "silver_imports": 34600,
+      "silver_exports": 13300,
+      "silver_excess": -21300,
+      "gs_imports": 35600,
+      "gs_exports": 16900,
+      "gs_excess": -18700
+    },
+    {
+      "year": 1846,
+      "gt_imports": 242500,
+      "gt_exports": 227700,
+      "gt_excess": -14800,
+      "st_imports": 177600,
+      "st_exports": 164500,
+      "st_excess": -13100,
+      "gold_imports": 1500,
+      "gold_exports": 3200,
+      "gold_excess": 1700,
+      "silver_imports": 20600,
+      "silver_exports": 11600,
+      "silver_excess": -9000,
+      "gs_imports": 22100,
+      "gs_exports": 14800,
+      "gs_excess": -7300
+    },
+    {
+      "year": 1847,
+      "gt_imports": 249000,
+      "gt_exports": 202500,
+      "gt_excess": -46500,
+      "st_imports": 184500,
+      "st_exports": 138900,
+      "st_excess": -45600,
+      "gold_imports": 4100,
+      "gold_exports": 6500,
+      "gold_excess": 2400,
+      "silver_imports": 26700,
+      "silver_exports": 16300,
+      "silver_excess": -10400,
+      "gs_imports": 30800,
+      "gs_exports": 22800,
+      "gs_excess": -8000
+    },
+    {
+      "year": 1848,
+      "gt_imports": 136700,
+      "gt_exports": 180700,
+      "gt_excess": 44000,
+      "st_imports": 91500,
+      "st_exports": 133200,
+      "st_excess": 41700,
+      "gold_imports": 8500,
+      "gold_exports": 1100,
+      "gold_excess": -7400,
+      "silver_imports": 45000,
+      "silver_exports": 3700,
+      "silver_excess": -41300,
+      "gs_imports": 53500,
+      "gs_exports": 4800,
+      "gs_excess": -48700
+    },
+    {
+      "year": 1849,
+      "gt_imports": 197100,
+      "gt_exports": 245000,
+      "gt_excess": 47900,
+      "st_imports": 139800,
+      "st_exports": 181000,
+      "st_excess": 41200,
+      "gold_imports": 2300,
+      "gold_exports": 1100,
+      "gold_excess": -1200,
+      "silver_imports": 56200,
+      "silver_exports": 9000,
+      "silver_excess": -47200,
+      "gs_imports": 58500,
+      "gs_exports": 10100,
+      "gs_excess": -48400
+    },
+    {
+      "year": 1850,
+      "gt_imports": 216100,
+      "gt_exports": 277000,
+      "gt_excess": 60900,
+      "st_imports": 152600,
+      "st_exports": 206100,
+      "st_excess": 53500,
+      "gold_imports": 11800,
+      "gold_exports": 8500,
+      "gold_excess": -3300,
+      "silver_imports": 29900,
+      "silver_exports": 15900,
+      "silver_excess": -14000,
+      "gs_imports": 41700,
+      "gs_exports": 24400,
+      "gs_excess": -17300
+    },
+    {
+      "year": 1851,
+      "gt_imports": 211100,
+      "gt_exports": 293400,
+      "gt_excess": 82300,
+      "st_imports": 147700,
+      "st_exports": 223500,
+      "st_excess": 75800,
+      "gold_imports": 22300,
+      "gold_exports": 6000,
+      "gold_excess": -16300,
+      "silver_imports": 34500,
+      "silver_exports": 19400,
+      "silver_excess": -15100,
+      "gs_imports": 56800,
+      "gs_exports": 25400,
+      "gs_excess": -31400
+    },
+    {
+      "year": 1852,
+      "gt_imports": 268700,
+      "gt_exports": 324300,
+      "gt_excess": 55600,
+      "st_imports": 191000,
+      "st_exports": 212600,
+      "st_excess": 21600,
+      "gold_imports": 11400,
+      "gold_exports": 8200,
+      "gold_excess": -3200,
+      "silver_imports": 34700,
+      "silver_exports": 35200,
+      "silver_excess": 500,
+      "gs_imports": 46100,
+      "gs_exports": 43400,
+      "gs_excess": -2700
+    },
+    {
+      "year": 1853,
+      "gt_imports": 327300,
+      "gt_exports": 396300,
+      "gt_excess": 69000,
+      "st_imports": 230800,
+      "st_exports": 297600,
+      "st_excess": 66800,
+      "gold_imports": 61500,
+      "gold_exports": 5700,
+      "gold_excess": -55800,
+      "silver_imports": 21700,
+      "silver_exports": 34300,
+      "silver_excess": 12600,
+      "gs_imports": 83200,
+      "gs_exports": 40000,
+      "gs_excess": -43200
+    },
+    {
+      "year": 1854,
+      "gt_imports": 348400,
+      "gt_exports": 376800,
+      "gt_excess": 28400,
+      "st_imports": 249300,
+      "st_exports": 272800,
+      "st_excess": 23500,
+      "gold_imports": 92800,
+      "gold_exports": 12400,
+      "gold_excess": -80400,
+      "silver_imports": 19300,
+      "silver_exports": 50900,
+      "silver_excess": 31600,
+      "gs_imports": 112100,
+      "gs_exports": 63300,
+      "gs_excess": -48800
+    },
+    {
+      "year": 1855,
+      "gt_imports": 416800,
+      "gt_exports": 418300,
+      "gt_excess": 1500,
+      "st_imports": 307700,
+      "st_exports": 300700,
+      "st_excess": -7000,
+      "gold_imports": 73500,
+      "gold_exports": 31400,
+      "gold_excess": -42100,
+      "silver_imports": 23300,
+      "silver_exports": 61400,
+      "silver_excess": 38100,
+      "gs_imports": 96800,
+      "gs_exports": 92800,
+      "gs_excess": -4000
+    },
+    {
+      "year": 1856,
+      "gt_imports": 528900,
+      "gt_exports": 513200,
+      "gt_excess": -15700,
+      "st_imports": 384000,
+      "st_exports": 365300,
+      "st_excess": -18700,
+      "gold_imports": 89700,
+      "gold_exports": 17300,
+      "gold_excess": -72400,
+      "silver_imports": 19500,
+      "silver_exports": 75900,
+      "silver_excess": 56400,
+      "gs_imports": 109200,
+      "gs_exports": 93200,
+      "gs_excess": -16000
+    },
+    {
+      "year": 1857,
+      "gt_imports": 519000,
+      "gt_exports": 509400,
+      "gt_excess": -9600,
+      "st_imports": 351500,
+      "st_exports": 350100,
+      "st_excess": -1400,
+      "gold_imports": 109800,
+      "gold_exports": 23700,
+      "gold_excess": -86100,
+      "silver_imports": 19000,
+      "silver_exports": 88400,
+      "silver_excess": 69400,
+      "gs_imports": 128800,
+      "gs_exports": 112100,
+      "gs_excess": -16700
+    },
+    {
+      "year": 1858,
+      "gt_imports": 417700,
+      "gt_exports": 494300,
+      "gt_excess": 76600,
+      "st_imports": 301600,
+      "st_exports": 364200,
+      "st_excess": 62600,
+      "gold_imports": 106800,
+      "gold_exports": 12800,
+      "gold_excess": -94000,
+      "silver_imports": 31000,
+      "silver_exports": 33900,
+      "silver_excess": 2900,
+      "gs_imports": 137800,
+      "gs_exports": 46700,
+      "gs_excess": -91100
+    },
+    {
+      "year": 1859,
+      "gt_imports": 454500,
+      "gt_exports": 590000,
+      "gt_excess": 135500,
+      "st_imports": 316700,
+      "st_exports": 437400,
+      "st_excess": 120700,
+      "gold_imports": 140300,
+      "gold_exports": 36200,
+      "gold_excess": -104100,
+      "silver_imports": 38800,
+      "silver_exports": 73700,
+      "silver_excess": 34900,
+      "gs_imports": 179100,
+      "gs_exports": 109900,
+      "gs_excess": -69200
+    },
+    {
+      "year": 1860,
+      "gt_imports": 512900,
+      "gt_exports": 607500,
+      "gt_excess": 94600,
+      "st_imports": 366200,
+      "st_exports": 439500,
+      "st_excess": 73300,
+      "gold_imports": 90800,
+      "gold_exports": 30600,
+      "gold_excess": -60200,
+      "silver_imports": 25200,
+      "silver_exports": 55500,
+      "silver_excess": 30300,
+      "gs_imports": 116000,
+      "gs_exports": 86100,
+      "gs_excess": -29900
+    },
+    {
+      "year": 1861,
+      "gt_imports": 595500,
+      "gt_exports": 513400,
+      "gt_excess": -82100,
+      "st_imports": 471100,
+      "st_exports": 371500,
+      "st_excess": -99600,
+      "gold_imports": 47100,
+      "gold_exports": 51700,
+      "gold_excess": 4600,
+      "silver_imports": 33200,
+      "silver_exports": 45200,
+      "silver_excess": 12000,
+      "gs_imports": 80300,
+      "gs_exports": 96900,
+      "gs_excess": 16600
+    },
+    {
+      "year": 1862,
+      "gt_imports": 559500,
+      "gt_exports": 588600,
+      "gt_excess": 29100,
+      "st_imports": 424300,
+      "st_exports": 432800,
+      "st_excess": 8500,
+      "gold_imports": 77500,
+      "gold_exports": 45700,
+      "gold_excess": -31800,
+      "silver_imports": 25400,
+      "silver_exports": 42000,
+      "silver_excess": 16600,
+      "gs_imports": 102900,
+      "gs_exports": 87700,
+      "gs_excess": -15200
+    },
+    {
+      "year": 1863,
+      "gt_imports": 624600,
+      "gt_exports": 680600,
+      "gt_excess": 56000,
+      "st_imports": 468300,
+      "st_exports": 510000,
+      "st_excess": 41700,
+      "gold_imports": 71400,
+      "gold_exports": 69000,
+      "gold_excess": -2400,
+      "silver_imports": 31100,
+      "silver_exports": 44300,
+      "silver_excess": 13200,
+      "gs_imports": 102500,
+      "gs_exports": 113300,
+      "gs_excess": 10800
+    },
+    {
+      "year": 1864,
+      "gt_imports": 657600,
+      "gt_exports": 756800,
+      "gt_excess": 99200,
+      "st_imports": 487000,
+      "st_exports": 563500,
+      "st_excess": 76500,
+      "gold_imports": 89600,
+      "gold_exports": 65400,
+      "gold_excess": -24200,
+      "silver_imports": 51700,
+      "silver_exports": 59900,
+      "silver_excess": 8200,
+      "gs_imports": 141300,
+      "gs_exports": 125300,
+      "gs_excess": -16000
+    },
+    {
+      "year": 1865,
+      "gt_imports": 680800,
+      "gt_exports": 788700,
+      "gt_excess": 107900,
+      "st_imports": 509900,
+      "st_exports": 596100,
+      "st_excess": 86200,
+      "gold_imports": 80900,
+      "gold_exports": 51800,
+      "gold_excess": -29100,
+      "silver_imports": 45600,
+      "silver_exports": 31600,
+      "silver_excess": -14000,
+      "gs_imports": 126500,
+      "gs_exports": 83400,
+      "gs_excess": -43100
+    },
+    {
+      "year": 1866,
+      "gt_imports": 742100,
+      "gt_exports": 826200,
+      "gt_excess": 84100,
+      "st_imports": 539100,
+      "st_exports": 613900,
+      "st_excess": 74800,
+      "gold_imports": 157000,
+      "gold_exports": 67200,
+      "gold_excess": -89800,
+      "silver_imports": 48300,
+      "silver_exports": 39600,
+      "silver_excess": -8700,
+      "gs_imports": 205300,
+      "gs_exports": 106800,
+      "gs_excess": -98500
+    },
+    {
+      "year": 1867,
+      "gt_imports": 777900,
+      "gt_exports": 759300,
+      "gt_excess": -18600,
+      "st_imports": 584100,
+      "st_exports": 545400,
+      "st_excess": -38700,
+      "gold_imports": 114571,
+      "gold_exports": 35697,
+      "gold_excess": -78874,
+      "silver_imports": 49096,
+      "silver_exports": 12493,
+      "silver_excess": -36603,
+      "gs_imports": 163667,
+      "gs_exports": 48190,
+      "gs_excess": -115477
+    },
+    {
+      "year": 1868,
+      "gt_imports": 821800,
+      "gt_exports": 718100,
+      "gt_excess": -103700,
+      "st_imports": 637600,
+      "st_exports": 538500,
+      "st_excess": -99100,
+      "gold_imports": 95235,
+      "gold_exports": 54152,
+      "gold_excess": -41083,
+      "silver_imports": 37260,
+      "silver_exports": 16170,
+      "silver_excess": -21090,
+      "gs_imports": 132495,
+      "gs_exports": 70322,
+      "gs_excess": -62173
+    },
+    {
+      "year": 1869,
+      "gt_imports": 773700,
+      "gt_exports": 770800,
+      "gt_excess": -2900,
+      "st_imports": 608500,
+      "st_exports": 593500,
+      "st_excess": -15000,
+      "gold_imports": 87737,
+      "gold_exports": 34791,
+      "gold_excess": -52946,
+      "silver_imports": 37213,
+      "silver_exports": 15708,
+      "silver_excess": -21505,
+      "gs_imports": 124950,
+      "gs_exports": 50499,
+      "gs_excess": -74451
+    },
+    {
+      "year": 1870,
+      "gt_imports": 675000,
+      "gt_exports": 667000,
+      "gt_excess": -8000,
+      "st_imports": 553400,
+      "st_exports": 540800,
+      "st_excess": -12600,
+      "gold_imports": 59896,
+      "gold_exports": 36781,
+      "gold_excess": -23115,
+      "silver_imports": 20466,
+      "silver_exports": 13621,
+      "silver_excess": -6845,
+      "gs_imports": 80362,
+      "gs_exports": 50402,
+      "gs_excess": -29960
+    },
+    {
+      "year": 1871,
+      "gt_imports": 763000,
+      "gt_exports": 632700,
+      "gt_excess": -130300,
+      "st_imports": 688400,
+      "st_exports": 554400,
+      "st_excess": -134000,
+      "gold_imports": 27765,
+      "gold_exports": 69031,
+      "gold_excess": 41266,
+      "silver_imports": 30338,
+      "silver_exports": 27343,
+      "silver_excess": -2995,
+      "gs_imports": 58103,
+      "gs_exports": 96374,
+      "gs_excess": 38271
+    },
+    {
+      "year": 1872,
+      "gt_imports": 868800,
+      "gt_exports": 918000,
+      "gt_excess": 49200,
+      "st_imports": 689100,
+      "st_exports": 726000,
+      "st_excess": 36900,
+      "gold_imports": 27379,
+      "gold_exports": 37588,
+      "gold_excess": 10209,
+      "silver_imports": 46489,
+      "silver_exports": 26754,
+      "silver_excess": -19735,
+      "gs_imports": 73868,
+      "gs_exports": 64342,
+      "gs_excess": -9526
+    }
+  ]
+}

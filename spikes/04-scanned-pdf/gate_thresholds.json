@@ -1,0 +1,66 @@
+{
+  "_schema_note": "Gate 阈值定义 per 返工指令 B-3/B-6。任何低于此值的修改都必须经用户书面批准。未经批准修改即视为 GATE 失败。",
+  "thresholds": {
+    "char_accuracy_min_pct": 90.0,
+    "numeric_cell_accuracy_min_pct": 80.0,
+    "year_accuracy_min_pct": 95.0,
+    "page_locator_accuracy_min_pct": 100.0,
+    "bbox_locator_accuracy_min_pct": 90.0,
+    "needs_review_max_pct": 30.0,
+    "low_confidence_cells_max_pct": 25.0,
+    "missing_value_cells_max_pct": 10.0,
+    "unparseable_ocr_cells_max_pct": 5.0
+  },
+  "evaluation_method": {
+    "denominator_policy": "分母必须覆盖全部 30 年 × 15 列 = 450 个单元格；缺失或不可解析记为错误。",
+    "matched_definition": "matched_to_truth 仅表示 (year, column) 对应的行已抽取；不构成数值正确的证据。",
+    "value_correct_definition": "value_correct 仅在 obs.value 非 null 且与 truth_val 整数值完全相等时计 1；null 或可解析失败计 0。",
+    "year_correct_definition": "year_correct 仅在 obs.year 非 null 且等于 truth year 时计 1；null 或解析失败计 0。",
+    "indicator_correct_definition": "indicator_correct 仅在 obs.indicator 字符串与 truth 列定义完全相等时计 1。",
+    "page_correct_definition": "page_correct 仅在 obs.page_pdf_1indexed 等于 truth 目标页码时计 1。",
+    "bbox_correct_definition": "bbox_correct 仅在 IOU ≥ 0.5 时计 1；bbox_with_truth 表示 truth 与 obs 都有 bbox。",
+    "needs_review_definition": "needs_review 在 conf < 60 或 value 为 null 或 raw_ocr 不可解析时为 true。"
+  },
+  "spike04_current_eval": {
+    "extracted_file": "data/extracts/04-scanned-pdf/extracted.json",
+    "truth_file": "spikes/04-scanned-pdf/truth_p24.json",
+    "report_file": "data/extracts/04-scanned-pdf/eval_report.json",
+    "status": "FAILED",
+    "actual_observations_total": 450,
+    "actual_numeric_cell_accuracy_pct": 0.0,
+    "actual_numeric_cells_compared": 129,
+    "actual_numeric_cells_correct": 0,
+    "actual_char_accuracy_pct": 3.7,
+    "actual_char_cells_compared": 2348,
+    "actual_char_cells_correct": 87,
+    "actual_needs_review_total": 450,
+    "actual_needs_review_pct": 100.0,
+    "actual_low_confidence_count": 450,
+    "actual_unparseable_count": 321,
+    "actual_no_ocr_words_count": 111,
+    "actual_page_locator_accuracy_pct": 100.0,
+    "actual_indicator_accuracy_pct": 100.0,
+    "actual_unit_accuracy_pct": 100.0,
+    "actual_bbox_accuracy_pct": 99.7,
+    "actual_bbox_compared": 339,
+    "gate_verdict": "BLOCKED — numeric 0% / char 3.7% / needs_review 100% 全部低于阈值",
+    "additional_notes": [
+      "metrics 100% only reflects trivially-hardcoded fields (indicator strings, page number, unit string) — NOT actual OCR correctness",
+      "matched_to_truth=450 表示 450 个 (year,column) 行被生成，不代表 450 个数值正确",
+      "1909 美国统计摘要作为中国研究平台代表性样本的偏差待用户书面批准；未批准前保持 BLOCKED",
+      "needs_review_breakdown 显示全部 450 格触发 review，与 OCR confidence < 60 一致"
+    ]
+  },
+  "user_decision_required": [
+    {
+      "item": "spike_04_sample_source",
+      "current": "1909 U.S. Statistical Abstract of Foreign Countries (archive.org, public domain)",
+      "needed": "用户书面批准 (1) 接受 1909 美国资料作为代表性样本，或 (2) 提供真实中文扫描 PDF，或 (3) 维持 BLOCKED"
+    },
+    {
+      "item": "spike_04_threshold_lowering",
+      "current": "numeric 0% / char 3.7% / needs_review 100%",
+      "needed": "用户书面批准 (1) 降低阈值，或 (2) 接受 FAILED 状态进入 Gate 0 总结"
+    }
+  ]
+}

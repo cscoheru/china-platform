@@ -1,0 +1,205 @@
+{
+  "header": {
+    "extractor": "spike00-national-yearbook/3.0-R3C",
+    "input_file": "data/extracts/00-national-yearbook-table/extracted.json",
+    "input_hash_sha256": "9576529a881b83beac4718594f3a26d2e1949947a65c7e375b4a5f1c6a69688e",
+    "input_size_bytes": 550889,
+    "n_observations": 682,
+    "n_columns": 22,
+    "expected_n_observations": 682,
+    "expected_n_columns": 22,
+    "stale_check": "header.input_hash_sha256/n_observations/n_columns 必须与 extracted.json 完全一致；不一致 ⇒ per_column_accuracy.json 已陈旧"
+  },
+  "per_column": {
+    "brk_agri": {
+      "sample_count": 2,
+      "coverage_pct": 6.5,
+      "matched_count": 2,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "brk_cons": {
+      "sample_count": 2,
+      "coverage_pct": 6.5,
+      "matched_count": 2,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "brk_fina": {
+      "sample_count": 1,
+      "coverage_pct": 3.2,
+      "matched_count": 1,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "brk_hote": {
+      "sample_count": 1,
+      "coverage_pct": 3.2,
+      "matched_count": 1,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "brk_indu": {
+      "sample_count": 2,
+      "coverage_pct": 6.5,
+      "matched_count": 2,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "brk_othr": {
+      "sample_count": 1,
+      "coverage_pct": 3.2,
+      "matched_count": 1,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "brk_real": {
+      "sample_count": 1,
+      "coverage_pct": 3.2,
+      "matched_count": 1,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "brk_tran": {
+      "sample_count": 1,
+      "coverage_pct": 3.2,
+      "matched_count": 1,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "brk_whol": {
+      "sample_count": 1,
+      "coverage_pct": 3.2,
+      "matched_count": 1,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "gdp_total": {
+      "sample_count": 6,
+      "coverage_pct": 19.4,
+      "matched_count": 6,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "growth_pc": {
+      "sample_count": 4,
+      "coverage_pct": 12.9,
+      "matched_count": 4,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "growth_pri": {
+      "sample_count": 4,
+      "coverage_pct": 12.9,
+      "matched_count": 4,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "growth_sec": {
+      "sample_count": 4,
+      "coverage_pct": 12.9,
+      "matched_count": 4,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "growth_sum": {
+      "sample_count": 5,
+      "coverage_pct": 16.1,
+      "matched_count": 5,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "growth_ter": {
+      "sample_count": 4,
+      "coverage_pct": 12.9,
+      "matched_count": 4,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "ind_pri": {
+      "sample_count": 6,
+      "coverage_pct": 19.4,
+      "matched_count": 6,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "ind_sec": {
+      "sample_count": 6,
+      "coverage_pct": 19.4,
+      "matched_count": 6,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "ind_ter": {
+      "sample_count": 6,
+      "coverage_pct": 19.4,
+      "matched_count": 6,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "per_capita": {
+      "sample_count": 3,
+      "coverage_pct": 9.7,
+      "matched_count": 3,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "share_pri": {
+      "sample_count": 2,
+      "coverage_pct": 6.5,
+      "matched_count": 2,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "share_sec": {
+      "sample_count": 4,
+      "coverage_pct": 12.9,
+      "matched_count": 4,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    },
+    "share_ter": {
+      "sample_count": 3,
+      "coverage_pct": 9.7,
+      "matched_count": 3,
+      "accuracy_pct": 100.0,
+      "threshold_pct": 100.0,
+      "verdict": "PASS"
+    }
+  },
+  "summary": {
+    "total_matched": 69,
+    "total_truth_samples": 69,
+    "overall_accuracy_pct": 100.0,
+    "needs_review_total": 385,
+    "needs_review_pct": 56.45,
+    "needs_review_blocked_pct": 50.0,
+    "columns_below_threshold_count": 0,
+    "columns_at_zero_count": 0,
+    "blocking_reasons": [
+      "needs_review_pct=56.45 > 50.0% (docs/08b 回滚线)"
+    ],
+    "overall_verdict": "BLOCKED"
+  }
+}

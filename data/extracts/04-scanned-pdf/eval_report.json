@@ -1,0 +1,23 @@
+{
+ "observations_total": 450,
+ "matched_to_truth": 450,
+ "char_accuracy_pct": 3.7,
+ "char_correct": 87,
+ "char_compared": 2348,
+ "numeric_cell_accuracy_pct": 0.0,
+ "numeric_cell_correct": 0,
+ "numeric_cell_compared": 129,
+ "indicator_name_accuracy_pct": 100.0,
+ "unit_accuracy_pct": 100.0,
+ "page_locator_accuracy_pct": 100.0,
+ "bbox_locator_accuracy_pct": 99.7,
+ "bbox_compared": 339,
+ "needs_review_total": 450,
+ "needs_review_breakdown": {
+  "low_ocr_confidence": 450,
+  "unparseable_ocr": 321,
+  "no_ocr_words": 111
+ },
+ "truth_table": "spikes/04-scanned-pdf/truth_p24.json",
+ "extracted_file": "data/extracts/04-scanned-pdf/extracted.json"
+}

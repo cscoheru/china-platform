@@ -1,0 +1,26 @@
+{
+  "sample_id": "04-scanned-pdf",
+  "file_name": "statistical_abstract_foreign_countries_1909.pdf",
+  "file_size_bytes": 32182398,
+  "file_hash_sha256": "6fa36e6853dbe39c026febbb66f9abcfcc08c8e7e38bcec048f6becc3ce203ae",
+  "source_url": "https://archive.org/download/statisticalabst00unit/statisticalabst00unit.pdf",
+  "source_item_identifier": "statisticalabst00unit",
+  "source_landing_page": "https://archive.org/details/statisticalabst00unit",
+  "title": "Statistical abstract of foreign countries. Part I-III. Statistics of foreign commerce of the principal countries.",
+  "publisher": "U.S. Department of Commerce and Labor, Bureau of Statistics",
+  "publication_year": 1909,
+  "digitized_by": "Internet Archive",
+  "copyright_note": "Work of the U.S. federal government — public domain (17 U.S.C. §105). Digital scan hosted by the Internet Archive. No license restriction on use or reproduction.",
+  "acquisition": {
+    "method": "direct HTTPS download (curl)",
+    "fetched_at_utc": "2026-08-23T05:37:59Z",
+    "verified_at_run": "sha256 recomputed on every extraction run"
+  },
+  "pdf_pages_total": 456,
+  "target_page_pdf": 24,
+  "target_page_printed": 20,
+  "table_on_page": "Total Imports and Exports of Merchandise and Gold and Silver into and from the Principal Countries of Europe—Continued. FRANCE—Continued.",
+  "render_dpi": 300,
+  "orientation_note": "Printed landscape on portrait page; tesseract OSD detects 'Rotate: 90'; extractor rotates clockwise before OCR",
+  "truth_table": "truth_p24.json (human-verified transcription, 30 rows x 16 columns incl. YEAR, 5 identity families x 30 rows = 240 arithmetic checks, all pass; builder: build_truth_p24.py)"
+}
