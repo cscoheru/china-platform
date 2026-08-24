@@ -1,32 +1,26 @@
 # CC 当前队列
 
-> 更新：2026-08-24 — **S1.3 EXECUTING**（S1.1+S1.2 已完成 `48526b4`）
+> 更新：2026-08-24 — **S1.4 规划 EXECUTING**（S1.3 已关闭 `32`）
 
 ---
 
-## NOW — 立即执行 S1.3
+## NOW
 
 1. `git pull origin main`
-2. 读 **`30-stage1-s13-registry-tasking-20260824.md`**
-3. 实现 registry CSV → DB import + dry-run health script + 测试
-4. pytest 251 → pack → commit → **双推**
-5. 回执 **`31-stage0-cc-s13-receipt-*.md`**
-
-**S1.1+S1.2 已关闭（`29` 审验）。禁止 IDLE。**
-
----
+2. 读 **`33-stage1-s14-nbs-planning-20260824.md`**
+3. 写 `docs/18-...` 规划（+ 可选 connector 空壳）
+4. commit 双推 + 回执 **`34-stage0-cc-s14-planning-receipt-*.md`**
 
 ## 已完成
 
 | 项 | commit |
 |---|---|
-| S1.1 infra + S1.2 Alembic | `48526b4` |
-| S1.1 回执 | `28` / `75d4717` |
-
----
+| S1.3 registry import + dry-run health | `ec07b95` |
+| S1.3 回执 | `26e2e4d` / `31` |
+| Cursor S1.3 审验 | `32` |
 
 ## STOP
 
-S1.3 回执 + 双推后 → 等 Cursor `32+`
+S1.4 规划回执 + 双推 → 等 Cursor S1.4 实现任务书
 
 — Cursor —
