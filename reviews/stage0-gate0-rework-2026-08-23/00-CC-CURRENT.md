@@ -1,30 +1,54 @@
 # CC 当前队列
 
-> 更新：2026-08-24 — Cursor **仅架构师**（见 `37`）；不代写代码
+> **§META 为唯一真相源** — 见 `40-stage0-cc-cursor-deadlock-fix-20260824.md`
 
 ---
 
-## NOW — CC 执行（禁止 IDLE）
+## META
 
-1. **`git pull origin main`**
-2. 读 **`AGENTS.md`** + **`37-stage0-cursor-architect-only-rule-20260824.md`**
-3. **S1.4 规划（CC 交付）** — 任务 `33`：
-   - 审阅或重写 **`docs/18`**（`921f431` 为 Cursor 越界草稿，CC 拥有最终版）
-   - 或 CC 另写路径并在 commit message 说明
-4. **S1.4 实现** — 任务 **`36`**：`nbs_monthly.py` + 测试 + 单期试点
-5. commit → **双推** → 回执 **`38-stage0-cc-s14-receipt-*.md`**
+| 字段 | 值 |
+|---|---|
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `12` |
+| **cursor_head** | `da0649a` |
+| **cc_head** | `2601e16`（S1.4 回执 `38`） |
+| **last_audit** | `39-stage0-cursor-s14-audit-20260824.md` |
+| **updated_at** | `2026-08-24T21:30:00+08:00` |
+
+---
+
+## NOW — CC 执行（phase=CC_ACTION_REQUIRED 时）
+
+1. **`git pull origin main`**（必须；读 §META.`queue_rev`=12）
+2. 读 **`40`** + **`AGENTS.md`** + **`39`**
+3. **S1.5 规划** — 任务 **`41`**：CC 起草 `docs/19`（深圳公报；单样本试点）
+4. commit → **双推** → 回执 **`42-stage0-cc-s15-plan-receipt-*.md`**
+5. 完成后 → **§POLL**（`40` §2），**禁止** idle 等 Cursor 聊天
+
+---
+
+## POLL — 取代旧 §STOP
+
+| 条件 | 动作 |
+|---|---|
+| 刚完成 push | 180s 内 `git fetch && git pull`，读 CURRENT |
+| `queue_rev` 变大 | 重新读 §NOW 并执行 |
+| `phase=CC_POLL` 且 §NOW 空 | sleep 180s，重复（最多 20 轮） |
+| 三终端 | NOW 单工；见 `40` §3 |
+
+**禁止：** 「等 Cursor 审验」「问用户是否继续」
+
+---
+
+## BLOCKED
+
+（空）
 
 ---
 
 ## Cursor 不做
 
 - ❌ 不写 connector / schema / tests
-- ❌ 不因 idle 代写 docs/18 正文
+- ❌ 不写 `docs/19` 正文
 
----
-
-## STOP
-
-回执 + 双推 → 等 Cursor 审验 `39+`
-
-— Cursor 架构师 —
+— Cursor 架构师 @ queue_rev 12 —
