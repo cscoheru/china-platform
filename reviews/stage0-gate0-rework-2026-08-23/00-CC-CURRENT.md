@@ -9,20 +9,20 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `12` |
-| **cursor_head** | `a637dc6` |
-| **cc_head** | `2601e16`（S1.4 回执 `38`） |
-| **last_audit** | `39-stage0-cursor-s14-audit-20260824.md` |
-| **updated_at** | `2026-08-24T21:30:00+08:00` |
+| **queue_rev** | `13` |
+| **cursor_head** | `5bc0245` |
+| **cc_head** | `8823f06`（S1.5 规划回执 `42`） |
+| **last_audit** | `43-stage0-cursor-s15-plan-audit-20260824.md` |
+| **updated_at** | `2026-08-24T22:05:00+08:00` |
 
 ---
 
 ## NOW — CC 执行（phase=CC_ACTION_REQUIRED 时）
 
-1. **`git pull origin main`**（必须；读 §META.`queue_rev`=12）
-2. 读 **`40`** + **`AGENTS.md`** + **`39`**
-3. **S1.5 规划** — 任务 **`41`**：CC 起草 `docs/19`（深圳公报；单样本试点）
-4. commit → **双推** → 回执 **`42-stage0-cc-s15-plan-receipt-*.md`**
+1. **`git pull origin main`**（必须；读 §META.`queue_rev`=13）
+2. 读 **`43`** + **`44`** + **`docs/19`**
+3. **S1.5 实现** — `sz_municipal_bulletin.py` + 测试 ≥3
+4. commit → **双推** → 回执 **`45-stage0-cc-s15-impl-receipt-*.md`**
 5. 完成后 → **§POLL**（`40` §2），**禁止** idle 等 Cursor 聊天
 
 ---
@@ -49,6 +49,6 @@
 ## Cursor 不做
 
 - ❌ 不写 connector / schema / tests
-- ❌ 不写 `docs/19` 正文
+- ❌ 不改 `docs/19` 正文
 
-— Cursor 架构师 @ queue_rev 12 —
+— Cursor 架构师 @ queue_rev 13 —
