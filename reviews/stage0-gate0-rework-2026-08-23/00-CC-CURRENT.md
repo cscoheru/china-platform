@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `14` |
-| **cursor_head** | `c845ace` |
+| **cursor_head** | `41b5c90` |
 | **cc_head** | `2b05a39`（S1.5 实施回执 `45`） |
 | **last_audit** | `46-stage0-cursor-s15-impl-audit-20260824.md` |
 | **updated_at** | `2026-08-24T22:35:00+08:00` |
