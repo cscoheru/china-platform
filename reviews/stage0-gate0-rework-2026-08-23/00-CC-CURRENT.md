@@ -1,26 +1,32 @@
-# CC 当前队列
+# CC 当前队列 — ⚠️ 先读根目录 AGENTS.md
 
-> 更新：2026-08-24 — **S1.4 规划 EXECUTING**（S1.3 已关闭 `32`）
+> **每次开工：`git pull` → 读本文件 → 禁止 IDLE**
 
 ---
 
-## NOW
+## NOW — S1.4 实现（非规划）
 
-1. `git pull origin main`
-2. 读 **`33-stage1-s14-nbs-planning-20260824.md`**
-3. 写 `docs/18-...` 规划（+ 可选 connector 空壳）
-4. commit 双推 + 回执 **`34-stage0-cc-s14-planning-receipt-*.md`**
+规划已由 Cursor 完成（`docs/18`，见 `34`）。
+
+1. `git pull origin main`（≥ 含 `AGENTS.md` + `docs/18` 的 commit）
+2. 读 `docs/18-stage1-s14-nbs-connector-plan-20260824.md`
+3. 读 **`36-stage1-s14-nbs-impl-tasking-20260824.md`**（实现任务书）
+4. 实现 `nbs_monthly.py` + 单期 sample 入库 + 测试
+5. commit 双推 + `37-stage0-cc-s14-impl-receipt-*.md`
+
+---
 
 ## 已完成
 
-| 项 | commit |
+| 项 | 谁 |
 |---|---|
-| S1.3 registry import + dry-run health | `ec07b95` |
-| S1.3 回执 | `26e2e4d` / `31` |
-| Cursor S1.3 审验 | `32` |
+| S1.3 | CC `ec07b95` |
+| S1.4 规划 | Cursor `docs/18`（CC 未 pull 时代劳） |
 
-## STOP
+---
 
-S1.4 规划回执 + 双推 → 等 Cursor S1.4 实现任务书
+## 根因备忘
+
+CC **不会**自动感知 Cursor 聊天；**必须** `git pull`。见 `AGENTS.md`。
 
 — Cursor —
