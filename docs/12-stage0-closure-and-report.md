@@ -1,6 +1,6 @@
 # Stage 0 Gate 0 — Closure Matrix & Final Report (R3 + R4 rework)
 
-> Generated 2026-08-23 per R3/R4 directives; updated 2026-08-24 for U-1/U-2/U-3 Shaanxi integration. **Current verdict authority: Cursor re-verification + user U-4; CC does not auto-declare PASS.**
+> Generated 2026-08-23 per R3/R4 directives; updated 2026-08-24 for U-1/U-2/U-3 Shaanxi integration; **Gate 0 CLOSED 2026-08-24 per U-4=A（per `reviews/23-stage1-kickoff-20260824.md` §1）**。
 >
 > 关键修正 (R4 返工后)：
 > - Codex R3 复核判定 **REJECT**，原因：A–I 9/9 "done" 隐藏了 skip-as-PASS、随机 5-sample hash、陈旧准确率快照、I-05 误归为用户决策项
@@ -11,13 +11,13 @@
 >
 > 编号口径：§2 用原始 13 项缺陷（B-01..B-08、I-01..I-05）；§10 用 A..I 返工项；§11 用 R4-1..R4-6 返工项。三套编号互不混用。
 
-## §1. Stage 0 Status（等待终态裁定；CC 不自动给 PASS）
+## §1. Stage 0 Status（Gate 0 CLOSED 2026-08-24 per U-4=A）
 
 | Field | Value |
 |---|---|
 | Gate | Gate 0 (Stage 0 verification) |
-| Verdict | **PENDING CURSOR RE-VERIFICATION + USER U-4**；陕西 research-track 集成不自动产生 PASS，且 per U-3 不参与 Gate |
-| Closure matrix (原始 13 项缺陷) | 12/13 closed；B-01 原统计表代表性缺口保留，但 U-3 已改为非门控 |
+| Verdict | **CLOSED**（U-4=A；用户已授权启动 Stage 1；详见 `reviews/23` §1；**不等于** Stage 0 全 PASS 或统计表代表性样本齐备；spike 00 needs_review 56% / 1909 FAILED / 陕西 research-only 等质量债由 Stage 1 继续诚实记录） |
+| Closure matrix (原始 13 项缺陷) | 12/13 closed；B-01 原统计表代表性缺口保留，按 U-3 移出 spike 04 门控 |
 | Dev rework (R4-1..R4-6) | 6/6 closed |
 | Pytest (total project) | **251 collected / 251 passed / 0 failed / 0 skipped**（spikes + tests 全集） |
 | Pytest increment | +14 Shaanxi OCR tests；历史 R4 +32 基线不倒改 |
@@ -225,7 +225,7 @@ R4 返工分 6 项（5 dev rework + 1 final re-verification）：
 - **P-2**：不接受 1909 美国样本代表中国治理平台。
 - **U-1/U-2**：陕西仅作中文 OCR 压力样本；嵌入文本层作为有噪声对照。
 - **U-3**：spike 04 非 Stage 0 验收项。
-- **U-4**：等待 Cursor 对最终代码、251 tests 和 evidence pack 复验后由用户裁定。
+- **U-4**：**已裁定 A（2026-08-24）** — Gate 0 关闭；可继续；用户授权启动 Stage 1（per `reviews/23-stage1-kickoff-20260824.md`）。Stage 1 红线：不全国抓取；不官员评分；不 DSH；不降 OCR 门槛；1909 不代表中国。
 
 ### 12.3 DEV REWORK
 - 陕西来源登记、provenance、truth、image-only OCR、布局评测、14 tests 与当前态文档已完成。

@@ -203,11 +203,11 @@ Stage 4 末决策：
 
 ## 9. Stage 0 状态（当前）
 
-- [x] Stage 0：仓库审计与技术验证（本文档 + 9 份文档 + schema 草案 + 4 个 spike）
-- [ ] Stage 1：未启动
+- [x] Stage 0：仓库审计与技术验证（本文档 + 9 份文档 + schema 草案 + 4 个 spike）— Gate 0 CLOSED 2026-08-24 per U-4=A
+- [x] Stage 1：已启动（2026-08-24）— 见 `reviews/23-stage1-kickoff-20260824.md` 与 `docs/17-stage1-kickoff-plan-20260824.md`
 - [ ] Stage 2：未启动
 - [ ] Stage 3：未启动
 - [ ] Stage 4：未启动
 - [ ] Stage 5：未启动
 
-**阶段0完成后停止，等待审核；不自动进入 Stage 1**（per 用户指令）。
+**Gate 0 已关闭；Stage 1 启动依据 U-4=A；不宣布 Stage 0 全 PASS（spike 00 needs_review 56% / 1909 FAILED / 陕西 research-only 由 Stage 1 继续诚实记录）。**

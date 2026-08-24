@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "d119d285eebd01c4e7c4348588541a7cd6ceeb78",
-    "commit_sha_short": "d119d285eebd",
-    "commit_timestamp_utc": "2026-08-24T13:41:22+08:00",
+    "commit_sha": "9fb889c84e7f0ec8c655584855bbb3f824e205ef",
+    "commit_sha_short": "9fb889c84e7f",
+    "commit_timestamp_utc": "2026-08-24T18:18:52+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -121,8 +121,8 @@
     },
     {
       "path": "docs/08-mvp-plan.md",
-      "size_bytes": 9818,
-      "sha256": "40a444b5f0378f413f77ed5d3e41847ea34a1491b34cf9a91d53fa537aabecd2",
+      "size_bytes": 10053,
+      "sha256": "4ec1eadaa76e109ca06076f0a5a3d7e2c189e4c9bad9def45a8116c3afba2ec0",
       "role": "documentation"
     },
     {
@@ -151,14 +151,14 @@
     },
     {
       "path": "docs/12-stage0-closure-and-report.md",
-      "size_bytes": 18092,
-      "sha256": "70c1dcef1dac445e1a057f9bfa1e32c01331d267cace01404ec50c2e392d6ee0",
+      "size_bytes": 18377,
+      "sha256": "8fcd88ed488b97ced1fcd587d3b0664de3fc3b5ae1dcdaef8767ffc0c1ebbc10",
       "role": "documentation"
     },
     {
       "path": "docs/13-r4-final-verification.md",
-      "size_bytes": 16099,
-      "sha256": "520fafdb843fbae24aca2240760b9c015e219d224fdb80439c1259255e48dfcd",
+      "size_bytes": 16315,
+      "sha256": "2fe06ddbdfd9ed0c7be390e508858148066aba0f45e588bee8aaa79e606368e8",
       "role": "documentation"
     },
     {
@@ -171,6 +171,12 @@
       "path": "docs/16-e1-candidate-report-20260824.md",
       "size_bytes": 16465,
       "sha256": "d2b9ed90c7e9b8eda26e4deb710df21496ed67846945b6c20484a48f94b4aa92",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/17-stage1-kickoff-plan-20260824.md",
+      "size_bytes": 9523,
+      "sha256": "7bd6fcca8e89f3ff7e284ceba7ca5d8b5c9233450f5bd24657c3d0f61466e590",
       "role": "documentation"
     },
     {
@@ -2652,12 +2658,12 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 440,
+  "artifact_count": 441,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 17,
+    "documentation": 18,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 1,

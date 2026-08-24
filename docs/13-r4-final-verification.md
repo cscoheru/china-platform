@@ -1,6 +1,6 @@
 # Stage 0 Gate 0 R4 — Final Verification Report (R4-6)
 
-> Generated 2026-08-24 after R6 rebuild; extended 2026-08-24 for the Shaanxi OCR integration.
+> Generated 2026-08-24 after R6 rebuild; extended 2026-08-24 for the Shaanxi OCR integration; **Gate 0 CLOSED 2026-08-24 per U-4=A（per `reviews/23-stage1-kickoff-20260824.md` §1）**。
 > R6 historical baseline was 237 tests and 428 artifacts. The current integration baseline is
 > 251 tests; the post-integration artifact count and independent hash result are recorded in §10
 > after the final rebuild. Historical command outputs below are retained as dated evidence, not
@@ -8,7 +8,7 @@
 
 ## §0. Final Verdict
 
-**BLOCKED → 待 Gate 0 终态裁定（per U-3，2026-08-24）。**
+**Gate 0 CLOSED（2026-08-24，per U-4=A）**。Stage 0 不等于全 PASS；spike 00 needs_review 56% / 1909 eval FAILED / 陕西 research-only 等质量债由 Stage 1 继续诚实记录。
 
 - Stage 0 维持 BLOCKED（口径需待 docs/11/12/13 全部落地后由 Cursor 复验 + 用户最终确认）
 - 历史 E-1（中文扫描 PDF 缺失）：**已不再作为 Stage 0 BLOCKED 根因**（per `docs/15` §4a U-3 用户裁定 + `reviews/09` §3 预审确认）；spike 04 转为非验收项（OCR 管线压力样本，研究追踪）
