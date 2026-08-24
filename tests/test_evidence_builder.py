@@ -124,6 +124,13 @@ def test_artifact_count_matches_role_count_sum(built_manifest):
     assert s == manifest["artifact_count"], (
         f"role_count sum={s} != artifact_count={manifest['artifact_count']}"
     )
+    roles_by_path = {artifact["path"]: artifact["role"] for artifact in manifest["artifacts"]}
+    assert roles_by_path["data/extracts/04-scanned-pdf/shaanxi_text_ocr.json"] == (
+        "research_non_gating_extracted_artifact"
+    )
+    assert roles_by_path[
+        "data/extracts/04-scanned-pdf/shaanxi_text_eval_report.json"
+    ] == "research_non_gating_eval_report"
 
 
 def test_schema_ddl_artifact_present_and_hash_matches(built_manifest):

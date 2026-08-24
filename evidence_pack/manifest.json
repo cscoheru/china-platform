@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "afa9d0fc3c6ae8d4cf86591a79dddc0d436fb81c",
-    "commit_sha_short": "afa9d0fc3c6a",
-    "commit_timestamp_utc": "2026-08-24T13:14:46+08:00",
+    "commit_sha": "d119d285eebd01c4e7c4348588541a7cd6ceeb78",
+    "commit_sha_short": "d119d285eebd",
+    "commit_timestamp_utc": "2026-08-24T13:41:22+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -60,6 +60,18 @@
       "role": "extracted_artifact"
     },
     {
+      "path": "data/extracts/04-scanned-pdf/shaanxi_text_eval_report.json",
+      "size_bytes": 4712,
+      "sha256": "28d37f8c06949abf40afcbe35b71afab2971bcf7e364caa6156abe442e90ddb0",
+      "role": "research_non_gating_eval_report"
+    },
+    {
+      "path": "data/extracts/04-scanned-pdf/shaanxi_text_ocr.json",
+      "size_bytes": 19120,
+      "sha256": "3d21d48df6d4e522d799ab39aeee47ec2691ec304da5965b401d457c5e31e96a",
+      "role": "research_non_gating_extracted_artifact"
+    },
+    {
       "path": "docs/00-project-assessment.md",
       "size_bytes": 8015,
       "sha256": "3b222987738989da8638fd2e555e430d17b2cfcbf0a5fd7a0d979a7a7d4c93dc",
@@ -79,8 +91,8 @@
     },
     {
       "path": "docs/03-source-registry.md",
-      "size_bytes": 18446,
-      "sha256": "c8d10f02c32a29681416934deff512450f6f94c0f7219c0323000213556ab3bd",
+      "size_bytes": 19570,
+      "sha256": "af920756fd6a6dd136dc47faf26e6f99b0d06377a44a3f1b6f31d621b3d2ea42",
       "role": "documentation"
     },
     {
@@ -133,20 +145,20 @@
     },
     {
       "path": "docs/11-stage0-review.md",
-      "size_bytes": 28357,
-      "sha256": "96e4bbc229b955f1ae783155bc7d0dc594aa3b2e3a45a47d5b8ecb6715d5a893",
+      "size_bytes": 30777,
+      "sha256": "451ac6f22585b4aa7bd086d3166f4ef39e77c1556ba49cd3e6b636271da312bd",
       "role": "documentation"
     },
     {
       "path": "docs/12-stage0-closure-and-report.md",
-      "size_bytes": 17016,
-      "sha256": "cd4804263d0250b47c1d4be59228c04d40234775415c9b3f32898c2c1827131f",
+      "size_bytes": 18092,
+      "sha256": "70c1dcef1dac445e1a057f9bfa1e32c01331d267cace01404ec50c2e392d6ee0",
       "role": "documentation"
     },
     {
       "path": "docs/13-r4-final-verification.md",
-      "size_bytes": 14784,
-      "sha256": "f33edf3256d4cc8a7bc7d7c08a2f9d7bd73d2b9d8e8b5e16b25e4cada8f73220",
+      "size_bytes": 16099,
+      "sha256": "520fafdb843fbae24aca2240760b9c015e219d224fdb80439c1259255e48dfcd",
       "role": "documentation"
     },
     {
@@ -157,8 +169,8 @@
     },
     {
       "path": "docs/16-e1-candidate-report-20260824.md",
-      "size_bytes": 13450,
-      "sha256": "328cd218d268043948cf5d91e78270009eab1c16df56346b26c8547d55a0ee2e",
+      "size_bytes": 16465,
+      "sha256": "d2b9ed90c7e9b8eda26e4deb710df21496ed67846945b6c20484a48f94b4aa92",
       "role": "documentation"
     },
     {
@@ -193,9 +205,15 @@
     },
     {
       "path": "source_registry/registry.csv",
-      "size_bytes": 2842,
-      "sha256": "86e894c68534dbc5da15cc16ddd42e35bd91a0828c8e68df4e21410995c0238c",
+      "size_bytes": 3718,
+      "sha256": "359e3bdc08d7d206a2932435f0f2365c7b0d16aeb41935a51c71a0d37b8b6bdb",
       "role": "source_registry_csv"
+    },
+    {
+      "path": "spikes/00-national-yearbook-table/build_per_column_accuracy.py",
+      "size_bytes": 7554,
+      "sha256": "f5dd8b908f2f612cb609d351931c66d531c9360054090861414f3cdbb4606ea4",
+      "role": "spike_helper"
     },
     {
       "path": "spikes/00-national-yearbook-table/data/c0309.jpg",
@@ -2514,9 +2532,27 @@
       "role": "spike_truth_builder"
     },
     {
+      "path": "spikes/04-scanned-pdf/build_truth_shaanxi_flk.py",
+      "size_bytes": 7248,
+      "sha256": "034fbe4afd014c225e49de6d84f2b3f85916e3d7257836eb026ec25168d8ae4a",
+      "role": "spike_truth_builder"
+    },
+    {
+      "path": "spikes/04-scanned-pdf/data/shaanxi_fiscal_regulation_flk.pdf",
+      "size_bytes": 1007943,
+      "sha256": "f34b2e57ae08620cb6a6afb98b3983d805d53e3bae78b969795987a7ebe71488",
+      "role": "spike_sample_or_truth"
+    },
+    {
       "path": "spikes/04-scanned-pdf/evaluate_04.py",
       "size_bytes": 7032,
       "sha256": "eadae7700682fea2f5f3ae53a2cf28eeba589ba350d12e475f01aa2c81121172",
+      "role": "spike_evaluator"
+    },
+    {
+      "path": "spikes/04-scanned-pdf/evaluate_04_shaanxi_text.py",
+      "size_bytes": 8833,
+      "sha256": "40eec2c1fecffcdecb6308ed0818806cdfe8018d8848d1d9cbfe06f11310fa1d",
       "role": "spike_evaluator"
     },
     {
@@ -2526,15 +2562,27 @@
       "role": "spike_extractor"
     },
     {
+      "path": "spikes/04-scanned-pdf/extract_04_shaanxi_text.py",
+      "size_bytes": 9871,
+      "sha256": "6ef7f9d0bf56241439e47d284860d6403ca2e24e3dc195b8df6cdcaca6a0be62",
+      "role": "spike_extractor"
+    },
+    {
       "path": "spikes/04-scanned-pdf/gate_thresholds.json",
       "size_bytes": 3709,
       "sha256": "81f3c83acdd5111b7db9648ccf40273545b22688249f8e60a843eb482a14154f",
       "role": "spike_sample_or_truth"
     },
     {
+      "path": "spikes/04-scanned-pdf/ocr_text_layout.py",
+      "size_bytes": 5265,
+      "sha256": "7b1af33b5338518f73eed0c5791219f3aea8d118bbb40bba8a9deefb918a9ac0",
+      "role": "spike_helper"
+    },
+    {
       "path": "spikes/04-scanned-pdf/provenance.json",
-      "size_bytes": 1687,
-      "sha256": "cbb8f503cb07648174cd79db148aa0c59acfa7e595286277270bd90cd5c77dd0",
+      "size_bytes": 5677,
+      "sha256": "859e0aacd5c2e3dd85a02620270408926dc2fe363bfa51c4f1d72a3ea6f69aaf",
       "role": "spike_sample_or_truth"
     },
     {
@@ -2556,9 +2604,21 @@
       "role": "spike_test"
     },
     {
+      "path": "spikes/04-scanned-pdf/test_04_shaanxi_text.py",
+      "size_bytes": 10471,
+      "sha256": "65e9d68f66ea4c2bbc4f8a2d5729363d7f2ad51b809e0e64e12a5c7395304ba2",
+      "role": "spike_test"
+    },
+    {
       "path": "spikes/04-scanned-pdf/truth_p24.json",
       "size_bytes": 23093,
       "sha256": "317e9e14777c7a5ca791d25762bf806144110b9502073bbb38ea46b270ffbd81",
+      "role": "spike_sample_or_truth"
+    },
+    {
+      "path": "spikes/04-scanned-pdf/truth_shaanxi_flk.json",
+      "size_bytes": 18266,
+      "sha256": "8b964efe20cf37762f44729f22717231b9aaff2341fc2850c7298d7dd7d3a429",
       "role": "spike_sample_or_truth"
     },
     {
@@ -2575,8 +2635,8 @@
     },
     {
       "path": "tests/test_evidence_builder.py",
-      "size_bytes": 13699,
-      "sha256": "a7b43149a05d67b2b6894e3c76caf4c6a100e8e14ddbd90399d15b73e3ebb5f4",
+      "size_bytes": 14071,
+      "sha256": "990deec0d186fb1fb991ed94f0c6f45bfdb3d3921cf5ee0e980e7971711a522b",
       "role": "schema_negative_test"
     },
     {
@@ -2592,46 +2652,42 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 430,
+  "artifact_count": 440,
   "role_count": {
     "extracted_artifact": 8,
+    "research_non_gating_eval_report": 1,
+    "research_non_gating_extracted_artifact": 1,
     "documentation": 17,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 1,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
-    "spike_sample_or_truth": 380,
-    "spike_extractor": 6,
-    "spike_test": 6,
-    "spike_truth_builder": 1,
-    "spike_evaluator": 1,
+    "spike_helper": 2,
+    "spike_sample_or_truth": 382,
+    "spike_extractor": 7,
+    "spike_test": 7,
+    "spike_truth_builder": 2,
+    "spike_evaluator": 2,
     "test_conftest": 1,
     "schema_negative_test": 4
   },
   "db_ddl_execution": {
-    "command": "DROP+chain psql apply (R5-A)",
-    "exit_code": 0,
-    "stdout_tail": "SET\nALTER TABLE\nCOMMENT\nALTER TABLE\nCOMMENT\nCREATE TABLE\nCREATE INDEX\nCOMMENT\nCREATE FUNCTION\nCREATE TRIGGER\nCREATE FUNCTION\nCREATE TRIGGER\nCREATE TRIGGER\nRESET\n",
-    "stderr_tail": "",
+    "exit_code": -1,
     "ddl_sha256": "09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea",
     "ddl_path": "schema/01-core.sql",
-    "ddl_shas": {
-      "schema/01-core.sql": "09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea",
-      "schema/migrations/002_source_governance.sql": "c41161a86fb68e882bc4925ebec758f2b2616d0f4914b023dc8c5a5ec85e168b"
-    },
-    "applied_sqls": [
-      "schema/01-core.sql",
-      "schema/migrations/002_source_governance.sql"
-    ]
+    "skipped": true,
+    "note": "SKIP_PSQL=1 — psql skipped in test (exit -1)",
+    "command": "<skipped via SKIP_PSQL=1>"
   },
   "pytest_run": {
-    "command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m pytest -q --tb=line --no-header -p no:cacheprovider",
-    "exit_code": 0,
-    "stdout_tail": "........................................................................ [ 30%]\n........................................................................ [ 60%]\n........................................................................ [ 91%]\n.....................                                                    [100%]\n237 passed in 354.92s (0:05:54)\n",
-    "stderr_tail": "",
+    "command": "<skipped via SKIP_PYTEST=1>",
+    "exit_code": -1,
+    "stdout_tail": "",
+    "stderr_tail": "skipped in test",
+    "skipped": true,
     "stats": {
-      "passed": 237,
+      "passed": 0,
       "failed": 0,
       "skipped": 0
     }

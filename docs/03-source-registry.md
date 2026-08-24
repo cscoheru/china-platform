@@ -164,48 +164,49 @@
 - 江苏/广东/四川省局对 headless browser 返回 ERR_CONNECTION_RESET → **必须 curl**直下，不能用 Selenium/Playwright
 - 月度报告比年鉴合订本（zip）更易处理（小、单文件、不需解压）
 
-### 4.4 S3-USERUPLOAD-SCANNED — 扫描 PDF 用户上传入口（非代表性压力样本）
+### 4.4 扫描 PDF OCR — 双样本研究轨（非 Stage 0 验收项）
 
-| 字段 | 值 |
-|---|---|
-| `domain` | （不适用；走应用层入口） |
-| `organization` | （不适用；由上传者声明） |
-| `category` | `SCANNED_PDF_UPLOAD` |
-| `primary_url` | （不适用；走 `/admin/upload` 入口） |
-| `backup_urls` | – |
-| `update_frequency` | `AD_HOC` |
-| `auth_note` | **强制人工授权声明**（上传者填出版方 + 是否授权） |
-| `access_method` | `OCR`（pytesseract + chi_sim） |
-| `historical_coverage` | 不定 |
-| `stability_note` | 扫描件 OCR 置信度依赖分辨率；≥300 DPI 才可靠 |
-| `failure_handling` | 自动重试 → 低置信度入复核队列 → 人工补录 |
-| `caveat_text` | "OCR 引擎为 tesseract chi_sim；置信度 <0.70 入 needs_review；<0.50 标记 low_avg_confidence" |
-| `enabled` | TRUE |
-| `source_level` | **S3**（非代表性，仅 OCR 管线压力样本） |
-| `declared_source_level` | S0（uploader 声称） |
-| `purpose_note` | 非代表性 — 1909 美国统计摘要不能代表中国经济治理平台扫描样本（per Stage 0 R4 用户决策） |
+per `docs/15-stage0-p0p1-handoff-20260824.md` §4a U-3，spike 04 是研究追踪项，**不参与 Stage 0 Gate 0 判定**。来源登记保留两条独立样本，不互相冒充：
 
-**Spike 4 当前状态**：
-- 唯一可用样本：`spikes/04-scanned-pdf/statistical_abstract_foreign_countries_1909.pdf`（archive.org 1909 美国统计摘要）
-- 真实评估数字（`data/extracts/04-scanned-pdf/eval_report.json`）：
-  - `numeric_cell_accuracy_pct` = **0.0%**
-  - `char_accuracy_pct` = **3.7%**
-  - `needs_review_total` = **450/450（100%）**
-- 门控：`spikes/04-scanned-pdf/gate_thresholds.json` 阈值 numeric ≥80% / char ≥90% / needs_review ≤30%；`gate_verdict=BLOCKED`
-- **结论：诚实 BLOCKED — 当前 0% / 3.7% / 100% 远低于阈值**，不假装 PASS
-- **真实代表样本缺失**，无法完成最终样本验证管线
+| 字段 | Legacy 数值表样本 | 陕西中文文本样本 |
+|---|---|---|
+| `domain` | `archive.org` | `wb.flk.npc.gov.cn` |
+| `organization` | U.S. Bureau of Statistics | 全国人大常委会国家法律法规数据库 |
+| `category` | `SCANNED_PDF_UPLOAD` | `SCANNED_PDF_RESEARCH` |
+| `primary_url` | `https://archive.org/details/statisticalabst00unit` | `https://wb.flk.npc.gov.cn/dfxfg/PDF/d31411b562fc4226a7465f1c875afe67.pdf` |
+| `auth_note` | 美国联邦政府作品；17 U.S.C. §105 | 公开、无需登录；法规正文依据《著作权法》第五条排除条款 |
+| `access_method` | OCR（英文数值表） | OCR（四页灰度扫描 + 嵌入旧 OCR 文本层） |
+| `source_level` | S3（非中国代表性） | S0（官方法定一手来源） |
+| `purpose_note` | 保存 30×15 legacy 回归，不代表中国 | U-1 接受的中文 OCR 压力样本；U-3 非验收项 |
 
-**已知 OCR 限制（tesseract chi_sim + 旧字体扫描件）**：
-1. **STHeiti Light / PingFang 等字体被误识别**：`亿元` → `{27` 等符号
-2. **中文标点陷阱**：句号/逗号常被识别为小数点或千位分隔符
-3. **低 DPI 扫描件**：<200 DPI 准确率断崖下跌；≥300 DPI 是底线
-4. **复杂表格单元格合并**：OCR 不识别 `<td colspan>`
+**陕西样本来源验证**：
 
-**Stage 1 实施要点**：
-- ✅ 必须先做 `/admin/upload` 入口（不是"以后再说"）
-- ✅ 上传表单必须含：出版方声明、授权来源声明、原始 DPI
-- ✅ 后端自动跑 OCR，置信度 <0.70 入复核队列（写 `observation_quality_flag`）
-- ✅ paddleocr 不启用（2 GB 模型体积过大；Stage 1 用 tesseract 足够；Stage 3+ 再评估 paddleocr）
+- 文件：`spikes/04-scanned-pdf/data/shaanxi_fiscal_regulation_flk.pdf`
+- SHA-256：`f34b2e57ae08620cb6a6afb98b3983d805d53e3bae78b969795987a7ebe71488`
+- 1,007,943 bytes / 4 页 / `%PDF-1.4`
+- Canon SC1011 + MP Navigator EX；每页 1259×1669 灰度 JPEG，200 DPI
+- macOS `kMDItemWhereFroms` 记录上述全国人大官方直链；Chrome 下载来源元数据存在
+- 用户通过官方直链下载并上传；CC 本机网络没有独立观测 HTTP 200，因此不伪造该证据，只验证 magic、结构、来源元数据、size 与 hash
+- 嵌入层：3,230 个汉字；SHA-256 `cec93b67f8da16ecdd97b7e08ab2baf23995f2e61530afff3f1d6295dfdfc0bf`
+
+**许可边界**：法规正文适用《中华人民共和国著作权法》第五条第一项的法律、法规及官方文件排除条款。该依据不扩张为对法规数据库界面、扫描版式或门户其他资产的“默认公共领域”声明；用途限定为内部 OCR 研究与可复现证据。
+
+**陕西 OCR 评测（U-2 接受嵌入层作对照）**：
+
+- 汉字一致率：**93.93%**（≥90%，达标）
+- 全部非空白字符一致率：**90.05%**（同时披露，不替代主指标）
+- needs_review：**1/4 页 = 25%**（≤30%，达标；定义为陕西研究轨页面 Han <90%，不等同 legacy 数值解析复核信号）
+- numeric-cell accuracy：`null` / `not_applicable_non_tabular_source`，**不计 PASS**
+- 研究轨结论：`MEETS_UNCHANGED_APPLICABLE_THRESHOLDS`
+- Stage 0 effect：`none_per_U3_non_gating_research_sample`
+
+嵌入层是旧 OCR，不是人工校对真值，存在 `预箅`、`收攴`、`本行畋区域` 等错误；新 OCR 正确输出 `预算`、`收支`、`本行政区域` 时仍会被参考层惩罚。报告数字因此是“与 U-2 接受参考层的一致率”，不是对人工真值的准确率估计。完整契约见 `spikes/04-scanned-pdf/README.md`、`provenance.json` 与 `data/extracts/04-scanned-pdf/shaanxi_text_eval_report.json`。
+
+**Stage 1+ 实施要点（不在本轮启动）**：
+- 上传入口必须包含出版方/授权来源声明与原始 DPI
+- OCR 低置信度与页面级字符阈值必须进入复核队列
+- 不批量抓取、不绕过 TLS/登录/付费墙、不使用商业 OCR
+- 若未来要把法规样本用于验收，须另行建立人工校对真值并经用户重新裁定；本轮不得静默替换 U-2 参考
 
 ## 5. 来源 → 指标 → 页面 反向追溯链
 
@@ -333,7 +334,8 @@ VERIFIED ───────→ PENDING                (复核)
 - `archive.org` 1909 美国统计摘要：`source_level` 由 S0 → **S3**；`declared_source_level` 记录为 S0
   - 原因：用户决策 #1 — 1909 美国样本不能作为中国经济治理平台的代表性扫描样本
   - 用途：仅作为 OCR 管线压力样本（非代表性）
-- 所有中文登记（stats.gov.cn × 2 / tjj.hubei.gov.cn / sz.gov.cn）保持 S0
+- 所有中文登记（stats.gov.cn × 2 / tjj.hubei.gov.cn / sz.gov.cn / wb.flk.npc.gov.cn）保持 S0
+- `wb.flk.npc.gov.cn` 陕西法规 PDF 仅用于 U-1/U-2 中文 OCR 研究轨；S0 表示官方来源等级，不把该非表格样本升级为 Stage 0 验收项
 
 **重要澄清**：`source_registry/registry.csv` 仅有 `source_level` + `declared_source_level` 列，
 **没有** `verification_status` 列。`verification_status` 属于 schema 中的 `source_document` 表

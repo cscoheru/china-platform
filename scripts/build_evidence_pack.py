@@ -105,6 +105,10 @@ def evidence_dir() -> Path:
 
 def classify(path: Path) -> str:
     p = str(path).replace(os.sep, "/")
+    if p == "data/extracts/04-scanned-pdf/shaanxi_text_ocr.json":
+        return "research_non_gating_extracted_artifact"
+    if p == "data/extracts/04-scanned-pdf/shaanxi_text_eval_report.json":
+        return "research_non_gating_eval_report"
     if p.startswith("data/extracts/") and p.endswith(".json"):
         return "extracted_artifact"
     if p == "schema/01-core.sql":
@@ -159,6 +163,7 @@ def collect_artifacts(self_path: Path) -> list[dict]:
         "spikes/**/test_*.py",
         "spikes/**/evaluate_*.py",
         "spikes/**/build_truth*.py",
+        "spikes/**/*.py",
         "spikes/**/sample.html",
         "spikes/**/sample.pdf",
         "spikes/**/*.pdf",

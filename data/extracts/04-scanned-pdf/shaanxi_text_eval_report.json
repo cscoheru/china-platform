@@ -1,0 +1,144 @@
+{
+  "all_non_whitespace_char_accuracy_pct": 90.05,
+  "all_non_whitespace_character_accuracy": {
+    "accuracy_pct": 90.05,
+    "compared_chars": 3619,
+    "edit_distance": 360,
+    "ocr_chars": 3616,
+    "truth_chars": 3550
+  },
+  "char_accuracy_pct": 93.93,
+  "evaluation_method": {
+    "distance": "Levenshtein_per_region_summed_with_max_length_denominator",
+    "layout": "adaptive_left_and_right_content_regions_scored_independently",
+    "normalization": "Unicode_NFKC_remove_whitespace_and_control_characters",
+    "primary_character_class": "Han_ideographs_U+3400_to_U+9FFF",
+    "region_order": [
+      "left",
+      "right"
+    ],
+    "within_region_order": "physical_lines_top_to_bottom_words_left_to_right"
+  },
+  "extracted_file": "data/extracts/04-scanned-pdf/shaanxi_text_ocr.json",
+  "han_character_accuracy": {
+    "accuracy_pct": 93.93,
+    "compared_chars": 3244,
+    "edit_distance": 197,
+    "ocr_chars": 3217,
+    "truth_chars": 3230
+  },
+  "needs_review_pages": [
+    1
+  ],
+  "needs_review_pct": 25.0,
+  "needs_review_total": 1,
+  "numeric_cell_accuracy_pct": null,
+  "numeric_metric_status": "not_applicable_non_tabular_source",
+  "pages": [
+    {
+      "all_non_whitespace_characters": {
+        "accuracy_pct": 83.45,
+        "compared_chars": 743,
+        "edit_distance": 123,
+        "ocr_chars": 740,
+        "truth_chars": 735
+      },
+      "han_characters": {
+        "accuracy_pct": 89.4,
+        "compared_chars": 651,
+        "edit_distance": 69,
+        "ocr_chars": 626,
+        "truth_chars": 651
+      },
+      "needs_review": true,
+      "needs_review_reasons": [
+        "han_character_accuracy_below_unchanged_threshold"
+      ],
+      "page_pdf_1indexed": 1
+    },
+    {
+      "all_non_whitespace_characters": {
+        "accuracy_pct": 94.7,
+        "compared_chars": 1076,
+        "edit_distance": 57,
+        "ocr_chars": 1076,
+        "truth_chars": 1055
+      },
+      "han_characters": {
+        "accuracy_pct": 97.62,
+        "compared_chars": 965,
+        "edit_distance": 23,
+        "ocr_chars": 965,
+        "truth_chars": 960
+      },
+      "needs_review": false,
+      "needs_review_reasons": [],
+      "page_pdf_1indexed": 2
+    },
+    {
+      "all_non_whitespace_characters": {
+        "accuracy_pct": 88.49,
+        "compared_chars": 1077,
+        "edit_distance": 124,
+        "ocr_chars": 1077,
+        "truth_chars": 1059
+      },
+      "han_characters": {
+        "accuracy_pct": 92.13,
+        "compared_chars": 978,
+        "edit_distance": 77,
+        "ocr_chars": 976,
+        "truth_chars": 972
+      },
+      "needs_review": false,
+      "needs_review_reasons": [],
+      "page_pdf_1indexed": 3
+    },
+    {
+      "all_non_whitespace_characters": {
+        "accuracy_pct": 92.25,
+        "compared_chars": 723,
+        "edit_distance": 56,
+        "ocr_chars": 723,
+        "truth_chars": 701
+      },
+      "han_characters": {
+        "accuracy_pct": 95.69,
+        "compared_chars": 650,
+        "edit_distance": 28,
+        "ocr_chars": 650,
+        "truth_chars": 647
+      },
+      "needs_review": false,
+      "needs_review_reasons": [],
+      "page_pdf_1indexed": 4
+    }
+  ],
+  "pages_total": 4,
+  "reference": {
+    "accepted_policy": "U2",
+    "interpretation": "Scores are agreement with the accepted embedded OCR layer, not an estimate against human-corrected ground truth. Correct new OCR may be penalized where the reference layer is wrong.",
+    "known_limitation": "The embedded layer is prior OCR, not human-corrected ground truth; its recognition errors remain unchanged in this reference.",
+    "text_sha256": "cec93b67f8da16ecdd97b7e08ab2baf23995f2e61530afff3f1d6295dfdfc0bf",
+    "type": "embedded_pdf_text_layer_accepted_by_U2"
+  },
+  "sample_id": "04-scanned-pdf-shaanxi-flk",
+  "schema_version": "1.1",
+  "source_file_sha256": "f34b2e57ae08620cb6a6afb98b3983d805d53e3bae78b969795987a7ebe71488",
+  "stage0_effect": "none_per_U3_non_gating_research_sample",
+  "stage0_verdict": "not_determined_by_this_report_user_U4_required",
+  "threshold_assessment": {
+    "applicable_thresholds_all_met": true,
+    "char_accuracy_met": true,
+    "char_accuracy_min_pct": 90.0,
+    "needs_review_definition": "page_han_accuracy_below_char_accuracy_min_pct",
+    "needs_review_max_pct": 30.0,
+    "needs_review_met": true,
+    "needs_review_scope": "shaanxi_research_page_triage_not_legacy_numeric_cell_parse_signal",
+    "numeric_cell_accuracy": "not_applicable_not_counted_as_pass",
+    "research_track_result": "MEETS_UNCHANGED_APPLICABLE_THRESHOLDS",
+    "threshold_values_unchanged": true,
+    "thresholds_source": "spikes/04-scanned-pdf/gate_thresholds.json"
+  },
+  "truth_file": "spikes/04-scanned-pdf/truth_shaanxi_flk.json"
+}

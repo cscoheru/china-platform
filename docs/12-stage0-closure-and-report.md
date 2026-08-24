@@ -1,51 +1,51 @@
 # Stage 0 Gate 0 — Closure Matrix & Final Report (R3 + R4 rework)
 
-> Generated 2026-08-23 per R3 rework + R4 rework directives. **Final verdict: BLOCKED.**
+> Generated 2026-08-23 per R3/R4 directives; updated 2026-08-24 for U-1/U-2/U-3 Shaanxi integration. **Current verdict authority: Cursor re-verification + user U-4; CC does not auto-declare PASS.**
 >
 > 关键修正 (R4 返工后)：
 > - Codex R3 复核判定 **REJECT**，原因：A–I 9/9 "done" 隐藏了 skip-as-PASS、随机 5-sample hash、陈旧准确率快照、I-05 误归为用户决策项
 > - R4 返工 6 项全部闭环，详见 **§11 R4 Rework Closure**
-> - 测试数从 205 → **237 passed / 0 failed / 0 skipped**（新增 32 个 R4 用例）
+> - 当前测试基线：**251 passed / 0 failed / 0 skipped**（原 237 + 陕西 OCR research-track 14）
 > - I-05 已落地为 schema + 审计表 + 测试 + doc（不再是"待用户决策"）
-> - 剩余 BLOCKED 来自两类：external blocking（中文扫描 PDF 缺失）/ user policy（不降低 OCR 门槛）
+> - E-1 资源等待已结束：陕西官方四页扫描 PDF 已集成；per U-3，spike 04 仍为非门控研究项；P-1/P-2 不变，Stage 0 终态只由 Cursor 复验与用户 U-4 裁定
 >
 > 编号口径：§2 用原始 13 项缺陷（B-01..B-08、I-01..I-05）；§10 用 A..I 返工项；§11 用 R4-1..R4-6 返工项。三套编号互不混用。
 
-## §1. Stage 0 Status (machine verdict — BLOCKED)
+## §1. Stage 0 Status（等待终态裁定；CC 不自动给 PASS）
 
 | Field | Value |
 |---|---|
 | Gate | Gate 0 (Stage 0 verification) |
-| Verdict | **BLOCKED** — external blocking（中文扫描 PDF 缺失）+ user policy（不降低 OCR 门槛）；所有 dev rework 已闭环 |
-| Closure matrix (原始 13 项缺陷) | 12/13 closed, 1/13 partial（B-01 外部阻塞） |
+| Verdict | **PENDING CURSOR RE-VERIFICATION + USER U-4**；陕西 research-track 集成不自动产生 PASS，且 per U-3 不参与 Gate |
+| Closure matrix (原始 13 项缺陷) | 12/13 closed；B-01 原统计表代表性缺口保留，但 U-3 已改为非门控 |
 | Dev rework (R4-1..R4-6) | 6/6 closed |
-| Pytest (total project) | **237 collected / 237 passed / 0 failed / 0 skipped**（spikes + tests 全集） |
-| Pytest (R4 added) | +32 tests (R4-1: 8; R4-2: 8; R4-3: 4; R4-4: 21; R4-5/6 是 meta) — 注：含 R4-2 spike 00 内的 8 个 |
+| Pytest (total project) | **251 collected / 251 passed / 0 failed / 0 skipped**（spikes + tests 全集） |
+| Pytest increment | +14 Shaanxi OCR tests；历史 R4 +32 基线不倒改 |
 | Schema DDL SHA-256 | `09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea` + `002_source_governance.sql` 增量 |
 | DB engine (PG16 path) | PostgreSQL 16.15 + PostGIS 3.4.6（`schema/migrations/001_create_core.log`） |
 | DB engine (PG17 path) | PostgreSQL 17.11 + PostGIS 3.6.4（builder 每次构建对 55440 DROP+apply） |
-| Spike domains | 共 6 个：5 PASS（00-national、00-provincial、01、02、03），1 BLOCKED（04 scanned PDF，外部阻塞） |
-| Mandatory-test policy | NO `pytest.skip`（237 / 0 skipped）、no BLOCKED-as-PASS、no field-only PASS、no random-sample hash |
+| Spike domains | 5 个 Stage 0 主轨保留原结论 + 1 个非门控 scanned-PDF 研究轨 |
+| Mandatory-test policy | NO `pytest.skip`、no BLOCKED-as-PASS、no field-only PASS、no random-sample hash |
 
 ## §2. 13-item Closure Matrix（原始缺陷，Scheme-1 定义）
 
 | ID | 原始缺陷（定义） | R4 verdict | 证据 |
 |---|---|---|---|
-| **B-01** | 四类 PRD 指定样本未完成 | ⚪ 非验收项（U-3 落地） | 国家年鉴（00-national 682 槽）/ 省级（02）/ 地市（03）/ 扫描 PDF（04）— 前 3 类闭环；扫描 PDF **spike 04 非 Stage 0 验收项**（per `docs/15` §4a U-3 + `reviews/09` §3） |
+| **B-01** | 四类 PRD 指定样本未完成 | ⚪ U-3 非门控 | 国家年鉴／省级／地市三类闭环；陕西法规真实扫描件已作 U-1 中文压力样本集成，但不冒充原统计表代表性；spike 04 不参与 Stage 0 Gate |
 | **B-02** | Schema 无法执行 | ✅ | PG16 + PG17 `psql -v ON_ERROR_STOP=1` exit 0；migration 002 增量（I-05 治理） |
 | **B-03** | 核心模型与数据血缘未满足 PRD | ✅ | `tests/test_schema_negative.py` 39 tests 全部通过 |
 | **B-04** | 缺少 8—12 周 MVP | ✅ | `docs/08b-strict-mvp.md`（严格 8—12 周） |
 | **B-05** | 阶段基线被静默改写 | ✅ | `docs/08b` §7 PRD 偏差表 |
 | **B-06** | 湖北期间语义存在高风险错误 | ✅ | spike 02 per-indicator period metadata；schema `comparison_basis` 移除 `Q2_ONLY` |
-| **B-07** | 测试绿灯不能证明提取器有效 | ✅ | 237/237 passed；spike 测试真实调用提取器；spike 04 诚实 BLOCKED；per_column_accuracy.json 字节可重现（R4-2） |
+| **B-07** | 测试绿灯不能证明提取器有效 | ✅ | 251/251 passed；spike 测试真实调用提取器；陕西 truth/extract/eval 全写 tmp、两次字节一致、缺依赖 fail；不把研究阈值失败写成 PASS |
 | **B-08** | 缺失值 + 逐行血缘实现与文档相反 | ✅ | 缺格 obs 保留（value=None + missing_reason） |
 | **I-01** | 最终总结不是最终工作区快照 | ✅ | 行数 / 产物 / hash / 测试数与磁盘一致（本文件按最终状态重写） |
 | **I-02** | 省级 spike 不可移植且样本被忽略 | ✅ | `__file__` 解析仓库根；clean-clone 缺 ZIP fail |
-| **I-03** | 来源登记交付物不一致 | ✅ | `source_registry/registry.csv`（5 行 + `declared_source_level` + `purpose_note` 列） |
+| **I-03** | 来源登记交付物不一致 | ✅ | `source_registry/registry.csv`（6 条来源；新增陕西官方 URL/hash/size/非门控用途） |
 | **I-04** | 风险登记状态不可信 | ✅ | R04/R08/R11 诚实"部分验证"；R13—R26 登记 |
 | **I-05** | 方法和来源等级规则不一致 | ✅ | `schema/migrations/002_source_governance.sql` + `tests/test_source_governance.py`（21 测试）+ `docs/03 §9` + `registry.csv` archive.org S0→S3 |
 
-**闭环率：12/13 closed；B-01 部分完成（外部阻塞）→ 最终 BLOCKED。**
+**闭环口径：12/13 closed；B-01 原定义下仍不是统计表代表性样本，但 U-3 已将其完整移出 Stage 0 验收，不再形成外部 BLOCKED。**
 
 ## §3. Spike-by-Spike Status（6 个 spike）
 
@@ -68,13 +68,20 @@ per-indicator 周期元数据；锁定 `extracted_at`；30/30 tests。
 20/20 tests。
 
 ### 3.6 Spike 04（扫描 PDF OCR）— ⚪ **非 Stage 0 验收项（per U-3）**
-- 真实数字（`eval_report.json`）：
-  - `numeric_cell_accuracy_pct` = 0.0%
-  - `char_accuracy_pct` = 3.7%
-  - `needs_review_total` = 450/450 (100%)
-- 唯一可全流程样本：1909 年美国 Statistical Abstract（archive.org）— **非中国研究平台代表性样本**
-- **per `docs/15` §4a U-3（2026-08-24 用户裁定）+ `reviews/09` §3（Cursor 预审确认）**：spike 04 不再是 Stage 0 Gate 0 验收项；OCR 管线压力样本（研究追踪），不影响 Stage 0 总体判定
-- 候选真实中文扫描 PDF（陕西省财政预算管理条例，4 页）已通过 Cursor `09` ACCEPT（有条件），但 CC 当前本机 SSL 无法下载（国内 CA trust store 缺失），等用户处置
+
+**Legacy 数值表轨**保留 1909 美国 Statistical Abstract 的历史结果：numeric 0.0%、digit-char 3.7%、needs_review 450/450。它不代表中国，且未被新样本覆盖。
+
+**陕西中文文本轨**已完成集成：
+
+- 官方源：全国人大常委会国家法律法规数据库四页 PDF；SHA-256 `f34b2e57...71488`
+- C-1：本地 `%PDF-1.4`、size/hash 通过；来源扩展属性指向官方 URL；CC 未亲见 HTTP 200，明确记为 `null` 而非伪造
+- C-2：Canon SC1011 / MP Navigator EX + 每页 1259×1669 灰度 JPEG 图像层
+- C-3：嵌入层 3,230 汉字（≥3,000）
+- C-4：`provenance.json` 记录 source URL、法规数据库、著作权法第五条依据及不扩张的许可边界
+- U-2 对照：嵌入旧 OCR 文本层；已披露其 `预箅`/`收攴`/`本行畋区域` 等参考噪声
+- 评测：Han **93.93%**；all non-whitespace **90.05%**；needs_review **1/4=25%**；numeric `N/A` 且不计 PASS
+- 结果：`MEETS_UNCHANGED_APPLICABLE_THRESHOLDS`
+- 门控：`stage0_effect=none_per_U3_non_gating_research_sample`；不得据此宣布 Stage 0 PASS
 
 ## §4. R2 → R3 Mapping（保留作历史参考）
 
@@ -92,28 +99,32 @@ per-indicator 周期元数据；锁定 `extracted_at`；30/30 tests。
 | R2-10 ZIP-only（D） | B-06 | zip-slip + 0109 定位 | ✅ |
 | R2-11 逐指标周期（E） | I-02 | `TestR3PeriodMetadata` | ✅ |
 
-## §5. Outstanding Items — 三类分开（per R4-5 强制）
+## §5. Outstanding Items — 三类分开
 
-### 5.1 EXTERNAL BLOCKING（用户提供资源前无法解决）
-| # | 事项 | 阻塞项 |
-|---|---|---|
-| E-1 | 中文扫描 PDF 缺失 | B-01 / spike 04 — 唯一样本是 1909 美国统计摘要（archive.org），非中国研究平台代表性 |
+### 5.1 EXTERNAL BLOCKING
+
+**无 E-1 文件获取阻塞。** 用户已从官方 URL 下载并上传陕西 PDF；来源、结构与 hashes 已验证。原“中文扫描 PDF 缺失”只保留在历史审核记录中。
 
 ### 5.2 USER POLICY（用户已决策，dev 不得变更）
+
 | # | 决策 | 含义 |
 |---|---|---|
-| P-1 | 不下调当前 OCR 门槛 | numeric ≥80% / char ≥90% / needs_review ≤30% — 任何降低需用户显式批准 |
-| P-2 | 不接受 1909 美国样本作为中国代表性 | 仅留作非代表性 OCR 管线压力样本（archive.org 等级 S0→S3） |
-| P-3 | Stage 0 维持 BLOCKED | 直到中文扫描 PDF 提供 |
+| P-1 | 不下调当前 OCR 门槛 | numeric ≥80% / char ≥90% / needs_review ≤30% |
+| P-2 | 不接受 1909 美国样本作为中国代表性 | legacy 轨仅作历史 OCR 压力回归 |
+| U-1 | 陕西法规扫描件可作中文 OCR 压力样本 | 不要求满足原 B-01 统计表代表性 |
+| U-2 | 接受嵌入文本层作对照 | 参考噪声必须披露，不静默人工纠正 |
+| U-3 | spike 04 完整移出 Stage 0 验收 | research result 不改变 Gate verdict |
+| U-4 | 待最终 eval + Cursor 复验后裁定 | CC 不自动宣布 Stage 0 PASS |
 
-### 5.3 DEV REWORK（已完成 — 见 §11）
-**所有 5 项 dev rework 已闭环**（R4-1 / R4-2 / R4-3 / R4-4 / R4-5；R4-6 是验证动作）。
+### 5.3 DEV REWORK
+
+陕西 truth/extract/evaluate/test/provenance/source registry/docs 已完成；固定物理中线串栏缺陷已改为每页 robust content-bounds divider，跨线 word policy 显式记录；`chi_sim.traineddata` hash 和 truth/OCR/eval committed freshness 已进入测试。最终 evidence pack 重建、独立 hash 复算与 Cursor 复验记录见 `docs/16-e1-candidate-report-20260824.md`。
 
 ## §6. Risk Register 状态（详见 docs/09）
 
 | Risk | 状态 |
 |---|---|
-| R3-R1 spike 04 样本偏差 | 🔴 OPEN — EXTERNAL（E-1） |
+| R3-R1 spike 04 样本偏差 | ⚪ 1909 仍不代表中国；陕西已集成但仅研究；per U-3 非 Gate blocker |
 | R3-R2 source_registry_id 孤儿文档 | ✅ MITIGATED（F-2 NOT NULL + 39 测试） |
 | R3-R3 manifest 自 hash | ✅ MITIGATED（G-2 + R4-3：manifest 不在自身 artifacts） |
 | R3-R4 manifest 绝对路径 | ✅ MITIGATED（G-2：无 /Users/ /home/ /tmp/） |
@@ -128,24 +139,24 @@ per-indicator 周期元数据；锁定 `extracted_at`；30/30 tests。
 | **R4-R3** builder 随机抽样 hash | ✅ MITIGATED（R4-3：全量逐项验证 + EVIDENCE_PACK_TAMPER 负例；见 `docs/09` R24） |
 | **R4-R4** I-05 来源等级无治理 | ✅ MITIGATED（migration 002 + CHECK + 审计表 + 21 测试；见 `docs/09` R25） |
 
-## §7. Fresh Test Execution Evidence（2026-08-23，R4 完工后）
+## §7. Fresh Test Execution Evidence（2026-08-24，陕西集成后）
 
 | Metric | Value |
 |---|---|
 | Command | `python3 -m pytest -q -p no:cacheprovider`（spikes + tests 全集） |
-| Collected / Passed / Failed / Skipped | **237 / 237 / 0 / 0**（347.02s） |
+| Collected / Passed / Failed / Skipped | **251 / 251 / 0 / 0** |
 | `tests/test_schema_negative.py` | 39 passed（PG17 @55440） |
-| `tests/test_evidence_builder.py` | 17 passed（R4-3 新增 4：refuse_skip / refuse_force / verify_every / path_unique） |
+| `tests/test_evidence_builder.py` | 17 passed |
 | `tests/test_cleanliness.py` | 11 passed（含 H-2 worktree hash） |
-| `tests/test_source_governance.py` | 21 passed（R4-4 新增） |
-| `spikes/00-national-yearbook-table` | 31 passed（R4-2 新增 8：22列覆盖 + 字节可重现 + needs_review 校验等） |
-| `spikes/04-scanned-pdf` | 18 passed（R4-1 移除 skip，缺样本→fail） |
+| `tests/test_source_governance.py` | 21 passed |
+| `spikes/00-national-yearbook-table` | 31 passed |
+| `spikes/04-scanned-pdf` | **32 passed**（18 legacy + 14 陕西；缺样本/工具 fail；tmp 输出不污染正式产物） |
 | DSN | `host=127.0.0.1 port=55440 user=postgres dbname=cegr_test` |
 | Engine | PostgreSQL 17.11 + PostGIS 3.6.4 |
 
 ## §8. Mandatory-test policy audit（R4 强化）
 
-- `pytest.skip` 在全集内贡献 **0 个 skip**（237 passed / 0 skipped）
+- `pytest.skip` 在全集内贡献 **0 个 skip**（251 passed / 0 skipped）
 - BLOCKED-as-PASS：**0**（spike 04 诚实 BLOCKED；per_column_accuracy.json 总体 BLOCKED 记录）
 - Field-only PASS：**0**（H-2 + R4-1 强制实跑）
 - Random-sample hash：**0**（R4-3 全量逐项验证）
@@ -165,7 +176,7 @@ PGPASSWORD=postgres psql -h 127.0.0.1 -p 55440 -U postgres -d cegr_test \
   -v ON_ERROR_STOP=1 -f schema/migrations/002_source_governance.sql
 # 4. Run full suite:
 python3 -m pytest -q -p no:cacheprovider
-# Expected: 237 passed, 0 failed, 0 skipped
+# Expected: 251 passed, 0 failed, 0 skipped
 # 5. Build evidence pack (drops + reapplies cegr schema):
 python3 scripts/build_evidence_pack.py
 # Expected: exit 0; evidence_pack/manifest.json (1.1-R3G-R4)
@@ -204,19 +215,22 @@ R4 返工分 6 项（5 dev rework + 1 final re-verification）：
 
 **R4-1..R4-6：6/6 完成。**
 
-## §12. Outstanding Items — 三类分开（per R4-5）
+## §12. Outstanding Items — 陕西集成后的终态边界
 
-### 12.1 EXTERNAL BLOCKING（用户提供资源前无法解决）
-- **E-1**：中文扫描 PDF 缺失（spike 04 / B-01）— 唯一可用样本是 1909 美国统计摘要，非中国研究平台代表性。
+### 12.1 EXTERNAL BLOCKING
+- **无 E-1 文件获取阻塞**：陕西官方 PDF 已由用户下载上传并完成本地来源、结构、hash 验证。
 
-### 12.2 USER POLICY（用户已决策，dev 不得变更）
+### 12.2 USER POLICY（dev 不得变更）
 - **P-1**：不降低 OCR 门槛（numeric ≥80% / char ≥90% / needs_review ≤30%）。
-- **P-2**：不接受 1909 美国样本代表中国治理平台（仅作 OCR 压力样本）。
-- **P-3**：Stage 0 维持 BLOCKED，直到中文扫描 PDF 提供。
+- **P-2**：不接受 1909 美国样本代表中国治理平台。
+- **U-1/U-2**：陕西仅作中文 OCR 压力样本；嵌入文本层作为有噪声对照。
+- **U-3**：spike 04 非 Stage 0 验收项。
+- **U-4**：等待 Cursor 对最终代码、251 tests 和 evidence pack 复验后由用户裁定。
 
-### 12.3 DEV REWORK — 5 项已闭环
-R4-1 / R4-2 / R4-3 / R4-4 / R4-5 均完成；R4-6 是验证动作（见 §11）。
+### 12.3 DEV REWORK
+- 陕西来源登记、provenance、truth、image-only OCR、布局评测、14 tests 与当前态文档已完成。
+- 最终 pack 数量与独立 `pack_errors=0` 以 `docs/16-e1-candidate-report-20260824.md` 的终态记录为准。
 
-**Final Stage 0 verdict: BLOCKED — 仅因 E-1（中文扫描 PDF 外部阻塞）+ P-1/P-2/P-3（用户政策）；所有 dev rework 已闭环。**
+**CC 结论边界：不自动宣布 Stage 0 PASS，不进入 Stage 1。**
 
 — End of closure matrix —

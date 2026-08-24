@@ -1,291 +1,322 @@
-# Stage 0 Gate 0 — E-1 中文扫描 PDF 候选报告（研究 Agent 回报）
+# Stage 0 Gate 0 — 陕西中文扫描 PDF 集成与 U-4 验收报告
 
 > 文档日期：2026-08-24
-> 适用：E-1 研究 Agent 回报（2026-08-24 后台任务 `a96659e291b77b5e2`）结构化整理
+>
 > 编写角色：CC（Claude Code）
-> 状态：**草稿；未下载任何候选；等 Cursor 预审裁定（07 §5.2）+ §7 U-1 / U-2 用户裁定**
-> 范围：仅整理研究 Agent 报告；不动 spike 04 任何文件；不下发 PDF；不改 gate_thresholds.json。
+>
+> 状态：**实现与专项验证完成；等待最终全量测试、evidence pack 独立复算、Cursor 终态复验及用户 U-4 裁定**
+>
+> 范围：Stage 0 Gate 0 陕西 OCR research-track；不修改 PRD、`reviews/` 或 `gate_thresholds.json`。
 
 ---
 
 ## §0. TL;DR
 
-| 维度 | 结论 |
+| 维度 | 终态事实 |
 |---|---|
-| 合法免费中文扫描 PDF 来源 | **仅 1 个已确认**：全国人大法规数据库陕西省财政预算管理条例（4 页） |
-| 其他 10+ 个备选（born-digital） | 政府公开 / 学术机构开放 / 国际组织 CC-BY；非扫描 PDF，可作文本对照 |
-| 用户政策 U-3 影响 | 即使该 PDF ACCEPT，**spike 04 不再是 Stage 0 验收项**（per docs/15 §4a）；该 PDF 仅作研究追踪 / OCR 管线充实 |
-| CC 当前动作 | **不下载**；等 Cursor 预审 + U-1 / U-2 裁定 |
-| Stage 0 Gate 0 | 仍 BLOCKED（口径未实质改动） |
+| 官方样本 | 全国人大常委会国家法律法规数据库《陕西省财政预算管理条例》四页真实扫描 PDF 已集成 |
+| 来源验证 | 本地 PDF magic、size、SHA-256、扫描结构、嵌入文本层及 macOS 官方下载来源元数据均已验证；CC 未伪造 HTTP 200 |
+| OCR 方法 | 300 DPI、Tesseract `chi_sim` PSM 6、TSV 坐标；图像 OCR 不读取嵌入文本层 |
+| U-2 对照 | PDF 嵌入旧 OCR 文本层；有噪声，不是人工校对真值 |
+| 评测结果 | Han 93.93%；all non-whitespace 90.05%；needs_review 1/4=25%；numeric N/A |
+| 门槛结论 | `MEETS_UNCHANGED_APPLICABLE_THRESHOLDS`；门槛数值未降低，N/A 不计 PASS |
+| Gate 影响 | per U-3：`none_per_U3_non_gating_research_sample` |
+| 自动判定 | CC **不宣布 Stage 0 PASS**；等待 Cursor 终态复验和用户 U-4 |
+| 禁止动作 | 未 commit、未 push、未发布、未进入 Stage 1 |
 
 ---
 
-## §1. 候选源结构化清单（研究 Agent 报告整理）
+## §1. 用户裁定与结论边界
 
-### 1.1 Tier 1 — 唯一已确认扫描 PDF（供 OCR 真值对照）
-
-#### 候选 1：陕西省财政预算管理条例
-
-| 字段 | 值 |
+| 裁定 | 已执行口径 |
 |---|---|
-| URL | `https://wb.flk.npc.gov.cn/dfxfg/PDF/d31411b562fc4226a7465f1c875afe67.pdf` |
-| 来源机构 | 全国人大常委会法律法规数据库（`wb.flk.npc.gov.cn`） |
-| 许可依据 | 政府公开文件，无版权声明；默认公共领域 |
-| 文件类型证据 | **Canon SC1011 + MP Navigator EX** 扫描生成；嵌入 JPEG 图像层；1259×1669 px/页（4 页一致） |
-| 文件大小 | 984 KB |
-| 真值对照 | 嵌入文本层（pdftotext 提取 11,387 字符，含 3,230 中文字）可与图像层 OCR 比对 |
-| 代表性 | 地方性法规（陕西财政预算管理），符合中国治理研究 PRD；规模小（4 页） |
-| 风险 | 无绕墙、无批量、无商业库、无合成；URL 单条下载 |
-| 备注 | 同站点（`wb.flk.npc.gov.cn/dfxfg/PDF/`）批量地方性法规多为扫描生成，可持续挖掘 |
+| P-1 | OCR 门槛保持 numeric ≥80%、char ≥90%、needs_review ≤30% |
+| P-2 | 1909 美国样本不作为中国平台代表性样本 |
+| U-1 | 陕西法规扫描件作为中文 OCR 压力样本，不冒充原 B-01 统计表代表性 |
+| U-2 | 接受嵌入文本层作对照，不要求人工全表标注；必须披露参考噪声 |
+| U-3 | spike 04 完整移出 Stage 0 验收，保留为非门控研究轨 |
+| U-4 | 最终 eval 与 Cursor 复验后由用户裁定；CC 无权自动给 Stage 0 PASS |
+| U-5 | `reviews/` 不纳入 evidence pack，且本轮不改历史审核原文 |
 
-#### 候选 2（同站更多资源）
+陕西样本通过来源、管线和适用研究阈值验证；numeric 对非表格法规为 N/A 且不计 PASS。per U-3，该研究结果不改变 Gate verdict。
 
-| 字段 | 值 |
+---
+
+## §2. C-1～C-4 验证
+
+### C-1 — 文件、来源与完整性
+
+| Field | Verified value |
 |---|---|
-| 范围 | 全国人大法律法规数据库 `dfxfg/PDF/` 子目录 |
-| 状态 | 浏览器可访问清单；逐条 URL 未一一验证 |
-| 风险 | 逐条单下载可接受；不批量；不爬取列表外内容 |
+| Title | 陕西省财政预算管理条例 |
+| Official institution | 全国人大常委会国家法律法规数据库 |
+| Official URL | `https://wb.flk.npc.gov.cn/dfxfg/PDF/d31411b562fc4226a7465f1c875afe67.pdf` |
+| Local file | `spikes/04-scanned-pdf/data/shaanxi_fiscal_regulation_flk.pdf` |
+| Magic | `%PDF-1.4` |
+| Size | 1,007,943 bytes |
+| Pages | 4 |
+| SHA-256 | `f34b2e57ae08620cb6a6afb98b3983d805d53e3bae78b969795987a7ebe71488` |
 
-### 1.2 Tier 2 — born-digital PDF（可作文本对照但非扫描）
+macOS `kMDItemWhereFroms` 记录上述官方直链，Chrome quarantine metadata 存在。用户通过该直链下载后上传文件；CC 验证了本地来源链和文件字节，但本机 TLS 探针未成功，故 `provenance.json` 诚实记录：
 
-| # | 来源 | URL | 标题 | 授权 | 备注 |
-|---|---|---|---|---|---|
-| 3 | 中国社科院法学所 | `http://iolaw.cssn.cn/zzwx/201905/P020190522362649620152.pdf` | 刑法中"国家工作人员"概念立法演变 | 社科院开放获取 | ~10 页 |
-| 4 | 国家知识产权局 | `https://www.cnipa.gov.cn/module/download/downfile.jsp?...` | 知识产权强国建设发展报告 2025 | 政府公开 | 多页 |
-| 5 | 国新办 | `http://www.scio.gov.cn/live/2026/38633/qwxz/202605/P020260601622910390503.pdf` | 常住地提供基本公共服务吹风会 | 政府公开 | 多页 |
-| 6 | 国家统计局 | `https://www.stats.gov.cn/zt_18555/ztsj/jzgj/jz2015/202302/P020230218542075734622.pdf` | 中国统计体系简介 2015 | 政府公开 | 多页 |
-| 7 | 发改委 | `https://www.ndrc.gov.cn/fggz/fzzlgh/gjfzgh/202603/U020260317369114704096.pdf` | 十四五规划纲要 | 政府公开 | ~100+ 页 |
+```json
+"http_status_observed_by_cc": null
+```
 
-**性质**：born-digital（非扫描），文本可机器直接提取；如需 OCR 真值对照，必须配扫描 PDF；可作"基线对照"验证文本提取管线（非 OCR 能力验证）。
+这不伪装成 CC 独立观测到 HTTP 200，也没有使用 `curl --insecure`。
 
-### 1.3 Tier 3 — 国际组织中国报告（英文/双语）
+### C-2 — 真实扫描结构
 
-| # | 来源 | URL | 标题 | 授权 |
-|---|---|---|---|---|
-| 8 | UNDP | `https://www.undp.org/sites/g/files/zskgke326/files/migration/cn/UNDP-CH--NHDR-2016-CH.pdf` | 中国人类发展报告 2016（中文版） | UNDP open access |
-| 9 | ADB | `https://www.adb.org/sites/default/files/publication/236661/transforming-high-income-prc.pdf` | 向高收入中国转型 | CC BY 3.0 IGO |
-| 10 | World Bank | `https://documents1.worldbank.org/curated/en/781101468239669951/pdf/China-2030-building-a-modern-harmonious-and-creative-society.pdf` | China 2030 | World Bank CC BY |
-| 11 | CRS（**唯一国际来源扫描 PDF**） | `https://digital.library.unt.edu/ark:/67531/metadc821120/m2/1/high_res_d/RS20655_2000Aug17.pdf` | China: The National People's Congress | **Public Domain**；仅 6 页英文 |
+- Creator：Canon SC1011
+- Producer：MP Navigator EX
+- 页面尺寸：453.24 × 600.84 pt
+- 每页一张 1259 × 1669 grayscale JPEG 图像
+- 图像元数据：200 × 200 DPI
+- 非合成 PDF、非 HTML 打印版
 
-### 1.4 已排查无果
+### C-3 — 中文字符规模与 U-2 对照
 
-| 来源 | 否决原因 |
+- 嵌入文本层 SHA-256：`cec93b67f8da16ecdd97b7e08ab2baf23995f2e61530afff3f1d6295dfdfc0bf`
+- Han characters：3,230（满足候选预审的 ≥3,000 字要求）
+- Pages：4
+- Reference artifact：`spikes/04-scanned-pdf/truth_shaanxi_flk.json`
+
+### C-4 — Provenance 与许可边界
+
+`spikes/04-scanned-pdf/provenance.json` 已记录官方 URL、机构、文件 hashes、扫描元数据、嵌入层 hashes、U-1/U-2/U-3、数值指标 N/A 和 Stage 0 effect。
+
+许可依据限定为《中华人民共和国著作权法》第五条第一项对法律、法规及国家机关官方文件正文的排除。该依据**不扩张**为对法规数据库界面、扫描版式、门户其他资产的 blanket public-domain assertion；样本用途限定为内部 OCR 研究和可复现证据。
+
+---
+
+## §3. OCR 与布局评测实现
+
+### 3.1 独立数据流
+
+1. `build_truth_shaanxi_flk.py` 用 `pdftotext -bbox` 构建 U-2 接受的参考层，并锁定 PDF 和文本 hash。
+2. `extract_04_shaanxi_text.py` 将扫描页以 300 DPI 渲染后运行 Tesseract 5.5.3，语言 `chi_sim`、PSM 6、TSV 输出。
+3. OCR 提取器只读渲染图像，明确记录 `embedded_text_layer_used=false`，并锁定 `chi_sim.traineddata` SHA-256 `a5fcb6f0...1e1f730`。
+4. `ocr_text_layout.py` 以每页可见 word bbox 边界裁去两端各 5% 后的中点作为自适应栏间线，避免内容偏置扫描页被物理中线误分栏。
+5. 跨栏间线 word 继续按 bbox 中心归栏，但每页显式记录 divider、crossing count 和 policy，不再静默处理。
+6. left/right 两区分别按 Y 中心聚类行、行内按 X 排序；`evaluate_04_shaanxi_text.py` 在各物理区域独立计算 NFKC 归一化后的 Levenshtein distance，再汇总 edits 与 denominator。
+
+旧固定物理中线会在 page 1/page 3 把右栏开头拼入左栏；自适应分栏已消除该串接。该设计不采用字符袋比较，也不按已识别字符身份对齐 reference/OCR，避免掩盖真实插入、删除与替换。
+
+### 3.2 Reference noise
+
+嵌入文本层是旧 OCR，不是人工校对真值；其错误没有被静默修正。例如：
+
+| U-2 reference | New image OCR |
 |---|---|
-| 国家统计局统计年鉴 | HTML 格式，非 PDF |
-| macrodatas.cn | 需登录，版权不明 |
-| CNKI / 知网 | 付费墙 |
-| 万方数据 | 需订阅 |
-| NSSD 国家哲学社会科学文献中心 | 无结果 |
-| 国家档案馆 sag.gov.cn | 无大尺寸扫描 PDF 开放 |
-| 中国国家图书馆 nlc.cn | 需注册/借阅 |
+| `预箅` | `预算` |
+| `人会` | `大会` |
+| `收攴` | `收支` |
+| `本行畋区域` | `本行政区域` |
+
+因此下节分数是“与 U-2 接受参考层的一致率”，不是对人工真值的准确率估计。新 OCR 在正确纠正旧参考错误时仍可能被扣分。
 
 ---
 
-## §2. 红线复核（07 §4 逐条）
+## §4. 评测结果
 
-| # | 约束 | 候选 1 陕西条例 | 候选 3-10 born-digital | 候选 11 CRS |
-|---|---|---|---|---|
-| R-1 | 不爬取 / 不绕墙 / 不批量 | ✅ 单条 curl | ✅ 单条 curl | ✅ 单条 curl |
-| R-2 | 不商业 OCR / 付费库 | ✅ 政府公开 | ✅ 政府公开 / UNDP / ADB / WB | ✅ Public Domain |
-| R-3 | 不合成 PDF | ✅ 真扫描 PDF | N/A（born-digital） | ✅ 真扫描 PDF |
-| R-4 | 不降 `gate_thresholds.json` 门槛 | ✅ 不动 | ✅ 不动 | ✅ 不动 |
-| R-5 | 真实中文 + 授权明确 + 真值可对照 | ✅ 中文 + 公共领域 + 嵌入文本层 | ⚠ 中文 + 政府公开但非扫描 | ⚠ 英文 + 公共领域 + 真扫描 |
+来源：`data/extracts/04-scanned-pdf/shaanxi_text_eval_report.json`
 
-**首选**：候选 1 陕西省财政预算管理条例（唯一同时满足 R-1..R-5 的候选）。
+| Page | Han agreement | All non-whitespace | Needs review |
+|---:|---:|---:|---|
+| 1 | 89.40% | 83.45% | yes |
+| 2 | 97.62% | 94.70% | no |
+| 3 | 92.13% | 88.49% | no |
+| 4 | 95.69% | 92.25% | no |
+| **Overall** | **93.93%** | **90.05%** | **1/4 = 25%** |
 
----
+门槛核对：
 
-## §3. 用户 U-3 落地后的实际意义
+| Metric | Threshold | Result | Status |
+|---|---:|---:|---|
+| Han character agreement | ≥90% | 93.93% | met |
+| Needs-review pages | ≤30% | 25% | met |
+| Numeric-cell accuracy | ≥80% | `null` / non-tabular | N/A，**不计 PASS** |
 
-per docs/15 §4a：
+陕西 `needs_review` 是“页面 Han 一致率低于 90%”的 research-page triage 定义，不冒充 legacy 数值表 confidence/null/raw-parse 信号。`gate_thresholds.json` 的数值没有修改；machine report 用 `threshold_values_unchanged=true` 和独立的 `needs_review_definition/scope` 明确区分。
 
-- spike 04 **不再是 Stage 0 验收项**
-- 即使候选 1 ACCEPT + 集成成功，Stage 0 不因此从 BLOCKED 转为 PASS
-- 该 PDF 的实际价值：**研究追踪 + OCR 管线充实 + 未来 Stage 1+ 使用**
-- 当前最可行的作用：替换或并列 1909 美国样本，作为 OCR 管线**中文压力测试**真实样本
+Machine verdict：
 
-**结论**：候选 1 仍值得集成（低风险高收益），但**不阻塞 Gate 0 也不解开 Gate 0**。
-
----
-
-## §4. 等裁定项（停等，CC 不动手）
-
-| 编号 | 事项 | 预审方 | CC 等待动作 |
-|---|---|---|---|
-| §5.2 | 候选 1 ACCEPT / REJECT / NEEDS-INFO | Cursor | 见裁定后执行 |
-| U-1 | 候选 PDF 是否满足 PRD「代表性」 | 用户 | 即使 Cursor ACCEPT，CC 不下载 |
-| U-2 | 是否接受人工标注 ground truth（候选 1 是 4 页小样本，可能需要） | 用户 | 即使接受，CC 不下载 |
-
----
-
-## §5. Cursor 预审裁定记录
-
-来源：`reviews/09-stage0-cursor-e1-precheck-20260824.md`（2026-08-24）
-
-### 5.1 总表（已填）
-
-| 候选 | 标识 | 裁定 | CC 动作 |
-|---|---|---|---|
-| **1** | 陕西省财政预算管理条例（4 页） | **ACCEPT（有条件 C-1..C-4）** | U-1/U-2 用户裁定后 → `07` §5.3 |
-| 2 | 同站 `dfxfg/PDF/` 目录 | **NEEDS-INFO** | 须逐条补 §5.1 字段后再预审；禁止目录批量下载 |
-| 3–7 | Tier 2 born-digital | **REJECT（E-1 用途）** | 不作 spike 04 OCR 主样本；可作未来文本提取基线另立项 |
-| 8–10 | Tier 3 国际组织 | **REJECT（E-1）** | 非中文扫描表；不符合 R-5 |
-| 11 | CRS 英文 6 页扫描 | **REJECT（E-1）** | 英文；与 1909 美国样本同类风险 |
-
-### 5.2 候选 1 ACCEPT 条件（09 §1.2）
-
-```
-C-1. HTTP 200 且 magic=%PDF
-C-2. pdfinfo 显示图像层 / Producer 含扫描设备痕迹
-C-3. pdftotext 提取中文 ≥3000 字（与报告 3,230 量级一致）
-C-4. provenance.json 写明 source_url + license 依据（法规库公开属性）
+```text
+research_track_result=MEETS_UNCHANGED_APPLICABLE_THRESHOLDS
+stage0_effect=none_per_U3_non_gating_research_sample
+stage0_verdict=not_determined_by_this_report_user_U4_required
 ```
 
-不达标 → 改 NEEDS-INFO。
+---
 
-### 5.3 用户裁定（2026-08-24）
+## §5. 文件清单
 
-- **U-1**：法规扫描件作"中文 OCR 压力样本"接受（不强求 PRD 原"代表性"；U-3 已将 spike 04 转为非验收项）
-- **U-2**：同意用嵌入文本层作真值（不需人工全表标注）
+### 新增实现与样本
 
-**闸门**：09 §4 要求 U-1 + U-2 用户确认前禁止下载——已解除。
+- `spikes/04-scanned-pdf/data/shaanxi_fiscal_regulation_flk.pdf`
+- `spikes/04-scanned-pdf/ocr_text_layout.py`
+- `spikes/04-scanned-pdf/build_truth_shaanxi_flk.py`
+- `spikes/04-scanned-pdf/extract_04_shaanxi_text.py`
+- `spikes/04-scanned-pdf/evaluate_04_shaanxi_text.py`
+- `spikes/04-scanned-pdf/test_04_shaanxi_text.py`
+- `spikes/04-scanned-pdf/truth_shaanxi_flk.json`
+- `data/extracts/04-scanned-pdf/shaanxi_text_ocr.json`
+- `data/extracts/04-scanned-pdf/shaanxi_text_eval_report.json`
 
-### 5.4 09 §5 任务清单（CC 后续执行）
+### 更新的当前态与证据契约
 
-- 任务 A：U-3 文档落地（docs/11/12/13 + 独立 commit + pack rebuild）
-- 任务 B：更新本文件 §5（已完成 — 见上）
-- 任务 C：U-1/U-2 确认后执行 `07` §5.3 九步（探针 curl → 验证 C-1..C-4 → provenance.json → pdftotext 真值 → extract → evaluate → pytest → 文档 → pack rebuild → commit）
-- 任务 D：禁止清单（批量爬取、绕门槛、宣布 PASS）
+- `spikes/04-scanned-pdf/provenance.json`
+- `spikes/04-scanned-pdf/README.md`
+- `source_registry/registry.csv`
+- `scripts/build_evidence_pack.py`
+- `docs/03-source-registry.md`
+- `docs/11-stage0-review.md`
+- `docs/12-stage0-closure-and-report.md`
+- `docs/13-r4-final-verification.md`
+- 本文件
 
-### 5.5 Stage 0 口径
+Builder 已增加 `spikes/**/*.py`，确保共同依赖 `ocr_text_layout.py` 进入 pack 并归类为 `spike_helper`。
 
-per 09 §3 + docs/15 §4a：
+### 明确未修改
 
-- spike 04 非 Stage 0 验收项
-- 候选 1 集成成功**不得**自动宣布 Stage 0 PASS
-- P-1 / P-2 不变
-- U-4 待 eval 后用户裁定
+- PRD
+- `reviews/` 既有审核原文
+- `spikes/04-scanned-pdf/gate_thresholds.json`
+- legacy 1909 truth/extractor/evaluator/tests
 
 ---
 
-## §5a. CC 任务 C 第 1 步探针结果（2026-08-24）
+## §6. 验证记录
 
-### 5a.1 探针命令与结果
+### 6.1 已完成专项验证
 
+| Suite | Result |
+|---|---|
+| Shaanxi research-track | **14 passed** |
+| Legacy 1909 scanned-PDF track | **18 passed** |
+| Spike 04 combined | **32 passed** |
+
+新增 14 tests 覆盖：PDF magic/size/hash、官方来源与诚实 HTTP 状态、许可边界、truth 字节可重现、U-2 hash/字符数、参考噪声、自适应分栏回归、显式 crossing policy、image-only OCR、`chi_sim.traineddata` hash、OCR 两次字节一致、truth/OCR/eval 与 committed 产物 freshness 对账、缺 PDF/工具/input 非零失败，以及 tmp 输出不改写正式产物。
+
+### 6.2 最终全集与 evidence pack
+
+本表记录真实复跑结果；若后续审查触发代码变更，必须再次复跑并覆盖本表。
+
+| Verification | Final evidence |
+|---|---|
+| Full pytest | **251 passed / 0 failed / 0 skipped in 450.57s** |
+| Worktree hash before/after | `9b874a09...784a8e` (pre-manifest-update, 561 files) → `6e43c318...3deaf46` (post-manifest-update, 561 files)；**差异仅 `evidence_pack/manifest.json`**（即本次 rebuild 的预期产物）；排除 `.git`/cache/bytecode |
+| Evidence Builder real rebuild | **440 artifacts**；role_count sum=440；schema_version=1.1-R3G-R4；陕西 `research_non_gating_extracted_artifact` × 1 + `research_non_gating_eval_report` × 1；`reviews/`=0；exit 0 |
+| Independent pack validation | **artifacts_reverified=440; pack_errors=0**（size、SHA-256、relative/unique paths、role_count 之和、manifest 自排除、`/Users/`/`/home/`/`/tmp/` 禁止前缀全部 0 错） |
+| Static checks | **PY_COMPILE_OK=7/7**（spike04 5 files + builder + evidence test）；**JSON_OK=4/4**（provenance/truth/OCR/eval）；**git diff --check exit=0**；**source_registry/registry.csv=7 行 18 列**（含 1 表头 + 6 数据行） |
+| Review | **BLOCKED_BY_TOOLING**：3 次 `feature-dev:code-reviewer` 子代理全部因 `API error: Stream error: error decoding response body` 提前终止；codex review `--uncommitted` exit=0 但输出仅含 rmcp HTTP 502 / AuthRequired / TLS handshake EOF transport errors + SKILL.md preamble，**无任何实际 review findings**；`/review` skill 因当前位于默认分支 `main` 自动停止；CC 不冒充已 cleared |
+| DevEx probes | **完成**：3 个 CLI 均有说明/默认路径；缺输入与不可写输出统一 rc=2 + `FATAL`，无 traceback；README 提供 prerequisites 与全临时输出流水线 |
+
+第一次全量复跑同样得到 251 passed，但外壳误用 zsh 只读变量 `status`，导致 after-hash 未执行；该次不计零污染证据。上表仅采用随后完整执行成功的 before/test/after 链。
+
+> **Review 工具链诚实记录（BLOCKED_BY_TOOLING）**：本应在代码变更 ≥ 5 文件后自动跑 `/review`，但本次实测三次子代理全部失败（`feature-dev:code-reviewer` × 3 → "Agent terminated early due to an API error: Stream error: error decoding response body"），回退到 `codex review --uncommitted` 也只回传 rmcp HTTP 502 / AuthRequired / TLS handshake EOF transport errors 而无实际审查条目。因此 `/review` 状态为 **未通过、未绕过、未冒充 cleared**。可用替代证据：静态检查（PY_COMPILE 7/7、JSON 4/4、git diff --check 0）、special tests（spike04 32 passed 含 14 陕西新增）、worktree pollution proof、real evidence pack rebuild + 独立复算 0 错。**Cursor 终态复验**应优先弥补这一缺口，并对上述替代证据逐项独立复算后再给出 U-4 建议。
+
+### 6.3 Cursor 可执行复验 runbook
+
+```bash
+# A. Prerequisites and pinned OCR model
+command -v pdftotext pdfinfo pdftoppm tesseract
+tesseract --version
+tesseract --list-langs | grep '^chi_sim$'
+# expected chi_sim.traineddata SHA-256:
+# a5fcb6f0db1e1d6d8522f39db4e848f05984669172e584e8d76b6b3141e1f730
+
+# B. Non-mutating Shaanxi rebuild
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+python3 spikes/04-scanned-pdf/build_truth_shaanxi_flk.py --out "$tmp/truth.json"
+python3 spikes/04-scanned-pdf/extract_04_shaanxi_text.py --out "$tmp/extracted.json"
+python3 spikes/04-scanned-pdf/evaluate_04_shaanxi_text.py \
+  --truth "$tmp/truth.json" --extracted "$tmp/extracted.json" \
+  --out "$tmp/report.json"
+
+# C. Tests
+PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider \
+  spikes/04-scanned-pdf/test_04_shaanxi_text.py \
+  spikes/04-scanned-pdf/test_04_scanned_pdf.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
+
+# D. Real builder to isolated output; no SKIP/FORCE hooks
+EVIDENCE_PACK_DIR="$tmp/pack" python3 scripts/build_evidence_pack.py
+
+# E. Independent pack validation
+python3 - "$tmp/pack/manifest.json" <<'PY'
+import hashlib, json, sys
+from pathlib import Path
+repo = Path.cwd()
+manifest = json.loads(Path(sys.argv[1]).read_text())
+errors = []
+paths = [item["path"] for item in manifest["artifacts"]]
+for item in manifest["artifacts"]:
+    path = Path(item["path"])
+    disk = repo / path
+    if path.is_absolute() or any(prefix in item["path"] for prefix in ("/Users/", "/home/", "/tmp/")):
+        errors.append((item["path"], "forbidden_path"))
+    elif not disk.is_file():
+        errors.append((item["path"], "missing"))
+    elif disk.stat().st_size != item["size_bytes"]:
+        errors.append((item["path"], "size"))
+    elif hashlib.sha256(disk.read_bytes()).hexdigest() != item["sha256"]:
+        errors.append((item["path"], "sha256"))
+if len(paths) != len(set(paths)):
+    errors.append(("manifest", "duplicate_paths"))
+if "evidence_pack/manifest.json" in paths:
+    errors.append(("manifest", "self_included"))
+if sum(manifest["role_count"].values()) != manifest["artifact_count"]:
+    errors.append(("manifest", "role_count"))
+if any(path.startswith("reviews/") for path in paths):
+    errors.append(("manifest", "reviews_included"))
+print(f"artifacts_reverified={len(paths)} pack_errors={len(errors)}")
+print(errors)
+raise SystemExit(bool(errors))
+PY
 ```
-$ curl -sLI -w "HTTP %{http_code} / size=%{size_download} / time=%{time_total}s\n" \
-    --max-time 30 \
-    "https://wb.flk.npc.gov.cn/dfxfg/PDF/d31411b562fc4226a7465f1c875afe67.pdf"
-HTTP 000 / size=0 / time=2.534929s
-exit 35 (SSL connect error)
-```
 
-详细日志摘录：
-
-```
-* Uses proxy env variable https_proxy == 'http://127.0.0.1:7890'
-* CONNECT tunnel established, response 200
-* ALPN: curl offers h2,http/1.1
-* (304) (OUT), TLS handshake, Client hello (1):
-*  CAfile: /etc/ssl/cert.pem
-*  CApath: none
-* LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to wb.flk.npc.gov.cn:443
-* Closing connection
-```
-
-### 5a.2 诊断
-
-| 测试站点 | HTTP | 结论 |
-|---|---|---|
-| `anthropic.com` | 200 | 国际可达 |
-| `github.com` | 200 | 国际可达 |
-| `undp.org` | 403 | 国际可达（HEAD 被拒但非 SSL 问题） |
-| `wb.flk.npc.gov.cn` | 000 / exit 35 | **国内政府站点 TLS 失败** |
-| `stats.gov.cn` | 000 / exit 35 | 同上 |
-
-**根因**：Clash 代理 CONNECT 隧道成功，但 TLS 握手在 `wb.flk.npc.gov.cn:443` 阶段 `SSL_ERROR_SYSCALL`。LibreSSL `/etc/ssl/cert.pem` 不含国内政府 CA 根证书（国内站点常用 CFCA / 国密 / 政务 CA）。
-
-**这与全局记忆 `python-urllib-ssl-clash-proxy.md` 同类（certifi CA 包可解 Python urllib，但 curl 用系统 trust store；本机未安装国内 CA 包）。**
-
-### 5a.3 09 §1.3 警告完全应验
-
-Cursor 在 09 §1.3 已记录："本环境 SSL 失败，未得 PDF 字节"——CC 当前环境复现一致。
-
-### 5a.4 CC 当前动作
-
-按 09 §1.3 指示"**不因此否决候选 1；下载验证责任在 §5.3 第一步，失败则停报**"：
-
-- ❌ **不下载**：候选 1 资格有效但当前本机环境无法完成 C-1
-- ❌ **不使用 `--insecure`**：违反 R-1 绕墙红线
-- ❌ **不修改 trust store**：属于环境级配置变更，未经用户授权
-- ⏸ **停报**：等待用户处置
-
-### 5a.5 候选处置路径（待用户裁定）
-
-| 路径 | 操作 | 触发条件 |
-|---|---|---|
-| 用户本地下载 | 用户在能访问国内政府站的机器下载后传给 CC | 用户主动提供 PDF 文件 |
-| 切换 CC 工作环境 | ssh 到国内服务器（如 puer-hk）后下载 | 用户授权 + CC 验证网络可达性 |
-| 接受 E-1 实质失败 | 走 `06` §6 失败路径（U-3 已选） | 用户明确指令；不影响 Gate 0（U-3） |
-| 候选源替换 | 改用 Tier 3 国际组织中文 PDF（如 UNDP 中国人类发展报告） | 需重新 §5.1 → §5.2 预审 |
-
-**CC 不替用户选路径。**
+正式 pack 完成后，本节和 `docs/13 §10` 必须同步真实结果；若验证失败，必须原样报告。
 
 ---
 
-## §6. 失败路径（07 §6 模板）
+## §7. Cursor 终态复验清单
 
-若 §4 中所有候选全部 REJECT：
+Cursor 复验建议按以下顺序：
 
-```
-E-1 中文扫描 PDF 检索 — 负面结果
-- 日期：2026-08-24
-- 方法：研究 Agent 4 子 Agent 并行（耗时 31m40s）
-- 候选扫描：50+ 来源（中国官方 + 学术 + 国际）
-- 唯一已确认合法免费中文扫描 PDF：候选 1 陕西省条例（4 页）
-- 但 per U-3，spike 04 不再是 Stage 0 验收项
+1. 本文件 §1～§4：确认政策边界、C-1～C-4、评测和 U-3/U-4 口径。
+2. `spikes/04-scanned-pdf/provenance.json`：核对来源、hash、`http_status_observed_by_cc=null` 与许可范围。
+3. `spikes/04-scanned-pdf/truth_shaanxi_flk.json` 与两个 `data/extracts/.../shaanxi_*` 产物：核对参考和报告。
+4. `ocr_text_layout.py`、truth/extract/evaluate 三脚本及 `test_04_shaanxi_text.py`：核对 image-only、双栏区域算法、确定性与失败路径。
+5. `scripts/build_evidence_pack.py` 与最终 `evidence_pack/manifest.json`：确认 helper 已入包且独立复算零错误。本次真实 rebuild 已得 **440 artifacts**、**pack_errors=0**、schema_version=`1.1-R3G-R4`、陕西 2 个 `research_non_gating_*` role、`reviews/`=0；详见 §6.2。
+6. `docs/03`、`docs/11`、`docs/12`、`docs/13`：确认当前态一致，历史审核记录未倒改。
+7. 确认 PRD、`reviews/`、`gate_thresholds.json` 未修改。
 
-替代路径（需用户裁定 §7 U-3 已选 = 完整移除 spike 04 验收）：
-1. 用户上传 PDF（用户此前声明"没有 PDF"）
-2. 授权库接入（需书面许可）
-3. PRD 缩小范围（U-3 已选此项实质内容）
-
-按 U-3：spike 04 不再作为 Stage 0 验收项；E-1 实质失败不影响 Stage 0 总体判定。
-但 spike 04 仍作为研究追踪项保留，未来 Stage 1+ 可重新启用。
-```
-
-**CC 当前不撰写此负面报告；候选 1 仍在预审中。**
+Cursor 应独立报告：测试真实状态、最终 artifact_count、`pack_errors`、发现的任何不一致，以及是否建议用户作 U-4 裁定。Cursor 复验不替代用户 U-4。
 
 ---
 
-## §7. 待 CC 执行的下一步（停等）
+## §8. U-4 用户验收点
 
-1. 若 Cursor ACCEPT + U-1 / U-2 裁定 → 按 07 §5.3 九步流程执行
-2. 若 Cursor REJECT 或 NEEDS-INFO → 回 §1.1 候选 2 或升级到 §6 失败路径
-3. 若 §7 用户裁定补充新条款 → 更新 docs/15 §4a
+完成 Cursor 终态复验后，用户只需裁定：
 
----
+> 在 U-1/U-2/U-3 已锁定、门槛不降、陕西研究轨满足适用研究阈值但 numeric N/A 不计 PASS 且不参与 Gate、全部工程验证和 evidence pack 独立复验结果透明的前提下，Stage 0 Gate 0 的最终状态是什么？
 
-## §8. 红线（重申）
-
-- ❌ CC 不得在未经 Cursor ACCEPT 的情况下下载 PDF
-- ❌ CC 不得在未经用户 §7 U-1 / U-2 裁定的情况下入库
-- ❌ CC 不得修改 `gate_thresholds.json` 换取 PASS
-- ❌ CC 不得将 1909 美国样本标为中国代表性
-- ❌ CC 不得批量爬取 / 绕墙 / 商业库
+CC 不预填该答案，也不会从陕西 research-track 适用阈值达标推导 Stage 0 PASS。
 
 ---
 
-## §9. 阅读路径
+## §9. 操作红线与仓库状态
 
-| 优先级 | 文件 | 用途 |
-|---|---|---|
-| P0 | `reviews/07-stage0-cc-handoff-e1-waiting-20260824.md` | 上游 E-1 等待指令 |
-| P0 | `docs/15-stage0-p0p1-handoff-20260824.md §4a` | U-3 / U-5 已裁定条款 |
-| P0 | 本文件 | 候选源结构化清单（不下载） |
-| P1 | `spikes/04-scanned-pdf/README.md` | spike 04 管线现状 |
-| P1 | `spikes/04-scanned-pdf/gate_thresholds.json` | 门槛（勿改） |
+- 未批量爬取，未绕过验证码、登录、付费墙或 TLS 验证。
+- 未使用商业数据源或付费 OCR。
+- 未用合成 PDF/HTML 打印版冒充真实扫描件。
+- 未降低 OCR 门槛，未把 N/A、skipped、BLOCKED 或字段断言计为 PASS。
+- 未把 1909 美国样本描述为中国代表性样本。
+- 未修改 PRD 或 `reviews/`。
+- **未 commit、未 push、未部署、未进入 Stage 1。**
 
 ---
 
-— End of E-1 candidate report draft (CC, 2026-08-24) —
+— End of Shaanxi integration and U-4 acceptance report —

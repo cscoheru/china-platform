@@ -1,9 +1,10 @@
 # Stage 0 Gate 0 R4 — Final Verification Report (R4-6)
 
-> Generated 2026-08-24, after R6 rebuild (post-Cursor-04 review). End-to-end re-verification
-> confirming: (a) all 237 tests pass / 0 fail / 0 skip; (b) zero worktree pollution;
-> (c) all 428 evidence artifacts hash-match independently; (d) manifest still rejects
-> /Users/ /home/ /tmp/ + wall-clock fields; (e) PG DDL + migration 002 apply cleanly.
+> Generated 2026-08-24 after R6 rebuild; extended 2026-08-24 for the Shaanxi OCR integration.
+> R6 historical baseline was 237 tests and 428 artifacts. The current integration baseline is
+> 251 tests; the post-integration artifact count and independent hash result are recorded in §10
+> after the final rebuild. Historical command outputs below are retained as dated evidence, not
+> silently rewritten.
 
 ## §0. Final Verdict
 
@@ -61,9 +62,9 @@ schema apply 链已纳入 `tests/conftest.py`（autouse session fixture）+ buil
 | 维度 | R5 修改 | R6 修复 | 当前状态 |
 |---|---|---|---|
 | **apply 链** | conftest autouse + builder `run_db_apply()` 链式 apply | 全集 237 默认通过 | ✅ 已闭环 |
-| **builder 收录** | glob `schema/migrations/*.sql` + `tests/conftest.py` + classify `schema_migration_ddl` / `test_conftest` | pack 现 428 artifacts, 含 conftest.py (sha 91fe765d7711) | ✅ 已闭环 |
-| **pack 与磁盘一致性** | 升级 schema_version=1.1-R3G-R4 + 含 002.sql | 重建 pack → 0 mismatch | ✅ 已闭环 |
-| **collect 237 = 31+21+20+30+29+18+11+17+39+21** | docs/13 §2 表加总已对齐 | docs/13 §3/§6 47→39；docs/12 §7 24→31；docs/11 §1.3 24/24→31/31；docs/11 §1.1/§3.5/§10 21→26；docs/12 §2 I-04 R13-R21→R13-R26 | ✅ 已闭环 |
+| **builder 收录** | R6: migration + conftest roles | R6 历史 pack 428；陕西集成新增 `spikes/**/*.py`，确保共同依赖 `ocr_text_layout.py` 不漏包；当前数见 §10 | ✅ 契约扩展 |
+| **pack 与磁盘一致性** | schema_version=1.1-R3G-R4 + 002.sql | R6 历史 0 mismatch；陕西集成后重新验证见 §10 | ⏳ 以 §10 为终态 |
+| **test composition** | R6 历史 237 = 31+21+20+30+29+18+11+17+39+21 | 陕西新增 14，使 spike04 18→32、总计 237→251 | ✅ 公式已同步 |
 | **docs/03 章节** | §4.1-4.3 测试数 20/29/30；§4.4 0%/3.7%/100% BLOCKED；§9.5 澄清 CSV 无 verification_status | – | ✅ 已闭环 |
 | **docs/09 风险** | 新增 R22-R26（R4/R5 返工） | – | ✅ 已闭环 |
 | **eval_report 相对路径** | `_to_repo_relative()` 写入 eval_report.json | – | ✅ 已闭环 |
@@ -71,7 +72,7 @@ schema apply 链已纳入 `tests/conftest.py`（autouse session fixture）+ buil
 
 **复验方只需读 §1.1 + §1.2 + §8 即可判断 R5/R6 全部返工闭环，无需翻 03/04 全文。**
 
-## §2. Full Pytest Run (EVIDENCE_PACK_DIR=/tmp/r46_evidence_pack)
+## §2. Historical R6 Full Pytest Run (237 baseline; superseded by §10)
 
 ```
 $ EVIDENCE_PACK_DIR=/tmp/r46_evidence_pack PYTHONDONTWRITEBYTECODE=1 \
@@ -110,7 +111,7 @@ Result: exit 0；39 表 + 13 enum + 1 增量表（source_document_verification_e
 
 所有 DB 负例（test_schema_negative.py 39 项 + test_source_governance.py 21 项）全部通过。
 
-## §4. Builder Real Run
+## §4. Historical R6 Builder Real Run (428 baseline; superseded by §10)
 
 ```bash
 $ EVIDENCE_PACK_DIR=/tmp/r6_evidence_pack python3 scripts/build_evidence_pack.py
@@ -128,7 +129,7 @@ verified 428 artifacts (full)
 | Builder wrote to EVIDENCE_PACK_DIR (temp) | ✅ `/tmp/r6_evidence_pack/manifest.json` |
 | 仓库 evidence_pack/manifest.json 同步覆盖 | ✅（R6 重建后与磁盘 0 mismatch） |
 
-## §5. Independent Hash Re-Verification (R4-3 invariant)
+## §5. Historical R6 Independent Hash Re-Verification (superseded by §10)
 
 ```python
 # 独立于 builder，重新读 manifest 并对每个 artifact 算 SHA-256
@@ -212,21 +213,40 @@ ALL ARTIFACTS INDEPENDENTLY RE-VERIFIED OK
 
 **R4-1..R4-6 + R5-A..R5-I + R6-A..R6-E = 6+9+5 = 20 项 dev rework 全部闭环。**
 
-## §9. Outstanding Items (per R4-5 三分类 + R5/R6/U-3 增量)
+## §9. Outstanding Items（陕西集成后）
 
-### EXTERNAL BLOCKING（用户提供资源前无法解决）
-- **E-1**（**已撤销作为 Stage 0 BLOCKED 根因**；保留为研究追踪项）：中文扫描 PDF 缺失（spike 04 / B-01） — 唯一样本为 1909 美国统计摘要（archive.org），非中国研究平台代表性样本
-- **研究候选**：`reviews/09` ACCEPT 候选 1 陕西省财政预算管理条例（4 页）；CC 当前本机 SSL 无法下载（LibreSSL 不含国内 CA），等用户处置
+### EXTERNAL BLOCKING
+- **无 E-1 文件获取阻塞**：用户已通过全国人大法规库官方直链下载并上传陕西四页扫描 PDF；CC 已验证本地来源元数据、magic、结构、size 与 hashes。
 
-### USER POLICY（用户已决策，dev 不得变更）
+### USER POLICY（dev 不得变更）
 - **P-1**：不降低 OCR 门槛（numeric ≥80% / char ≥90% / needs_review ≤30%）
-- **P-2**：不接受 1909 美国样本代表中国治理平台（仅作 OCR 压力样本，archive.org 等级 S0→S3）
-- ~~**P-3**：Stage 0 维持 BLOCKED 直到中文扫描 PDF 提供~~ — **已撤销**（per `docs/15` §4a U-3 + `reviews/09` §3；spike 04 转为非验收项）
+- **P-2**：不接受 1909 美国样本代表中国治理平台
+- **U-1/U-2**：陕西是中文 OCR 压力样本；嵌入旧 OCR 文本层作有噪声对照
+- **U-3**：spike 04 非 Stage 0 验收项
+- **U-4**：等待 §10 证据经 Cursor 复验后由用户裁定
 
 ### DEV REWORK
-- R4-1..R4-6（6 项）+ R5-A..R5-I（9 项）+ R6-A..R6-E（5 项）= **20 项全部闭环**
-- 见 §8 完整证据链
+- R4/R5/R6 历史 20 项闭环不变
+- 陕西集成新增代码、14 tests、provenance/source registry/docs 与 pack 完整性修复；当前验证见 §10
 
-**Stage 0 当前判定**：BLOCKED（口径需 docs/11/12/13 全部落地后由 Cursor 复验 + 用户最终确认）；E-1 不再是根因，P-3 已撤销；P-1/P-2 不变；20/20 dev rework 已闭环。
+**Stage 0 当前判定权**：CC 不自动宣布 PASS；等待 Cursor 复验 + 用户 U-4。不进入 Stage 1。
 
-— End of R6 verification report —
+## §10. Shaanxi OCR Integration Verification（当前终态）
+
+本节在最终全集 pytest、evidence pack rebuild 与独立 SHA-256 复算后填写；详细验收入口同时写入 `docs/16-e1-candidate-report-20260824.md`。
+
+| Field | Result |
+|---|---|
+| Source PDF | `spikes/04-scanned-pdf/data/shaanxi_fiscal_regulation_flk.pdf`; SHA-256 `f34b2e57...71488`; 4 pages |
+| OCR evaluation | Han 93.93%; all non-whitespace 90.05%; needs_review 1/4=25%; numeric N/A |
+| Research result | `MEETS_UNCHANGED_APPLICABLE_THRESHOLDS` |
+| Stage 0 effect | `none_per_U3_non_gating_research_sample` |
+| Full pytest | **251 passed / 0 failed / 0 skipped in 450.57s** |
+| Test pollution proof | `9b874a09...784a8e` (pre-manifest-update) → `6e43c318...3deaf46` (post-manifest-update); 561 files; **差异仅 `evidence_pack/manifest.json`**（本次 rebuild 的预期产物） |
+| Evidence pack | **440 artifacts**；role_count sum=440；schema_version=`1.1-R3G-R4`；陕西 `research_non_gating_extracted_artifact` × 1 + `research_non_gating_eval_report` × 1；`reviews/`=0 |
+| Independent pack validation | **artifacts_reverified=440; pack_errors=0**（size/SHA-256/relative/unique paths/role_count/manifest 自排除/禁止前缀） |
+| Static checks | PY_COMPILE_OK=7/7；JSON_OK=4/4；git diff --check exit=0；registry.csv 7 行 × 18 列 |
+| Code review tooling | **BLOCKED_BY_TOOLING**：3 次 `feature-dev:code-reviewer` 子代理 API stream error；`codex review --uncommitted` 仅 transport errors 无 findings；详见 `docs/16 §6.2` |
+| Verdict | **等待 Cursor 复验 + user U-4；CC 不自动给 PASS** |
+
+— End of current verification report —

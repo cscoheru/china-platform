@@ -22,5 +22,69 @@
   "table_on_page": "Total Imports and Exports of Merchandise and Gold and Silver into and from the Principal Countries of Europe—Continued. FRANCE—Continued.",
   "render_dpi": 300,
   "orientation_note": "Printed landscape on portrait page; tesseract OSD detects 'Rotate: 90'; extractor rotates clockwise before OCR",
-  "truth_table": "truth_p24.json (human-verified transcription, 30 rows x 16 columns incl. YEAR, 5 identity families x 30 rows = 240 arithmetic checks, all pass; builder: build_truth_p24.py)"
+  "truth_table": "truth_p24.json (human-verified transcription, 30 rows x 16 columns incl. YEAR, 5 identity families x 30 rows = 240 arithmetic checks, all pass; builder: build_truth_p24.py)",
+  "research_samples": {
+    "shaanxi_fiscal_regulation_flk": {
+      "sample_id": "04-scanned-pdf-shaanxi-flk",
+      "role": "chinese_ocr_pressure_sample_non_gating_per_U3",
+      "title": "陕西省财政预算管理条例",
+      "source_institution": "全国人大常委会国家法律法规数据库",
+      "source_url": "https://wb.flk.npc.gov.cn/dfxfg/PDF/d31411b562fc4226a7465f1c875afe67.pdf",
+      "source_landing_page": "https://flk.npc.gov.cn/",
+      "file_name": "data/shaanxi_fiscal_regulation_flk.pdf",
+      "file_size_bytes": 1007943,
+      "file_hash_sha256": "f34b2e57ae08620cb6a6afb98b3983d805d53e3bae78b969795987a7ebe71488",
+      "pdf_magic": "%PDF-1.4",
+      "pdf_pages_total": 4,
+      "content_scope_note": "The four-page database scan begins with the end of a preceding regulation; the Shaanxi fiscal-budget regulation begins on PDF page 1 and continues through page 4. The complete four-page file is retained as the accepted OCR pressure sample.",
+      "acquisition": {
+        "method": "user_download_from_official_direct_url_then_workspace_upload",
+        "local_origin_evidence": "macOS kMDItemWhereFroms recorded the exact source_url; Chrome quarantine metadata was present before repository integration",
+        "http_status_observed_by_cc": null,
+        "http_status_note": "The user completed the official download after CC's verified-TLS request path failed; CC does not manufacture an HTTP 200 observation.",
+        "verification": "CC recomputes the file sha256 and validates PDF structure locally"
+      },
+      "pdf_metadata": {
+        "creator": "Canon SC1011",
+        "producer": "MP Navigator EX",
+        "page_size_points": [453.24, 600.84],
+        "image_layers": "one 1259 x 1669 grayscale JPEG image per page at 200 x 200 DPI"
+      },
+      "embedded_text_layer": {
+        "text_sha256": "cec93b67f8da16ecdd97b7e08ab2baf23995f2e61530afff3f1d6295dfdfc0bf",
+        "text_characters": 4635,
+        "han_characters": 3230,
+        "non_whitespace_characters": 3550,
+        "truth_policy": "accepted_as_OCR_comparison_reference_per_U2",
+        "limitation": "This is an existing OCR layer rather than a human-corrected transcription and contains visible recognition errors; it is preserved unchanged and the limitation is disclosed in evaluation."
+      },
+      "ocr_toolchain": {
+        "render_dpi": 300,
+        "tesseract_version": "5.5.3",
+        "tesseract_language": "chi_sim",
+        "page_segmentation_mode": 6,
+        "traineddata_filename": "chi_sim.traineddata",
+        "traineddata_sha256": "a5fcb6f0db1e1d6d8522f39db4e848f05984669172e584e8d76b6b3141e1f730",
+        "traineddata_size_bytes": 2469156,
+        "layout_method": "robust_content_bounds_midpoint_then_y_line_and_x_word_order"
+      },
+      "license": {
+        "classification": "LicenseRef-PRC-Copyright-Law-Article-5-Legal-Text",
+        "basis": "The regulation text is a law/regulation-type official document excluded from Copyright Law application by Article 5(1) of the Copyright Law of the People's Republic of China.",
+        "basis_url": "https://www.gov.cn/guoqing/2021-10/29/content_5647633.htm",
+        "official_database_access": "public unauthenticated direct PDF URL",
+        "scope_limit": "This basis applies to the regulation text. No blanket public-domain or open-license assertion is made for the database interface, scan layout, or unrelated portal assets.",
+        "use_scope": "internal OCR research and reproducible evidence"
+      },
+      "metrics_policy": {
+        "primary_character_class": "Han ideographs",
+        "numeric_cell_accuracy": "not_applicable_non_tabular_source",
+        "threshold_values_unchanged": true,
+        "needs_review_definition": "page_han_accuracy_below_char_accuracy_min_pct",
+        "needs_review_scope": "shaanxi_research_page_triage_not_legacy_numeric_cell_parse_signal",
+        "stage0_effect": "none_per_U3",
+        "stage0_verdict_requires_user_U4": true
+      }
+    }
+  }
 }

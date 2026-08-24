@@ -1,253 +1,212 @@
-# Spike 04: Scanned PDF Table OCR Extraction
+# Spike 04: Scanned PDF OCR
 
-**Status: FAILED / BLOCKED** — 真实扫描 PDF OCR 真值对照未通过 Gate 阈值。
+## Status
 
-## ⚠ 当前真实结果（机器生成，evidence_pack/manifest.json + data/extracts/04-scanned-pdf/eval_report.json）
+Spike 04 is a **non-gating research track** under the user ruling recorded in
+`docs/15-stage0-p0p1-handoff-20260824.md` §4a (U-3). It does not determine the
+Stage 0 verdict and must not be reported as an automatic PASS.
 
-| 指标 | 实际值 | Gate 阈值 | 状态 |
+Two independent tracks are retained:
+
+| Track | Sample | Purpose | Current result |
 |---|---|---|---|
-| `numeric_cell_accuracy_pct` | **0.0%** (0/129) | ≥80% | ❌ FAILED |
-| `char_accuracy_pct` | **3.7%** (87/2348) | ≥90% | ❌ FAILED |
-| `needs_review_total` / 450 | **450/450 (100%)** | ≤30% | ❌ FAILED |
-| `low_ocr_confidence` | **450** | – | – |
-| `unparseable_ocr` | **321** | ≤5% | ❌ FAILED |
-| `no_ocr_words` | **111** | – | – |
-| `indicator_name_accuracy_pct` | 100.0% (硬编码) | – | 不计真实 OCR 性能 |
-| `unit_accuracy_pct` | 100.0% (硬编码 "1,000 dollars") | – | 不计真实 OCR 性能 |
-| `page_locator_accuracy_pct` | 100.0% | – | – |
-| `bbox_locator_accuracy_pct` | 99.7% (339 cells) | ≥90% | ⚠ 接近但被 value=0 主导 |
+| Legacy numeric-table track | 1909 U.S. Statistical Abstract, page 24 | Preserve the original 30×15 table OCR regression and its arithmetic truth | 0.0% numeric / 3.7% digit characters / 100% needs review; failed historical research result |
+| Shaanxi Chinese-text track | `data/shaanxi_fiscal_regulation_flk.pdf` | Chinese OCR pressure research under U-1/U-2 | 93.93% Han agreement / 90.05% all non-whitespace agreement / 25% pages need review; meets unchanged applicable research thresholds, with numeric N/A not counted as pass |
 
-**结论：0% numeric + 3.7% char + 100% needs_review 全部远低于 Gate 阈值；spike 04 必须维持 FAILED/BLOCKED。**
+The 1909 sample is not representative of China and is not relabelled as such.
+The Shaanxi regulation is a non-tabular legal text, so numeric-cell accuracy is
+`null` / `not_applicable_non_tabular_source`; not applicable is not counted as
+PASS.
 
-阈值定义见 `spikes/04-scanned-pdf/gate_thresholds.json`。任何降低阈值的尝试必须先取得用户书面批准。
+## Unchanged thresholds
 
-## ⚠ 代表性偏差（必须用户批准）
+`gate_thresholds.json` remains unchanged:
 
-当前唯一能 OCR 跑通的真实扫描 PDF 是 `statistical_abstract_foreign_countries_1909.pdf`：
-- 来源：1909 年美国统计摘要（archive.org item `statisticalabst00unit`）
-- 语种：英文（tesseract eng），不是中文（chi_sim）
-- 主题：法国对外贸易史数据，**与中国研究主题完全无关**
-- 著作权：U.S. 联邦政府文献，公共领域（17 U.S.C. §105）
+- numeric-cell accuracy ≥80%
+- character accuracy ≥90%
+- needs-review rate ≤30%
 
-**这并不构成中国统计研究平台的代表性样本。** 在用户书面批准前：
-- spike 04 维持 FAILED/BLOCKED 状态
-- 不写入 PASSED 总结
-- 实际样本选择待用户决策
+For the Chinese-text track, Han ideographs are the primary target character
+class, analogous to the digit-only target class in the legacy numeric-table
+track. The all-non-whitespace metric is disclosed alongside it. A page enters
+the Shaanxi research review queue when its Han agreement is below 90%. This is
+a page-triage definition for this research track, not a redefinition of the
+legacy numeric-cell parser's confidence/null/raw-parse review signal; only the
+numeric threshold values remain unchanged.
 
-## ⚠ matched_to_truth ≠ 准确率
+## Shaanxi source and provenance
 
-`eval_report.json:matched_to_truth = 450` 仅表示已生成 450 行 (year, column) 结果，
-**不是** 450 个数值正确。`value = null` 时与 truth 值不等仍计数为 matched。
-实际 numeric accuracy 必须看 `numeric_cell_accuracy_pct` 和 `numeric_cell_compared`。
+| Field | Verified value |
+|---|---|
+| Title | 陕西省财政预算管理条例 |
+| Official source | 全国人大常委会国家法律法规数据库 |
+| Direct URL | `https://wb.flk.npc.gov.cn/dfxfg/PDF/d31411b562fc4226a7465f1c875afe67.pdf` |
+| Local origin evidence | macOS `kMDItemWhereFroms` recorded the exact official URL; Chrome quarantine metadata was present |
+| PDF SHA-256 | `f34b2e57ae08620cb6a6afb98b3983d805d53e3bae78b969795987a7ebe71488` |
+| Size / pages | 1,007,943 bytes / 4 pages |
+| Scan evidence | Canon SC1011 / MP Navigator EX; one 1259×1669 grayscale JPEG image per page at 200 DPI |
+| Embedded text | SHA-256 `cec93b67f8da16ecdd97b7e08ab2baf23995f2e61530afff3f1d6295dfdfc0bf`; 3,230 Han characters |
 
-## Objective (per PRD 12.4)
+The user downloaded the official URL and uploaded the resulting file after
+CC's verified-TLS request path failed. CC validates the file magic, structure,
+origin metadata, size and hashes, but does **not** claim to have independently
+observed HTTP 200.
 
-提取扫描图像型统计 PDF 中的表格数据，含 per-cell 置信度、bbox、needs_review 队列。
+The regulation text is covered by the legal-document exclusion in Article 5(1)
+of the Copyright Law of the People's Republic of China. This is not a blanket
+public-domain assertion for the database interface, scan layout or unrelated
+portal assets. Full machine-readable provenance is in `provenance.json`.
 
----
+The four-page scan begins with the end of a preceding regulation; the Shaanxi
+fiscal-budget regulation starts on PDF page 1 and continues through page 4. The
+accepted pressure sample is the complete four-page file.
 
-## What Was Attempted
+## Reference limitation
 
-### PDF Sources Investigated
+Per U-2, the PDF's embedded text layer is the comparison reference. It is an
+older OCR layer, not a human-corrected transcription. Its errors are preserved,
+not silently corrected. Examples include:
 
-| Source | URL | Result |
-|---|---|---|
-| National Bureau of Statistics (stats.gov.cn) | https://www.stats.gov.cn/sj/ndsj/ | Modern yearbooks are text-based (digital PDFs), not scanned |
-| National Statistical Communiqués | https://www.stats.gov.cn/sj/tjgb/ndtjgb/ | Text-based PDFs; direct PDF links return 404 |
-| archive.org — chinastatistical00unse | https://archive.org/metadata/chinastatistical00unse | Returns 503 (rate-limited/throttled) |
-| archive.org — chinayearbooks00chin | https://archive.org/metadata/chinayearbooks00chin | Returns 503 |
-| archive.org — multiple China yearbook items | Various IDs | All return 503 or empty file lists |
-| HathiTrust — China Statistical Yearbook 1990-1995 | https://catalog.hathitrust.org/Record/002551252 | "Full view" at UC Berkeley; direct PDF URLs return 403 |
-| 中国统计信息网 (tjcn.org) — historical yearbooks | http://www.tjcn.org/tjnj/ | Requires 10-20 金币 (paid credits) |
-| 统计年鉴下载站 (tjnjdata.com) | https://www.tjnjdata.com/ | Requires paid account |
-| Chongqing Statistical Yearbook | https://www.cq.gov.cn/... | PDF downloaded (9.5 MB) but **corrupted**: created by ABBYY FineReader with malformed PDF structure (no xref table, cannot be read by poppler) |
-| Shenyang Statistical Yearbook 2021 | https://www.shenyang.gov.cn/... | Text-based (PDF created by pdfFactory; pdftotext extracts text successfully) |
-| Zhanjiang Statistical Yearbook 2022 | https://www.zhanjiang.gov.cn/... | Text-based (3.6 MB, 553 pages) |
-| Henan / Fujian / Shanxi / Heilongjiang yearbooks | Various provincial sites | No accessible PDFs found; site-specific patterns |
-| Suzhou / Shanghai / Guangzhou yearbooks | tjj.suzhou.gov.cn, tjj.gz.gov.cn | Dynamic JS-loaded links; redirects to main page |
-| ZZU (Zhengzhou University) — China City Statistical Yearbook | https://www7.zzu.edu.cn/udrc/... | Historical files available as **RAR archives** (not PDFs) |
-| 中国教育经济信息网 (cee.edu.cn) — national statistical communiqués | https://www.cee.edu.cn/... | HTML text only (no PDF) |
+- reference `预箅` versus new image OCR `预算`
+- reference `人会` versus new image OCR `大会`
+- reference `收攴` versus new image OCR `收支`
+- reference `本行畋区域` versus new image OCR `本行政区域`
 
-### Summary
+Consequently, the reported accuracy is **agreement with the accepted embedded
+layer**, not accuracy against human-corrected ground truth. Correct new OCR can
+be penalized where the accepted reference is wrong.
 
-- **Free, downloadable scanned (image-based) PDFs**: None found that are both publicly
-  accessible and valid PDF files.
-- **Text-based PDFs** (digital-born): Several were successfully downloaded (Shenyang,
-  Zhanjiang, national statistical communiqués 1991-2021) but these do not test the
-  OCR pipeline.
-- **Paywalled sources**: tjcn.org, tjnjdata.com, tjnj.net — require paid accounts.
-- **Institutional access only**: HathiTrust, archive.org — items exist but
-  downloads blocked (503/403).
-- **Corrupted PDF**: The one "scanned" file found (Chongqing, 9.5 MB, ABBYY FineReader
-  output) has a malformed structure.
+## Layout-aware evaluation
 
----
+The image OCR never reads the embedded text layer. The two streams are built
+independently:
 
-## Tools Installed
+1. `build_truth_shaanxi_flk.py` runs `pdftotext -bbox` and locks the accepted
+   reference hash.
+2. `extract_04_shaanxi_text.py` renders the page images at 300 DPI and runs
+   Tesseract 5.5.3 with `chi_sim`, PSM 6, TSV output. The committed artifact
+   pins `chi_sim.traineddata` SHA-256
+   `a5fcb6f0db1e1d6d8522f39db4e848f05984669172e584e8d76b6b3141e1f730`.
+3. Both streams estimate a per-page divider from visible word bounds after
+   trimming the outer 5% of bbox edges. This handles scans whose printed
+   content is not centered on the physical page.
+4. Words crossing the divider are assigned by bbox center, and each page
+   reports the crossing count and policy rather than silently hiding it.
+5. Within left/right regions, words are clustered by Y coordinate and sorted
+   by X coordinate.
+6. `evaluate_04_shaanxi_text.py` computes Levenshtein distance independently in
+   each region, then sums edits and denominators. Edits cannot cross columns.
+
+This removes both fixed-midpoint cross-column concatenation and two-column
+reading-order drift without using recognized character identity to align OCR,
+or a character-bag comparison that would hide real insertions, deletions or
+substitutions.
+
+## Current Shaanxi result
+
+Source: `data/extracts/04-scanned-pdf/shaanxi_text_eval_report.json`.
+
+| Page | Han agreement | All non-whitespace | Needs review |
+|---:|---:|---:|---|
+| 1 | 89.40% | 83.45% | yes |
+| 2 | 97.62% | 94.70% | no |
+| 3 | 92.13% | 88.49% | no |
+| 4 | 95.69% | 92.25% | no |
+| **Overall** | **93.93%** | **90.05%** | **1/4 = 25%** |
+
+Assessment:
+
+- Han character threshold: met (93.93% ≥90%).
+- Needs-review threshold: met (25% ≤30%).
+- Numeric-cell threshold: not applicable and not counted as pass.
+- Research result: `MEETS_UNCHANGED_APPLICABLE_THRESHOLDS`.
+- Stage 0 effect: `none_per_U3_non_gating_research_sample`.
+- Final Stage 0 verdict remains reserved for Cursor re-verification and user U-4.
+
+## Files
+
+```text
+# Legacy numeric-table track
+build_truth_p24.py
+truth_p24.json
+extract_04_scanned_pdf.py
+evaluate_04.py
+test_04_scanned_pdf.py
+statistical_abstract_foreign_countries_1909.pdf
+
+# Shaanxi Chinese-text research track
+ocr_text_layout.py
+build_truth_shaanxi_flk.py
+truth_shaanxi_flk.json
+extract_04_shaanxi_text.py
+evaluate_04_shaanxi_text.py
+test_04_shaanxi_text.py
+data/shaanxi_fiscal_regulation_flk.pdf
+
+# Shared policy/provenance
+provenance.json
+gate_thresholds.json
+```
+
+Generated Shaanxi outputs:
+
+```text
+data/extracts/04-scanned-pdf/shaanxi_text_ocr.json
+data/extracts/04-scanned-pdf/shaanxi_text_eval_report.json
+```
+
+## Prerequisites, rebuild and test
+
+Required executables are `pdftotext`, `pdfinfo`, `pdftoppm` (Poppler) and
+Tesseract with `chi_sim`. The committed OCR artifact was produced with
+Tesseract 5.5.3, Poppler 26.08.0 and the traineddata hash pinned above. Verify
+the local toolchain before rebuilding:
 
 ```bash
-brew install tesseract tesseract-lang   # tesseract 5.5.3 + chi_sim/chi_tra language packs
-pip install pytesseract pdf2image pdfplumber
+command -v pdftotext pdfinfo pdftoppm tesseract
+tesseract --version
+tesseract --list-langs | grep '^chi_sim$'
+python3 spikes/04-scanned-pdf/build_truth_shaanxi_flk.py --help
+python3 spikes/04-scanned-pdf/extract_04_shaanxi_text.py --help
+python3 spikes/04-scanned-pdf/evaluate_04_shaanxi_text.py --help
 ```
 
-Tesseract version: **5.5.3** (leptonica-1.87.0)  
-Language packs verified: `chi_sim`, `chi_sim_vert`, `chi_tra`, `chi_tra_vert`, `eng`
+Use explicit temporary outputs for a non-mutating reproduction. The evaluator
+must receive those same temporary truth and OCR files:
 
----
+```bash
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
 
-## OCR Engine: Why pytesseract (not paddleocr)
+python3 spikes/04-scanned-pdf/build_truth_shaanxi_flk.py \
+  --out "$tmp/truth.json"
+python3 spikes/04-scanned-pdf/extract_04_shaanxi_text.py \
+  --out "$tmp/extracted.json"
+python3 spikes/04-scanned-pdf/evaluate_04_shaanxi_text.py \
+  --truth "$tmp/truth.json" \
+  --extracted "$tmp/extracted.json" \
+  --out "$tmp/report.json"
 
-- **paddleocr**: Not installed; requires `pip install paddlepaddle paddleocr` and
-  ~2 GB of model files. Would provide better accuracy for Chinese text.
-- **pytesseract + tesseract**: Available and working. Provides per-word confidence
-  scores via `image_to_data()`. chi_sim pack works for Simplified Chinese.
-- **Decision**: Use pytesseract for the spike. For production, evaluate paddleocr
-  or cloud OCR (Baidu/Ali) for significantly better accuracy on low-quality scans.
+python3 -m pytest -q -p no:cacheprovider \
+  spikes/04-scanned-pdf/test_04_shaanxi_text.py
+# 14 passed
 
----
-
-## Confidence Threshold Rationale
-
-| Threshold | Rationale |
-|---|---|
-| **< 0.70 → `needs_review: true`** | Based on tesseract confidence distribution on Chinese text. Values 70-100 indicate reliable recognition; below 70, OCR errors become common. |
-| **< 0.50 → definitely needs review** | Used as sub-threshold for `review_reason: "low_avg_confidence"` |
-
-Additional flags trigger review even if confidence is above 0.70:
-- `missing_unit`: No unit column detected
-- `missing_value`: Value field is null after parsing
-
----
-
-## Common OCR Errors on Chinese Statistical Text
-
-| Error Type | Example | Root Cause |
-|---|---|---|
-| Decimal point confusion | `17400。5` (Chinese period) | OCR reads `。` as `.` or noise |
-| Comma confusion | `17，400` (Chinese comma) | Treated as decimal point when it's a thousand-sep |
-| Digit substitution | `1?400` or `{27` | Low-resolution scan, similar strokes |
-| Missing unit | Empty string | Unit column too thin or low contrast |
-| Character splitting | `亿元` → `{27 5 b` | Font rendering × tesseract training mismatch |
-
-The `_parse_value()` function in `extract_04_scanned_pdf.py` handles:
-1. Chinese period `。` → decimal point
-2. Chinese comma `，` → try-as-thousand-sep first, fallback to decimal
-3. English comma `,` → remove (thousand separator)
-4. Spaces between digit groups → removed
-5. Non-numeric noise → stripped with regex
-
----
-
-## Code Structure
-
-```
-extract_04_scanned_pdf.py — Main extraction pipeline
-test_04_scanned_pdf.py    — 18 tests covering all schema fields and logic
-README.md          — This file
+python3 -m pytest -q -p no:cacheprovider \
+  spikes/04-scanned-pdf/test_04_scanned_pdf.py
+# 18 passed
 ```
 
-### `extract_04_scanned_pdf.py` pipeline
+Spike 04 therefore has 32 tests: 18 legacy + 14 Shaanxi. Missing source files,
+missing Tesseract, missing language data and missing evaluator inputs fail
+rather than skip. The tests also rebuild all three formal artifacts and compare
+their bytes with committed outputs.
 
-1. Load PDF → render page at 300 DPI using `pdf2image` (poppler `pdftoppm`)
-2. OCR with `pytesseract.image_to_data()` → per-word confidence scores
-3. Cluster cells into rows (Y-gap heuristic) and columns (X-sort)
-4. Map to structured columns: `indicator`, `period`, `value`, `unit`
-5. Flag `needs_review` based on `CONFIDENCE_THRESHOLD` (0.70)
-6. Write `data/extracts/04-scanned-pdf/extracted.json`
+## Red lines retained
 
-### `test_04_scanned_pdf.py` test coverage
-
-- `TestConfidenceThreshold`: verifies threshold logic and needs_review flags
-- `TestValueParsing`: Chinese comma/period handling
-- `TestReviewQueue`: review queue builder
-- `TestTableBBox`: bounding box computation
-- `TestSha256Hash`: SHA-256 hashing
-- `TestOcrPipeline`: OCR on synthetic image, table extraction, field presence
-- `TestFullPipeline`: end-to-end extraction on synthetic PDF
-- `TestJsonOutput`: JSON schema validation
-
-**Test result: 18 passed**（真实样本=1909 美国统计摘要，archive.org）
-
----
-
-## Lessons Learned: chi_sim OCR on macOS
-
-- **Font rendering**: STHeiti Light / PingFang on macOS renders Chinese characters
-  differently from tesseract's training fonts. Characters like `亿元` may be
-  misrecognized (e.g., as `{27`). This is expected for non-standard fonts.
-- **System font availability**: `/System/Library/Fonts/STHeiti Light.ttc` and
-  `/System/Library/Fonts/PingFang.ttc` are available but not ideal for OCR.
-- **chi_sim accuracy**: Good for standard text in common fonts (宋体, 黑体).
-  Degrades significantly with serif/light fonts, small font sizes (<10pt), or
-  low-resolution scans (<200 DPI).
-- **Recommended DPI**: 300 DPI minimum for reliable OCR on statistical tables.
-- **Confidence score**: tesseract `conf` field is on a -1 to 100 scale, normalized
-  to 0.0-1.0 in the pipeline. Values below 0 are noise.
-
----
-
-## Blockers
-
-1. **未找到合适的中国研究平台扫描 PDF 样本**（1909 美国统计摘要可用但非代表性，需用户决策）：
-   All Chinese historical yearbooks are either
-   paywalled, text-based digital PDFs, or institutionally restricted.
-   - **tjcn.org**: 10-20 金币 per download (~$1-2 USD)
-   - **tjnjdata.com / tjnj.net**: Registration + payment required
-   - **HathiTrust**: Search-only access; no downloads
-   - **archive.org**: Items exist but PDF downloads return 503
-2. **The one scanned file found (Chongqing) is corrupted**: Created by
-   ABBYY FineReader but saved with a malformed PDF structure.
-3. **paddleocr not installed**: Would provide better accuracy but requires
-   ~2 GB of model files.
-
----
-
-## Next Steps for Operator
-
-1. **Obtain a valid scanned PDF** (one of the following):
-   - Purchase credits on tjcn.org (~$1-2) and download e.g.
-     https://www.tjcn.org/tjnj/RRR/16639.html (中国人口统计年鉴1995)
-   - Access via institutional library (HathiTrust, JSTOR, CNKI)
-   - Use the Chongqing file: try running `pdfsandwich` or `k2pdfopt` to
-     repair the malformed PDF structure
-2. **Install paddleocr for better accuracy**: `pip install paddlepaddle-gpu paddleocr`
-3. **Test the pipeline**: Replace `SAMPLE_PDF_PATH` in `extract_04_scanned_pdf.py` with the real PDF
-   and run `python3 extract_04_scanned_pdf.py <pdf_path> [page_number]`
-4. **Validate extracted data** against the original PDF's table to calibrate the
-   confidence threshold for this specific material
-
----
-
-## Output Schema
-
-```json
-{
-  "sample": {
-    "source_url": "...",
-    "source_type": "pdf_scanned",
-    "file_hash_sha256": "...",
-    "page_locator": 1,
-    "page_dimensions": {"width": 1240, "height": 1754},
-    "table_bbox": {"x": 100, "y": 200, "w": 640, "h": 320},
-    "fetched_at": "2026-08-23T...",
-    "extraction_method": "pytesseract",
-    "ocr_language": "chi_sim+eng"
-  },
-  "rows": [
-    {
-      "indicator": "国内生产总值",
-      "period": "1990",
-      "value": 17400.0,
-      "unit": "亿元",
-      "source_url": "...",
-      "locator": "page 1, table bbox ({...})",
-      "extraction_method": "ocr",
-      "ocr_confidence": 0.862,
-      "cell_confs": [0.85, 0.90, 0.88, 0.82],
-      "needs_review": false,
-      "review_reason": null
-    }
-  ],
-  "review_queue": []
-}
-```
+- Do not lower `gate_thresholds.json` to obtain a pass.
+- Do not count `null`, skipped, blocked or field-only assertions as pass.
+- Do not describe the 1909 U.S. sample as representative of China.
+- Do not use the embedded layer as OCR input.
+- Do not silently correct the accepted U-2 reference.
+- Do not batch crawl, bypass TLS verification, bypass login/paywalls or use paid OCR.
+- Do not infer a Stage 0 PASS from this non-gating research result.
