@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "f475717a6ac0b9ff1b635e03807ea32358aeaf99",
-    "commit_sha_short": "f475717a6ac0",
-    "commit_timestamp_utc": "2026-08-24T12:12:30+08:00",
+    "commit_sha": "12628ecdc5f1c23fcc221ddbc48aa5fa37a47e54",
+    "commit_sha_short": "12628ecdc5f1",
+    "commit_timestamp_utc": "2026-08-24T13:05:15+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -151,8 +151,8 @@
     },
     {
       "path": "docs/15-stage0-p0p1-handoff-20260824.md",
-      "size_bytes": 10827,
-      "sha256": "98e369fb4d48fc5f30d9c777303fc35f2c158fa7a8669afda6d3c280397ac047",
+      "size_bytes": 13712,
+      "sha256": "2abda87620c69524d0604c246f555cdc8da120c7705a5fd6c3463c1d91f11e45",
       "role": "documentation"
     },
     {
@@ -2622,7 +2622,7 @@
   "pytest_run": {
     "command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m pytest -q --tb=line --no-header -p no:cacheprovider",
     "exit_code": 0,
-    "stdout_tail": "........................................................................ [ 30%]\n........................................................................ [ 60%]\n........................................................................ [ 91%]\n.....................                                                    [100%]\n237 passed in 357.07s (0:05:57)\n",
+    "stdout_tail": "........................................................................ [ 30%]\n........................................................................ [ 60%]\n........................................................................ [ 91%]\n.....................                                                    [100%]\n237 passed in 357.68s (0:05:57)\n",
     "stderr_tail": "",
     "stats": {
       "passed": 237,

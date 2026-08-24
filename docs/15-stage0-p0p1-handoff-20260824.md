@@ -170,6 +170,55 @@ docs/13 §8 R6-A 当前行：
 
 ---
 
+## §4a. §7 用户裁定更新（2026-08-24）
+
+> Cursor `07` §7 五项用户裁定，本节记录用户给出的口头答复与生效范围。
+> PRD 本体不可修改（红线）；本节作为**例外条款**落地，下方生效范围明确。
+> **生效前提**：用户口头答复（如需书面化请明示）；CC 已在终端记录原始问答；终审链 09 任务书将再次确认。
+
+### 4a.1 裁定总览
+
+| # | 事项 | 用户答复 | CC 后续动作 |
+|---|---|---|---|
+| U-3 | E-1 全部失败后选哪条备选路径 | **完整移除 spike 04 验收** | 见 §4a.2 落地条款 |
+| U-5 | reviews/06 是否纳入 pack glob | **不纳入，维持 429** | 无需改动 builder；维持现状 |
+| U-1 | 候选 PDF 是否满足 PRD「代表性」 | 待裁定（需研究 Agent 候选回报） | 等待 §5 流程回报 |
+| U-2 | 无真值对照时是否接受人工标注 | 待裁定（需研究 Agent 候选回报） | 等待 §5 流程回报 |
+| U-4 | eval 达标后是否宣布 Stage 0 PASS | 待裁定（需 eval 数字） | 等待 §5.3 数字产出 |
+
+### 4a.2 U-3 落地条款（实质撤销 P-3）
+
+**生效范围**（仅适用以下条款，不涉及 PRD 其他章节）：
+
+1. **spike 04 不再作为 Stage 0 Gate 0 验收项**
+   - `docs/11-stage0-review.md` §1.3 spike 04 行：从"🟡 管线就绪 / 真实样本 BLOCKED"改为"⚪ OCR 管线压力样本（非验收项）"
+   - `docs/11-stage0-review.md` §5 对照表 spike 04 列：标注"非代表性样本，不阻塞 Stage 0"
+   - `docs/12-stage0-closure-and-report.md` §2 原始 B-01 行：从"⚠ 外部阻塞"改为"⚪ OCR 管线就绪但缺代表性样本（spike 04 不再是 Stage 0 验收项）"
+   - `docs/12-stage0-closure-and-report.md` §3.6 spike 04 描述：保留数字但加注"非代表性样本，OCR 管线压力测试；不影响 Stage 0 总体判定"
+   - `docs/13-r4-final-verification.md` §0 / §8：移除"等待中文扫描 PDF 提供"措辞
+2. **P-3 撤销**（"Stage 0 维持 BLOCKED 直到中文扫描 PDF 提供"不再生效）
+3. **E-1 不再是 Stage 0 BLOCKED 根因**——但 spike 04 仍作为研究追踪项保留
+4. **后续 P-1 / P-2 不变**（仍不降低 OCR 门槛 / 仍不将 1909 标为中国代表性）
+5. **PRD 本体不动**（`china-economy-governance-research-platform-prd-v0.1.md` 全文不动）；本例外条款仅在 docs/15 + 后续 09 任务书中明示
+
+### 4a.3 U-5 落地条款
+
+- `scripts/build_evidence_pack.py` glob 维持现状（不含 `reviews/`）
+- pack 维持 429 artifacts（不再扩）
+- reviews/ 由 git 历史追溯（不入 pack）
+
+### 4a.4 §7 裁定状态灯
+
+```
+U-3: 已裁定（待 docs 落地 commit）
+U-5: 已裁定（无需改动）
+U-1: 等待研究 Agent 候选回报
+U-2: 等待研究 Agent 候选回报
+U-4: 等待 eval 数字（即使 spike 04 不再是验收项，§5.3 流程仍产出数字）
+```
+
+---
+
 ## §5. 阅读路径建议（终审方按需查阅）
 
 ### 5.1 最少阅读路径（确认 P0+P1 落地即可）
