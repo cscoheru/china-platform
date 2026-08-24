@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `12` |
-| **cursor_head** | `da0649a` |
+| **cursor_head** | `a637dc6` |
 | **cc_head** | `2601e16`（S1.4 回执 `38`） |
 | **last_audit** | `39-stage0-cursor-s14-audit-20260824.md` |
 | **updated_at** | `2026-08-24T21:30:00+08:00` |
