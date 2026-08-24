@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "9fb889c84e7f0ec8c655584855bbb3f824e205ef",
-    "commit_sha_short": "9fb889c84e7f",
-    "commit_timestamp_utc": "2026-08-24T18:18:52+08:00",
+    "commit_sha": "bbb0b7b5ab2b84755ec5e92bda2ac40eb71ebc59",
+    "commit_sha_short": "bbb0b7b5ab2b",
+    "commit_timestamp_utc": "2026-08-24T18:30:17+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -151,8 +151,8 @@
     },
     {
       "path": "docs/12-stage0-closure-and-report.md",
-      "size_bytes": 18377,
-      "sha256": "8fcd88ed488b97ced1fcd587d3b0664de3fc3b5ae1dcdaef8767ffc0c1ebbc10",
+      "size_bytes": 18414,
+      "sha256": "477aae05d616458b8fde96d68922ca618e0d8974b152003d41bcbb66d66dbe4d",
       "role": "documentation"
     },
     {
@@ -175,8 +175,8 @@
     },
     {
       "path": "docs/17-stage1-kickoff-plan-20260824.md",
-      "size_bytes": 9523,
-      "sha256": "7bd6fcca8e89f3ff7e284ceba7ca5d8b5c9233450f5bd24657c3d0f61466e590",
+      "size_bytes": 9536,
+      "sha256": "3077b0c91edc2a352c71cf866176f5a8fefc5bfc720b052cbcd50044061937ee",
       "role": "documentation"
     },
     {

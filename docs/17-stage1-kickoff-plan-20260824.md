@@ -94,7 +94,7 @@ schema/
 
 **4 spike 已验证 + 1 待定 = 5 个生产范围来源**：
 - 已选 5：spike 00/01/02/03/04（archive.org）
-- **第 5 个待定**：候选 = (a) spike 02 的另一省份（如广东/江苏）；(b) spike 03 的另一地市（如杭州/广州）；(c) 中央部委新源（财政部/审计署月报）。**Cursor 审验 S1-K1 后另下选定依据**。
+- **第 5 个默认**（per `reviews/26` §3）：**江苏省统计局** `stats.jiangsu.gov.cn`（PROVINCIAL_BULLETIN，S0；spike 02 同型，扩点至江苏以支持 Gate 1 「近 5 年江苏 GDP 增长趋势」研究问题演示）。**用户可改**。
 
 **声明（per P-2 / U-3）**：
 - ❌ 1909 archive.org 不代表中国（仅 OCR 管线压力）

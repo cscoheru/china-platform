@@ -114,7 +114,7 @@ per-indicator 周期元数据；锁定 `extracted_at`；30/30 tests。
 | U-1 | 陕西法规扫描件可作中文 OCR 压力样本 | 不要求满足原 B-01 统计表代表性 |
 | U-2 | 接受嵌入文本层作对照 | 参考噪声必须披露，不静默人工纠正 |
 | U-3 | spike 04 完整移出 Stage 0 验收 | research result 不改变 Gate verdict |
-| U-4 | 待最终 eval + Cursor 复验后裁定 | CC 不自动宣布 Stage 0 PASS |
+| U-4 | 已裁定 A（2026-08-24） | Gate 0 关闭；可继续；用户授权启动 Stage 1（per `reviews/23` §1） |
 
 ### 5.3 DEV REWORK
 

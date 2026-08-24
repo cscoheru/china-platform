@@ -1,0 +1,52 @@
+# infra/docker-compose.yml
+#
+# Stage 1 / S1.1 — Local PostgreSQL 16 + PostGIS 3.x dev stack.
+#
+# Goal:
+#   * Reproducible local PG instance for Stage 1 connectionors + Alembic
+#   * Mirrors Stage 0 test conventions (port 55440, db=cegr_test, user=postgres)
+#   * Bind-mount nothing yet (data lives in named volume `cegr_pg16_data`)
+#
+# Usage:
+#   docker compose -f infra/docker-compose.yml --env-file .env.example up -d
+#   docker compose -f infra/docker-compose.yml ps
+#   docker compose -f infra/docker-compose.yml logs -f db
+#   docker compose -f infra/docker-compose.yml down -v   # DESTROYS data
+#
+# Cursor 27-wakeup §3: this file is the deliverable. If docker is unavailable
+# locally, CC proceeds with the existing homebrew postgresql@17 on :55440 and
+# records BLOCKED_BY_ENV in reviews/28-stage0-cc-s11-receipt-20260824.md.
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: cegr_pg16_postgis
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cegr_test}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set via .env}
+    ports:
+      - "${POSTGRES_PORT:-55440}:5432"
+    volumes:
+      - cegr_pg16_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-cegr_test}"
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    # Per Cursor 26 §1: no public exposure beyond host loopback port 55440.
+    networks:
+      - cegr_net
+
+volumes:
+  cegr_pg16_data:
+    name: cegr_pg16_data
+
+networks:
+  cegr_net:
+    name: cegr_net
+    driver: bridge
