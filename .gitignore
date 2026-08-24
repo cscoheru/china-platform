@@ -94,3 +94,6 @@ spikes/04-scanned-pdf/statistical_abstract_foreign_countries_1909.pdf
 spikes/04-scanned-pdf/.fetch_time_1909.txt
 # R4-1：tracked-ZIP-only；测试必须从 ZIP 自行解压（不消费预解压产物）
 spikes/00-provincial-yearbook-table/data/extracted/
+
+# ===== 研究 Agent 临时缓存（不入库，研究 Agent 自己读写） =====
+.firecrawl/
