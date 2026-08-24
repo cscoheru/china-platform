@@ -2,12 +2,11 @@
   "schema_version": "1.1-R3G-R4",
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
-    "committed": false,
-    "commit_sha": "",
-    "commit_sha_short": null,
-    "commit_timestamp_utc": "",
-    "branch": "main",
-    "index_tree_sha": "23063c58a55a42e87f0674575c0f5cd7c43e1b55"
+    "committed": true,
+    "commit_sha": "f475717a6ac0b9ff1b635e03807ea32358aeaf99",
+    "commit_sha_short": "f475717a6ac0",
+    "commit_timestamp_utc": "2026-08-24T12:12:30+08:00",
+    "branch": "main"
   },
   "python_version": "3.14.3",
   "platform": "macOS-26.6-arm64-arm-64bit-Mach-O",
@@ -146,8 +145,14 @@
     },
     {
       "path": "docs/13-r4-final-verification.md",
-      "size_bytes": 13873,
-      "sha256": "c61566c19717069eb7fb9ad2bc331d80a45e78e836f99a42b26a3725e179d52e",
+      "size_bytes": 14036,
+      "sha256": "79da650baac42fdcf5b867a5ae03907be053a46a62e8a2586979a1b75440a317",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/15-stage0-p0p1-handoff-20260824.md",
+      "size_bytes": 10827,
+      "sha256": "98e369fb4d48fc5f30d9c777303fc35f2c158fa7a8669afda6d3c280397ac047",
       "role": "documentation"
     },
     {
@@ -2581,10 +2586,10 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 428,
+  "artifact_count": 429,
   "role_count": {
     "extracted_artifact": 8,
-    "documentation": 15,
+    "documentation": 16,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 1,
@@ -2599,21 +2604,28 @@
     "schema_negative_test": 4
   },
   "db_ddl_execution": {
-    "exit_code": -1,
+    "command": "DROP+chain psql apply (R5-A)",
+    "exit_code": 0,
+    "stdout_tail": "SET\nALTER TABLE\nCOMMENT\nALTER TABLE\nCOMMENT\nCREATE TABLE\nCREATE INDEX\nCOMMENT\nCREATE FUNCTION\nCREATE TRIGGER\nCREATE FUNCTION\nCREATE TRIGGER\nCREATE TRIGGER\nRESET\n",
+    "stderr_tail": "",
     "ddl_sha256": "09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea",
     "ddl_path": "schema/01-core.sql",
-    "skipped": true,
-    "note": "SKIP_PSQL=1 — psql skipped in test (exit -1)",
-    "command": "<skipped via SKIP_PSQL=1>"
+    "ddl_shas": {
+      "schema/01-core.sql": "09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea",
+      "schema/migrations/002_source_governance.sql": "c41161a86fb68e882bc4925ebec758f2b2616d0f4914b023dc8c5a5ec85e168b"
+    },
+    "applied_sqls": [
+      "schema/01-core.sql",
+      "schema/migrations/002_source_governance.sql"
+    ]
   },
   "pytest_run": {
-    "command": "<skipped via SKIP_PYTEST=1>",
-    "exit_code": -1,
-    "stdout_tail": "",
-    "stderr_tail": "skipped in test",
-    "skipped": true,
+    "command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m pytest -q --tb=line --no-header -p no:cacheprovider",
+    "exit_code": 0,
+    "stdout_tail": "........................................................................ [ 30%]\n........................................................................ [ 60%]\n........................................................................ [ 91%]\n.....................                                                    [100%]\n237 passed in 357.07s (0:05:57)\n",
+    "stderr_tail": "",
     "stats": {
-      "passed": 0,
+      "passed": 237,
       "failed": 0,
       "skipped": 0
     }

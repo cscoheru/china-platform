@@ -203,7 +203,7 @@ ALL ARTIFACTS INDEPENDENTLY RE-VERIFIED OK
 
 | ID | Status | 关键证据 |
 |---|---|---|
-| R6-A | ✅ | 全集 pytest 复跑：237 passed in 362.71s（含 H-2 子进程 worktree proof） |
+| R6-A | ✅ | 全集 pytest 复跑：237 passed in 362.71s（含 H-2 子进程 worktree proof）；**P1 独立留档**：`/tmp/stage0-pytest-237.log`，237 passed in 349.77s（PG17 @55440；2026-08-24 commit f475717 后；由 Cursor `06` 独立读取校验） |
 | R6-B | ✅ | 冻结文档后重建 `evidence_pack/manifest.json`：428 artifacts, schema_version=1.1-R3G-R4，独立逐项 SHA-256 重算 = **0 mismatch**（Cursor `04` §3.1 7 文件哈希过期已清零） |
 | R6-C | ✅ | 残留错数清零：docs/13 §3/§6 47→39；docs/13 §4 425→428；docs/12 §7 24→31；docs/11 §1.3 24/24→31/31；docs/11 §1.1/§3.5/§10 21→26；docs/12 §2 I-04 R13-R21→R13-R26 |
 | R6-D | ✅ | builder glob 加 `tests/conftest.py`；`classify()` 增 `test_conftest` 角色；conftest.py 入 pack（sha 91fe765d7711） |

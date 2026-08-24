@@ -58,6 +58,9 @@ credentials/
 # ===== 日志 =====
 *.log
 logs/
+# 例外：DDL 执行证据与机器生成的证据包必须入库（返工指令八）
+!schema/migrations/*.log
+!evidence/**
 
 # ===== 临时 =====
 *.tmp
@@ -77,3 +80,17 @@ logs/
 *.xlsx
 *.xls
 !docs/**/*.pdf
+# 返工指令四/八：四类真实样本原件必须 git-tracked（clean clone 可重建产物）
+!spikes/**/*.xlsx
+!spikes/**/*.zip
+!spikes/**/*.pdf
+# 注意：00-provincial 预解压的 .xls 不 track —— 测试必须从 ZIP 原件自行解压（返工指令四-1/2）
+.gstack/
+
+# ===== Explicit excludes (overrides above broad un-ignore) =====
+# P-2: 1909 美国统计摘要不入库（archive.org 等级 S3，非中国代表性；31M 体积）
+spikes/04-scanned-pdf/statistical_abstract_foreign_countries_1909.pdf
+# 返工指令 §6：wall-clock 字段不入库；改用 commit_timestamp_utc
+spikes/04-scanned-pdf/.fetch_time_1909.txt
+# R4-1：tracked-ZIP-only；测试必须从 ZIP 自行解压（不消费预解压产物）
+spikes/00-provincial-yearbook-table/data/extracted/
