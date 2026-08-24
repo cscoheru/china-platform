@@ -31,7 +31,7 @@
 
 | ID | 原始缺陷（定义） | R4 verdict | 证据 |
 |---|---|---|---|
-| **B-01** | 四类 PRD 指定样本未完成 | ⚠ 外部阻塞 | 国家年鉴（00-national 682 槽）/ 省级（02）/ 地市（03）/ 扫描 PDF（04）— 前 3 类闭环；扫描 PDF **外部阻塞**（中文样本未提供） |
+| **B-01** | 四类 PRD 指定样本未完成 | ⚪ 非验收项（U-3 落地） | 国家年鉴（00-national 682 槽）/ 省级（02）/ 地市（03）/ 扫描 PDF（04）— 前 3 类闭环；扫描 PDF **spike 04 非 Stage 0 验收项**（per `docs/15` §4a U-3 + `reviews/09` §3） |
 | **B-02** | Schema 无法执行 | ✅ | PG16 + PG17 `psql -v ON_ERROR_STOP=1` exit 0；migration 002 增量（I-05 治理） |
 | **B-03** | 核心模型与数据血缘未满足 PRD | ✅ | `tests/test_schema_negative.py` 39 tests 全部通过 |
 | **B-04** | 缺少 8—12 周 MVP | ✅ | `docs/08b-strict-mvp.md`（严格 8—12 周） |
@@ -67,13 +67,14 @@ per-indicator 周期元数据；锁定 `extracted_at`；30/30 tests。
 ### 3.5 Spike 01（国家年鉴表）— ✅ PASS
 20/20 tests。
 
-### 3.6 Spike 04（扫描 PDF OCR）— ❌ **BLOCKED（外部）**
+### 3.6 Spike 04（扫描 PDF OCR）— ⚪ **非 Stage 0 验收项（per U-3）**
 - 真实数字（`eval_report.json`）：
   - `numeric_cell_accuracy_pct` = 0.0%
   - `char_accuracy_pct` = 3.7%
   - `needs_review_total` = 450/450 (100%)
 - 唯一可全流程样本：1909 年美国 Statistical Abstract（archive.org）— **非中国研究平台代表性样本**
-- **这是 EXTERNAL BLOCKING，不是 dev rework 范围** — 必须用户提供中文扫描 PDF 才能继续
+- **per `docs/15` §4a U-3（2026-08-24 用户裁定）+ `reviews/09` §3（Cursor 预审确认）**：spike 04 不再是 Stage 0 Gate 0 验收项；OCR 管线压力样本（研究追踪），不影响 Stage 0 总体判定
+- 候选真实中文扫描 PDF（陕西省财政预算管理条例，4 页）已通过 Cursor `09` ACCEPT（有条件），但 CC 当前本机 SSL 无法下载（国内 CA trust store 缺失），等用户处置
 
 ## §4. R2 → R3 Mapping（保留作历史参考）
 

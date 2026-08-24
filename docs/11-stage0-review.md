@@ -51,7 +51,7 @@
 | **01-national-yearbook** | stats.gov.cn 月报 HTML | `sample.html` (388 KB) | 20 | 20/20 ✅ | ✅ |
 | **02-provincial-yearbook** | 湖北统计局 xlsx | `hubei_2026_06.xlsx` | 19 | 30/30 ✅ | ✅ 逐指标周期建模（R3-E） |
 | **03-municipal-bulletin** | sz.gov.cn 公报 HTML 散文 | `sample.html` | 8 | 29/29 ✅ | ✅ |
-| **04-scanned-pdf** | 扫描 PDF OCR | **BLOCKED**（无合法中文免费源） | 450（450/450 needs_review） | 18/18 ✅ | 🟡 管线就绪 / 真实样本 BLOCKED |
+| **04-scanned-pdf** | 扫描 PDF OCR | 1909 美国统计摘要（archive.org；非中国代表性）作 OCR 管线压力样本；**非 Stage 0 验收项**（per `docs/15` §4a U-3 用户裁定 + `reviews/09` §3 确认） | 450（450/450 needs_review） | 18/18 ✅ | ⚪ OCR 管线压力样本（非验收项，不影响 Stage 0 判定） |
 
 ### 1.4 关键测试数（2026-08-23 R4 完工后）
 
@@ -284,10 +284,10 @@ python3 spikes/04-scanned-pdf/extract_04_scanned_pdf.py
 | 维度 | Spike 00 NBS | Spike 00 Hubei | Spike 02 Hubei xlsx | Spike 03 Shenzhen | Spike 04 Scanned |
 |---|---|---|---|---|---|
 | **形态** | JPG（OCR 真值） | xls 真值 | xlsx 单 sheet | HTML 散文 | PDF 扫描 |
-| **大小** | 550 KB | 6.4 MB（zip 内） | 11 KB | 61 KB | – BLOCKED |
+| **大小** | 550 KB | 6.4 MB（zip 内） | 11 KB | 61 KB | 1909 美国样本（31M；非中国代表性） |
 | **解析** | tesseract chi_sim | xlrd 2.0.2 | openpyxl | bs4 + lxml | pytesseract |
 | **行数** | **682** | **480** | 19 | 8 | 450（needs_review） |
-| **真值对照** | ✅ Hubei 2024 GDP=60013.0 | ✅ Hubei 2024 GDP=60012.97 | ✅ vs NBS | ✅ 政府报告引用 | ❌ BLOCKED |
+| **真值对照** | ✅ Hubei 2024 GDP=60013.0 | ✅ Hubei 2024 GDP=60012.97 | ✅ vs NBS | ✅ 政府报告引用 | ⚪ 非代表性样本，OCR 管线压力测试（非验收项） |
 | **血缘字段** | source_hash + cell_locator | source_hash + cell_locator | ✓ | ✓ | ✓ |
 | **缺失值** | 标记 needs_review | 标记 needs_review | unit IS NULL 支持 | ✓ | needs_review |
 | **测试条数** | 24 | 21 | 30 | 29 | 18 |

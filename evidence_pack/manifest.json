@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "12628ecdc5f1c23fcc221ddbc48aa5fa37a47e54",
-    "commit_sha_short": "12628ecdc5f1",
-    "commit_timestamp_utc": "2026-08-24T13:05:15+08:00",
+    "commit_sha": "afa9d0fc3c6ae8d4cf86591a79dddc0d436fb81c",
+    "commit_sha_short": "afa9d0fc3c6a",
+    "commit_timestamp_utc": "2026-08-24T13:14:46+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -133,26 +133,32 @@
     },
     {
       "path": "docs/11-stage0-review.md",
-      "size_bytes": 28095,
-      "sha256": "898a5d225830dd2f33b0c0d73f61938d069ffbda122f7b9db871a4acb1ee9de5",
+      "size_bytes": 28357,
+      "sha256": "96e4bbc229b955f1ae783155bc7d0dc594aa3b2e3a45a47d5b8ecb6715d5a893",
       "role": "documentation"
     },
     {
       "path": "docs/12-stage0-closure-and-report.md",
-      "size_bytes": 16622,
-      "sha256": "ffbc69669c07734ece51aeb45309d6a692fbfd7670a4deb76af20aeb7bc06653",
+      "size_bytes": 17016,
+      "sha256": "cd4804263d0250b47c1d4be59228c04d40234775415c9b3f32898c2c1827131f",
       "role": "documentation"
     },
     {
       "path": "docs/13-r4-final-verification.md",
-      "size_bytes": 14036,
-      "sha256": "79da650baac42fdcf5b867a5ae03907be053a46a62e8a2586979a1b75440a317",
+      "size_bytes": 14784,
+      "sha256": "f33edf3256d4cc8a7bc7d7c08a2f9d7bd73d2b9d8e8b5e16b25e4cada8f73220",
       "role": "documentation"
     },
     {
       "path": "docs/15-stage0-p0p1-handoff-20260824.md",
       "size_bytes": 13712,
       "sha256": "2abda87620c69524d0604c246f555cdc8da120c7705a5fd6c3463c1d91f11e45",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/16-e1-candidate-report-20260824.md",
+      "size_bytes": 13450,
+      "sha256": "328cd218d268043948cf5d91e78270009eab1c16df56346b26c8547d55a0ee2e",
       "role": "documentation"
     },
     {
@@ -2586,10 +2592,10 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 429,
+  "artifact_count": 430,
   "role_count": {
     "extracted_artifact": 8,
-    "documentation": 16,
+    "documentation": 17,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 1,
@@ -2622,7 +2628,7 @@
   "pytest_run": {
     "command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m pytest -q --tb=line --no-header -p no:cacheprovider",
     "exit_code": 0,
-    "stdout_tail": "........................................................................ [ 30%]\n........................................................................ [ 60%]\n........................................................................ [ 91%]\n.....................                                                    [100%]\n237 passed in 357.68s (0:05:57)\n",
+    "stdout_tail": "........................................................................ [ 30%]\n........................................................................ [ 60%]\n........................................................................ [ 91%]\n.....................                                                    [100%]\n237 passed in 354.92s (0:05:54)\n",
     "stderr_tail": "",
     "stats": {
       "passed": 237,

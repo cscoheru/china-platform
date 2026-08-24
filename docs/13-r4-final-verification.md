@@ -7,10 +7,11 @@
 
 ## §0. Final Verdict
 
-**BLOCKED — final state, awaiting Codex R4 re-review.**
+**BLOCKED → 待 Gate 0 终态裁定（per U-3，2026-08-24）。**
 
-- External blocking only: 中文扫描 PDF 缺失 (B-01 / spike 04) — 用户决策项 #1
-- User policy (dev 不得变更): 不降低 OCR 门槛 + 不接受 1909 美国样本代表中国
+- Stage 0 维持 BLOCKED（口径需待 docs/11/12/13 全部落地后由 Cursor 复验 + 用户最终确认）
+- 历史 E-1（中文扫描 PDF 缺失）：**已不再作为 Stage 0 BLOCKED 根因**（per `docs/15` §4a U-3 用户裁定 + `reviews/09` §3 预审确认）；spike 04 转为非验收项（OCR 管线压力样本，研究追踪）
+- User policy（dev 不得变更）：P-1（不降低 OCR 门槛）+ P-2（不接受 1909 美国样本代表中国）— 不变
 - Dev rework: 6/6 + 9/9 + 5/5 闭环（R4-1..R4-6 + R5-A..R5-I + R6-A..R6-E；详见 §1.1 与 §8）
 
 ## §1. Worktree 0-Pollution Proof
@@ -211,20 +212,21 @@ ALL ARTIFACTS INDEPENDENTLY RE-VERIFIED OK
 
 **R4-1..R4-6 + R5-A..R5-I + R6-A..R6-E = 6+9+5 = 20 项 dev rework 全部闭环。**
 
-## §9. Outstanding Items (per R4-5 三分类 + R5/R6 增量)
+## §9. Outstanding Items (per R4-5 三分类 + R5/R6/U-3 增量)
 
 ### EXTERNAL BLOCKING（用户提供资源前无法解决）
-- **E-1**：中文扫描 PDF 缺失（spike 04 / B-01） — 唯一样本为 1909 美国统计摘要（archive.org），非中国研究平台代表性样本
+- **E-1**（**已撤销作为 Stage 0 BLOCKED 根因**；保留为研究追踪项）：中文扫描 PDF 缺失（spike 04 / B-01） — 唯一样本为 1909 美国统计摘要（archive.org），非中国研究平台代表性样本
+- **研究候选**：`reviews/09` ACCEPT 候选 1 陕西省财政预算管理条例（4 页）；CC 当前本机 SSL 无法下载（LibreSSL 不含国内 CA），等用户处置
 
 ### USER POLICY（用户已决策，dev 不得变更）
 - **P-1**：不降低 OCR 门槛（numeric ≥80% / char ≥90% / needs_review ≤30%）
 - **P-2**：不接受 1909 美国样本代表中国治理平台（仅作 OCR 压力样本，archive.org 等级 S0→S3）
-- **P-3**：Stage 0 维持 BLOCKED 直到中文扫描 PDF 提供
+- ~~**P-3**：Stage 0 维持 BLOCKED 直到中文扫描 PDF 提供~~ — **已撤销**（per `docs/15` §4a U-3 + `reviews/09` §3；spike 04 转为非验收项）
 
 ### DEV REWORK
 - R4-1..R4-6（6 项）+ R5-A..R5-I（9 项）+ R6-A..R6-E（5 项）= **20 项全部闭环**
 - 见 §8 完整证据链
 
-**Final Stage 0 verdict: BLOCKED** — 仅因 E-1 + P-1/P-2/P-3；所有 dev rework 已闭环（20/20）。
+**Stage 0 当前判定**：BLOCKED（口径需 docs/11/12/13 全部落地后由 Cursor 复验 + 用户最终确认）；E-1 不再是根因，P-3 已撤销；P-1/P-2 不变；20/20 dev rework 已闭环。
 
 — End of R6 verification report —
