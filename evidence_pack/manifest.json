@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "1205cad03caca035ec77cd4b0b6578c9fb97cb3e",
-    "commit_sha_short": "1205cad03cac",
-    "commit_timestamp_utc": "2026-08-25T12:53:33+08:00",
+    "commit_sha": "fa8249af3d2dae9d5f32ef94979b6b807b8e3a57",
+    "commit_sha_short": "fa8249af3d2d",
+    "commit_timestamp_utc": "2026-08-25T13:45:58+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -219,6 +219,12 @@
       "path": "docs/24-stage1-s10-fastapi-readonly-plan-20260825.md",
       "size_bytes": 19775,
       "sha256": "31fbdafe7e14c0ac2d79ad435a75c03f24068ff08be2fd20200d0ad993038858",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/25-stage1-s11-data-contracts-plan-20260825.md",
+      "size_bytes": 13885,
+      "sha256": "ea9eaf81ac86bb684067461da2aa8940a33390cbcc6fad5c89f862f50230b312",
       "role": "documentation"
     },
     {
@@ -2754,12 +2760,12 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 457,
+  "artifact_count": 458,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 25,
+    "documentation": 26,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 3,
