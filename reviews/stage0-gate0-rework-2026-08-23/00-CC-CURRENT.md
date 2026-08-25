@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `32` |
-| **cursor_head** | `pending` |
+| **cursor_head** | `5987617` |
 | **cc_head** | `694c313`（S1.12 实现回执 `93`） |
 | **last_audit** | `94-stage0-cursor-s12-impl-audit-20260825.md` |
 | **user_ruling** | `A`（`96` — 继续 Stage 1 缺口） |
