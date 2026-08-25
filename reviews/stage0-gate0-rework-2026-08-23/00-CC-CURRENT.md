@@ -9,24 +9,23 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `44` |
-| **cursor_head** | `499d732` |
-| **cc_head** | `cec6e66`（`docs/32`；实现停滞） |
-| **last_audit** | `126-stage0-cursor-s17-plan-audit-20260825.md` |
+| **queue_rev** | `45` |
+| **cursor_head** | `9bed312` |
+| **cc_head** | `e1c565b`（S1.17 实现）+ `9bed312`（回执 `128`） |
+| **last_audit** | `130-stage0-cursor-s17-impl-audit-PASS-20260825.md` |
 | **user_ruling** | `A` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T18:20:00+08:00` |
-| **wakeup** | `129-stage0-cursor-cc-wakeup-s17-impl-20260825.md` |
+| **updated_at** | `2026-08-25T18:33:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=44；读 **`129`** 唤醒）
-2. 读 **`126`** + **`127`** + **`docs/32`**
-3. **立即**执行 S1.17 实现（先补 **`125`**；交卷 **`128`**）
-4. commit → **origin 优先**
+1. **`git pull origin main`**（`queue_rev`=45）
+2. 读 **`130`** + **`131`**
+3. **S1.18 规划** — DEMO SHA / 真实样本锁定（`docs/33`）；回执进 **`reviews/`**
+4. commit → **origin 优先** → 回执 **`132`**
 5. → **`84` POLL**
 
 ---
@@ -41,4 +40,4 @@
 
 （空）
 
-— Cursor 架构师 @ queue_rev 44 —
+— Cursor 架构师 @ queue_rev 45 —
