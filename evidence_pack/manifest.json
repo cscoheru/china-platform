@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "0bfceec7a8b1d8dba6e6f2130458392c906e9203",
-    "commit_sha_short": "0bfceec7a8b1",
-    "commit_timestamp_utc": "2026-08-25T08:54:37+08:00",
+    "commit_sha": "cb984423c98b820c7ca39c962944152c3f4a09fe",
+    "commit_sha_short": "cb984423c98b",
+    "commit_timestamp_utc": "2026-08-25T09:29:07+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -195,6 +195,12 @@
       "path": "docs/20-stage1-s16-provincial-yearbook-plan-20260824.md",
       "size_bytes": 14345,
       "sha256": "b92e09e0825d26c85d879c0b2ee568347a468f7787817b636fd09a84ecc50b6b",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/21-stage1-s17-scanned-pdf-ocr-plan-20260825.md",
+      "size_bytes": 17761,
+      "sha256": "f8d8c0933470f7ef1d4ba0953cfa1ffc01f63a8ac8c35710f78746a3c33984d8",
       "role": "documentation"
     },
     {
@@ -2712,12 +2718,12 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 450,
+  "artifact_count": 451,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 21,
+    "documentation": 22,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 3,
@@ -2755,7 +2761,7 @@
   "pytest_run": {
     "command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m pytest -q --tb=line --no-header -p no:cacheprovider",
     "exit_code": 0,
-    "stdout_tail": "........................................................................ [ 25%]\n........................................................................ [ 51%]\n........................................................................ [ 77%]\n...............................................................          [100%]\n279 passed in 481.47s (0:08:01)\n",
+    "stdout_tail": "........................................................................ [ 25%]\n........................................................................ [ 51%]\n........................................................................ [ 77%]\n...............................................................          [100%]\n279 passed in 467.50s (0:07:47)\n",
     "stderr_tail": "",
     "stats": {
       "passed": 279,
