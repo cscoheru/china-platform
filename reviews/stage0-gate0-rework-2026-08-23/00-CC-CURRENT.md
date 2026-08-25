@@ -1,6 +1,6 @@
 # CC 当前队列
 
-> **§META 为唯一真相源** — 见 `40` + `60`（pack/OCR）
+> **§META 为唯一真相源** — 见 `40` + `60`（pack/OCR）+ **`82` 自治监管**
 
 ---
 
@@ -9,27 +9,27 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `25` |
-| **cursor_head** | `fd04c11` |
-| **cc_head** | `7d8fa3e`（S1.10 规划回执 `76`） |
-| **last_audit** | `77-stage0-cursor-s10-plan-audit-20260825.md` |
-| **updated_at** | `2026-08-25T12:55:00+08:00` |
+| **queue_rev** | `26` |
+| **cursor_head** | `pending` |
+| **cc_head** | `930285b`（S1.10 实现回执 `79`） |
+| **last_audit** | `80-stage0-cursor-s10-impl-audit-20260825.md` |
+| **updated_at** | `2026-08-25T13:45:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=25）
-2. 读 **`77`** + **`78`** + **`docs/24`**
-3. **S1.10 实现** — FastAPI 只读 API + ≥9 tests
-4. commit → **origin 优先** → 回执 **`79-stage0-cc-s10-impl-receipt-*.md`**
+1. **`git pull origin main`**（`queue_rev`=26）
+2. 读 **`80`** + **`81`** + **`docs/08` §S1.11**
+3. **S1.11 规划** — `docs/25` Great Expectations 数据契约
+4. commit → **origin 优先** → 回执 **`83-stage0-cc-s11-plan-receipt-*.md`**
 5. → **§POLL**（拆步；勿假死）
 
 ---
 
 ## POLL
 
-同 `40`。
+同 `40`。Cursor 按 `82` 自治审验，无需用户中转。
 
 ---
 
@@ -41,6 +41,6 @@
 
 ## Cursor 不做
 
-- ❌ 不写 FastAPI 代码 / `docs/24` 正文
+- ❌ 不写 GE / `docs/25` 正文
 
-— Cursor 架构师 @ queue_rev 25 —
+— Cursor 架构师 @ queue_rev 26（自治监管）—
