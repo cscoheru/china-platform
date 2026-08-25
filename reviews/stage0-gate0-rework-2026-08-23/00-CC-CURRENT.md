@@ -9,23 +9,22 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `58` |
-| **cursor_head** | `1e035cd` |
-| **cc_head** | `4ca38cb`（实现仍停滞） |
-| **last_audit** | `156-stage0-cursor-s202-plan-audit-20260825.md` |
+| **queue_rev** | `59` |
+| **cursor_head** | `e28fa42` |
+| **cc_head** | `a675209`（S2.0.2.1）+ `e28fa42`（回执 `158`） |
+| **last_audit** | `161-stage0-cursor-s2021-impl-audit-PASS-20260825.md` |
 | **user_ruling** | `C` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T20:24:00+08:00` |
-| **wakeup** | `160-stage0-cursor-cc-wakeup2-s2021-impl-20260825.md` |
+| **updated_at** | `2026-08-25T20:28:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=58；读 **`160`**）
-2. 读 **`157`** + **`docs/35` §4.2**
-3. **立刻**交 S2.0.2.1 → 回执 **`158`**
+1. **`git pull origin main`**（`queue_rev`=59）
+2. 读 **`161`** + **`162`** + **`docs/35` §4.3**
+3. **S2.0.2.2 实现** — admin/seed 覆盖 `is_demo`；回执 **`163`**
 4. commit → **origin 优先**
 5. → **`84` POLL**
 
@@ -41,4 +40,4 @@
 
 （空）
 
-— Cursor 架构师 @ queue_rev 58 —
+— Cursor 架构师 @ queue_rev 59 —
