@@ -288,6 +288,12 @@
       "role": "spike_helper"
     },
     {
+      "path": "scripts/replace_demo_with_real.py",
+      "size_bytes": 6384,
+      "sha256": "20d3b28e5283b220e9fb3e3580bf324c594c2b65c859e80d16a9377c34827a7e",
+      "role": "spike_helper"
+    },
+    {
       "path": "spikes/00-national-yearbook-table/build_per_column_accuracy.py",
       "size_bytes": 7554,
       "sha256": "f5dd8b908f2f612cb609d351931c66d531c9360054090861414f3cdbb4606ea4",
@@ -2772,6 +2778,12 @@
       "role": "schema_negative_test"
     },
     {
+      "path": "tests/test_replace_demo_with_real_s2022.py",
+      "size_bytes": 7584,
+      "sha256": "0bbfcc62627c1e689214ecedf044e034f053703aa03b66152ca8d1e02359a26d",
+      "role": "schema_negative_test"
+    },
+    {
       "path": "tests/test_s201_skeleton_smoke.py",
       "size_bytes": 5118,
       "sha256": "25f781075823f7a665ec51e5720f5b7f28a5482dfd96760154951a817226f786",
@@ -3066,7 +3078,7 @@
       "role": "documentation"
     }
   ],
-  "artifact_count": 509,
+  "artifact_count": 511,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
@@ -3077,14 +3089,14 @@
     "schema_migration_ddl": 6,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
-    "spike_helper": 8,
+    "spike_helper": 9,
     "spike_sample_or_truth": 383,
     "spike_extractor": 7,
     "spike_test": 7,
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 20,
+    "schema_negative_test": 21,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {
