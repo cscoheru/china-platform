@@ -3114,6 +3114,18 @@
       "role": "schema_migration_log"
     },
     {
+      "path": "schema/migrations/009_policy_commitment_alignment.sql",
+      "size_bytes": 7323,
+      "sha256": "9c14880271f59cef4ea21a9e7d9a74ca311482e0e3b5a1905a724776c2a0002a",
+      "role": "schema_migration_ddl"
+    },
+    {
+      "path": "schema/migrations/009_policy_commitment_alignment.log",
+      "size_bytes": 1610,
+      "sha256": "239a4ce249f5dc8a7cda2fbd40022883dfc96570fbf9619d5e203e827f0b8325",
+      "role": "schema_migration_log"
+    },
+    {
       "path": "scripts/seed_person_tenure_s21lite.py",
       "size_bytes": 15220,
       "sha256": "1ca002e7f293a41f748a336524b0a9fa099553e97226c952d48428f8ddc813ef",
@@ -3123,6 +3135,12 @@
       "path": "tests/test_person_tenure_s21lite.py",
       "size_bytes": 10864,
       "sha256": "7ce87690aa314886c75640d9bd6fbfaa032f74c20babfe885bacd861a87c8c05",
+      "role": "schema_negative_test"
+    },
+    {
+      "path": "tests/test_policy_commitment_s22lite.py",
+      "size_bytes": 8279,
+      "sha256": "b095e79e134f6192e6c7015aefd59d1d38aec41b7ef4d64dd71ede91d50ccfc4",
       "role": "schema_negative_test"
     },
     {
@@ -3148,17 +3166,23 @@
       "size_bytes": 5899,
       "sha256": "a5544238228c170be426b0ff08fba86adda54d353bad028460bed1368218debb",
       "role": "documentation"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/196-stage0-cc-s22-lite-ddl-impl-receipt-20260825.md",
+      "size_bytes": 6716,
+      "sha256": "8d0e6829a2d0e27dd517a24b3f8e9c3c6011e943956d977f316c6a773849129a",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 523,
+  "artifact_count": 527,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 41,
+    "documentation": 42,
     "schema_ddl": 1,
-    "schema_migration_log": 3,
-    "schema_migration_ddl": 7,
+    "schema_migration_log": 4,
+    "schema_migration_ddl": 8,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
     "spike_helper": 13,
@@ -3168,7 +3192,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 24,
+    "schema_negative_test": 25,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {

@@ -1,0 +1,39 @@
+-- Migration 009 apply log — S2.2-lite: policy DDL additive columns
+--
+-- Apply path (dev/CI):
+--   PGPASSWORD=postgres psql -h 127.0.0.1 -p 55440 -U postgres -d cegr_test \
+--     -v ON_ERROR_STOP=1 \
+--     -f schema/migrations/009_policy_commitment_alignment.sql
+--
+-- Rollback (manual; per docs/37 §8 边界 — 不在 migration 内自动 DROP):
+--   ALTER TABLE policy_document DROP COLUMN IF EXISTS canonical_title;
+--   ... (other 7 cols)
+--   ALTER TABLE policy_target DROP COLUMN IF EXISTS target_value_lower;
+--   ... (other 4 cols)
+--   ALTER TABLE policy_measure DROP COLUMN IF EXISTS expected_outcome_text;
+--   ALTER TABLE policy_measure DROP COLUMN IF EXISTS lineage;
+--   ALTER TABLE government_commitment DROP COLUMN IF EXISTS commitment_text_en;
+--   ... (other 4 cols)
+--   ALTER TABLE commitment_progress DROP COLUMN IF EXISTS progress_value_lower;
+--   ... (other 2 cols)
+--
+-- Apply record (hand-curated; not auto-generated):
+--   2026-08-25: S2.2-lite knife 195 (CC) — apply success on cegr_test
+--     +23 columns added (8+5+2+5+3)
+--     +6 indexes created (1 hash_canonical + 5 lineage GIN)
+--     +21 COMMENT statements
+--     0 FK/EXCLUDE/ENUM/TRIGGER changes
+
+applied_at: 2026-08-25T23:24:00+08:00
+applier: cc-195-s22lite
+exit_code: 0
+tooling: psql 16, cegr_test schema
+columns_added: 23
+indexes_added: 6
+comments_added: 21
+fk_or_exclude_changes: 0
+enum_changes: 0
+trigger_changes: 0
+sha256: 9c14880271f59cef4ea21a9e7d9a74ca311482e0e3b5a1905a724776c2a0002a
+artifact_role: schema_migration_ddl
+companion_log: schema/migrations/008_person_tenure_alignment.log (precedent format)
