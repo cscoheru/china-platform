@@ -17,10 +17,10 @@
 | 2 | 读 `193` + `190` | ✅ | — | — |
 | 3 | 起草 `docs/37-stage2-s22-policy-plan-20260825.md` | ✅ | `7c93…` | documentation |
 | 4 | 补 pack (documentation +1) | ✅ | — | spike_helper |
-| 5 | commit → origin 优先 | ✅ | 见下 | commit |
-| 6 | 回执 `191` 进 `reviews/` | ✅（本文件） | `pending commit SHA backfill` | documentation |
-| 7 | push origin / github | 见下 | — | — |
-| 8 | → `84` POLL | 见下 | — | — |
+| 5 | commit → origin 优先 | ✅ | `a4d9db1` | commit |
+| 6 | 回执 `191` 进 `reviews/` | ✅（本文件） | `a5544238…` | documentation |
+| 7 | push origin / github | ✅ 双推成功（`7faab62..a4d9db1`） | — | — |
+| 8 | → `84` POLL | ✅ 已 re-arm | — | — |
 
 ---
 
@@ -135,10 +135,10 @@
 |---|---|---|
 | origin pull | `git fetch origin && git pull --ff-only origin main` | queue_rev 75 |
 | commit | `git add … && git commit -m "docs: S2.2 policy_document 规划 + receipt 191"` | `pending` (待最终确认) |
-| origin push | `git push origin HEAD`（**priority**）| 待 push 收尾 |
-| github push | `git push github HEAD`（带 proxy）| 待 push 收尾 |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `7faab62..a4d9db1` → main |
+| github push | `git push github HEAD`（带 proxy）| ✅ `7faab62..a4d9db1` → main |
 
-> 推送以 git log 实际输出为准；本回执 SHA 待 commit 落地后回填。
+> 三路对齐：`origin/main = github/main = local HEAD = a4d9db1`。
 
 ---
 
