@@ -17,9 +17,13 @@
 --   * 不记文件内容, 仅 SHA-256 引用 (避免审计表膨胀)
 --   * 失败请求也记 (status=FAILED + error_code)
 --   * client_ip 容忍 NULL (CLI 路径无 HTTP client)
+--
+-- 表落 `public` schema (无前缀时 psql 默认 schema); DROP SCHEMA cegr CASCADE
+-- 不会清理 public 表, 因此本迁移必须自身幂等 (IF NOT EXISTS) 才能在 conftest
+-- 的 DROP+apply 链中重复执行 (per Cursor 108 §1 根因 + 109 §NOW-1).
 -- ============================================================================
 
-CREATE TABLE admin_upload_audit (
+CREATE TABLE IF NOT EXISTS admin_upload_audit (
     id                  UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     timestamp_utc       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     uploader_id         TEXT NOT NULL,
@@ -35,17 +39,27 @@ CREATE TABLE admin_upload_audit (
     declared_url        TEXT
 );
 
-CREATE INDEX idx_admin_upload_audit_timestamp ON admin_upload_audit (timestamp_utc DESC);
-CREATE INDEX idx_admin_upload_audit_source    ON admin_upload_audit (source_id) WHERE source_id IS NOT NULL;
-CREATE INDEX idx_admin_upload_audit_status    ON admin_upload_audit (status);
+CREATE INDEX IF NOT EXISTS idx_admin_upload_audit_timestamp ON admin_upload_audit (timestamp_utc DESC);
+CREATE INDEX IF NOT EXISTS idx_admin_upload_audit_source    ON admin_upload_audit (source_id) WHERE source_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_admin_upload_audit_status    ON admin_upload_audit (status);
 
-COMMENT ON TABLE admin_upload_audit IS
-    'Stage 1 / S1.13.1 — /admin/upload 人工上传入口审计追踪. '
-    'append-only; 失败请求也记; 不存文件内容, 仅 SHA-256 + 元数据';
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_description
+        WHERE objoid = 'public.admin_upload_audit'::regclass
+          AND objsubid = 0
+          AND description LIKE 'Stage 1%'
+    ) THEN
+        COMMENT ON TABLE public.admin_upload_audit IS
+            'Stage 1 / S1.13.1 — /admin/upload 人工上传入口审计追踪. '
+            'append-only; 失败请求也记; 不存文件内容, 仅 SHA-256 + 元数据';
+    END IF;
+END $$;
 
 -- ============================================================================
 -- 验证
 -- ============================================================================
--- SELECT COUNT(*) FROM cegr.admin_upload_audit WHERE status = 'FAILED';
--- SELECT uploader_id, COUNT(*) FROM cegr.admin_upload_audit
+-- SELECT COUNT(*) FROM public.admin_upload_audit WHERE status = 'FAILED';
+-- SELECT uploader_id, COUNT(*) FROM public.admin_upload_audit
 --   WHERE timestamp_utc > NOW() - INTERVAL '7 days' GROUP BY 1;
