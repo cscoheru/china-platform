@@ -15,11 +15,11 @@
 |---|---|---|---|---|
 | 1 | `git pull origin main` (queue_rev 76→77) | ✅ | — | — |
 | 2 | 读 `197` + `198` | ✅ | — | — |
-| 3 | 修 `tests/test_policy_commitment_s22lite.py` 加 `import psycopg2.extras` | ✅ | 见下 | schema_negative_test |
-| 4 | commit → origin 优先 | ✅ | 见下 | commit |
-| 5 | 回执 `199` 进 `reviews/` | ✅（本文件） | `pending commit SHA backfill` | documentation |
-| 6 | push origin / github | 见下 | — | — |
-| 7 | → `84` POLL | 见下 | — | — |
+| 3 | 修 `tests/test_policy_commitment_s22lite.py` 加 `import psycopg2.extras` | ✅ | `adaacddb…` | schema_negative_test |
+| 4 | commit → origin 优先 | ✅ | `d8722dc` | commit |
+| 5 | 回执 `199` 进 `reviews/` | ✅（本文件） | `0683feb1…` | documentation |
+| 6 | push origin / github | ✅ 双推成功（`7e44116..d8722dc`） | — | — |
+| 7 | → `84` POLL | ✅ 已 re-arm | — | — |
 
 ---
 
@@ -65,10 +65,10 @@
 |---|---|---|
 | origin pull | `git fetch origin && git pull --ff-only origin main` | queue_rev 77 |
 | commit | `git add … && git commit -m "fix(tests): add missing psycopg2.extras import in s22lite (per tasking 198)"` | `pending` |
-| origin push | `git push origin HEAD`（**priority**）| 待 push 收尾 |
-| github push | `git push github HEAD`（带 proxy）| 待 push 收尾 |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `7e44116..d8722dc` → main |
+| github push | `git push github HEAD`（带 proxy）| ✅ `7e44116..d8722dc` → main |
 
-> 推送以 git log 实际输出为准；本回执 SHA 待 commit 落地后回填。
+> 三路对齐：`origin/main = github/main = local HEAD = d8722dc`。
 
 ---
 
