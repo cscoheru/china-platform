@@ -2914,9 +2914,33 @@
       "size_bytes": 13867,
       "sha256": "0c84529f7ee7d8347ceaee24ee105a5d7e73cd4bdc03a0971bdcc6ee22afb686",
       "role": "documentation"
+    },
+    {
+      "path": "schema/migrations/006_source_disagreement.sql",
+      "size_bytes": 3183,
+      "sha256": "324797334db6ce50a8bc0f8f08d4c2ec9871f088a55cca1f70e650d312c1f787",
+      "role": "schema_migration_ddl"
+    },
+    {
+      "path": "dbt/models/staging/stg_source_disagreement_candidate.sql",
+      "size_bytes": 4267,
+      "sha256": "cd4b1071a83bcc3451c8c30f7262567afd1296cd8282a968ca71c8dbdaec9a37",
+      "role": "spike_helper"
+    },
+    {
+      "path": "dbt/models/marts/mart_source_disagreement.sql",
+      "size_bytes": 2394,
+      "sha256": "d8892c07a49e84f82a6fc4cce2729d1aba589da2c3bd7b82c69d7108f625eafc",
+      "role": "spike_helper"
+    },
+    {
+      "path": "tests/test_source_disagreement_s141.py",
+      "size_bytes": 27256,
+      "sha256": "02748cb2e2678eb439671f0b8d9dbdb9bd6d00085bbb879d1470a76301ec54b1",
+      "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 484,
+  "artifact_count": 488,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
@@ -2924,17 +2948,17 @@
     "documentation": 28,
     "schema_ddl": 1,
     "schema_migration_log": 2,
-    "schema_migration_ddl": 4,
+    "schema_migration_ddl": 5,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
-    "spike_helper": 3,
+    "spike_helper": 5,
     "spike_sample_or_truth": 383,
     "spike_extractor": 7,
     "spike_test": 7,
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 12,
+    "schema_negative_test": 13,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {
