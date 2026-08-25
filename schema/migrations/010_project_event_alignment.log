@@ -1,0 +1,43 @@
+-- Migration 010 log — S2.3-lite project_event additive columns applied
+--
+-- Per Cursor tasking 204 §NOW.1 (落地 migration + 可选空 seed).
+-- Apply via:
+--   psql "$CEGR_TEST_DSN" -v ON_ERROR_STOP=1 \
+--        -f schema/migrations/010_project_event_alignment.sql
+--
+-- This file is informational; the canonical DDL is in
+-- schema/migrations/010_project_event_alignment.sql.
+
+SET search_path = cegr, public;
+
+-- step 1: project_event (+ 11 cols additive)
+ALTER TABLE project_event
+    ADD COLUMN IF NOT EXISTS canonical_project_name TEXT,
+    ADD COLUMN IF NOT EXISTS project_name_en TEXT,
+    ADD COLUMN IF NOT EXISTS project_class TEXT,
+    ADD COLUMN IF NOT EXISTS status_year INTEGER,
+    ADD COLUMN IF NOT EXISTS lineage JSONB,
+    ADD COLUMN IF NOT EXISTS project_hash_canonical TEXT,
+    ADD COLUMN IF NOT EXISTS investment_currency_canonical TEXT,
+    ADD COLUMN IF NOT EXISTS expected_output_text TEXT,
+    ADD COLUMN IF NOT EXISTS delay_reason TEXT,
+    ADD COLUMN IF NOT EXISTS completion_year_planned INTEGER,
+    ADD COLUMN IF NOT EXISTS completion_year_actual INTEGER;
+
+-- step 2: indexes (4)
+CREATE INDEX IF NOT EXISTS idx_project_event_hash_canonical
+    ON project_event (project_hash_canonical)
+    WHERE project_hash_canonical IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_project_event_lineage_gin
+    ON project_event USING gin (lineage jsonb_path_ops)
+    WHERE lineage IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_project_event_class
+    ON project_event (project_class)
+    WHERE project_class IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_project_event_status_year
+    ON project_event (status_year)
+    WHERE status_year IS NOT NULL;
+
+RESET search_path;
+
+-- End of migration 010 log.

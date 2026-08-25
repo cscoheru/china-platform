@@ -3190,17 +3190,35 @@
       "size_bytes": 6185,
       "sha256": "87b9c2be3175a2ed00ca5e606ed310b3477cb9a77d7a0984594f8bc2b219de45",
       "role": "documentation"
+    },
+    {
+      "path": "schema/migrations/010_project_event_alignment.sql",
+      "size_bytes": 4092,
+      "sha256": "fac3318a73d2b2f769e0c215b7a1f50075917a92b067d1c398dea030787085b3",
+      "role": "schema_migration_ddl"
+    },
+    {
+      "path": "schema/migrations/010_project_event_alignment.log",
+      "size_bytes": 1714,
+      "sha256": "63b1982e034aa461327d0c847a0d5e67de56996a123fd079689a5dbded906bd2",
+      "role": "schema_migration_log"
+    },
+    {
+      "path": "tests/test_project_event_s23lite.py",
+      "size_bytes": 9019,
+      "sha256": "922fe598dddb4dbb00036d65fdff8844127a6e93807ea1d8ed288cad144b3bb1",
+      "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 530,
+  "artifact_count": 533,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "documentation": 45,
     "schema_ddl": 1,
-    "schema_migration_log": 4,
-    "schema_migration_ddl": 8,
+    "schema_migration_log": 5,
+    "schema_migration_ddl": 9,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
     "spike_helper": 13,
@@ -3210,7 +3228,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 25,
+    "schema_negative_test": 26,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {
