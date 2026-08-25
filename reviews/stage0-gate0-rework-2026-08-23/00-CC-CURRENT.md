@@ -9,23 +9,23 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `41` |
-| **cursor_head** | `4fc652a` |
-| **cc_head** | `6e0257c`（`docs/31`）+ `4fc652a`（回执 `119`） |
-| **last_audit** | `120-stage0-cursor-s16-plan-audit-20260825.md` |
+| **queue_rev** | `42` |
+| **cursor_head** | `5596e5f` |
+| **cc_head** | `bff23a8`（S1.16 实现）+ `5596e5f`（回执 `122`） |
+| **last_audit** | `123-stage0-cursor-s16-impl-audit-PASS-20260825.md` |
 | **user_ruling** | `A` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T17:30:00+08:00` |
+| **updated_at** | `2026-08-25T17:57:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=41）
-2. 读 **`120`** + **`121`** + **`docs/31`**
-3. **S1.16 实现** — singular dbt test + `.venv-dbt` + pytest wrapper；回执进 **`reviews/`**
-4. commit → **origin 优先** → 回执 **`122`**
+1. **`git pull origin main`**（`queue_rev`=42）
+2. 读 **`123`** + **`124`**
+3. **S1.17 规划** — R12 URL 健康探针（`docs/32`）；回执进 **`reviews/`**
+4. commit → **origin 优先** → 回执 **`125`**
 5. → **`84` POLL**
 
 ---
@@ -40,4 +40,4 @@
 
 （空）
 
-— Cursor 架构师 @ queue_rev 41 —
+— Cursor 架构师 @ queue_rev 42 —
