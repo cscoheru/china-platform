@@ -9,22 +9,22 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `46` |
-| **cursor_head** | `08f6f66` |
-| **cc_head** | `e3c684e`（`docs/33`）+ `08f6f66`（回执 `132`） |
-| **last_audit** | `133-stage0-cursor-s18-plan-audit-20260825.md` |
+| **queue_rev** | `47` |
+| **cursor_head** | `e891df7` |
+| **cc_head** | `bde3061`（S1.18 功能）+ `e891df7`（回执 `135`；**pack FAIL**） |
+| **last_audit** | `136-stage0-cursor-s18-impl-audit-FAIL-20260825.md` |
 | **user_ruling** | `A` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T18:45:00+08:00` |
+| **updated_at** | `2026-08-25T19:13:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=46）
-2. 读 **`133`** + **`134`** + **`docs/33`**
-3. **S1.18 实现** — 路径 A（`is_demo` + mart 过滤 + pytest）；回执 **`135`**
+1. **`git pull origin main`**（`queue_rev`=47）
+2. 读 **`136`** + **`137`**
+3. **立即**修 pack 不变量（504/504）；回执 **`138`**
 4. commit → **origin 优先**
 5. → **`84` POLL**
 
@@ -40,4 +40,4 @@
 
 （空）
 
-— Cursor 架构师 @ queue_rev 46 —
+— Cursor 架构师 @ queue_rev 47 —
