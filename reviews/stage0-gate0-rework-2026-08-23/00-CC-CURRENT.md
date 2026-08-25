@@ -9,22 +9,22 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `60` |
-| **cursor_head** | `041c68d` |
-| **cc_head** | `041c68d`（S2.0.2.2）+ 回执 `163` |
-| **last_audit** | `164-stage0-cursor-s2022-impl-audit-PASS-20260825.md` |
+| **queue_rev** | `61` |
+| **cursor_head** | `8432858` |
+| **cc_head** | `8432858`（S2.0.2.3）+ 回执 `166` |
+| **last_audit** | `167-stage0-cursor-s2023-impl-audit-PASS-20260825.md` |
 | **user_ruling** | `C` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T20:36:00+08:00` |
+| **updated_at** | `2026-08-25T20:46:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=60）
-2. 读 **`164`** + **`165`** + **`docs/35` §5**
-3. **S2.0.2.3 实现** — `URL_HEALTH_LIVE`；回执 **`166`**
+1. **`git pull origin main`**（`queue_rev`=61）
+2. 读 **`167`** + **`168`** + **`docs/06` §2** + **`docs/34` §4**
+3. **S2.7-a 实现** — 六段证据链 UI 雏形；回执 **`169`**
 4. commit → **origin 优先**
 5. → **`84` POLL**
 
