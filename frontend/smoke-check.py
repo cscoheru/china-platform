@@ -106,6 +106,38 @@ def main() -> int:
     else:
         ok("jiangsu/page.tsx renders <DemoBadge />")
 
+    # 5b. FIX per tasking 150 (Cursor 149 FAIL): reject any source-level
+    # constant-failure gate that prevents the series table from rendering.
+    # Specifically: static-segment pages must NOT compare `params.province`
+    # (always undefined on a static route → always-false gate).
+    #
+    # Strip JS comments first — explanatory comments may legitimately mention
+    # the bad pattern name. We only want to scan executable code.
+    code = re.sub(r"//[^\n]*", "", jiangsu)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    if re.search(r"params\.province\s*[!=]==", code):
+        errors.append(
+            "jiangsu/page.tsx references params.province in executable code — "
+            "static-segment route does not receive params; this gate is "
+            "always false. Per tasking 150, drop it or move to [province]/ "
+            "dynamic route."
+        )
+    else:
+        ok("jiangsu/page.tsx has no params.province gate (FIX per 149/150)")
+    if re.search(r"if\s*\(\s*params\.", code):
+        errors.append(
+            "jiangsu/page.tsx still branches on params.* in executable code — "
+            "static-segment params are always undefined."
+        )
+    # 5c. Static-segment page must not declare PageProps with `params`.
+    if re.search(r"interface\s+\w*PageProps\b", code):
+        errors.append(
+            "jiangsu/page.tsx declares a PageProps interface in executable "
+            "code — remove if it still types params (static segment)."
+        )
+    else:
+        ok("jiangsu/page.tsx has no PageProps interface (no stale params typing)")
+
     # 6. lib/mock.ts has at least one row with lineage.is_demo === "true"
     mock = (ROOT / "lib/mock.ts").read_text(encoding="utf-8")
     if not re.search(r'is_demo:\s*"true"', mock):

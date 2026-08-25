@@ -2761,8 +2761,8 @@
     },
     {
       "path": "tests/test_s201_skeleton_smoke.py",
-      "size_bytes": 3381,
-      "sha256": "609bd5ed71f3a85ee73346be471ba0812d6e47a80cf1de1b601e35440ef3f84e",
+      "size_bytes": 5118,
+      "sha256": "25f781075823f7a665ec51e5720f5b7f28a5482dfd96760154951a817226f786",
       "role": "schema_negative_test"
     },
     {

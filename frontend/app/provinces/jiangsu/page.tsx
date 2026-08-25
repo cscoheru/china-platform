@@ -1,4 +1,4 @@
-// Stage 2 / S2.0.1 — Jiangsu provincial observation page (skeleton shell).
+// Stage 2 / S2.0.1 — Jiangsu provincial observation page.
 //
 // Per docs/34 §4.1 序 1-3: 至少首页 + 1 个省级观察页壳 + 调用/展示 indicator series.
 // This page is the shell. S2.1-S2.6 will add: person/tenure, policy_document,
@@ -10,6 +10,14 @@
 //   - Indicator series table for Jiangsu GDP (mock or real)
 //   - <DemoBadge /> next to every row whose lineage.is_demo === "true"
 //   - 七维度观察卡 placeholder (per S2.8 未来刀)
+//
+// FIX per tasking 150 (Cursor 149 FAIL): the route is a STATIC segment at
+// /provinces/jiangsu/, so it does NOT receive `params.province`. Earlier code
+// compared `params.province !== "jiangsu"`, which is always true on a static
+// route → page always rendered the "尚未支持" branch and never the series
+// table. Fix: drop the param gate entirely; this page IS the jiangsu page by
+// virtue of its file path. Other provinces land in S2.7-b ~ S2.7-e with their
+// own static pages (or a [province]/ dynamic page when we move to 5+ provinces).
 
 import { indicatorSeries } from "../../../lib/api";
 import { MOCK_PROVINCE_META } from "../../../lib/mock";
@@ -17,23 +25,8 @@ import { DemoBadge } from "../../DemoBadge";
 
 export const dynamic = "force-dynamic";
 
-interface PageProps {
-  params: { province: string };
-}
-
-export default async function ProvincePage({ params }: PageProps) {
-  // Only Jiangsu is shipped in S2.0.1; others fall back to "not yet supported".
-  if (params.province !== "jiangsu") {
-    return (
-      <section>
-        <h1>省级观察页：{params.province}</h1>
-        <p style={{ color: "#888" }}>
-          S2.0.1 骨架仅交付江苏省壳。其余 4 省待 S2.7-b ~ S2.7-e 落地。
-        </p>
-      </section>
-    );
-  }
-
+export default async function ProvincePage() {
+  // No params gate — this page IS the jiangsu page by virtue of its file path.
   // S2.0.1 ships only the Jiangsu GDP series mock. Real SHA-locked data
   // lands in S2.0.2; <DemoBadge /> will auto-hide when is_demo becomes "false".
   const series = await indicatorSeries(

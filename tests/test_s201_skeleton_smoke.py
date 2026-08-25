@@ -96,3 +96,46 @@ def test_frontend_readme_documents_mock_toggle() -> None:
     readme = (FRONTEND_DIR / "README.md").read_text(encoding="utf-8")
     assert "NEXT_PUBLIC_USE_MOCK" in readme, "README does not document mock toggle"
     assert "is_demo" in readme, "README does not document is_demo badge contract"
+
+
+def test_frontend_jiangsu_no_static_segment_params_gate() -> None:
+    """FIX per tasking 150 / Cursor 149 FAIL: jiangsu page (static segment)
+    must NOT compare `params.province` — the route does not pass params, so
+    such a gate is always true and prevents the series table + DemoBadge
+    from rendering.
+
+    Strip JS comments before scanning — explanatory comments may legitimately
+    mention the bad pattern name. We only want to scan executable code.
+    """
+    import re
+
+    jiangsu = (FRONTEND_DIR / "app/provinces/jiangsu/page.tsx").read_text(
+        encoding="utf-8"
+    )
+    code = re.sub(r"//[^\n]*", "", jiangsu)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    assert not re.search(r"params\.province\s*[!=]==", code), (
+        "jiangsu/page.tsx references params.province in executable code on a "
+        "static segment — this gate is always false. Drop it or move to "
+        "[province]/ dynamic route."
+    )
+    assert not re.search(r"if\s*\(\s*params\.", code), (
+        "jiangsu/page.tsx still branches on params.* in executable code on a "
+        "static segment."
+    )
+
+
+def test_frontend_jiangsu_renders_series_branch() -> None:
+    """FIX per tasking 150: jiangsu page must reach the series-rendering
+    branch (i.e. `series.series.map(...)` and `<DemoBadge />` must be
+    reachable from the default export).
+    """
+    jiangsu = (FRONTEND_DIR / "app/provinces/jiangsu/page.tsx").read_text(
+        encoding="utf-8"
+    )
+    assert "series.series.map" in jiangsu, (
+        "jiangsu/page.tsx must call series.series.map(...) to render rows"
+    )
+    assert "<DemoBadge" in jiangsu, (
+        "jiangsu/page.tsx must render <DemoBadge /> for the is_demo sentinel"
+    )
