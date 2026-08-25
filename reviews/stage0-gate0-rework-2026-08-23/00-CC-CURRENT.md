@@ -9,22 +9,22 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `78` |
-| **cursor_head** | `d8722dc` |
-| **cc_head** | `d8722dc`（s22lite import fix）+ `199` |
-| **last_audit** | `200-stage0-cursor-s22-lite-fix-audit-PASS-20260825.md` |
+| **queue_rev** | `79` |
+| **cursor_head** | `a639576` |
+| **cc_head** | `a639576`（S2.3 规划）+ 回执 `202` |
+| **last_audit** | `203-stage0-cursor-s23-plan-audit-PASS-20260825.md` |
 | **user_ruling** | `D` / Stage 2 `C` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T23:35:00+08:00` |
+| **updated_at** | `2026-08-25T23:42:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=78）
-2. 读 **`200`** + **`201`** + **`docs/04`**
-3. **S2.3 规划** — `docs/38`；回执 **`202`**
+1. **`git pull origin main`**（`queue_rev`=79）
+2. 读 **`203`** + **`204`** + **`docs/38` §2**
+3. **S2.3-lite 实现** — migration + 最小 pytest；回执 **`205`**
 4. commit → **origin 优先**
 5. → **`84` POLL**
 
