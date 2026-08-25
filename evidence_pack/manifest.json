@@ -72,9 +72,15 @@
       "role": "research_non_gating_extracted_artifact"
     },
     {
-      "path": "docs/00-project-assessment.md",
-      "size_bytes": 8015,
-      "sha256": "3b222987738989da8638fd2e555e430d17b2cfcbf0a5fd7a0d979a7a7d4c93dc",
+      "path": "docs/26-stage1-s12-gate1-prep-plan-20260825.md",
+      "size_bytes": 9465,
+      "sha256": "9e8d4b4e5dab44a8eebf4aab6d54a09dcd2f1d8a8e0d7e8c4f7b1a3e8c5d4c5b",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/27-stage1-s12-gate1-prep-pack-20260825.md",
+      "size_bytes": 10783,
+      "sha256": "48506665b7fc4f3ca769da46e17b7efb37b8c11d4f85a4023366d98a522fb3bf",
       "role": "documentation"
     },
     {
@@ -2688,6 +2694,18 @@
       "role": "spike_sample_or_truth"
     },
     {
+      "path": "data/seeds/jiangsu_gdp_2020_2024.json",
+      "size_bytes": 6700,
+      "sha256": "0324a0b382b3d4f6995c81b5bc431925680037ea8e0b61def91d36365fece9d2",
+      "role": "spike_sample_or_truth"
+    },
+    {
+      "path": "scripts/seed_jiangsu_gdp_demo.py",
+      "size_bytes": 17646,
+      "sha256": "339373bdb86776608870dc8c3063edfd612cee05a5eaaf9bf2a0ccdd20878d1c",
+      "role": "spike_helper"
+    },
+    {
       "path": "tests/conftest.py",
       "size_bytes": 5234,
       "sha256": "91fe765d77118a3a022e3795e978c3d8aab552f559c7eee91738b749a59cfefb",
@@ -2880,19 +2898,19 @@
       "role": "data_contract_suite"
     }
   ],
-  "artifact_count": 478,
+  "artifact_count": 481,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 26,
+    "documentation": 27,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 3,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
-    "spike_helper": 2,
-    "spike_sample_or_truth": 382,
+    "spike_helper": 3,
+    "spike_sample_or_truth": 383,
     "spike_extractor": 7,
     "spike_test": 7,
     "spike_truth_builder": 2,
