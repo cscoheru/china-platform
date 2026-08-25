@@ -15,6 +15,7 @@ session-bootstrap re-applies all migrations including 009.
 from __future__ import annotations
 
 import psycopg2
+import psycopg2.extras
 import pytest
 
 psycopg2.extras.register_uuid()

@@ -3139,8 +3139,8 @@
     },
     {
       "path": "tests/test_policy_commitment_s22lite.py",
-      "size_bytes": 8279,
-      "sha256": "b095e79e134f6192e6c7015aefd59d1d38aec41b7ef4d64dd71ede91d50ccfc4",
+      "size_bytes": 8302,
+      "sha256": "adaacddb8661a0c0d623666290036e40986527f87b65773c8a687972a9691ca5",
       "role": "schema_negative_test"
     },
     {
@@ -3172,14 +3172,20 @@
       "size_bytes": 6716,
       "sha256": "8d0e6829a2d0e27dd517a24b3f8e9c3c6011e943956d977f316c6a773849129a",
       "role": "documentation"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/199-stage0-cc-s22-lite-pytest-import-fix-receipt-20260825.md",
+      "size_bytes": 2739,
+      "sha256": "0683feb1308e16c6996f378198597d9c1ec49ad91e4d70321420421f54ae68bf",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 527,
+  "artifact_count": 528,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 42,
+    "documentation": 43,
     "schema_ddl": 1,
     "schema_migration_log": 4,
     "schema_migration_ddl": 8,
