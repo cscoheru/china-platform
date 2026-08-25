@@ -18,6 +18,11 @@ class ApiSettings(BaseSettings):
     cors_origins: list[str] = ["http://localhost:3000"]
     log_level: str = "INFO"
 
+    # S1.13.1 — /admin/upload 人工上传配置
+    admin_upload_token: str | None = None  # Bearer token; 缺 → /admin/upload 返 503
+    uploads_dir: str = "/tmp/cegr_uploads"  # 文件落盘目录
+    max_upload_size_bytes: int = 100 * 1024 * 1024  # 默认 100 MB (per docs/28 §1.1)
+
     model_config = SettingsConfigDict(
         env_prefix="CEGR_API_",
         env_file=".env",

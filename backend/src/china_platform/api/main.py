@@ -13,6 +13,7 @@ from fastapi import FastAPI
 from china_platform.api.config import get_settings
 from china_platform.api.db import Database
 from china_platform.api.errors import install_error_handlers
+from china_platform.api.routes.admin_upload import router as admin_upload_router
 from china_platform.api.routes.health import router as health_router
 from china_platform.api.routes.indicators import router as indicators_router
 from china_platform.api.routes.observations import router as observations_router
@@ -56,6 +57,7 @@ def create_app() -> FastAPI:
     app.include_router(indicators_router)
     app.include_router(sources_router)
     app.include_router(observations_router)
+    app.include_router(admin_upload_router)
     return app
 
 
