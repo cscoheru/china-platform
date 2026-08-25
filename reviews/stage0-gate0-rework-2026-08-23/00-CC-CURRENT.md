@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `27` |
-| **cursor_head** | `pending` |
+| **cursor_head** | `a9e93f7` |
 | **cc_head** | `930285b`（S1.10 实现回执 `79`） |
 | **last_audit** | `80-stage0-cursor-s10-impl-audit-20260825.md` |
 | **cursor_poll** | `ARMED` |
