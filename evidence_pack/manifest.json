@@ -3102,6 +3102,12 @@
       "role": "documentation"
     },
     {
+      "path": "docs/38-stage2-s23-project-plan-20260825.md",
+      "size_bytes": 18664,
+      "sha256": "74e46fb6b17d9e39e090d3b83308282dceb9f01fb6cee69f161f248aa8ca60ef",
+      "role": "documentation"
+    },
+    {
       "path": "schema/migrations/008_person_tenure_alignment.sql",
       "size_bytes": 9861,
       "sha256": "51760c92d8a3e09cc80fd73e32a31bd8535acce4474e7f2ee571ce4e761f026b",
@@ -3178,14 +3184,20 @@
       "size_bytes": 2739,
       "sha256": "0683feb1308e16c6996f378198597d9c1ec49ad91e4d70321420421f54ae68bf",
       "role": "documentation"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/202-stage0-cc-s23-plan-receipt-20260825.md",
+      "size_bytes": 6185,
+      "sha256": "87b9c2be3175a2ed00ca5e606ed310b3477cb9a77d7a0984594f8bc2b219de45",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 528,
+  "artifact_count": 530,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 43,
+    "documentation": 45,
     "schema_ddl": 1,
     "schema_migration_log": 4,
     "schema_migration_ddl": 8,
