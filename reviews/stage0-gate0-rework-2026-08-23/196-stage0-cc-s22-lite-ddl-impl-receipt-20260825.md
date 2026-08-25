@@ -19,10 +19,10 @@
 | 4 | migration `009_policy_commitment_alignment.log` | ✅ | `239a4ce2…` | schema_migration_log |
 | 5 | pytest `tests/test_policy_commitment_s22lite.py` (5 cases) | ✅ | `b095e79e…` | schema_negative_test |
 | 6 | manifest +3 (`schema_migration_ddl` 7→8, `schema_migration_log` 3→4, `schema_negative_test` 24→25) | ✅ | — | spike_helper |
-| 7 | commit → origin 优先 | ✅ | 见下 | commit |
-| 8 | 回执 `196` 进 `reviews/` | ✅（本文件） | `pending commit SHA backfill` | documentation |
-| 9 | push origin / github | 见下 | — | — |
-| 10 | → `84` POLL | 见下 | — | — |
+| 7 | commit → origin 优先 | ✅ | `f36758a` | commit |
+| 8 | 回执 `196` 进 `reviews/` | ✅（本文件） | `8d0e6829…` | documentation |
+| 9 | push origin / github | ✅ 双推成功（`f296a90..f36758a`） | — | — |
+| 10 | → `84` POLL | ✅ 已 re-arm | — | — |
 
 ---
 
@@ -131,10 +131,10 @@
 |---|---|---|
 | origin pull | `git fetch origin && git pull --ff-only origin main` | queue_rev 76 |
 | commit | `git add … && git commit -m "feat(schema): migration 009 + s22lite pytest (per tasking 195)"` | `pending` (待最终确认) |
-| origin push | `git push origin HEAD`（**priority**）| 待 push 收尾 |
-| github push | `git push github HEAD`（带 proxy）| 待 push 收尾 |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `f296a90..f36758a` → main |
+| github push | `git push github HEAD`（带 proxy）| ✅ `f296a90..f36758a` → main |
 
-> 推送以 git log 实际输出为准；本回执 SHA 待 commit 落地后回填。
+> 三路对齐：`origin/main = github/main = local HEAD = f36758a`。
 
 ---
 
