@@ -1,0 +1,9 @@
+# dbt execution env for R03 automation (docs/31 §3.1; python3.11 venv — mashumaro broken on 3.14)
+# usage: python3.11 -m venv .venv-dbt && .venv-dbt/bin/pip install -r requirements-dbt.txt
+dbt-adapters==1.24.5
+dbt-common==1.39.0
+dbt-core==1.12.3
+dbt-core-experimental-parser==2.0.0b2
+dbt-extractor==0.6.0
+dbt-postgres==1.11.0
+dbt-protos==1.0.565

@@ -23,7 +23,8 @@ WITH classified AS (
       WHEN diff_pct < 5.0 THEN 'RECORDED'
       ELSE 'NEEDS_REVIEW'
     END                                                                  AS severity,
-    COALESCE(diff_pct, 0)                                                 AS severity_threshold_pct
+    COALESCE(diff_pct, 0)                                                 AS severity_threshold_pct,
+    NOW()                                                                 AS detected_at
   FROM {{ ref('stg_source_disagreement_candidate') }}
 )
 
@@ -41,7 +42,7 @@ SELECT
   NULL                                                                   AS resolution_note,
   NULL                                                                   AS resolved_by,
   NULL                                                                   AS resolved_at,
-  NOW()                                                                  AS detected_at,
+  detected_at,
   'dbt_mart_source_disagreement'                                         AS detected_by,
   '{{ invocation_id }}'::UUID                                             AS run_id
 FROM classified
