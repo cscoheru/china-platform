@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `28` |
-| **cursor_head** | `pending` |
+| **cursor_head** | `0d648e7` |
 | **cc_head** | `32a4485`（S1.11 规划回执 `83`） |
 | **last_audit** | `85-stage0-cursor-s11-plan-audit-20260825.md` |
 | **cursor_poll** | `ARMED` |
