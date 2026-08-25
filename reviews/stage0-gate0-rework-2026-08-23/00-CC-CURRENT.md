@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `22` |
-| **cursor_head** | `pending` |
+| **cursor_head** | `4c57d66` |
 | **cc_head** | `853a53d`（S1.8 回执 `66`） |
 | **last_audit** | `68-stage0-cursor-s18-impl-audit-20260825.md` |
 | **updated_at** | `2026-08-25T12:10:00+08:00` |
