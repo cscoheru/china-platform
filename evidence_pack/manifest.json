@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "e8c623b0a21b9a57836bd69943c607baf9dd4c2f",
-    "commit_sha_short": "e8c623b0a21b",
-    "commit_timestamp_utc": "2026-08-24T22:32:18+08:00",
+    "commit_sha": "0bfceec7a8b1d8dba6e6f2130458392c906e9203",
+    "commit_sha_short": "0bfceec7a8b1",
+    "commit_timestamp_utc": "2026-08-25T08:54:37+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -225,6 +225,12 @@
       "path": "schema/migrations/003_source_registry_declared_level.sql",
       "size_bytes": 2962,
       "sha256": "2b4b1f1ce0f2bd39d8b4f97af3b32a93716bfaba67083b48564027456fadee90",
+      "role": "schema_migration_ddl"
+    },
+    {
+      "path": "schema/migrations/004_observation_period_lineage.sql",
+      "size_bytes": 7207,
+      "sha256": "5af35bd96416c4da0e5d4534c288d9260b03c940c5674f6bae478ac62c810490",
       "role": "schema_migration_ddl"
     },
     {
@@ -2676,6 +2682,12 @@
       "role": "schema_negative_test"
     },
     {
+      "path": "tests/test_provincial_yearbook_connector.py",
+      "size_bytes": 14812,
+      "sha256": "2457330eae61a9702a76e31e513b277cbfb006b3d5b171beb0f51241afc80c4e",
+      "role": "schema_negative_test"
+    },
+    {
       "path": "tests/test_registry_import.py",
       "size_bytes": 8511,
       "sha256": "167cfc1c53553bc5d1bedac7b6eaf4bde8a42de1585cd4db84427ad776c30cba",
@@ -2700,7 +2712,7 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 448,
+  "artifact_count": 450,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
@@ -2708,7 +2720,7 @@
     "documentation": 21,
     "schema_ddl": 1,
     "schema_migration_log": 2,
-    "schema_migration_ddl": 2,
+    "schema_migration_ddl": 3,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
     "spike_helper": 2,
@@ -2718,33 +2730,35 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 7
+    "schema_negative_test": 8
   },
   "db_ddl_execution": {
     "command": "DROP+chain psql apply (R5-A)",
     "exit_code": 0,
-    "stdout_tail": "SET\nALTER TABLE\nCOMMENT\nCOMMENT\nCOMMENT\nCOMMENT\nCOMMENT\nCOMMENT\nALTER TABLE\nALTER TABLE\n",
+    "stdout_tail": "SET\nALTER TABLE\nALTER TABLE\nALTER TABLE\nCOMMENT\nCOMMENT\nCOMMENT\nCOMMENT\nCOMMENT\nCOMMENT\nCREATE INDEX\nCREATE INDEX\nCREATE INDEX\n",
     "stderr_tail": "",
     "ddl_sha256": "09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea",
     "ddl_path": "schema/01-core.sql",
     "ddl_shas": {
       "schema/01-core.sql": "09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea",
       "schema/migrations/002_source_governance.sql": "c41161a86fb68e882bc4925ebec758f2b2616d0f4914b023dc8c5a5ec85e168b",
-      "schema/migrations/003_source_registry_declared_level.sql": "2b4b1f1ce0f2bd39d8b4f97af3b32a93716bfaba67083b48564027456fadee90"
+      "schema/migrations/003_source_registry_declared_level.sql": "2b4b1f1ce0f2bd39d8b4f97af3b32a93716bfaba67083b48564027456fadee90",
+      "schema/migrations/004_observation_period_lineage.sql": "5af35bd96416c4da0e5d4534c288d9260b03c940c5674f6bae478ac62c810490"
     },
     "applied_sqls": [
       "schema/01-core.sql",
       "schema/migrations/002_source_governance.sql",
-      "schema/migrations/003_source_registry_declared_level.sql"
+      "schema/migrations/003_source_registry_declared_level.sql",
+      "schema/migrations/004_observation_period_lineage.sql"
     ]
   },
   "pytest_run": {
     "command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m pytest -q --tb=line --no-header -p no:cacheprovider",
     "exit_code": 0,
-    "stdout_tail": "........................................................................ [ 26%]\n........................................................................ [ 53%]\n........................................................................ [ 79%]\n.......................................................                  [100%]\n271 passed in 483.45s (0:08:03)\n",
+    "stdout_tail": "........................................................................ [ 25%]\n........................................................................ [ 51%]\n........................................................................ [ 77%]\n...............................................................          [100%]\n279 passed in 481.47s (0:08:01)\n",
     "stderr_tail": "",
     "stats": {
-      "passed": 271,
+      "passed": 279,
       "failed": 0,
       "skipped": 0
     }
