@@ -4,7 +4,7 @@
 - 前置：`69` 任务书；`docs/23`
 - 提交：`01f7bba`
 - Pack：455 artifacts (role_count +1 vs 454)
-- 双推：origin ✅ / github **HOLD** (443 timeout ×2)
+- 双推：origin ✅ / github ✅ (`0363157` 带 `01f7bba` 祖先一起推成功)
 
 ## 交付物
 
@@ -61,6 +61,6 @@
 | 只读 staging view | ✅ 不写 cegr 原始表 |
 | profiles.yml 不入 git | ✅ .gitignore |
 
-## Github HOLD
+## Github Push
 
-github 443 timeout ×2 (2026-08-25 12:12–12:14)。origin `01f7bba` 已入库。待网络恢复后手动 `git push github HEAD`。
+`01f7bba` 首次推 github 443 timeout ×2；`0363157` 推 github 成功（带 `01f7bba` 祖先），两个 commit 均已入库 github main。
