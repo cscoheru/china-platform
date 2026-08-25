@@ -3208,14 +3208,20 @@
       "size_bytes": 9019,
       "sha256": "922fe598dddb4dbb00036d65fdff8844127a6e93807ea1d8ed288cad144b3bb1",
       "role": "schema_negative_test"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/205-stage0-cc-s23-lite-ddl-impl-receipt-20260825.md",
+      "size_bytes": 7701,
+      "sha256": "63dad1179080880dd7e6e27220c77f50b93fa7df611c96c577498930e981a3c4",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 533,
+  "artifact_count": 534,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 45,
+    "documentation": 46,
     "schema_ddl": 1,
     "schema_migration_log": 5,
     "schema_migration_ddl": 9,
