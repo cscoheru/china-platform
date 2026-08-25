@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "41ae6046c4a743c57e17ed356b1a451a4ac1e614",
-    "commit_sha_short": "41ae6046c4a7",
-    "commit_timestamp_utc": "2026-08-25T12:22:06+08:00",
+    "commit_sha": "ee5b2cc952d07e318245554abbce1e1cd3399e8b",
+    "commit_sha_short": "ee5b2cc952d0",
+    "commit_timestamp_utc": "2026-08-25T12:33:02+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -213,6 +213,12 @@
       "path": "docs/23-stage1-s19-dbt-staging-plan-20260825.md",
       "size_bytes": 17400,
       "sha256": "07f6b6b9fe2d3f2b76126a39d467da5c5af4301a36869f81b7650e3826d28be4",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/24-stage1-s10-fastapi-readonly-plan-20260825.md",
+      "size_bytes": 19775,
+      "sha256": "31fbdafe7e14c0ac2d79ad435a75c03f24068ff08be2fd20200d0ad993038858",
       "role": "documentation"
     },
     {
@@ -2742,12 +2748,12 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 455,
+  "artifact_count": 456,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 24,
+    "documentation": 25,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 3,
