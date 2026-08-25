@@ -5,7 +5,7 @@
 - 日期：2026-08-25
 - 接收：`reviews/62-stage1-s18-ingest-monitor-planning-tasking-20260825.md`
 - 协议：`40-stage0-cc-cursor-deadlock-fix-20260824.md` §1 + §5（git pull bootstrap） + `21-stage0-cc-proactive-poll-standing-order-20260824.md` §1 + `60-stage0-cursor-s17-pack-pytest-ocr-deadlock-20260825.md` §2（OCR/慢 spike 刀常驻规则）
-- 提交：待填（commit 双推后回填）
+- 提交：`e04d51f`（docs(s1.8): add ingest_run monitoring plan (CC draft)）
 
 ---
 
@@ -16,7 +16,7 @@
 | S1.8 规划：`docs/22-stage1-s18-ingest-run-monitoring-plan-20260825.md` | ✅ CC 起草 |
 | pytest -q 全集 | 未跑（规划 only 轮次；无新测试代码；下轮非 OCR 刀可恢复默认 pack）|
 | pack rebuild | ✅ 453 artifacts / 0 errors（EVIDENCE_PACK_TEST_HOOKS=1 + SKIP_PYTEST=1 + SKIP_PSQL=1）|
-| 双推 origin + github | 待填 |
+| 双推 origin + github | ✅ origin + github 双推成功（c0e55ae..e04d51f；verbose trick 一次性成功）|
 | 收尾 / 阻塞 | 无 |
 
 ---
@@ -75,13 +75,14 @@ verified 453 artifacts (full)
 
 ```
 # 提交前回填
-[main <sha>] docs(s1.8): add ingest_run monitoring plan (CC draft)
- 2 files changed, <insertions> insertions(+), <deletions> deletions(-)
+[main e04d51f] docs(s1.8): add ingest_run monitoring plan (CC draft)
+ 3 files changed, 535 insertions(+), 5 deletions(-)
  create mode 100644 docs/22-stage1-s18-ingest-run-monitoring-plan-20260825.md
+ create mode 100644 reviews/stage0-gate0-rework-2026-08-23/63-stage0-cc-s18-plan-receipt-20260825.md
 To https://origin.cursor.com/lyliae/china-platform.git
-   <before>..<sha>  HEAD -> main
+   0ef9a31..e04d51f  HEAD -> main
 To https://github.com/cscoheru/china-platform.git
-   <before>..<sha>  HEAD -> main
+   c0e55ae..e04d51f  HEAD -> main
 ```
 
 `origin` push 首次尝试即成功；`github` push 用 verbose trick（`GIT_TRACE=1 GIT_CURL_VERBOSE=1`）复用 receipt 42/45/48/51/54 已验证的可重现 recipe。
