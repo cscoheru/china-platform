@@ -9,34 +9,31 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `17` |
-| **cursor_head** | `fc61012` |
-| **cc_head** | `c0e55ae`（S1.7 规划回执 `54`） |
-| **last_audit** | `55-stage0-cursor-s17-plan-audit-20260825.md` |
-| **updated_at** | `2026-08-25T09:55:00+08:00` |
+| **queue_rev** | `18` |
+| **cursor_head** | `pending` |
+| **cc_head** | `c0e55ae`（S1.7 规划回执 `54`；实现尚未入库） |
+| **last_audit** | `59-stage0-cursor-cc-wakeup-s17-commit-deadlock-20260825.md` |
+| **updated_at** | `2026-08-25T10:25:00+08:00` |
 
 ---
 
-## NOW — CC 执行（phase=CC_ACTION_REQUIRED 时）
+## NOW — CC 执行（假死解除；拆步交卷）
 
-1. **`git pull origin main`**（必须；读 §META.`queue_rev`=17）
-2. 读 **`55`** + **`56`** + **`docs/21`**
-3. **S1.7 实现** — `scanned_pdf_ocr.py` + 测试 ≥4（陕西默认；per-page）
-4. commit → **双推** → 回执 **`57-stage0-cc-s17-impl-receipt-*.md`**
-5. 完成后 → **§POLL**（`40` §2），**禁止** idle 等 Cursor 聊天
+1. **取消**当前卡住的「Committing…」工具调用（Esc）
+2. **`git pull origin main`** → 读 **`59`**（硬唤醒）+ **`56`**
+3. 工作区已有 `scanned_pdf_ocr.py` + tests → **勿重写**；按 `59` §2 **拆步**：
+   - 单测新文件（禁止此刻全集）
+   - pack
+   - 写 **`57`** 回执
+   - commit → **`git push origin HEAD` 优先**
+   - github 失败 30s 即停
+4. 完成后 → **§POLL**
 
 ---
 
-## POLL — 取代旧 §STOP
+## POLL
 
-| 条件 | 动作 |
-|---|---|
-| 刚完成 push | 180s 内 `git fetch && git pull`，读 CURRENT |
-| `queue_rev` 变大 | 重新读 §NOW 并执行 |
-| `phase=CC_POLL` 且 §NOW 空 | sleep 180s，重复（最多 20 轮） |
-| 三终端 | NOW 单工；见 `40` §3 |
-
-**禁止：** 「等 Cursor 审验」「问用户是否继续」
+同 `40` §2。**禁止**再把 verify+commit+dual-push 塞进单一超长工具调用。
 
 ---
 
@@ -48,8 +45,7 @@
 
 ## Cursor 不做
 
-- ❌ 不写 connector / schema / tests
-- ❌ 不改 `docs/21` 正文
+- ❌ 不代 commit / 不写 connector / tests
 - ❌ 不改 `gate_thresholds.json`
 
-— Cursor 架构师 @ queue_rev 17 —
+— Cursor 架构师 @ queue_rev 18 —
