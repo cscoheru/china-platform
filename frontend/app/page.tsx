@@ -1,9 +1,11 @@
-// Stage 2 / S2.0.1 — Home page.
+// Stage 2 / S2.0.1 + S2.7-a — Home page.
 //
-// Lists indicators (mock by default). Onward navigation to a province
-// observation page will land in S2.1-S2.7. For now this is just the inventory.
+// Lists indicators (mock by default). S2.7-a 增量：附 5 省列表入口
+// （per tasking 168 §NOW-2 「≥1 省路由壳或列表入口」）。
+// 列表本身仅为导航入口；不评分、不对比、不排名。
 
 import { listIndicators, IS_MOCK_MODE } from "../lib/api";
+import { MOCK_PROVINCE_LIST } from "../lib/mock_evidence_chain";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +13,7 @@ export default async function HomePage() {
   const data = await listIndicators();
   return (
     <section>
-      <h1>CEGR — Stage 2 治理观察 (S2.0.1 骨架)</h1>
+      <h1>CEGR — Stage 2 治理观察 (S2.0.1 + S2.7-a)</h1>
       <p style={{ color: "#666" }}>
         {IS_MOCK_MODE
           ? "Mock 模式：以下数据为 S1.18 DEMO sentinel，"
@@ -47,8 +49,32 @@ export default async function HomePage() {
           ))}
         </tbody>
       </table>
-      <p style={{ marginTop: 24, fontSize: 13, color: "#888" }}>
-        省级观察页壳：<a href="/provinces/jiangsu">江苏省</a>
+
+      <h2 style={{ marginTop: 32 }}>省级观察入口（S2.7-a 列表）</h2>
+      <table style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}>
+        <thead>
+          <tr style={{ background: "#eee" }}>
+            <th style={cellStyle}>省份</th>
+            <th style={cellStyle}>路由</th>
+            <th style={cellStyle}>六段数据</th>
+          </tr>
+        </thead>
+        <tbody>
+          {MOCK_PROVINCE_LIST.map((p) => (
+            <tr key={p.slug}>
+              <td style={cellStyle}>{p.name_zh}</td>
+              <td style={cellStyle}>
+                <a href={`/provinces/${p.slug}`}>/provinces/{p.slug}</a>
+              </td>
+              <td style={cellStyle}>
+                {p.has_full_chain ? "全段（mock）" : "空壳（演示未覆盖）"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p style={{ marginTop: 24, fontSize: 12, color: "#999" }}>
+        注：本列表仅作导航入口；不做评分、不做对比、不做排名。
       </p>
     </section>
   );

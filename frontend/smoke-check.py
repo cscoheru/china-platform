@@ -38,10 +38,13 @@ REQUIRED_FILES = [
     "app/layout.tsx",
     "app/page.tsx",
     "app/DemoBadge.tsx",
+    "app/components/EvidenceChain.tsx",        # S2.7-a
     "app/provinces/jiangsu/page.tsx",
+    "app/provinces/zhejiang/page.tsx",          # S2.7-a 路由壳
     "lib/api.ts",
     "lib/types.ts",
     "lib/mock.ts",
+    "lib/mock_evidence_chain.ts",               # S2.7-a mock
 ]
 
 
@@ -155,12 +158,83 @@ def main() -> int:
     else:
         ok("lib/api.ts branches on NEXT_PUBLIC_USE_MOCK")
 
+    # 8. S2.7-a — Six-segment evidence chain contract.
+    #    Per docs/06 §2: 固定六段 CONDITION → COMMITMENT → INPUT → PROCESS
+    #    → OUTPUT → OUTCOME_RISK；缺一不可。
+    chain_src = (ROOT / "app/components/EvidenceChain.tsx").read_text(encoding="utf-8")
+    expected_segments = [
+        "CONDITION", "COMMITMENT", "INPUT", "PROCESS", "OUTPUT", "OUTCOME_RISK",
+    ]
+    for seg in expected_segments:
+        if seg not in chain_src:
+            errors.append(f"EvidenceChain.tsx missing segment key: {seg}")
+    if not errors or all("EvidenceChain.tsx missing" not in e for e in errors):
+        ok(f"EvidenceChain.tsx references all 6 fixed segments ({len(expected_segments)})")
+
+    # 8b. Per tasking 168 §红线: 禁止评分 / 总分 / 排名。静态扫描
+    # EvidenceChain.tsx 源码以确保没有数值化或排名化逻辑。
+    chain_code = re.sub(r"//[^\n]*", "", chain_src)
+    chain_code = re.sub(r"/\*.*?\*/", "", chain_code, flags=re.DOTALL)
+    forbidden_patterns = [
+        (r"\bscore\b", "score"),
+        (r"\brating\b", "rating"),
+        (r"\brank(?:ing)?\b", "rank"),
+        (r"\btotal[_-]?score\b", "total_score"),
+    ]
+    for pat, label in forbidden_patterns:
+        if re.search(pat, chain_code, re.IGNORECASE):
+            errors.append(
+                f"EvidenceChain.tsx contains forbidden term {label!r} "
+                f"(per tasking 168 §红线: 禁止评分/总分/排名)"
+            )
+        else:
+            ok(f"EvidenceChain.tsx has no forbidden {label!r} term")
+
+    # 8c. Zhejiang route shell — verify it's a static-segment route with no
+    # params.* branching (mirror of jiangsu check 5b).
+    zhejiang = (ROOT / "app/provinces/zhejiang/page.tsx").read_text(encoding="utf-8")
+    zj_code = re.sub(r"//[^\n]*", "", zhejiang)
+    zj_code = re.sub(r"/\*.*?\*/", "", zj_code, flags=re.DOTALL)
+    if re.search(r"params\.province\s*[!=]==", zj_code):
+        errors.append(
+            "zhejiang/page.tsx references params.province in executable code — "
+            "static-segment route does not receive params."
+        )
+    else:
+        ok("zhejiang/page.tsx has no params.province gate")
+    if "EvidenceChain" not in zhejiang:
+        errors.append("zhejiang/page.tsx does not render <EvidenceChain />")
+    else:
+        ok("zhejiang/page.tsx renders <EvidenceChain />")
+
+    # 8d. Mock chain — both Jiangsu (full) and Zhejiang (empty) must provide
+    # all 6 segments; this guards against future "we only show 4 segments"
+    # regressions.
+    mock_chain = (ROOT / "lib/mock_evidence_chain.ts").read_text(encoding="utf-8")
+    for province in ["jiangsu", "zhejiang"]:
+        # Look for the key within the province's segments array.
+        # We accept any order, but every key must appear.
+        for seg in expected_segments:
+            # Simple heuristic: count occurrences of `key: "SEG"` near the
+            # province identifier. To be robust we just check that each segment
+            # key appears at least 2 times (jiangsu + zhejiang) in the file.
+            pass  # handled by the global count below
+    seg_key_count = {seg: len(re.findall(rf'key:\s*"{seg}"', mock_chain)) for seg in expected_segments}
+    for seg, n in seg_key_count.items():
+        if n < 2:
+            errors.append(
+                f"mock_evidence_chain.ts: segment {seg} appears {n}x; "
+                f"expected ≥2 (jiangsu + zhejiang)"
+            )
+    if all(seg_key_count[s] >= 2 for s in expected_segments):
+        ok(f"mock_evidence_chain.ts has ≥2 of each of 6 segment keys")
+
     if errors:
         for e in errors:
             fail(e)
         return 1
 
-    print("\n=== S2.0.1 skeleton smoke: PASS ===")
+    print("\n=== S2.0.1 + S2.7-a skeleton smoke: PASS ===")
     return 0
 
 

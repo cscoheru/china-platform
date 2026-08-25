@@ -2754,6 +2754,12 @@
       "role": "schema_negative_test"
     },
     {
+      "path": "tests/test_evidence_chain_s27a.py",
+      "size_bytes": 7477,
+      "sha256": "97acad80c19dc542df5fb4a2086eef75f62897df8838edcf5cb1ff0499961ac8",
+      "role": "schema_negative_test"
+    },
+    {
       "path": "tests/test_ingest_monitor.py",
       "size_bytes": 16513,
       "sha256": "bd3fd84dbd4821dca47bcfbbb47127f97477ab5948d55ae7ba76e59b05546426",
@@ -3084,7 +3090,7 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 512,
+  "artifact_count": 513,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
@@ -3102,7 +3108,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 22,
+    "schema_negative_test": 23,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {

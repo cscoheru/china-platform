@@ -53,3 +53,32 @@ export interface Pagination {
   total_count: number;
   has_next: boolean;
 }
+
+// Stage 2 / S2.7-a — Six-segment evidence chain types.
+//
+// Per docs/06 §2 + tasking 168: 固定六段 CONDITION → COMMITMENT → INPUT →
+// PROCESS → OUTPUT → OUTCOME_RISK；每段可有零或多条证据条目；空段显式标
+// "未覆盖"（per docs/06 §2.7 evidence_gaps）。
+export type EvidenceSegmentKey =
+  | "CONDITION"
+  | "COMMITMENT"
+  | "INPUT"
+  | "PROCESS"
+  | "OUTPUT"
+  | "OUTCOME_RISK";
+
+export interface EvidenceItem {
+  title: string;
+  source_label?: string; // 占位：来源出处（mock 期间可省略）
+  note?: string; // 占位：补充说明
+}
+
+export interface EvidenceChainSegment {
+  key: EvidenceSegmentKey;
+  items: EvidenceItem[];
+}
+
+export interface EvidenceChainResponse {
+  province_id: string;
+  segments: EvidenceChainSegment[];
+}

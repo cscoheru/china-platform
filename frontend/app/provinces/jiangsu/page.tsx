@@ -1,14 +1,14 @@
-// Stage 2 / S2.0.1 — Jiangsu provincial observation page.
+// Stage 2 / S2.0.1 + S2.7-a — Jiangsu provincial observation page.
 //
 // Per docs/34 §4.1 序 1-3: 至少首页 + 1 个省级观察页壳 + 调用/展示 indicator series.
-// This page is the shell. S2.1-S2.6 will add: person/tenure, policy_document,
-// project_event, budget_allocation, inference_record, claim_evidence_link
-// into the six-segment evidence chain (per docs/08 §3.2).
+// S2.7-a 增量：挂上六段证据链 UI 雏形（per docs/06 §2 + tasking 168）。
 //
-// For now the page demonstrates:
+// This page demonstrates:
 //   - 省级 header + observation card count placeholder
 //   - Indicator series table for Jiangsu GDP (mock or real)
 //   - <DemoBadge /> next to every row whose lineage.is_demo === "true"
+//   - <EvidenceChain /> 六段证据链 (CONDITION → COMMITMENT → INPUT →
+//     PROCESS → OUTPUT → OUTCOME_RISK)
 //   - 七维度观察卡 placeholder (per S2.8 未来刀)
 //
 // FIX per tasking 150 (Cursor 149 FAIL): the route is a STATIC segment at
@@ -21,7 +21,9 @@
 
 import { indicatorSeries } from "../../../lib/api";
 import { MOCK_PROVINCE_META } from "../../../lib/mock";
+import { getMockEvidenceChain } from "../../../lib/mock_evidence_chain";
 import { DemoBadge } from "../../DemoBadge";
+import { EvidenceChain } from "../../components/EvidenceChain";
 
 export const dynamic = "force-dynamic";
 
@@ -35,17 +37,24 @@ export default async function ProvincePage() {
   );
 
   const { province_name_zh, observation_card_count } = MOCK_PROVINCE_META;
+  const evidenceChain = getMockEvidenceChain("jiangsu");
+  if (!evidenceChain) {
+    // 这是 schema 错误而非 UI 选择：mock 必须提供六段。
+    throw new Error("Evidence chain mock missing for jiangsu");
+  }
 
   return (
     <section>
       <h1>
-        {province_name_zh} 省级观察页 <small style={{ fontSize: 14, color: "#888" }}>S2.0.1 骨架</small>
+        {province_name_zh} 省级观察页 <small style={{ fontSize: 14, color: "#888" }}>S2.0.1 + S2.7-a</small>
       </h1>
       <p style={{ color: "#666" }}>
-        六段证据链 UI 待 S2.7-b；七维度观察卡占位 {observation_card_count} 个。
+        六段证据链 UI 雏形见下；七维度观察卡占位 {observation_card_count} 个。
       </p>
 
-      <h2 style={{ marginTop: 24 }}>Indicator series · GDP growth (yoy %)</h2>
+      <EvidenceChain segments={evidenceChain.segments} />
+
+      <h2 style={{ marginTop: 32 }}>Indicator series · GDP growth (yoy %)</h2>
       <table style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}>
         <thead>
           <tr style={{ background: "#eee" }}>
@@ -84,8 +93,9 @@ export default async function ProvincePage() {
         <li>创新</li>
       </ul>
       <p style={{ fontSize: 12, color: "#999", marginTop: 24 }}>
-        S2.0.1 = 骨架；S2.1-S2.6 = 数据；S2.7-b ~ S2.7-e = 其余 4 省；S2.8 =
-        七维度观察卡可点击展开。
+        S2.7-a = 六段证据链 UI 雏形（mock）；S2.7-b ~ S2.7-e = 其余 4 省；
+        S2.1 / S2.2 / S2.4 = 真实数据接入 person/tenure / policy / budget；
+        S2.8 = 七维度观察卡可点击展开。
       </p>
     </section>
   );
