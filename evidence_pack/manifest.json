@@ -2938,14 +2938,20 @@
       "size_bytes": 27256,
       "sha256": "02748cb2e2678eb439671f0b8d9dbdb9bd6d00085bbb879d1470a76301ec54b1",
       "role": "schema_negative_test"
+    },
+    {
+      "path": "docs/30-stage1-s15-acceptance-e2e-279-plan-20260825.md",
+      "size_bytes": 11078,
+      "sha256": "4b4ffd5a1336923d22eee77b29d3bd62b38f96169a1366da05ae8317a5a73aa0",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 488,
+  "artifact_count": 489,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 28,
+    "documentation": 29,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 5,
