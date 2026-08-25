@@ -2701,8 +2701,8 @@
     },
     {
       "path": "scripts/seed_jiangsu_gdp_demo.py",
-      "size_bytes": 17646,
-      "sha256": "339373bdb86776608870dc8c3063edfd612cee05a5eaaf9bf2a0ccdd20878d1c",
+      "size_bytes": 18403,
+      "sha256": "07ba5054203006ae2de56abce7ac8abddc26f1e1e65dc594c0f2c5f977cb7708",
       "role": "spike_helper"
     },
     {
@@ -2721,6 +2721,12 @@
       "path": "tests/test_cleanliness.py",
       "size_bytes": 9046,
       "sha256": "17b0f6478e0131f2672d4a59e47d35159e98ff0d55e96f4be1948a827ff981c5",
+      "role": "schema_negative_test"
+    },
+    {
+      "path": "tests/test_demo_sha_sentinel.py",
+      "size_bytes": 12903,
+      "sha256": "f7272cc70b66ccba1e4527a848a57c06fa059bd22d6bd21df5a46e2bc21accd8",
       "role": "schema_negative_test"
     },
     {
@@ -2923,8 +2929,8 @@
     },
     {
       "path": "dbt/models/staging/stg_source_disagreement_candidate.sql",
-      "size_bytes": 4267,
-      "sha256": "cd4b1071a83bcc3451c8c30f7262567afd1296cd8282a968ca71c8dbdaec9a37",
+      "size_bytes": 4693,
+      "sha256": "e06e7e0845e2d4f3a5e1b616fe26f03f2eac48f8a95dcd38e95288c39c9bd1d5",
       "role": "spike_helper"
     },
     {
@@ -2997,6 +3003,12 @@
       "path": "docs/32-stage1-s17-r12-url-health-plan-20260825.md",
       "size_bytes": 11695,
       "sha256": "0c7d28b444ff4d6497bf388a81b2c784d55d08749f3f21c1b60b3fea18d7984d",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/33-stage1-s18-demo-sha-lock-plan-20260825.md",
+      "size_bytes": 18321,
+      "sha256": "9dd39654ddbeb53d722e88b32524a1060c74acd440c5721344c56c529e81ebae",
       "role": "documentation"
     },
     {

@@ -34,6 +34,9 @@
     "extractor": "hand_crafted_demo_seed/1.0 (per tasking 92 §1.1)",
     "extractor_version": "1.0",
     "extracted_at": "2026-08-25T00:00:00Z",
+    "is_demo": true,
+    "demo_reason": "no real source file fetched; hand-crafted per tasking 92 §1.1",
+    "demo_sentinel_sha256": "0000000000000000000000000000000000000000000000000000000000000000 (literal zeros; do not interpret as a real hash)",
     "stages": [
       {"stage": "compose", "actor": "CC", "tool": "manual", "result": "5 rows, 2020-2024 江苏GDP 年度"},
       {"stage": "canonicalize", "actor": "CC", "tool": "schema_mirror", "result": "indicator_canonical=gdp_annual; period_type=ANNUAL"},
@@ -64,7 +67,8 @@
         "chain_id": "jiangsu-gdp-2020-2024-demo",
         "source_file_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "source_file_url": "(DEMO_SEED_NO_FILE)",
-        "extractor_version": "1.0"
+        "extractor_version": "1.0",
+        "is_demo": true
       }
     },
     {
@@ -90,7 +94,8 @@
         "chain_id": "jiangsu-gdp-2020-2024-demo",
         "source_file_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "source_file_url": "(DEMO_SEED_NO_FILE)",
-        "extractor_version": "1.0"
+        "extractor_version": "1.0",
+        "is_demo": true
       }
     },
     {
@@ -116,7 +121,8 @@
         "chain_id": "jiangsu-gdp-2020-2024-demo",
         "source_file_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "source_file_url": "(DEMO_SEED_NO_FILE)",
-        "extractor_version": "1.0"
+        "extractor_version": "1.0",
+        "is_demo": true
       }
     },
     {
@@ -142,7 +148,8 @@
         "chain_id": "jiangsu-gdp-2020-2024-demo",
         "source_file_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "source_file_url": "(DEMO_SEED_NO_FILE)",
-        "extractor_version": "1.0"
+        "extractor_version": "1.0",
+        "is_demo": true
       }
     },
     {
@@ -168,7 +175,8 @@
         "chain_id": "jiangsu-gdp-2020-2024-demo",
         "source_file_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "source_file_url": "(DEMO_SEED_NO_FILE)",
-        "extractor_version": "1.0"
+        "extractor_version": "1.0",
+        "is_demo": true
       }
     }
   ]

@@ -26,6 +26,12 @@ WITH obs AS (
   WHERE o.value_type = 'FACT'
     AND o.value IS NOT NULL
     AND sd.source_level IN ('S0', 'S1')
+    -- S1.18 / docs/33 §3.2: DEMO sentinel rows excluded from cross-source pool.
+    -- file_hash_sha256 stays '00...00' for DEMO (unchanged per tasking 131 §1)
+    -- but lineage->>'is_demo'='true' is the authoritative signal. Demo seed
+    -- remains in cegr.observation for API / Step-by-step demo; only the
+    -- cross-source pair comparison pool is filtered.
+    AND COALESCE(o.lineage->>'is_demo', 'false') <> 'true'
 ),
 
 pairs AS (

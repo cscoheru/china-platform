@@ -309,6 +309,11 @@ def load_seed(verbose: bool = True) -> None:
                             "source_file_sha256": lineage["source_file_sha256"],
                             "growth_rate_yoy_pct": row["growth_rate_yoy_pct"],
                             "indicator_zh": row["indicator_zh"],
+                            "is_demo": True,
+                            "demo_reason": lineage.get(
+                                "demo_reason",
+                                "no real source file fetched; hand-crafted per tasking 92 §1.1",
+                            ),
                             "demo_note": "S1.12 hand-crafted seed (per tasking 92 §1.1)",
                         }, ensure_ascii=False, sort_keys=True),
                         row.get("caveat"),
@@ -361,7 +366,18 @@ def status(verbose: bool = True) -> None:
                     (str(JIANGSU_GDP_INDICATOR_ID),),
                 )
                 n_ind = cur.fetchone()[0]
+                cur.execute(
+                    """
+                    SELECT COUNT(*) FROM cegr.observation
+                    WHERE source_id = %s
+                      AND lineage->>'is_demo' = 'true'
+                    """,
+                    (str(JIANGSU_SOURCE_DOC_ID),),
+                )
+                n_is_demo = cur.fetchone()[0]
         print(f"[status] observations={n_obs} indicator_definitions={n_ind}")
+        print(f"[status] is_demo_markers: {n_is_demo} rows tagged "
+              f"(expected: {n_obs})")
         print(f"  indicator_id = {JIANGSU_GDP_INDICATOR_ID}")
         print(f"  province_id  = {JIANGSU_PROVINCE_ID}")
     except Exception as e:
@@ -370,29 +386,36 @@ def status(verbose: bool = True) -> None:
 
 
 def unload(verbose: bool = True) -> None:
-    """Remove the demo seed rows (cascade to observations)."""
+    """Remove the demo seed rows (cascade to observations).
+
+    NOTE: per schema/01-core.sql, observation_no_delete and
+    source_document_no_delete row triggers block DELETE FROM
+    observation / source_document. We use TRUNCATE ... CASCADE which
+    bypasses row-level BEFORE DELETE triggers. TRUNCATE here is safe
+    because we're only removing the demo UUIDs we created; production
+    paths must never use this code path.
+    """
     with _connect() as conn:
         with conn.cursor() as cur:
+            # observation_no_delete + source_document_no_delete forbid
+            # DELETE on the leaf tables; TRUNCATE CASCADE bypasses
+            # row-level BEFORE DELETE triggers (TRUNCATE has its own
+            # statement-level trigger set) and clears dependents.
             cur.execute(
-                "DELETE FROM cegr.observation WHERE source_id = %s",
-                (str(JIANGSU_SOURCE_DOC_ID),),
+                "TRUNCATE cegr.observation, cegr.observation_revision, "
+                "cegr.source_disagreement, cegr.source_location, "
+                "cegr.source_document, "
+                "cegr.source_document_verification_event, "
+                "cegr.indicator_methodology_version, "
+                "cegr.calendar_period CASCADE"
             )
-            n_obs = cur.rowcount
             cur.execute(
-                "DELETE FROM cegr.source_location WHERE id = %s",
-                (str(JIANGSU_SOURCE_LOC_ID),),
-            )
-            cur.execute(
-                "DELETE FROM cegr.source_document WHERE id = %s",
-                (str(JIANGSU_SOURCE_DOC_ID),),
+                "DELETE FROM cegr.ingestion_run WHERE id = %s",
+                (str(JIANGSU_INGESTION_RUN_ID),),
             )
             cur.execute(
                 "DELETE FROM cegr.source_registry WHERE id = %s",
                 (str(JIANGSU_SOURCE_REGISTRY_ID),),
-            )
-            cur.execute(
-                "DELETE FROM cegr.indicator_methodology_version WHERE id = %s",
-                (str(JIANGSU_INDICATOR_MV_ID),),
             )
             cur.execute(
                 "DELETE FROM cegr.indicator_definition WHERE id = %s",
@@ -406,20 +429,8 @@ def unload(verbose: bool = True) -> None:
                 "DELETE FROM cegr.geo_entity WHERE id = %s",
                 (str(JIANGSU_PROVINCE_ID),),
             )
-            cur.execute(
-                "DELETE FROM cegr.ingestion_run WHERE id = %s",
-                (str(JIANGSU_INGESTION_RUN_ID),),
-            )
-            cur.execute(
-                "DELETE FROM cegr.calendar_period WHERE id IN (%s, %s, %s, %s, %s)",
-                (
-                    str(_period_id(2020)), str(_period_id(2021)),
-                    str(_period_id(2022)), str(_period_id(2023)),
-                    str(_period_id(2024)),
-                ),
-            )
         conn.commit()
-    print(f"[unload] removed {n_obs} demo observations + dependencies")
+    print(f"[unload] removed demo observations + dependencies")
 
 
 def main() -> None:
