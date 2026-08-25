@@ -2956,14 +2956,20 @@
       "size_bytes": 25200,
       "sha256": "85e4073a10cefc05f0947fedfa712ca434b54e2d6fe09840343544763e3b9b5a",
       "role": "schema_negative_test"
+    },
+    {
+      "path": "docs/31-stage1-s16-r03-cross-source-dbt-plan-20260825.md",
+      "size_bytes": 7490,
+      "sha256": "c397230fd8d5962b8cc9abc2407d019458fd4201803f1b02d1b5457e8c38c295",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 491,
+  "artifact_count": 492,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 29,
+    "documentation": 30,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 6,
