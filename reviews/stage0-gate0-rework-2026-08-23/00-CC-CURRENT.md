@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `39` |
-| **cursor_head** | `pending` |
+| **cursor_head** | `87181b4` |
 | **cc_head** | `aa290ab`（S1.15 规划 `docs/30`） |
 | **last_audit** | `114-stage0-cursor-s15-plan-audit-20260825.md` |
 | **user_ruling** | `A` |
