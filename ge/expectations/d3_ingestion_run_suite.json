@@ -1,0 +1,115 @@
+{
+  "expectation_suite_name": "d3_ingestion_run_suite",
+  "ge_cloud_id": null,
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "run_id",
+          "source_id",
+          "domain",
+          "category",
+          "status",
+          "started_at",
+          "finished_at",
+          "duration_seconds",
+          "records_extracted",
+          "records_inserted",
+          "insertion_pct",
+          "is_stale"
+        ],
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Schema drift guard"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {"column": "run_id", "mostly": 0.99, "result_format": "BASIC"},
+      "meta": {"notes": "PK"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": {"column": "run_id", "result_format": "BASIC"},
+      "meta": {"notes": "PK uniqueness"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "status",
+        "value_set": ["RUNNING", "SUCCESS", "PARTIAL", "FAILED"],
+        "mostly": 0.99,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Status enum"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "records_extracted",
+        "min_value": 0,
+        "max_value": 10000000,
+        "mostly": 0.99,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Non-negative counter"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "records_inserted",
+        "min_value": 0,
+        "max_value": 10000000,
+        "mostly": 0.99,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Non-negative counter"}
+    },
+    {
+      "expectation_type": "expect_column_pair_values_a_to_be_greater_than_b",
+      "kwargs": {
+        "column_A": "records_inserted",
+        "column_B": "records_extracted",
+        "or_equal": true,
+        "mostly": 0.99,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Inserted ≤ Extracted (business invariant)"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "insertion_pct",
+        "min_value": 0.0,
+        "max_value": 100.0,
+        "mostly": 0.99,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Percent in [0,100]"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "is_stale",
+        "value_set": [true, false],
+        "mostly": 0.99,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Boolean"}
+    },
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {"min_value": 0, "max_value": 1000000, "result_format": "BASIC"},
+      "meta": {"notes": "Empty-table honest"}
+    }
+  ],
+  "data_asset_type": null,
+  "meta": {
+    "citations": [
+      {
+        "citation_date": "2026-08-25",
+        "comment": "Per docs/25 §2 D3; supports S1.8 monitoring dashboard"
+      }
+    ]
+  }
+}

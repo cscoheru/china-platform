@@ -147,6 +147,12 @@ def classify(path: Path) -> str:
         return "raw_data"
     if p.startswith("evidence_pack/"):
         return "evidence_pack_artifact"
+    # GE (S1.11) — all ge/ artifacts roll up to a single data_contract_suite
+    # role per docs/25 + reviews/86 §NOW pack contract (role_count +1).
+    if p.startswith("ge/") or p.startswith(".github/workflows/"):
+        return "data_contract_suite"
+    if p == "Makefile":
+        return "data_contract_suite"
     return "other"
 
 
@@ -178,6 +184,16 @@ def collect_artifacts(self_path: Path) -> list[dict]:
         "tests/conftest.py",
         "docs/*.md",
         "docs/plans/*.md",
+        # GE (S1.11) — data contracts per docs/25
+        "ge/README.md",
+        "ge/great_expectations.yml",
+        "ge/expectations/*.json",
+        "ge/checkpoints/*.yml",
+        "ge/plugins/custom_data_docs/*.py",
+        "ge/scripts/*.sh",
+        "ge/tests/*.py",
+        "Makefile",
+        ".github/workflows/*.yml",
         "source_registry/*",
         "evidence_pack/*",
     ]

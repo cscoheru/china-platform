@@ -1,0 +1,65 @@
+# Great Expectations 0.18+ — CEGR S1.11 data contracts
+# Per docs/25 §3 + reviews/86 §SCHEMA
+#
+# DSN chain (env var only — never hardcode credentials):
+#   CEGR_GE_DSN → CEGR_API_DSN → CEGR_DSN → DATABASE_URL → dev default
+
+config_version: 4.0
+
+datasources:
+  cegr_postgres:
+    class_name: Datasource
+    execution_engine:
+      class_name: SqlAlchemyExecutionEngine
+      connection_string: ${CEGR_GE_DSN}
+    data_connectors:
+      default_runtime_data_connector:
+        class_name: RuntimeDataConnector
+        batch_identifiers:
+          - default_identifier_name
+      default_inferred_data_connector:
+        class_name: InferredAssetSqlDataConnector
+        include_schema_name: true
+        introspection_directives:
+          schema_name: cegr_staging
+        database_engine:
+          enabled: true
+          connection_string: ${CEGR_GE_DSN}
+
+config_variables_file_path: uncommitted/config_variables.yml
+
+stores:
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+  validations_store:
+    class_name: ValidationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/validations/
+  evaluation_parameter_store:
+    class_name: EvaluationParameterStore
+
+expectations_store_name: expectations_store
+validations_store_name: validations_store
+evaluation_parameter_store_name: evaluation_parameter_store
+
+data_docs_sites:
+  local_site:
+    class_name: SiteBuilder
+    show_how_to_buttons: true
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/data_docs/local_site/
+
+anonymous_usage_statistics:
+  enabled: false
+
+plugins:
+  custom_data_docs:
+    class_name: EmptyTableHandler
+    module_name: plugins.custom_data_docs.empty_table_handler

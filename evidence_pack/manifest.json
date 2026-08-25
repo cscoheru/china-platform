@@ -2758,9 +2758,129 @@
       "size_bytes": 9577,
       "sha256": "8d0ff39c6659e194a4e29fe56f1eb79c938f83293ca5a7ea3df73e4d7df64f7b",
       "role": "schema_negative_test"
+    },
+    {
+      "path": "ge/README.md",
+      "size_bytes": 2885,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/great_expectations.yml",
+      "size_bytes": 1932,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/expectations/d1_source_registry_suite.json",
+      "size_bytes": 3567,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/expectations/d2_source_document_suite.json",
+      "size_bytes": 3155,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/expectations/d3_ingestion_run_suite.json",
+      "size_bytes": 3208,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/expectations/d4_observation_suite.json",
+      "size_bytes": 4008,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/expectations/d5_indicator_timeseries_suite.json",
+      "size_bytes": 3335,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/checkpoints/ci_checkpoint.yml",
+      "size_bytes": 1923,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/checkpoints/dev_checkpoint.yml",
+      "size_bytes": 739,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/plugins/__init__.py",
+      "size_bytes": 46,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/plugins/custom_data_docs/__init__.py",
+      "size_bytes": 69,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/plugins/custom_data_docs/empty_table_handler.py",
+      "size_bytes": 3436,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/scripts/ge_run.sh",
+      "size_bytes": 1541,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/tests/__init__.py",
+      "size_bytes": 51,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/tests/conftest.py",
+      "size_bytes": 730,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/tests/test_ge_suites_loadable.py",
+      "size_bytes": 5783,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/tests/test_empty_table_strategy.py",
+      "size_bytes": 2710,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "ge/tests/test_checkpoints_loadable.py",
+      "size_bytes": 2758,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": "Makefile",
+      "size_bytes": 989,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
+    },
+    {
+      "path": ".github/workflows/ge-check.yml",
+      "size_bytes": 2290,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "data_contract_suite"
     }
   ],
-  "artifact_count": 458,
+  "artifact_count": 478,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
@@ -2778,7 +2898,8 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 11
+    "schema_negative_test": 11,
+    "data_contract_suite": 20
   },
   "db_ddl_execution": {
     "exit_code": -1,

@@ -1,0 +1,102 @@
+{
+  "expectation_suite_name": "d2_source_document_suite",
+  "ge_cloud_id": null,
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "document_id",
+          "source_id",
+          "domain",
+          "category",
+          "source_level",
+          "verification_status",
+          "title",
+          "publisher",
+          "publication_date",
+          "file_hash_sha256",
+          "file_format",
+          "created_at"
+        ],
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Schema drift guard"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {"column": "document_id", "mostly": 0.99, "result_format": "BASIC"},
+      "meta": {"notes": "PK"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": {"column": "document_id", "result_format": "BASIC"},
+      "meta": {"notes": "PK uniqueness"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {"column": "file_hash_sha256", "mostly": 0.99, "result_format": "BASIC"},
+      "meta": {"notes": "SHA-256 must exist for verification chain (R-08)"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "file_hash_sha256",
+        "regex": "^[a-f0-9]{64}$",
+        "mostly": 0.99,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "64-hex SHA-256"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "verification_status",
+        "value_set": ["VERIFIED", "PARTIAL", "UNVERIFIED", "REJECTED"],
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Enum from cegr.source_verification_status"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {"column": "source_id", "mostly": 0.99, "result_format": "BASIC"},
+      "meta": {"notes": "FK to source_registry"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "publication_date",
+        "min_value": "1900-01-01",
+        "max_value": "2100-12-31",
+        "parse_strings_as_datetimes": true,
+        "mostly": 0.80,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Plausible publication window; allow ≤20% NULL"}
+    },
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {"min_value": 0, "max_value": 100000, "result_format": "BASIC"},
+      "meta": {"notes": "Empty-table honest"}
+    },
+    {
+      "expectation_type": "expect_column_unique_value_count_to_be_between",
+      "kwargs": {
+        "column": "domain",
+        "min_value": 1,
+        "mostly": 0.50,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "At least 1 distinct domain when non-empty"}
+    }
+  ],
+  "data_asset_type": null,
+  "meta": {
+    "citations": [
+      {
+        "citation_date": "2026-08-25",
+        "comment": "Per docs/25 §2 D2; SHA-256 verification (R-08) primary guard"
+      }
+    ]
+  }
+}

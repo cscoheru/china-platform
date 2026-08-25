@@ -1,0 +1,26 @@
+name: dev_checkpoint
+config_version: 1.0
+template_name: null
+module_name: great_expectations.checkpoint
+class_name: Checkpoint
+run_name_template: dev-%Y%m%d-%H%M%S
+expectation_suite_name: null
+batch_request: {}
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction
+validations:
+  - batch_request:
+      datasource_name: cegr_postgres
+      data_connector_name: default_inferred_data_connector
+      data_asset_name: cegr_staging.stg_observation
+      data_connector_query:
+        index: -1
+    expectation_suite_name: d4_observation_suite
+evaluation_parameters: {}
+runtime_configuration: {}
+ge_cloud_id: null

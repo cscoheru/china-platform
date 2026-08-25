@@ -107,3 +107,11 @@ dbt/dbt_packages/
 dbt/logs/
 # dbt auto-generated user ID
 dbt/.user.yml
+
+# ===== GE (S1.11) =====
+# Great Expectations 0.18 runtime artifacts (auto-created on first run;
+# never source-controlled — suites/checkpoints live under ge/expectations/
+# and ge/checkpoints/, not under ge/gx/).
+ge/gx/
+ge/uncommitted/
+ge/data_docs/

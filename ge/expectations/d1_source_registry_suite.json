@@ -1,0 +1,124 @@
+{
+  "expectation_suite_name": "d1_source_registry_suite",
+  "ge_cloud_id": null,
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "source_id",
+          "domain",
+          "organization",
+          "category",
+          "primary_url",
+          "access_method",
+          "source_level",
+          "declared_source_level",
+          "update_frequency",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Schema drift guard"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {"column": "source_id", "mostly": 0.99, "result_format": "BASIC"},
+      "meta": {"notes": "PK constraint — allow ≤1% null for soft rollout"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": {"column": "source_id", "result_format": "BASIC"},
+      "meta": {"notes": "Primary key"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "source_level",
+        "regex": "^S[1-5]$",
+        "mostly": 0.80,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Allow ≤20% NULL/unclassified per docs/25 §6.4"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "category",
+        "value_set": [
+          "NATIONAL_BULLETIN",
+          "PROVINCIAL_YEARBOOK",
+          "MUNICIPAL_BULLETIN",
+          "STATISTICAL_YEARBOOK",
+          "POLICY_DOCUMENT",
+          "RESEARCH_REPORT"
+        ],
+        "mostly": 0.80,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Allow ≤20% unclassified"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "enabled",
+        "min_value": 0,
+        "max_value": 1,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Boolean 0/1"}
+    },
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "min_value": 0,
+        "max_value": 10000,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "min=0 lets empty table PASS (spike 00 honesty)"}
+    },
+    {
+      "expectation_type": "expect_column_unique_value_count_to_be_between",
+      "kwargs": {
+        "column": "domain",
+        "min_value": 1,
+        "mostly": 0.50,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "At least 1 distinct domain when table is non-empty"}
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "domain",
+        "regex": "^[a-z0-9.-]+\\.[a-z]{2,}$",
+        "mostly": 0.90,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Loose FQDN pattern — allow internal/test domains"}
+    },
+    {
+      "expectation_type": "expect_column_pair_values_a_to_be_greater_than_b",
+      "kwargs": {
+        "column_A": "updated_at",
+        "column_B": "created_at",
+        "or_equal": true,
+        "mostly": 0.99,
+        "result_format": "BASIC"
+      },
+      "meta": {"notes": "Cursor audit: use 0.99 not 1.0 (85 §1)"}
+    }
+  ],
+  "data_asset_type": null,
+  "meta": {
+    "citations": [
+      {
+        "citation_date": "2026-08-25",
+        "comment": "Per docs/25 §2 D1 + §6.4 draft sample; 10 expectations"
+      }
+    ],
+    "notes": "D1 — source_registry; mostly strategy per docs/25 §5"
+  }
+}
