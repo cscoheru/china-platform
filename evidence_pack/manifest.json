@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "PENDING-receipt-backfill",
-    "commit_sha_short": "PENDING",
-    "commit_timestamp_utc": "2026-08-25T13:45:58+08:00",
+    "commit_sha": "3b75970",
+    "commit_sha_short": "3b75970",
+    "commit_timestamp_utc": "2026-08-25T19:25:00+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -3036,12 +3036,12 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 502,
+  "artifact_count": 504,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 35,
+    "documentation": 36,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 6,
@@ -3054,7 +3054,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 17,
+    "schema_negative_test": 18,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {
