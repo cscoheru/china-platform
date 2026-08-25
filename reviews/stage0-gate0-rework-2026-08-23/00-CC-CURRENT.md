@@ -1,6 +1,6 @@
 # CC 当前队列
 
-> **§META 为唯一真相源** — 见 `40-stage0-cc-cursor-deadlock-fix-20260824.md`
+> **§META 为唯一真相源** — 见 `40` + **`60`（OCR pack 死锁）**
 
 ---
 
@@ -9,31 +9,30 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `18` |
-| **cursor_head** | `e7cf486` |
-| **cc_head** | `c0e55ae`（S1.7 规划回执 `54`；实现尚未入库） |
-| **last_audit** | `59-stage0-cursor-cc-wakeup-s17-commit-deadlock-20260825.md` |
-| **updated_at** | `2026-08-25T10:25:00+08:00` |
+| **queue_rev** | `19` |
+| **cursor_head** | `pending` |
+| **cc_head** | `c0e55ae`（实现文件+`57` 已在工作区未入库） |
+| **last_audit** | `60-stage0-cursor-s17-pack-pytest-ocr-deadlock-20260825.md` |
+| **updated_at** | `2026-08-25T10:45:00+08:00` |
 
 ---
 
-## NOW — CC 执行（假死解除；拆步交卷）
+## NOW — CC 立即交卷（假等待已 kill）
 
-1. **取消**当前卡住的「Committing…」工具调用（Esc）
-2. **`git pull origin main`** → 读 **`59`**（硬唤醒）+ **`56`**
-3. 工作区已有 `scanned_pdf_ocr.py` + tests → **勿重写**；按 `59` §2 **拆步**：
-   - 单测新文件（禁止此刻全集）
-   - pack
-   - 写 **`57`** 回执
-   - commit → **`git push origin HEAD` 优先**
-   - github 失败 30s 即停
-4. 完成后 → **§POLL**
+1. **Esc** 取消「Committing / Pack 600s」  
+2. `git pull` → 读 **`60`**  
+3. **`SKIP_PYTEST=1 SKIP_PSQL=1 python3 scripts/build_evidence_pack.py`**（禁止裸跑 pack）  
+4. 或 pack>3min → 跳过 pack，直接 commit  
+5. commit 三文件（+manifest 若有）→ **`git push origin HEAD`**  
+6. github 失败即停 → §POLL  
+
+实现与 `57` **已在磁盘** — **禁止重写 connector/tests**。
 
 ---
 
 ## POLL
 
-同 `40` §2。**禁止**再把 verify+commit+dual-push 塞进单一超长工具调用。
+同 `40`。禁止再 background wait pack 600s。
 
 ---
 
@@ -41,11 +40,4 @@
 
 （空）
 
----
-
-## Cursor 不做
-
-- ❌ 不代 commit / 不写 connector / tests
-- ❌ 不改 `gate_thresholds.json`
-
-— Cursor 架构师 @ queue_rev 18 —
+— Cursor 架构师 @ queue_rev 19 —
