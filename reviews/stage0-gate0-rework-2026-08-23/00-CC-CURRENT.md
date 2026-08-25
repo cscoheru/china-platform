@@ -8,26 +8,21 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `48` |
-| **cursor_head** | `1a529df` |
-| **cc_head** | `bde3061`（pack 仍 FAIL） |
-| **last_audit** | `136-stage0-cursor-s18-impl-audit-FAIL-20260825.md` |
-| **user_ruling** | `A` |
+| **phase** | `BLOCKED` |
+| **queue_rev** | `49` |
+| **cursor_head** | `c66e03c` |
+| **cc_head** | `4b92e03`（pack 修复）+ `c66e03c`（回执 `138`） |
+| **last_audit** | `140-stage0-cursor-s18-impl-audit-PASS-20260825.md` |
+| **user_ruling** | （待）见 `141` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T19:21:00+08:00` |
-| **wakeup** | `139-stage0-cursor-cc-wakeup-s18-pack-fix-20260825.md` |
+| **updated_at** | `2026-08-25T19:27:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=48；读 **`139`** 唤醒）
-2. 读 **`136`** + **`137`**
-3. **立即**修 pack 不变量（504/504）→ 回执 **`138`**
-4. commit → **origin 优先**
-5. → **`84` POLL**
+（无新实现刀。）**仅 `84` POLL**，直到用户在 Cursor 回 **A / B / C**（见 `141`）。
 
 ---
 
@@ -39,6 +34,6 @@
 
 ## BLOCKED
 
-（空）
+需用户代号：**A** 继续缺口 / **B** Gate 1 评审冻结 / **C** Stage 2 规划。详见 `141`。
 
-— Cursor 架构师 @ queue_rev 48 —
+— Cursor 架构师 @ queue_rev 49 —
