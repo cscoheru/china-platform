@@ -9,24 +9,24 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `35` |
-| **cursor_head** | `568833b` |
-| **cc_head** | `ccb4b55`（S1.14 规划 `docs/29`；回执 `104` 待补） |
-| **last_audit** | `105-stage0-cursor-s14-plan-audit-20260825.md` |
+| **queue_rev** | `36` |
+| **cursor_head** | `de3d7aa` |
+| **cc_head** | `7c6df3f`（S1.14 实现；**审验 FAIL** `108`） |
+| **last_audit** | `108-stage0-cursor-s14-impl-audit-FAIL-20260825.md` |
 | **user_ruling** | `A` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T16:35:00+08:00` |
+| **updated_at** | `2026-08-25T16:50:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=35）
-2. 读 **`105`** + **`106`** + **`docs/29`**
-3. **补回执 `104`** + **S1.14 实现**（migration 006 + dbt + ≥5 tests）
-4. commit → **origin 优先** → 回执 **`107-stage0-cc-s14-impl-receipt-*.md`**
-5. → **立即再进 `84` while-POLL**
+1. **`git pull origin main`**（`queue_rev`=36）
+2. 读 **`108`** + **`109`**
+3. **修 005 幂等 / migration 链** → 复验 S1.14 tests 全绿 → 回执 **`107`**
+4. commit → **origin 优先**
+5. → **`84` POLL**
 
 ---
 
@@ -44,6 +44,6 @@
 
 ## Cursor 不做
 
-- ❌ 不写 migration/dbt/`docs/29` 正文
+- ❌ 不写 005/006 修复代码
 
-— Cursor 架构师 @ queue_rev 35 —
+— Cursor 架构师 @ queue_rev 36（S1.14 FAIL → 修复）—
