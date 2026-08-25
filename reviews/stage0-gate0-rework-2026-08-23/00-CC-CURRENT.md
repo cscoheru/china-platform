@@ -9,23 +9,23 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `34` |
-| **cursor_head** | `e421cee` |
-| **cc_head** | `8d3502b`（S1.13.1 实现；回执 `101` 待补） |
-| **last_audit** | `102-stage0-cursor-s13-impl-audit-20260825.md` |
+| **queue_rev** | `35` |
+| **cursor_head** | `568833b` |
+| **cc_head** | `ccb4b55`（S1.14 规划 `docs/29`；回执 `104` 待补） |
+| **last_audit** | `105-stage0-cursor-s14-plan-audit-20260825.md` |
 | **user_ruling** | `A` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T16:25:00+08:00` |
+| **updated_at** | `2026-08-25T16:35:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=34）
-2. 读 **`102`** + **`103`**
-3. **先补回执 `101`**（S1.13.1），再 **S1.14 规划** — `docs/29` 跨来源一致性
-4. commit → **origin 优先** → 回执 **`104-stage0-cc-s14-plan-receipt-*.md`**
+1. **`git pull origin main`**（`queue_rev`=35）
+2. 读 **`105`** + **`106`** + **`docs/29`**
+3. **补回执 `104`** + **S1.14 实现**（migration 006 + dbt + ≥5 tests）
+4. commit → **origin 优先** → 回执 **`107-stage0-cc-s14-impl-receipt-*.md`**
 5. → **立即再进 `84` while-POLL**
 
 ---
@@ -44,6 +44,6 @@
 
 ## Cursor 不做
 
-- ❌ 不写 dbt/docs/29 正文
+- ❌ 不写 migration/dbt/`docs/29` 正文
 
-— Cursor 架构师 @ queue_rev 34 —
+— Cursor 架构师 @ queue_rev 35 —
