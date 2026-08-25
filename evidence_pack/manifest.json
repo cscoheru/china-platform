@@ -3,8 +3,8 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "fa8249af3d2dae9d5f32ef94979b6b807b8e3a57",
-    "commit_sha_short": "fa8249af3d2d",
+    "commit_sha": "bff23a8f86d2db8f0fd5938d5fa4abe7d0b753ea",
+    "commit_sha_short": "bff23a8",
     "commit_timestamp_utc": "2026-08-25T13:45:58+08:00",
     "branch": "main"
   },
@@ -2929,8 +2929,8 @@
     },
     {
       "path": "dbt/models/marts/mart_source_disagreement.sql",
-      "size_bytes": 2394,
-      "sha256": "d8892c07a49e84f82a6fc4cce2729d1aba589da2c3bd7b82c69d7108f625eafc",
+      "size_bytes": 2410,
+      "sha256": "d3518b11347216e2771170a0db404a72ef63f49466b5e905edfd1d5e38ad2873",
       "role": "spike_helper"
     },
     {
@@ -2962,27 +2962,57 @@
       "size_bytes": 7490,
       "sha256": "c397230fd8d5962b8cc9abc2407d019458fd4201803f1b02d1b5457e8c38c295",
       "role": "documentation"
+    },
+    {
+      "path": "dbt/packages.yml",
+      "size_bytes": 77,
+      "sha256": "3135a8533b6284390712d921ce2a3fa6f2cc3db98c4f3061dfc1f1cabaa7041e",
+      "role": "documentation"
+    },
+    {
+      "path": "dbt/package-lock.yml",
+      "size_bytes": 133,
+      "sha256": "a4d6f0312e87bc544fc7597cc6bee377e68355e9964a9380f33cf5b387a81452",
+      "role": "documentation"
+    },
+    {
+      "path": "dbt/tests/test_cross_source_consistency_threshold.sql",
+      "size_bytes": 592,
+      "sha256": "72ebf50b5c483e77a2eaa84fd1826a08cc69a7405d3c2f5a7d4716c589574317",
+      "role": "spike_helper"
+    },
+    {
+      "path": "requirements-dbt.txt",
+      "size_bytes": 349,
+      "sha256": "db73c34251af1d3754ed55d7f8a80b2bb827527078fadf596221f6657cbcbc2a",
+      "role": "documentation"
+    },
+    {
+      "path": "tests/test_r03_cross_source_dbt.py",
+      "size_bytes": 13885,
+      "sha256": "991ec9d5e4184824422bbab0e9e9d7b6f2b37a78628722e060dde6b84602239f",
+      "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 492,
+  "artifact_count": 497,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 30,
+    "documentation": 33,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 6,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
-    "spike_helper": 5,
+    "spike_helper": 6,
     "spike_sample_or_truth": 383,
     "spike_extractor": 7,
     "spike_test": 7,
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 14,
+    "schema_negative_test": 15,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {
