@@ -15,7 +15,8 @@ Cursor **自主**执行至 **Stage 1 任务链收口**（当前目标：S1.11 �
 ## 节奏
 
 - 监管循环：**约 3 分钟** pull 一次（对齐 CC §POLL）
-- CC 仍按 `40` §POLL；Cursor 不依赖聊天唤醒 CC
+- **双向心跳升级见 `84`**：CC 必须自武装 while-POLL；Cursor 不依赖聊天唤醒 CC
+- 唯一信道：`origin/main` 的 `queue_rev` / §NOW
 
 ## Cursor 仍不做
 
@@ -27,4 +28,4 @@ Cursor **自主**执行至 **Stage 1 任务链收口**（当前目标：S1.11 �
 - Stage 1 队列收口（S1.12 任务书完成或用户喊停）
 - 或用户取消本站立令
 
-— End —
+— End —（补丁：与 `84` 联读）
