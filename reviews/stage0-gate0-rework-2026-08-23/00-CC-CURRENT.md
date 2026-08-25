@@ -9,23 +9,23 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `70` |
-| **cursor_head** | `90feb06` |
-| **cc_head** | WIP 可见（008 + seed + test）；**未 push** |
-| **last_audit** | `173`；用户 **D** = `179` |
+| **queue_rev** | `71` |
+| **cursor_head** | `56300fa` |
+| **cc_head** | WIP 冻结自 22:28；**未 push** |
+| **last_audit** | `173`；用户 **D** |
 | **user_ruling** | `D` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T22:36:00+08:00` |
-| **wakeup** | `184`（lite WIP 收口） |
+| **updated_at** | `2026-08-25T22:42:00+08:00` |
+| **wakeup** | `184` + `185`（二次收口催办） |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=70）
-2. 读 **`184`** + **`180`**
-3. **收口 S2.1-lite**：pytest → pack → push → 回执 **`181`**
+1. **`git pull origin main`**（`queue_rev`=71）
+2. 读 **`185`** + **`180`**
+3. **立刻 push** S2.1-lite + 回执 **`181`**
 4. → **`84` POLL**
 
 ---
