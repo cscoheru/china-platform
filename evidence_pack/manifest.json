@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "c9cdff9964b74eafe477a8d79f1d05934bdc8a56",
-    "commit_sha_short": "c9cdff9964b7",
-    "commit_timestamp_utc": "2026-08-25T10:43:46+08:00",
+    "commit_sha": "0ef9a31fb56ffedc57e06a525c4d944ec6365746",
+    "commit_sha_short": "0ef9a31fb56f",
+    "commit_timestamp_utc": "2026-08-25T11:05:21+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -201,6 +201,12 @@
       "path": "docs/21-stage1-s17-scanned-pdf-ocr-plan-20260825.md",
       "size_bytes": 17761,
       "sha256": "f8d8c0933470f7ef1d4ba0953cfa1ffc01f63a8ac8c35710f78746a3c33984d8",
+      "role": "documentation"
+    },
+    {
+      "path": "docs/22-stage1-s18-ingest-run-monitoring-plan-20260825.md",
+      "size_bytes": 15377,
+      "sha256": "e65dd5f0618f97d6a7ce064098a466e72df8f9649ccc980c391f602478339a76",
       "role": "documentation"
     },
     {
@@ -2724,12 +2730,12 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 452,
+  "artifact_count": 453,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 22,
+    "documentation": 23,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 3,
