@@ -8,35 +8,31 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `82` |
-| **cursor_head** | `c5a8808` |
-| **cc_head** | `72b9180` + FAIL `206`；修复未交 |
+| **phase** | `BLOCKED` |
+| **queue_rev** | `83` |
+| **cursor_head** | `6a4d584` |
+| **cc_head** | `72b9180`；FAIL `206`；**修复未交** |
 | **last_audit** | `206` FAIL |
-| **user_ruling** | `D` / Stage 2 `C` |
+| **user_ruling** | （待回 `211` 代号） |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-26T00:06:00+08:00` |
-| **wakeup** | `209` + `210`（二次催办） |
+| **expect_cc_poll** | `POLL_ONLY` |
+| **updated_at** | `2026-08-26T00:12:00+08:00` |
+| **blocked_by** | `211`（s23lite fix 双唤醒后无响应） |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=82）
-2. 读 **`210`** + **`207`**
-3. **修 idempotent pytest**；回执 **`208`**
-4. commit → **origin 优先**
-5. → **`84` POLL**
+**暂停。** `phase=BLOCKED` — 仅 §POLL；**不**执行 `207` 直至用户回 `211` 代号。
 
 ---
 
 ## POLL
 
-同 `84`。
+同 `84`（BLOCKED 时只 POLL）。
 
 ---
 
 ## BLOCKED
 
-（空）
+见 **`211-stage0-cursor-cc-stall-s23-lite-fix-blocked-20260826.md`** — 代号 **A / B / C / D**。
