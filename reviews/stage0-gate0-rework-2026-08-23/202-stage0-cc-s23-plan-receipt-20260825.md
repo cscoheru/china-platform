@@ -17,10 +17,10 @@
 | 2 | 读 `200` + `201` + `docs/04` | ✅ | — | — |
 | 3 | 起草 `docs/38-stage2-s23-project-plan-20260825.md` | ✅ | `74e46fb6…` | documentation |
 | 4 | 补 pack (documentation +1) | ✅ | — | spike_helper |
-| 5 | commit → origin 优先 | ✅ | 见下 | commit |
-| 6 | 回执 `202` 进 `reviews/` | ✅（本文件） | `pending commit SHA backfill` | documentation |
-| 7 | push origin / github | 见下 | — | — |
-| 8 | → `84` POLL | 见下 | — | — |
+| 5 | commit → origin 优先 | ✅ | `a639576` | commit |
+| 6 | 回执 `202` 进 `reviews/` | ✅（本文件） | `87b9c2be…` | documentation |
+| 7 | push origin / github | ✅ 双推成功（`102bdab..a639576`） | — | — |
+| 8 | → `84` POLL | ✅ 已 re-arm | — | — |
 
 ---
 
@@ -135,10 +135,10 @@
 |---|---|---|
 | origin pull | `git fetch origin && git pull --ff-only origin main` | queue_rev 78 |
 | commit | `git add … && git commit -m "docs: S2.3 project_event 规划 + 回执 202"` | `pending` (待最终确认) |
-| origin push | `git push origin HEAD`（**priority**）| 待 push 收尾 |
-| github push | `git push github HEAD`（带 proxy）| 待 push 收尾 |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `102bdab..a639576` → main |
+| github push | `git push github HEAD`（带 proxy）| ✅ `102bdab..a639576` → main |
 
-> 推送以 git log 实际输出为准；本回执 SHA 待 commit 落地后回填。
+> 三路对齐：`origin/main = github/main = local HEAD = a639576`。
 
 ---
 
