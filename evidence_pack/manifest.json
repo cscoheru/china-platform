@@ -4,7 +4,7 @@
   "commit": {
     "committed": true,
     "commit_sha": "PENDING",
-    "commit_sha_short": "bff23a8",
+    "commit_sha_short": "PENDING",
     "commit_timestamp_utc": "2026-08-25T13:45:58+08:00",
     "branch": "main"
   },
@@ -2995,17 +2995,23 @@
     },
     {
       "path": "docs/32-stage1-s17-r12-url-health-plan-20260825.md",
-      "size_bytes": 11653,
-      "sha256": "4e8da8390a346d156ca4a339c03b820f1bb6391673576e2a105dd416643eb181",
+      "size_bytes": 11695,
+      "sha256": "0c7d28b444ff4d6497bf388a81b2c784d55d08749f3f21c1b60b3fea18d7984d",
+      "role": "documentation"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/125-stage0-cc-s17-plan-receipt-20260825.md",
+      "size_bytes": 5042,
+      "sha256": "8846af2c0f96994793324e92334ccb3bcf929ccdb5a873eb96cba46a357592bc",
       "role": "documentation"
     }
   ],
-  "artifact_count": 498,
+  "artifact_count": 499,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 34,
+    "documentation": 35,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 6,

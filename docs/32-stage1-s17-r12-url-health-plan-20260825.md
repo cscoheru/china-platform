@@ -131,7 +131,7 @@ python3 scripts/monitor_ingest.py check --max-failure-rate 0.25 --window-days 7
 | # | 用例 | 期望 |
 |---|---|---|
 | 1 | 无源（registry 为空）→ 退出码 0 + 不写 ingestion_run | 空表诚实 |
-| 2 | 主 URL 200 + 1 个 backup 500 → status='PARTIAL' 主 + 'FAILED' 备 | 200/500 分流 |
+| 2 | 主 URL 200 + 1 个 backup 500 → 主 'SUCCESS' + 备 'FAILED' | 200/500 分流（per 126 §1；退出码按 §2.3 聚合 = 1） |
 | 3 | 主 URL 4xx → 主 'FAILED' + 备未探（不级联） | 失败不传染 |
 | 4 | 验证码特征 HTML → 'PARTIAL' | 不爬 + 放弃 |
 | 5 | DNS 失败 → 'FAILED' + error_log 含 `'DNSError'` | 异常分类 |
