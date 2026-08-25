@@ -1,6 +1,6 @@
 # CC 当前队列
 
-> **§META 为唯一真相源** — 见 `40`；OCR/pack 见 `60`
+> **§META 为唯一真相源** — 见 `40` + `60`（pack/OCR）
 
 ---
 
@@ -9,21 +9,21 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `22` |
-| **cursor_head** | `4c57d66` |
-| **cc_head** | `853a53d`（S1.8 回执 `66`） |
-| **last_audit** | `68-stage0-cursor-s18-impl-audit-20260825.md` |
-| **updated_at** | `2026-08-25T12:10:00+08:00` |
+| **queue_rev** | `23` |
+| **cursor_head** | `pending` |
+| **cc_head** | `cad8b0b`（S1.9 规划回执 `70`） |
+| **last_audit** | `71-stage0-cursor-s19-plan-audit-20260825.md` |
+| **updated_at** | `2026-08-25T12:25:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=22）
-2. 读 **`68`** + **`69`**
-3. **S1.9 规划** — CC 起草 `docs/23`（dbt staging）
-4. commit → **origin 优先** → 回执 **`70-stage0-cc-s19-plan-receipt-*.md`**
-5. → **§POLL**（禁止假死空等；交卷后拆步 push）
+1. **`git pull origin main`**（`queue_rev`=23）
+2. 读 **`71`** + **`72`** + **`docs/23`**
+3. **S1.9 实现** — `dbt/` 脚手架 + 7 models + tests + `dbt run/test`
+4. commit → **origin 优先** → 回执 **`73-stage0-cc-s19-impl-receipt-*.md`**
+5. → **§POLL**（拆步；勿假死）
 
 ---
 
@@ -41,6 +41,6 @@
 
 ## Cursor 不做
 
-- ❌ 不写 dbt / tests / `docs/23` 正文
+- ❌ 不写 dbt SQL / tests / `docs/23` 正文
 
-— Cursor 架构师 @ queue_rev 22 —
+— Cursor 架构师 @ queue_rev 23 —
