@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "ee5b2cc952d07e318245554abbce1e1cd3399e8b",
-    "commit_sha_short": "ee5b2cc952d0",
-    "commit_timestamp_utc": "2026-08-25T12:33:02+08:00",
+    "commit_sha": "1205cad03caca035ec77cd4b0b6578c9fb97cb3e",
+    "commit_sha_short": "1205cad03cac",
+    "commit_timestamp_utc": "2026-08-25T12:53:33+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",
@@ -2688,6 +2688,12 @@
       "role": "test_conftest"
     },
     {
+      "path": "tests/test_api_s110.py",
+      "size_bytes": 16917,
+      "sha256": "67148d0bbc52922c2027488f960df5e35cbb47b07e594895f8e22cdcae00d00c",
+      "role": "schema_negative_test"
+    },
+    {
       "path": "tests/test_cleanliness.py",
       "size_bytes": 9046,
       "sha256": "17b0f6478e0131f2672d4a59e47d35159e98ff0d55e96f4be1948a827ff981c5",
@@ -2748,7 +2754,7 @@
       "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 456,
+  "artifact_count": 457,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
@@ -2766,7 +2772,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 10
+    "schema_negative_test": 11
   },
   "db_ddl_execution": {
     "exit_code": -1,
