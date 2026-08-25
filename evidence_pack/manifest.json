@@ -282,6 +282,12 @@
       "role": "source_registry_csv"
     },
     {
+      "path": "scripts/compute_file_sha.py",
+      "size_bytes": 4311,
+      "sha256": "b5d284986afd7596a5bd54fbf0ff4542ec5d2bab480ff9023357c871b0216ef6",
+      "role": "spike_helper"
+    },
+    {
       "path": "spikes/00-national-yearbook-table/build_per_column_accuracy.py",
       "size_bytes": 7554,
       "sha256": "f5dd8b908f2f612cb609d351931c66d531c9360054090861414f3cdbb4606ea4",
@@ -2724,6 +2730,12 @@
       "role": "schema_negative_test"
     },
     {
+      "path": "tests/test_compute_file_sha.py",
+      "size_bytes": 6995,
+      "sha256": "31ba233afa0e2519122460f515c92695b2cae0d53704bec712de676490ff79c0",
+      "role": "schema_negative_test"
+    },
+    {
       "path": "tests/test_demo_sha_sentinel.py",
       "size_bytes": 12903,
       "sha256": "f7272cc70b66ccba1e4527a848a57c06fa059bd22d6bd21df5a46e2bc21accd8",
@@ -2994,6 +3006,12 @@
       "role": "spike_helper"
     },
     {
+      "path": "docs/35-stage2-s202-real-sha-probe-plan-20260825.md",
+      "size_bytes": 12684,
+      "sha256": "9188604e529f0e11d7838c8a3ac780cfeebcb46e20b46a56b295fdb3afab0a64",
+      "role": "documentation"
+    },
+    {
       "path": "requirements-dbt.txt",
       "size_bytes": 349,
       "sha256": "db73c34251af1d3754ed55d7f8a80b2bb827527078fadf596221f6657cbcbc2a",
@@ -3048,25 +3066,25 @@
       "role": "documentation"
     }
   ],
-  "artifact_count": 506,
+  "artifact_count": 509,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 37,
+    "documentation": 38,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 6,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
-    "spike_helper": 7,
+    "spike_helper": 8,
     "spike_sample_or_truth": 383,
     "spike_extractor": 7,
     "spike_test": 7,
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 19,
+    "schema_negative_test": 20,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {
