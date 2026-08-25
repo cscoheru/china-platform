@@ -1,0 +1,101 @@
+version: 2
+
+models:
+  - name: stg_source_registry
+    description: "Cleaned source registry (enabled filter, id→source_id rename)"
+    columns:
+      - name: source_id
+        description: "UUID primary key (renamed from id)"
+        tests:
+          - unique
+          - not_null
+      - name: domain
+        description: "Source domain"
+        tests:
+          - not_null
+      - name: category
+        description: "Source category enum"
+        tests:
+          - not_null
+      - name: file_hash_sha256
+        description: "SHA-256 hex of local sample"
+        tests:
+          - sha256_format
+
+  - name: stg_ingestion_run
+    description: "Cleaned ingestion_run + duration + insertion_pct + is_stale"
+    columns:
+      - name: run_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: "RUNNING / SUCCESS / PARTIAL / FAILED"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['RUNNING', 'SUCCESS', 'PARTIAL', 'FAILED']
+      - name: duration_seconds
+        description: "finished_at - started_at (seconds)"
+        tests:
+          - duration_non_negative
+      - name: insertion_pct
+        description: "inserted / extracted * 100"
+        tests:
+          - insertion_pct_range
+
+  - name: stg_source_document
+    description: "Source documents joined with registry metadata"
+    columns:
+      - name: document_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: source_id
+        description: "FK to source_registry"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_source_registry')
+              field: source_id
+      - name: file_hash_sha256
+        description: "SHA-256 of ingested file"
+        tests:
+          - not_null
+          - sha256_format
+
+  - name: stg_observation
+    description: "Cleaned observations (FACT only, migration 004 columns)"
+    columns:
+      - name: observation_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: source_id
+        description: "FK to source_document"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_source_document')
+              field: document_id
+      - name: value_type
+        description: "Information layer enum"
+        tests:
+          - accepted_values:
+              values: ['FACT']
+
+  - name: stg_observation_quality
+    description: "Per-observation quality scoring (0-1 composite)"
+    columns:
+      - name: observation_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: quality_score
+        description: "5-factor composite score (0-1)"
+        tests:
+          - quality_score_range

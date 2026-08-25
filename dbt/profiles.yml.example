@@ -1,0 +1,39 @@
+# dbt profiles template for CEGR project
+# Copy to profiles.yml and fill in env vars (or set env vars directly)
+#
+# Environment variables:
+#   CEGR_DB_HOST  - PostgreSQL host (default: 127.0.0.1)
+#   CEGR_DB_PORT  - PostgreSQL port (default: 55440)
+#   CEGR_DB_USER  - PostgreSQL user (default: postgres)
+#   CEGR_DB_PASS  - PostgreSQL password (default: postgres)
+#   CEGR_DB_NAME  - PostgreSQL database (default: cegr_test)
+#
+# Usage:
+#   export CEGR_DB_HOST=127.0.0.1
+#   export CEGR_DB_PORT=55440
+#   export CEGR_DB_USER=postgres
+#   export CEGR_DB_PASS=postgres
+#   export CEGR_DB_NAME=cegr_test
+#   cd dbt && dbt run
+
+cegr:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('CEGR_DB_HOST', '127.0.0.1') }}"
+      port: "{{ env_var('CEGR_DB_PORT', '55440') | int }}"
+      user: "{{ env_var('CEGR_DB_USER', 'postgres') }}"
+      pass: "{{ env_var('CEGR_DB_PASS', 'postgres') }}"
+      dbname: "{{ env_var('CEGR_DB_NAME', 'cegr_test') }}"
+      schema: cegr_staging
+      threads: 4
+    prod:
+      type: postgres
+      host: "{{ env_var('CEGR_DB_HOST') }}"
+      port: "{{ env_var('CEGR_DB_PORT') | int }}"
+      user: "{{ env_var('CEGR_DB_USER') }}"
+      pass: "{{ env_var('CEGR_DB_PASS') }}"
+      dbname: "{{ env_var('CEGR_DB_NAME') }}"
+      schema: cegr_staging
+      threads: 2

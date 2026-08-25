@@ -97,3 +97,13 @@ spikes/00-provincial-yearbook-table/data/extracted/
 
 # ===== 研究 Agent 临时缓存（不入库，研究 Agent 自己读写） =====
 .firecrawl/
+
+# ===== dbt (S1.9) =====
+# 真实凭证不入库（PRD 11.5 / Cursor 72 §SCHEMA 决策）
+dbt/profiles.yml
+# dbt 运行时产物（target 已在上面 Build/Dist 排除；这里冗余列出）
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+# dbt auto-generated user ID
+dbt/.user.yml

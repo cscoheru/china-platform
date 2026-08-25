@@ -3,9 +3,9 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "7c85789e71e8c05bd32116f3faab00916f439f14",
-    "commit_sha_short": "7c85789e71e8",
-    "commit_timestamp_utc": "2026-08-25T12:07:27+08:00",
+    "commit_sha": "41ae6046c4a743c57e17ed356b1a451a4ac1e614",
+    "commit_sha_short": "41ae6046c4a7",
+    "commit_timestamp_utc": "2026-08-25T12:22:06+08:00",
     "branch": "main"
   },
   "python_version": "3.14.3",

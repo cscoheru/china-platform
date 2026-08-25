@@ -1,0 +1,90 @@
+version: 2
+
+sources:
+  - name: cegr
+    description: "Raw CEGR tables (source of truth; staging views read from here)"
+    schema: cegr
+    tables:
+      - name: source_registry
+        description: "Registry of all data publishers"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: domain
+            description: "Source domain (e.g. stats.gov.cn)"
+          - name: organization
+            description: "Publishing organization"
+          - name: category
+            description: "Source category enum"
+          - name: primary_url
+            description: "Primary access URL"
+          - name: access_method
+            description: "Extraction method enum"
+          - name: source_level
+            description: "Platform-effective source level (S0-S4)"
+          - name: declared_source_level
+            description: "Uploader's claimed source level"
+          - name: enabled
+            description: "Whether source is active"
+          - name: file_hash_sha256
+            description: "SHA-256 hash of local sample file"
+
+      - name: ingestion_run
+        description: "Connector execution tracking"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: source_registry_id
+            description: "FK to source_registry"
+          - name: status
+            description: "RUNNING / SUCCESS / PARTIAL / FAILED"
+          - name: started_at
+            description: "Run start timestamp"
+          - name: finished_at
+            description: "Run end timestamp (NULL while running)"
+          - name: records_extracted
+            description: "Records extracted from source"
+          - name: records_inserted
+            description: "Records inserted into observation"
+
+      - name: source_document
+        description: "Immutable record of every ingested file"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: source_registry_id
+            description: "FK to source_registry"
+          - name: source_level
+            description: "Effective source level"
+          - name: verification_status
+            description: "UNVERIFIED / PENDING / VERIFIED / REJECTED"
+          - name: file_hash_sha256
+            description: "SHA-256 of ingested file (64 hex chars)"
+          - name: extraction_method
+            description: "How the file was parsed"
+
+      - name: observation
+        description: "Core fact table (immutable except caveat_text)"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: indicator_id
+            description: "FK to indicator_definition"
+          - name: geo_entity_id
+            description: "FK to geo_entity"
+          - name: calendar_period_id
+            description: "FK to calendar_period"
+          - name: value
+            description: "Numeric value (NULL when missing)"
+          - name: value_type
+            description: "FACT / DERIVED / INFERENCE / JUDGMENT"
+          - name: source_id
+            description: "FK to source_document"
+          - name: confidence
+            description: "0-1 confidence score"
+          - name: lineage
+            description: "JSONB provenance chain"
+          - name: period_start
+            description: "Period start date (migration 004)"
+          - name: period_end
+            description: "Period end date (migration 004)"

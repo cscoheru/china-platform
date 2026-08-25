@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: int_indicator_timeseries
+    description: "Indicator × geo × period time series (Gate 1 research consumer)"
+    columns:
+      - name: indicator_id
+        description: "FK to indicator_definition"
+        tests:
+          - not_null
+      - name: geo_entity_id
+        description: "FK to geo_entity"
+        tests:
+          - not_null
+      - name: period_start
+        description: "Period start date"
+        tests:
+          - not_null
+      - name: value
+        description: "Numeric value (NULL rows excluded)"
+        tests:
+          - not_null
+      - name: source_domain
+        description: "Provenance domain"
+        tests:
+          - not_null
+
+  - name: int_source_coverage
+    description: "Source-level coverage and quality aggregation"
+    columns:
+      - name: source_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: domain
+        description: "Source domain"
+        tests:
+          - not_null
+      - name: failure_rate
+        description: "Aggregate failure rate (0-1)"
+        tests:
+          - not_null
