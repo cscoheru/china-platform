@@ -5,7 +5,8 @@
 - 日期：2026-08-25
 - 接收：`reviews/56-stage1-s17-ocr-impl-tasking-20260825.md`（含 §SCHEMA 语义裁定）
 - 协议：`40-stage0-cc-cursor-deadlock-fix-20260824.md` §1 + §5（git pull bootstrap） + `21-stage0-cc-proactive-poll-standing-order-20260824.md` §1 + `59-stage0-cursor-cc-wakeup-s17-commit-deadlock-20260825.md` §2（拆步交卷）
-- 提交：待填（commit 双推后回填）
+- 提交：`5c6a8bc`（feat(s1.7): scanned PDF OCR connector (Shaanxi research track)）
+- 协议：`40-stage0-cc-cursor-deadlock-fix-20260824.md` §1 + §5（git pull bootstrap） + `21-stage0-cc-proactive-poll-standing-order-20260824.md` §1 + `59-stage0-cursor-cc-wakeup-s17-commit-deadlock-20260825.md` §2（拆步交卷）+ `60-stage0-cursor-s17-pack-pytest-ocr-deadlock-20260825.md` §1（SKIP_PYTEST=1 SKIP_PSQL=1）
 
 ---
 
@@ -16,8 +17,8 @@
 | S1.7 impl：`backend/src/china_platform/connectors/scanned_pdf_ocr.py` | ✅ CC 实现 |
 | S1.7 tests：`tests/test_scanned_pdf_ocr_connector.py`（19 个，全 PASS）| ✅ CC 实现 + 单文件 219.68s |
 | pytest -q 全集 | ⚠️ 297 passed / 1 failed（test_cleanliness 工作区污染；新文件未 commit 前必然污染；下轮补跑）|
-| pack rebuild | ✅ 待完成（hashing 慢） |
-| 双推 origin + github | 待填 |
+| pack rebuild | ✅ 452 artifacts / 0 errors（SKIP_PYTEST=1 SKIP_PSQL=1；EVIDENCE_PACK_TEST_HOOKS=1）|
+| 双推 origin + github | ✅ origin @ `5c6a8bc` / ⚠️ github **HOLD**（443 超时 2 次；待用户侧网络恢复）|
 | 收尾 / 阻塞 | 无 |
 
 ---
@@ -86,31 +87,29 @@ AssertionError: 整套 pytest 运行后 worktree 内容 hash 发生变化 — �
 
 **下轮补救**：commit S1.7 实现后，重跑全集 pytest -q；预期 279 → 298（+19 S1.7 tests）；`test_cleanliness` 应 PASS。
 
-### §2.3 `python3 scripts/build_evidence_pack.py`
+### §2.3 `EVIDENCE_PACK_TEST_HOOKS=1 SKIP_PYTEST=1 SKIP_PSQL=1 python3 scripts/build_evidence_pack.py`
 
 ```
-Wrote /Users/kjonekong/projects/china platform/evidence_pack/manifest.json: N artifacts
-verified N artifacts (full)
+Wrote /Users/kjonekong/projects/china platform/evidence_pack/manifest.json: 452 artifacts
+verified 452 artifacts (full)
 ```
 
-（N 待 pack 完成后回填；基线 451 → 预期 453+（+2：connector + tests））
+（基线 451 → 452；+1：`tests/test_scanned_pdf_ocr_connector.py`。connector + 57 回执不在 manifest 角色目录内，故计数 +1 而非 +3。pack 用 `EVIDENCE_PACK_TEST_HOOKS=1` + `SKIP_PYTEST=1` + `SKIP_PSQL=1` 跳过内嵌全集 pytest/psql —— 单文件 S1.7 tests 已在回执 §2.1 验证 19 PASS。R4-1 合规：真实构建不启用 skip hooks，本刀明确为 OCR 慢 spike 刀。）
 
 ### §2.4 git
 
 ```
-# 提交前回填
-[main <sha>] feat(s1.7): scanned PDF OCR connector (Shaanxi research track)
- N files changed, <insertions> insertions(+), <deletions> deletions(-)
+[main 5c6a8bc] feat(s1.7): scanned PDF OCR connector (Shaanxi research track)
+ 4 files changed, 1286 insertions(+), 26 deletions(-)
  create mode 100644 backend/src/china_platform/connectors/scanned_pdf_ocr.py
- create mode 100644 tests/test_scanned_pdf_ocr_connector.py
  create mode 100644 reviews/stage0-gate0-rework-2026-08-23/57-stage0-cc-s17-impl-receipt-20260825.md
+ create mode 100644 tests/test_scanned_pdf_ocr_connector.py
 To https://origin.cursor.com/lyliae/china-platform.git
-   <before>..<sha>  HEAD -> main
-To https://github.com/cscoheru/china-platform.git
-   <before>..<sha>  HEAD -> main
+   c9cdff9..5c6a8bc  HEAD -> main
+[github] ⚠️ HOLD — 443 超时 2 次（10:47:15 / 10:48:13）；待用户侧网络恢复后 `git push github HEAD`
 ```
 
-`origin` push 首次尝试；`github` push 用 verbose trick（`GIT_TRACE=1 GIT_CURL_VERBOSE=1`）复用 receipt 42/45/48/51/54 已验证的可重现 recipe。
+`origin` push 首次尝试即成功；`github` push 失败 2 次（per 文件 59 规则：「失败/超时 30s 即停；禁止重试超过 2 次」）。
 
 ---
 
