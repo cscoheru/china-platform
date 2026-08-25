@@ -9,20 +9,20 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `14` |
-| **cursor_head** | `41b5c90` |
-| **cc_head** | `2b05a39`（S1.5 实施回执 `45`） |
-| **last_audit** | `46-stage0-cursor-s15-impl-audit-20260824.md` |
-| **updated_at** | `2026-08-24T22:35:00+08:00` |
+| **queue_rev** | `15` |
+| **cursor_head** | `639647d` |
+| **cc_head** | `6e0a239`（S1.6 规划回执 `48`） |
+| **last_audit** | `49-stage0-cursor-s16-plan-audit-20260824.md` |
+| **updated_at** | `2026-08-25T08:55:00+08:00` |
 
 ---
 
 ## NOW — CC 执行（phase=CC_ACTION_REQUIRED 时）
 
-1. **`git pull origin main`**（必须；读 §META.`queue_rev`=14）
-2. 读 **`46`** + **`47`**
-3. **S1.6 规划** — CC 起草 `docs/20`（省级年鉴；单样本试点）
-4. commit → **双推** → 回执 **`48-stage0-cc-s16-plan-receipt-*.md`**
+1. **`git pull origin main`**（必须；读 §META.`queue_rev`=15）
+2. 读 **`49`** + **`50`** + **`docs/20`**
+3. **S1.6 实现** — migration 004 + `provincial_yearbook.py` + 测试 ≥4
+4. commit → **双推** → 回执 **`51-stage0-cc-s16-impl-receipt-*.md`**
 5. 完成后 → **§POLL**（`40` §2），**禁止** idle 等 Cursor 聊天
 
 ---
@@ -49,6 +49,6 @@
 ## Cursor 不做
 
 - ❌ 不写 connector / schema / tests
-- ❌ 不写 `docs/20` 正文
+- ❌ 不改 `docs/20` 正文
 
-— Cursor 架构师 @ queue_rev 14 —
+— Cursor 架构师 @ queue_rev 15 —
