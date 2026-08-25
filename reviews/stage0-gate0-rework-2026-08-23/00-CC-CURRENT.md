@@ -9,22 +9,22 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `59` |
-| **cursor_head** | `e28fa42` |
-| **cc_head** | `a675209`（S2.0.2.1）+ `e28fa42`（回执 `158`） |
-| **last_audit** | `161-stage0-cursor-s2021-impl-audit-PASS-20260825.md` |
+| **queue_rev** | `60` |
+| **cursor_head** | `041c68d` |
+| **cc_head** | `041c68d`（S2.0.2.2）+ 回执 `163` |
+| **last_audit** | `164-stage0-cursor-s2022-impl-audit-PASS-20260825.md` |
 | **user_ruling** | `C` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T20:28:00+08:00` |
+| **updated_at** | `2026-08-25T20:36:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=59）
-2. 读 **`161`** + **`162`** + **`docs/35` §4.3**
-3. **S2.0.2.2 实现** — admin/seed 覆盖 `is_demo`；回执 **`163`**
+1. **`git pull origin main`**（`queue_rev`=60）
+2. 读 **`164`** + **`165`** + **`docs/35` §5**
+3. **S2.0.2.3 实现** — `URL_HEALTH_LIVE`；回执 **`166`**
 4. commit → **origin 优先**
 5. → **`84` POLL**
 
@@ -39,5 +39,3 @@
 ## BLOCKED
 
 （空）
-
-— Cursor 架构师 @ queue_rev 59 —
