@@ -3,12 +3,53 @@
 // Per tasking 168 §SCHEMA: 数据 允许 mock（5 省或至少江苏 + ≥1 他省路由壳）。
 // Per docs/06 §2: 固定六段必须全部出现；空段显式标"未覆盖"。
 //
-// 当前交付：
+// 当前交付（S2.7-a2 后）：
 //   - 江苏省：六段全有 mock 条目（demo 占位；lineage.is_demo="true" 仍生效）
-//   - 浙江省：六段全有路由壳，但条目大多为空（用于演示"未覆盖"渲染）
-//   - 广东省 / 四川省 / 山东省：仅占位 list（路线壳入口）
+//   - 浙江 / 广东 / 四川 / 山东：六段全有路由壳，条目全空（演示"未覆盖"渲染）
+//
+// S2.7-a2 增量（tasking 187）：广东 / 四川 / 山东由「仅 list 占位」升级为真实路由，
+// 首页 5 省列表不再有死链。真实数据（含 S2.1 person/tenure）留给 S2.7-b。
 
 import type { EvidenceChainResponse } from "./types";
+
+// 三省空壳必须声明在江苏 / 浙江两条链之前：S2.7-a pytest
+// (tests/test_evidence_chain_s27a.py case 5/6) 拿那两个变量声明当源码切片锚点，
+// 浙江段一路切到文件尾并断言「恰好 6 个空段」。新省份插在锚点之后会污染切片。
+const guangdongChain: EvidenceChainResponse = {
+  province_id: "GUANGDONG-GEO-UUID-MOCK",
+  segments: [
+    { key: "CONDITION", items: [] },     // 演示"未覆盖"
+    { key: "COMMITMENT", items: [] },    // 演示"未覆盖"
+    { key: "INPUT", items: [] },         // 演示"未覆盖"
+    { key: "PROCESS", items: [] },       // 演示"未覆盖"
+    { key: "OUTPUT", items: [] },        // 演示"未覆盖"
+    { key: "OUTCOME_RISK", items: [] },  // 演示"未覆盖"
+  ],
+};
+
+const sichuanChain: EvidenceChainResponse = {
+  province_id: "SICHUAN-GEO-UUID-MOCK",
+  segments: [
+    { key: "CONDITION", items: [] },     // 演示"未覆盖"
+    { key: "COMMITMENT", items: [] },    // 演示"未覆盖"
+    { key: "INPUT", items: [] },         // 演示"未覆盖"
+    { key: "PROCESS", items: [] },       // 演示"未覆盖"
+    { key: "OUTPUT", items: [] },        // 演示"未覆盖"
+    { key: "OUTCOME_RISK", items: [] },  // 演示"未覆盖"
+  ],
+};
+
+const shandongChain: EvidenceChainResponse = {
+  province_id: "SHANDONG-GEO-UUID-MOCK",
+  segments: [
+    { key: "CONDITION", items: [] },     // 演示"未覆盖"
+    { key: "COMMITMENT", items: [] },    // 演示"未覆盖"
+    { key: "INPUT", items: [] },         // 演示"未覆盖"
+    { key: "PROCESS", items: [] },       // 演示"未覆盖"
+    { key: "OUTPUT", items: [] },        // 演示"未覆盖"
+    { key: "OUTCOME_RISK", items: [] },  // 演示"未覆盖"
+  ],
+};
 
 const jiangsuChain: EvidenceChainResponse = {
   province_id: "JIANGSU-GEO-UUID-MOCK",
@@ -91,10 +132,13 @@ const zhejiangChain: EvidenceChainResponse = {
 export const MOCK_EVIDENCE_CHAIN_BY_PROVINCE: Record<string, EvidenceChainResponse> = {
   jiangsu: jiangsuChain,
   zhejiang: zhejiangChain,
+  guangdong: guangdongChain,
+  sichuan: sichuanChain,
+  shandong: shandongChain,
 };
 
-// 用于"5 省方向"的第一步：省份列表入口（per tasking 168 §NOW-2
-// 「另 ≥1 省路由壳或列表入口」）
+// 5 省列表入口（tasking 168 §NOW-2 起）。S2.7-a2 起每个 slug 都对应
+// frontend/app/provinces/<slug>/page.tsx 真实路由，列表无死链。
 export interface ProvinceListEntry {
   slug: string;
   name_zh: string;

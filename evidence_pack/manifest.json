@@ -3118,9 +3118,15 @@
       "size_bytes": 10864,
       "sha256": "7ce87690aa314886c75640d9bd6fbfaa032f74c20babfe885bacd861a87c8c05",
       "role": "schema_negative_test"
+    },
+    {
+      "path": "tests/test_province_shells_s27a2.py",
+      "size_bytes": 7033,
+      "sha256": "f93804040097ac289a409797434ebca554d553d7afae311d799198c5ebb14b10",
+      "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 518,
+  "artifact_count": 519,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
@@ -3138,7 +3144,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 24,
+    "schema_negative_test": 25,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {

@@ -7,8 +7,8 @@ Invoked via `npm run smoke` (package.json script) or `python3 smoke-check.py`.
 Validates:
   1. All required skeleton files exist (package.json, tsconfig.json,
      next.config.js, .gitignore, README.md, app/layout.tsx, app/page.tsx,
-     app/DemoBadge.tsx, app/provinces/jiangsu/page.tsx,
-     lib/api.ts, lib/types.ts, lib/mock.ts).
+     app/DemoBadge.tsx, app/provinces/{jiangsu,zhejiang,guangdong,sichuan,
+     shandong}/page.tsx, lib/api.ts, lib/types.ts, lib/mock.ts).
   2. package.json declares next + react.
   3. tsconfig.json enables App Router conventions ("jsx": "preserve").
   4. app/layout.tsx renders a top banner keyed off IS_MOCK_MODE
@@ -41,6 +41,9 @@ REQUIRED_FILES = [
     "app/components/EvidenceChain.tsx",        # S2.7-a
     "app/provinces/jiangsu/page.tsx",
     "app/provinces/zhejiang/page.tsx",          # S2.7-a 路由壳
+    "app/provinces/guangdong/page.tsx",         # S2.7-a2 路由壳
+    "app/provinces/sichuan/page.tsx",           # S2.7-a2 路由壳
+    "app/provinces/shandong/page.tsx",          # S2.7-a2 路由壳
     "lib/api.ts",
     "lib/types.ts",
     "lib/mock.ts",
@@ -207,6 +210,32 @@ def main() -> int:
     else:
         ok("zhejiang/page.tsx renders <EvidenceChain />")
 
+    # 8c-2. S2.7-a2 — Guangdong / Sichuan / Shandong route shells get the same
+    # treatment as Zhejiang: static segment, no params branching, EvidenceChain
+    # mounted, and the slug wired to the mock lookup.
+    for slug in ("guangdong", "sichuan", "shandong"):
+        page = (ROOT / f"app/provinces/{slug}/page.tsx").read_text(encoding="utf-8")
+        code = re.sub(r"//[^\n]*", "", page)
+        code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+        if re.search(r"params\.province\s*[!=]==", code) or re.search(r"if\s*\(\s*params\.", code):
+            errors.append(
+                f"{slug}/page.tsx branches on params.* in executable code — "
+                "static-segment route does not receive params."
+            )
+        else:
+            ok(f"{slug}/page.tsx has no params.* gate")
+        if "<EvidenceChain" not in page:
+            errors.append(f"{slug}/page.tsx does not render <EvidenceChain />")
+        else:
+            ok(f"{slug}/page.tsx renders <EvidenceChain />")
+        if f'getMockEvidenceChain("{slug}")' not in code:
+            errors.append(
+                f"{slug}/page.tsx does not call getMockEvidenceChain(\"{slug}\") — "
+                "route shell would render another province's chain."
+            )
+        else:
+            ok(f"{slug}/page.tsx resolves its own mock chain")
+
     # 8d. Mock chain — both Jiangsu (full) and Zhejiang (empty) must provide
     # all 6 segments; this guards against future "we only show 4 segments"
     # regressions.
@@ -221,20 +250,47 @@ def main() -> int:
             pass  # handled by the global count below
     seg_key_count = {seg: len(re.findall(rf'key:\s*"{seg}"', mock_chain)) for seg in expected_segments}
     for seg, n in seg_key_count.items():
-        if n < 2:
+        if n < 5:
             errors.append(
                 f"mock_evidence_chain.ts: segment {seg} appears {n}x; "
-                f"expected ≥2 (jiangsu + zhejiang)"
+                f"expected ≥5 (jiangsu + zhejiang + guangdong + sichuan + shandong)"
             )
-    if all(seg_key_count[s] >= 2 for s in expected_segments):
-        ok(f"mock_evidence_chain.ts has ≥2 of each of 6 segment keys")
+    if all(seg_key_count[s] >= 5 for s in expected_segments):
+        ok(f"mock_evidence_chain.ts has ≥5 of each of 6 segment keys")
+
+    # 8e. S2.7-a2 §SCHEMA「首页 5 省列表链接须全部可点进真实路由（非死链）」.
+    # Every slug advertised in MOCK_PROVINCE_LIST must resolve to both a mock
+    # chain and an on-disk App Router page.
+    list_block = mock_chain[mock_chain.index("MOCK_PROVINCE_LIST"):]
+    listed_slugs = re.findall(r'slug:\s*"([a-z_]+)"', list_block)
+    if len(listed_slugs) < 5:
+        errors.append(
+            f"MOCK_PROVINCE_LIST advertises {len(listed_slugs)} provinces; expected ≥5"
+        )
+    registry_block = mock_chain[
+        mock_chain.index("MOCK_EVIDENCE_CHAIN_BY_PROVINCE"):
+        mock_chain.index("MOCK_PROVINCE_LIST")
+    ]
+    for slug in listed_slugs:
+        if not (ROOT / f"app/provinces/{slug}/page.tsx").is_file():
+            errors.append(
+                f"MOCK_PROVINCE_LIST lists {slug!r} but app/provinces/{slug}/page.tsx "
+                "is missing — dead link on the home page."
+            )
+        elif f"{slug}:" not in registry_block:
+            errors.append(
+                f"MOCK_PROVINCE_LIST lists {slug!r} but MOCK_EVIDENCE_CHAIN_BY_PROVINCE "
+                "has no entry — the page would throw at render time."
+            )
+        else:
+            ok(f"province list entry {slug!r} resolves to a real route + mock chain")
 
     if errors:
         for e in errors:
             fail(e)
         return 1
 
-    print("\n=== S2.0.1 + S2.7-a skeleton smoke: PASS ===")
+    print("\n=== S2.0.1 + S2.7-a + S2.7-a2 skeleton smoke: PASS ===")
     return 0
 
 
