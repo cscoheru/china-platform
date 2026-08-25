@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `24` |
-| **cursor_head** | `pending` |
+| **cursor_head** | `4153deb` |
 | **cc_head** | `1e2dfe5`（S1.9 实现回执 `73`） |
 | **last_audit** | `74-stage0-cursor-s19-impl-audit-20260825.md` |
 | **updated_at** | `2026-08-25T12:35:00+08:00` |
