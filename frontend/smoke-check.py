@@ -41,6 +41,9 @@ REQUIRED_FILES = [
     "app/components/EvidenceChain.tsx",        # S2.7-a
     "app/provinces/jiangsu/page.tsx",
     "app/provinces/zhejiang/page.tsx",          # S2.7-a 路由壳
+    "app/provinces/guangdong/page.tsx",         # S2.7-a2 路由壳
+    "app/provinces/sichuan/page.tsx",           # S2.7-a2 路由壳
+    "app/provinces/shandong/page.tsx",          # S2.7-a2 路由壳
     "lib/api.ts",
     "lib/types.ts",
     "lib/mock.ts",
@@ -207,34 +210,81 @@ def main() -> int:
     else:
         ok("zhejiang/page.tsx renders <EvidenceChain />")
 
-    # 8d. Mock chain — both Jiangsu (full) and Zhejiang (empty) must provide
-    # all 6 segments; this guards against future "we only show 4 segments"
-    # regressions.
+    # 8d. Mock chain — all 5 provinces (jiangsu + zhejiang + guangdong +
+    # sichuan + shandong per tasking 187 §S2.7-a2) must each provide all 6
+    # segments; this guards against future "we only show N segments" regressions.
     mock_chain = (ROOT / "lib/mock_evidence_chain.ts").read_text(encoding="utf-8")
-    for province in ["jiangsu", "zhejiang"]:
-        # Look for the key within the province's segments array.
-        # We accept any order, but every key must appear.
+    expected_provinces = ["jiangsu", "zhejiang", "guangdong", "sichuan", "shandong"]
+    for province in expected_provinces:
+        # Locate the chain block via the `const <slug>Chain` declaration.
+        var = f"const {province}Chain"
+        if var not in mock_chain:
+            errors.append(f"mock_evidence_chain.ts missing chain for {province!r}")
+            continue
+        # Compute end of this block: next `const <slug>Chain` or `};` closing
+        block_start = mock_chain.index(var)
+        block_end = len(mock_chain)
+        for other in expected_provinces:
+            if other == province:
+                continue
+            other_var = f"const {other}Chain"
+            other_pos = mock_chain.find(other_var, block_start + 1)
+            if other_pos != -1 and other_pos < block_end:
+                block_end = other_pos
+        block = mock_chain[block_start:block_end]
         for seg in expected_segments:
-            # Simple heuristic: count occurrences of `key: "SEG"` near the
-            # province identifier. To be robust we just check that each segment
-            # key appears at least 2 times (jiangsu + zhejiang) in the file.
-            pass  # handled by the global count below
+            if f'key: "{seg}"' not in block:
+                errors.append(
+                    f"mock_evidence_chain.ts: {province} chain missing segment {seg}"
+                )
+    # Also require at least N=5 occurrences of each segment key (one per
+    # province). Belt-and-suspenders with the per-province loop above.
     seg_key_count = {seg: len(re.findall(rf'key:\s*"{seg}"', mock_chain)) for seg in expected_segments}
+    min_per_seg = len(expected_provinces)
     for seg, n in seg_key_count.items():
-        if n < 2:
+        if n < min_per_seg:
             errors.append(
                 f"mock_evidence_chain.ts: segment {seg} appears {n}x; "
-                f"expected ≥2 (jiangsu + zhejiang)"
+                f"expected ≥{min_per_seg} (one per province)"
             )
-    if all(seg_key_count[s] >= 2 for s in expected_segments):
-        ok(f"mock_evidence_chain.ts has ≥2 of each of 6 segment keys")
+    if all(seg_key_count[s] >= min_per_seg for s in expected_segments):
+        ok(f"mock_evidence_chain.ts has ≥{min_per_seg} of each of 6 segment keys")
+
+    # 8e. S2.7-a2 — Guangdong / Sichuan / Shandong route shells must:
+    #   (a) exist as static-segment pages with no params.* branching
+    #   (b) render <EvidenceChain />
+    # Per tasking 187 §NOW-1 + standing rule (static-segment routes must
+    # NOT branch on params.*).
+    for slug in ("guangdong", "sichuan", "shandong"):
+        path = ROOT / "app" / "provinces" / slug / "page.tsx"
+        if not path.is_file():
+            errors.append(f"{slug}/page.tsx missing (S2.7-a2 route shell)")
+            continue
+        src = path.read_text(encoding="utf-8")
+        code = re.sub(r"//[^\n]*", "", src)
+        code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+        if re.search(r"params\.province\s*[!=]==", code):
+            errors.append(
+                f"{slug}/page.tsx references params.province in executable code — "
+                f"static-segment route does not receive params."
+            )
+        else:
+            ok(f"{slug}/page.tsx has no params.province gate")
+        if re.search(r"if\s*\(\s*params\.", code):
+            errors.append(
+                f"{slug}/page.tsx still branches on params.* in executable code"
+            )
+        if "EvidenceChain" not in src:
+            errors.append(f"{slug}/page.tsx does not render <EvidenceChain />")
+        else:
+            ok(f"{slug}/page.tsx renders <EvidenceChain />")
 
     if errors:
         for e in errors:
             fail(e)
         return 1
 
-    print("\n=== S2.0.1 + S2.7-a skeleton smoke: PASS ===")
+    print("\n=== S2.0.1 + S2.7-a + S2.7-a2 skeleton smoke: PASS ===")
     return 0
 
 

@@ -113,8 +113,16 @@ def test_zhejiang_page_includes_evidence_chain_with_all_empty_segments() -> None
     zj_page = _read("app/provinces/zhejiang/page.tsx")
     mock_chain = _read("lib/mock_evidence_chain.ts")
     assert "<EvidenceChain" in zj_page, "zhejiang page must render <EvidenceChain />"
-    # Extract zhejiang's chain block via its variable declaration.
-    zj_block = mock_chain[mock_chain.index("const zhejiangChain"):]
+    # Extract zhejiang's chain block via its variable declaration; bound to
+    # next `const xChain` (any other province) or 800 chars (whichever first).
+    zj_start = mock_chain.index("const zhejiangChain")
+    block_end = len(mock_chain)
+    for other in ("jiangsu", "guangdong", "sichuan", "shandong"):
+        other_var = f"const {other}Chain"
+        other_pos = mock_chain.find(other_var, zj_start + 1)
+        if other_pos != -1 and other_pos < block_end:
+            block_end = other_pos
+    zj_block = mock_chain[zj_start:min(block_end, zj_start + 800)]
     # All six segments must be present.
     for seg in EXPECTED_SEGMENTS:
         assert f'key: "{seg}"' in zj_block, (
@@ -168,7 +176,87 @@ def test_demo_badge_sentinel_contract_preserved_on_jiangsu_page() -> None:
 
 # ---------- Case 10: mock provides required provinces ----------
 def test_mock_evidence_chain_exposes_required_provinces() -> None:
+    """Per tasking 168 §NOW-2: 江苏 + ≥1 他省.
+    Per tasking 187 §S2.7-a2: 江苏 + 浙江 + 粤/川/鲁 五省全链路。"""
     mock = _read("lib/mock_evidence_chain.ts")
-    # Per tasking 168 §NOW-2: 江苏 + ≥1 他省
-    for province in ["jiangsu", "zhejiang"]:
-        assert f'"{province}"' in mock, f"mock must include {province!r} province chain"
+    for province in ["jiangsu", "zhejiang", "guangdong", "sichuan", "shandong"]:
+        assert f'"{province}"' in mock, (
+            f"mock must include {province!r} province chain (per tasking 187)"
+        )
+
+
+# ---------- Case 11 (S2.7-a2): Guangdong shell — static, no params branching ----------
+def test_guangdong_page_is_static_no_params_branching() -> None:
+    """Per tasking 187 + standing rule (static-segment routes must NOT branch
+    on params.*). Guangdong page must render <EvidenceChain />."""
+    src = _read("app/provinces/guangdong/page.tsx")
+    code = _strip_js_comments(src)
+    assert "<EvidenceChain" in src, "guangdong page must render <EvidenceChain />"
+    assert not re.search(r"params\.province\s*[!=]==", code), (
+        "guangdong/page.tsx must not gate on params.province (static route)"
+    )
+    assert not re.search(r"if\s*\(\s*params\.", code), (
+        "guangdong/page.tsx must not branch on params.* at all"
+    )
+
+
+# ---------- Case 12 (S2.7-a2): Sichuan shell — static, no params branching ----------
+def test_sichuan_page_is_static_no_params_branching() -> None:
+    src = _read("app/provinces/sichuan/page.tsx")
+    code = _strip_js_comments(src)
+    assert "<EvidenceChain" in src, "sichuan page must render <EvidenceChain />"
+    assert not re.search(r"params\.province\s*[!=]==", code), (
+        "sichuan/page.tsx must not gate on params.province (static route)"
+    )
+    assert not re.search(r"if\s*\(\s*params\.", code), (
+        "sichuan/page.tsx must not branch on params.* at all"
+    )
+
+
+# ---------- Case 13 (S2.7-a2): Shandong shell — static, no params branching ----------
+def test_shandong_page_is_static_no_params_branching() -> None:
+    src = _read("app/provinces/shandong/page.tsx")
+    code = _strip_js_comments(src)
+    assert "<EvidenceChain" in src, "shandong page must render <EvidenceChain />"
+    assert not re.search(r"params\.province\s*[!=]==", code), (
+        "shandong/page.tsx must not gate on params.province (static route)"
+    )
+    assert not re.search(r"if\s*\(\s*params\.", code), (
+        "shandong/page.tsx must not branch on params.* at all"
+    )
+
+
+# ---------- Case 14 (S2.7-a2): 3 new shells all-empty, all 6 segments ----------
+def test_s27a2_shells_have_all_six_segments_empty() -> None:
+    """Per tasking 187 §NOW-1: 粤/川/鲁三省页六段可全空 ("未覆盖")."""
+    mock_chain = _read("lib/mock_evidence_chain.ts")
+    # Order: declaration order in the file is jiangsu, zhejiang, guangdong,
+    # sichuan, shandong. Bound each block by finding the NEXT `const xChain`
+    # of any province.
+    provinces = ["guangdong", "sichuan", "shandong"]
+    all_province_vars = ["const jiangsuChain", "const zhejiangChain",
+                         "const guangdongChain", "const sichuanChain",
+                         "const shandongChain"]
+    for i, province in enumerate(provinces):
+        var = f"const {province}Chain"
+        assert var in mock_chain, f"mock must declare {var}"
+        block_start = mock_chain.index(var)
+        # Find the next province's `const xChain` declaration.
+        block_end = len(mock_chain)
+        for other_var in all_province_vars:
+            if other_var == var:
+                continue
+            other_pos = mock_chain.find(other_var, block_start + 1)
+            if other_pos != -1 and other_pos < block_end:
+                block_end = other_pos
+        block = mock_chain[block_start:block_end]
+        # All six segments must appear.
+        for seg in EXPECTED_SEGMENTS:
+            assert f'key: "{seg}"' in block, (
+                f"{province} chain missing segment {seg}"
+            )
+        # All six segment items arrays must be empty (演示"未覆盖").
+        n_empty = len(re.findall(r'key:\s*"[A-Z_]+",\s*items:\s*\[\]', block))
+        assert n_empty == 6, (
+            f"{province} chain must have all 6 segments empty; got {n_empty}"
+        )

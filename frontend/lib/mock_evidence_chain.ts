@@ -6,7 +6,7 @@
 // 当前交付：
 //   - 江苏省：六段全有 mock 条目（demo 占位；lineage.is_demo="true" 仍生效）
 //   - 浙江省：六段全有路由壳，但条目大多为空（用于演示"未覆盖"渲染）
-//   - 广东省 / 四川省 / 山东省：仅占位 list（路线壳入口）
+//   - 广东省 / 四川省 / 山东省（S2.7-a2 路由壳）：六段全部空，仅用于链路导航
 
 import type { EvidenceChainResponse } from "./types";
 
@@ -88,9 +88,49 @@ const zhejiangChain: EvidenceChainResponse = {
   ],
 };
 
+// S2.7-a2: 粤/川/鲁三省路由壳（per tasking 187）。六段全空演示"未覆盖"。
+const guangdongChain: EvidenceChainResponse = {
+  province_id: "GUANGDONG-GEO-UUID-MOCK",
+  segments: [
+    { key: "CONDITION", items: [] },
+    { key: "COMMITMENT", items: [] },
+    { key: "INPUT", items: [] },
+    { key: "PROCESS", items: [] },
+    { key: "OUTPUT", items: [] },
+    { key: "OUTCOME_RISK", items: [] },
+  ],
+};
+
+const sichuanChain: EvidenceChainResponse = {
+  province_id: "SICHUAN-GEO-UUID-MOCK",
+  segments: [
+    { key: "CONDITION", items: [] },
+    { key: "COMMITMENT", items: [] },
+    { key: "INPUT", items: [] },
+    { key: "PROCESS", items: [] },
+    { key: "OUTPUT", items: [] },
+    { key: "OUTCOME_RISK", items: [] },
+  ],
+};
+
+const shandongChain: EvidenceChainResponse = {
+  province_id: "SHANDONG-GEO-UUID-MOCK",
+  segments: [
+    { key: "CONDITION", items: [] },
+    { key: "COMMITMENT", items: [] },
+    { key: "INPUT", items: [] },
+    { key: "PROCESS", items: [] },
+    { key: "OUTPUT", items: [] },
+    { key: "OUTCOME_RISK", items: [] },
+  ],
+};
+
 export const MOCK_EVIDENCE_CHAIN_BY_PROVINCE: Record<string, EvidenceChainResponse> = {
   jiangsu: jiangsuChain,
   zhejiang: zhejiangChain,
+  guangdong: guangdongChain,
+  sichuan: sichuanChain,
+  shandong: shandongChain,
 };
 
 // 用于"5 省方向"的第一步：省份列表入口（per tasking 168 §NOW-2
