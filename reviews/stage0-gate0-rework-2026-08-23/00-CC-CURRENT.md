@@ -9,23 +9,23 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `39` |
-| **cursor_head** | `87181b4` |
-| **cc_head** | `aa290ab`（S1.15 规划 `docs/30`） |
-| **last_audit** | `114-stage0-cursor-s15-plan-audit-20260825.md` |
+| **queue_rev** | `40` |
+| **cursor_head** | `98ca0aa` |
+| **cc_head** | `5da8a9c`（S1.15 实现）+ `98ca0aa`（回执 `116`） |
+| **last_audit** | `117-stage0-cursor-s15-impl-audit-PASS-20260825.md` |
 | **user_ruling** | `A` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T17:15:00+08:00` |
+| **updated_at** | `2026-08-25T17:25:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=39）
-2. 读 **`114`** + **`115`** + **`docs/30`**
-3. **S1.15 实现** — §2.7–2.9 e2e（007 + ≥10 tests）；回执进 **`reviews/`**
-4. commit → **origin 优先** → 回执 **`116`**
+1. **`git pull origin main`**（`queue_rev`=40）
+2. 读 **`117`** + **`118`**
+3. **S1.16 规划** — R03 / docs/10 §2.4 跨源 dbt 阈值（`docs/31`）；回执进 **`reviews/`**
+4. commit → **origin 优先** → 回执 **`119`**
 5. → **`84` POLL**
 
 ---
@@ -40,4 +40,4 @@
 
 （空）
 
-— Cursor 架构师 @ queue_rev 39 —
+— Cursor 架构师 @ queue_rev 40 —
