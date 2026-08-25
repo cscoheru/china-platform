@@ -9,23 +9,22 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `52` |
-| **cursor_head** | `0855038` |
-| **cc_head** | `cbb6342`（S2.0 规划回执；实现停滞） |
-| **last_audit** | `145-stage0-cursor-s20-plan-audit-20260825.md` |
+| **queue_rev** | `53` |
+| **cursor_head** | `4a20d28` |
+| **cc_head** | `b24c512`（S2.0.1；**路由 FAIL**）+ `4a20d28`（回执 `147`） |
+| **last_audit** | `149-stage0-cursor-s201-impl-audit-FAIL-20260825.md` |
 | **user_ruling** | `C` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T19:45:00+08:00` |
-| **wakeup** | `148-stage0-cursor-cc-wakeup-s201-impl-20260825.md` |
+| **updated_at** | `2026-08-25T19:49:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=52；读 **`148`** 唤醒）
-2. 读 **`145`** + **`146`** + **`docs/34`**
-3. **立即**执行 S2.0.1 实现 → 回执 **`147`**
+1. **`git pull origin main`**（`queue_rev`=53）
+2. 读 **`149`** + **`150`**
+3. **立即**修江苏观察页路由门闩 → 回执 **`151`**
 4. commit → **origin 优先**
 5. → **`84` POLL**
 
@@ -41,4 +40,4 @@
 
 （空）
 
-— Cursor 架构师 @ queue_rev 52 —
+— Cursor 架构师 @ queue_rev 53 —
