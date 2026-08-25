@@ -2944,9 +2944,21 @@
       "size_bytes": 11078,
       "sha256": "4b4ffd5a1336923d22eee77b29d3bd62b38f96169a1366da05ae8317a5a73aa0",
       "role": "documentation"
+    },
+    {
+      "path": "schema/migrations/007_ocr_review_queue.sql",
+      "size_bytes": 4052,
+      "sha256": "e25df23707423888c48242eeca836d2d13a0f352dba13e8acdc2fa7ad73f85be",
+      "role": "schema_migration_ddl"
+    },
+    {
+      "path": "tests/test_acceptance_e2e_s15.py",
+      "size_bytes": 25200,
+      "sha256": "85e4073a10cefc05f0947fedfa712ca434b54e2d6fe09840343544763e3b9b5a",
+      "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 489,
+  "artifact_count": 491,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
@@ -2954,7 +2966,7 @@
     "documentation": 29,
     "schema_ddl": 1,
     "schema_migration_log": 2,
-    "schema_migration_ddl": 5,
+    "schema_migration_ddl": 6,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
     "spike_helper": 5,
@@ -2964,7 +2976,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 13,
+    "schema_negative_test": 14,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {
