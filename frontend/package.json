@@ -1,0 +1,23 @@
+{
+  "name": "cegr-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Stage 2 / S2.0.1 — Next.js App Router skeleton. Consumes S1.10 FastAPI; mock-switchable for S1.18 DEMO demonstration.",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "smoke": "python3 smoke-check.py"
+  },
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.10",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "typescript": "5.5.3"
+  }
+}

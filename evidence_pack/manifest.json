@@ -2760,6 +2760,12 @@
       "role": "schema_negative_test"
     },
     {
+      "path": "tests/test_s201_skeleton_smoke.py",
+      "size_bytes": 3381,
+      "sha256": "609bd5ed71f3a85ee73346be471ba0812d6e47a80cf1de1b601e35440ef3f84e",
+      "role": "schema_negative_test"
+    },
+    {
       "path": "tests/test_scanned_pdf_ocr_connector.py",
       "size_bytes": 21253,
       "sha256": "36422de7be96dce3e9c2c064411e7995ada664f420e0c6a6e4b526b956f56943",
@@ -3034,14 +3040,20 @@
       "size_bytes": 10859,
       "sha256": "5b0f745a85f841586fcaad66911d7e833ea04cddf075acf82f971faca6212ad9",
       "role": "schema_negative_test"
+    },
+    {
+      "path": "docs/34-stage2-s20-kickoff-plan-20260825.md",
+      "size_bytes": 9631,
+      "sha256": "f72454d2ea14cde63284e9a99b2cd20cadf9297b30454806d05882425b55a452",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 504,
+  "artifact_count": 506,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 36,
+    "documentation": 37,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 6,
@@ -3054,7 +3066,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 18,
+    "schema_negative_test": 19,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {
