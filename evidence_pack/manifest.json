@@ -3,7 +3,7 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "PENDING",
+    "commit_sha": "PENDING-receipt-backfill",
     "commit_sha_short": "PENDING",
     "commit_timestamp_utc": "2026-08-25T13:45:58+08:00",
     "branch": "main"
