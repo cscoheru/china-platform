@@ -3096,6 +3096,12 @@
       "role": "documentation"
     },
     {
+      "path": "docs/37-stage2-s22-policy-plan-20260825.md",
+      "size_bytes": 20257,
+      "sha256": "55bb4750e86608d5f24d2b38e5812fd2991267d24fbe097db2e1df2d94861d88",
+      "role": "documentation"
+    },
+    {
       "path": "schema/migrations/008_person_tenure_alignment.sql",
       "size_bytes": 9861,
       "sha256": "51760c92d8a3e09cc80fd73e32a31bd8535acce4474e7f2ee571ce4e761f026b",
@@ -3136,14 +3142,20 @@
       "size_bytes": 1427,
       "sha256": "8394bfd707aba35c829bd448c7401bdf00efeaecf2954a57ea22485420e1a058",
       "role": "spike_helper"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/191-stage0-cc-s22-plan-receipt-20260825.md",
+      "size_bytes": 5899,
+      "sha256": "a5544238228c170be426b0ff08fba86adda54d353bad028460bed1368218debb",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 521,
+  "artifact_count": 523,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 39,
+    "documentation": 41,
     "schema_ddl": 1,
     "schema_migration_log": 3,
     "schema_migration_ddl": 7,
