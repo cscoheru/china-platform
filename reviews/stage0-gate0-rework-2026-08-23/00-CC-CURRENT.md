@@ -9,22 +9,23 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `80` |
-| **cursor_head** | `72b9180` |
-| **cc_head** | `72b9180`（S2.3-lite）+ `205` — **审验 FAIL** |
-| **last_audit** | `206-stage0-cursor-s23-lite-impl-audit-FAIL-20260825.md` |
+| **queue_rev** | `81` |
+| **cursor_head** | `e2bdcd6` |
+| **cc_head** | `72b9180` + FAIL `206`；修复未交 |
+| **last_audit** | `206` FAIL |
 | **user_ruling** | `D` / Stage 2 `C` |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T23:49:00+08:00` |
+| **updated_at** | `2026-08-25T23:57:00+08:00` |
+| **wakeup** | `209`（s23lite fix 停滞） |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=80）
-2. 读 **`206`** + **`207`**
-3. **修** idempotent pytest；回执 **`208`**
+1. **`git pull origin main`**（`queue_rev`=81）
+2. 读 **`209`** + **`207`**
+3. **修 idempotent pytest**；回执 **`208`**
 4. commit → **origin 优先**
 5. → **`84` POLL**
 
