@@ -3,7 +3,7 @@
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
   "commit": {
     "committed": true,
-    "commit_sha": "bff23a8f86d2db8f0fd5938d5fa4abe7d0b753ea",
+    "commit_sha": "PENDING",
     "commit_sha_short": "bff23a8",
     "commit_timestamp_utc": "2026-08-25T13:45:58+08:00",
     "branch": "main"
@@ -2992,14 +2992,20 @@
       "size_bytes": 13885,
       "sha256": "991ec9d5e4184824422bbab0e9e9d7b6f2b37a78628722e060dde6b84602239f",
       "role": "schema_negative_test"
+    },
+    {
+      "path": "docs/32-stage1-s17-r12-url-health-plan-20260825.md",
+      "size_bytes": 11653,
+      "sha256": "4e8da8390a346d156ca4a339c03b820f1bb6391673576e2a105dd416643eb181",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 497,
+  "artifact_count": 498,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 33,
+    "documentation": 34,
     "schema_ddl": 1,
     "schema_migration_log": 2,
     "schema_migration_ddl": 6,
