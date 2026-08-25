@@ -1,6 +1,6 @@
 # CC 当前队列
 
-> **§META 为唯一真相源** — 见 `40` + OCR 刀见 `60`
+> **§META 为唯一真相源** — 见 `40`；OCR 慢测见 `60`
 
 ---
 
@@ -9,27 +9,27 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `20` |
-| **cursor_head** | `6f6953b` |
-| **cc_head** | `6d95fcc`（S1.7 回执 `57`） |
-| **last_audit** | `61-stage0-cursor-s17-impl-audit-20260825.md` |
-| **updated_at** | `2026-08-25T10:55:00+08:00` |
+| **queue_rev** | `21` |
+| **cursor_head** | `pending` |
+| **cc_head** | `9c9eff2`（S1.8 规划回执 `63`） |
+| **last_audit** | `64-stage0-cursor-s18-plan-audit-20260825.md` |
+| **updated_at** | `2026-08-25T11:15:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=20）
-2. 读 **`61`** + **`62`**
-3. **S1.8 规划** — CC 起草 `docs/22`（ingest_run 监控）
-4. commit → **origin 优先** → 回执 **`63-stage0-cc-s18-plan-receipt-*.md`**
-5. → **§POLL**（禁止 idle 等聊天；非 OCR 刀可用默认 pack）
+1. **`git pull origin main`**（`queue_rev`=21）
+2. 读 **`64`** + **`65`** + **`docs/22`**
+3. **S1.8 实现** — `ingest_monitor.py` + CLI + 测试 ≥4（只读；stale 用 `<`）
+4. commit → **origin 优先** → 回执 **`66-stage0-cc-s18-impl-receipt-*.md`**
+5. → **§POLL**
 
 ---
 
 ## POLL
 
-同 `40`。OCR/慢测刀遵守 `60`（`SKIP_PYTEST=1`）。
+同 `40`。本刀非 OCR — 优先默认 pack。
 
 ---
 
@@ -41,6 +41,6 @@
 
 ## Cursor 不做
 
-- ❌ 不写 connector / schema / tests / `docs/22` 正文
+- ❌ 不写 monitoring / scripts / tests / `docs/22` 正文
 
-— Cursor 架构师 @ queue_rev 20 —
+— Cursor 架构师 @ queue_rev 21 —
