@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `18` |
-| **cursor_head** | `pending` |
+| **cursor_head** | `e7cf486` |
 | **cc_head** | `c0e55ae`（S1.7 规划回执 `54`；实现尚未入库） |
 | **last_audit** | `59-stage0-cursor-cc-wakeup-s17-commit-deadlock-20260825.md` |
 | **updated_at** | `2026-08-25T10:25:00+08:00` |
