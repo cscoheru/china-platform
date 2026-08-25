@@ -3094,27 +3094,51 @@
       "size_bytes": 11402,
       "sha256": "b82fa3ee6af49c6fd10a2e7a14a1b2a217f5b003ff8e7947dc8f91db5140e25a",
       "role": "documentation"
+    },
+    {
+      "path": "schema/migrations/008_person_tenure_alignment.sql",
+      "size_bytes": 9861,
+      "sha256": "51760c92d8a3e09cc80fd73e32a31bd8535acce4474e7f2ee571ce4e761f026b",
+      "role": "schema_migration_ddl"
+    },
+    {
+      "path": "schema/migrations/008_person_tenure_alignment.log",
+      "size_bytes": 2122,
+      "sha256": "e1b90615f6d5edd8c9bbcd870dcc605109a4ba778823f848dcd6f1e89c3b24bf",
+      "role": "schema_migration_log"
+    },
+    {
+      "path": "scripts/seed_person_tenure_s21lite.py",
+      "size_bytes": 15220,
+      "sha256": "1ca002e7f293a41f748a336524b0a9fa099553e97226c952d48428f8ddc813ef",
+      "role": "spike_helper"
+    },
+    {
+      "path": "tests/test_person_tenure_s21lite.py",
+      "size_bytes": 10864,
+      "sha256": "7ce87690aa314886c75640d9bd6fbfaa032f74c20babfe885bacd861a87c8c05",
+      "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 514,
+  "artifact_count": 518,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "documentation": 39,
     "schema_ddl": 1,
-    "schema_migration_log": 2,
-    "schema_migration_ddl": 6,
+    "schema_migration_log": 3,
+    "schema_migration_ddl": 7,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
-    "spike_helper": 9,
+    "spike_helper": 10,
     "spike_sample_or_truth": 383,
     "spike_extractor": 7,
     "spike_test": 7,
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 23,
+    "schema_negative_test": 24,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {

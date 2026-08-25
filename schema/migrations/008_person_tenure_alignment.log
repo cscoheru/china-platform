@@ -1,0 +1,39 @@
+=== Stage 0 S2.1-lite DDL 执行记录 (per Cursor 180 tasking, user ruling D) ===
+
+# ===== PG17 路径 (55440) — 测试套件默认 DSN =====
+时间(UTC): 2026-08-25T14:25:00Z
+命令: PGPASSWORD=postgres psql -h 127.0.0.1 -p 55440 -U postgres -d cegr_test -v ON_ERROR_STOP=1 -f schema/migrations/008_person_tenure_alignment.sql 2>&1
+引擎: PostgreSQL 17.11 (Homebrew) on aarch64-apple-darwin25.6.0
+DDL SHA-256: 51760c92d8a3e09cc80fd73e32a31bd8535acce4474e7f2ee571ce4e761f026b
+DDL 文件路径: schema/migrations/008_person_tenure_alignment.sql
+数据库: 127.0.0.1:55440/cegr_test
+--- stdout 统计 ---
+SET: 1
+ALTER TABLE: 6
+COMMENT: 21
+UPDATE: 1 (person_source_evidence: claim→excerpt backfill, 0 rows affected as expected)
+CREATE INDEX: 8
+RESET: 1
+--- stderr ---
+(空)
+--- 退出码: 0 ---
+--- 关键 verification ---
+\d cegr.person                          -> +canonical_name_pinyin ✓
+\d cegr.person_name_alias               -> +valid_from, +valid_to ✓
+\d cegr.position                        -> +canonical_title, +title_en, +rank_level, +is_standing_committee ✓
+\d cegr.tenure                          -> +geo_entity_id, +is_current, +departure_event_id ✓
+\d cegr.appointment_event               -> +person_id, +position_id, +geo_entity_id, +announcement_doc_id ✓
+\d cegr.person_source_evidence          -> +excerpt (backfilled from claim), +evidence_type ✓
+--- 索引创建 ---
+idx_tenure_geo_entity, idx_tenure_is_current,
+idx_appointment_event_person, idx_appointment_event_position,
+idx_appointment_event_geo, idx_position_rank_level,
+idx_position_is_standing, idx_pse_evidence_type
+--- 红线审计 ---
+* 不加 EXCLUDE on tenure         ✓ (overlap legal, docs/36 §2.4)
+* 不加 FK constraints             ✓ (deferred to migration 009)
+* 不 DROP / 不 RENAME             ✓ (claim→excerpt 是 additive + UPDATE backfill)
+* 不做官员评分/排名               ✓ (rank_level 仅 enum-style TEXT 过滤)
+* 不爬网抓履历                    ✓ (本刀 0 行业务数据)
+* 不写 dbt mart/stg                ✓ (本刀 S2.1-lite 仅 DDL)
+* 不动 gate_thresholds.json        ✓
