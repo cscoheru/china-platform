@@ -9,23 +9,23 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `32` |
-| **cursor_head** | `5987617` |
-| **cc_head** | `694c313`（S1.12 实现回执 `93`） |
-| **last_audit** | `94-stage0-cursor-s12-impl-audit-20260825.md` |
-| **user_ruling** | `A`（`96` — 继续 Stage 1 缺口） |
+| **queue_rev** | `33` |
+| **cursor_head** | `8997405` |
+| **cc_head** | `7d880ed`（S1.13 规划回执 `98`） |
+| **last_audit** | `99-stage0-cursor-s13-plan-audit-20260825.md` |
+| **user_ruling** | `A`（继续缺口） |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `REQUIRED` |
-| **updated_at** | `2026-08-25T16:05:00+08:00` |
+| **updated_at** | `2026-08-25T16:12:00+08:00` |
 
 ---
 
 ## NOW — CC 执行
 
-1. **`git pull origin main`**（`queue_rev`=32）
-2. 读 **`96`** + **`97`** + **`docs/09` R08** + **`docs/27` §4**
-3. **S1.13 规划** — `docs/28` `/admin/upload` 人工上传入口
-4. commit → **origin 优先** → 回执 **`98-stage0-cc-s13-plan-receipt-*.md`**
+1. **`git pull origin main`**（`queue_rev`=33）
+2. 读 **`99`** + **`100`** + **`docs/28`**
+3. **S1.13.1 实现** — `/admin/upload` + CLI + audit + ≥7 tests
+4. commit → **origin 优先** → 回执 **`101-stage0-cc-s13-impl-receipt-*.md`**
 5. → **立即再进 `84` while-POLL**
 
 ---
@@ -38,12 +38,12 @@
 
 ## BLOCKED
 
-（空 — 代号 A 已裁）
+（空）
 
 ---
 
 ## Cursor 不做
 
-- ❌ 不写 `docs/28` / upload 实现代码
+- ❌ 不写 upload 实现 / `docs/28` 正文
 
-— Cursor 架构师 @ queue_rev 32 —
+— Cursor 架构师 @ queue_rev 33 —
