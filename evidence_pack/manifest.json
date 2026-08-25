@@ -3076,9 +3076,15 @@
       "size_bytes": 9631,
       "sha256": "f72454d2ea14cde63284e9a99b2cd20cadf9297b30454806d05882425b55a452",
       "role": "documentation"
+    },
+    {
+      "path": "tests/test_url_health_probe_live.py",
+      "size_bytes": 8177,
+      "sha256": "5cac799b0938eec8beb55301bca034e3c4f273db8b81c27aac785c2540949ff4",
+      "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 511,
+  "artifact_count": 512,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
@@ -3096,7 +3102,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 21,
+    "schema_negative_test": 22,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {

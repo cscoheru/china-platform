@@ -194,6 +194,20 @@ def probe_all(dsn: str, max_runtime: float = 60.0,
     return exit_code
 
 
+def _url_health_live_enabled() -> bool:
+    """Stage 2 / S2.0.2.3 — URL_HEALTH_LIVE gate.
+
+    Per docs/35 §5.1 + tasking 165 §SCHEMA:
+      - `URL_HEALTH_LIVE=0` (default) → refuse live network probe
+      - `URL_HEALTH_LIVE=1` → live probe enabled (dev only; not CI; not prod cron)
+
+    Returns True only when the operator explicitly opts in. Any value other
+    than the literal string "1" is treated as "not enabled" — including
+    unset, "0", "false", "no", and accidental variants.
+    """
+    return os.environ.get("URL_HEALTH_LIVE") == "1"
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="S1.17 URL 健康探针 (R12)")
     p.add_argument("--dsn", default=None,
@@ -205,10 +219,24 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--quiet", action="store_true",
                    help="Suppress per-URL stdout lines")
     args = p.parse_args(argv)
+
+    # Stage 2 / S2.0.2.3 gate — refuse live probe unless URL_HEALTH_LIVE=1.
+    # Per docs/35 §5.1: default is mock/fixture; live is dev-only; CI/prod
+    # cron never enabled. Refusal is exit 0 (clean refusal, not an error).
+    if not _url_health_live_enabled():
+        print(
+            "[url_health] URL_HEALTH_LIVE != '1'; refusing to probe live. "
+            "Set URL_HEALTH_LIVE=1 (dev only) to enable real HEAD/GET-Range. "
+            "Per docs/35 §5.1; CI and prod cron always stay off.",
+            file=sys.stderr,
+        )
+        return 0
+
     dsn = _dsn(args.dsn)
     if args.url:
         # Test hook: probe one URL against a sentinel registry id; used by
         # pytest wrapper to verify classification logic without DB scan.
+        # NOTE: gated above; only reachable when URL_HEALTH_LIVE=1.
         with requests.Session() as session:
             status, err = _probe_url(session, args.url)
         print(f"[url_health] single {status} {args.url} "
