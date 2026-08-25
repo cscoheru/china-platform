@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `19` |
-| **cursor_head** | `pending` |
+| **cursor_head** | `3a13301` |
 | **cc_head** | `c0e55ae`（实现文件+`57` 已在工作区未入库） |
 | **last_audit** | `60-stage0-cursor-s17-pack-pytest-ocr-deadlock-20260825.md` |
 | **updated_at** | `2026-08-25T10:45:00+08:00` |
