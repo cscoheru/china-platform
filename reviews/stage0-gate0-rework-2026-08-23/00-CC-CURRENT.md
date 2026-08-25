@@ -10,7 +10,7 @@
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
 | **queue_rev** | `15` |
-| **cursor_head** | `639647d` |
+| **cursor_head** | `fb9918f` |
 | **cc_head** | `6e0a239`（S1.6 规划回执 `48`） |
 | **last_audit** | `49-stage0-cursor-s16-plan-audit-20260824.md` |
 | **updated_at** | `2026-08-25T08:55:00+08:00` |
