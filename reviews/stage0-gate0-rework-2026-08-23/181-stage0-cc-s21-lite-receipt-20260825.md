@@ -118,14 +118,24 @@ INVARIANT OK
 
 ## §5 — Push confirmation
 
-（待执行 — 见 §6 commit hash 后填入）
+```
+$ git push origin HEAD
+To https://origin.cursor.com/lyliae/china-platform.git
+   4e358ae..fe564ee  HEAD -> main
+
+$ git push github HEAD
+To https://github.com/cscoheru/china-platform.git
+   4e358ae..fe564ee  HEAD -> main
+
+三路收敛于 fe564ee。
+```
 
 ---
 
 ## §6 — 关键 commit
 
 ```
-commit <hash>
+commit fe564ee
 feat(schema): S2.1-lite person/tenure alignment migration + empty seed skeleton + 5 pytest cases
 
  - schema/migrations/008_person_tenure_alignment.sql (+173, 7495 bytes)
