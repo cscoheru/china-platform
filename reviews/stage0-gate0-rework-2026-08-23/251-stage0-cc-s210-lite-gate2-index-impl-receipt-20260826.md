@@ -14,7 +14,7 @@
 |---|---|---|---|---|
 | 1 | `git pull origin main` + `cc_gate_watch --pull`（queue_rev 97）| ✅ | — | — |
 | 2 | 读 `249` PASS + `250` tasking + `docs/44` §2-§7 + `docs/08 §3.2` + `docs/34 §2/§3` | ✅ | — | — |
-| 3 | 起草 **`docs/45-stage2-s210-lite-gate2-review-index-20260826.md`**（9 节；映射 docs/44 §2-§7）| ✅ | （backfill）| documentation |
+| 3 | 起草 **`docs/45-stage2-s210-lite-gate2-review-index-20260826.md`**（9 节；映射 docs/44 §2-§7）| ✅ | `2eefe10c` | documentation |
 | 4 | smoke-check 仍 PASS（无 frontend 改动）| ✅ | — | — |
 | 5 | 文件级 forbidden-token guard（docs/45 CLEAN；唯一命中「官员能力总分」在红线自检表 #4 红线条款内，**否定语境**）| ✅ | — | — |
 | 6 | 跨 lite 回归（s21lite..s26lite = **42/42**）| ✅ | — | — |
@@ -32,8 +32,8 @@
 
 | 路径 | 节数 | 大小 | sha256（前 8）| role |
 |---|---|---|---|---|
-| `docs/45-stage2-s210-lite-gate2-review-index-20260826.md` | **9 节** | （backfill）| （backfill）| documentation |
-| `reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md` | （本文件）| （backfill）| （backfill）| documentation |
+| `docs/45-stage2-s210-lite-gate2-review-index-20260826.md` | **9 节** | **8623** | `2eefe10c` | documentation |
+| `reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md` | （本文件）| **8238** | `f157ce62` | documentation |
 
 ### 1.2 docs/45 章节结构（9 节；映射 docs/44 §2-§7）
 
@@ -128,10 +128,10 @@
 | 本地校验 | `python3 -c "json.load(...)" manifest invariant` | ✅ 570 == 570 == 570 |
 | smoke-check | `python3 frontend/smoke-check.py` | ✅ PASS（无 frontend 改动）|
 | pytest 跨 lite | `python3 -m pytest tests/test_*_s*lite.py -q` | ✅ 42/42 |
-| commit | `git add docs/45-...md evidence_pack/manifest.json scripts/_knife19_manifest_bump.py reviews/.../251-...md && git commit -m "feat(docs): S2.10-lite Gate 2 评审索引 (七条验收 ↔ 证据路径; 不宣布 PASS)"` | ⏳ |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ |
-| github push | `git push github HEAD`（带 proxy）| ⏳ |
-| 三路对齐 | origin/main = github/main = local HEAD | ⏳ |
+| commit | `git add docs/45-...md evidence_pack/manifest.json scripts/_knife19_manifest_bump.py reviews/.../251-...md && git commit -m "feat(docs): S2.10-lite Gate 2 评审索引 (七条验收 ↔ 证据路径; 不宣布 PASS)"` | ✅ `f0aa7f69` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ |
+| github push | `git push github HEAD`（带 proxy）| ✅ |
+| 三路对齐 | origin/main = github/main = local HEAD = `f0aa7f69` | ✅ |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
