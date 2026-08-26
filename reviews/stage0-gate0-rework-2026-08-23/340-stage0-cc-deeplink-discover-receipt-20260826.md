@@ -14,7 +14,7 @@
 | phase | CC_ACTION_REQUIRED |
 | queue_rev | 141 |
 | cc_receipt | 340 |
-| cc_head | 待 commit + push origin + push github 落地 |
+| cc_head | `b495400`（已 commit + push origin + push github + three-way converged）|
 | user_ruling | D（无 headless 深链发现 + Hubei 再 live + ≥6 pytest + 不绕 JS）|
 | 测试 | 49/49 pytest PASS（knife 48 是 41/41,新增 8 deeplink/JS-shell case;超 tasking 339 §SCHEMA "≥6 pytest"）|
 | Hubei 再 live | rc=7（JS-only shell tech-blocked, NOT O1 收口）;见 §5 |
@@ -170,11 +170,11 @@ Hubei 探测结果是 JS-only shell(71B JS 重定向),需用户裁定 3 路径:
 
 ## §9 推 / 落地
 
-- commit: 待落地(receipt 中 cc_head 待填)
-- push origin: 待落地(`git push origin HEAD` 优先)
-- push github: 待落地(`git push github HEAD`)
-- three-way convergence: 待验
-- backfill SHA: 在 receipt 后续 commit 中填 `cc_head`(per knife 17 教训:不 amend-after-push)
+- commit: `b495400` (`feat(connector): 339 deeplink discover + JS-shell + tech-blocked`)
+- push origin: ✅ `b495400` (`4363f01..b495400 HEAD -> main`)
+- push github: ✅ `b495400` (`4363f01..b495400 HEAD -> main`)
+- three-way convergence: ✅ `local = origin = github = b4954004b803bad992df7d52bc29f1e3123c7263`
+- backfill SHA: 本 receipt `cc_head` 字段已更新;若需补 commit 则按 knife 17 教训另起（不 amend-after-push）
 
 ## §10 下次心跳预期
 
