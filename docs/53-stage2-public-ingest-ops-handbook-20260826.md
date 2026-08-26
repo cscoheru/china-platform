@@ -123,6 +123,18 @@ cd frontend && npm run dev   # 或 npm run build && npm start
 
 > 🔗 **`docs/45` ↔ `docs/50` §4.4 overview 首页 deeplink 互链**（per `436` cc 回执；queue_rev 187 落地；commit `d4fb7d4` + cc_head backfill `440c7c9` → docs/45/docs/53/docs/50 三向互链）：`docs/50-stage2-gate2-review-packet-draft-20260826.md` §4.4 里程碑表末尾（docs/45+53 同步登记行 + knife 80 NBS deeplink 2 行后）补登 1 行：**首页四轨一览 overview 显式 deeplink** `#overview`（per 回执 `432` + cc_head backfill `a23e5c8`；smoke §12b''' 4 针 + pytest 3 cases `test_overview_home_deeplink_public_extract.py` + 4 fixture byte SHA 前 8 锁不漂，与 knife 76/78/81 锁值完全一致：`nbs=e30ee811` / `nbs_live=9232efdb` / `sz=937255a5` / `hb=9056001c`）；docs/45 文首 queue_rev 188 刷新行 + §1 互链段 + §6.2 +1 行 + §7 pack invariant 链 750 → 752；docs/53 §5 第 13 项（此条）同步登记；链 docs/45 §1 + §6.2 + §7 + docs/53 §5（双向，docs/45 §7 pack invariant 链亦指向 docs/50 §4.4 新增 1 行）；不引入 `next/link` 保留 build ○ Static；不分支 `params.*`（AGENTS.md 静态路由红线）。**docs/50 §4.4 新增 1 行 是 Gate 2 评审包草稿里程碑表首页表内显式锚链演示节点，非 O1/Gate PASS；不动 4 fixture 字节；不引入 next/link 保留 build ○ Static；不分支 `params.*`；仍不宣布 Gate 2 PASS**。
 
+> 📍 **首页公开提取入口一览**（per 回执 `410` + `420` + `424` + `432` + `377` cc；queue_rev 188 落地）：
+>
+> | 入口 | 锚链 | 数据模式 / 用途 | 来源回执 |
+> | --- | --- | --- | --- |
+> | **全站顶栏 site-nav**（`<nav data-testid="site-nav">`）| `/public-extracts` | 全站任意页 top 常驻链；四轨 demo · 不分支 `params.*` · build ○ Static 22/22 | `410`（smoke §13c 门 6 针 + 5 pytest `test_layout_site_nav_public_extracts.py`） |
+> | **首页表内 NBS sample 轨**（`data-testid="home-public-extracts-nbs-sample"`）| `/public-extracts#track-nbs-sample` | `REGISTRY_SAMPLE · demo · 非 live O1`（63 行 / `dea13b8a…`）| `420`（commit `a70a557` + cc_head backfill `bee7950`；smoke §12b' 4 针 + pytest 3 cases `test_nbs_home_deeplink_public_extract.py`）|
+> | **首页表内 NBS live 候选轨**（`data-testid="home-public-extracts-nbs-live"`）| `/public-extracts#track-nbs-live` | `LIVE_CANDIDATE · drift 候选 · 非 O1 收口`（60 行 / `0b85212f…`）| `424`（commit `1ced2bd` + cc_head backfill `29467c4`；smoke §12b'' 4 针 + pytest 3 cases `test_nbs_live_home_deeplink_public_extract.py`）|
+> | **首页表内四轨一览 overview strip**（`data-testid="home-public-extracts-overview"`）| `/public-extracts#overview` | `OVERVIEW · 四轨 demo · 非 O1`（7 列 × 4 行；数据只读自既有 4 fixture）| `432`（commit `624f02a` + cc_head backfill `a23e5c8`；smoke §12b''' 4 针 + pytest 3 cases `test_overview_home_deeplink_public_extract.py`）|
+> | **首页表内湖北轨**（per knife 67 tasking 394）| `/public-extracts#track-hb` | `REGISTRY_SAMPLE · xlsx · live enabled=FALSE 暂缓`（21 行 / `c5cf5abeb4fdf97a…`）| `377`（smoke §12e 门 + pytest 4 轨交叉检查）|
+>
+> **首页公开提取入口一览是顶栏 site-nav + 首页表内 4 行显式 deeplink 的端到端入口演示汇总，非 O1/Gate PASS；不动 4 fixture 字节；不引入 `next/link` 保留 build ○ Static；不分支 `params.*`；4 fixture byte SHA 前 8 锁不漂：`nbs=e30ee811` / `nbs_live=9232efdb` / `sz=937255a5` / `hb=9056001c`（与 knife 76/78/81/82/84/85 完全一致）**。
+
 冒烟：`python3 frontend/smoke-check.py`（§12c 门含候选 fixture 在位 + 分轨交叉检查；§12d 门含深圳 fixture 在位 + 三轨交叉检查；§12e 门含湖北 fixture 在位 + 四轨交叉检查；**§12f 门含 overview strip 在位 + 4 锚点 id + 4 锚链 href + demo|candidate 标注 + 守门 13 针**；**§12h 门含四轨行筛选 input（4 testId）+ 客户端包含匹配 + 非权威库检索守门**；**§13c 门含 `site-nav` 容器 + `/public-extracts` 链 + 链 testId + 四轨 demo + 非 O1 + 不宣布 Gate PASS + 不分支 `params.*`**）。
 
 ## 6. 红线（运维时同样生效）
