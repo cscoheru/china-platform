@@ -28,8 +28,8 @@
 | 13 | 文件级 forbidden-token guard（mock_cities.ts 5 禁词全部 CLEAN）| ✅ | — | — |
 | 14 | 补 pack（579 → **586**；+7 含 5 frontend + 1 pytest + smoke-check）| ✅ | — | documentation |
 | 15 | 写回执 `257` 入 `reviews/` | ✅（本文件）| — | documentation |
-| 16 | commit → `origin` 优先 → `github` | ⏳ `pending` | — | — |
-| 17 | 三路对齐 | ⏳ `pending` | — | — |
+| 16 | commit → `origin` 优先 → `github` | ✅ `c8ee2b9` | — | — |
+| 17 | 三路对齐 | ✅ local = origin = github = `c8ee2b9` | — | — |
 | 18 | → `84` POLL + `cc_gate_watch` | ⏳ re-arm | — | — |
 
 ---
@@ -176,10 +176,10 @@
 | 跨 lite 回归 | `python3 -m pytest tests/test_*_s*lite.py tests/test_*_s210.py tests/test_city_slug_map_s27b.py -q` | ✅ 60 PASS + 6 SKIP |
 | smoke-check | `python3 frontend/smoke-check.py` | ✅ PASS（52/52 含 S2.7-b-lite 9 节守门）|
 | 本地校验 | `python3 -c "json.load(...)" manifest invariant` | ✅ 586 == 586 == 586 |
-| commit | `git add frontend/lib/city_slug_map.ts frontend/lib/types_cities.ts frontend/lib/mock_cities.ts frontend/app/components/CityPage.tsx frontend/app/cities/[slug]/page.tsx tests/test_city_slug_map_s27b.py frontend/smoke-check.py evidence_pack/manifest.json scripts/_knife22_manifest_bump.py reviews/.../257-...md && git commit -m "feat(frontend): S2.7-b-lite 10 地市 mock 壳 + dynamic segment + 复用三件套 (不宣布 PASS)"` | ⏳ `pending` |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ `pending` |
-| github push | `git push github HEAD`（带 proxy）| ⏳ `pending` |
-| 三路对齐 | origin/main = github/main = local HEAD = `pending` | ⏳ `pending` |
+| commit | `git add frontend/lib/city_slug_map.ts frontend/lib/types_cities.ts frontend/lib/mock_cities.ts frontend/app/components/CityPage.tsx frontend/app/cities/[slug]/page.tsx tests/test_city_slug_map_s27b.py frontend/smoke-check.py evidence_pack/manifest.json scripts/_knife22_manifest_bump.py reviews/.../257-...md && git commit -m "feat(frontend): S2.7-b-lite 10 地市 mock 壳 + dynamic segment + 复用三件套 (不宣布 PASS)"` | ✅ `c8ee2b9` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ |
+| github push | `git push github HEAD`（带 proxy）| ✅ |
+| 三路对齐 | origin/main = github/main = local HEAD = `c8ee2b9` | ✅ |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
