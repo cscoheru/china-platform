@@ -3,7 +3,7 @@
 - 编号：`432-stage0-cc-home-overview-deeplink-receipt-20260826`
 - 任务书：`432-stage2-home-overview-deeplink-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TBD`（git commit 后回填）
+- cc_head：`624f02a`（backfill commit `TBD`，后续单独 commit 回填；前序 commit `624f02a` = knife 82 主落地）
 - 日期：2026-08-26
 
 ---
