@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `152` |
-| **origin_head** | `f7736d9` |
-| **cc_head** | `f7736d9`；里程碑后恢复下刀 |
-| **cc_receipt** | `365` |
-| **cursor_ack** | `365` |
-| **last_audit** | `366` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；Cursor 代判；里程碑后 **恢复自主下刀**（深圳 sample 0 行修复）|
+| **queue_rev** | `153` |
+| **origin_head** | `3cdd12e` |
+| **cc_head** | `3cdd12e`；`368` 已交 |
+| **cc_receipt** | `368` |
+| **cursor_ack** | `368` |
+| **last_audit** | `369` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；Cursor 代判；深圳 71 行 sample → **上 /public-extracts** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T19:57:30+08:00` |
+| **updated_at** | `2026-08-26T20:06:30+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`367`** — 深圳样本表抽取修复（见 `367-…tasking…md`）。
+**`370`** — 深圳 REGISTRY_SAMPLE 前端分节（见 `370-…tasking…md`）。
 
-1. 修 HTML 表抽取使深圳 sample ≥1 行；NBS 不回归
-2. 回执 **`368`**（`-cc-`）
+1. fixture + `/public-extracts` 深圳分节
+2. 回执 **`371`**（`-cc-`）
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
