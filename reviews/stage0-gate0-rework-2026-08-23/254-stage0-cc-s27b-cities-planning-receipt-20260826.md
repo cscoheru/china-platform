@@ -20,9 +20,9 @@
 | 5 | 文件级 forbidden-token guard（docs/46 CLEAN；唯一命中"官员能力总分"在 §1.2 红线自检表内，**否定语境**）| ✅ | — | — |
 | 6 | 跨 lite 回归（s21lite..s26lite = **42/42** + s210 = **12 PASS** = **54 PASS**）| ✅ | — | — |
 | 7 | 补 pack（577 → **579**；含 docs/46 + receipt 254）| ✅ | — | documentation |
-| 8 | 写回执 `254` 入 `reviews/` | ✅（本文件）| （backfill）| documentation |
-| 9 | commit → `origin` 优先 → `github` | ⏳ 待推 | — | — |
-| 10 | 三路对齐 | ⏳ | — | — |
+| 8 | 写回执 `254` 入 `reviews/` | ✅（本文件）| `c7c79930` | documentation |
+| 9 | commit → `origin` 优先 → `github` | ✅ `90b51c4` | — | — |
+| 10 | 三路对齐 | ✅ local = origin = github = `90b51c4` | — | — |
 | 11 | → `84` POLL + `cc_gate_watch` | ⏳ re-arm | — | — |
 
 ---
@@ -34,7 +34,7 @@
 | 路径 | 节数 | 大小 | sha256（前 8）| role |
 |---|---|---|---|---|
 | `docs/46-stage2-s27b-cities-evidence-plan-20260826.md` | **11 节** | **17984** | `2a572c64` | documentation |
-| `reviews/stage0-gate0-rework-2026-08-23/254-stage0-cc-s27b-cities-planning-receipt-20260826.md` | （本文件）| （backfill）| （backfill）| documentation |
+| `reviews/stage0-gate0-rework-2026-08-23/254-stage0-cc-s27b-cities-planning-receipt-20260826.md` | （本文件）| **10430** | `c7c79930` | documentation |
 
 ### 1.2 docs/46 章节结构（11 节）
 
@@ -139,10 +139,10 @@
 | smoke-check | `python3 frontend/smoke-check.py` | ✅ PASS（无 frontend 改动）|
 | pytest 跨 lite | `python3 -m pytest tests/test_*_s*lite.py -q` | ✅ 42/42 |
 | pytest s210 | `python3 -m pytest tests/test_*_s210.py -q` | ✅ 12 PASS + 6 skipped |
-| commit | `git add docs/46-...md evidence_pack/manifest.json scripts/_knife21_manifest_bump.py reviews/.../254-...md && git commit -m "feat(docs): S2.7-b 10 地市观察页 规划 (10 城锁定 + 路由 + 切刀边界; 不宣布 PASS)"` | ⏳ |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ |
-| github push | `git push github HEAD`（带 proxy）| ⏳ |
-| 三路对齐 | origin/main = github/main = local HEAD | ⏳ |
+| commit | `git add docs/46-...md evidence_pack/manifest.json scripts/_knife21_manifest_bump.py reviews/.../254-...md && git commit -m "feat(docs): S2.7-b 10 地市观察页 规划 (10 城锁定 + 路由 + 切刀边界; 不宣布 PASS)"` | ✅ `90b51c4` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ |
+| github push | `git push github HEAD`（带 proxy）| ✅ |
+| 三路对齐 | origin/main = github/main = local HEAD = `90b51c4` | ✅ |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
