@@ -9,6 +9,7 @@
 > 刷新：queue_rev 119（per `284-stage2-docs45-o1-no-sample-tasking-20260826`）— §3 O1 登记用户 2026-08-26 无材料裁定（演示继续 mock；Gate 2 必带 OPEN 清单）— 不得伪造样本/不得爬网/不擅自 O1 收口
 > 刷新：queue_rev 125（per `299-stage2-docs45-mart-intake-parity-refresh-tasking-20260826`）— §2 #1 + §3 O1 详细 + §5.5 + §6 + §6.1 + §6.2 反映 S2.7-b-full mart 系列收口（`288` mart skel；`294` mart demo-join 60+70 行；`291` 真 SHA 投递 WAITING_FILE；`297` 前端 parity 20 pytest 锁定）；明确预览路径 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 看 demo 管道（**非 O1**）
 > 刷新：queue_rev 127（per `305-stage2-docs45-person-tenure-demo-refresh-tasking-20260826`）— §2 #1 + §3 O1 详细 + §5.5 + §6 + §6.1 + §6.2 反映 S2.7-b person/tenure demo 接驳（`303` 10 城 × 2 demo 行 = 20 demo 相关人物行：市委书记 + 市长 mock 占位；TS fixture 主路径；不接真 SHA 不接真履历；UI 显式 demo 标识）；修正「relatedPersons=[]」过时 OPEN；标注仍为 demo、非真履历、非 O1 收口
+> 刷新：queue_rev 130（per `312-stage2-docs45-o3-plan-refresh-tasking-20260826`）— §3 O3 + §5.5 + §6.2 + §7 反映 O3 OCR 生产路径规划落地（`309` 7 步流水线设计 + allowlist + is_demo/SHA lineage 衔接 + 验收清单 + 显式禁爬网/登录绕过；见 `docs/49`）；**O3 仍 OPEN**（未实装 OCR 引擎 + 未收口；tasking 31X+）；Gate 2 评审必带 OPEN 清单
 >
 > ⚠ **本文件是 Gate 2 评审索引；不宣布 Gate 2 PASS**（per `docs/34 §1` + §8 #8 + §133 + `247` §红线 + `250` §红线）
 
@@ -42,7 +43,7 @@
 |---|---|---|
 | **O1** 真实 SHA-locked 江苏样本 | **S1.18 DEMO 路径 OPEN — 用户 2026-08-26 确认无持有材料**（per `284` 缩刀任务书）| ✅ **必带**（per docs/34 §3 + §120）|
 | **O2** cron / 通知 / 真实联外探针 | Stage 1 运维 OPEN | ⚠️ 演示级可过 |
-| **O3** OCR 生产路径 | S1.17 scanned PDF OPEN | ⚠️ NBS 数字演示可过；建议 Gate 2 前补 1 条生产路径 |
+| **O3** OCR 生产路径 | S1.17 scanned PDF OPEN → `docs/49` 规划蓝图（7 步流水线设计 + allowlist + `is_demo`/SHA lineage 衔接 + 验收清单；回执 `309`）| ⚠️ **O3 仍 OPEN — 规划已交，实装待 tasking 31X+**；Gate 2 评审必带 OPEN 清单 |
 | O4 `is_demo` 机制 | ✅ 已交（S1.18）| — |
 | O5 docs/10 测试 | 部分已交（3.1/3.5）| ⚠️ 3.2-3.4 留 stub（Stage 3 收口）|
 | O6 FastAPI 只读服务 | ✅ 已交（S1.10）| — |
@@ -60,6 +61,12 @@
 - **不爬网**：不 HTTP 抓政府站；不调用第三方 API 抓江苏 GDP / 财政 / 履历（per `284` §SCHEMA "本刀不做" + `284` §红线）。
 - **Gate 2 评审必带 OPEN**：Gate 2 评审包必须显式携带 O1 OPEN 清单（per docs/34 §3 + §120）；不擅自宣布 O1 收口。
 - **收口路径**：O1 真实 SHA 由用户后续提供（线下渠道：政府文件 PDF/扫描件原件）；收口前 demo 恒占位（per docs/47 §6.3 切刀风险 + `284` §SCHEMA）。用户主动 `--confirm-o1=PATH` 显式 flag 才允许 flip O1 状态（per `291` intake + docs/48 §4.3）。
+- **O3 OCR 生产路径规划（per `309` + `docs/49`）**：
+  - **规划蓝图已交**（per `docs/49-stage2-o3-ocr-prod-path-plan-20260826.md`）：7 步流水线设计（upload → validate → sha256 → ocr → text extract → lineage write → ingest）；allowlist 复用 `docs/48` §2（`ALLOWED_UPLOAD_DIR` + `data/seed_archives/`）；`is_demo/SHA lineage` 衔接 `docs/48` §3 4 退出码契约（WAITING_FILE / CANDIDATE_FOUND / O1_INTAKED / CONTRACT_VIOLATION）；`is_demo=false` 翻转 = O3 收口标志事件（lineage JSONB `source_file_sha256` ≠ `'0'*64` + `demo_reason=NULL` + `source_file_url="(OCR_SCAN_FROM_UPLOAD:{user_id}:{uploaded_at})"`）。
+  - **输入边界显式禁止**：❌ HTTP 爬源（gov.cn / 任何第三方）；❌ 登录绕过（cookie / 账号 / headless browser / Selenium / Playwright）；❌ 未授权 cloud OCR API（默认离线；须 `--enable-cloud-ocr=PROVIDER` 显式 flag + 用户裁定）；❌ symlink/path traversal；❌ 伪造样本（per `docs/48` §4.1 控制流 fixture 判定契约）。
+  - **OCR 引擎选型待用户裁定**：默认推荐 paddle-ocr（中文精度高 + 本地离线）；tesseract / cloud 备选；最终由用户裁定（per `docs/49` §3.2 步骤 4 + §10 Q1）。
+  - **O3 仍 OPEN — 未实装**：实装（tasking 31X+）依赖用户裁定 OCR 引擎 + 用户主动 `--confirm-o3=PATH` 提供真实 PDF + 端到端 pytest PASS（per `docs/49` §5.3 + §8 + §10 Q4）。
+  - **依赖**：S2.1-lite `mart_person_tenure` PASS（干部任免 PDF OCR → person/tenure 表）；S2.2 `policy_observation` schema（政府工作报告 OCR）；S2.4 `fiscal_observation` schema（财政预决算 OCR）— per `docs/49` §6.2 下游消费者。
 - **依赖**：S2.7-b-full 真数据迁移刀（tasking 26X+ OPEN）依赖 O1 真实 SHA 收口（per docs/45 §5.5 OPEN + docs/47 §6.3）。
 
 ---
@@ -145,6 +152,7 @@
   - ✅ person/tenure **demo** 接驳 — 回执 `303`（10 城 × 2 demo 行 = 20 demo 相关人物行：市委书记 + 市长 mock 占位；TS fixture 主路径；UI 显式 demo 标识；15 pytest 守门）
   - ⚠️ person/tenure **真数据**接入 — **OPEN**（依赖 O1 真实 SHA 收口 + S2.1-lite `mart_person_tenure` PASS；dbt 侧真表迁移刀）
 - 真 SHA 投递入口（per docs/48 + `291` intake）— ✅ 已交入口；**O1 WAITING_FILE**（等用户 `--confirm-o1=PATH`）
+- **O3 OCR 生产路径**（per `docs/49` + `309`）— ✅ 规划蓝图已交（7 步流水线 + allowlist + `is_demo`/SHA lineage + 验收清单；**O3 仍 OPEN** — 未实装 OCR 引擎 + 未收口；tasking 31X+）；Gate 2 评审必带 OPEN 清单
 - 前端 mart demo 契约对齐（TS demo ↔ dbt mart）— ✅ `297`（20 pytest 锁定）+ ✅ `303`（15 pytest person/tenure demo 锁定）
 - 依赖：**O1 真实 SHA 收口 + Stage 1 OPEN 收口 + S2.1-lite `mart_person_tenure` PASS**（per docs/34 §3 + docs/47 §6.3 切刀风险 + Cursor 174 S2.1 OPEN）
 - 路线图：S2.7-b-full 真数据迁移刀（tasking 26X+；OPEN）= 接 dbt mart 真表 + **person/tenure 真数据**（替换 `303` 写入的 demo 占位 `relatedPersons`）+ lineage.source_file_sha256 从占位 `'0'*64` 替换为 O1 真实 SHA
@@ -161,7 +169,7 @@
 | **已守门** | 验收项 #4（无官员能力总分）| ✅ smoke-check + file-level guard |
 | **已交** | 验收项 #5（INFERENCE/JUDGMENT 角标）/ #6（反例 trigger）| ✅ |
 | **部分已交** | 验收项 #7（docs/10 §3.1-3.5）| ✅ §3.1/§3.5 schema；§3.2-§3.4 stub |
-| **OPEN** | O1 真实 SHA + O3 OCR | ⚠️ Gate 2 评审包必带 OPEN 清单 |
+| **OPEN** | O1 真实 SHA + O3 OCR | ⚠️ Gate 2 评审包必带 OPEN 清单（O1 per `291`/`docs/48`/`docs/45` §3 O1；O3 per `docs/49`/`309`/`docs/45` §3 O3 — **规划已交，仍 OPEN**）|
 | **OPEN** | 10 地市（S2.7-b）| ✅ S2.7-b-lite（mock 壳）已交 — 回执 `257`；S2.7-b-full-lite（mart-shape 接驳）已交 — 回执 `266`；S2.7-b-full mart 骨架（WHERE FALSE）已交 — 回执 `288`；S2.7-b-full mart demo-join（60+70 demo 行）已交 — 回执 `294`；真 SHA 投递入口（intake `WAITING_FILE`）已交 — 回执 `291`；前端 mart demo 契约对齐（20 pytest 锁定）已交 — 回执 `297`；**S2.7-b person/tenure demo 接驳**（10 城 × 2 demo 行 = 20 demo 相关人物行：市委书记 + 市长 mock 占位；TS fixture 主路径；15 pytest 锁定）已交 — 回执 `303`；**S2.7-b-full 真数据迁移刀（dbt mart 真表 + person/tenure 真数据替换 demo 占位）仍 OPEN**（tasking 26X+；依赖 O1 真实 SHA + Stage 1 OPEN + S2.1-lite `mart_person_tenure` PASS）|
 
 ### 6.1 S2.7-b 落地回执登记
@@ -194,6 +202,8 @@
 | person/tenure demo 接入（`relatedPersons`）| `frontend/lib/mart_city_demo.ts` `buildMartRelatedPersons()` 工厂（10 城 × 2 = 20 demo 行：市委书记 + 市长 mock 占位；canonical_name `"演示 人物 N (mock, {slug})"`；positionTitle `"市委书记（演示职位）"` / `"市长（演示职位）"`）+ `CityPageMart.tsx` `<section data-testid="city-page-mart-related-persons">` UI 渲染块（15 pytest 锁定）| ✅ S2.7-b person/tenure demo 已交（回执 `303`；**demo 占位，非真履历**；O1 WAITING_FILE）|
 | person/tenure 真数据接入（`relatedPersons` 替换 demo 占位）| 待 S2.1-lite `mart_person_tenure` PASS + O1 真实 SHA 收口 → S2.7-b-full 真数据迁移刀（tasking 26X+ OPEN）| ⚠️ OPEN — 推 S2.7-b-full 真数据迁移刀 |
 | 应用层 enum 守门（runtime + 静态 + 编译时 3 重）| `assertMartRowHasNoForbiddenFields` + smoke-check §10c + pytest `test_*_no_forbidden_tokens` | ✅ 已守门 |
+| **O3 OCR 生产路径规划蓝图**（per `docs/49` + `309`）| `docs/49-stage2-o3-ocr-prod-path-plan-20260826.md`（11 节：范围 / 目标 / 输入边界 / 7 步流水线 / lineage 衔接 / 验收清单 / 依赖 / 红线 / 不在范围 / 既有 docs 关系 / 未决问题）| ✅ O3 OCR 规划已交（回执 `309`；**O3 仍 OPEN — 未实装 OCR 引擎 + 未收口**；tasking 31X+）|
+| **O3 4 退出码契约 + allowlist**（per `docs/49` §4.3 + §2.3）| 复用 `docs/48` §3 退出码 + `scripts/compute_file_sha.py` `ALLOWED_PREFIXES` | ✅ 已规划（实装待 tasking 31X+）|
 
 **预览路径（per `294` + `297`）**：
 - 用户运行 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 看 demo mart-shape 管道（10 城 × 6 段 × 7 维度，全部 `is_demo=true`）
@@ -221,14 +231,14 @@
 | ❌ 改 `00-CC-CURRENT.md` | ✅ Cursor 拥有 |
 | ❌ --force / --force-with-lease | ✅ ff-only pull |
 | ❌ 索要 PAT | ✅ |
-| ✅ pack invariant | ⏳ bump + commit 后 628 == 628 == 628（knife 38: docs/45 刷新 + 回执 306 + bump；625 → 628；+3 = pytest + bump + receipt；docs/45 SHA REFRESH 不增计数）|
+| ✅ pack invariant | ⏳ bump + commit 后 635 == 635 == 635（knife 40: docs/45 刷新 + 回执 313 + bump；633 → 635；+2 = bump + receipt；docs/45 SHA REFRESH 不增计数）|
 | ✅ receipts 仅写 `reviews/stage0-gate0-rework-2026-08-23/` | ✅ |
 | ✅ 不改 docs/06 / docs/08 / docs/10 / docs/34 内容（Cursor 拥有）| ✅ |
 | ✅ 不擅自提前 Gate 2 评审日期 | ✅ W8（per docs/34 §10.4）|
 | ✅ mart-shape 禁词 3 重守门 | ✅ runtime `assertMartRowHasNoForbiddenFields` + 静态 scanner smoke-check §10c + pytest `test_*_no_forbidden_tokens` + 编译时 TS 字段白名单 |
 | ✅ mart-shape feature-flag 默认值 | ✅ `NEXT_PUBLIC_USE_MART_FIXTURE !== "1"` 默认走 mock（S2.7-b-lite；保护已交页面） |
 | ✅ 兼容 S2.7-b-lite 已交路径 | ✅ [slug]/page.tsx 默认 `getMockCity` + `CityPage`（per receipt 257）；mart-shape opt-in（per receipt 266）|
-| ✅ O1 + O8 OPEN 清单显式携带 | ✅ §3 + §5.5 + §6.2（lineage.source_file_sha256 + person/tenure 真数据；person/tenure **demo** 已交 `303`）推 S2.7-b-full 真数据迁移刀 |
+| ✅ O1 + O8 OPEN 清单显式携带 | ✅ §3 + §5.5 + §6.2（lineage.source_file_sha256 + person/tenure 真数据；person/tenure **demo** 已交 `303`；**O3 OCR 规划已交 `309` 仍 OPEN**）推 S2.7-b-full 真数据迁移刀 + O3 tasking 31X+ |
 
 ---
 

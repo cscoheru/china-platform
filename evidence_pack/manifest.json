@@ -1,5 +1,5 @@
 {
-  "artifact_count": 633,
+  "artifact_count": 635,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "c667255dc176c47e43bfea6fd642f7294564162711e07b562b4df4228f56d43f",
-      "size_bytes": 24623
+      "sha256": "58bbd1e13c11e7d3b0ddf23abe6ae8bcfd19eb99369efb4a6c4e008c420f5cbd",
+      "size_bytes": 27921
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -3798,6 +3798,18 @@
       "role": "documentation",
       "sha256": "2402040620974275c5633e7ff5919f42813e7c5b5ce3c01f519f5990174c8552",
       "size_bytes": 18575
+    },
+    {
+      "path": "scripts/_knife40_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "cfe9ed4ccc0255564df3953d708a1f56845d1b41e97f75e6982afcfd176607b6",
+      "size_bytes": 3492
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/313-stage0-cc-docs45-o3-plan-refresh-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "ca334613f5dc023b18f8548c423c9133c80dc59ddc98311cfb04dd5d796ace69",
+      "size_bytes": 21607
     }
   ],
   "commit": {
@@ -3831,7 +3843,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 21,
-    "documentation": 89,
+    "documentation": 90,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -3843,7 +3855,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 48,
+    "spike_helper": 49,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
