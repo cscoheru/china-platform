@@ -1,11 +1,14 @@
-// Stage 2 / S2.0.1 + S2.7-a — Home page.
+// Stage 2 / S2.0.1 + S2.7-a + S2.7-b — Home page.
 //
 // Lists indicators (mock by default). S2.7-a 增量：附 5 省列表入口
 // （per tasking 168 §NOW-2 「≥1 省路由壳或列表入口」）。
+// S2.7-b-lite / S2.7-b-full-lite 增量：附 10 地市列表入口
+// （per tasking 274 §NOW「首页十城导航入口」+ docs/46 §2）。
 // 列表本身仅为导航入口；不评分、不对比、不排名。
 
 import { listIndicators, IS_MOCK_MODE } from "../lib/api";
 import { MOCK_PROVINCE_LIST } from "../lib/mock_evidence_chain";
+import { CITY_SLUG_MAP, CITY_SLUG_LIST } from "../lib/city_slug_map";
 
 export const dynamic = "force-dynamic";
 
@@ -71,6 +74,33 @@ export default async function HomePage() {
               </td>
             </tr>
           ))}
+        </tbody>
+      </table>
+
+      <h2 style={{ marginTop: 32 }}>地市观察入口（S2.7-b-lite / S2.7-b-full-lite 列表）</h2>
+      <table style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}>
+        <thead>
+          <tr style={{ background: "#eee" }}>
+            <th style={cellStyle}>地市</th>
+            <th style={cellStyle}>归属省份</th>
+            <th style={cellStyle}>路由</th>
+            <th style={cellStyle}>数据模式</th>
+          </tr>
+        </thead>
+        <tbody>
+          {CITY_SLUG_LIST.map((slug) => {
+            const entry = CITY_SLUG_MAP[slug];
+            return (
+              <tr key={slug}>
+                <td style={cellStyle}>{entry.nameZh}</td>
+                <td style={cellStyle}>{entry.provinceSlug}</td>
+                <td style={cellStyle}>
+                  <a href={`/cities/${entry.slug}`}>/cities/{entry.slug}</a>
+                </td>
+                <td style={cellStyle}>mock（S2.7-b-lite / mart-shape opt-in）</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <p style={{ marginTop: 24, fontSize: 12, color: "#999" }}>
