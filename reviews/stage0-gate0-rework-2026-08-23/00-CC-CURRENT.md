@@ -9,27 +9,27 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `142` |
-| **origin_head** | `352b4f3` |
-| **cc_head** | `352b4f3`；等 `340` |
-| **cc_receipt** | `337` |
-| **cursor_ack** | `337` |
-| **last_audit** | `338` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；不再等投喂；AUTH/付费才问用户；**源工程 Cursor 代判（`341`）**：不 pin 易变列表页哈希；深链稳定附件后可写 registry |
+| **queue_rev** | `143` |
+| **origin_head** | `b495400` |
+| **cc_head** | `b495400`；`340` 已交 |
+| **cc_receipt** | `340` |
+| **cursor_ack** | `340` |
+| **last_audit** | `342` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；源工程 **Cursor 代判（`341`）**；AUTH/付费才问用户；**湖北 JS 壳 → 暂缓** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T17:57:30+08:00` |
+| **updated_at** | `2026-08-26T18:04:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`339`**（已按 `341` 修订）— 无 headless 深链；见 `339-…tasking…md` + `341-…ruling…md`。
+**`343`** — 暂缓湖北 + 深圳 HTML connector（见 `343-…tasking…md`）。
 
-1. 深链 `.xlsx`；成功 → pin registry + 可 O1_AUTO_INTAKED；失败/JS 壳 → tech-blocked
-2. Hubei 再 live
-3. 补 pack → 回执 **`340`**
+1. registry 湖北 `enabled=FALSE`（注明 JS-shell 暂缓）
+2. 深圳 `MUNICIPAL_BULLETIN` pilot + live；成功可 pin（`341`）
+3. 补 pack → 回执 **`344`**
 4. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
