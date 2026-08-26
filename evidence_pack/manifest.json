@@ -1,5 +1,5 @@
 {
-  "artifact_count": 618,
+  "artifact_count": 620,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3652,20 +3652,20 @@
     {
       "path": "dbt/models/marts/mart_city_evidence_chain.sql",
       "role": "spike_helper",
-      "sha256": "20d08b1e311f6597df2bf750c1b1a2cd3cd1716c642a653fa26d78677afc0af6",
-      "size_bytes": 2799
+      "sha256": "7b6ea644aacd286e37871a2fabba02d3ae33ff4e0e96306ee59da7c289def111",
+      "size_bytes": 4537
     },
     {
       "path": "dbt/models/marts/mart_city_seven_dim_overview.sql",
       "role": "spike_helper",
-      "sha256": "024dedc6ff49b7960798bf726888459dc5bcd313ec4b41b73957e2ecdd300d8d",
-      "size_bytes": 2810
+      "sha256": "b1658a295f028c89e1b1aacf9133b5fc0d8e79d59b321a6313082ad023d60f35",
+      "size_bytes": 5488
     },
     {
       "path": "tests/test_mart_city_dbt_skel_s27bf.py",
       "role": "schema_negative_test",
-      "sha256": "540c9721ea4aa2dcc2340d5d18f68acf8186a01348fce29a3d0582c7c400984a",
-      "size_bytes": 6911
+      "sha256": "6b45df7fb3aaf9bcd1ee01d59c58fe1ffce50353e32cbda5b793fe56e0248461",
+      "size_bytes": 14776
     },
     {
       "path": "scripts/_knife32_manifest_bump.py",
@@ -3708,6 +3708,18 @@
       "role": "documentation",
       "sha256": "a4748c8e5a086548289cde7e9bc6ad657d1700f73e2831d579ae00278a551b53",
       "size_bytes": 19704
+    },
+    {
+      "path": "scripts/_knife34_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "50050ede8b3c6f87dc7bbc7ee6e02dfac4b1eeb18993ede23d57f0c1ba509520",
+      "size_bytes": 3831
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/294-stage0-cc-s27b-full-mart-demo-join-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "e0b463b78297b2e31ae8f899be4db7dce9bfff52a058e6bb5a6f58006e308a47",
+      "size_bytes": 22760
     }
   ],
   "commit": {
@@ -3741,7 +3753,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 21,
-    "documentation": 82,
+    "documentation": 83,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -3753,7 +3765,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 42,
+    "spike_helper": 43,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
