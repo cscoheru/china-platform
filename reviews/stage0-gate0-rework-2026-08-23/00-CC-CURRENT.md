@@ -8,28 +8,24 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
+| **phase** | `POLL` |
 | **queue_rev** | `184` |
-| **origin_head** | `a9c155e` |
-| **cc_head** | `a9c155e`；等 `430` |
-| **cc_receipt** | `428` |
-| **cursor_ack** | `428` |
-| **last_audit** | `429` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀 |
+| **origin_head** | `8e62464` |
+| **cc_head** | `8e62464`；`430` 已交 |
+| **cc_receipt** | `430` |
+| **cursor_ack** | `430` |
+| **last_audit** | `431` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T09:22:00+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-27T09:28:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`430-stage2-docs45-docs50-home-deeplinks-crosslink-tasking-20260826.md`
-
-摘要：`docs/45` ↔ `docs/50` §4.4 首页 deeplink 互链；交回执 **`430`**。**必须双推**。
-
-完成后：双推 → **`84` POLL**。
+（无新刀。）只 **`84` POLL**。
 
 ---
 
