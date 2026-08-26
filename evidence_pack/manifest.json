@@ -1,5 +1,5 @@
 {
-  "artifact_count": 608,
+  "artifact_count": 613,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3648,6 +3648,36 @@
       "role": "documentation",
       "sha256": "1926ce33bb30cf0eae0f51d23150c7193596002b4443bd1dff087becce7b0fc9",
       "size_bytes": 15204
+    },
+    {
+      "path": "dbt/models/marts/mart_city_evidence_chain.sql",
+      "role": "spike_helper",
+      "sha256": "20d08b1e311f6597df2bf750c1b1a2cd3cd1716c642a653fa26d78677afc0af6",
+      "size_bytes": 2799
+    },
+    {
+      "path": "dbt/models/marts/mart_city_seven_dim_overview.sql",
+      "role": "spike_helper",
+      "sha256": "024dedc6ff49b7960798bf726888459dc5bcd313ec4b41b73957e2ecdd300d8d",
+      "size_bytes": 2810
+    },
+    {
+      "path": "tests/test_mart_city_dbt_skel_s27bf.py",
+      "role": "schema_negative_test",
+      "sha256": "540c9721ea4aa2dcc2340d5d18f68acf8186a01348fce29a3d0582c7c400984a",
+      "size_bytes": 6911
+    },
+    {
+      "path": "scripts/_knife32_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "975baf4783f65ee548bf5d350091d33cf7207b446c13755e213d358c3af3ec14",
+      "size_bytes": 3246
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/288-stage0-cc-s27b-full-dbt-skel-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "f126a4f6c598812c1c71773e1853d85fe9d8407eaee742b59be6f526d0ea6669",
+      "size_bytes": 17326
     }
   ],
   "commit": {
@@ -3681,19 +3711,19 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 21,
-    "documentation": 79,
+    "documentation": 80,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 36,
+    "schema_negative_test": 37,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 37,
+    "spike_helper": 40,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
