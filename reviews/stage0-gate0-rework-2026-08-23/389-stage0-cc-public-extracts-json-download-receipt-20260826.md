@@ -3,7 +3,7 @@
 - 编号：`389-stage0-cc-public-extracts-json-download-receipt-20260826`
 - 任务书：`388-stage2-public-extracts-json-download-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`
+- cc_head：`077b10a`
 - 日期：2026-08-26
 
 ---
