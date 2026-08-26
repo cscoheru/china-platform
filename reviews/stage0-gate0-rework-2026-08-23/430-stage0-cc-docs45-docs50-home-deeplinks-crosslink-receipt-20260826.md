@@ -3,7 +3,7 @@
 - 编号：`430-stage0-cc-docs45-docs50-home-deeplinks-crosslink-receipt-20260826`
 - 任务书：`430-stage2-docs45-docs50-home-deeplinks-crosslink-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TBD`（git commit 后回填）
+- cc_head：`232f94e`（backfill commit `TBD`，后续单独 commit 回填；前序 commit `232f94e` = knife 81 主落地）
 - 日期：2026-08-26
 
 ---
