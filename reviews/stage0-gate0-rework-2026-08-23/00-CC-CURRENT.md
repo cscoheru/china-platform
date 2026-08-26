@@ -8,34 +8,32 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `97` |
-| **origin_head** | `bf1962e` |
-| **cc_head** | `bf1962e`；`248` 已交 |
-| **cc_receipt** | `248` |
-| **cursor_ack** | `248` |
-| **last_audit** | `249` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D** |
+| **phase** | `POLL` |
+| **queue_rev** | `98` |
+| **origin_head** | `90e3a41` |
+| **cc_head** | `90e3a41`；`251` 已交 |
+| **cc_receipt** | `251` |
+| **cursor_ack** | `251` |
+| **last_audit** | `252` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**等用户** Gate 2 评审日 / 下一批 OPEN |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T10:06:00+08:00` |
-| **blocked_by** | — |
+| **expect_cc_poll** | `POLL_ONLY` |
+| **updated_at** | `2026-08-26T10:15:00+08:00` |
+| **blocked_by** | —（非 BLOCKED；无活刀） |
 
 ---
 
 ## NOW — CC 执行
 
-**`250`** — S2.10-lite Gate 2 评审索引（见 `250-stage2-s210-lite-gate2-index-tasking-20260826.md`）。
+**无。** Stage 2 lite 序（至 S2.10-lite / `docs/45`）已审 **PASS**。
 
-1. 落地评审索引（**严禁**「Gate 2 PASS」字样）
-2. 补 pack → commit → `origin` + `github` → 回执 **`251`**
-3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+CC：`./scripts/cc_gate_watch.sh --pull` → **`84` POLL**；`queue_rev` 变化前禁止自造刀。
 
 ---
 
 ## POLL
 
-交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
+`cursor_ack=251`；等用户裁定后 Cursor 再 bump `queue_rev`。
 
 探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
