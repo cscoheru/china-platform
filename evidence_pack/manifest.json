@@ -1,5 +1,5 @@
 {
-  "artifact_count": 570,
+  "artifact_count": 577,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3420,6 +3420,48 @@
       "role": "documentation",
       "sha256": "f157ce62b504371c0c0f54dc0131fda498e53d2112fcef9c844905cce020f2c7",
       "size_bytes": 8238
+    },
+    {
+      "path": "tests/test_peer_selection_justified_s210.py",
+      "role": "schema_negative_test",
+      "sha256": "17c0b80d6cf34a27d174660fa8a5508162b118d68fd93fea937ccf1fe19373db",
+      "size_bytes": 8054
+    },
+    {
+      "path": "tests/test_attribution_language_labels_s210.py",
+      "role": "schema_negative_test",
+      "sha256": "da6ff810bc289e13445e6f93e3aa85cf106cec3b382c8030c521b3d498b0bb4b",
+      "size_bytes": 5980
+    },
+    {
+      "path": "tests/test_regression_record_stub_s210.py",
+      "role": "schema_negative_test",
+      "sha256": "521abf8647aef6364e8dbb56af4b6f8817969c131d9bf456857b28dd9c4a281c",
+      "size_bytes": 2284
+    },
+    {
+      "path": "tests/test_analysis_missing_handling_stub_s210.py",
+      "role": "schema_negative_test",
+      "sha256": "54d63e5180b6c49955303c9f97fed6192696498f7739fa2f969332ab175b92a9",
+      "size_bytes": 1960
+    },
+    {
+      "path": "tests/test_did_parallel_trends_stub_s210.py",
+      "role": "schema_negative_test",
+      "sha256": "1e0484c32a1db05f80be92d1fb3229ca59823f129c0328ecd6a5e8b258116671",
+      "size_bytes": 1944
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/253-stage2-s210-impl-tasking-20260826.md",
+      "role": "documentation",
+      "sha256": "3049b2258fa972d60859d19c927d4f39c6d84552916426c6dff4a8c8e3dbadc7",
+      "size_bytes": 1547
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/253-stage0-cc-s210-impl-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "b146cb22699369f566f80121921f660110b0ca0519989f58fc09879446130fc9",
+      "size_bytes": 10639
     }
   ],
   "commit": {
@@ -3453,14 +3495,14 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 20,
-    "documentation": 65,
+    "documentation": 67,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 29,
+    "schema_negative_test": 34,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
