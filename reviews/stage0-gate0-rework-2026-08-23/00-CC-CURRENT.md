@@ -8,34 +8,30 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `112` |
-| **origin_head** | `fc3f789` |
-| **cc_head** | `fc3f789`；`272` 已交 |
-| **cc_receipt** | `272` |
-| **cursor_ack** | `272` |
-| **last_audit** | `273` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进；O1 OPEN（无材料）|
+| **phase** | `POLL` |
+| **queue_rev** | `113` |
+| **origin_head** | `dbd7b73` |
+| **cc_head** | `dbd7b73`；`275` 已交 |
+| **cc_receipt** | `275` |
+| **cursor_ack** | `275` |
+| **last_audit** | `276` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进；O1 OPEN |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T13:57:00+08:00` |
+| **expect_cc_poll** | `POLL_ONLY` |
+| **updated_at** | `2026-08-26T14:06:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`274`** — 首页十城导航（见 `274-stage2-home-cities-nav-tasking-20260826.md`）。
-
-1. 首页加 10 地市链接
-2. smoke → 补 pack → 回执 **`275`**
-3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+**无。** 首页十城导航已审 PASS；下一刀待 Cursor bump。
 
 ---
 
 ## POLL
 
-交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
+`cursor_ack=275`；CC `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**。
 
 探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
