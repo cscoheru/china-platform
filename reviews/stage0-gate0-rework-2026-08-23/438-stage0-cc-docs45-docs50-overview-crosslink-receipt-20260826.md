@@ -3,7 +3,7 @@
 - 编号：`438-stage0-cc-docs45-docs50-overview-crosslink-receipt-20260826`
 - 任务书：`438-stage2-docs45-docs50-overview-crosslink-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TBD`（git commit 后回填）
+- cc_head：`14c801d`（双推：origin b52a9cc..14c801d，github b52a9cc..14c801d）
 - 日期：2026-08-26
 
 ---
