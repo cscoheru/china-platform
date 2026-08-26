@@ -27,9 +27,9 @@
 | 11 | smoke-check PASS（含 §10 S2.7-b-full-lite mart-shape 守门）| ✅ | — |
 | 12 | cross-lite 回归 120 PASS + 6 SKIP（无回归）| ✅ | — |
 | 13 | 写回执 `269` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 14 | commit → `origin` 优先 → `github` | ⏳ commit `<this-sha>`（backfill this line）| — |
-| 15 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 16 | 三路对齐 | ⏳ local = origin = github = `<this-sha>` | — |
+| 14 | commit → `origin` 优先 → `github` | ✅ commit `13733c8`（backfill this line）| — |
+| 15 | commit SHA backfill（独立 commit；不 amend-after-push）| ✅ this commit | — |
+| 16 | 三路对齐 | ✅ local = origin = github = `13733c8` | — |
 | 17 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — |
 
 ---
@@ -132,13 +132,13 @@
 | docs/45 刷新 | `docs/45-stage2-s210-lite-gate2-review-index-20260826.md` | ✅（§2 #1 + §5.5 OPEN + §6 row + §6.1 + §6.2 + §7 4 行）|
 | docs/45 forbidden-token guard | grep 禁词清单 | ✅ 2 hit 均为 §6.2 禁词守门块 negative 上下文 |
 | bump script | `scripts/_knife26_manifest_bump.py` | ✅ 595 → 597（+2 = bump + receipt）|
-| 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ⏳ 597 == 597 == 597 |
+| 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ✅ 597 == 597 == 597 |
 | smoke-check | `python3 frontend/smoke-check.py` | ✅ §10 S2.7-b-full-lite 仍 PASS |
-| cross-lite 回归 | 17 个 lite 文件 pytest | ✅ 120 PASS + 6 SKIP（无回归）|
-| commit (knife 26 主提交) | `git add docs/45-stage2-s210-lite-gate2-review-index-20260826.md scripts/_knife26_manifest_bump.py evidence_pack/manifest.json reviews/.../269-...md && git commit -m "docs(45): 刷新 S2.7-b-full-lite mart-shape 接驳路径 + §6.1 落地回执登记（回执 266；不宣布 PASS）"` | ⏳ `<this-sha>` |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ |
-| github push | `git push github HEAD`（带 proxy）| ⏳ |
-| 三路对齐 | origin/main = github/main = local HEAD = `<this-sha>` | ⏳ |
+| cross-lite 回归 | 18 个 lite 文件 pytest | ✅ 158 PASS + 6 SKIP（无回归）|
+| commit (knife 26 主提交) | `git add docs/45-stage2-s210-lite-gate2-review-index-20260826.md scripts/_knife26_manifest_bump.py evidence_pack/manifest.json reviews/.../269-...md && git commit -m "docs(45): 刷新 S2.7-b-full-lite mart-shape 接驳路径 + §6.1 落地回执登记（回执 266；pack 595 → 597；不宣布 PASS）"` | ✅ `13733c8` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `9dcc9cc..13733c8` |
+| github push | `git push github HEAD`（带 proxy）| ✅ `9dcc9cc..13733c8` |
+| 三路对齐 | origin/main = github/main = local HEAD = `13733c8` | ✅ |
 | backfill commit (this) | 独立 commit（不 amend-after-push）| ⏳ this commit |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
