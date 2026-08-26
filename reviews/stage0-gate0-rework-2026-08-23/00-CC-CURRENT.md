@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `124` |
-| **origin_head** | `025904c` |
-| **cc_head** | `025904c`；`294` 已交 |
-| **cc_receipt** | `294` |
-| **cursor_ack** | `294` |
-| **last_audit** | `295` PASS |
+| **queue_rev** | `125` |
+| **origin_head** | `3429294` |
+| **cc_head** | `3429294`；`297` 已交 |
+| **cc_receipt** | `297` |
+| **cursor_ack** | `297` |
+| **last_audit** | `298` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进；**尽快看见数据**；**O1 WAITING_FILE** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T15:31:00+08:00` |
-| **blocked_by** | 真 O1 仍需 allowlist 投递（docs/48）；本刀先对齐前端可见 demo |
+| **updated_at** | `2026-08-26T15:43:00+08:00` |
+| **blocked_by** | 真 O1 仍需 allowlist 投递（docs/48）|
 
 ---
 
 ## NOW — CC 执行
 
-**`296`** — 前端 mart demo 契约对齐（见 `296-stage2-frontend-mart-demo-parity-tasking-20260826.md`）。
+**`299`** — docs/45 索引刷新（见 `299-stage2-docs45-mart-intake-parity-refresh-tasking-20260826.md`）。
 
-1. 对齐 `mart_city_demo.ts` 等与 dbt demo-join
-2. smoke/pytest → 补 pack → 回执 **`297`**
+1. 刷新 `docs/45`（mart/intake/parity）
+2. 补 pack → 回执 **`300`**
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
