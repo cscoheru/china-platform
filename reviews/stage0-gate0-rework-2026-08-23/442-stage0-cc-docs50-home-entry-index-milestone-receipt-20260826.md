@@ -3,7 +3,7 @@
 - 编号：`442-stage0-cc-docs50-home-entry-index-milestone-receipt-20260826`
 - 任务书：`442-stage2-docs50-home-entry-index-milestone-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：（待双推回填）
+- cc_head：`0021930`（双推：origin 9d4875b..0021930，github 9d4875b..0021930）
 - 日期：2026-08-26
 
 ---
