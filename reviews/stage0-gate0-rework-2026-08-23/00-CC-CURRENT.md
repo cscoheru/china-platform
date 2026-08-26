@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `126` |
-| **origin_head** | `1149acc` |
-| **cc_head** | `1149acc`；`300` 已交 |
-| **cc_receipt** | `300` |
-| **cursor_ack** | `300` |
-| **last_audit** | `301` PASS |
+| **queue_rev** | `127` |
+| **origin_head** | `38ff790` |
+| **cc_head** | `38ff790`；`303` 已交 |
+| **cc_receipt** | `303` |
+| **cursor_ack** | `303` |
+| **last_audit** | `304` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进；**尽快看见数据**；**O1 WAITING_FILE** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T15:52:00+08:00` |
+| **updated_at** | `2026-08-26T16:04:00+08:00` |
 | **blocked_by** | 真 O1 仍需 allowlist 投递（docs/48）|
 
 ---
 
 ## NOW — CC 执行
 
-**`302`** — person/tenure demo 接驳（见 `302-stage2-s27b-person-tenure-demo-tasking-20260826.md`）。
+**`305`** — docs/45 person/tenure demo 刷新（见 `305-stage2-docs45-person-tenure-demo-refresh-tasking-20260826.md`）。
 
-1. 10 城 demo relatedPersons/tenure（`isDemo=true`）
-2. pytest/smoke → 补 pack → 回执 **`303`**
+1. 刷新 `docs/45`（登记 `303`）
+2. 补 pack → 回执 **`306`**
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
