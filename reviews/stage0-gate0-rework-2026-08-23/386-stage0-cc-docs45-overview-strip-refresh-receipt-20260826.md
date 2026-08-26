@@ -3,7 +3,7 @@
 - 编号：`386-stage0-cc-docs45-overview-strip-refresh-receipt-20260826`
 - 任务书：`385-stage2-docs45-overview-strip-refresh-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`
+- cc_head：`93034aa`
 - 日期：2026-08-26
 
 ---
