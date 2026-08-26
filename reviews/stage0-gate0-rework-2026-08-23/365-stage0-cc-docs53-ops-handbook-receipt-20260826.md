@@ -3,7 +3,7 @@
 - 编号：`365-stage0-cc-docs53-ops-handbook-receipt-20260826`
 - 任务书：`364-stage2-docs53-public-ingest-ops-handbook-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`
+- cc_head：`6c3fc13`
 - 日期：2026-08-26
 
 ---
