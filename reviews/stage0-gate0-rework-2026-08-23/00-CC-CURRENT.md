@@ -8,28 +8,24 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
+| **phase** | `POLL` |
 | **queue_rev** | `185` |
-| **origin_head** | `c6bcf0e` |
-| **cc_head** | `c6bcf0e`；等 `432` |
-| **cc_receipt** | `430` |
-| **cursor_ack** | `430` |
-| **last_audit** | `431` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀 |
+| **origin_head** | `a23e5c8` |
+| **cc_head** | `a23e5c8`；`432` 已交 |
+| **cc_receipt** | `432` |
+| **cursor_ack** | `432` |
+| **last_audit** | `433` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T09:37:00+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-27T09:46:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`432-stage2-home-overview-deeplink-tasking-20260826.md`
-
-摘要：首页 → `/public-extracts#overview` 四轨一览链；交回执 **`432`**。**必须双推**。
-
-完成后：双推 → **`84` POLL**。
+（无新刀。）只 **`84` POLL**。
 
 ---
 
