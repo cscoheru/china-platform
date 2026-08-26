@@ -23,12 +23,12 @@
 | 7 | smoke-check（§10 mart-shape + §11 home nav）仍 PASS；无回归 | ✅ PASS | — |
 | 8 | file-level forbidden-token guard（2 SQL + pytest）：0 hit（仅 5 balance_status enum 在注释中列出）| ✅ CLEAN | — |
 | 9 | 创建 `scripts/_knife32_manifest_bump.py`（5 NEW_ARTIFACTS：3 NEW + 1 bump + 1 receipt）| ✅ | spike_helper |
-| 10 | bump pack（608 → **613**；+5 = 2 mart SQL + 1 pytest + bump + receipt）| ⏳ this step | — |
+| 10 | bump pack（608 → **613**；+5 = 2 mart SQL + 1 pytest + bump + receipt）| ✅ | — |
 | 11 | 写回执 `288` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 12 | commit → `origin` 优先 → `github` | ✅ commit `____`（backfill this line）| — |
-| 13 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 14 | 三路对齐 | ⏳ local = origin = github = `____` | — |
-| 15 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — |
+| 12 | commit → `origin` 优先 → `github` | ✅ commit `913c3ffad2647308c1d776a193955d5f7dbca87c` | — |
+| 13 | commit SHA backfill（独立 commit；不 amend-after-push）| ✅ backfill | — |
+| 14 | 三路对齐 | ✅ local = origin = github = `913c3ffad2647308c1d776a193955d5f7dbca87c` | — |
+| 15 | → `84` POLL + `cc_gate_watch` re-arm | ✅ re-armed → `CC_ACTION=POLL` | — |
 
 ---
 
@@ -228,11 +228,11 @@ INVARIANT: sum(role_count)=613 == artifact_count=613 == len(artifacts)=613
 | file-level forbidden-token guard | grep 禁词清单 | ✅ CLEAN（0 hit）|
 | bump script | `scripts/_knife32_manifest_bump.py` | ✅ 608 → 613（+5）|
 | 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ✅ 613 == 613 == 613 |
-| commit (knife 32 主提交) | `git add dbt/models/marts/mart_city_evidence_chain.sql dbt/models/marts/mart_city_seven_dim_overview.sql tests/test_mart_city_dbt_skel_s27bf.py scripts/_knife32_manifest_bump.py evidence_pack/manifest.json reviews/.../288-...md && git commit -m "feat(dbt): S2.7-b-full mart skeleton — mart_city_evidence_chain + mart_city_seven_dim_overview view 骨架 + 10 pytest 守门（O1 占位；零行）"` | ✅ `____` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ |
-| github push | `git push github HEAD`（带 proxy）| ✅ |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ |
-| backfill commit (this) | 独立 commit（不 amend-after-push）| ⏳ this commit |
+| commit (knife 32 主提交) | `git add ... && git commit -m "feat(dbt): S2.7-b-full mart skeleton — mart_city_evidence_chain + mart_city_seven_dim_overview view 骨架 + 10 pytest 守门（O1 占位；零行）"` | ✅ `913c3ffad2647308c1d776a193955d5f7dbca87c` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `913c3ff` → origin/main |
+| github push | `git push github HEAD`（带 proxy）| ✅ `913c3ff` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `913c3ffad2647308c1d776a193955d5f7dbca87c` |
+| backfill commit (this) | 独立 commit（不 amend-after-push）| ✅ backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
