@@ -1,5 +1,5 @@
 {
-  "artifact_count": 628,
+  "artifact_count": 630,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "4c142f49a8cd5e7c3b5d72778d3629ff7f1e51e82f0cfd6734dc37b2c0ebaa31",
-      "size_bytes": 21065
+      "sha256": "c667255dc176c47e43bfea6fd642f7294564162711e07b562b4df4228f56d43f",
+      "size_bytes": 24623
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -3768,6 +3768,18 @@
       "role": "documentation",
       "sha256": "75f6c7ea3a8c31c88b928618f132c77c06577741d719ff775aae83ce8066096d",
       "size_bytes": 22228
+    },
+    {
+      "path": "scripts/_knife38_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "4e74573f6da8830a417cac5c9b044290afb1ce628cab2798a74985522c266dbe",
+      "size_bytes": 3521
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/306-stage0-cc-docs45-person-tenure-demo-refresh-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "34dbbb2726abe739329f1a479f56b4d2e570777a27881be41babc51b74c79f5a",
+      "size_bytes": 21887
     }
   ],
   "commit": {
@@ -3801,7 +3813,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 21,
-    "documentation": 86,
+    "documentation": 87,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -3813,7 +3825,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 46,
+    "spike_helper": 47,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
