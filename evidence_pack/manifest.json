@@ -1,5 +1,5 @@
 {
-  "artifact_count": 692,
+  "artifact_count": 694,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -4152,6 +4152,18 @@
       "role": "documentation",
       "sha256": "ef60a78ce2812b0031aa5c28b955ab9e85ed19e560f6617d53ecaba714f3a6b0",
       "size_bytes": 5947
+    },
+    {
+      "path": "scripts/_knife64_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "4bf28653cced9fcd948ed4f3302393450c685820d66bdeb204e714894dc320b6",
+      "size_bytes": 3762
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/386-stage0-cc-docs45-overview-strip-refresh-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "7eab73c2943410bea68da6a5ea0b5ac46a7c4e1668d5bf730499a788bfefe4eb",
+      "size_bytes": 4455
     }
   ],
   "commit": {
@@ -4185,7 +4197,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 28,
-    "documentation": 114,
+    "documentation": 115,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -4197,7 +4209,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 74,
+    "spike_helper": 75,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

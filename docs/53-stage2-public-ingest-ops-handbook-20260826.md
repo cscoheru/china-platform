@@ -107,8 +107,9 @@ cd frontend && npm run dev   # 或 npm run build && npm start
 2. 下半区 = live 候选区块（LIVE_CANDIDATE，60 行 + deeplink/WORM/SHA provenance + DemoBadge 注明 drift 候选、非 O1 收口、与上方 sample 分轨互不覆盖）
 3. 尾部 = 深圳区块（REGISTRY_SAMPLE 散文轨，sz.gov.cn MUNICIPAL_BULLETIN，71 行 `{section, paragraph}` + provenance + DemoBadge 注明 demo、SSL 暂缓未做过 live 探测、与 NBS 两轨分轨互不覆盖；per 回执 `368`/`371`）
 4. 尾尾 = 湖北区块（REGISTRY_SAMPLE xlsx 轨，tjj.hubei.gov.cn PROVINCIAL_BULLETIN，21 行 `{指标, 单位, 增速}` + provenance + DemoBadge 注明 demo、live `enabled=FALSE` 暂缓未做过 live 探测、与 NBS+深圳三轨分轨互不覆盖；per 回执 `377`）
+5. **页首 = 四轨一览条 overview strip**（7 列 × 4 行 = NBS sample / NBS live 候选 / 深圳 / 湖北；domain / category / 行数 / SHA 前 8 / demo|candidate 标注 / 锚链到 4 分节；数据只读自既有 4 fixture，不重算；per 回执 `383`；smoke §12f 门）
 
-冒烟：`python3 frontend/smoke-check.py`（§12c 门含候选 fixture 在位 + 分轨交叉检查；§12d 门含深圳 fixture 在位 + 三轨交叉检查；§12e 门含湖北 fixture 在位 + 四轨交叉检查）。
+冒烟：`python3 frontend/smoke-check.py`（§12c 门含候选 fixture 在位 + 分轨交叉检查；§12d 门含深圳 fixture 在位 + 三轨交叉检查；§12e 门含湖北 fixture 在位 + 四轨交叉检查；**§12f 门含 overview strip 在位 + 4 锚点 id + 4 锚链 href + demo|candidate 标注 + 守门 13 针**）。
 
 ## 6. 红线（运维时同样生效）
 
