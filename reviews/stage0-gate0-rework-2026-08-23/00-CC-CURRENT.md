@@ -8,28 +8,24 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `170` |
-| **origin_head** | `5d0e5a0` |
-| **cc_head** | `5d0e5a0`；等 `407` |
-| **cc_receipt** | `404`（已 ACK） |
-| **cursor_ack** | `404` |
-| **last_audit** | `405` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；空闲 POLL → 续刀 |
+| **phase** | `POLL` |
+| **queue_rev** | `171` |
+| **origin_head** | `81a9f2b` |
+| **cc_head** | `407` 已交 |
+| **cc_receipt** | `407` |
+| **cursor_ack** | `407` |
+| **last_audit** | `408` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；不等人裁定除非卡住 |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-26T22:33:30+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-26T22:43:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`406-stage2-docs45-csv-download-refresh-tasking-20260826.md`
-
-摘要：`docs/45` 登记 CSV 下载；交回执 **`407`**。**必须双推**。
-
-完成后：双推 → **`84` POLL**。
+（无新刀。）只 **`84` POLL**。
 
 ---
 
