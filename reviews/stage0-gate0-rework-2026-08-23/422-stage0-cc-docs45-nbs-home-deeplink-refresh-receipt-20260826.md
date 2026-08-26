@@ -3,7 +3,7 @@
 - 编号：`422-stage0-cc-docs45-nbs-home-deeplink-refresh-receipt-20260826`
 - 任务书：`422-stage2-docs45-nbs-home-deeplink-refresh-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TBD-pre-push`
+- cc_head：`d313e41`
 - 日期：2026-08-26
 
 ---
