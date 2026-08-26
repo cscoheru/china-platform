@@ -1,5 +1,5 @@
 {
-  "artifact_count": 658,
+  "artifact_count": 663,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3948,6 +3948,36 @@
       "role": "documentation",
       "sha256": "4be905ad7e25b1657939085c1993dc17354ae207f45acee9d617b4bb57105987",
       "size_bytes": 20362
+    },
+    {
+      "path": "frontend/lib/public_extract_nbs.json",
+      "role": "data_contract_suite",
+      "sha256": "e30ee811daef5594b374aa436163570f06e896ee7301b77fbb8c90730af6040d",
+      "size_bytes": 7183
+    },
+    {
+      "path": "frontend/app/public-extracts/page.tsx",
+      "role": "spike_helper",
+      "sha256": "32fc1f4c77359f121af4d5fc2af80a77e0bdc36891ab1459247fa82c77b530ea",
+      "size_bytes": 5572
+    },
+    {
+      "path": "tests/test_public_extract_frontend_fixture.py",
+      "role": "schema_negative_test",
+      "sha256": "21724f18346ebe64dff214678bda486325d7055c9b1a27da237d1109c124ee50",
+      "size_bytes": 4260
+    },
+    {
+      "path": "scripts/_knife52_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "697e6ba1aa6fe78cbc5457e2d787855976e747d8a1d7d423dbcd75cc792bd1d5",
+      "size_bytes": 3800
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/350-stage2-public-extract-frontend-wire-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "c929aed366033db6b1ae150c807e7c2b16a5fc2baee720727758e473221939a3",
+      "size_bytes": 8948
     }
   ],
   "commit": {
@@ -3980,20 +4010,20 @@
   },
   "python_version": "3.14.3",
   "role_count": {
-    "data_contract_suite": 21,
-    "documentation": 101,
+    "data_contract_suite": 22,
+    "documentation": 102,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 40,
+    "schema_negative_test": 41,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 61,
+    "spike_helper": 63,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

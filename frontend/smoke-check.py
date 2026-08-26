@@ -658,6 +658,71 @@ def main() -> int:
         if all(d in tsrc for d in expected_dims):
             ok(f"types_seven_dim.ts declares all 7 dimension enums")
 
+    # 12. 公开提取呈现 — knife 52 (tasking 349). Per `349` §SCHEMA:
+    #     (1) 前端可读 public_extracts (build-time fixture);
+    #     (2) 专用区块 ≥1 行可见 + 显式 REGISTRY_SAMPLE / demo 标注;
+    #     (3) 保留 mart demo 旗标逻辑;
+    #     (4) build/测证据由 pytest test_public_extract_frontend_fixture.py 提供.
+    fixture_path = ROOT / "lib/public_extract_nbs.json"
+    pe_page_path = ROOT / "app/public-extracts/page.tsx"
+    if not fixture_path.is_file():
+        errors.append("lib/public_extract_nbs.json missing (per tasking 349 §NOW-1)")
+    else:
+        try:
+            fx = json.loads(fixture_path.read_text(encoding="utf-8"))
+            if fx.get("domain") != "stats.gov.cn":
+                errors.append("public_extract_nbs.json: domain != stats.gov.cn")
+            if fx.get("category") != "NATIONAL_BULLETIN":
+                errors.append("public_extract_nbs.json: category != NATIONAL_BULLETIN")
+            if fx.get("row_count") != 63:
+                errors.append(
+                    f"public_extract_nbs.json: row_count={fx.get('row_count')} != 63"
+                )
+            if not isinstance(fx.get("rows"), list) or len(fx["rows"]) < 1:
+                errors.append("public_extract_nbs.json: rows empty (≥1 行可见 per 349)")
+            else:
+                ok("public_extract_nbs.json: 63 行 NBS 提取 fixture 在位")
+        except json.JSONDecodeError as e:
+            errors.append(f"public_extract_nbs.json is not valid JSON: {e}")
+
+    if not pe_page_path.is_file():
+        errors.append("app/public-extracts/page.tsx missing (per tasking 349 §NOW-1)")
+    else:
+        pe_src = pe_page_path.read_text(encoding="utf-8")
+        pe_code = re.sub(r"//[^\n]*", "", pe_src)
+        pe_code = re.sub(r"/\*.*?\*/", "", pe_code, flags=re.DOTALL)
+        for needle, label in [
+            ("REGISTRY_SAMPLE", "REGISTRY_SAMPLE 标注"),
+            ("DemoBadge", "DemoBadge 复用"),
+            ("public_extract_nbs.json", "fixture import"),
+            ("source_sha256", "provenance SHA 展示"),
+        ]:
+            if needle not in pe_code:
+                errors.append(f"public-extracts/page.tsx missing {label}")
+        if all(
+            n in pe_code
+            for n in ("REGISTRY_SAMPLE", "DemoBadge", "public_extract_nbs.json", "source_sha256")
+        ):
+            ok("public-extracts/page.tsx: fixture import + REGISTRY_SAMPLE 标注 + provenance")
+        # 禁词守门 (per 349 §红线 + docs/06 §6.6): 不评分 / 不排名.
+        for pat, label in [
+            (r"\bscore\b", "score"),
+            (r"\brating\b", "rating"),
+            (r"\brank(?:ing)?\b", "rank"),
+            (r"\btotal[_-]?score\b", "total_score"),
+        ]:
+            if re.search(pat, pe_code, re.IGNORECASE):
+                errors.append(
+                    f"public-extracts/page.tsx contains forbidden term {label!r} "
+                    f"(per tasking 349 §红线)"
+                )
+
+    # 12b. 首页导航入口: /public-extracts (per 349 §SCHEMA '首页或专用区块').
+    if "/public-extracts" not in home_code:
+        errors.append("app/page.tsx missing /public-extracts nav anchor (per tasking 349)")
+    else:
+        ok("app/page.tsx links /public-extracts nav anchor")
+
     if errors:
         for e in errors:
             fail(e)

@@ -149,6 +149,19 @@ export default async function HomePage() {
             </td>
             <td style={cellStyle}>mock（S2.9-lite）</td>
           </tr>
+          <tr>
+            <td style={cellStyle}>公开提取样本（NBS）</td>
+            <td style={cellStyle}>
+              <a href="/public-extracts">/public-extracts</a>
+            </td>
+            <td style={cellStyle}>
+              stats.gov.cn / NATIONAL_BULLETIN 63 行（registry 本地样本
+              --from-local-sample 结构化提取）
+            </td>
+            <td style={cellStyle}>
+              REGISTRY_SAMPLE · demo（非 live O1）
+            </td>
+          </tr>
         </tbody>
       </table>
       <p style={{ marginTop: 24, fontSize: 12, color: "#999" }}>
