@@ -28,10 +28,10 @@
 | 12 | smoke-check PASS（含 §10 S2.7-b-full-lite mart-shape 守门）| ✅ | — | — |
 | 13 | cross-lite 回归 120 PASS + 6 SKIP（无回归）| ✅ | — | — |
 | 14 | 写回执 `266` 入 `reviews/`（本文件）| ✅（本文件）| — | documentation |
-| 15 | commit → `origin` 优先 → `github` | ⏳ | — | — |
-| 16 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ | — | — |
-| 17 | 三路对齐 | ⏳ | — | — |
-| 18 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ | — | — |
+| 15 | commit → `origin` 优先 → `github` | ✅ commit `beea282`（backfill this line）| — | — |
+| 16 | commit SHA backfill（独立 commit；不 amend-after-push）| ✅ this commit | — | — |
+| 17 | 三路对齐 | ✅ local = origin = github = `beea282` | — | — |
+| 18 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — | — |
 
 ---
 
@@ -195,12 +195,11 @@ scripts/_knife25_manifest_bump.py  ← 【knife 25 NEW】 bump 589 → 595
 | file-level forbidden-token guard | 扫描 forbidden tokens（含 FORBIDDEN_* 剥离）| ✅ CLEAN |
 | bump script | `scripts/_knife25_manifest_bump.py` | ✅ 589 → 595（+6 = mart types + demo + CityPageMart + pytest + bump + receipt）|
 | 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ✅ 595 == 595 == 595 |
-| commit (knife 25 主提交) | `git add ... && git commit -m "feat(frontend): add mart-shape types + demo + CityPageMart 接驳 (feature-flag; 默认 mock; 不宣布 PASS)"` | ⏳ |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ |
-| github push | `git push github HEAD`（带 proxy）| ⏳ |
-| 三路对齐 | origin/main = github/main = local HEAD | ⏳ |
-| backfill commit | 改 receipt §5 加 commit SHA；独立 commit | ⏳ |
-| amend-after-push | ❌（per knife 2/3/4 经验；禁止 amend-after-push）| ⏳ |
+| commit (knife 25 主提交) | `git add frontend/lib/mart_city_types.ts frontend/lib/mart_city_demo.ts frontend/app/components/CityPageMart.tsx frontend/app/cities/[slug]/page.tsx frontend/smoke-check.py tests/test_mart_city_types_s27bf.py scripts/_knife25_manifest_bump.py evidence_pack/manifest.json reviews/.../266-...md && git commit -m "feat(frontend): add mart-shape types + demo + CityPageMart 接驳 (feature-flag; 默认 mock; 不宣布 PASS)"` | ✅ `beea282` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `43ad310..beea282` |
+| github push | `git push github HEAD`（带 proxy）| ✅ `43ad310..beea282` |
+| 三路对齐 | origin/main = github/main = local HEAD = `beea282` | ✅ |
+| backfill commit (this) | 独立 commit（不 amend-after-push）| ⏳ |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
