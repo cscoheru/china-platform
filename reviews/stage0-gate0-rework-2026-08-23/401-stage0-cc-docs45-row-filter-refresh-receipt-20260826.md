@@ -3,7 +3,7 @@
 - 编号：`401-stage0-cc-docs45-row-filter-refresh-receipt-20260826`
 - 任务书：`400-stage2-docs45-row-filter-refresh-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`(交卷 commit, 推送后回填)`
+- cc_head：`0674fdd`
 - 日期：2026-08-26
 
 ---
