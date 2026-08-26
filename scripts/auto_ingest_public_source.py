@@ -47,6 +47,8 @@ Exit codes:
       archived + sha-drift report written; rc=4 signals "drift handled, not O1"
   5 = network/transport error after retries
   6 = live mode requested without --confirm-live=PATH
+  7 = tech-blocked (JS-only shell / 0 deeplinks / same-domain filter excludes all);
+      tech-blocked report written; STOP, do NOT bypass with headless
 """
 from __future__ import annotations
 
@@ -410,6 +412,150 @@ def extract_tables(blob: bytes, *, category: str) -> list[dict[str, str]]:
 
 
 # ---------------------------------------------------------------------------
+# Deeplink discovery (per tasking 339 §SCHEMA — no headless, no JS exec)
+# ---------------------------------------------------------------------------
+
+JS_SHELL_SIZE_THRESHOLD = 2048  # bytes; below this, suspect JS-only shell
+
+
+def is_js_only_shell(blob: bytes, *, threshold: int = JS_SHELL_SIZE_THRESHOLD) -> bool:
+    """Heuristic: return True if the blob looks like a JS-only shell (e.g.
+    Hubei's 71-byte ``<script>window.location=...</script>``).
+
+    Triggers on either:
+      - size <= threshold AND content contains a `<script>` tag, OR
+      - content contains the literal `window.location` redirect marker.
+    The connector does NOT execute JS (per tasking 339 §红线 '不执行页面 JS');
+    this check only inspects the bytes statically.
+    """
+    if not blob:
+        return True
+    text = blob.decode("utf-8", errors="replace")
+    has_script = "<script" in text.lower()
+    has_redirect = "window.location" in text or "location.replace" in text
+    if has_redirect:
+        return True
+    return has_script and len(blob) < threshold
+
+
+def discover_deeplinks(
+    blob: bytes,
+    *,
+    base_url: str,
+    extensions: tuple[str, ...] = (".xlsx", ".xls"),
+) -> list[str]:
+    """Find same-domain deep links to attachment files in an index page.
+
+    Per tasking 339 §SCHEMA 'deeplink discover': parse the index HTML with
+    BeautifulSoup, collect `<a href="...">` whose path ends with one of
+    `extensions`, resolve relative URLs against `base_url`, and keep only
+    links whose host matches `base_url`'s host. NO headless browser, NO
+    JS execution.
+
+    Returns a list of absolute URLs (in document order). An empty list
+    means "no deeplinks discoverable from initial HTML" — caller should
+    escalate via write_tech_blocked_report rather than try to follow JS.
+    """
+    try:
+        from bs4 import BeautifulSoup
+        from urllib.parse import urljoin, urlparse
+    except ImportError as exc:  # pragma: no cover
+        raise RuntimeError("beautifulsoup4 missing") from exc
+
+    base_host = (urlparse(base_url).hostname or "").lower()
+    soup = BeautifulSoup(blob, "html.parser")
+    found: list[str] = []
+    seen: set[str] = set()
+    for a in soup.find_all("a"):
+        href = a.get("href")
+        if not href or not isinstance(href, str):
+            continue
+        href_lower = href.lower()
+        if not any(href_lower.endswith(ext) for ext in extensions):
+            continue
+        abs_url = urljoin(base_url, href)
+        host = (urlparse(abs_url).hostname or "").lower()
+        # Same-domain only (per tasking 339 §红线 '不盲爬外域').
+        if base_host and host and host != base_host:
+            continue
+        if abs_url in seen:
+            continue
+        seen.add(abs_url)
+        found.append(abs_url)
+    return found
+
+
+# ---------------------------------------------------------------------------
+# Tech-blocked report (per tasking 339 §SCHEMA — 5 mandatory fields)
+# ---------------------------------------------------------------------------
+
+def write_tech_blocked_report(
+    *,
+    domain: str,
+    category: str,
+    url: str,
+    phenomenon: str,
+    required_to_proceed: str = (
+        "用户需提供稳定的直链 URL（registry.csv primary_url 改为直链）或 "
+        "在 headless-free 的可达页面（HTML 含完整附件 href 列表）"
+    ),
+    alternative_source: str = (
+        "registry.csv 已有公开源：stats.gov.cn NATIONAL_BULLETIN(已落 drift 等用户)/ "
+        "wb.flk.npc.gov.cn SCANNED_PDF_RESEARCH / archive.org SCANNED_PDF_UPLOAD "
+        "（待 tasking 33X+ 落地）"
+    ),
+) -> Path:
+    """Write reviews/.../tech-blocked...md with the 5 mandatory fields per
+    tasking 339 §SCHEMA: 源 / URL / 现象 / 需要什么 / 替代. Used when
+    deeplink discovery finds 0 candidates OR the page is a JS-only shell
+    (e.g. Hubei 71-byte redirect)."""
+    REVIEWS_DIR.mkdir(parents=True, exist_ok=True)
+    ts = _dt.datetime.now(_dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    out_path = REVIEWS_DIR / (
+        f"{ts}-stage2-public-source-tech-blocked-{domain}-{category}.md"
+    )
+    body = f"""# 公开源技术阻断报告（per tasking 339 §SCHEMA）
+
+- 域：`{domain}`
+- 类目：`{category}`
+- 触发时间（UTC）：`{_dt.datetime.now(_dt.timezone.utc).isoformat()}`
+
+## 1. 源 / URL
+
+| 字段 | 值 |
+|---|---|
+| domain | `{domain}` |
+| category | `{category}` |
+| URL | `{url}` |
+
+## 2. 现象
+
+{ phenomenon}
+
+## 3. 需要什么（用户裁定 / 提供）
+
+{ required_to_proceed}
+
+## 4. 替代公开源
+
+{ alternative_source}
+
+## 5. 红线
+
+- ❌ **不执行页面 JS**（per tasking 339 §红线 '不执行页面 JS';connector 静态解析 HTML）
+- ❌ **不切 headless browser 跟随 JS 重定向**（per registry.csv Hubei access_method）
+- ❌ **不盲爬外域**（deeplink 已用 urlparse 比 host,跨域一律过滤）
+- ❌ **不把 JS 壳静默当 O1_AUTO_INTAKED**（本报告即非静默）
+- ❌ **不静默失败**（5 字段 + 替代源 + 等用户裁定）
+- ✅ **等用户裁定**：(a) 提供稳定直链 / (b) 换镜像 / (c) 暂缓
+
+— End of tech-blocked report —
+"""
+    out_path.write_text(body, encoding="utf-8")
+    return out_path
+
+
+# ---------------------------------------------------------------------------
 # Observation (lineage JSONL)
 # ---------------------------------------------------------------------------
 
@@ -722,6 +868,75 @@ def main(argv: list[str] | None = None) -> int:
     except RuntimeError as exc:
         print(f"❌ transport error: {exc}", file=sys.stderr)
         return 5
+
+    # Per tasking 339 §SCHEMA: deeplink discover + JS-shell detection.
+    # If the page is a JS-only shell OR has no same-domain attachment href,
+    # STOP and report user (do NOT bypass with headless). Otherwise resolve
+    # the first deeplink and re-download that as the real source bytes.
+    if is_js_only_shell(blob):
+        report = write_tech_blocked_report(
+            domain=pilot["domain"],
+            category=pilot["category"],
+            url=pilot["primary_url"],
+            phenomenon=(
+                f"下载字节仅 {len(blob)} bytes,且包含 `<script>` 或 "
+                f"`window.location` 重定向标记。判定为 JS-only shell "
+                f"(per tasking 339 §SCHEMA)。connector **不执行 JS**,也"
+                f"**不切 headless browser** 跟随;等用户提供稳定直链或暂缓。"
+            ),
+        )
+        print(f"❌ JS-only shell; tech-blocked report: {report}", file=sys.stderr)
+        return 7
+
+    extensions: tuple[str, ...]
+    if pilot["category"] == "PROVINCIAL_BULLETIN":
+        extensions = (".xlsx", ".xls")
+    elif pilot["category"] == "NATIONAL_BULLETIN":
+        extensions = (".html", ".htm")  # article pages
+    else:
+        extensions = (".xlsx", ".xls", ".html", ".htm", ".pdf")
+
+    deeplinks = discover_deeplinks(
+        blob,
+        base_url=pilot["primary_url"],
+        extensions=extensions,
+    )
+    if not deeplinks:
+        report = write_tech_blocked_report(
+            domain=pilot["domain"],
+            category=pilot["category"],
+            url=pilot["primary_url"],
+            phenomenon=(
+                f"已下载 {len(blob)} bytes 但 HTML 中未发现任何同域附件 "
+                f"href(扩展名: {', '.join(extensions)})。可能是 JS 渲染页面、"
+                f"iframe 内嵌、或附件链接通过 JS 动态生成。connector 静态解析"
+                f"不到 → 0 deeplink → tech-blocked,等用户提供稳定直链。"
+            ),
+        )
+        print(f"❌ 0 deeplinks; tech-blocked report: {report}", file=sys.stderr)
+        return 7
+
+    # Use the first deeplink (deterministic, document order). A future
+    # connector could sort by URL date token (e.g. /2026-06/) for "freshest"
+    # selection. Knife 49 keeps it simple.
+    chosen_url = deeplinks[0]
+    print(f"OK deeplink discovered: {chosen_url}")
+    if chosen_url != pilot["primary_url"]:
+        try:
+            blob = download(chosen_url)
+        except AuthBlocked as ab:
+            report = write_auth_blocked_report(
+                domain=ab.domain,
+                category=ab.category,
+                url=ab.url,
+                reason=ab.reason,
+                status_code=ab.status_code,
+            )
+            print(f"❌ AUTH blocked (deeplink); {report}", file=sys.stderr)
+            return 3
+        except RuntimeError as exc:
+            print(f"❌ deeplink transport error: {exc}", file=sys.stderr)
+            return 5
 
     sha = sha256_of_bytes(blob)
     print(f"OK downloaded {len(blob)} bytes; sha256={sha[:16]}…")

@@ -675,5 +675,142 @@ def test_hubei_drift_intake_status_is_candidate_auto(tmp_path):
     assert rec["source_agency"] == "湖北省统计局"
 
 
+# ---------------------------------------------------------------------------
+# 9. Deeplink discovery + JS-shell detection (per tasking 339 §SCHEMA "≥6 pytest")
+# ---------------------------------------------------------------------------
+
+def test_is_js_only_shell_detects_hubei_pattern():
+    """The Hubei live probe returned a 71-byte JS shell:
+    ``<script language=\"javascript\">window.location = \"./2026yb/\";</script>``.
+    is_js_only_shell must detect this exact pattern (per tasking 339 §红线
+    '不执行页面 JS', but connector MUST identify it as a JS shell to
+    STOP and report user)."""
+    hubei_js = b'<script language="javascript">\nwindow.location = "./2026yb/";\n</script>\n'
+    assert len(hubei_js) < aips.JS_SHELL_SIZE_THRESHOLD
+    assert aips.is_js_only_shell(hubei_js) is True
+
+
+def test_is_js_only_shell_false_for_real_html():
+    """A real HTML page with `<script>` tags (e.g. a stats dashboard with
+    inline JS for charts) is NOT a JS-only shell — must not trigger
+    false positive."""
+    real_html = (
+        b'<html><head><script src="/static/charts.js"></script></head>'
+        b'<body><table><tr><th>GDP</th><th>2024</th></tr></table></body></html>'
+        + b' ' * 5000  # pad to > threshold
+    )
+    assert len(real_html) > aips.JS_SHELL_SIZE_THRESHOLD
+    assert aips.is_js_only_shell(real_html) is False
+
+
+def test_is_js_only_shell_false_for_tiny_no_script():
+    """A tiny non-script blob (e.g. <html></html>) is NOT a JS shell —
+    must not trigger false positive."""
+    tiny = b"<html></html>"
+    assert aips.is_js_only_shell(tiny) is False
+
+
+def test_discover_deeplinks_finds_xlsx_href():
+    """discover_deeplinks must surface same-domain `.xlsx` hrefs in
+    document order (per tasking 339 §SCHEMA)."""
+    html = b"""<html><body>
+        <a href="hubei_2026_06.xlsx">2026 06</a>
+        <a href="hubei_2026_05.xlsx">2026 05</a>
+        <a href="readme.html">readme</a>
+    </body></html>"""
+    links = aips.discover_deeplinks(
+        html,
+        base_url="https://tjj.hubei.gov.cn/tjsj/sjkscx/tjyb/",
+        extensions=(".xlsx",),
+    )
+    assert len(links) == 2
+    assert links[0].endswith("hubei_2026_06.xlsx")
+    assert links[1].endswith("hubei_2026_05.xlsx")
+    # readme.html must be filtered out (not .xlsx).
+    assert not any("readme.html" in u for u in links)
+
+
+def test_discover_deeplinks_resolves_relative_urls():
+    """Relative hrefs must be joined against base_url; root-relative hrefs
+    must resolve to base host (per tasking 339 '允许相对路径拼绝对 URL')."""
+    html = b"""<html><body>
+        <a href="files/june.xlsx">jun</a>
+        <a href="/static/july.xls">jul</a>
+    </body></html>"""
+    links = aips.discover_deeplinks(
+        html,
+        base_url="https://tjj.hubei.gov.cn/tjsj/sjkscx/tjyb/",
+        extensions=(".xlsx", ".xls"),
+    )
+    assert len(links) == 2
+    assert any("tjj.hubei.gov.cn/tjsj/sjkscx/tjyb/files/june.xlsx" in u for u in links)
+    assert any("tjj.hubei.gov.cn/static/july.xls" in u for u in links)
+
+
+def test_discover_deeplinks_filters_cross_domain():
+    """Cross-domain hrefs must be excluded (per tasking 339 §红线
+    '不盲爬外域')."""
+    html = b"""<html><body>
+        <a href="local.xlsx">local</a>
+        <a href="https://evil.com/x.xlsx">evil</a>
+        <a href="https://attacker.io/y.xlsx">evil2</a>
+    </body></html>"""
+    links = aips.discover_deeplinks(
+        html,
+        base_url="https://tjj.hubei.gov.cn/sjkscx/tjyb/",
+        extensions=(".xlsx",),
+    )
+    assert len(links) == 1
+    assert "tjj.hubei.gov.cn" in links[0]
+    assert not any("evil.com" in u or "attacker.io" in u for u in links)
+
+
+def test_tech_blocked_report_writes_5_fields(tmp_path, monkeypatch):
+    """write_tech_blocked_report must produce a markdown file with the 5
+    mandatory fields per tasking 339 §SCHEMA: 源 / URL / 现象 / 需要什么 / 替代."""
+    monkeypatch.setattr(aips, "REVIEWS_DIR", tmp_path)
+    out = aips.write_tech_blocked_report(
+        domain="tjj.hubei.gov.cn",
+        category="PROVINCIAL_BULLETIN",
+        url="https://tjj.hubei.gov.cn/tjsj/sjkscx/tjyb/",
+        phenomenon="71B JS-only shell,无 HTML 表格标记",
+    )
+    assert out.exists()
+    body = out.read_text(encoding="utf-8")
+    # 5 mandatory fields per tasking 339 §SCHEMA
+    assert "domain" in body
+    assert "tjj.hubei.gov.cn" in body
+    assert "URL" in body
+    assert "现象" in body
+    assert "71B JS-only shell" in body
+    assert "需要什么" in body
+    assert "替代" in body
+    # Red lines preserved
+    assert "不执行页面 JS" in body
+    assert "不切 headless" in body
+    assert "不盲爬外域" in body
+
+
+def test_main_returns_7_on_js_shell():
+    """When the index page is a JS-only shell, main() must return rc=7
+    and write a tech-blocked report (per tasking 339 §SCHEMA 'STOP and
+    report user'). No headless browser, no AUTH bypass."""
+    proc = subprocess.run(
+        [
+            sys.executable, str(SCRIPT),
+            "--pilot-domain=tjj.hubei.gov.cn",
+            "--pilot-category=PROVINCIAL_BULLETIN",
+            "--live",
+            "--confirm-live=/tmp/_test_main_js_shell.jsonl",
+        ],
+        capture_output=True, text=True, timeout=90,
+    )
+    assert proc.returncode == 7, (
+        f"expected rc=7 (tech-blocked JS shell), got {proc.returncode}\n"
+        f"stdout: {proc.stdout}\nstderr: {proc.stderr}"
+    )
+    assert "JS-only shell" in proc.stderr or "tech-blocked" in proc.stderr.lower()
+
+
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__, "-v"]))
