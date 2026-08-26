@@ -8,24 +8,28 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `POLL` |
-| **queue_rev** | `173` |
-| **origin_head** | `070caf5` |
-| **cc_head** | `070caf5`；`410` 已交 |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `174` |
+| **origin_head** | `5e9f17a` |
+| **cc_head** | `5e9f17a`；等 `413` |
 | **cc_receipt** | `410` |
 | **cursor_ack** | `410` |
 | **last_audit** | `411` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；不等人裁定除非卡住 |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀 |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL` |
-| **updated_at** | `2026-08-26T22:54:30+08:00` |
+| **expect_cc_poll** | `EXECUTE_NOW` |
+| **updated_at** | `2026-08-27T07:03:30+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-（无新刀。）只 **`84` POLL**。
+读并执行：`412-stage2-docs45-site-nav-csv-refresh-tasking-20260826.md`
+
+摘要：`docs/45`/`53` 登记 site-nav + CSV；交回执 **`413`**。**必须双推**。
+
+完成后：双推 → **`84` POLL**。
 
 ---
 
