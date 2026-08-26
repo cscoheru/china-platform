@@ -24,9 +24,9 @@
 | 10 | 跨 lite 回归（s21lite..s26lite = **42/42**）| ✅ | — | — |
 | 11 | smoke-check 仍 PASS（无 frontend 改动）| ✅ | — | — |
 | 12 | 补 pack（570 → **577**；含 5 pytest + tasking 253 + receipt 253）| ✅ | — | documentation |
-| 13 | 写回执 `253` 入 `reviews/` | ✅（本文件）| （backfill）| documentation |
-| 14 | commit → `origin` 优先 → `github` | ⏳ 待推 | — | — |
-| 15 | 三路对齐 | ⏳ | — | — |
+| 13 | 写回执 `253` 入 `reviews/` | ✅（本文件）| `b146cb22` | documentation |
+| 14 | commit → `origin` 优先 → `github` | ✅ `3e464bd` | — | — |
+| 15 | 三路对齐 | ✅ local = origin = github = `3e464bd` | — | — |
 | 16 | → `84` POLL + `cc_gate_watch` | ⏳ re-arm | — | — |
 
 ---
@@ -43,7 +43,7 @@
 | `tests/test_analysis_missing_handling_stub_s210.py` | （backfill）| **1960** | `54d63e51` | schema_negative_test |
 | `tests/test_did_parallel_trends_stub_s210.py` | （backfill）| **1944** | `1e0484c3` | schema_negative_test |
 | `reviews/.../253-stage2-s210-impl-tasking-20260826.md` | （backfill）| **1547** | `3049b225` | documentation |
-| `reviews/.../253-stage0-cc-s210-impl-receipt-20260826.md` | （本文件）| （backfill）| （backfill）| documentation |
+| `reviews/.../253-stage0-cc-s210-impl-receipt-20260826.md` | （本文件）| **10639** | `b146cb22` | documentation |
 
 ### 1.2 pytest 5 文件结构
 
@@ -142,10 +142,10 @@
 | 跨 lite 回归 | `python3 -m pytest tests/test_*_s*lite.py -q` | ✅ 42/42 |
 | 本地校验 | `python3 -c "json.load(...)" manifest invariant` | ✅ 577 == 577 == 577 |
 | smoke-check | `python3 frontend/smoke-check.py` | ✅ PASS |
-| commit | `git add tests/test_*_s210.py evidence_pack/manifest.json scripts/_knife20_manifest_bump.py reviews/.../253-*.md && git commit -m "feat(test): S2.10 落地刀 (docs/10 §3.1/§3.5 real + §3.2-§3.4 xfail stub)"` | ⏳ |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ |
-| github push | `git push github HEAD`（带 proxy）| ⏳ |
-| 三路对齐 | origin/main = github/main = local HEAD | ⏳ |
+| commit | `git add tests/test_*_s210.py evidence_pack/manifest.json scripts/_knife20_manifest_bump.py reviews/.../253-*.md && git commit -m "feat(test): S2.10 落地刀 (docs/10 §3.1/§3.5 real + §3.2-§3.4 xfail stub)"` | ✅ `3e464bd` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ |
+| github push | `git push github HEAD`（带 proxy）| ✅ |
+| 三路对齐 | origin/main = github/main = local HEAD = `3e464bd` | ✅ |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
