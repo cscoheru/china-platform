@@ -218,11 +218,11 @@ OK manifest updated; added 2 artifacts
 | docs/45 修改 | `docs/45-stage2-s210-lite-gate2-review-index-20260826.md`（header + §3 O3 + §3 O1 详细 + §5.5 + §6 + §6.2 + §7）| ✅ MOD |
 | bump script | `scripts/_knife40_manifest_bump.py`（2 NEW + 1 REFRESH）| ✅ 633 → 635（+2）|
 | 本地校验 | manifest invariant | ✅ 635 == 635 == 635 |
-| commit (knife 40 主提交) | `git add ... && git commit -m "docs(45): 312 O3 规划登记 — §3 O3 → docs/49 + §5.5/§6/§6.2/§7 同步"` | ✅ `<this_commit>` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ `<this_commit>` → origin/main |
-| github push | `git push github HEAD` | ✅ `<this_commit>` → github/main |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ `<this_commit>` |
-| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill |
+| commit (knife 40 主提交) | `git add ... && git commit -m "docs(45): 312 O3 规划登记 — §3 O3 → docs/49 + §5.5/§6/§6.2/§7 同步"` | ✅ `8d144a822bf4471f57bd90c03560080652e59ee6` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `8d144a8` → origin/main |
+| github push | `git push github HEAD` | ✅ `8d144a8` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `8d144a822bf4471f57bd90c03560080652e59ee6` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ `8d144a8` + receipt backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
