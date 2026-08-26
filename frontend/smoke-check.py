@@ -861,6 +861,77 @@ def main() -> int:
         ):
             ok("public-extracts/page.tsx: 深圳 REGISTRY_SAMPLE 分节 + 非 live 免责")
 
+    # §12e — 湖北 PROVINCIAL_BULLETIN (xlsx) 第四分节 (per tasking 376)
+    # LIVE NOT allowed: enabled=FALSE 暂缓; 仅 REGISTRY_SAMPLE demo.
+    hb_fixture_path = ROOT / "lib/public_extract_hubei.json"
+    if not hb_fixture_path.is_file():
+        errors.append(
+            "lib/public_extract_hubei.json missing (per tasking 376 §NOW-2)"
+        )
+    else:
+        try:
+            hfx = json.loads(hb_fixture_path.read_text(encoding="utf-8"))
+            if hfx.get("domain") != "tjj.hubei.gov.cn":
+                errors.append(
+                    "public_extract_hubei.json: domain != tjj.hubei.gov.cn"
+                )
+            if hfx.get("category") != "PROVINCIAL_BULLETIN":
+                errors.append(
+                    "public_extract_hubei.json: category != PROVINCIAL_BULLETIN"
+                )
+            rc = hfx.get("row_count")
+            rows = hfx.get("rows") or []
+            if not isinstance(rows, list) or len(rows) < 1:
+                errors.append(
+                    "public_extract_hubei.json: rows empty (≥1 行可见 per 376)"
+                )
+            elif rc != len(rows):
+                errors.append(
+                    f"public_extract_hubei.json: row_count={rc} != len(rows)={len(rows)}"
+                )
+            elif rc != 21:
+                errors.append(
+                    f"public_extract_hubei.json: row_count={rc} (任务书 376 期望 ≈21)"
+                )
+            else:
+                ok("public_extract_hubei.json: 湖北 REGISTRY_SAMPLE fixture 在位 (21 行)")
+            sha = (hfx.get("source_sha256") or "").lower()
+            if not sha.startswith("c5cf5abeb4fdf97a"):
+                errors.append(
+                    "public_extract_hubei.json: source_sha256 未锚定 registry (期望 c5cf5abeb4fdf97a…)"
+                )
+            else:
+                ok("public_extract_hubei.json: source_sha256 与 registry 锚一致")
+        except json.JSONDecodeError as e:
+            errors.append(f"public_extract_hubei.json is not valid JSON: {e}")
+
+    # 页面针 (§12e 配套) — 注释先剥再扫 (per 红线惯例)
+    pe_page_path = ROOT / "app/public-extracts/page.tsx"
+    if pe_page_path.is_file():
+        pe_src4 = pe_page_path.read_text(encoding="utf-8")
+        pe_code4 = re.sub(r"//[^\n]*", "", pe_src4)
+        pe_code4 = re.sub(r"/\*.*?\*/", "", pe_code4, flags=re.DOTALL)
+        for needle, label in [
+            ("public_extract_hubei.json", "HB fixture import"),
+            ("PROVINCIAL_BULLETIN", "PROVINCIAL_BULLETIN 标注"),
+            ("月报统计表", "湖北月报分节"),
+            ("enabled=FALSE", "live FALSE 暂缓"),
+        ]:
+            if needle not in pe_code4:
+                errors.append(
+                    f"public-extracts/page.tsx missing {label} (per tasking 376)"
+                )
+        if all(
+            n in pe_code4
+            for n in (
+                "public_extract_hubei.json",
+                "PROVINCIAL_BULLETIN",
+                "月报统计表",
+                "enabled=FALSE",
+            )
+        ):
+            ok("public-extracts/page.tsx: 湖北 REGISTRY_SAMPLE 分节 + live FALSE 暂缓")
+
     if errors:
         for e in errors:
             fail(e)

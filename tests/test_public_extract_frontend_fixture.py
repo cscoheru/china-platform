@@ -30,6 +30,17 @@ PE_PAGE = PROJECT_ROOT / "frontend" / "app" / "public-extracts" / "page.tsx"
 HOME_PAGE = PROJECT_ROOT / "frontend" / "app" / "page.tsx"
 REGISTRY = PROJECT_ROOT / "source_registry" / "registry.csv"
 
+# Knife 61 / tasking 376 — 湖北 PROVINCIAL_BULLETIN xlsx 提取 fixture
+HB_FIXTURE = PROJECT_ROOT / "frontend" / "lib" / "public_extract_hubei.json"
+HB_EXTRACT = (
+    PROJECT_ROOT
+    / "data"
+    / "public_extracts"
+    / "tjj.hubei.gov.cn"
+    / "PROVINCIAL_BULLETIN.json"
+)
+HB_REGISTRY_SHA_PREFIX = "c5cf5abeb4fdf97a"
+
 
 @pytest.fixture(scope="module")
 def fixture_json() -> dict:
@@ -239,4 +250,81 @@ def test_page_renders_sz_registry_sample_track() -> None:
     assert "MUNICIPAL_BULLETIN" in code
     assert "散文段落表" in code, "深圳散文分节区块须在"
     assert "SSL 暂缓" in code, "深圳分节须显式非 live 免责 (SSL 暂缓)"
+    assert "O1_AUTO_INTAKED" not in code
+
+
+# ---------------------------------------------------------------------------
+# Knife 61 / tasking 376 — 湖北 PROVINCIAL_BULLETIN xlsx 第四分节
+# ---------------------------------------------------------------------------
+
+
+def test_hb_fixture_mirrors_extract_and_shape() -> None:
+    """Per 376 §SCHEMA (2): 湖北 fixture 是 extract JSON 的 byte-verbatim
+    快照; row_count==len(rows)≥1; source_sha256 与 registry 锚吻合
+    (c5cf5abeb4fdf97a…); domain/category 锁死 tjj.hubei.gov.cn /
+    PROVINCIAL_BULLETIN。"""
+    assert HB_FIXTURE.is_file(), f"missing fixture: {HB_FIXTURE}"
+    assert HB_EXTRACT.is_file(), f"missing extract: {HB_EXTRACT}"
+    fx = json.loads(HB_FIXTURE.read_text(encoding="utf-8"))
+    ex = json.loads(HB_EXTRACT.read_text(encoding="utf-8"))
+    # byte-verbatim 快照
+    assert fx == ex, "HB fixture must be byte-verbatim snapshot of extract"
+    # 形状锚
+    assert fx["domain"] == "tjj.hubei.gov.cn"
+    assert fx["category"] == "PROVINCIAL_BULLETIN"
+    rc = fx["row_count"]
+    rows = fx["rows"]
+    assert isinstance(rows, list) and len(rows) >= 1
+    assert rc == len(rows)
+    assert rc == 21, f"任务书 376 期望 ≈21 行; 实际 {rc}"
+    # registry 锚
+    assert fx["source_sha256"].startswith(HB_REGISTRY_SHA_PREFIX), (
+        f"HB source_sha256 必须以 registry 锚 {HB_REGISTRY_SHA_PREFIX} 开头; "
+        f"实际 {fx['source_sha256'][:16]}"
+    )
+    # WORM 尾段
+    assert fx["source_archive_path"].startswith("data/public_archives/")
+
+
+def test_hb_track_isolated_from_nbs_and_sz() -> None:
+    """Per 376 §SCHEMA (3): 不覆盖 NBS+SZ 三轨既有 fixture; HB 行数与 sha
+    均与三轨不同。"""
+    nbs = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    sz_fix = PROJECT_ROOT / "frontend" / "lib" / "public_extract_sz.json"
+    assert sz_fix.is_file(), "missing SZ fixture (regression?)"
+    sz = json.loads(sz_fix.read_text(encoding="utf-8"))
+    live_fix = (
+        PROJECT_ROOT / "frontend" / "lib" / "public_extract_nbs_live_candidate.json"
+    )
+    assert live_fix.is_file(), "missing NBS live candidate fixture (regression?)"
+    live = json.loads(live_fix.read_text(encoding="utf-8"))
+    hb = json.loads(HB_FIXTURE.read_text(encoding="utf-8"))
+    # 三轨锚不回归
+    assert nbs["row_count"] == 63
+    assert nbs["source_sha256"] == (
+        "dea13b8a4ff116ca91403b189cdd60705545b28200f9023c3d56e6db03f3939d"
+    )
+    assert live["intake_status"] == "LIVE_CANDIDATE"
+    assert live["source_sha256"].startswith("0b85212f")
+    assert sz["source_sha256"].startswith("d5e2c731")
+    assert hb["source_sha256"].startswith(HB_REGISTRY_SHA_PREFIX)
+    # HB 与三轨互不覆盖
+    for other in (nbs, live, sz):
+        assert hb["source_sha256"] != other["source_sha256"]
+        assert hb["row_count"] != other["row_count"]
+    # HB 不冒充 live (live 仍 enabled=FALSE)
+    assert "LIVE_CANDIDATE" not in (hb.get("intake_status") or "")
+    assert "LIVE" not in (hb.get("intake_status") or "").upper().split("INTAKED")[0]
+
+
+def test_page_renders_hb_registry_sample_track() -> None:
+    """Per 376 §SCHEMA (2): /public-extracts 页 import HB fixture、第四分节
+    标注 PROVINCIAL_BULLETIN、xlsx 月报说明、live FALSE 暂缓非 O1。"""
+    src = PE_PAGE.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", src)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    assert "public_extract_hubei.json" in code, "page must import the HB fixture"
+    assert "PROVINCIAL_BULLETIN" in code
+    assert "月报统计表" in code, "湖北月报分节区块须在"
+    assert "enabled=FALSE" in code, "湖北分节须显式 live FALSE 暂缓"
     assert "O1_AUTO_INTAKED" not in code

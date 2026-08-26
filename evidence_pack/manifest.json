@@ -1,5 +1,5 @@
 {
-  "artifact_count": 684,
+  "artifact_count": 688,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -4104,6 +4104,30 @@
       "role": "documentation",
       "sha256": "3b31e1ca774ee806ba49a7bf5b717f204a92e35eca742e8fdee5c378a6ceb11a",
       "size_bytes": 4236
+    },
+    {
+      "path": "data/public_extracts/tjj.hubei.gov.cn/PROVINCIAL_BULLETIN.json",
+      "role": "data_contract_suite",
+      "sha256": "9056001c521c63182674410218213dc4e9da4ac7d4b2ca13301add8506d35eb6",
+      "size_bytes": 2907
+    },
+    {
+      "path": "frontend/lib/public_extract_hubei.json",
+      "role": "data_contract_suite",
+      "sha256": "9056001c521c63182674410218213dc4e9da4ac7d4b2ca13301add8506d35eb6",
+      "size_bytes": 2907
+    },
+    {
+      "path": "scripts/_knife61_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "fb14d75ce8fbc73ce4f501cde9653ae2d484b716f25c22a143ab690e62d611c6",
+      "size_bytes": 4279
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/377-stage0-cc-hubei-extract-frontend-section-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "bf0a300aeb4a4164edcf24939000d5bb33f0e6a1e6262470b8232a3621e40c5c",
+      "size_bytes": 7448
     }
   ],
   "commit": {
@@ -4136,8 +4160,8 @@
   },
   "python_version": "3.14.3",
   "role_count": {
-    "data_contract_suite": 26,
-    "documentation": 111,
+    "data_contract_suite": 28,
+    "documentation": 112,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -4149,7 +4173,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 71,
+    "spike_helper": 72,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

@@ -17,6 +17,10 @@
 // sz.gov.cn MUNICIPAL_BULLETIN 散文抽取 (71 行,
 // frontend/lib/public_extract_sz.json) — 显式 REGISTRY_SAMPLE / demo /
 // 散文段落抽取; 不覆盖 NBS sample/live 两轨.
+// Per tasking 376 §SCHEMA (湖北 REGISTRY_SAMPLE 分节): 同页第四区块展示
+// tjj.hubei.gov.cn PROVINCIAL_BULLETIN xlsx 提取 (21 行, live enabled=FALSE
+// 暂缓, frontend/lib/public_extract_hubei.json) — 显式 REGISTRY_SAMPLE /
+// demo / xlsx 提取 / live FALSE 暂缓非 O1; 不覆盖 NBS+深圳三轨.
 // 静态路由: 无 params.*, 无 force-dynamic (纯 fixture 消费).
 
 import type { ReactElement } from "react";
@@ -24,6 +28,7 @@ import DemoBadge from "../DemoBadge";
 import fixture from "../../lib/public_extract_nbs.json";
 import liveCandidateFixture from "../../lib/public_extract_nbs_live_candidate.json";
 import szFixture from "../../lib/public_extract_sz.json";
+import hbFixture from "../../lib/public_extract_hubei.json";
 
 interface ExtractRow {
   [columnKey: string]: string;
@@ -58,6 +63,7 @@ interface LiveCandidateFixture {
 const extract = fixture as PublicExtractFixture;
 const live = liveCandidateFixture as LiveCandidateFixture;
 const sz = szFixture as PublicExtractFixture;
+const hb = hbFixture as PublicExtractFixture;
 
 // 列序 = 首行键序 (spike 提取保序); 不重排、不重命名、不 reinterpret.
 const columnKeys: string[] =
@@ -66,6 +72,8 @@ const liveColumnKeys: string[] =
   live.rows.length > 0 ? Object.keys(live.rows[0]) : [];
 const szColumnKeys: string[] =
   sz.rows.length > 0 ? Object.keys(sz.rows[0]) : [];
+const hbColumnKeys: string[] =
+  hb.rows.length > 0 ? Object.keys(hb.rows[0]) : [];
 
 const cellStyle: React.CSSProperties = {
   border: "1px solid #ddd",
@@ -395,6 +403,116 @@ export default function PublicExtractsPage(): ReactElement {
           注:section 为公告中文序号节标 (一、综合 … 十二、城市环境和应急
           管理),paragraph 为原样段落文本;仅展示,不派生指标、不评分、不排名。
           深圳 HTTPS live 探测仍暂缓 (SSL BAD_ecPOINT,per registry 备注),
+          本表不构成 live 收口。
+        </p>
+      </section>
+
+      <hr style={{ margin: "32px 0", border: 0, borderTop: "1px solid #ccc" }} />
+
+      <section className="public-extracts-page__hb-registry-sample">
+        <h2>
+          湖北月报样本提取 — PROVINCIAL_BULLETIN (REGISTRY_SAMPLE, xlsx)
+          <DemoBadge
+            lineage={{
+              is_demo: "true",
+              demo_reason:
+                "REGISTRY_SAMPLE — tjj.hubei.gov.cn 月度统计 xlsx 本地样本提取 " +
+                "(--from-local-sample --allow-disabled-local-sample; live enabled=FALSE 暂缓); " +
+                "非 live O1",
+            }}
+          />
+        </h2>
+        <p style={{ color: "#856404", fontWeight: 600 }}>
+          标注:REGISTRY_SAMPLE / demo — 湖北统计局月报为 xlsx 直链样本,经
+          connector extract_xlsx_tables 提取; live 探测暂缓 (enabled=FALSE,
+          JS-shell / 341 技术暂缓),本表不构成 live 收口; 与上方 NBS sample/live
+          + 深圳 sample 三轨分轨互不覆盖。
+        </p>
+
+        <table
+          style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}
+        >
+          <tbody>
+            <tr>
+              <th style={cellStyle}>domain</th>
+              <td style={cellStyle}>
+                <code>{hb.domain}</code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>category</th>
+              <td style={cellStyle}>
+                <code>{hb.category}</code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>intake_status</th>
+              <td style={cellStyle}>
+                <code>REGISTRY_SAMPLE_INTAKED</code>(is_demo=true)
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>source_sample_path</th>
+              <td style={cellStyle}>
+                <code>{hb.source_sample_path}</code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>source_archive_path (WORM)</th>
+              <td style={cellStyle}>
+                <code>{hb.source_archive_path}</code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>source_sha256</th>
+              <td style={cellStyle}>
+                <code style={{ fontSize: 11, wordBreak: "break-all" }}>
+                  {hb.source_sha256}
+                </code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>row_count</th>
+              <td style={cellStyle}>{hb.row_count}</td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>extracted_at</th>
+              <td style={cellStyle}>{hb.extracted_at}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style={{ marginTop: 24 }}>
+          月报统计表 ({hb.rows.length} 行,全量)
+        </h3>
+        <table
+          style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}
+        >
+          <thead>
+            <tr style={{ background: "#eee" }}>
+              {hbColumnKeys.map((key) => (
+                <th key={key} style={cellStyle}>
+                  {key || <span style={{ color: "#aaa" }}>(未命名)</span>}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {hb.rows.map((row, idx) => (
+              <tr key={idx}>
+                {hbColumnKeys.map((key) => (
+                  <td key={key} style={cellStyle}>
+                    {row[key] ?? ""}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p style={{ marginTop: 8, fontSize: 12, color: "#999" }}>
+          注:列名/首行为 xlsx 提取原样 (含空列名 + 前导空格);
+          仅展示,不派生指标、不评分、不排名。湖北 live 仍暂缓
+          (enabled=FALSE, JS-shell tech-blocked; per Cursor 341),
           本表不构成 live 收口。
         </p>
       </section>
