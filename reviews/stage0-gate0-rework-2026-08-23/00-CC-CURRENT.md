@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `149` |
-| **origin_head** | `a25e05e` |
-| **cc_head** | `a25e05e`；`359` 已交 |
-| **cc_receipt** | `359` |
-| **cursor_ack** | `359` |
-| **last_audit** | `360` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；Cursor 代判；双轨呈现已通 → **LIVE_CANDIDATE 一键刷新 CLI** |
+| **queue_rev** | `150` |
+| **origin_head** | `530a983` |
+| **cc_head** | `530a983`；`362` 已交 |
+| **cc_receipt** | `362` |
+| **cursor_ack** | `362` |
+| **last_audit** | `363` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；Cursor 代判；自动拉取+结构化+刷新 CLI 已通 → **docs/53 ops 手册** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T19:21:30+08:00` |
+| **updated_at** | `2026-08-26T19:30:30+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`361`** — LIVE_CANDIDATE 一键刷新（见 `361-…tasking…md`）。
+**`364`** — docs/53 ops 手册 + docs/45 登记（见 `364-…tasking…md`）。
 
-1. `--refresh-live-candidate`：live→WORM→extract→双写 JSON；不碰 sample
-2. 回执 **`362`**（`-cc-`）
+1. 落地 docs/53；刷新 docs/45
+2. 回执 **`365`**（`-cc-`）
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
