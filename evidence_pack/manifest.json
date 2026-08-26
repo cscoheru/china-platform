@@ -1,5 +1,5 @@
 {
-  "artifact_count": 577,
+  "artifact_count": 579,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3462,6 +3462,18 @@
       "role": "documentation",
       "sha256": "b146cb22699369f566f80121921f660110b0ca0519989f58fc09879446130fc9",
       "size_bytes": 10639
+    },
+    {
+      "path": "docs/46-stage2-s27b-cities-evidence-plan-20260826.md",
+      "role": "documentation",
+      "sha256": "2a572c648917bdc3ea98d44f20d9d47236d0dac653e93025603ccfe76baa4a9b",
+      "size_bytes": 17984
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/254-stage0-cc-s27b-cities-planning-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "c7c799303c576e1cee5700c2d9117c1872318454c7ec8af7d40477d80f0c4b1a",
+      "size_bytes": 10430
     }
   ],
   "commit": {
@@ -3495,7 +3507,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 20,
-    "documentation": 67,
+    "documentation": 69,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
