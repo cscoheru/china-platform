@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `95` |
-| **origin_head** | `e57e14a` |
-| **cc_head** | `e57e14a`；`242` 已交 |
-| **cc_receipt** | `242` |
-| **cursor_ack** | `242` |
-| **last_audit** | `243` PASS |
+| **queue_rev** | `96` |
+| **origin_head** | `96dbe84` |
+| **cc_head** | `96dbe84`；`245` 已交 |
+| **cc_receipt** | `245` |
+| **cursor_ack** | `245` |
+| **last_audit** | `246` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T09:51:00+08:00` |
+| **updated_at** | `2026-08-26T10:00:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`244`** — S2.9-lite peer 对比壳（见 `244-stage2-s29-lite-peer-compare-impl-tasking-20260826.md`）。
+**`247`** — S2.10 Gate 2 评审包规划（见 `247-stage2-s210-gate2-package-planning-tasking-20260826.md`）。
 
-1. 对比最小壳（mock OK；禁止全国排名）
-2. 补 pack → commit → `origin` + `github` → 回执 **`245`**
+1. 起草 **`docs/44`**（只规划；**不**宣布 Gate 2 PASS）
+2. 补 pack → commit → `origin` + `github` → 回执 **`248`**
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
