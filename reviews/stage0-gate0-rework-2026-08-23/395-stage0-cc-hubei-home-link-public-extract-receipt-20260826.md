@@ -3,7 +3,7 @@
 - 编号：`395-stage0-cc-hubei-home-link-public-extract-receipt-20260826`
 - 任务书：`394-stage2-hubei-page-link-public-extract-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`
+- cc_head：`52abff8`
 - 日期：2026-08-26
 
 ---
