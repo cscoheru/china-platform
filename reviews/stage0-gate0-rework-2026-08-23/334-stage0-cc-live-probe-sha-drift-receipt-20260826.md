@@ -14,7 +14,7 @@
 | phase | CC_ACTION_REQUIRED |
 | queue_rev | 139 |
 | cc_receipt | 334 |
-| cc_head（预）| 待 commit + push origin + push github 落地 |
+| cc_head | `6a73359`（已 commit + push origin + push github + three-way converged）|
 | user_ruling | D（drift 路径 + 一次 live 探测 + 5 pytest + 不自动改 registry）|
 | 测试 | 31/31 pytest PASS（knife 46 是 26/26,新增 5 case）|
 | live 探测 | rc=4（drift handled, NOT O1 收口）;见 §5 |
@@ -175,10 +175,11 @@ RC=4
 
 ## §8 推 / 落地
 
-- commit: 待落地（receipt 中 cc_head 待填）
-- push origin: 待落地（`git push origin HEAD` 优先）
-- push github: 待落地（`git push github HEAD`）
-- backfill SHA: 在 receipt 后续 commit 中填 `cc_head`（per knife 17 教训:不 amend-after-push）
+- commit: `6a73359` (`feat(connector): 333 NBS live probe + SHA drift candidate path`)
+- push origin: ✅ `6a73359` (`3f36313..6a73359 HEAD -> main`)
+- push github: ✅ `6a73359` (`3f36313..6a73359 HEAD -> main`)
+- three-way convergence: ✅ `local = origin = github = 6a733591d22bd3540afbf6b55e89e5123b7cf67f`
+- backfill SHA: 本 receipt `cc_head` 字段已更新;若需补 commit 则按 knife 17 教训另起（不 amend-after-push）
 
 ## §9 下次心跳预期
 
