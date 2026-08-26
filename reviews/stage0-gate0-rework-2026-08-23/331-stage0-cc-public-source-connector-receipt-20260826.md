@@ -273,11 +273,11 @@ OK manifest updated; added 3 artifacts
 | pytest 新建 | `tests/test_auto_ingest_public_source_s52.py`（~340 行；26 cases）| ✅ NEW 26/26 PASS |
 | bump script | `scripts/_knife46_manifest_bump.py`（3 NEW）| ✅ 645 → 648（+3）|
 | 本地校验 | manifest invariant | ✅ 648 == 648 == 648 |
-| commit (knife 46 主提交) | `git add ... && git commit -m "feat(connector): 330 NBS NATIONAL_BULLETIN — 6 步流水线 + AUTH 升级协议"` | ⏳ this commit |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ this commit |
-| github push | `git push github HEAD` | ⏳ this commit |
-| 三路对齐 | origin/main = github/main = local HEAD | ⏳ this commit |
-| backfill commit | 独立 commit（不 amend-after-push）| ⏳ this commit |
+| commit (knife 46 主提交) | `git add ... && git commit -m "feat(connector): 330 NBS NATIONAL_BULLETIN — 6 步流水线 + AUTH 升级协议"` | ✅ `04702f17acfb8739916dd6290164f1d677b33a01` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `04702f1` → origin/main |
+| github push | `git push github HEAD` | ✅ `04702f1` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `04702f17acfb8739916dd6290164f1d677b33a01` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ `04702f1` + receipt backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
