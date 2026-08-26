@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `105` |
-| **origin_head** | `92d180c` |
-| **cc_head** | `92d180c`；`260` 已交 |
-| **cc_receipt** | `260` |
-| **cursor_ack** | `260` |
-| **last_audit** | `261` PASS |
+| **queue_rev** | `106` |
+| **origin_head** | `97ff7f9` |
+| **cc_head** | `97ff7f9`；`263` 已交 |
+| **cc_receipt** | `263` |
+| **cursor_ack** | `263` |
+| **last_audit** | `264` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进 |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T12:48:00+08:00` |
+| **updated_at** | `2026-08-26T12:55:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`262`** — S2.7-b-full 规划（见 `262-stage2-s27b-full-mart-plan-tasking-20260826.md`）。
+**`265`** — S2.7-b-full-lite（见 `265-stage2-s27b-full-lite-mart-impl-tasking-20260826.md`）。
 
-1. 起草 **`docs/47`**
-2. 补 pack → commit → 回执 **`263`**
+1. mart-shape types + demo fixture + CityPage 接驳
+2. 最小 pytest → 补 pack → commit → 回执 **`266`**
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
