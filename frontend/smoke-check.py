@@ -932,6 +932,48 @@ def main() -> int:
         ):
             ok("public-extracts/page.tsx: 湖北 REGISTRY_SAMPLE 分节 + live FALSE 暂缓")
 
+    # §12f — 四轨一览条 (overview strip) (per tasking 382)
+    # 仅读自既有 4 fixture (NBS sample/live + SZ + HB), 不重算;
+    # 锚点链到四分节 (id="track-nbs-sample" / "track-nbs-live" / "track-sz" / "track-hb").
+    if pe_page_path.is_file():
+        pe_src5 = pe_page_path.read_text(encoding="utf-8")
+        pe_code5 = re.sub(r"//[^\n]*", "", pe_src5)
+        pe_code5 = re.sub(r"/\*.*?\*/", "", pe_code5, flags=re.DOTALL)
+        for needle, label in [
+            ("public-extracts-page__overview-strip", "overview strip CSS class"),
+            ("四轨一览 (overview)", "overview strip 标题"),
+            ("track-nbs-sample", "NBS sample 锚点"),
+            ("track-nbs-live", "NBS live 锚点"),
+            ("track-sz", "深圳分节锚点"),
+            ("track-hb", "湖北分节锚点"),
+            ("#track-nbs-sample", "NBS sample 锚链"),
+            ("#track-nbs-live", "NBS live 锚链"),
+            ("#track-sz", "深圳分节锚链"),
+            ("#track-hb", "湖北分节锚链"),
+            ("REGISTRY_SAMPLE_INTAKED", "sample 轨标注"),
+            ("LIVE_CANDIDATE, drift", "live 候选 drift 标注"),
+            ("四轨皆 demo/candidate", "非 O1/Gate PASS 守门"),
+        ]:
+            if needle not in pe_code5:
+                errors.append(
+                    f"public-extracts/page.tsx missing {label} (per tasking 382)"
+                )
+        if all(
+            n in pe_code5
+            for n in (
+                "public-extracts-page__overview-strip",
+                "track-nbs-sample",
+                "track-nbs-live",
+                "track-sz",
+                "track-hb",
+                "四轨皆 demo/candidate",
+            )
+        ):
+            ok(
+                "public-extracts/page.tsx: 四轨一览条 overview strip 在位 + "
+                "4 锚点 (sample/live/sz/hb) + 非 O1/Gate PASS 守门"
+            )
+
     if errors:
         for e in errors:
             fail(e)

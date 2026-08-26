@@ -21,6 +21,9 @@
 // tjj.hubei.gov.cn PROVINCIAL_BULLETIN xlsx 提取 (21 行, live enabled=FALSE
 // 暂缓, frontend/lib/public_extract_hubei.json) — 显式 REGISTRY_SAMPLE /
 // demo / xlsx 提取 / live FALSE 暂缓非 O1; 不覆盖 NBS+深圳三轨.
+// Per tasking 382 §SCHEMA (四轨一览条): 页首增四轨 summary (非 card 堆砌);
+// 读自既有 4 fixture (NBS sample/live + 深圳 + 湖北), 不重算; 锚点链到各
+// 分节 section; 四轨皆 demo/candidate 演示, 非 O1/Gate PASS.
 // 静态路由: 无 params.*, 无 force-dynamic (纯 fixture 消费).
 
 import type { ReactElement } from "react";
@@ -102,7 +105,124 @@ export default function PublicExtractsPage(): ReactElement {
         </p>
       </header>
 
-      <section className="public-extracts-page__provenance">
+      <section
+        className="public-extracts-page__overview-strip"
+        id="overview"
+      >
+        <h2>四轨一览 (overview) — 4 个 REGISTRY_SAMPLE / LIVE_CANDIDATE demo 演示</h2>
+        <table
+          style={{
+            borderCollapse: "collapse",
+            width: "100%",
+            fontSize: 14,
+          }}
+        >
+          <thead>
+            <tr style={{ background: "#eee" }}>
+              <th style={cellStyle}>轨</th>
+              <th style={cellStyle}>domain</th>
+              <th style={cellStyle}>category</th>
+              <th style={cellStyle}>行数</th>
+              <th style={cellStyle}>SHA 前 8</th>
+              <th style={cellStyle}>demo|candidate 标注</th>
+              <th style={cellStyle}>分节锚点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={cellStyle}>NBS sample</td>
+              <td style={cellStyle}>
+                <code>{extract.domain}</code>
+              </td>
+              <td style={cellStyle}>
+                <code>{extract.category}</code>
+              </td>
+              <td style={cellStyle}>{extract.row_count}</td>
+              <td style={cellStyle}>
+                <code>{extract.source_sha256.slice(0, 8)}</code>
+              </td>
+              <td style={cellStyle}>
+                demo (REGISTRY_SAMPLE_INTAKED)
+              </td>
+              <td style={cellStyle}>
+                <a href="#track-nbs-sample">↓ NBS sample 分节</a>
+              </td>
+            </tr>
+            <tr>
+              <td style={cellStyle}>NBS live 候选</td>
+              <td style={cellStyle}>
+                <code>{live.domain}</code>
+              </td>
+              <td style={cellStyle}>
+                <code>{live.category}</code>
+              </td>
+              <td style={cellStyle}>{live.row_count}</td>
+              <td style={cellStyle}>
+                <code>{live.source_sha256.slice(0, 8)}</code>
+              </td>
+              <td style={cellStyle}>
+                candidate (LIVE_CANDIDATE, drift)
+              </td>
+              <td style={cellStyle}>
+                <a href="#track-nbs-live">↓ NBS live 候选分节</a>
+              </td>
+            </tr>
+            <tr>
+              <td style={cellStyle}>深圳 sample</td>
+              <td style={cellStyle}>
+                <code>{sz.domain}</code>
+              </td>
+              <td style={cellStyle}>
+                <code>{sz.category}</code>
+              </td>
+              <td style={cellStyle}>{sz.row_count}</td>
+              <td style={cellStyle}>
+                <code>{sz.source_sha256.slice(0, 8)}</code>
+              </td>
+              <td style={cellStyle}>
+                demo (REGISTRY_SAMPLE_INTAKED, 散文)
+              </td>
+              <td style={cellStyle}>
+                <a href="#track-sz">↓ 深圳分节</a>
+              </td>
+            </tr>
+            <tr>
+              <td style={cellStyle}>湖北 sample</td>
+              <td style={cellStyle}>
+                <code>{hb.domain}</code>
+              </td>
+              <td style={cellStyle}>
+                <code>{hb.category}</code>
+              </td>
+              <td style={cellStyle}>{hb.row_count}</td>
+              <td style={cellStyle}>
+                <code>{hb.source_sha256.slice(0, 8)}</code>
+              </td>
+              <td style={cellStyle}>
+                demo (REGISTRY_SAMPLE_INTAKED, xlsx)
+              </td>
+              <td style={cellStyle}>
+                <a href="#track-hb">↓ 湖北分节</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p
+          style={{
+            marginTop: 8,
+            fontSize: 12,
+            color: "#999",
+          }}
+        >
+          注:四轨皆 demo/candidate 演示 (NBS sample REGISTRY_SAMPLE / NBS live
+          候选 LIVE_CANDIDATE drift / 深圳 REGISTRY_SAMPLE 散文 / 湖北 REGISTRY_SAMPLE
+          xlsx); 数据只读自既有 4 fixture, 不重算; live 探测均暂缓 (NBS live
+          drift 待 user 裁定; 深圳 HTTPS SSL BAD_ecPOINT; 湖北 enabled=FALSE);
+          非 O1 收口, 非 Gate PASS (per docs/45 §1 + §6.2 + §7 不变量链 690)。
+        </p>
+      </section>
+
+      <section className="public-extracts-page__provenance" id="track-nbs-sample">
         <h2>来源溯源 (provenance)</h2>
         <table
           style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}
@@ -198,7 +318,7 @@ export default function PublicExtractsPage(): ReactElement {
 
       <hr style={{ margin: "32px 0", border: 0, borderTop: "1px solid #ccc" }} />
 
-      <section className="public-extracts-page__live-candidate">
+      <section className="public-extracts-page__live-candidate" id="track-nbs-live">
         <h2>
           Live 候选提取 — NBS 2026-08-21 文章 (drift)
           <DemoBadge
@@ -303,7 +423,7 @@ export default function PublicExtractsPage(): ReactElement {
 
       <hr style={{ margin: "32px 0", border: 0, borderTop: "1px solid #ccc" }} />
 
-      <section className="public-extracts-page__sz-registry-sample">
+      <section className="public-extracts-page__sz-registry-sample" id="track-sz">
         <h2>
           深圳公报样本提取 — MUNICIPAL_BULLETIN (REGISTRY_SAMPLE)
           <DemoBadge
@@ -409,7 +529,7 @@ export default function PublicExtractsPage(): ReactElement {
 
       <hr style={{ margin: "32px 0", border: 0, borderTop: "1px solid #ccc" }} />
 
-      <section className="public-extracts-page__hb-registry-sample">
+      <section className="public-extracts-page__hb-registry-sample" id="track-hb">
         <h2>
           湖北月报样本提取 — PROVINCIAL_BULLETIN (REGISTRY_SAMPLE, xlsx)
           <DemoBadge

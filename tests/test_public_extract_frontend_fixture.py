@@ -328,3 +328,62 @@ def test_page_renders_hb_registry_sample_track() -> None:
     assert "月报统计表" in code, "湖北月报分节区块须在"
     assert "enabled=FALSE" in code, "湖北分节须显式 live FALSE 暂缓"
     assert "O1_AUTO_INTAKED" not in code
+
+
+def test_page_renders_overview_strip_four_tracks() -> None:
+    """Per tasking 382 §SCHEMA (1): /public-extracts 页首增四轨一览条
+    overview strip (一表或一行摘要); CSS class + 标题 + 4 行 (sample/live/sz/hb)
+    + 锚链到 4 分节 + 守门非 O1/Gate PASS。"""
+    src = PE_PAGE.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", src)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    assert "public-extracts-page__overview-strip" in code, (
+        "overview strip section 须在位 (per 382 §SCHEMA-1)"
+    )
+    assert "四轨一览 (overview)" in code, "overview strip 标题须在位"
+    # 4 分节锚点: 锚 id 命名
+    for anchor in ("track-nbs-sample", "track-nbs-live", "track-sz", "track-hb"):
+        assert f'id="{anchor}"' in code, f"分节须含 id={anchor}"
+    # 4 锚链 (href)
+    for href in ("#track-nbs-sample", "#track-nbs-live", "#track-sz", "#track-hb"):
+        assert href in code, f"overview strip 须链到 {href}"
+    # 守门: 不宣称 O1/Gate PASS
+    assert "四轨皆 demo/candidate" in code, "overview strip 须标 demo/candidate 非 O1"
+    assert "O1_AUTO_INTAKED" not in code
+
+
+def test_overview_strip_reads_only_from_existing_fixtures() -> None:
+    """Per tasking 382 §SCHEMA (2): overview strip 数据只读自既有 4 fixture,
+    不重算 (不允许出现动态构造行数或 SHA 的代码)。"""
+    src = PE_PAGE.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", src)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    # overview strip 区域须直接读 extract / live / sz / hb 4 const 的字段,
+    # 不得出现 sha256 重算或 row_count 重算.
+    overview_marker = "public-extracts-page__overview-strip"
+    assert overview_marker in code, "overview strip 须在位"
+    # 4 fixture 字段都在 strip 区域引用
+    for fixture_field in (
+        "extract.domain",
+        "extract.row_count",
+        "extract.source_sha256",
+        "live.row_count",
+        "sz.row_count",
+        "hb.row_count",
+    ):
+        assert fixture_field in code, (
+            f"overview strip 须读 {fixture_field} (per 382 §SCHEMA-2 不重算)"
+        )
+    # 不允许在 strip 中调用 sha256() 函数或 hashlib (重算)
+    # 允许读取 fixture 字段 (.source_sha256, 引用而非计算)
+    strip_start = code.find(overview_marker)
+    strip_end = code.find("</section>", strip_start)
+    assert strip_start > 0 and strip_end > strip_start, "overview strip 须有 </section>"
+    strip_slice = code[strip_start:strip_end]
+    # 移走 fixture 字段引用 .source_sha256 / source_sha256: (引用, 非计算)
+    strip_no_field_ref = strip_slice.replace("source_sha256", "SHA_REF")
+    # 现应仅剩 sha256( / hashlib 等计算用法
+    sha_compute_re = re.compile(r"\bsha256\s*\(|hashlib", re.IGNORECASE)
+    assert not sha_compute_re.search(strip_no_field_ref), (
+        "overview strip 不得调用 sha256(...)/hashlib (per 382 §SCHEMA-2 不重算)"
+    )
