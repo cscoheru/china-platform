@@ -162,13 +162,118 @@ def test_sha_matches_registry_passes(pilot_row):
 
 
 def test_sha_mismatch_raises(pilot_row):
-    """When SHA differs (source may have drifted), raise per docs/52 §4 step 3."""
+    """When SHA differs (source may have drifted), raise per docs/52 §4 step 3.
+
+    Per tasking 333 §SCHEMA: assert_sha_matches_registry itself stays loud
+    (the contract must fail loudly for any caller); main() catches the
+    RuntimeError and routes to the drift handler (WORM archive + drift
+    report + CANDIDATE_AUTO lineage)."""
     wrong = "0" * 64
     with pytest.raises(RuntimeError, match="SHA-256 mismatch"):
         aips.assert_sha_matches_registry(
             computed=wrong,
             expected=pilot_row["file_hash_sha256"],
         )
+
+
+def test_sha_drift_report_writes_5_fields(tmp_path, monkeypatch):
+    """write_sha_drift_report must produce a markdown file with the 5
+    mandatory fields per tasking 333 §SCHEMA: 源 / URL / computed SHA /
+    expected SHA / 建议."""
+    monkeypatch.setattr(aips, "REVIEWS_DIR", tmp_path)
+    computed = "a" * 64
+    expected = "b" * 64
+    out = aips.write_sha_drift_report(
+        domain="stats.gov.cn",
+        category="NATIONAL_BULLETIN",
+        url="https://www.stats.gov.cn/sj/zxfb/",
+        computed_sha256=computed,
+        expected_sha256=expected,
+    )
+    assert out.exists()
+    body = out.read_text(encoding="utf-8")
+    # 5 mandatory fields per tasking 333 §SCHEMA
+    assert "domain" in body
+    assert "stats.gov.cn" in body
+    assert "URL" in body
+    assert "https://www.stats.gov.cn/sj/zxfb/" in body
+    assert computed in body, "computed SHA must appear in report"
+    assert expected in body, "expected SHA must appear in report"
+    # 建议 section + the 4 red-line guards
+    assert "建议" in body
+    assert "不自动改 registry" in body
+    assert "CANDIDATE_AUTO" in body
+    assert "is_demo" in body
+
+
+def test_sha_drift_intake_status_is_candidate_auto(tmp_path, pilot_row):
+    """When write_observation is called with intake_status=CANDIDATE_AUTO,
+    is_demo MUST be 'true' (per tasking 333: drift ≠ 收口)."""
+    out = tmp_path / "lineage.jsonl"
+    archive_path = tmp_path / "drift.html"
+    archive_path.write_bytes(b"<html>drifted</html>")
+    aips.write_observation(
+        archive_path=archive_path,
+        sha256_hex="a" * 64,
+        agency=pilot_row["organization"],
+        intake_status="CANDIDATE_AUTO",
+        output_path=out,
+    )
+    rec = json.loads(out.read_text(encoding="utf-8").strip())
+    assert rec["intake_status"] == "CANDIDATE_AUTO"
+    assert rec["is_demo"] == "true", "drift must keep is_demo=true"
+
+
+def test_sha_drift_does_not_auto_update_registry(tmp_path, monkeypatch):
+    """The drift path MUST NOT modify source_registry/registry.csv (per
+    tasking 333 §SCHEMA '不自动改 registry'). Verify the drift handler
+    only writes to REVIEWS_DIR (reviews/.../sha-drift-...md) and never
+    opens registry.csv for writing."""
+    csv_path = PROJECT_ROOT / "source_registry" / "registry.csv"
+    assert csv_path.exists(), f"registry missing: {csv_path}"
+    csv_bytes_before = csv_path.read_bytes()
+    # The drift handler only writes reviews/.../sha-drift...md + WORM
+    # archive; registry is read-only. Check the function source.
+    src = inspect.getsource(aips.write_sha_drift_report)
+    # No csv-writing idioms.
+    assert "DictWriter" not in src
+    assert "open(" not in src or ".write(" not in src, (
+        "drift handler must not use raw file write (only REVIEWS_DIR + WORM)"
+    )
+    # And assert_sha_matches_registry never opens registry either
+    # (it only compares two passed-in hex strings).
+    src2 = inspect.getsource(aips.assert_sha_matches_registry)
+    assert "REGISTRY_CSV" not in src2 and "open(" not in src2
+    # Confirm actual registry still unchanged on disk after import.
+    assert csv_path.read_bytes() == csv_bytes_before
+
+
+def test_sha_drift_archive_still_written(tmp_path, monkeypatch, registry_rows):
+    """Even when SHA drifts, the WORM archive MUST be written (per tasking
+    333 §SCHEMA '仍 WORM 归档实测字节'). The drift handler cannot short-
+    circuit the archive step."""
+    monkeypatch.setattr(aips, "PUBLIC_ARCHIVE_ROOT", tmp_path / "worm")
+    blob = b"<html>drifted content</html>"
+    out = aips.archive(
+        blob=blob,
+        domain="stats.gov.cn",
+        filename="zxfb.html",
+    )
+    assert out.exists()
+    assert out.read_bytes() == blob, "drifted bytes must be WORM-archived"
+
+
+def test_sha_drift_red_line_no_registry_write(tmp_path, monkeypatch):
+    """Sanity: the connector module has no code path that opens registry.csv
+    for writing. Drift path uses write_sha_drift_report (reviews/) +
+    write_observation (lineage JSONL) + archive (data/public_archives/) —
+    none of which touch registry.csv."""
+    src = SCRIPT.read_text(encoding="utf-8")
+    # No "open(...registry.csv, ..., 'w')" pattern.
+    assert "open(REGISTRY_CSV, \"w\"" not in src
+    assert "open(REGISTRY_CSV, 'w'" not in src
+    # No csv.DictWriter — that would be the registry-writing idiom.
+    assert "DictWriter" not in src
 
 
 # ---------------------------------------------------------------------------

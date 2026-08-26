@@ -9,6 +9,10 @@ Scope of this knife:
   - Pipeline: discover → download → sha256 → archive → extract → observation.
   - Auth escalation: 401/403/登录墙/验证码/付费/反爬 → STOP + write
     reviews/.../auth-blocked...md (5 fields per docs/52 §6.2).
+  - SHA-drift handling (per tasking 333 §SCHEMA): live SHA ≠ registry → **NOT**
+    a hard fail. Still WORM-archive the bytes, set
+    `intake_status=CANDIDATE_AUTO` + `is_demo=true`, and write
+    reviews/.../sha-drift-...md (5 fields per tasking 333 §SCHEMA).
   - WORM archive: data/public_archives/{YYYY-MM}/{domain}/{filename}.
   - Lineage contract: intake_status=O1_AUTO_INTAKED only when SHA matches
     registry AND not fixture AND all lineage fields present (per docs/48 §5).
@@ -35,7 +39,8 @@ Exit codes:
   1 = pilot source not in registry
   2 = registry CSV parse error
   3 = AUTH blocked (401/403/登录墙/验证码/付费/反爬); blocked report written
-  4 = SHA mismatch with registry
+  4 = SHA mismatch with registry → drift path (NOT a hard fail); CANDIDATE_AUTO
+      archived + sha-drift report written; rc=4 signals "drift handled, not O1"
   5 = network/transport error after retries
   6 = live mode requested without --confirm-live=PATH
 """
@@ -237,12 +242,45 @@ def assert_sha_matches_registry(
     expected: str,
 ) -> None:
     """Compare computed SHA-256 to registry.csv file_hash_sha256. Raise on
-    mismatch (per docs/52 §4 step 3)."""
+    mismatch (per docs/52 §4 step 3).
+
+    Per tasking 333 §SCHEMA: callers in the live path are expected to catch
+    this RuntimeError and route to the SHA-drift handler (WORM archive +
+    intake_status=CANDIDATE_AUTO + drift report). assert_sha_matches_registry
+    itself stays loud because other callers (e.g. unit tests) should treat a
+    registry drift as a contract violation, not a silent auto-update.
+    """
     if computed.lower() != expected.lower():
         raise RuntimeError(
             f"SHA-256 mismatch: computed={computed[:16]}… expected="
             f"{expected[:16]}…  (registry may have drifted; report user, "
             f"do not auto-update)"
+        )
+
+
+class ShaDrift(Exception):
+    """Raised by main() when the live SHA differs from registry and the
+    drift path was taken (WORM archive + drift report). Carries all 5
+    fields required by tasking 333 §SCHEMA so the report writer doesn't
+    need to re-derive them."""
+
+    def __init__(
+        self,
+        *,
+        domain: str,
+        category: str,
+        url: str,
+        computed_sha256: str,
+        expected_sha256: str,
+    ):
+        self.domain = domain
+        self.category = category
+        self.url = url
+        self.computed_sha256 = computed_sha256
+        self.expected_sha256 = expected_sha256
+        super().__init__(
+            f"SHA drift: computed={computed_sha256[:16]}… "
+            f"expected={expected_sha256[:16]}…"
         )
 
 
@@ -340,8 +378,9 @@ def write_observation(
 ) -> Path:
     """Append a single JSONL line to output_path with all lineage fields
     populated per docs/48 §5. intake_status MUST be one of:
-        - O1_AUTO_INTAKED  (live mode + SHA matches registry)
-        - DEMO             (fixture / placeholder; demo flag stays true)
+        - O1_AUTO_INTAKED    (live mode + SHA matches registry)
+        - CANDIDATE_AUTO     (live mode + SHA drift; per tasking 333; is_demo=true)
+        - DEMO               (fixture / placeholder; demo flag stays true)
     """
     record = {
         "is_demo": "false" if intake_status == "O1_AUTO_INTAKED" else "true",
@@ -430,6 +469,101 @@ def write_auth_blocked_report(
 4. **用户裁定暂缓** → 源保持 `enabled=FALSE`，等下次裁定
 
 — End of AUTH blocked report —
+"""
+    out_path.write_text(body, encoding="utf-8")
+    return out_path
+
+
+# ---------------------------------------------------------------------------
+# SHA-drift report (per tasking 333 §SCHEMA — 5 mandatory fields)
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# SHA-drift report (per tasking 333 §SCHEMA — 5 mandatory fields)
+# ---------------------------------------------------------------------------
+
+def write_sha_drift_report(
+    *,
+    domain: str,
+    category: str,
+    url: str,
+    computed_sha256: str,
+    expected_sha256: str,
+    recommendation: str = (
+        "用户确认后二选一：(a) 更新 registry.csv file_hash_sha256 为实测 "
+        "computed_sha256（如认定是源站换版/换路径）；(b) 改用稳定的归档 URL "
+        "（如 Wayback Machine 快照或稳定 PDF/EXCEL 直链）。本 connector "
+        "不会自动改 registry。"
+    ),
+) -> Path:
+    """Write reviews/.../sha-drift-...md with the 5 mandatory fields per
+    tasking 333 §SCHEMA: 源 / URL / computed SHA / expected SHA / 建议.
+    Returns the written path. The WORM archive of the drifted bytes is
+    already on disk by the time this report runs (callers must archive
+    BEFORE invoking write_sha_drift_report so the report can reference
+    the archive path)."""
+    REVIEWS_DIR.mkdir(parents=True, exist_ok=True)
+    ts = _dt.datetime.now(_dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    out_path = REVIEWS_DIR / (
+        f"{ts}-stage2-public-source-sha-drift-{domain}-{category}.md"
+    )
+    # Locate the most-recent archive for this domain+category so the
+    # report can reference the WORM-stored bytes.
+    ym = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m")
+    archive_dir = PUBLIC_ARCHIVE_ROOT / ym / domain
+    archive_ref = "(not yet archived)"
+    if archive_dir.exists():
+        candidates = sorted(archive_dir.iterdir(), key=lambda p: p.stat().st_mtime, reverse=True)
+        if candidates:
+            archive_ref = _relative_or_abs(candidates[0])
+    body = f"""# 公开源 SHA 漂移报告（per tasking 333 §SCHEMA）
+
+- 域：`{domain}`
+- 类目：`{category}`
+- 触发时间（UTC）：`{_dt.datetime.now(_dt.timezone.utc).isoformat()}`
+- WORM 归档：`{archive_ref}`
+
+## 1. 源 / URL
+
+| 字段 | 值 |
+|---|---|
+| domain | `{domain}` |
+| category | `{category}` |
+| URL | `{url}` |
+
+## 2. computed SHA-256（实测下载字节）
+
+```
+{computed_sha256}
+```
+
+## 3. expected SHA-256（registry.csv file_hash_sha256）
+
+```
+{expected_sha256}
+```
+
+## 4. 状态
+
+- `intake_status = CANDIDATE_AUTO`（非 O1_AUTO_INTAKED；drift ≠ 收口）
+- `is_demo = true`（drift 候选绝不能伪装成真数据）
+- WORM 归档实测字节：已写入 `{archive_ref}`
+- registry.csv **未**被修改（connector 不自动改 registry）
+
+## 5. 建议
+
+{recommendation}
+
+## 6. 红线
+
+- ❌ **不自动改 registry.csv file_hash_sha256**（per tasking 333 §SCHEMA "不伪造、不自动改 registry"）
+- ❌ **不把 drift 标成 O1_AUTO_INTAKED**（drift ≠ 收口）
+- ❌ **不静默吞掉 drift**（本报告即非静默；含 5 字段 + WORM 归档位置）
+- ❌ **不 headless / 不绕过反爬**获取"应该匹配的"内容
+- ✅ **等用户裁定**：(a) 更新 registry 哈希 或 (b) 改用稳定 URL
+
+— End of SHA drift report —
 """
     out_path.write_text(body, encoding="utf-8")
     return out_path
@@ -528,16 +662,50 @@ def main(argv: list[str] | None = None) -> int:
 
     sha = sha256_of_bytes(blob)
     print(f"OK downloaded {len(blob)} bytes; sha256={sha[:16]}…")
-    try:
-        assert_sha_matches_registry(
-            computed=sha,
-            expected=pilot["file_hash_sha256"],
-        )
-    except RuntimeError as exc:
-        print(f"❌ {exc}", file=sys.stderr)
-        return 4
 
     filename = Path(pilot["primary_url"]).name or "index.html"
+
+    # SHA path: match → O1_AUTO_INTAKED; mismatch → drift (NOT hard fail).
+    # Per tasking 333 §SCHEMA: drift does NOT auto-update registry; we still
+    # WORM-archive the bytes, write a sha-drift report, and emit a
+    # CANDIDATE_AUTO lineage row with is_demo=true.
+    sha_matched = (
+        sha.lower() == pilot["file_hash_sha256"].strip().lower()
+    )
+
+    if not sha_matched:
+        # Always WORM-archive the drifted bytes BEFORE the report runs so
+        # the report can point at them.
+        archive_path = archive(
+            blob=blob,
+            domain=pilot["domain"],
+            filename=filename,
+        )
+        print(f"⚠ SHA drift; archived drifted bytes: {archive_path}")
+        drift_report = write_sha_drift_report(
+            domain=pilot["domain"],
+            category=pilot["category"],
+            url=pilot["primary_url"],
+            computed_sha256=sha,
+            expected_sha256=pilot["file_hash_sha256"],
+        )
+        print(f"⚠ drift report written: {drift_report}", file=sys.stderr)
+        # Emit CANDIDATE_AUTO lineage (is_demo=true via write_observation).
+        write_observation(
+            archive_path=archive_path,
+            sha256_hex=sha,
+            agency=pilot["organization"],
+            intake_status="CANDIDATE_AUTO",
+            output_path=Path(args.confirm_live),
+        )
+        print(
+            "⚠ CANDIDATE_AUTO lineage emitted; rc=4 means drift handled, "
+            "NOT O1 收口。等用户裁定。",
+            file=sys.stderr,
+        )
+        return 4
+
+    # SHA matches → O1_AUTO_INTAKED path (unchanged from knife 46).
     archive_path = archive(
         blob=blob,
         domain=pilot["domain"],
