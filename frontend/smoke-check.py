@@ -1049,6 +1049,46 @@ def main() -> int:
                 "(nbs / nbs-live-candidate / sz / hubei)"
             )
 
+    # §13 — 深圳城页链到 /public-extracts#track-sz (per tasking 391)
+    # CityPage.tsx + CityPageMart.tsx 各含 slug/cityId === 'shenzhen'
+    # 条件分支 → /public-extracts#track-sz 链 + REGISTRY_SAMPLE demo 标注 +
+    # 非 O1 守门; 不允许无条件链接 (会污染其它城页).
+    cp_path = ROOT / "app" / "components" / "CityPage.tsx"
+    cpm_path = ROOT / "app" / "components" / "CityPageMart.tsx"
+    for label, file_path, slug_cond in (
+        ("CityPage", cp_path, 'slug === "shenzhen"'),
+        ("CityPageMart", cpm_path, 'cityId === "shenzhen"'),
+    ):
+        if not file_path.is_file():
+            errors.append(f"{label}.tsx missing (per tasking 391)")
+            continue
+        src = file_path.read_text(encoding="utf-8")
+        code = re.sub(r"//[^\n]*", "", src)
+        code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+        for needle, desc in (
+            (slug_cond, f"{label} shenzhen 条件分支"),
+            ("/public-extracts#track-sz", f"{label} /public-extracts#track-sz 链"),
+            ("REGISTRY_SAMPLE", f"{label} demo 标注"),
+            ("非 O1", f"{label} 非 O1 守门"),
+        ):
+            if needle not in code:
+                errors.append(
+                    f"{label}.tsx missing {desc} (per tasking 391)"
+                )
+        if all(
+            n in code
+            for n in (
+                slug_cond,
+                "/public-extracts#track-sz",
+                "REGISTRY_SAMPLE",
+                "非 O1",
+            )
+        ):
+            ok(
+                f"{label}.tsx: shenzhen 条件分支 → /public-extracts#track-sz 链 "
+                f"+ REGISTRY_SAMPLE demo 标注 + 非 O1 守门"
+            )
+
     if errors:
         for e in errors:
             fail(e)

@@ -1,5 +1,5 @@
 {
-  "artifact_count": 700,
+  "artifact_count": 703,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -4200,6 +4200,24 @@
       "role": "documentation",
       "sha256": "d0fdbfddd47a7e63e6110a28c6b061f28485200a6623992017d733586486dadc",
       "size_bytes": 6605
+    },
+    {
+      "path": "tests/test_shenzhen_city_link_public_extract.py",
+      "role": "schema_negative_test",
+      "sha256": "be3373514bc7e285b33610b0870813d876cf708f1d927dd6bc53c54790efecc2",
+      "size_bytes": 4216
+    },
+    {
+      "path": "scripts/_knife66_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "097e3aa3ab705f08517bec18508d31c0fb089fca331c2273676d51cdfdbd64bb",
+      "size_bytes": 4102
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/392-stage0-cc-shenzhen-city-link-public-extract-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "aa3d0cade9fc009ccae78f5be87a95d91dfa264f24dd62063675b5a781a3bf46",
+      "size_bytes": 5898
     }
   ],
   "commit": {
@@ -4233,19 +4251,19 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 32,
-    "documentation": 116,
+    "documentation": 117,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 41,
+    "schema_negative_test": 42,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 76,
+    "spike_helper": 77,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

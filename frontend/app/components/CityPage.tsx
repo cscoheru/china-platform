@@ -52,6 +52,37 @@ export function CityPage({ city }: CityPageProps): ReactElement {
         S2.7-b-lite = 10 城 mock 壳；S2.7-b-full = 接 <code>mart_city_evidence_chain</code> + person/tenure 真数据
         （OPEN；依赖 O1 真实 SHA + Stage 1 OPEN 收口）。
       </p>
+
+      {city.slug === "shenzhen" ? (
+        <section
+          data-testid="city-page-public-extract-link"
+          data-city-slug="shenzhen"
+          style={{
+            marginTop: 24,
+            padding: "12px 16px",
+            background: "#fff8e1",
+            border: "1px solid #ffe082",
+            fontSize: 13,
+          }}
+        >
+          <h3 style={{ fontSize: 14, margin: "0 0 8px 0" }}>
+            公开提取 — 深圳轨（per tasking 391）
+          </h3>
+          <p style={{ margin: "0 0 8px 0" }}>
+            深圳统计公报散文段落表（sz.gov.cn MUNICIPAL_BULLETIN，71 行
+            <code>{"{section, paragraph}"}</code>）已落在{" "}
+            <a href="/public-extracts#track-sz">
+              <code>/public-extracts#track-sz</code>
+            </a>
+            ；样本来自 registry 锚定的本地 spike，<strong>REGISTRY_SAMPLE demo，SSL
+            暂缓未做过 live 探测，非 O1 收口</strong>（per 回执 368/371/383）。
+          </p>
+          <p style={{ margin: 0, fontSize: 12, color: "#856404" }}>
+            注：本城页 mock 观察卡与公报散文轨互不覆盖 — mock 数据是城市观察卡
+            演示，公报散文轨是公开源结构化提取演示；两者皆 demo，非 O1。
+          </p>
+        </section>
+      ) : null}
     </section>
   );
 }
