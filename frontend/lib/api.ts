@@ -12,6 +12,8 @@ import { MOCK_INDICATOR_LIST, MOCK_JIANGSU_GDP_SERIES } from "./mock";
 
 const USE_MOCK =
   process.env.NEXT_PUBLIC_USE_MOCK !== "false"; // default true (skeleton mode)
+// City mart-shape demo pipeline (S2.7-b-full-lite+). Independent of FastAPI mock.
+const USE_MART_FIXTURE = process.env.NEXT_PUBLIC_USE_MART_FIXTURE === "1";
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000";
 
 export async function listIndicators(): Promise<IndicatorListResponse> {
@@ -58,3 +60,4 @@ export async function indicatorSeries(
 // Re-export so callers can introspect which mode is active.
 // Useful for the home page to render a banner.
 export const IS_MOCK_MODE = USE_MOCK;
+export const IS_MART_FIXTURE_MODE = USE_MART_FIXTURE;

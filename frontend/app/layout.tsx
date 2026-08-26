@@ -1,16 +1,24 @@
 import React from "react";
-import { IS_MOCK_MODE } from "../lib/api";
+import { IS_MOCK_MODE, IS_MART_FIXTURE_MODE } from "../lib/api";
 
 // Stage 2 / S2.0.1 — Root layout.
 //
 // Per docs/34 §4.2: skeleton deliberately includes a top banner announcing
 // mock-mode vs real-FastAPI mode so reviewers can never confuse the two.
+// S2.7-b-full+: when NEXT_PUBLIC_USE_MART_FIXTURE=1, banner also names the
+// mart-shape demo pipeline (still is_demo; not O1 / not Gate PASS).
 
 export const metadata = {
-  title: "CEGR — Stage 2 Skeleton (S2.0.1)",
+  title: "CEGR — Stage 2 Observation (mart demo pipeline)",
   description:
-    "Read-only observation layer over cegr_staging. Mock-mode by default.",
+    "Read-only observation layer. Mock FastAPI by default; mart-shape city demo when NEXT_PUBLIC_USE_MART_FIXTURE=1.",
 };
+
+function bannerBackground(): string {
+  if (IS_MART_FIXTURE_MODE) return "#cfe2ff"; // info blue — mart demo pipeline
+  if (IS_MOCK_MODE) return "#fff3cd";
+  return "#d4edda";
+}
 
 export default function RootLayout({
   children,
@@ -32,13 +40,24 @@ export default function RootLayout({
         <header
           style={{
             padding: "12px 20px",
-            background: IS_MOCK_MODE ? "#fff3cd" : "#d4edda",
+            background: bannerBackground(),
             borderBottom: "1px solid #ccc",
             fontSize: 14,
           }}
           data-testid="mode-banner"
+          data-mart-fixture={IS_MART_FIXTURE_MODE ? "1" : "0"}
         >
-          {IS_MOCK_MODE ? (
+          {IS_MART_FIXTURE_MODE ? (
+            <>
+              ℹ️ <strong>MART DEMO PIPELINE</strong> — 地市页走 mart-shape 演示管道
+              （<code>NEXT_PUBLIC_USE_MART_FIXTURE=1</code>）。行级{" "}
+              <code>is_demo=true</code>，SHA 占位；<strong>不是</strong> O1 真样本 /
+              不宣布 Gate PASS。
+              {IS_MOCK_MODE
+                ? " Indicator 列表仍用 mock FastAPI（无后端时）。"
+                : " Indicator 列表接 Live FastAPI。"}
+            </>
+          ) : IS_MOCK_MODE ? (
             <>
               ⚠️ <strong>SKELETON MODE</strong> — using mock data
               (NEXT_PUBLIC_USE_MOCK=true). Observations shown are S1.18 DEMO
@@ -46,8 +65,7 @@ export default function RootLayout({
             </>
           ) : (
             <>
-              ✅ <strong>LIVE MODE</strong> — FastAPI at
-              {" "}
+              ✅ <strong>LIVE MODE</strong> — FastAPI at{" "}
               {process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000"}.
               Real SHA-locked data (subject to Stage 1 OPEN gap).
             </>

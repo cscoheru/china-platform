@@ -8,7 +8,7 @@
 // （per tasking 277 §NOW「首页七维/对比导航入口」）。
 // 列表本身仅为导航入口；不评分、不对比、不排名。
 
-import { listIndicators, IS_MOCK_MODE } from "../lib/api";
+import { listIndicators, IS_MOCK_MODE, IS_MART_FIXTURE_MODE } from "../lib/api";
 import { MOCK_PROVINCE_LIST } from "../lib/mock_evidence_chain";
 import { CITY_SLUG_MAP, CITY_SLUG_LIST } from "../lib/city_slug_map";
 
@@ -16,13 +16,21 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const data = await listIndicators();
+  const cityModeLabel = IS_MART_FIXTURE_MODE
+    ? "mart-shape demo（is_demo=true；非 O1）"
+    : "mock（S2.7-b-lite；设 NEXT_PUBLIC_USE_MART_FIXTURE=1 切 mart）";
   return (
     <section>
-      <h1>CEGR — Stage 2 治理观察 (S2.0.1 + S2.7-a)</h1>
+      <h1>CEGR — Stage 2 治理观察 (S2.0.1 + S2.7)</h1>
       <p style={{ color: "#666" }}>
-        {IS_MOCK_MODE
-          ? "Mock 模式：以下数据为 S1.18 DEMO sentinel，"
-          : "Live 模式：以下数据来自 FastAPI S1.10，"}
+        {IS_MART_FIXTURE_MODE
+          ? "Mart demo 管道已开：地市 /cities/{slug} 走 mart-shape（含演示人物）；"
+          : IS_MOCK_MODE
+            ? "Mock 模式：以下 indicator 为 S1.18 DEMO sentinel，"
+            : "Live 模式：以下数据来自 FastAPI S1.10，"}
+        {IS_MOCK_MODE && IS_MART_FIXTURE_MODE
+          ? "首页 indicator 表仍为 mock（无后端时）。"
+          : null}
         请同时关注页面顶部 <code>mode-banner</code>。
       </p>
       <h2>Indicator inventory</h2>
@@ -99,7 +107,7 @@ export default async function HomePage() {
                 <td style={cellStyle}>
                   <a href={`/cities/${entry.slug}`}>/cities/{entry.slug}</a>
                 </td>
-                <td style={cellStyle}>mock（S2.7-b-lite / mart-shape opt-in）</td>
+                <td style={cellStyle}>{cityModeLabel}</td>
               </tr>
             );
           })}
