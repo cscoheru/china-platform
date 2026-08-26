@@ -8,24 +8,28 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `POLL` |
-| **queue_rev** | `154` |
-| **origin_head** | `0d1a3fd` |
-| **cc_head** | `0d1a3fd`；`371` 已交 |
-| **cc_receipt** | `371` |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `155` |
+| **origin_head** | `a0e2927` |
+| **cc_head** | `a0e2927`；等 `374` |
+| **cc_receipt** | `371`（已 ACK） |
 | **cursor_ack** | `371` |
 | **last_audit** | `372` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；Cursor 代判；`/public-extracts` 三轨（NBS sample/live + 深圳 sample）已齐 → **POLL** |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；空闲 POLL → 续刀；Cursor 代判 |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL` |
-| **updated_at** | `2026-08-26T20:15:30+08:00` |
+| **expect_cc_poll** | `EXECUTE_NOW` |
+| **updated_at** | `2026-08-26T20:27:30+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-（无新刀。）只 **`84` POLL**，直到 `queue_rev` 再 bump。
+读并执行：`373-stage2-docs45-three-track-extracts-refresh-tasking-20260826.md`
+
+摘要：刷新 `docs/45` 登记 `/public-extracts` **三轨**（NBS sample / NBS live / 深圳 sample）；交回执 **`374`**（`-cc-`）。
+
+完成后：`git push origin HEAD && git push github HEAD` → **`84` POLL**。
 
 ---
 
@@ -38,8 +42,3 @@
 ## BLOCKED
 
 （无。）仅登录/验证码/付费 escalate 用户。
-
-## 里程碑（只读，非 Gate PASS）
-
-- https://china.3strategy.cc/public-extracts — NBS 63 + NBS live 60 + 深圳 71
-- ops：`docs/53`
