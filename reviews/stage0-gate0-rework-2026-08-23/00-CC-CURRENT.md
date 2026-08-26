@@ -9,25 +9,25 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `161` |
-| **origin_head** | `7c5112c` |
-| **cc_head** | `7c5112c`；等 `389` |
-| **cc_receipt** | `386` |
-| **cursor_ack** | `386` |
-| **last_audit** | `387` PASS |
+| **queue_rev** | `162` |
+| **origin_head** | `9b8d78e` |
+| **cc_head** | `9b8d78e`；等 `392` |
+| **cc_receipt** | `389` |
+| **cursor_ack** | `389` |
+| **last_audit** | `390` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；**不等人裁定除非卡住**；Cursor 代判 |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-26T21:18:40+08:00` |
+| **updated_at** | `2026-08-26T21:27:40+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`388-stage2-public-extracts-json-download-tasking-20260826.md`
+读并执行：`391-stage2-shenzhen-city-link-public-extract-tasking-20260826.md`
 
-摘要：四轨 JSON 静态下载（`frontend/public/public-extracts/`）；交回执 **`389`**（`-cc-`）。
+摘要：深圳城页链到 `/public-extracts#track-sz`（demo 标注）；交回执 **`392`**（`-cc-`）。
 
 完成后：双推 → **`84` POLL**。
 
