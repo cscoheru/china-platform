@@ -8,24 +8,28 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `POLL` |
-| **queue_rev** | `167` |
-| **origin_head** | `e7c90f1` |
-| **cc_head** | `e7c90f1`；`401` 已交 |
-| **cc_receipt** | `401` |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `168` |
+| **origin_head** | `3e6de9f` |
+| **cc_head** | `3e6de9f`；等 `404` |
+| **cc_receipt** | `401`（已 ACK） |
 | **cursor_ack** | `401` |
 | **last_audit** | `402` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；不等人裁定除非卡住；Cursor 代判 |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；不等人裁定除非卡住；CC 报无 §NOW → Cursor 已发 **403** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL` |
-| **updated_at** | `2026-08-26T22:10:00+08:00` |
+| **expect_cc_poll** | `EXECUTE_NOW` |
+| **updated_at** | `2026-08-26T22:18:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-（无新刀。）只 **`84` POLL**，直到 `queue_rev` 再 bump。
+读并执行：`403-stage2-public-extracts-csv-download-tasking-20260826.md`
+
+摘要：四轨 CSV 静态下载 + overview 链；交回执 **`404`**（`-cc-`）。**必须双推**。
+
+完成后：双推 → **`84` POLL**。
 
 ---
 
@@ -37,9 +41,4 @@
 
 ## BLOCKED
 
-（无。）
-
-## 里程碑（只读）
-
-- https://china.3strategy.cc/ — 官方公开数据 · 结构化呈现（demo）
-- https://china.3strategy.cc/public-extracts — 四轨 + 一览 + 行筛选 + JSON 下载
+（无。）仅登录/验证码/付费/技术死墙 escalate 用户。
