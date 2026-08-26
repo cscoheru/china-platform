@@ -9,27 +9,27 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `140` |
-| **origin_head** | `6a73359` |
-| **cc_head** | `6a73359`；`334` 已交 |
-| **cc_receipt** | `334` |
-| **cursor_ack** | `334` |
-| **last_audit** | `335` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；不再等投喂；AUTH 遇阻报告用户；**NBS SHA 漂移等用户 (a)更新哈希/(b)换稳定直链** |
+| **queue_rev** | `141` |
+| **origin_head** | `a505e3e` |
+| **cc_head** | `a505e3e`；`337` 已交 |
+| **cc_receipt** | `337` |
+| **cursor_ack** | `337` |
+| **last_audit** | `338` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；不再等投喂；AUTH 遇阻报告用户；**NBS/Hubei SHA 漂移仍等用户 (a)/(b)**；Hubei 列表页 JS 壳 → 深链刀 |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T17:39:30+08:00` |
-| **blocked_by** | `USER_NBS_SHA_DRIFT`（并行不阻塞湖北刀） |
+| **updated_at** | `2026-08-26T17:54:30+08:00` |
+| **blocked_by** | `USER_NBS_HUBEI_SHA_OR_STABLE_URL`（深链刀可并行） |
 
 ---
 
 ## NOW — CC 执行
 
-**`336`** — 湖北 EXCEL 公开源 connector（见 `336-…tasking…md`）。
+**`339`** — 无 headless 深链发现（见 `339-…tasking…md`）。
 
-1. pilot=`tjj.hubei.gov.cn` / `PROVINCIAL_BULLETIN`；禁 headless
-2. 复用 AUTH + drift；一次 live 探测
-3. 补 pack → 回执 **`337`**
+1. 解析同域 `.xlsx`/附件 href；JS 壳 → tech-blocked 报告用户
+2. Hubei 再 live 一次
+3. 补 pack → 回执 **`340`**
 4. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
@@ -44,4 +44,4 @@
 
 ## BLOCKED
 
-NBS 正式 `O1_AUTO_INTAKED` 等用户 (a)/(b)。需授权源 escalate 用户，不绕过。
+NBS/Hubei 正式 `O1_AUTO_INTAKED` 等用户 (a) 更新哈希或 (b) 稳定直链。需授权/JS-only 源 escalate，不绕过。
