@@ -3,7 +3,7 @@
 - 编号：`353-stage0-cc-protect-public-extracts-pytest-receipt-20260826`
 - 任务书：`352-stage2-protect-public-extracts-from-pytest-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<BACKFILL>`
+- cc_head：`c33d3f4`
 - 日期：2026-08-26
 
 ---
