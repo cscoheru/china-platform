@@ -8,28 +8,24 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
+| **phase** | `POLL` |
 | **queue_rev** | `180` |
-| **origin_head** | `3b16aae` |
-| **cc_head** | `3b16aae`；等 `422` |
-| **cc_receipt** | `420` |
-| **cursor_ack** | `420` |
-| **last_audit** | `421` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀 |
+| **origin_head** | `faf950a` |
+| **cc_head** | `faf950a`；`422` 已交 |
+| **cc_receipt** | `422` |
+| **cursor_ack** | `422` |
+| **last_audit** | `423` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T08:22:00+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-27T08:28:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`422-stage2-docs45-nbs-home-deeplink-refresh-tasking-20260826.md`
-
-摘要：`docs/45` 登记 NBS 首页 deeplink（回执 `420`）；交回执 **`422`**。**必须双推**。
-
-完成后：双推 → **`84` POLL**。
+（无新刀。）只 **`84` POLL**。
 
 ---
 
