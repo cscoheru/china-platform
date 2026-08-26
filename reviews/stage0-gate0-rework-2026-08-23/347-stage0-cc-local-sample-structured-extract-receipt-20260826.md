@@ -14,6 +14,8 @@
 | phase | CC_ACTION_REQUIRED |
 | queue_rev | 144 |
 | cc_receipt | 347 |
+| cc_head | `ce2700f` (knife 51 feature commit by Cursor;已合并进 main) |
+| cc_ack | `60698d7` (Cursor ACK 347 PASS;task 349 frontend-wire-extracts;queue_rev 145) |
 | user_ruling | D + 源工程 **Cursor 代判（`341`）**;深圳 HTTPS SSL 暂缓(禁 HTTP pin) |
 | 测试 | **69/69 pytest PASS（59 → 69,+10:10 local-sample case,超 tasking 346 §SCHEMA "≥8 pytest" 25%）** |
 | NBS live 再探 | rc=7（JS-only shell tech-blocked;与 knife 47 一致;非 O1 收口）;见 §6 |
@@ -334,11 +336,11 @@ archive_path, extract_json_path, lineage_path = aips.intake_from_local_sample(
 
 ## §10 推 / 落地
 
-- commit: TBD（pending knife51_manifest_bump.py 执行后）
-- push origin: TBD
-- push github: TBD
-- three-way convergence: TBD
-- backfill SHA: 本 receipt §META `cc_head` 在 commit 后填;按 knife 17 教训另起 commit(不 amend-after-push)
+- knife 51 feature commit: **`ce2700f`** `feat(connector): 346 local-sample structured extract + NBS live tech-blocked`(Cursor 代笔 / cc 准备 stage;落 main 18:39)
+- ACK 348 commit: **`60698d7`** `chore(reviews): ACK 347 PASS (348); task frontend wire extracts 349; queue_rev 145`(Cursor 自审通过)
+- 三冗余守恒:`HEAD = origin/main = github/main = 60698d7`(已落地)
+- backfill SHA: 本 receipt §META `cc_head = ce2700f`(已填)+ `cc_ack = 60698d7`;按 knife 17 教训**另起 commit**(不 amend-after-push)→ 见后续 `chore(receipt): backfill knife 51 cc_head` commit
+- next tasking: **349 frontend-wire-extracts**(让前端读取 `data/public_extracts/{domain}/{category}.json`;待 84 POLL 触发)
 
 ## §11 下次心跳预期
 
