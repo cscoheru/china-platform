@@ -3,7 +3,7 @@
 - 编号：`362-stage0-cc-live-candidate-refresh-receipt-20260826`
 - 任务书：`361-stage2-live-candidate-refresh-cli-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<BACKFILL>`
+- cc_head：`7e83213`
 - 日期：2026-08-26
 
 ---
