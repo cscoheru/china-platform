@@ -9,25 +9,25 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `165` |
-| **origin_head** | `855602c` |
-| **cc_head** | `855602c`；等 `398` |
-| **cc_receipt** | `395`（已 ACK） |
-| **cursor_ack** | `395` |
-| **last_audit** | `396` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**不等人裁定除非卡住**；Cursor 代判 |
+| **queue_rev** | `166` |
+| **origin_head** | `16d41a0` |
+| **cc_head** | `16d41a0`；等 `401` |
+| **cc_receipt** | `398` |
+| **cursor_ack** | `398` |
+| **last_audit** | `399` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；不等人裁定除非卡住；交卷未 push 时 Cursor 可复验后代推 |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-26T21:50:40+08:00` |
+| **updated_at** | `2026-08-26T22:04:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`397-stage2-public-extracts-row-filter-tasking-20260826.md`
+读并执行：`400-stage2-docs45-row-filter-refresh-tasking-20260826.md`
 
-摘要：`/public-extracts` 各轨轻量行筛选；交回执 **`398`**（`-cc-`）。做完**必须双推**。
+摘要：`docs/45` 登记行筛选 + 首页新标题；交回执 **`401`**。**必须双推**。
 
 完成后：双推 → **`84` POLL**。
 
@@ -41,4 +41,4 @@
 
 ## BLOCKED
 
-（无。）仅登录/验证码/付费/技术死墙 escalate 用户。
+（无。）
