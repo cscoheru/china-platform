@@ -1,3 +1,5 @@
+"use client";
+
 // Stage 2 / S2.8-lite — Seven-dimension observation card grid component.
 //
 // Per docs/42 §3.1 (折叠态) + §3.2 (展开态) + §3.3 (React 组件最小形态).

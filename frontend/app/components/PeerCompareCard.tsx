@@ -1,3 +1,5 @@
+"use client";
+
 // Stage 2 / S2.9-lite — Peer-region comparison card grid component.
 //
 // Per docs/43 §3.2 (折叠态) + §3.3 (EvidenceChain 段级对比展开态)
@@ -21,8 +23,8 @@ import {
   ROLE_IN_GROUP_META,
   type ComparisonGroupMemberProps,
   type PeerCompareGroup,
-  type SevenDimCardId,
 } from "../../lib/types_peer_compare";
+import type { SevenDimCardId } from "../../lib/types_seven_dim";
 import type { MockPeerCompareRegion } from "../../lib/mock_peer_compare";
 
 interface PeerCompareCardProps {
