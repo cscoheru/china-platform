@@ -11,6 +11,7 @@
 > 刷新：queue_rev 127（per `305-stage2-docs45-person-tenure-demo-refresh-tasking-20260826`）— §2 #1 + §3 O1 详细 + §5.5 + §6 + §6.1 + §6.2 反映 S2.7-b person/tenure demo 接驳（`303` 10 城 × 2 demo 行 = 20 demo 相关人物行：市委书记 + 市长 mock 占位；TS fixture 主路径；不接真 SHA 不接真履历；UI 显式 demo 标识）；修正「relatedPersons=[]」过时 OPEN；标注仍为 demo、非真履历、非 O1 收口
 > 刷新：queue_rev 130（per `312-stage2-docs45-o3-plan-refresh-tasking-20260826`）— §3 O3 + §5.5 + §6.2 + §7 反映 O3 OCR 生产路径规划落地（`309` 7 步流水线设计 + allowlist + is_demo/SHA lineage 衔接 + 验收清单 + 显式禁爬网/登录绕过；见 `docs/49`）；**O3 仍 OPEN**（未实装 OCR 引擎 + 未收口；tasking 31X+）；Gate 2 评审必带 OPEN 清单
 > 刷新：queue_rev 132（per `318-stage2-docs45-gate2-packet-refresh-tasking-20260826`）— 登记 **`docs/50`** Gate 2 评审包**草稿**（11 节；七条 ↔ 证据 + OPEN 必带 + 不可隐藏清单 8 项 + 预览路径；回执 `316`）；§1 + §6 + §6.2 + §7 同步指向 docs/50；**docs/50 是草稿（不宣布 Gate 2 PASS）**，O1 WAITING_FILE + O3 规划已交实装仍 OPEN + docs/10 §3.2-3.4 xfail stub 必带 OPEN 清单；Gate 2 评审日期 W8（per docs/34 §10.4，不擅自提前）
+> 刷新：queue_rev 134（per `324-stage2-docs45-o1-checklist-refresh-tasking-20260826`）— 登记 **`docs/51`** O1 投递**清单**（10 节；5 省 + 10 地市 + 4 退出码契约 + 不可隐藏清单 11 项 + 链到 docs/48 intake 操作手册；回执 `322`）；§1 + §3 O1 详细 + §6.2 + §7 同步指向 docs/51；**O1 仍 OPEN（WAITING_FILE）**，不擅自 O1 收口，真数据物理依赖用户按 docs/51 §1-§4 投递 → `--confirm-o1=PATH` 显式确认
 >
 > ⚠ **本文件是 Gate 2 评审索引；不宣布 Gate 2 PASS**（per `docs/34 §1` + §8 #8 + §133 + `247` §红线 + `250` §红线）
 
@@ -21,6 +22,8 @@
 把 Gate 2 评审所需的 **7 条验收 ↔ 证据路径** 装订到一页 markdown，供 Cursor 评审 + 用户裁定使用。本文件**只是索引**，不补 dbt、不补 UI、不补 pytest case（per tasking `250` §SCHEMA "本刀不做"）。
 
 **Gate 2 评审包草稿**（per `docs/50-stage2-gate2-review-packet-draft-20260826.md`，11 节；回执 `316`）：§2 七条 ↔ 证据路径 + §3 三类划分（不可降级 / 演示级 / 仍 OPEN）+ §4 演示场景（5 省 + 10 地市）+ §5 OPEN 必带（O1 WAITING_FILE + O3 规划已交实装仍 OPEN）+ §6 评审脚本清单 + §7 预览路径（**非 O1/O3 收口**）+ §8 红线自检 + §9 不可隐藏清单 8 项 + §10 备注。**docs/50 是评审包草稿（不宣布 Gate 2 PASS）**（per `315` §SCHEMA "本刀做" + `318` §红线）。
+
+**O1 投递清单**（per `docs/51-stage2-o1-drop-checklist-20260826.md`，10 节；回执 `322`）：§0 一句话总览 + §1 pre-conditions 5 项 + §2 allowlist 3 前缀 + §3 4 退出码契约（WAITING_FILE / CANDIDATE_FOUND / CONTRACT_VIOLATION / 内部错误）+ §4 `--confirm-o1=PATH` 显式确认 + §5 收口预览 + §6 不可隐藏清单 11 项 + §7 红线 + §8 不在范围 + §9 下次心跳预期。**docs/51 不是 O1 收口宣告**（per `321` §SCHEMA "本刀做" + `324` §红线）；O1 仍 OPEN（WAITING_FILE）直到用户主动 `--confirm-o1=PATH`；真数据物理依赖用户按 docs/51 §1-§4 投递。
 
 **Gate 2 评审日期**：暂定 W8（per `docs/34 §10.4`；不擅自提前）。
 
@@ -44,7 +47,7 @@
 
 | OPEN | 状态 | Gate 2 必带？|
 |---|---|---|
-| **O1** 真实 SHA-locked 江苏样本 | **S1.18 DEMO 路径 OPEN — 用户 2026-08-26 确认无持有材料**（per `284` 缩刀任务书）| ✅ **必带**（per docs/34 §3 + §120）|
+| **O1** 真实 SHA-locked 江苏样本 | **S1.18 DEMO 路径 OPEN — 用户 2026-08-26 确认无持有材料**（per `284` 缩刀任务书）；**`docs/51` O1 投递清单**已交（10 节；5 省 + 10 地市 + 4 退出码契约 + 不可隐藏清单 11 项；回执 `322`）；真数据物理依赖用户按 docs/51 §1-§4 投递 → `--confirm-o1=PATH` 显式确认 | ✅ **必带**（per docs/34 §3 + §120）|
 | **O2** cron / 通知 / 真实联外探针 | Stage 1 运维 OPEN | ⚠️ 演示级可过 |
 | **O3** OCR 生产路径 | S1.17 scanned PDF OPEN → `docs/49` 规划蓝图（7 步流水线设计 + allowlist + `is_demo`/SHA lineage 衔接 + 验收清单；回执 `309`）；**`docs/50` Gate 2 评审包草稿**已交（11 节；七条 ↔ 证据 + OPEN 必带 + 不可隐藏清单 8 项；回执 `316`）| ⚠️ **O3 仍 OPEN — 规划已交，实装待 tasking 31X+**；Gate 2 评审必带 OPEN 清单（per docs/50 §3.3 + §5.1 + §5.3 + §9 #2）|
 | O4 `is_demo` 机制 | ✅ 已交（S1.18）| — |
@@ -209,6 +212,7 @@
 | **O3 4 退出码契约 + allowlist**（per `docs/49` §4.3 + §2.3）| 复用 `docs/48` §3 退出码 + `scripts/compute_file_sha.py` `ALLOWED_PREFIXES` | ✅ 已规划（实装待 tasking 31X+）|
 | **Gate 2 评审包草稿**（per `docs/50` + `316`）| `docs/50-stage2-gate2-review-packet-draft-20260826.md`（11 节：§0 红线 / §1 结构 / §2 七条 ↔ 证据 / §3 三类划分 / §4 演示场景 / §5 OPEN 必带 / §6 评审脚本 / §7 预览路径 / §8 红线自检 / §9 不可隐藏清单 8 项 / §10 备注；文首/文末禁止 PASS 措辞；grep 验证无 bare PASS）| ✅ Gate 2 评审包草稿已交（回执 `316`；**docs/50 是草稿，不宣布 Gate 2 PASS**；O1 WAITING_FILE + O3 规划已交实装仍 OPEN + docs/10 §3.2-3.4 xfail stub 必带 OPEN 清单；Gate 2 评审日期 W8 不擅自提前）|
 | **Gate 2 三类划分**（per `docs/50` §3）| 不可降级 4 项（#2/#4/#5/#6）+ 演示级 2 项（#1/#3）+ 仍 OPEN 5 项（dbt mart 真表 / docs/10 §3.2-3.4 / O1 / O3 / person/tenure 真数据）| ✅ 草稿已交（评审会议必带）|
+| **O1 投递一页清单**（per `docs/51` + `322`）| `docs/51-stage2-o1-drop-checklist-20260826.md`（10 节：§0 一句话 / §1 pre-conditions 5 项 / §2 allowlist 3 前缀 / §3 4 退出码契约（WAITING_FILE / CANDIDATE_FOUND / CONTRACT_VIOLATION / 内部错误）/ §4 `--confirm-o1=PATH` 显式确认 / §5 收口预览 / §6 不可隐藏清单 11 项 / §7 红线 / §8 不在范围 / §9 下次心跳预期；文首/文末禁止收口宣告措辞）| ✅ O1 投递清单已交（回执 `322`；**O1 仍 OPEN（WAITING_FILE）**，真数据物理依赖用户按 docs/51 §1-§4 投递 → `--confirm-o1=PATH` 显式确认；不擅自 O1 收口）|
 
 **预览路径（per `294` + `297`）**：
 - 用户运行 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 看 demo mart-shape 管道（10 城 × 6 段 × 7 维度，全部 `is_demo=true`）
@@ -236,14 +240,14 @@
 | ❌ 改 `00-CC-CURRENT.md` | ✅ Cursor 拥有 |
 | ❌ --force / --force-with-lease | ✅ ff-only pull |
 | ❌ 索要 PAT | ✅ |
-| ✅ pack invariant | ⏳ bump + commit 后 637 == 637 == 637（knife 41: docs/50 评审包草稿 + 回执 316 + bump；635 → 637；+2 = bump + receipt；docs/45 SHA REFRESH 不增计数）|
+| ✅ pack invariant | ⏳ bump + commit 后 643 == 643 == 643（knife 44: docs/45 登记 docs/51 投递清单 + 回执 325 + bump；641 → 643；+2 = bump + receipt；docs/45 SHA REFRESH 不增计数；前置 knife 43 = docs/51 NEW + 回执 322 639 → 641；knife 42 = docs/45 登记 docs/50 637 → 639；knife 41 = docs/50 NEW + 回执 316 635 → 637）|
 | ✅ receipts 仅写 `reviews/stage0-gate0-rework-2026-08-23/` | ✅ |
 | ✅ 不改 docs/06 / docs/08 / docs/10 / docs/34 内容（Cursor 拥有）| ✅ |
 | ✅ 不擅自提前 Gate 2 评审日期 | ✅ W8（per docs/34 §10.4）|
 | ✅ mart-shape 禁词 3 重守门 | ✅ runtime `assertMartRowHasNoForbiddenFields` + 静态 scanner smoke-check §10c + pytest `test_*_no_forbidden_tokens` + 编译时 TS 字段白名单 |
 | ✅ mart-shape feature-flag 默认值 | ✅ `NEXT_PUBLIC_USE_MART_FIXTURE !== "1"` 默认走 mock（S2.7-b-lite；保护已交页面） |
 | ✅ 兼容 S2.7-b-lite 已交路径 | ✅ [slug]/page.tsx 默认 `getMockCity` + `CityPage`（per receipt 257）；mart-shape opt-in（per receipt 266）|
-| ✅ O1 + O8 OPEN 清单显式携带 | ✅ §3 + §5.5 + §6.2（lineage.source_file_sha256 + person/tenure 真数据；person/tenure **demo** 已交 `303`；**O3 OCR 规划已交 `309` 仍 OPEN**；**Gate 2 评审包草稿已交 `docs/50` + `316`，必带 OPEN 清单**）推 S2.7-b-full 真数据迁移刀 + O3 tasking 31X+ |
+| ✅ O1 + O8 OPEN 清单显式携带 | ✅ §3 + §5.5 + §6.2（lineage.source_file_sha256 + person/tenure 真数据；person/tenure **demo** 已交 `303`；**O3 OCR 规划已交 `309` 仍 OPEN**；**Gate 2 评审包草稿已交 `docs/50` + `316`，必带 OPEN 清单**；**O1 投递清单已交 `docs/51` + `322`，必带 OPEN 清单 11 项；O1 仍 WAITING_FILE**）推 S2.7-b-full 真数据迁移刀 + O3 tasking 31X+ |
 
 ---
 
