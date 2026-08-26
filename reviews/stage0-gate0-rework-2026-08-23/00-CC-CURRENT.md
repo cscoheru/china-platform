@@ -8,34 +8,30 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `114` |
-| **origin_head** | `52403ba` |
-| **cc_head** | `52403ba`；`275` 已交 |
-| **cc_receipt** | `275` |
-| **cursor_ack** | `275` |
-| **last_audit** | `276` PASS |
+| **phase** | `POLL` |
+| **queue_rev** | `115` |
+| **origin_head** | `f17413b` |
+| **cc_head** | `f17413b`；`278` 已交 |
+| **cc_receipt** | `278` |
+| **cursor_ack** | `278` |
+| **last_audit** | `279` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进；O1 OPEN |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T14:09:00+08:00` |
+| **expect_cc_poll** | `POLL_ONLY` |
+| **updated_at** | `2026-08-26T14:15:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`277`** — 首页七维/对比导航（见 `277-stage2-home-seven-peer-nav-tasking-20260826.md`）。
-
-1. 首页加 `/seven-dim` + `/peer-compare`
-2. smoke → 补 pack → 回执 **`278`**
-3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+**无。** 首页七维/对比导航已审 PASS；下一刀待 Cursor bump。
 
 ---
 
 ## POLL
 
-交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
+`cursor_ack=278`；CC `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**。
 
 探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
