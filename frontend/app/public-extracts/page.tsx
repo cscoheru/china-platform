@@ -28,6 +28,11 @@
 // frontend/public/public-extracts/{nbs,nbs-live-candidate,sz,hubei}.json
 // (download attr); 一览表增「下载 JSON」列 (8 列) → /public-extracts/*.json.
 // 静态路由: 无 params.*, 无 force-dynamic (纯 fixture 消费).
+// Per tasking 403 §SCHEMA (CSV 下载): 4 fixture 经 scripts/gen_public_extracts_csv.py
+//   确定性渲染为 frontend/public/public-extracts/{nbs,nbs-live-candidate,sz,
+//   hubei}.csv (列序=首行键序, 不重命名; UTF-8 无 BOM; 重跑同字节);
+//   overview 表「下载 JSON / CSV」列同格第二链; 无服务端动态导出;
+//   CSV 与 JSON 一样是 fixture 快照导出 (demo/candidate), 非权威库.
 // Per tasking 397 §SCHEMA (行筛选): 四个数据表各增每轨独立轻量行筛选
 //   (单输入框, 客户端单元格文本包含匹配, 大小写不敏感); 纯客户端
 //   ("use client" + useState), 不改 fixture 字节 / SHA / 列序; 筛选仅为
@@ -194,7 +199,7 @@ export default function PublicExtractsPage(): ReactElement {
               <th style={cellStyle}>SHA 前 8</th>
               <th style={cellStyle}>demo|candidate 标注</th>
               <th style={cellStyle}>分节锚点</th>
-              <th style={cellStyle}>下载 JSON</th>
+              <th style={cellStyle}>下载 JSON / CSV</th>
             </tr>
           </thead>
           <tbody>
@@ -222,6 +227,12 @@ export default function PublicExtractsPage(): ReactElement {
                   download="public-extracts-nbs.json"
                 >
                   ⬇ nbs.json
+                </a>{" "}
+                <a
+                  href="/public-extracts/nbs.csv"
+                  download="public-extracts-nbs.csv"
+                >
+                  ⬇ nbs.csv
                 </a>
               </td>
             </tr>
@@ -249,6 +260,12 @@ export default function PublicExtractsPage(): ReactElement {
                   download="public-extracts-nbs-live-candidate.json"
                 >
                   ⬇ nbs-live-candidate.json
+                </a>{" "}
+                <a
+                  href="/public-extracts/nbs-live-candidate.csv"
+                  download="public-extracts-nbs-live-candidate.csv"
+                >
+                  ⬇ nbs-live-candidate.csv
                 </a>
               </td>
             </tr>
@@ -276,6 +293,12 @@ export default function PublicExtractsPage(): ReactElement {
                   download="public-extracts-sz.json"
                 >
                   ⬇ sz.json
+                </a>{" "}
+                <a
+                  href="/public-extracts/sz.csv"
+                  download="public-extracts-sz.csv"
+                >
+                  ⬇ sz.csv
                 </a>
               </td>
             </tr>
@@ -303,6 +326,12 @@ export default function PublicExtractsPage(): ReactElement {
                   download="public-extracts-hubei.json"
                 >
                   ⬇ hubei.json
+                </a>{" "}
+                <a
+                  href="/public-extracts/hubei.csv"
+                  download="public-extracts-hubei.csv"
+                >
+                  ⬇ hubei.csv
                 </a>
               </td>
             </tr>
@@ -319,6 +348,7 @@ export default function PublicExtractsPage(): ReactElement {
           候选 LIVE_CANDIDATE drift / 深圳 REGISTRY_SAMPLE 散文 / 湖北 REGISTRY_SAMPLE
           xlsx); 数据只读自既有 4 fixture, 不重算; live 探测均暂缓 (NBS live
           drift 待 user 裁定; 深圳 HTTPS SSL BAD_ecPOINT; 湖北 enabled=FALSE);
+          JSON / CSV 下载皆为 fixture 快照确定性导出 (demo/candidate), 非权威库;
           非 O1 收口, 非 Gate PASS (per docs/45 §1 + §6.2 + §7 不变量链 690)。
         </p>
       </section>

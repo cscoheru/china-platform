@@ -1094,6 +1094,80 @@ def main() -> int:
                 "客户端包含匹配 + 非权威库检索守门"
             )
 
+    # §12i — 四轨 CSV 静态下载 (per tasking 403)
+    # 4 fixture 经 scripts/gen_public_extracts_csv.py 确定性渲染为
+    # frontend/public/public-extracts/*.csv (列序=首行键序, 不重命名);
+    # overview「下载 JSON / CSV」列同格第二链; JSON 链不回归; 非权威库守门.
+    csv_dir = ROOT / "public" / "public-extracts"
+    for csv_name in (
+        "nbs.csv",
+        "nbs-live-candidate.csv",
+        "sz.csv",
+        "hubei.csv",
+    ):
+        csv_path = csv_dir / csv_name
+        if not csv_path.is_file():
+            errors.append(
+                f"public/public-extracts/{csv_name} missing (per tasking 403 §SCHEMA-1)"
+            )
+        elif csv_path.stat().st_size == 0:
+            errors.append(
+                f"public/public-extracts/{csv_name} empty (per tasking 403 §SCHEMA-1)"
+            )
+        else:
+            ok(f"public/public-extracts/{csv_name} 在位 ({csv_path.stat().st_size} bytes)")
+    if pe_page_path.is_file():
+        pe_src8 = pe_page_path.read_text(encoding="utf-8")
+        pe_code8 = re.sub(r"//[^\n]*", "", pe_src8)
+        pe_code8 = re.sub(r"/\*.*?\*/", "", pe_code8, flags=re.DOTALL)
+        for needle, label in [
+            ("下载 JSON / CSV", "下载 JSON / CSV 列头"),
+            ('href="/public-extracts/nbs.csv"', "NBS CSV 下载链"),
+            ('download="public-extracts-nbs.csv"', "NBS CSV download attr"),
+            ('href="/public-extracts/nbs-live-candidate.csv"', "NBS live CSV 下载链"),
+            (
+                'download="public-extracts-nbs-live-candidate.csv"',
+                "NBS live CSV download attr",
+            ),
+            ('href="/public-extracts/sz.csv"', "深圳 CSV 下载链"),
+            ('download="public-extracts-sz.csv"', "深圳 CSV download attr"),
+            ('href="/public-extracts/hubei.csv"', "湖北 CSV 下载链"),
+            ('download="public-extracts-hubei.csv"', "湖北 CSV download attr"),
+            ("JSON / CSV 下载皆为 fixture 快照确定性导出", "CSV 非权威库守门"),
+            ("非权威库", "非权威库字样"),
+        ]:
+            if needle not in pe_code8:
+                errors.append(
+                    f"public-extracts/page.tsx missing {label} (per tasking 403 §SCHEMA-2)"
+                )
+        # JSON 链不回归 (§12g 语义在 §12i 语境复检)
+        for json_href in (
+            "/public-extracts/nbs.json",
+            "/public-extracts/nbs-live-candidate.json",
+            "/public-extracts/sz.json",
+            "/public-extracts/hubei.json",
+        ):
+            if json_href not in pe_code8:
+                errors.append(
+                    f"public-extracts/page.tsx JSON 下载链回归缺失: {json_href} "
+                    f"(per tasking 403 §禁止 破坏 JSON 下载)"
+                )
+        if all(
+            n in pe_code8
+            for n in (
+                "下载 JSON / CSV",
+                "/public-extracts/nbs.csv",
+                "/public-extracts/nbs-live-candidate.csv",
+                "/public-extracts/sz.csv",
+                "/public-extracts/hubei.csv",
+                "非权威库",
+            )
+        ):
+            ok(
+                "public-extracts/page.tsx: 下载 JSON / CSV 列 + 4 CSV download 链 "
+                "+ 非权威库守门 (JSON 链不回归)"
+            )
+
     # §13 — 深圳城页链到 /public-extracts#track-sz (per tasking 391)
     # CityPage.tsx + CityPageMart.tsx 各含 slug/cityId === 'shenzhen'
     # 条件分支 → /public-extracts#track-sz 链 + REGISTRY_SAMPLE demo 标注 +

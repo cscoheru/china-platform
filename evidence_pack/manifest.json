@@ -1,5 +1,5 @@
 {
-  "artifact_count": 710,
+  "artifact_count": 718,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -4260,6 +4260,54 @@
       "role": "documentation",
       "sha256": "b3a9e2074441d45ea3036c0dfeaebc0304ce94c1c9da3933de80efc069d08819",
       "size_bytes": 3856
+    },
+    {
+      "path": "frontend/public/public-extracts/nbs.csv",
+      "role": "data_contract_suite",
+      "sha256": "9bc7b1556616c163cf387a489d743c2ace821baad66d0f653427f9bbb26c5849",
+      "size_bytes": 2444
+    },
+    {
+      "path": "frontend/public/public-extracts/nbs-live-candidate.csv",
+      "role": "data_contract_suite",
+      "sha256": "08aba031465a85799e7c9e29d14780a93360fcb515157c3778551a9942a94ab0",
+      "size_bytes": 2788
+    },
+    {
+      "path": "frontend/public/public-extracts/sz.csv",
+      "role": "data_contract_suite",
+      "sha256": "cc14fd042234184ab34ed84c5dc9d9684b01afcc428e4c426074a211ab54037f",
+      "size_bytes": 19818
+    },
+    {
+      "path": "frontend/public/public-extracts/hubei.csv",
+      "role": "data_contract_suite",
+      "sha256": "a692b3cbe04883acd9b7fe1e3b8c116ea8e29ddf14aa68f38c0078e5bf169a33",
+      "size_bytes": 902
+    },
+    {
+      "path": "scripts/gen_public_extracts_csv.py",
+      "role": "spike_helper",
+      "sha256": "f8586865e66935848496c3e6105b4821ecd8c46796d6409003dbd138c62e3677",
+      "size_bytes": 3013
+    },
+    {
+      "path": "tests/test_public_extracts_csv_download.py",
+      "role": "schema_negative_test",
+      "sha256": "e47dc988694e060398b6c3e02709d931cc0094be22edffdb8306209af42bd79d",
+      "size_bytes": 5985
+    },
+    {
+      "path": "scripts/_knife70_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "7aaf261b9822a9198aad15a0d07760eb7b16e1e24172d88ec9617630b9a233a5",
+      "size_bytes": 4624
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/404-stage0-cc-public-extracts-csv-download-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "ed0bdd7479cf64c143231ccff27d87d085a373d7ca85fb23b30c773645b84398",
+      "size_bytes": 6147
     }
   ],
   "commit": {
@@ -4292,20 +4340,20 @@
   },
   "python_version": "3.14.3",
   "role_count": {
-    "data_contract_suite": 32,
-    "documentation": 120,
+    "data_contract_suite": 36,
+    "documentation": 121,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 43,
+    "schema_negative_test": 44,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 80,
+    "spike_helper": 82,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
