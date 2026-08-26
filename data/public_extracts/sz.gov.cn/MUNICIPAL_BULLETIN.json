@@ -1,0 +1,10 @@
+{
+  "domain": "sz.gov.cn",
+  "category": "MUNICIPAL_BULLETIN",
+  "source_sample_path": "spikes/03-municipal-bulletin/sample.html",
+  "source_archive_path": "data/public_archives/2026-08/sz.gov.cn/sample.html",
+  "source_sha256": "d5e2c73196b43cecc8efa20e174d30bf78c382e21a1cda956f0637aeb9022d29",
+  "row_count": 0,
+  "rows": [],
+  "extracted_at": "2026-08-26T10:39:09.760231+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "domain": "stats.gov.cn",
+  "category": "NATIONAL_BULLETIN",
+  "source_sample_path": "/private/var/folders/kn/321q32q50fd7mdz0cgktstwm0000gn/T/pytest-of-kjonekong/pytest-481/test_local_sample_no_network_c0/n.html",
+  "source_archive_path": "data/public_archives/2026-08/stats.gov.cn/n.html",
+  "source_sha256": "8bb39346fae7e0cc94aec6d4b297644f8e05c8743bdbce759435a131aeac243a",
+  "row_count": 0,
+  "rows": [],
+  "extracted_at": "2026-08-26T10:39:09.642854+00:00"
+}

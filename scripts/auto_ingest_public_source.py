@@ -39,16 +39,20 @@ CLI:
                               O1_AUTO_INTAKED; refuses without it
 
 Exit codes:
-  0 = OK (dry-run or live with confirm-live)
-  1 = pilot source not in registry
+  0 = OK (dry-run / live with confirm-live / --from-local-sample intake)
+  1 = pilot source not in registry, OR local-sample refused (disabled row
+      without --allow-disabled-local-sample)
   2 = registry CSV parse error
   3 = AUTH blocked (401/403/登录墙/验证码/付费/反爬); blocked report written
   4 = SHA mismatch with registry → drift path (NOT a hard fail); CANDIDATE_AUTO
       archived + sha-drift report written; rc=4 signals "drift handled, not O1"
   5 = network/transport error after retries
-  6 = live mode requested without --confirm-live=PATH
+  6 = live or --from-local-sample mode requested without --confirm-live=PATH
   7 = tech-blocked (JS-only shell / 0 deeplinks / same-domain filter excludes all);
       tech-blocked report written; STOP, do NOT bypass with headless
+  8 = local-sample SHA does NOT match registry file_hash_sha256; hard fail
+      (do NOT auto-update registry, do NOT intake)
+  9 = local-sample file missing at local_sample_path
 """
 from __future__ import annotations
 
@@ -64,6 +68,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY_CSV = PROJECT_ROOT / "source_registry" / "registry.csv"
 PUBLIC_ARCHIVE_ROOT = PROJECT_ROOT / "data" / "public_archives"
+PUBLIC_EXTRACTS_ROOT = PROJECT_ROOT / "data" / "public_extracts"
 REVIEWS_DIR = (
     PROJECT_ROOT / "reviews" / "stage0-gate0-rework-2026-08-23"
 )
@@ -322,6 +327,124 @@ def archive(
 
 
 # ---------------------------------------------------------------------------
+# Local-sample intake (per tasking 346 §SCHEMA)
+# ---------------------------------------------------------------------------
+
+class LocalSampleMismatch(Exception):
+    """Raised when the local sample's SHA does NOT match the registry's
+    `file_hash_sha256`. Per tasking 346 §SCHEMA: SHA mismatch is a hard fail
+    (do NOT silently fix the registry; do NOT auto-intake)."""
+
+    def __init__(
+        self,
+        *,
+        domain: str,
+        category: str,
+        path: Path,
+        computed_sha256: str,
+        expected_sha256: str,
+    ):
+        self.domain = domain
+        self.category = category
+        self.path = path
+        self.computed_sha256 = computed_sha256
+        self.expected_sha256 = expected_sha256
+        super().__init__(
+            f"local sample SHA mismatch at {path}: "
+            f"computed={computed_sha256[:16]}… "
+            f"expected={expected_sha256[:16]}…"
+        )
+
+
+def intake_from_local_sample(
+    *,
+    pilot_row: dict[str, str],
+    allow_disabled: bool = False,
+) -> tuple[Path, Path, Path]:
+    """Run the 5-step pipeline (read → SHA → archive → extract → observation)
+    against the pilot's `local_sample_path` instead of a live download.
+
+    Per tasking 346 §SCHEMA:
+      1. Read the local file at `local_sample_path`.
+      2. SHA MUST equal `file_hash_sha256`; mismatch → LocalSampleMismatch.
+      3. WORM-archive the bytes (same archive() helper as live path).
+      4. extract_tables(blob, category=pilot.category).
+      5. write_extract_json(...) → data/public_extracts/{domain}/{category}.json.
+      6. write_observation(... intake_status=REGISTRY_SAMPLE_INTAKED,
+         is_demo=true).
+
+    If the registry row is `enabled=FALSE` and `allow_disabled=False`,
+    raises RuntimeError (red line: do NOT silently intake disabled rows).
+    The Hubei-specific path requires `allow_disabled=True` (per tasking 346
+    §SCHEMA "(3) 湖北允许 `--allow-disabled-local-sample`").
+
+    Returns (archive_path, extract_json_path, lineage_path).
+    """
+    enabled = pilot_row.get("enabled", "").strip().upper()
+    if enabled != "TRUE" and not allow_disabled:
+        raise RuntimeError(
+            f"registry row enabled={enabled!r} (not TRUE); refusing local-sample "
+            f"intake for {pilot_row['domain']} / {pilot_row['category']}. "
+            f"Pass --allow-disabled-local-sample to override (per tasking 346 "
+            f"§SCHEMA \"(3) 湖北允许\")."
+        )
+
+    sample_rel = pilot_row.get("local_sample_path", "").strip()
+    if not sample_rel:
+        raise RuntimeError(
+            f"registry row {pilot_row['domain']} / {pilot_row['category']} "
+            f"has empty local_sample_path; cannot run --from-local-sample"
+        )
+    sample_path = Path(sample_rel)
+    if not sample_path.is_absolute():
+        sample_path = (PROJECT_ROOT / sample_rel).resolve()
+    if not sample_path.exists():
+        raise FileNotFoundError(f"local sample missing: {sample_path}")
+
+    blob = sample_path.read_bytes()
+    sha = sha256_of_bytes(blob)
+    expected_sha = pilot_row["file_hash_sha256"].strip().lower()
+    if sha.lower() != expected_sha:
+        raise LocalSampleMismatch(
+            domain=pilot_row["domain"],
+            category=pilot_row["category"],
+            path=sample_path,
+            computed_sha256=sha,
+            expected_sha256=pilot_row["file_hash_sha256"],
+        )
+
+    # Use the sample's basename as archive filename so WORM path is stable
+    # and self-describing.
+    archive_path = archive(
+        blob=blob,
+        domain=pilot_row["domain"],
+        filename=sample_path.name,
+    )
+
+    tables = extract_tables(blob, category=pilot_row["category"])
+    extract_json_path = write_extract_json(
+        domain=pilot_row["domain"],
+        category=pilot_row["category"],
+        tables=tables,
+        archive_path=archive_path,
+        sha256_hex=sha,
+        source_sample_path=sample_rel,
+    )
+
+    # Lineage row lives at the same path used for live mode lineage.
+    # is_demo=true is automatic (REGISTRY_SAMPLE_INTAKED ≠ O1_AUTO_INTAKED).
+    lineage_path = Path(pilot_row.get("__lineage_output__", "/tmp/_local_sample_lineage.jsonl"))
+    write_observation(
+        archive_path=archive_path,
+        sha256_hex=sha,
+        agency=pilot_row["organization"],
+        intake_status=REGISTRY_SAMPLE_INTAKE_STATUS,
+        output_path=lineage_path,
+    )
+    return archive_path, extract_json_path, lineage_path
+
+
+# ---------------------------------------------------------------------------
 # Extract (HTML table scrape for NBS NATIONAL_BULLETIN)
 # ---------------------------------------------------------------------------
 
@@ -412,6 +535,48 @@ def extract_tables(blob: bytes, *, category: str) -> list[dict[str, str]]:
         f"unknown category '{category}'; no extractor registered "
         f"(supported: NATIONAL_BULLETIN, PROVINCIAL_BULLETIN, MUNICIPAL_BULLETIN)"
     )
+
+
+# ---------------------------------------------------------------------------
+# Structured extract → JSON (per tasking 346 §SCHEMA)
+# ---------------------------------------------------------------------------
+
+def write_extract_json(
+    *,
+    domain: str,
+    category: str,
+    tables: list[dict[str, str]],
+    archive_path: Path,
+    sha256_hex: str,
+    source_sample_path: str,
+    output_root: Path = PUBLIC_EXTRACTS_ROOT,
+) -> Path:
+    """Write structured extract JSON to data/public_extracts/{domain}/{category}.json.
+
+    Per tasking 346 §SCHEMA: stores REGISTRY_SAMPLE_INTAKED row's extracted
+    table rows alongside provenance (archive path, source sample path, SHA).
+    is_demo is implicit (caller decides via lineage row, not via this JSON).
+
+    Returns the written path. Caller is responsible for ensuring tables is
+    the result of extract_tables(blob, category=pilot.category)."""
+    out_dir = output_root / domain
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / f"{category}.json"
+    record = {
+        "domain": domain,
+        "category": category,
+        "source_sample_path": source_sample_path,
+        "source_archive_path": _relative_or_abs(archive_path),
+        "source_sha256": sha256_hex,
+        "row_count": len(tables),
+        "rows": tables,
+        "extracted_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
+    }
+    out_path.write_text(
+        json.dumps(record, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    return out_path
 
 
 # ---------------------------------------------------------------------------
@@ -570,6 +735,10 @@ LINEAGE_SCHEMA_FIELDS = (
     "intake_ts",
     "intake_status",
 )
+
+# Per tasking 346 §SCHEMA: REGISTRY_SAMPLE_INTAKED is the honest marker for
+# a local-sample intake (sample ≠ live closure; is_demo=true is automatic).
+REGISTRY_SAMPLE_INTAKE_STATUS = "REGISTRY_SAMPLE_INTAKED"
 
 
 def _relative_or_abs(path: Path) -> str:
@@ -790,7 +959,9 @@ def main(argv: list[str] | None = None) -> int:
         prog="auto_ingest_public_source",
         description=(
             "First public-source connector (NBS NATIONAL_BULLETIN only). "
-            "Dry-run by default; --live requires --confirm-live=PATH."
+            "Dry-run by default; --live requires --confirm-live=PATH. "
+            "--from-local-sample ingests the pilot's local_sample_path "
+            "instead of a live download (per tasking 346 §SCHEMA)."
         ),
     )
     parser.add_argument(
@@ -811,9 +982,22 @@ def main(argv: list[str] | None = None) -> int:
              "--confirm-live=PATH)",
     )
     parser.add_argument(
+        "--from-local-sample", action="store_true",
+        help="ingest pilot's local_sample_path (per tasking 346 §SCHEMA); "
+             "no network; SHA must match registry file_hash_sha256; "
+             "requires --confirm-live=PATH for lineage writes; "
+             "emits intake_status=REGISTRY_SAMPLE_INTAKED, is_demo=true",
+    )
+    parser.add_argument(
+        "--allow-disabled-local-sample", action="store_true",
+        help="allow --from-local-sample on registry rows where enabled=FALSE "
+             "(currently only Hubei, per tasking 346 §SCHEMA)",
+    )
+    parser.add_argument(
         "--confirm-live", default=None, metavar="PATH",
-        help="explicit authorization to flip intake_status=O1_AUTO_INTAKED; "
-             "PATH is the lineage JSONL output",
+        help="explicit authorization to flip intake_status=O1_AUTO_INTAKED "
+             "(live mode) OR write REGISTRY_SAMPLE_INTAKED lineage "
+             "(--from-local-sample mode); PATH is the lineage JSONL output",
     )
     args = parser.parse_args(argv)
 
@@ -824,9 +1008,70 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 6
 
+    if args.from_local_sample and not args.confirm_live:
+        print(
+            "❌ --from-local-sample requires --confirm-live=PATH (lineage "
+            "writes still require explicit authorization)",
+            file=sys.stderr,
+        )
+        return 6
+
     rows = load_registry()
     if not rows:
         return 2
+
+    # Local-sample path: do NOT call filter_public_enabled (which would
+    # reject disabled rows like Hubei). Instead, find the row by
+    # domain+category regardless of `enabled`, then let
+    # intake_from_local_sample() enforce the enabled gate.
+    if args.from_local_sample:
+        pilot = None
+        for r in rows:
+            if r.get("domain") == args.pilot_domain and r.get("category") == args.pilot_category:
+                pilot = r
+                break
+        if pilot is None:
+            print(
+                f"❌ pilot not in registry: domain={args.pilot_domain} "
+                f"category={args.pilot_category}",
+                file=sys.stderr,
+            )
+            return 1
+        print(
+            f"OK local-sample pilot matched: {pilot['domain']} / "
+            f"{pilot['category']} (enabled={pilot['enabled']})"
+        )
+        print(f"   local_sample_path: {pilot['local_sample_path']}")
+        print(f"   expected SHA: {pilot['file_hash_sha256'][:16]}…")
+        try:
+            pilot["__lineage_output__"] = args.confirm_live
+            archive_path, extract_json_path, lineage_path = intake_from_local_sample(
+                pilot_row=pilot,
+                allow_disabled=args.allow_disabled_local_sample,
+            )
+        except LocalSampleMismatch as exc:
+            print(
+                f"❌ local-sample SHA mismatch; refusing intake. "
+                f"computed={exc.computed_sha256[:16]}… "
+                f"expected={exc.expected_sha256[:16]}… "
+                f"path={exc.path}",
+                file=sys.stderr,
+            )
+            return 8  # new exit code: local-sample SHA mismatch
+        except FileNotFoundError as exc:
+            print(f"❌ local sample not found: {exc}", file=sys.stderr)
+            return 9  # new exit code: local sample missing
+        except RuntimeError as exc:
+            print(f"❌ local-sample intake refused: {exc}", file=sys.stderr)
+            return 1  # disabled row without --allow-disabled-local-sample
+        print(f"OK archived: {archive_path}")
+        print(f"OK extract JSON: {extract_json_path}")
+        print(f"OK lineage: {lineage_path}")
+        print(
+            "OK REGISTRY_SAMPLE_INTAKED (is_demo=true; sample ≠ live closure). "
+            "rc=0 = sample intake successful."
+        )
+        return 0
 
     pilot_rows = filter_public_enabled(
         rows,
@@ -851,7 +1096,8 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "OK dry-run; no network, no archive, no lineage writes. "
             "Pass --live --confirm-live=PATH to run for real (with explicit "
-            "user authorization).",
+            "user authorization). Pass --from-local-sample --confirm-live=PATH "
+            "to ingest the registry's local sample.",
         )
         return 0
 
