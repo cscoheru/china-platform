@@ -723,6 +723,41 @@ def main() -> int:
     else:
         ok("app/page.tsx links /public-extracts nav anchor")
 
+    # 12b'. 首页 NBS sample 轨显式 deeplink (per tasking 420 §SCHEMA "本刀做")
+    # 镜像 湖北 `#track-hb` 行; 文案标明 REGISTRY_SAMPLE / demo / 非 O1;
+    # 含 data-testid 供 pytest 守门; 不动 4 fixture 字节 / SHA.
+    if 'href="/public-extracts#track-nbs-sample"' not in home_code:
+        errors.append(
+            "app/page.tsx missing /public-extracts#track-nbs-sample NBS sample "
+            "deeplink anchor (per tasking 420)"
+        )
+    else:
+        ok("app/page.tsx links /public-extracts#track-nbs-sample deeplink")
+    if 'data-testid="home-public-extracts-nbs-sample"' not in home_code:
+        errors.append(
+            "app/page.tsx missing data-testid='home-public-extracts-nbs-sample' "
+            "(per tasking 420 §NOW)"
+        )
+    else:
+        ok("app/page.tsx testId=home-public-extracts-nbs-sample")
+    for label in ("REGISTRY_SAMPLE", "demo", "非 live O1"):
+        if label not in home_code:
+            errors.append(
+                f"app/page.tsx NBS sample deeplink row missing {label!r} marker "
+                f"(per tasking 420)"
+            )
+    if all(
+        s in home_code
+        for s in (
+            "REGISTRY_SAMPLE",
+            "demo",
+            "非 live O1",
+            "/public-extracts#track-nbs-sample",
+            "home-public-extracts-nbs-sample",
+        )
+    ):
+        ok("app/page.tsx NBS sample deeplink row: REGISTRY_SAMPLE / demo / 非 O1")
+
     # 12c. LIVE_CANDIDATE 并列分轨 — knife 55 (tasking 358). Per `358` §SCHEMA:
     #     (1) live WORM 提取 fixture 在位 (LIVE_CANDIDATE 语义);
     #     (2) /public-extracts 展示 live 候选区块 (显式非 O1);

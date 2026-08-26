@@ -155,16 +155,21 @@ export default async function HomePage() {
             <td style={cellStyle}>mock（S2.9-lite）</td>
           </tr>
           <tr>
-            <td style={cellStyle}>公开提取样本（四轨 demo）</td>
+            <td style={cellStyle}>公开提取 NBS sample 轨（demo）</td>
             <td style={cellStyle}>
-              <a href="/public-extracts">/public-extracts</a>
+              <a
+                href="/public-extracts#track-nbs-sample"
+                data-testid="home-public-extracts-nbs-sample"
+              >
+                /public-extracts#track-nbs-sample
+              </a>
             </td>
             <td style={cellStyle}>
               stats.gov.cn / NATIONAL_BULLETIN 63 行（registry 本地样本
-              --from-local-sample 结构化提取）
+              --from-local-sample 结构化提取；per 回执 `350`）
             </td>
             <td style={cellStyle}>
-              REGISTRY_SAMPLE · demo（非 live O1）
+              REGISTRY_SAMPLE · demo · 非 live O1
             </td>
           </tr>
           <tr>
