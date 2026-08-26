@@ -4,9 +4,11 @@
 Per docs/52 §4 (6-step pipeline) and tasking 330 §SCHEMA.
 
 Scope of this knife:
-  - One pilot source: stats.gov.cn / NATIONAL_BULLETIN /
-    https://www.stats.gov.cn/sj/zxfb/  (registry.csv row 3).
+  - Two pilots supported (per tasking 330 + tasking 336):
+    - stats.gov.cn / NATIONAL_BULLETIN (HTML index)
+    - tjj.hubei.gov.cn / PROVINCIAL_BULLETIN (XLSX 直链)
   - Pipeline: discover → download → sha256 → archive → extract → observation.
+    extract is dispatched by category (HTML for NBS, XLSX for Hubei).
   - Auth escalation: 401/403/登录墙/验证码/付费/反爬 → STOP + write
     reviews/.../auth-blocked...md (5 fields per docs/52 §6.2).
   - SHA-drift handling (per tasking 333 §SCHEMA): live SHA ≠ registry → **NOT**
@@ -16,6 +18,8 @@ Scope of this knife:
   - WORM archive: data/public_archives/{YYYY-MM}/{domain}/{filename}.
   - Lineage contract: intake_status=O1_AUTO_INTAKED only when SHA matches
     registry AND not fixture AND all lineage fields present (per docs/48 §5).
+  - 禁止 headless browser (per registry.csv Hubei row: "禁止 headless browser,
+    被 ERR_CONNECTION_RESET 拒绝").
 
 Not in scope (per tasking 330 §红线):
   - Hubei / Shenzhen connectors (next knives).
@@ -344,6 +348,65 @@ def extract_html_tables(blob: bytes) -> list[dict[str, str]]:
             continue
         rows.append({h: c for h, c in zip(header, cells)})
     return rows
+
+
+# ---------------------------------------------------------------------------
+# Extract (XLSX table scrape for Hubei PROVINCIAL_BULLETIN)
+# ---------------------------------------------------------------------------
+
+def extract_xlsx_tables(blob: bytes) -> list[dict[str, str]]:
+    """Extract the first sheet of an .xlsx file as a list of dicts.
+
+    Per tasking 336 §SCHEMA + registry.csv Hubei row (access_method:
+    'curl 直下（禁止 headless browser，被 ERR_CONNECTION_RESET 拒绝）').
+    First row is treated as header; subsequent rows become dicts keyed by
+    the header cells (with str coercion for non-string cell values).
+
+    openpyxl is used (locally imported; raises RuntimeError if missing).
+    The Hubei file is small (~11 KB) so loading the whole workbook is fine.
+    """
+    try:
+        import openpyxl  # local import; dry-run friendly
+    except ImportError as exc:  # pragma: no cover
+        raise RuntimeError("openpyxl missing") from exc
+    import io
+
+    wb = openpyxl.load_workbook(io.BytesIO(blob), read_only=True, data_only=True)
+    try:
+        ws = wb.worksheets[0]
+        rows_iter = ws.iter_rows(values_only=True)
+        header: list[str] | None = None
+        rows: list[dict[str, str]] = []
+        for raw in rows_iter:
+            cells = ["" if v is None else str(v) for v in raw]
+            if not any(c.strip() for c in cells):
+                continue
+            if header is None:
+                header = cells
+                continue
+            rows.append({h: c for h, c in zip(header, cells)})
+        return rows
+    finally:
+        wb.close()
+
+
+def extract_tables(blob: bytes, *, category: str) -> list[dict[str, str]]:
+    """Dispatcher: pick the right extractor based on registry.csv category.
+
+    Per tasking 336 §SCHEMA "extract(xlsx)" — routes by category:
+      - NATIONAL_BULLETIN   → HTML (NBS zxfb index)
+      - PROVINCIAL_BULLETIN → XLSX (Hubei 月度统计)
+      - MUNICIPAL_BULLETIN  → HTML (Shenzhen, future)
+    Unknown categories raise ValueError (red line: do not silently
+    downgrade to HTML for an EXCEL source or vice versa)."""
+    if category == "NATIONAL_BULLETIN":
+        return extract_html_tables(blob)
+    if category == "PROVINCIAL_BULLETIN":
+        return extract_xlsx_tables(blob)
+    raise ValueError(
+        f"unknown category '{category}'; no extractor registered "
+        f"(supported: NATIONAL_BULLETIN, PROVINCIAL_BULLETIN)"
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -713,7 +776,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     print(f"OK archived: {archive_path}")
 
-    tables = extract_html_tables(blob)
+    tables = extract_tables(blob, category=pilot["category"])
     print(f"OK extract: {len(tables)} table row(s)")
 
     write_observation(

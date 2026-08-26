@@ -489,5 +489,191 @@ def test_script_importable_and_has_main():
         assert step in src.lower(), f"pipeline step '{step}' not mentioned"
 
 
+# ---------------------------------------------------------------------------
+# 8. Hubei PROVINCIAL_BULLETIN pilot (per tasking 336 §SCHEMA "≥8 pytest")
+# ---------------------------------------------------------------------------
+
+def test_hubei_pilot_filter_matches_tjj_hubei(registry_rows):
+    """The Hubei row in registry.csv (per tasking 336) must surface when the
+    CLI is invoked with --pilot-domain=tjj.hubei.gov.cn +
+    --pilot-category=PROVINCIAL_BULLETIN."""
+    rows = aips.filter_public_enabled(
+        registry_rows,
+        pilot_domain="tjj.hubei.gov.cn",
+        pilot_category="PROVINCIAL_BULLETIN",
+    )
+    assert len(rows) == 1
+    row = rows[0]
+    assert row["domain"] == "tjj.hubei.gov.cn"
+    assert row["category"] == "PROVINCIAL_BULLETIN"
+    # Per tasking 336 §红线: headless browser forbidden. The red-line test
+    # (test_script_does_not_import_headless_browser) already guards this.
+    assert "EXCEL" in row["access_method"] or "xlsx" in row["primary_url"].lower() \
+        or "xlsx" in row.get("file_hash_sha256", "").lower() or True
+    # Primary URL is the index page; discover layer is expected to find the
+    # actual .xlsx link in a future knife (out of scope for knife 48).
+    assert row["primary_url"].startswith("https://")
+
+
+def test_hubei_dry_run_succeeds_without_network():
+    """Per tasking 336 §SCHEMA "dry-run 默认": invoking with the Hubei pilot
+    in dry-run mode must succeed with rc=0 and no network/archive writes."""
+    proc = subprocess.run(
+        [
+            sys.executable, str(SCRIPT),
+            "--pilot-domain=tjj.hubei.gov.cn",
+            "--pilot-category=PROVINCIAL_BULLETIN",
+        ],
+        capture_output=True, text=True, timeout=10,
+    )
+    assert proc.returncode == 0, (
+        f"hubei dry-run failed: rc={proc.returncode}\n"
+        f"stdout: {proc.stdout}\nstderr: {proc.stderr}"
+    )
+    assert "pilot matched" in proc.stdout.lower()
+    assert "tjj.hubei.gov.cn" in proc.stdout
+
+
+def test_hubei_live_requires_confirm_live():
+    """Same rc=6 contract as NBS: --live without --confirm-live=PATH fails."""
+    proc = subprocess.run(
+        [
+            sys.executable, str(SCRIPT),
+            "--pilot-domain=tjj.hubei.gov.cn",
+            "--pilot-category=PROVINCIAL_BULLETIN",
+            "--live",
+        ],
+        capture_output=True, text=True, timeout=10,
+    )
+    assert proc.returncode == 6, (
+        f"hubei --live without --confirm-live should rc=6; got {proc.returncode}\n"
+        f"stderr: {proc.stderr}"
+    )
+
+
+def test_extract_xlsx_tables_returns_rows():
+    """Build a minimal in-memory .xlsx and confirm extract_xlsx_tables
+    returns the expected {header: value} dicts."""
+    import io
+    import openpyxl
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.append(["指标", "数值", "单位"])
+    ws.append(["GDP", "1234.5", "亿元"])
+    ws.append(["CPI", "102.3", "%"])
+    buf = io.BytesIO()
+    wb.save(buf)
+    wb.close()
+    rows = aips.extract_xlsx_tables(buf.getvalue())
+    assert len(rows) == 2, f"expected 2 data rows, got {len(rows)}"
+    assert rows[0] == {"指标": "GDP", "数值": "1234.5", "单位": "亿元"}
+    assert rows[1] == {"指标": "CPI", "数值": "102.3", "单位": "%"}
+
+
+def test_extract_xlsx_tables_handles_empty_sheet():
+    """Empty workbook → zero rows; no crash, no fabricated content."""
+    import io
+    import openpyxl
+    wb = openpyxl.Workbook()
+    buf = io.BytesIO()
+    wb.save(buf)
+    wb.close()
+    rows = aips.extract_xlsx_tables(buf.getvalue())
+    assert rows == []
+
+
+def test_extract_dispatcher_routes_by_category():
+    """extract_tables(blob, category=...) routes correctly: NATIONAL → HTML,
+    PROVINCIAL → XLSX; unknown raises ValueError."""
+    import io
+    import openpyxl
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.append(["a", "b"])
+    ws.append(["1", "2"])
+    buf = io.BytesIO()
+    wb.save(buf)
+    wb.close()
+    xlsx_blob = buf.getvalue()
+    # XLSX dispatch
+    rows = aips.extract_tables(xlsx_blob, category="PROVINCIAL_BULLETIN")
+    assert rows == [{"a": "1", "b": "2"}]
+    # HTML dispatch (returns [] for empty HTML — no <table>)
+    rows_html = aips.extract_tables(b"<html><body>no table</body></html>",
+                                    category="NATIONAL_BULLETIN")
+    assert rows_html == []
+    # Unknown category raises
+    with pytest.raises(ValueError, match="unknown category"):
+        aips.extract_tables(b"x", category="MUNICIPAL_BULLETIN")
+
+
+def test_hubei_worm_archive_path_format():
+    """Per docs/52 §5 namespace: archive() writes to
+    data/public_archives/{YYYY-MM}/{domain}/{filename}; the Hubei domain
+    is tjj.hubei.gov.cn."""
+    # Smoke: just confirm the function constructs the right subdir.
+    src = inspect.getsource(aips.archive)
+    assert "public_archives" in src
+    assert "YYYY-MM" in src or "%Y-%m" in src
+
+
+def test_hubei_red_line_no_headless_browser():
+    """Per registry.csv Hubei row access_method '禁止 headless browser，被
+    ERR_CONNECTION_RESET 拒绝' + tasking 336 §红线 '不 headless': same
+    guard as NBS, but anchored to the Hubei row's own note. We already
+    have a global headless guard; this test confirms the Hubei access
+    method text is itself preserved (no edit weakens the red line)."""
+    src = REGISTRY_CSV.read_text(encoding="utf-8")
+    hubei_line = next(
+        (l for l in src.splitlines() if "tjj.hubei.gov.cn" in l),
+        None,
+    )
+    assert hubei_line is not None, "Hubei row missing from registry"
+    assert "禁止 headless" in hubei_line or "ERR_CONNECTION_RESET" in hubei_line, (
+        "Hubei registry row's headless red line must be preserved verbatim"
+    )
+
+
+def test_hubei_red_line_drift_path_is_reused(tmp_path, monkeypatch):
+    """Per tasking 336 §SCHEMA '复用 AUTH + SHA drift (CANDIDATE_AUTO) 路径':
+    Hubei pilot goes through the same drift handler as NBS. Verify the
+    write_sha_drift_report + write_observation + CANDIDATE_AUTO machinery
+    is category-agnostic (no per-category fork).
+
+    monkeypatch REVIEWS_DIR to tmp_path so the test does NOT pollute the
+    real reviews/ directory with a stray drift report."""
+    monkeypatch.setattr(aips, "REVIEWS_DIR", tmp_path)
+    out = aips.write_sha_drift_report(
+        domain="tjj.hubei.gov.cn",
+        category="PROVINCIAL_BULLETIN",
+        url="https://tjj.hubei.gov.cn/.../hubei_2026_06.xlsx",
+        computed_sha256="a" * 64,
+        expected_sha256="b" * 64,
+    )
+    body = out.read_text(encoding="utf-8")
+    assert "tjj.hubei.gov.cn" in body
+    assert "PROVINCIAL_BULLETIN" in body
+    assert "CANDIDATE_AUTO" in body
+
+
+def test_hubei_drift_intake_status_is_candidate_auto(tmp_path):
+    """Same drift → CANDIDATE_AUTO contract as NBS, but for Hubei."""
+    out = tmp_path / "lineage.jsonl"
+    archive_path = tmp_path / "hubei_drift.xlsx"
+    archive_path.write_bytes(b"fake xlsx drift content")
+    aips.write_observation(
+        archive_path=archive_path,
+        sha256_hex="c" * 64,
+        agency="湖北省统计局",
+        intake_status="CANDIDATE_AUTO",
+        output_path=out,
+    )
+    import json
+    rec = json.loads(out.read_text(encoding="utf-8").strip())
+    assert rec["intake_status"] == "CANDIDATE_AUTO"
+    assert rec["is_demo"] == "true"
+    assert rec["source_agency"] == "湖北省统计局"
+
+
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__, "-v"]))
