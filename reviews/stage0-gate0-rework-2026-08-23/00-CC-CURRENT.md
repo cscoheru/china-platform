@@ -8,32 +8,34 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `POLL` |
-| **queue_rev** | `98` |
-| **origin_head** | `90e3a41` |
-| **cc_head** | `90e3a41`；`251` 已交 |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `99` |
+| **origin_head** | `ffc3eed` |
+| **cc_head** | `ffc3eed`；`251` 已交 |
 | **cc_receipt** | `251` |
 | **cursor_ack** | `251` |
 | **last_audit** | `252` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**等用户** Gate 2 评审日 / 下一批 OPEN |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**2026-08-26 自主推进**（仅功能测试 / BLOCKED 找用户） |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL_ONLY` |
-| **updated_at** | `2026-08-26T10:15:00+08:00` |
-| **blocked_by** | —（非 BLOCKED；无活刀） |
+| **expect_cc_poll** | `EXEC_THEN_POLL` |
+| **updated_at** | `2026-08-26T12:00:00+08:00` |
+| **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**无。** Stage 2 lite 序（至 S2.10-lite / `docs/45`）已审 **PASS**。
+**`253`** — S2.7-b 规划（见 `253-stage2-s27b-cities-plan-tasking-20260826.md`）。
 
-CC：`./scripts/cc_gate_watch.sh --pull` → **`84` POLL**；`queue_rev` 变化前禁止自造刀。
+1. 起草 **`docs/46`**（只规划；10 城名单已在任务书锁定）
+2. 补 pack → commit → `origin` + `github` → 回执 **`254`**
+3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
 
 ## POLL
 
-`cursor_ack=251`；等用户裁定后 Cursor 再 bump `queue_rev`。
+交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
 
 探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
