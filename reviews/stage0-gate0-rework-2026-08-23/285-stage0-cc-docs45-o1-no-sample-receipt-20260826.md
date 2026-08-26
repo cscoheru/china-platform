@@ -22,9 +22,9 @@
 | 6 | 创建 `scripts/_knife31_manifest_bump.py`（2 NEW_ARTIFACTS：bump + receipt）| ✅ | spike_helper |
 | 7 | bump pack（606 → **608**；+2 = bump + receipt；docs/45 已在 manifest knife 23/26 入册）| ⏳ this step | — |
 | 8 | 写回执 `285` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 9 | commit → `origin` 优先 → `github` | ✅ commit `____`（backfill this line）| — |
+| 9 | commit → `origin` 优先 → `github` | ✅ commit `896b8dc`（backfill this line）| — |
 | 10 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 11 | 三路对齐 | ⏳ local = origin = github = `____` | — |
+| 11 | 三路对齐 | ✅ local = origin = github = `896b8dc` | — |
 | 12 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — |
 
 ---
@@ -210,10 +210,10 @@ INVARIANT: sum(role_count)=608 == artifact_count=608 == len(artifacts)=608
 | file-level forbidden-token guard | grep 禁词清单 | ✅ CLEAN（0 hit）|
 | bump script | `scripts/_knife31_manifest_bump.py` | ✅ 606 → 608（+2 = bump + receipt）|
 | 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ✅ 608 == 608 == 608 |
-| commit (knife 31 主提交) | `git add docs/45-stage2-s210-lite-gate2-review-index-20260826.md scripts/_knife31_manifest_bump.py evidence_pack/manifest.json reviews/.../285-...md && git commit -m "docs(review): docs/45 §3 O1 登记用户 2026-08-26 无材料裁定（不伪造/不爬网/Gate 2 必带 OPEN）"` | ✅ `____` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ |
-| github push | `git push github HEAD`（带 proxy）| ✅ |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ |
+| commit (knife 31 主提交) | `git add docs/45-stage2-s210-lite-gate2-review-index-20260826.md scripts/_knife31_manifest_bump.py evidence_pack/manifest.json reviews/.../285-...md && git commit -m "docs(review): docs/45 §3 O1 登记用户 2026-08-26 无材料裁定（不伪造/不爬网/Gate 2 必带 OPEN）"` | ✅ `896b8dc` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `fef3d65..896b8dc` |
+| github push | `git push github HEAD`（带 proxy）| ✅ `fef3d65..896b8dc` |
+| 三路对齐 | origin/main = github/main = local HEAD = `896b8dc` | ✅ |
 | backfill commit (this) | 独立 commit（不 amend-after-push）| ⏳ this commit |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
