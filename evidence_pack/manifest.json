@@ -3256,17 +3256,29 @@
       "size_bytes": 9025,
       "sha256": "9413ff24565606af22b7086d4ad0e6045bbef204b9f6e62dbd898043f103cdf7",
       "role": "documentation"
+    },
+    {
+      "path": "docs/40-stage2-s25-inference-plan-20260826.md",
+      "size_bytes": 33652,
+      "sha256": "4359a3869fa7429268ff180fb214ad48dcd405bb225491c9e0f20a3a168f062e",
+      "role": "documentation"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/224-stage0-cc-s25-inference-planning-receipt-20260826.md",
+      "size_bytes": 10260,
+      "sha256": "32266221dcd4f2a8b69ddae95fecae46df567efa62beb5ca92807bff85d555f2",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 541,
+  "artifact_count": 543,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 46,
+    "documentation": 52,
     "schema_ddl": 1,
-    "schema_migration_log": 5,
-    "schema_migration_ddl": 9,
+    "schema_migration_log": 6,
+    "schema_migration_ddl": 10,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
     "spike_helper": 13,
@@ -3276,7 +3288,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 26,
+    "schema_negative_test": 27,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {
