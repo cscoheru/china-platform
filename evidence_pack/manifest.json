@@ -1,5 +1,5 @@
 {
-  "artifact_count": 623,
+  "artifact_count": 625,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "2eefe10cba3c34a84054b6bd7ff1ae2cce75420f2a0d4334dbbde96337750708",
-      "size_bytes": 8623
+      "sha256": "4c142f49a8cd5e7c3b5d72778d3629ff7f1e51e82f0cfd6734dc37b2c0ebaa31",
+      "size_bytes": 21065
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -3738,6 +3738,18 @@
       "role": "documentation",
       "sha256": "9197fec65aa3df5265b3c0f855fa892b79a1a8b249227a1ad3bf19232b1da339",
       "size_bytes": 20353
+    },
+    {
+      "path": "scripts/_knife36_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "7f7264ce51aa262fe920768d42f625201ff43f42b39a5b47a533e31e85f4770d",
+      "size_bytes": 3536
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/300-stage0-cc-docs45-mart-intake-parity-refresh-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "3ae0fb0df79e97e756cc03bae8db1a907714992a637705fdd38b29aa01d28cb8",
+      "size_bytes": 17792
     }
   ],
   "commit": {
@@ -3771,7 +3783,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 21,
-    "documentation": 84,
+    "documentation": 85,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -3783,7 +3795,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 44,
+    "spike_helper": 45,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

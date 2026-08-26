@@ -7,6 +7,7 @@
 > 刷新：queue_rev 103（per `259-stage2-gate2-index-s27b-refresh-tasking-20260826`）— §2 #1 + §5.5 + §6.1 反映 S2.7-b-lite 收口（回执 `257` + commit `c8ee2b9`/`cd936ab`）
 > 刷新：queue_rev 108（per `268-stage2-gate2-index-s27bf-refresh-tasking-20260826`）— §2 #1 + §5.6 + §6.2 反映 S2.7-b-full-lite 收口（回执 `266` + commit `beea282`/`0e0a6cf`）— mart-shape TS 类型 + demo fixture + CityPage 接驳（feature-flag；默认 demo）
 > 刷新：queue_rev 119（per `284-stage2-docs45-o1-no-sample-tasking-20260826`）— §3 O1 登记用户 2026-08-26 无材料裁定（演示继续 mock；Gate 2 必带 OPEN 清单）— 不得伪造样本/不得爬网/不擅自 O1 收口
+> 刷新：queue_rev 125（per `299-stage2-docs45-mart-intake-parity-refresh-tasking-20260826`）— §2 #1 + §3 O1 详细 + §5.5 + §6 + §6.1 + §6.2 反映 S2.7-b-full mart 系列收口（`288` mart skel；`294` mart demo-join 60+70 行；`291` 真 SHA 投递 WAITING_FILE；`297` 前端 parity 20 pytest 锁定）；明确预览路径 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 看 demo 管道（**非 O1**）
 >
 > ⚠ **本文件是 Gate 2 评审索引；不宣布 Gate 2 PASS**（per `docs/34 §1` + §8 #8 + §133 + `247` §红线 + `250` §红线）
 
@@ -24,7 +25,7 @@
 
 | # | 验收项 | 阶段来源 | 证据路径 | OPEN |
 |---|---|---|---|---|
-| **1** | 5 省 + 10 地市观察页面上线 | S2.7 | 5 省 lite：`frontend/app/provinces/{jiangsu,zhejiang,guangdong,shandong,sichuan}/page.tsx`；10 地市 lite：`frontend/app/cities/[slug]/page.tsx`（`generateStaticParams` 预生成 10 slug；`dynamicParams = false` 404 兜底）| ✅ S2.7-b-lite 已交（mock 壳）— 回执 `257`；mart-shape 接驳（feature-flag；默认 demo）— 回执 `266`；dbt mart 真表 / person/tenure 真数据仍 OPEN → S2.7-b-full 真数据迁移刀 |
+| **1** | 5 省 + 10 地市观察页面上线 | S2.7 | 5 省 lite：`frontend/app/provinces/{jiangsu,zhejiang,guangdong,shandong,sichuan}/page.tsx`；10 地市 lite：`frontend/app/cities/[slug]/page.tsx`（`generateStaticParams` 预生成 10 slug；`dynamicParams = false` 404 兜底）| ✅ S2.7-b-lite 已交（mock 壳）— 回执 `257`；mart-shape 接驳（feature-flag；默认 demo）— 回执 `266`；dbt mart 骨架（WHERE FALSE）— 回执 `288`；dbt mart demo-join（60+70 demo 行；10 城 × 6 段 / 7 维度；is_demo='true'）— 回执 `294`；前端 mart demo 契约对齐（20 pytest 锁定 TS demo ↔ dbt mart）— 回执 `297`；dbt mart 真表 / person/tenure 真数据仍 OPEN → S2.7-b-full 真数据迁移刀 |
 | **2** | 六段证据链完整可点击 | S2.6 + S2.7 | `frontend/app/components/EvidenceChain.tsx` + 反例 trigger `schema/migrations/013_counterexample_gate.sql` | ✅ 不可降级 — 已守（lite UI + migration 013）|
 | **3** | 七维度观察卡可展开 | S2.8 | `frontend/app/components/SevenDimGrid.tsx` + `frontend/lib/types_seven_dim.ts` + `frontend/lib/mock_seven_dim.ts` | ✅ 演示级可过 |
 | **4** | 没有「官员能力总分」 | PRD 红线 + docs/08 §3.3 | `frontend/smoke-check.py` + file-level forbidden-token guard（每次新文件 CLEAN） | ✅ 已守门 |
@@ -46,13 +47,17 @@
 | O6 FastAPI 只读服务 | ✅ 已交（S1.10）| — |
 | O7 dbt staging candidate | ✅ 已交（S1.19）| — |
 
-**O1 详细状态（per `284` §SCHEMA + 用户 2026-08-26 裁定）**：
+**O1 详细状态（per `284` §SCHEMA + `299` §SCHEMA + 用户 2026-08-26 裁定）**：
 - **用户 2026-08-26 确认**：本机/仓库**未持有**江苏真实 SHA-locked 样本；无 OCR 后入库的江苏政府文件。
 - **演示路径**：继续走 `lib/mart_city_demo.ts` 的 S1.18 DEMO sentinel；`lineage.source_file_sha256` 恒为 `'0'*64` 占位（per docs/47 §3.1 ⚠️）。
+- **dbt mart demo-join（per `294`）**：`mart_city_evidence_chain` 60 demo 行 + `mart_city_seven_dim_overview` 70 demo 行；行级 lineage `lineage_is_demo='true'`（evidence_chain）+ `is_demo='true'`（seven_dim_overview）；SHA `'0'*64` 占位。
+- **真 SHA 投递入口（per `291` intake）**：`docs/48-stage2-real-sha-intake-handbook-20260826.md` + `scripts/intake_real_sha_if_present.py`；当前 runtime allowlist = 4 fixtures（j2.json fixture 文件）→ 全部 `WAITING_FILE` 退出（rc=0）；4 退出状态：`WAITING_FILE` / `CANDIDATE_FOUND` / `O1_INTAKED` / `CONTRACT_VIOLATION`。
+- **前端 parity 守门（per `297`）**：`tests/test_frontend_mart_demo_parity_s296.py` 20 pytest cases 锁定 TS demo（4-file 契约 surface）↔ dbt mart 契约对齐；smoke-check §10 mart-shape 守门无回归。
+- **预览路径（演示，非 O1 收口）**：用户运行 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 看 demo mart-shape 管道（10 城 × 6 段 × 7 维度，全部 `is_demo=true`）；**该预览仅是 demo 演示管道，不构成 O1 收口**。
 - **不伪造**：禁止假造江苏政府文件 SHA；禁止拿 mock fixture 冒充真实样本；禁止拿 cursor-demo 等替代物冒充（per `284` §SCHEMA "本刀不做" + docs/06 §6.6 红线）。
 - **不爬网**：不 HTTP 抓政府站；不调用第三方 API 抓江苏 GDP / 财政 / 履历（per `284` §SCHEMA "本刀不做" + `284` §红线）。
 - **Gate 2 评审必带 OPEN**：Gate 2 评审包必须显式携带 O1 OPEN 清单（per docs/34 §3 + §120）；不擅自宣布 O1 收口。
-- **收口路径**：O1 真实 SHA 由用户后续提供（线下渠道：政府文件 PDF/扫描件原件）；收口前 demo 恒占位（per docs/47 §6.3 切刀风险 + `284` §SCHEMA）。
+- **收口路径**：O1 真实 SHA 由用户后续提供（线下渠道：政府文件 PDF/扫描件原件）；收口前 demo 恒占位（per docs/47 §6.3 切刀风险 + `284` §SCHEMA）。用户主动 `--confirm-o1=PATH` 显式 flag 才允许 flip O1 状态（per `291` intake + docs/48 §4.3）。
 - **依赖**：S2.7-b-full 真数据迁移刀（tasking 26X+ OPEN）依赖 O1 真实 SHA 收口（per docs/45 §5.5 OPEN + docs/47 §6.3）。
 
 ---
@@ -129,11 +134,17 @@
 | 深圳 | `shenzhen` | 广东 | `/cities/shenzhen` | ✅ S2.7-b-lite 已交（mock） |
 | 东莞 | `dongguan` | 广东 | `/cities/dongguan` | ✅ S2.7-b-lite 已交（mock） |
 
-**OPEN（推 S2.7-b-full 真数据迁移刀）**：
-- `dbt/models/marts/mart_city_evidence_chain.sql` + `mart_city_seven_dim_overview.sql`（per docs/47 §3.1/§3.2）
+**OPEN（推 S2.7-b-full 真数据迁移刀 — tasking 26X+）**：
+- `dbt/models/marts/mart_city_evidence_chain.sql` + `mart_city_seven_dim_overview.sql`（per docs/47 §3.1/§3.2）：
+  - ✅ mart 骨架 — 回执 `288`（WHERE FALSE；0 行）
+  - ✅ mart demo-join — 回执 `294`（60+70 demo 行；10 城 × 6 段 / 7 维度；is_demo='true'；SHA '0'*64 占位）
+  - ⚠️ 真表 JOIN `inference_record.canonical_statement`（evidence_chain）+ 真实 `is_demo='false'` flip — **OPEN**
 - person/tenure 真数据接入契约（per docs/47 §3.3 OPEN）
+- 真 SHA 投递入口（per docs/48 + `291` intake）— ✅ 已交入口；**O1 WAITING_FILE**（等用户 `--confirm-o1=PATH`）
+- 前端 mart demo 契约对齐（TS demo ↔ dbt mart）— ✅ `297`（20 pytest 锁定）
 - 依赖：**O1 真实 SHA 收口 + Stage 1 OPEN 收口 + S2.1-lite `mart_person_tenure` PASS**（per docs/34 §3 + docs/47 §6.3 切刀风险）
 - 路线图：S2.7-b-full 真数据迁移刀（tasking 26X+；OPEN）= 接 dbt mart 真表 + 接 person/tenure 真数据（`relatedPersons` 数组填充）+ lineage.source_file_sha256 从占位 `'0'*64` 替换为 O1 真实 SHA
+- 预览路径：用户运行 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 看 demo mart-shape 管道（10 城 × 6 段 × 7 维度；全部 `is_demo=true`）；**该预览仅是 demo 演示管道，非 O1 收口**
 
 ---
 
@@ -147,7 +158,7 @@
 | **已交** | 验收项 #5（INFERENCE/JUDGMENT 角标）/ #6（反例 trigger）| ✅ |
 | **部分已交** | 验收项 #7（docs/10 §3.1-3.5）| ✅ §3.1/§3.5 schema；§3.2-§3.4 stub |
 | **OPEN** | O1 真实 SHA + O3 OCR | ⚠️ Gate 2 评审包必带 OPEN 清单 |
-| **OPEN** | 10 地市（S2.7-b）| ✅ S2.7-b-lite（mock 壳）已交 — 回执 `257`；S2.7-b-full-lite（mart-shape 接驳）已交 — 回执 `266`；S2.7-b-full 真数据迁移刀（dbt mart 真表 + person/tenure 真数据）OPEN（tasking 26X+）|
+| **OPEN** | 10 地市（S2.7-b）| ✅ S2.7-b-lite（mock 壳）已交 — 回执 `257`；S2.7-b-full-lite（mart-shape 接驳）已交 — 回执 `266`；S2.7-b-full mart 骨架（WHERE FALSE）已交 — 回执 `288`；S2.7-b-full mart demo-join（60+70 demo 行）已交 — 回执 `294`；真 SHA 投递入口（intake `WAITING_FILE`）已交 — 回执 `291`；前端 mart demo 契约对齐（20 pytest 锁定）已交 — 回执 `297`；**S2.7-b-full 真数据迁移刀（dbt mart 真表 + person/tenure 真数据）仍 OPEN**（tasking 26X+；依赖 O1 真实 SHA + Stage 1 OPEN + S2.1-lite `mart_person_tenure` PASS）|
 
 ### 6.1 S2.7-b 落地回执登记
 
@@ -155,8 +166,12 @@
 |---|---|---|---|
 | `257-stage0-cc-s27b-lite-impl-receipt-20260826` | S2.7-b-lite（10 地市 mock 壳）| `c8ee2b9` / `cd936ab` | ✅ 已交 |
 | `266-stage0-cc-s27b-full-lite-impl-receipt-20260826` | S2.7-b-full-lite（mart-shape TS 类型 + demo fixture + CityPage 接驳；feature-flag；默认 mock）| `beea282` / `0e0a6cf` | ✅ 已交 |
+| `288-stage0-cc-s27b-full-mart-skel-receipt-20260826` | S2.7-b-full mart 骨架（2 mart view + WHERE FALSE + 10 pytest cases）| `913c3ff` / `30f5ed2` | ✅ 已交 |
+| `294-stage0-cc-s27b-full-mart-demo-join-receipt-20260826` | S2.7-b-full mart demo-join（2 mart view 各 emit 60+70 demo 行；10 城 × 6 段 / 7 维度；is_demo='true'；SHA '0'*64 占位；20 pytest 守门）| `025904c` | ✅ 已交 |
+| `291-stage0-cc-real-sha-intake-live-receipt-20260826` | S2.7-b-full 真 SHA 投递入口（docs/48 handbook + scripts/intake_real_sha_if_present.py + 8 pytest cases；当前 runtime allowlist = 4 fixtures → WAITING_FILE）| `8d673c2` / `0ba8477` | ✅ 已交（**O1 WAITING_FILE**；等用户 `--confirm-o1=PATH` 显式 flag）|
+| `297-stage0-cc-frontend-mart-demo-parity-receipt-20260826` | 前端 mart demo 契约对齐（20 pytest cases 锁定 TS demo 4-file 契约 surface ↔ dbt mart 契约对齐；NEXT_PUBLIC_USE_MART_FIXTURE feature-flag；UI demo 标识）| `e5e216d` / `3429294` | ✅ 已交 |
 
-### 6.2 S2.7-b-full-lite mart-shape 接驳路径（回执 `266`）
+### 6.2 S2.7-b-full-lite + S2.7-b-full mart/intake/parity 接驳路径
 
 | 元素 | 路径 | 状态 |
 |---|---|---|
@@ -166,9 +181,18 @@
 | Dynamic segment route feature-flag | `frontend/app/cities/[slug]/page.tsx`（`NEXT_PUBLIC_USE_MART_FIXTURE`；默认 mock）| ✅ S2.7-b-full-lite 已交 |
 | mart-shape 守门 pytest（10 PASS）| `tests/test_mart_city_types_s27bf.py` | ✅ S2.7-b-full-lite 已交 |
 | smoke-check §10 mart-shape 守门 | `frontend/smoke-check.py` §10a–§10e | ✅ S2.7-b-full-lite 已交 |
+| **dbt mart 骨架**（2 view + WHERE FALSE + 10 pytest cases）| `dbt/models/marts/mart_city_evidence_chain.sql` + `mart_city_seven_dim_overview.sql` + `tests/test_mart_city_dbt_skel_s27bf.py` | ✅ S2.7-b-full mart skel 已交（回执 `288`）|
+| **dbt mart demo-join**（2 view 各 emit 60+70 demo 行；is_demo='true'；SHA '0'*64 占位；10 pytest cases 扩到 20）| 同上 2 SQL + `tests/test_mart_city_dbt_skel_s27bf.py`（20 cases）| ✅ S2.7-b-full mart demo-join 已交（回执 `294`）|
+| **真 SHA 投递入口**（docs/48 handbook + intake script + 8 pytest cases）| `docs/48-stage2-real-sha-intake-handbook-20260826.md` + `scripts/intake_real_sha_if_present.py` + `tests/test_intake_real_sha_live_s2022.py` | ✅ S2.7-b-full intake 已交（回执 `291`；**O1 WAITING_FILE**）|
+| **前端 mart demo 契约对齐**（20 pytest cases 锁定 TS demo 4-file 契约 surface ↔ dbt mart 契约）| `tests/test_frontend_mart_demo_parity_s296.py` | ✅ S2.7-b-full parity 已交（回执 `297`）|
 | lineage.source_file_sha256 占位 | `'0'*64`（O1 真实 SHA 收口前恒占位）| ⚠️ OPEN — 推 S2.7-b-full 真数据迁移刀 |
 | person/tenure 真数据接入（`relatedPersons`）| demo 当前 = `[]`（OPEN → S2.7-b-full 接 `mart_person_tenure`）| ⚠️ OPEN — 推 S2.7-b-full 真数据迁移刀 |
 | 应用层 enum 守门（runtime + 静态 + 编译时 3 重）| `assertMartRowHasNoForbiddenFields` + smoke-check §10c + pytest `test_*_no_forbidden_tokens` | ✅ 已守门 |
+
+**预览路径（per `294` + `297`）**：
+- 用户运行 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 看 demo mart-shape 管道（10 城 × 6 段 × 7 维度，全部 `is_demo=true`）
+- 2 mart view（60+70 demo 行）通过 `getMartCityDemo()` → `CityPageMart.tsx`（复用 EvidenceChain + SevenDimGrid + PeerCompareCard）
+- **明确**：该预览仅是 demo 演示管道，**非 O1 收口**（O1 真实 SHA 收口须用户主动 `--confirm-o1=PATH`；per `291` intake + docs/48 §4.3）
 
 **禁词守门（per docs/06 §6.6 + docs/42 §8 + docs/47 §1.2）**:
 - ❌ 不派生 `score` / `rating` / `rank` / `total_score` / `confidence_score` / `credibility_score`
