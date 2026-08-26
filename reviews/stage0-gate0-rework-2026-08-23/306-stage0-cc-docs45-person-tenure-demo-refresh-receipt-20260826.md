@@ -238,7 +238,7 @@ OK manifest updated; added 2 artifacts
 | origin push | `git push origin HEAD`（**priority**）| ✅ `447b340` → origin/main |
 | github push | `git push github HEAD` | ✅ `447b340` → github/main |
 | 三路对齐 | origin/main = github/main = local HEAD | ✅ `447b340f58f48ca6b36bed788d8e5feeb283b693` |
-| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill `<backfill_sha>` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill `2ad77888d89b784425438da92447bcc1a26a43e9` |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
