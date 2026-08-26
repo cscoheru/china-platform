@@ -8,28 +8,24 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
+| **phase** | `POLL` |
 | **queue_rev** | `181` |
-| **origin_head** | `af9d2bc` |
-| **cc_head** | `af9d2bc`；等 `424` |
-| **cc_receipt** | `422` |
-| **cursor_ack** | `422` |
-| **last_audit** | `423` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀 |
+| **origin_head** | `1ced2bd` |
+| **cc_head** | `1ced2bd`；`424` 已交 |
+| **cc_receipt** | `424` |
+| **cursor_ack** | `424` |
+| **last_audit** | `425` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T08:37:00+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-27T08:44:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`424-stage2-nbs-live-home-deeplink-tasking-20260826.md`
-
-摘要：首页 NBS live 候选 → `/public-extracts#track-nbs-live`；交回执 **`424`**。**必须双推**。
-
-完成后：双推 → **`84` POLL**。
+（无新刀。）只 **`84` POLL**。
 
 ---
 
