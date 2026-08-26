@@ -188,3 +188,55 @@ def test_page_renders_live_candidate_track() -> None:
     assert "source_deeplink_url" in code
     assert "非 O1 收口" in code, "live candidate 区块须显式非 O1 免责"
     assert "O1_AUTO_INTAKED" not in code
+
+
+# ---------------------------------------------------------------------------
+# 深圳 REGISTRY_SAMPLE 前端分节 (tasking 370 / knife 59)
+# ---------------------------------------------------------------------------
+
+SZ_FIXTURE = PROJECT_ROOT / "frontend" / "lib" / "public_extract_sz.json"
+SZ_EXTRACT = (
+    PROJECT_ROOT / "data" / "public_extracts" / "sz.gov.cn" / "MUNICIPAL_BULLETIN.json"
+)
+
+
+def test_sz_fixture_mirrors_extract_and_shape() -> None:
+    """Per 370 §SCHEMA (1): fixture 快照自深圳 MUNICIPAL extract — dict 全等
+    + 形状锚定 (71 行 / section+paragraph / registry SHA d5e2c731…)。"""
+    sz = json.loads(SZ_FIXTURE.read_text(encoding="utf-8"))
+    data_rec = json.loads(SZ_EXTRACT.read_text(encoding="utf-8"))
+    assert sz == data_rec, "fixture 必须与 data 侧提取快照一致"
+    assert sz["domain"] == "sz.gov.cn"
+    assert sz["category"] == "MUNICIPAL_BULLETIN"
+    assert sz["row_count"] == len(sz["rows"]) == 71
+    assert set(sz["rows"][0].keys()) == {"section", "paragraph"}
+    assert sz["source_sha256"].startswith("d5e2c73196b43cec")
+    assert sz["source_sample_path"] == "spikes/03-municipal-bulletin/sample.html"
+
+
+def test_sz_track_isolated_from_nbs() -> None:
+    """Per 370 §红线: 不覆盖 NBS 双轨 — NBS sample 63 行/dea13b8a 锚与
+    LIVE_CANDIDATE 锚原样,深圳 SHA/行数独立。"""
+    nbs = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    live = json.loads(LIVE_EXTRACT.read_text(encoding="utf-8"))
+    sz = json.loads(SZ_FIXTURE.read_text(encoding="utf-8"))
+    assert nbs["row_count"] == 63
+    assert nbs["source_sha256"] == (
+        "dea13b8a4ff116ca91403b189cdd60705545b28200f9023c3d56e6db03f3939d"
+    )
+    assert live["intake_status"] == "LIVE_CANDIDATE"
+    assert sz["source_sha256"] not in (nbs["source_sha256"], live["source_sha256"])
+    assert sz["row_count"] != nbs["row_count"]
+
+
+def test_page_renders_sz_registry_sample_track() -> None:
+    """Per 370 §SCHEMA (2): /public-extracts 页 import SZ fixture、深圳
+    分节标注 MUNICIPAL_BULLETIN、散文抽取说明、非 live 免责 (SSL 暂缓)。"""
+    src = PE_PAGE.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", src)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    assert "public_extract_sz.json" in code, "page must import the SZ fixture"
+    assert "MUNICIPAL_BULLETIN" in code
+    assert "散文段落表" in code, "深圳散文分节区块须在"
+    assert "SSL 暂缓" in code, "深圳分节须显式非 live 免责 (SSL 暂缓)"
+    assert "O1_AUTO_INTAKED" not in code

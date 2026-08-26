@@ -783,6 +783,84 @@ def main() -> int:
         ):
             ok("public-extracts/page.tsx: LIVE_CANDIDATE 分轨区块 + 非 O1 免责")
 
+    # 12d. 深圳 REGISTRY_SAMPLE 分节 — knife 59 (tasking 370). Per `370` §SCHEMA:
+    #     (1) sz.gov.cn MUNICIPAL_BULLETIN 散文抽取 fixture 在位 (71 行);
+    #     (2) /public-extracts 展示深圳 REGISTRY_SAMPLE 分节 (显式 demo);
+    #     (3) NBS sample/live 两轨不被覆盖 (63 行 / registry SHA / live 锚不变).
+    sz_fixture_path = ROOT / "lib/public_extract_sz.json"
+    if not sz_fixture_path.is_file():
+        errors.append(
+            "lib/public_extract_sz.json missing (per tasking 370 §NOW-1)"
+        )
+    else:
+        try:
+            zfx = json.loads(sz_fixture_path.read_text(encoding="utf-8"))
+            if zfx.get("domain") != "sz.gov.cn":
+                errors.append(f"public_extract_sz.json: domain != sz.gov.cn")
+            if zfx.get("category") != "MUNICIPAL_BULLETIN":
+                errors.append(
+                    f"public_extract_sz.json: category != MUNICIPAL_BULLETIN"
+                )
+            if zfx.get("row_count") != 71 or not isinstance(
+                zfx.get("rows"), list
+            ) or len(zfx["rows"]) != 71:
+                errors.append(
+                    "public_extract_sz.json: 散文抽取应为 71 行 "
+                    "(row_count 与 rows 长度一致, per 368)"
+                )
+            else:
+                ok("public_extract_sz.json: 深圳 REGISTRY_SAMPLE fixture 在位 (71 行)")
+            if not str(zfx.get("source_sha256", "")).startswith("d5e2c73196b43cec"):
+                errors.append(
+                    "public_extract_sz.json: source_sha256 未锚定 registry "
+                    "file_hash_sha256 (d5e2c731…, per 370 §红线)"
+                )
+            # NBS 双轨不回归: sample 63/dea13b8a + live fixture 锚不变.
+            if fixture_path.is_file():
+                sfx2 = json.loads(fixture_path.read_text(encoding="utf-8"))
+                if sfx2.get("row_count") != 63 or sfx2.get("source_sha256") != (
+                    "dea13b8a4ff116ca91403b189cdd60705545b28200f9023c3d56e6db03f3939d"
+                ):
+                    errors.append(
+                        "NBS REGISTRY_SAMPLE fixture 被深圳分节覆盖/漂移 "
+                        "(row_count 或 registry SHA 锚变化; per 370 §红线)"
+                    )
+            if live_fixture_path.is_file():
+                lfx2 = json.loads(live_fixture_path.read_text(encoding="utf-8"))
+                if lfx2.get("intake_status") != "LIVE_CANDIDATE" or not str(
+                    lfx2.get("source_sha256", "")
+                ).startswith("0b85212f70055c38"):
+                    errors.append(
+                        "NBS LIVE_CANDIDATE fixture 被深圳分节覆盖/漂移 "
+                        "(intake_status 或 drift SHA 锚变化; per 370 §红线)"
+                    )
+        except json.JSONDecodeError as e:
+            errors.append(f"public_extract_sz.json is not valid JSON: {e}")
+    if pe_page_path.is_file():
+        pe_src3 = pe_page_path.read_text(encoding="utf-8")
+        pe_code3 = re.sub(r"//[^\n]*", "", pe_src3)
+        pe_code3 = re.sub(r"/\*.*?\*/", "", pe_code3, flags=re.DOTALL)
+        for needle, label in [
+            ("public_extract_sz.json", "SZ fixture import"),
+            ("MUNICIPAL_BULLETIN", "MUNICIPAL_BULLETIN 标注"),
+            ("散文段落表", "深圳散文分节"),
+            ("SSL 暂缓", "非 live 免责 (SSL 暂缓)"),
+        ]:
+            if needle not in pe_code3:
+                errors.append(
+                    f"public-extracts/page.tsx missing {label} (per tasking 370)"
+                )
+        if all(
+            n in pe_code3
+            for n in (
+                "public_extract_sz.json",
+                "MUNICIPAL_BULLETIN",
+                "散文段落表",
+                "SSL 暂缓",
+            )
+        ):
+            ok("public-extracts/page.tsx: 深圳 REGISTRY_SAMPLE 分节 + 非 live 免责")
+
     if errors:
         for e in errors:
             fail(e)
