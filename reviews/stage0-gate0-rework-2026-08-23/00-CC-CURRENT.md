@@ -9,16 +9,17 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `86` |
-| **origin_head** | `4f3db12` |
-| **cc_head** | `4f3db12`；`215` 已交 |
+| **queue_rev** | `87` |
+| **origin_head** | `74f1657` |
+| **cc_head** | `4f3db12`；`215` 已交；**`218` 未动** |
 | **cc_receipt** | `215` |
 | **cursor_ack** | `215` |
 | **last_audit** | `217` PASS |
+| **wakeup** | `220` + `221`（对表 resync） |
 | **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T08:37:00+08:00` |
+| **updated_at** | `2026-08-26T08:40:00+08:00` |
 | **blocked_by** | — |
 
 ---
@@ -26,6 +27,8 @@
 ## NOW — CC 执行
 
 **`218`** — S2.4-lite budget DDL 缩刀（见 `218-stage2-s24-lite-ddl-impl-tasking-20260826.md`）。
+
+**唤醒 `220` / 对表 `221`：** 先 `git pull` + `./scripts/cc_gate_watch.sh --pull`；`cursor_ack=215` 已 ACK，勿再等审验。
 
 1. migration `011`（+ 可选空 seed）；不写 dbt
 2. 最小 pytest → 全绿
