@@ -6,6 +6,7 @@
 > 任务书：`250-stage2-s210-lite-gate2-index-tasking-20260826`
 > 刷新：queue_rev 103（per `259-stage2-gate2-index-s27b-refresh-tasking-20260826`）— §2 #1 + §5.5 + §6.1 反映 S2.7-b-lite 收口（回执 `257` + commit `c8ee2b9`/`cd936ab`）
 > 刷新：queue_rev 108（per `268-stage2-gate2-index-s27bf-refresh-tasking-20260826`）— §2 #1 + §5.6 + §6.2 反映 S2.7-b-full-lite 收口（回执 `266` + commit `beea282`/`0e0a6cf`）— mart-shape TS 类型 + demo fixture + CityPage 接驳（feature-flag；默认 demo）
+> 刷新：queue_rev 119（per `284-stage2-docs45-o1-no-sample-tasking-20260826`）— §3 O1 登记用户 2026-08-26 无材料裁定（演示继续 mock；Gate 2 必带 OPEN 清单）— 不得伪造样本/不得爬网/不擅自 O1 收口
 >
 > ⚠ **本文件是 Gate 2 评审索引；不宣布 Gate 2 PASS**（per `docs/34 §1` + §8 #8 + §133 + `247` §红线 + `250` §红线）
 
@@ -37,13 +38,22 @@
 
 | OPEN | 状态 | Gate 2 必带？|
 |---|---|---|
-| **O1** 真实 SHA-locked 江苏样本 | S1.18 DEMO 路径 OPEN | ✅ **必带**（per docs/34 §3 + §120）|
+| **O1** 真实 SHA-locked 江苏样本 | **S1.18 DEMO 路径 OPEN — 用户 2026-08-26 确认无持有材料**（per `284` 缩刀任务书）| ✅ **必带**（per docs/34 §3 + §120）|
 | **O2** cron / 通知 / 真实联外探针 | Stage 1 运维 OPEN | ⚠️ 演示级可过 |
 | **O3** OCR 生产路径 | S1.17 scanned PDF OPEN | ⚠️ NBS 数字演示可过；建议 Gate 2 前补 1 条生产路径 |
 | O4 `is_demo` 机制 | ✅ 已交（S1.18）| — |
 | O5 docs/10 测试 | 部分已交（3.1/3.5）| ⚠️ 3.2-3.4 留 stub（Stage 3 收口）|
 | O6 FastAPI 只读服务 | ✅ 已交（S1.10）| — |
 | O7 dbt staging candidate | ✅ 已交（S1.19）| — |
+
+**O1 详细状态（per `284` §SCHEMA + 用户 2026-08-26 裁定）**：
+- **用户 2026-08-26 确认**：本机/仓库**未持有**江苏真实 SHA-locked 样本；无 OCR 后入库的江苏政府文件。
+- **演示路径**：继续走 `lib/mart_city_demo.ts` 的 S1.18 DEMO sentinel；`lineage.source_file_sha256` 恒为 `'0'*64` 占位（per docs/47 §3.1 ⚠️）。
+- **不伪造**：禁止假造江苏政府文件 SHA；禁止拿 mock fixture 冒充真实样本；禁止拿 cursor-demo 等替代物冒充（per `284` §SCHEMA "本刀不做" + docs/06 §6.6 红线）。
+- **不爬网**：不 HTTP 抓政府站；不调用第三方 API 抓江苏 GDP / 财政 / 履历（per `284` §SCHEMA "本刀不做" + `284` §红线）。
+- **Gate 2 评审必带 OPEN**：Gate 2 评审包必须显式携带 O1 OPEN 清单（per docs/34 §3 + §120）；不擅自宣布 O1 收口。
+- **收口路径**：O1 真实 SHA 由用户后续提供（线下渠道：政府文件 PDF/扫描件原件）；收口前 demo 恒占位（per docs/47 §6.3 切刀风险 + `284` §SCHEMA）。
+- **依赖**：S2.7-b-full 真数据迁移刀（tasking 26X+ OPEN）依赖 O1 真实 SHA 收口（per docs/45 §5.5 OPEN + docs/47 §6.3）。
 
 ---
 
