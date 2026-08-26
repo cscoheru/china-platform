@@ -178,6 +178,39 @@ frontend/app/components/SevenDimGrid.tsx
 ```
 类型契约：`frontend/lib/types_seven_dim.ts`；mock：`frontend/lib/mock_seven_dim.ts`。
 
+#### 4.4 公开提取演示里程碑（per 回执链 `344`→`413`）
+
+> ⚠ **本节是公开提取演示里程碑的端到端交付清单**（回执链 `344` → `362` → `368` → `371` → `377` → `383` → `398` → `404` → `410` → `413`）；**全部为 demo/candidate 演示，非 O1/Gate 收口**；链到 `docs/45` §6.2 + `docs/53` §5。
+
+| 里程碑 | 交付 | 回执 | 守门 |
+|---|---|---|---|
+| **公开源自动获取 connector** | `scripts/auto_ingest_public_source.py`（single-file）+ `source_registry/registry.csv`（4 pilot 行）| `344` + `347` | 4 模式（dry-run / `--from-local-sample` / `--live --confirm-live` / `--refresh-live-candidate`）+ 10 出口码契约（per `docs/53` §3）|
+| **NBS 双轨**（sample ↔ LIVE_CANDIDATE）| sample 轨 63 行 `dea13b8a…` + candidate 轨 60 行 `0b85212f…`；分轨互不覆盖；drift 不自动改写 registry | `350` + `353` + `356` + `359` + `362` | smoke §12c（fixture 在位 + 分轨交叉）+ 92 pytest cases |
+| **深圳散文轨**（第三轨 REGISTRY_SAMPLE）| `data/public_extracts/sz.gov.cn/MUNICIPAL_BULLETIN.json`（71 行 `{section, paragraph}` / `d5e2c731…` registry 锚）+ `frontend/lib/public_extract_sz.json`（byte-verbatim 快照）+ `/public-extracts` 第三分节 | `368` + `371` | smoke §12d（深圳 fixture 锚 + 页面针 + NBS 双轨交叉）+ 100 pytest cases |
+| **湖北 xlsx 轨**（第四轨 REGISTRY_SAMPLE）| `data/public_extracts/tjj.hubei.gov.cn/PROVINCIAL_BULLETIN.json`（21 行 xlsx 月报统计 / `c5cf5abeb4fdf97a…` registry 锚）+ `frontend/lib/public_extract_hubei.json`（byte-verbatim 快照）+ `/public-extracts` 第四分节；live `enabled=FALSE` 暂缓 | `377` | smoke §12e（HB fixture 锚 + 页面针 + NBS+SZ+HB 四轨交叉）+ 103 pytest cases |
+| **四轨一览条 overview strip**（页内摘要）| `<section className="public-extracts-page__overview-strip" id="overview">`：7 列 × 4 行（NBS sample / NBS live 候选 / 深圳 / 湖北）；数据只读自既有 4 fixture，不重算 | `383` | smoke §12f（CSS class + 4 锚点 id + 4 锚链 href + `REGISTRY_SAMPLE_INTAKED` / `LIVE_CANDIDATE, drift` 标注 + 守门 13 针）+ 2 pytest |
+| **四轨客户端行筛选**（视图过滤）| 4 数据表各一独立受控 input `TrackFilterInput`（`testId="track-filter-{nbs-sample,nbs-live,sz,hb}"`）+ `filterRows` 包含匹配 + 每轨独立 `useState`；`"use client"` 纯客户端（build 仍 ○ Static）；tbody 消费 `filtered*Rows` 视图数组 + 空匹配占位行 | `398` | smoke §12h（use client + useState + 4 testId + 包含匹配 + 匹配计数 + 非权威库检索 + 无匹配行，11 针）+ 3 pytest |
+| **四轨 CSV 静态下载**（fixture 快照导出）| 列头「下载 JSON / CSV」+ 4 同格 CSV 第二链；产物 `frontend/public/public-extracts/{nbs,nbs-live-candidate,sz,hubei}.csv`（63 / 60 / 71 / 21 数据行；列序=fixture 首行键序；UTF-8 无 BOM / `\n` / QUOTE_MINIMAL）；生成器 `scripts/gen_public_extracts_csv.py` `render_csv_bytes` 纯函数可字节重渲 | `404` | smoke §12i（4 CSV 在位非空 + 4 href + 4 download attr + 列头含 `下载 JSON / CSV` + JSON 链不回归 + 非权威库守门 + 无 `text/csv` 服务端动态导出，15 针）+ 13 pytest（表头一致×4 + 行数字段数×4 + 字节重渲×4 + 页面守门）|
+| **全站顶栏 `site-nav` → `/public-extracts` 常驻链**（顶栏入口演示）| `frontend/app/layout.tsx` 在 `<header data-testid="mode-banner">` 后插入 `<nav data-testid="site-nav">`：首页 + `<a href="/public-extracts" data-testid="site-nav-public-extracts">公开提取样本（四轨 demo）</a>`；旁注「全站顶栏常驻链；四轨 demo / 非 O1 / 不宣布 Gate PASS（per tasking 409）」；纯 `<a href>` 锚链未引入 `next/link`（保留 build ○ Static 22/22）；不分支 `params.*` | `410` | smoke §13c（site-nav 容器 + /public-extracts 链 + 链 testId + 四轨 demo + 非 O1 + 不宣布 Gate PASS + 不分支 `params.*`，6 针）+ 5 pytest `test_layout_site_nav_public_extracts.py`（container / link / disclaimer / no-params-branch / anchor-not-Link）|
+| **docs/45 + docs/53 同步登记**（评审索引 + ops 手册）| docs/45 §1/§6.2/§7 多处刷新 + docs/53 §5/冒烟；指向本表全部里程碑；显式 demo/candidate 演示、非 O1/Gate PASS | `407` + `413` | 链对账 + 红线守门 grep |
+
+**预览 URL（per §4.4）**：
+
+```bash
+cd frontend && npm run dev   # 或 npm run build && npm start
+open http://localhost:3000/public-extracts   # 四轨 + 一览 + 行筛选 + JSON/CSV + 全站顶栏 site-nav 常驻入口
+open http://localhost:3000/                  # 首页第三表 / 城页 shenzhen 条件链 / 城页 hb 兜底 → 同样可达
+open http://localhost:3000/cities/shenzhen   # 城页 shenzhen 条件链 → /public-extracts#track-sz
+open http://localhost:3000/provinces/jiangsu  # 任意 5 省 / 10 地市页 → 全站顶栏 site-nav 仍可常驻访问
+```
+
+**预览路径**不构成 O1 / Gate 2 收口**（per §7.3 + §9 + `docs/53` §6）：
+- ⚠ 四轨皆 demo/candidate 演示（NBS sample 即 demo；NBS live 候选 = drift 候选待裁定；深圳/湖北 = REGISTRY_SAMPLE demo，live `enabled=FALSE` 暂缓）
+- ⚠ 行筛选仅客户端视图过滤，不改 fixture 字节/SHA
+- ⚠ CSV 是 fixture 快照确定性导出 (demo/candidate)，非权威库
+- ⚠ site-nav 仅顶栏入口演示
+- ⚠ live SHA drift 等 user 裁定，不自动改 registry、不自动 O1 收口
+
 ---
 
 ## §5. Stage 1 OPEN 继承清单（per docs/34 §3 + `284` + `309` + `docs/49`）
