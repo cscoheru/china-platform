@@ -111,6 +111,8 @@ cd frontend && npm run dev   # 或 npm run build && npm start
 6. **各数据表 = 每轨独立行筛选**（四个数据表各一受控 input（`data-testid="track-filter-{nbs-sample,nbs-live,sz,hb}"`）；单元格文本包含匹配、大小写不敏感、空查询=全量；纯客户端 `"use client"` + useState（路由仍 ○ 静态）；匹配 X / Y 计数行 + 「非权威库检索 / 视图过滤 / 不改数据 / SHA」守门 + 空匹配占位行；不改 fixture 字节；per 回执 `398`；smoke §12h 门）
 7. **全站顶栏 `site-nav` = `/public-extracts` 常驻入口**（`frontend/app/layout.tsx` 在 `<header data-testid="mode-banner">` 之后插入 `<nav data-testid="site-nav">`：首页 + `<a href="/public-extracts" data-testid="site-nav-public-extracts">公开提取样本（四轨 demo）</a>`；旁注「全站顶栏常驻链；四轨 demo / 非 O1 / 不宣布 Gate PASS（per tasking 409）」；纯 `<a href>` 锚链未引入 `next/link`，build 仍 ○ Static 22/22；不分支 `params.*`；per 回执 `410`；smoke §13c 门 6 针 + 5 pytest `test_layout_site_nav_public_extracts.py`）；**site-nav 是顶栏入口演示，非 O1/Gate PASS；不引入 next/link 保留 build ○ Static 特征**
 
+> 📍 **Gate 2 评审包端到端交付清单节点** = `docs/50-stage2-gate2-review-packet-draft-20260826.md` **§4.4「公开提取演示里程碑」**（per `416` cc 回执；queue_rev 176 落地）：四轨 + 一览条 + 行筛选 + JSON/CSV 下载 + 全站顶栏 site-nav + 预览 URL 的 9 行里程碑表 + 5 条 ⚠「预览路径不构成 O1 / Gate 2 收口」守门清单；链到 `docs/45` §1 + §6.2 + §7。docs/50 §4.4 是 Gate 2 评审包草稿新增节点，不宣布 Gate 2 PASS。
+
 冒烟：`python3 frontend/smoke-check.py`（§12c 门含候选 fixture 在位 + 分轨交叉检查；§12d 门含深圳 fixture 在位 + 三轨交叉检查；§12e 门含湖北 fixture 在位 + 四轨交叉检查；**§12f 门含 overview strip 在位 + 4 锚点 id + 4 锚链 href + demo|candidate 标注 + 守门 13 针**；**§12h 门含四轨行筛选 input（4 testId）+ 客户端包含匹配 + 非权威库检索守门**；**§13c 门含 `site-nav` 容器 + `/public-extracts` 链 + 链 testId + 四轨 demo + 非 O1 + 不宣布 Gate PASS + 不分支 `params.*`**）。
 
 ## 6. 红线（运维时同样生效）
