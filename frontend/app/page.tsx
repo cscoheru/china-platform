@@ -21,13 +21,18 @@ export default async function HomePage() {
     : "mock（S2.7-b-lite；设 NEXT_PUBLIC_USE_MART_FIXTURE=1 切 mart）";
   return (
     <section>
-      <h1>CEGR — Stage 2 治理观察 (S2.0.1 + S2.7)</h1>
+      <h1>CEGR — 官方公开数据 · 结构化呈现（demo）</h1>
       <p style={{ color: "#666" }}>
+        主入口：
+        <a href="/public-extracts">/public-extracts</a>
+        （四轨：NBS sample / NBS live 候选 / 深圳 / 湖北；可下载 JSON）。
+        下方仍为 Stage 2 治理观察导航壳（省/市/七维）。皆 demo，
+        <strong>非 O1 / 非 Gate PASS</strong>。
         {IS_MART_FIXTURE_MODE
-          ? "Mart demo 管道已开：地市 /cities/{slug} 走 mart-shape（含演示人物）；"
+          ? " Mart demo 管道已开：地市 /cities/{slug} 走 mart-shape（含演示人物）；"
           : IS_MOCK_MODE
-            ? "Mock 模式：以下 indicator 为 S1.18 DEMO sentinel，"
-            : "Live 模式：以下数据来自 FastAPI S1.10，"}
+            ? " Mock 模式：以下 indicator 为 S1.18 DEMO sentinel，"
+            : " Live 模式：以下数据来自 FastAPI S1.10，"}
         {IS_MOCK_MODE && IS_MART_FIXTURE_MODE
           ? "首页 indicator 表仍为 mock（无后端时）。"
           : null}

@@ -9,9 +9,9 @@ import { IS_MOCK_MODE, IS_MART_FIXTURE_MODE } from "../lib/api";
 // mart-shape demo pipeline (still is_demo; not O1 / not Gate PASS).
 
 export const metadata = {
-  title: "CEGR — Stage 2 Observation (mart demo pipeline)",
+  title: "CEGR — 官方公开数据 · 结构化呈现（demo）",
   description:
-    "Read-only observation layer. Mock FastAPI by default; mart-shape city demo when NEXT_PUBLIC_USE_MART_FIXTURE=1.",
+    "Official open-data extracts (four-track demo) + Stage 2 governance observation shells. Not O1 / not Gate PASS. Mart-shape city demo when NEXT_PUBLIC_USE_MART_FIXTURE=1.",
 };
 
 function bannerBackground(): string {
