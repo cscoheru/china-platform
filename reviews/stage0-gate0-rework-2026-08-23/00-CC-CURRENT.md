@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `145` |
-| **origin_head** | `ce2700f` |
-| **cc_head** | `ce2700f`；`347` 已交（协调 unblock push）|
-| **cc_receipt** | `347` |
-| **cursor_ack** | `347` |
-| **last_audit** | `348` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；源工程 Cursor 代判；湖北/深圳 live 暂缓；本地样本结构化已通 → **接前端呈现** |
+| **queue_rev** | `146` |
+| **origin_head** | `9688f0f` |
+| **cc_head** | `9688f0f`；`350` 已交（命名已纠偏）|
+| **cc_receipt** | `350` |
+| **cursor_ack** | `350` |
+| **last_audit** | `351` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；源工程 Cursor 代判；结构化呈现已接线 → **护 extracts 不被测脏** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T18:40:00+08:00` |
+| **updated_at** | `2026-08-26T18:55:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`349`** — 公开提取 → 前端结构化呈现（见 `349-…tasking…md`）。
+**`352`** — 禁止 pytest 覆写 `data/public_extracts`（见 `352-…tasking…md`）。
 
-1. NBS `public_extracts` 63 行进 UI；标 `REGISTRY_SAMPLE`/demo
-2. 补 pack → 回执 **`350`**
+1. `--extract-root` / env + 回归测
+2. 回执 **`353`**（文件名必须含 `-cc-`）
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---

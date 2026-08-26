@@ -1,6 +1,6 @@
 # Knife 52 回执 — 公开提取 → 前端结构化呈现（tasking 349）
 
-- 编号：`350-stage2-public-extract-frontend-wire-receipt-20260826`
+- 编号：`350-stage0-cc-public-extract-frontend-wire-receipt-20260826`（文件名须含 `-cc-` 供 gate_watch 识别）
 - 前置：`348` PASS（receipt 347 ACK）；`7f04237` Cursor 修复 NBS extract 被 pytest 覆写；`60698d7` ACK + tasking 349;`f17fb56` knife 51 backfill
 - 落地：build-time fixture 快照（`frontend/lib/public_extract_nbs.json`,63 行,registry SHA 锚定）+ 专用静态路由 `/public-extracts`（REGISTRY_SAMPLE · demo 显式标注,DemoBadge 复用,provenance 表,63 行全量展示）+ 首页导航入口 + smoke-check §12 gate + 7 case pytest + build 证据 + 回执 **`350`**
 
@@ -36,7 +36,7 @@
 | `frontend/app/public-extracts/page.tsx` | spike_helper（NEW 计项 +1） | NEW（~180 行;provenance 表 + 63 行提取表;列序 = 首行键序,不重排不 reinterpret） |
 | `tests/test_public_extract_frontend_fixture.py` | schema_negative_test（NEW 计项 +1） | NEW（7 case;registry SHA / sample path 双锚定） |
 | `scripts/_knife52_manifest_bump.py` | spike_helper（NEW 计项 +1） | NEW |
-| `reviews/.../350-stage2-public-extract-frontend-wire-receipt-20260826.md` | documentation（NEW 计项 +1） | NEW（本文件） |
+| `reviews/.../350-stage0-cc-public-extract-frontend-wire-receipt-20260826.md` | documentation（NEW 计项 +1） | NEW（本文件；gate 要求 `-cc-`） |
 | `frontend/app/page.tsx` | —（未入 manifest） | MODIFIED（横向视角入口表 +1 行 `/public-extracts` + REGISTRY_SAMPLE·demo 标注;同 knife 280 homepage 先例不入 manifest） |
 | `frontend/smoke-check.py` | spike_helper（已登记） | MODIFIED（+§12/§12b gate:bump SKIP） |
 
