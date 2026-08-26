@@ -1241,6 +1241,47 @@ def main() -> int:
                 "+ REGISTRY_SAMPLE xlsx demo + enabled=FALSE 暂缓 + 非 O1 守门"
             )
 
+    # §13c — 全站顶栏 /public-extracts 常驻链 (per tasking 409)
+    # layout.tsx 含 <nav data-testid="site-nav"> + href="/public-extracts" + "四轨 demo"
+    # 标注; 不分支 params.* (静态布局); 不走 Next.js Link (避免 dynamic params);
+    # 仅纯 <a> 锚链; 含非 O1 守门; build 仍 ○ Static.
+    layout_path = ROOT / "app" / "layout.tsx"
+    if not layout_path.is_file():
+        errors.append("app/layout.tsx missing (per tasking 409)")
+    else:
+        layout_src = layout_path.read_text(encoding="utf-8")
+        layout_code = re.sub(r"//[^\n]*", "", layout_src)
+        layout_code = re.sub(r"/\*.*?\*/", "", layout_code, flags=re.DOTALL)
+        for needle, desc in (
+            ('data-testid="site-nav"', "site-nav 容器"),
+            ('href="/public-extracts"', "site-nav /public-extracts 链"),
+            ('data-testid="site-nav-public-extracts"', "site-nav 链 testId"),
+            ("四轨 demo", "site-nav 四轨 demo 标注"),
+            ("非 O1", "site-nav 非 O1 守门"),
+            ("不宣布 Gate PASS", "site-nav 非 Gate PASS 守门"),
+        ):
+            if needle not in layout_code:
+                errors.append(f"app/layout.tsx missing {desc} (per tasking 409)")
+        # 静态路由守门: 不得分支 params.* (per AGENTS.md standing red line)
+        if re.search(r"params\s*\.|\.params\b", layout_code):
+            errors.append(
+                "app/layout.tsx branches on params.* (forbidden per AGENTS.md "
+                "static-segment Next.js route rule)"
+            )
+        if all(
+            n in layout_code
+            for n in (
+                'data-testid="site-nav"',
+                'href="/public-extracts"',
+                "四轨 demo",
+                "非 O1",
+            )
+        ):
+            ok(
+                "app/layout.tsx: 顶栏 site-nav 在位 + /public-extracts 常驻链 "
+                "+ 四轨 demo 标注 + 非 O1 守门 + 不分支 params.*"
+            )
+
     if errors:
         for e in errors:
             fail(e)

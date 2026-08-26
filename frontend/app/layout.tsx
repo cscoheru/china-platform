@@ -71,6 +71,27 @@ export default function RootLayout({
             </>
           )}
         </header>
+        <nav
+          style={{
+            padding: "8px 20px",
+            background: "#f0f0f0",
+            borderBottom: "1px solid #ccc",
+            fontSize: 13,
+          }}
+          data-testid="site-nav"
+        >
+          <a href="/" data-testid="site-nav-home">首页</a>
+          {" · "}
+          <a
+            href="/public-extracts"
+            data-testid="site-nav-public-extracts"
+          >
+            公开提取样本（四轨 demo）
+          </a>
+          <span style={{ marginLeft: 12, color: "#777", fontSize: 12 }}>
+            全站顶栏常驻链；四轨 demo / 非 O1 / 不宣布 Gate PASS（per tasking 409）
+          </span>
+        </nav>
         <main style={{ padding: 24 }}>{children}</main>
       </body>
     </html>
