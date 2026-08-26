@@ -29,6 +29,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 
+
+def _strip_forbidden_field_lists(src: str) -> str:
+    """Strip contents of FORBIDDEN_*_FIELDS / FORBIDDEN_TOKENS array declarations.
+
+    mart_city_types.ts 的 FORBIDDEN_MART_FIELDS 数组声明是为了禁词守门 —
+    列出禁词不等于使用禁词。须剥离此声明体后再做禁词扫描。
+    """
+    pat = re.compile(
+        r"(?:export\s+)?const\s+FORBIDDEN[A-Z_]*\s*=\s*\[[^\]]*\]\s*(?:as\s+const)?",
+        re.DOTALL,
+    )
+    return pat.sub("", src)
+
+
 REQUIRED_FILES = [
     "package.json",
     "tsconfig.json",
@@ -407,12 +421,161 @@ def main() -> int:
         else:
             ok(f"mock_cities.ts has no forbidden {label!r} term")
 
+    # 10. S2.7-b-full-lite — mart-shape types + demo fixture + CityPage 接驳.
+    #     Per docs/47 §3.1 + §3.2 + §3.3 + §4.1 + §4.2 +
+    #     `265` §SCHEMA "mart 形状 TS 类型 + is_demo fixture + CityPage 接驳".
+    mart_types_path = ROOT / "lib/mart_city_types.ts"
+    mart_demo_path = ROOT / "lib/mart_city_demo.ts"
+    city_page_mart_path = ROOT / "app/components/CityPageMart.tsx"
+    slug_page_path = ROOT / "app/cities/[slug]/page.tsx"
+
+    # 10a. mart_city_types.ts 必含 4 个导出 + SHA256 占位
+    if not mart_types_path.exists():
+        errors.append("lib/mart_city_types.ts missing (per docs/47 §3.1 + 265 §SCHEMA)")
+    else:
+        msrc = mart_types_path.read_text(encoding="utf-8")
+        mcode = re.sub(r"//[^\n]*", "", msrc)
+        mcode = re.sub(r"/\*.*?\*/", "", mcode, flags=re.DOTALL)
+        for sym, label in [
+            ("export interface MartLineageProps", "MartLineageProps"),
+            ("export interface MartCityViewProps", "MartCityViewProps"),
+            ("export const MART_LINEAGE_PLACEHOLDER_SHA", "MART_LINEAGE_PLACEHOLDER_SHA"),
+            ("export function isValidMartLineage", "isValidMartLineage"),
+            ("export function assertMartRowHasNoForbiddenFields",
+             "assertMartRowHasNoForbiddenFields"),
+        ]:
+            if sym not in mcode:
+                errors.append(f"mart_city_types.ts missing {label}")
+        if all(s in mcode for s in [
+            "export interface MartLineageProps",
+            "export interface MartCityViewProps",
+            "export const MART_LINEAGE_PLACEHOLDER_SHA",
+            "export function isValidMartLineage",
+            "export function assertMartRowHasNoForbiddenFields",
+        ]):
+            ok("mart_city_types.ts exports MartLineageProps + MartCityViewProps + sha256 placeholder")
+        if '"0".repeat(64)' not in mcode:
+            errors.append(
+                "mart_city_types.ts: SHA256 placeholder must be '0'.repeat(64) "
+                "(per docs/47 §3.1 ⚠️ OPEN)"
+            )
+        else:
+            ok("mart_city_types.ts: SHA256 placeholder = '0'.repeat(64)")
+
+    # 10b. mart_city_demo.ts 必含 CITY_SLUG_LIST + 10 城引用 + SHA256 占位
+    if not mart_demo_path.exists():
+        errors.append("lib/mart_city_demo.ts missing (per docs/47 §3.1 + 265 §SCHEMA)")
+    else:
+        dsrc = mart_demo_path.read_text(encoding="utf-8")
+        dcode = re.sub(r"//[^\n]*", "", dsrc)
+        dcode = re.sub(r"/\*.*?\*/", "", dcode, flags=re.DOTALL)
+        if "CITY_SLUG_LIST" not in dcode:
+            errors.append("mart_city_demo.ts missing CITY_SLUG_LIST reference")
+        else:
+            ok("mart_city_demo.ts references CITY_SLUG_LIST")
+        if "MART_LINEAGE_PLACEHOLDER_SHA" not in dcode:
+            errors.append(
+                "mart_city_demo.ts missing MART_LINEAGE_PLACEHOLDER_SHA reuse "
+                "(O1 收口前恒占位)"
+            )
+        else:
+            ok("mart_city_demo.ts reuses MART_LINEAGE_PLACEHOLDER_SHA (= '0'*64)")
+        # Coverage via import (mirrors §9e mock_cities.ts pattern):
+        # demo iterates over CITY_SLUG_LIST via Object.fromEntries(...map(...))
+        coverage_via_import = (
+            "CITY_SLUG_LIST" in dcode
+            and "city_slug_map" in dcode
+            and ("Object.fromEntries" in dcode or ".map(" in dcode)
+        )
+        literal_hits = sum(
+            1 for s in locked_slugs
+            if (
+                f'"{s}"' in dcode
+                or f"'{s}'" in dcode
+                or f'slug: "{s}"' in dcode
+                or f"[{s}]" in dcode
+            )
+        )
+        if not coverage_via_import and literal_hits < len(locked_slugs):
+            errors.append(
+                f"mart_city_demo.ts missing coverage for 10 cities: "
+                f"literal_hits={literal_hits}/10, via_import={coverage_via_import}"
+            )
+        else:
+            ok(
+                f"mart_city_demo.ts covers 10 cities "
+                f"(via_import={coverage_via_import}, literal_hits={literal_hits}/10)"
+            )
+
+    # 10c. mart-shape 禁词守门 (per docs/47 §1.2 + 265 §红线)
+    for fp, label in [
+        (mart_types_path, "mart_city_types.ts"),
+        (mart_demo_path, "mart_city_demo.ts"),
+        (city_page_mart_path, "CityPageMart.tsx"),
+        (slug_page_path, "[slug]/page.tsx"),
+    ]:
+        if not fp.exists():
+            continue
+        c = fp.read_text(encoding="utf-8")
+        cc = re.sub(r"//[^\n]*", "", c)
+        cc = re.sub(r"/\*.*?\*/", "", cc, flags=re.DOTALL)
+        cc = _strip_forbidden_field_lists(cc)  # FORBIDDEN_* 声明体不计入禁词
+        for pat, tlabel in forbidden_terms:
+            if re.search(pat, cc, re.IGNORECASE):
+                errors.append(
+                    f"{label} contains forbidden term {tlabel!r} "
+                    f"(per docs/47 §1.2 + 265 §红线)"
+                )
+
+    # 10d. CityPageMart 复用三件套 (EvidenceChain + SevenDimGrid + PeerCompareCard)
+    if not city_page_mart_path.exists():
+        errors.append("app/components/CityPageMart.tsx missing")
+    else:
+        msrc = city_page_mart_path.read_text(encoding="utf-8")
+        mcode = re.sub(r"//[^\n]*", "", msrc)
+        mcode = re.sub(r"/\*.*?\*/", "", mcode, flags=re.DOTALL)
+        for needle, label in [
+            ("EvidenceChain", "EvidenceChain"),
+            ("SevenDimGrid", "SevenDimGrid"),
+            ("PeerCompareCard", "PeerCompareCard"),
+        ]:
+            if needle not in mcode:
+                errors.append(f"CityPageMart.tsx missing {label} reuse")
+        if all(n in mcode for n in ("EvidenceChain", "SevenDimGrid", "PeerCompareCard")):
+            ok("CityPageMart.tsx reuses EvidenceChain + SevenDimGrid + PeerCompareCard")
+
+    # 10e. /cities/[slug]/page.tsx feature-flag 守门
+    if not slug_page_path.exists():
+        errors.append("app/cities/[slug]/page.tsx missing")
+    else:
+        sp = slug_page_path.read_text(encoding="utf-8")
+        spc = re.sub(r"//[^\n]*", "", sp)
+        spc = re.sub(r"/\*.*?\*/", "", spc, flags=re.DOTALL)
+        if "NEXT_PUBLIC_USE_MART_FIXTURE" not in spc:
+            errors.append("[slug]/page.tsx missing NEXT_PUBLIC_USE_MART_FIXTURE feature-flag")
+        else:
+            ok("[slug]/page.tsx declares NEXT_PUBLIC_USE_MART_FIXTURE feature-flag")
+        if "shouldUseMartFixture" not in spc:
+            errors.append("[slug]/page.tsx missing shouldUseMartFixture() helper")
+        if "getMockCity" not in spc:
+            errors.append("[slug]/page.tsx missing default mock path (getMockCity)")
+        else:
+            ok("[slug]/page.tsx defaults to getMockCity (mock path 保留)")
+        if "getMartCityDemo" not in spc:
+            errors.append("[slug]/page.tsx missing mart-shape path (getMartCityDemo)")
+        else:
+            ok("[slug]/page.tsx opt-in mart-shape path (getMartCityDemo)")
+        if "CityPageMart" not in spc:
+            errors.append("[slug]/page.tsx missing CityPageMart import")
+        else:
+            ok("[slug]/page.tsx imports CityPageMart")
+
     if errors:
         for e in errors:
             fail(e)
         return 1
 
-    print("\n=== S2.0.1 + S2.7-a + S2.7-a2 + S2.7-b-lite skeleton smoke: PASS ===")
+    print("\n=== S2.0.1 + S2.7-a + S2.7-a2 + S2.7-b-lite + S2.7-b-full-lite mart-shape smoke: PASS ===")
     return 0
 
 

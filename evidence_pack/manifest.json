@@ -1,5 +1,5 @@
 {
-  "artifact_count": 589,
+  "artifact_count": 595,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3534,6 +3534,42 @@
       "role": "documentation",
       "sha256": "3e39baa80a50469b40b9a3dff3739f634272736574d5434861f54ba0e57d579a",
       "size_bytes": 13769
+    },
+    {
+      "path": "frontend/lib/mart_city_types.ts",
+      "role": "spike_helper",
+      "sha256": "2b0e27338cf3ff7b24a7effae8563a51feea51517904490f7e3bd20d11d0c79a",
+      "size_bytes": 5881
+    },
+    {
+      "path": "frontend/lib/mart_city_demo.ts",
+      "role": "data_contract_suite",
+      "sha256": "a70b3dfb4e1532dc6e0bad8148b8eeed31b6fa44b8851ea93fa1301d01193a63",
+      "size_bytes": 5666
+    },
+    {
+      "path": "frontend/app/components/CityPageMart.tsx",
+      "role": "spike_helper",
+      "sha256": "b6646ae920de1bb73339242fcae0329024a5be942dc526284a3f580d71537611",
+      "size_bytes": 7118
+    },
+    {
+      "path": "tests/test_mart_city_types_s27bf.py",
+      "role": "schema_negative_test",
+      "sha256": "14ec790194c0ba368055fdae3ead9f84ca705da1ba8331f74bfbc9baee8c9bb5",
+      "size_bytes": 8960
+    },
+    {
+      "path": "scripts/_knife25_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "0eb2b3e9075a4f562a4e8a9e7cfbc5c69fe77e7e2378d61ddab8974c7aed3220",
+      "size_bytes": 2993
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/266-stage0-cc-s27b-full-lite-impl-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "7de9047c907cdf93a3b4da7e8f5d13bb6d4138d43b26c9eb292def69be4d919f",
+      "size_bytes": 18304
     }
   ],
   "commit": {
@@ -3566,20 +3602,20 @@
   },
   "python_version": "3.14.3",
   "role_count": {
-    "data_contract_suite": 20,
-    "documentation": 72,
+    "data_contract_suite": 21,
+    "documentation": 73,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 35,
+    "schema_negative_test": 36,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 27,
+    "spike_helper": 30,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
