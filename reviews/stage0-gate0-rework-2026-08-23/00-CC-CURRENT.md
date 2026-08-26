@@ -9,28 +9,27 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `144` |
-| **origin_head** | `a07d657` |
-| **cc_head** | `a07d657`；`344` 已交 |
-| **cc_receipt** | `344` |
-| **cursor_ack** | `344` |
-| **last_audit** | `345` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；源工程 **Cursor 代判（`341`）**；湖北 JS 暂缓；**深圳 HTTPS SSL 暂缓（禁 HTTP pin）**；下一刀本地样本结构化 |
+| **queue_rev** | `145` |
+| **origin_head** | `ce2700f` |
+| **cc_head** | `ce2700f`；`347` 已交（协调 unblock push）|
+| **cc_receipt** | `347` |
+| **cursor_ack** | `347` |
+| **last_audit** | `348` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；源工程 Cursor 代判；湖北/深圳 live 暂缓；本地样本结构化已通 → **接前端呈现** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T18:21:30+08:00` |
+| **updated_at** | `2026-08-26T18:40:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`346`** — registry 本地样本结构化提取 + NBS 再探（见 `346-…tasking…md`）。
+**`349`** — 公开提取 → 前端结构化呈现（见 `349-…tasking…md`）。
 
-1. `--from-local-sample` → WORM + extract JSON；`REGISTRY_SAMPLE_INTAKED` / `is_demo=true`
-2. 深圳 registry 注 SSL 暂缓；NBS 再 `--live` 一次
-3. 补 pack → 回执 **`347`**
-4. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+1. NBS `public_extracts` 63 行进 UI；标 `REGISTRY_SAMPLE`/demo
+2. 补 pack → 回执 **`350`**
+3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
 
