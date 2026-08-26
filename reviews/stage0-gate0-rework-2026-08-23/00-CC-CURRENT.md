@@ -9,25 +9,25 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `162` |
-| **origin_head** | `9b8d78e` |
-| **cc_head** | `9b8d78e`；等 `392` |
-| **cc_receipt** | `389` |
-| **cursor_ack** | `389` |
-| **last_audit** | `390` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**不等人裁定除非卡住**；Cursor 代判 |
+| **queue_rev** | `163` |
+| **origin_head** | `8837918` |
+| **cc_head** | `8837918`；等 `395` |
+| **cc_receipt** | `392` |
+| **cursor_ack** | `392` |
+| **last_audit** | `393` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**不等人裁定除非卡住**；Cursor 代判；交卷未 push 时 Cursor 可复验后代推 |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-26T21:27:40+08:00` |
+| **updated_at** | `2026-08-26T21:34:20+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`391-stage2-shenzhen-city-link-public-extract-tasking-20260826.md`
+读并执行：`394-stage2-hubei-page-link-public-extract-tasking-20260826.md`
 
-摘要：深圳城页链到 `/public-extracts#track-sz`（demo 标注）；交回执 **`392`**（`-cc-`）。
+摘要：湖北相关页（或首页兜底）链到 `/public-extracts#track-hb`；交回执 **`395`**（`-cc-`）。**做完必须双推**，避免再卡本地。
 
 完成后：双推 → **`84` POLL**。
 
