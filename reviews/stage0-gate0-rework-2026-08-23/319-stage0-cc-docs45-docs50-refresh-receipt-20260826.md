@@ -215,11 +215,11 @@ OK manifest updated; added 2 artifacts
 | docs/45 修改 | `docs/45-stage2-s210-lite-gate2-review-index-20260826.md`（header + §1 + §3 O3 + §6.2 + §7 invariant + §7 O1+O8 OPEN 携带）| ✅ MOD |
 | bump script | `scripts/_knife42_manifest_bump.py`（2 NEW + 1 REFRESH）| ✅ 637 → 639（+2）|
 | 本地校验 | manifest invariant | ✅ 639 == 639 == 639 |
-| commit (knife 42 主提交) | `git add ... && git commit -m "docs(45): 318 docs/50 评审包草稿登记 — §1/§3 O3/§6.2/§7 同步"` | ✅ `<this_commit>` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ `<this_commit>` → origin/main |
-| github push | `git push github HEAD` | ✅ `<this_commit>` → github/main |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ `<this_commit>` |
-| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill |
+| commit (knife 42 主提交) | `git add ... && git commit -m "docs(45): 318 docs/50 评审包草稿登记 — §1/§3 O3/§6.2/§7 同步"` | ✅ `93f9b5001b8f25926c65d85df73b7c9a74c043f2` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `93f9b50` → origin/main |
+| github push | `git push github HEAD` | ✅ `93f9b50` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `93f9b5001b8f25926c65d85df73b7c9a74c043f2` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ `93f9b50` + receipt backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
