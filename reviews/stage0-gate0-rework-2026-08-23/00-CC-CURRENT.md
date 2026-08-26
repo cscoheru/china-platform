@@ -8,34 +8,30 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `134` |
-| **origin_head** | `3ef75df` |
-| **cc_head** | `3ef75df`；`322` 已交 |
-| **cc_receipt** | `322` |
-| **cursor_ack** | `322` |
-| **last_audit** | `323` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**尽快真数据**；O1 WAITING_FILE；见 docs/51 |
+| **phase** | `POLL` |
+| **queue_rev** | `135` |
+| **origin_head** | `502a17c` |
+| **cc_head** | `502a17c`；`325` 已交 |
+| **cc_receipt** | `325` |
+| **cursor_ack** | `325` |
+| **last_audit** | `326` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**尽快真数据**；O1 WAITING_FILE — **按 docs/51 投递** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T16:49:00+08:00` |
-| **blocked_by** | 真 O1 待用户按 docs/51 投递 |
+| **expect_cc_poll** | `POLL_ONLY` |
+| **updated_at** | `2026-08-26T16:55:00+08:00` |
+| **blocked_by** | 真 O1：用户按 `docs/51` 投递 allowlist 文件后 Cursor 再 bump |
 
 ---
 
 ## NOW — CC 执行
 
-**`324`** — docs/45 登记 O1 投递清单（见 `324-stage2-docs45-o1-checklist-refresh-tasking-20260826.md`）。
-
-1. 刷新 `docs/45` → `docs/51`
-2. 补 pack → 回执 **`325`**
-3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+**无。** docs/51 已交；下一刀待用户投递真文件（或另下 OCR 引擎裁定）后 Cursor bump。
 
 ---
 
 ## POLL
 
-交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
+`cursor_ack=325`；CC `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**。
 
 探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
@@ -43,4 +39,4 @@
 
 ## BLOCKED
 
-（无。）真数据物理依赖：用户按 **`docs/51`** 投递。
+（无用户裁定代号。）物理依赖：`docs/51` 投递。
