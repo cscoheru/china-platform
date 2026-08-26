@@ -3,7 +3,7 @@
 - 编号：`404-stage0-cc-public-extracts-csv-download-receipt-20260826`
 - 任务书：`403-stage2-public-extracts-csv-download-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`(交卷 commit, 推送后回填)`
+- cc_head：`abc8606`
 - 日期：2026-08-26
 
 ---
