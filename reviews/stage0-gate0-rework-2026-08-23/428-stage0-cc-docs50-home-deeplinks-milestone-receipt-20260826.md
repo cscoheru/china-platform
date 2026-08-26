@@ -3,7 +3,7 @@
 - 编号：`428-stage0-cc-docs50-home-deeplinks-milestone-receipt-20260826`
 - 任务书：`428-stage2-docs50-home-deeplinks-milestone-refresh-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TBD-pre-push`
+- cc_head：`10f26cf`
 - 日期：2026-08-26
 
 ---
