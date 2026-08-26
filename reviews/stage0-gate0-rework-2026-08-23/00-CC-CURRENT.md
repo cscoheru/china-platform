@@ -8,28 +8,24 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
+| **phase** | `POLL` |
 | **queue_rev** | `191` |
-| **origin_head** | `8d9c43a` |
-| **cc_head** | `8d9c43a`；等 `444` |
-| **cc_receipt** | `442` |
-| **cursor_ack** | `442` |
-| **last_audit** | `443` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀 |
+| **origin_head** | `880a95c` |
+| **cc_head** | `880a95c`；`444` 已交 |
+| **cc_receipt** | `444` |
+| **cursor_ack** | `444` |
+| **last_audit** | `445` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T11:10:00+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-27T11:13:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`444-stage2-docs45-docs50-home-entry-crosslink-tasking-20260826.md`
-
-摘要：`docs/45` ↔ `docs/50` §4.4 首页入口一览互链；交回执 **`444`**。**必须双推**。
-
-完成后：双推 → **`84` POLL**。
+（无新刀。）只 **`84` POLL**。
 
 ---
 
