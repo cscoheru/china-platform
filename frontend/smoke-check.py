@@ -570,12 +570,103 @@ def main() -> int:
         else:
             ok("[slug]/page.tsx imports CityPageMart")
 
+    # 11. Home navigation — knife 30 (tasking 280). Per `280` §SCHEMA "本刀做":
+    #     smoke-check.py 增加首页守门：含 10 城 /cities/{slug} 链接 + /seven-dim +
+    #     /peer-compare. Per `280` §NOW-1. Per docs/46 §2 (10 城列表入口) +
+    #     docs/42 §3.1 (七维度入口) + docs/43 §3.5 (同类对比入口).
+    #
+    # 11a. app/page.tsx 必须存在 + 含 4 个 section (indicator inventory +
+    #      省级 + 地市 + 横向视角入口).
+    home_src = (ROOT / "app/page.tsx").read_text(encoding="utf-8")
+    home_code = re.sub(r"//[^\n]*", "", home_src)
+    home_code = re.sub(r"/\*.*?\*/", "", home_code, flags=re.DOTALL)
+
+    required_home_anchors = [
+        ("Indicator inventory", "Indicator inventory"),
+        ("/provinces/", "/provinces/"),
+        ("/cities/", "/cities/"),
+        ("/seven-dim", "/seven-dim"),
+        ("/peer-compare", "/peer-compare"),
+        ("CITY_SLUG_LIST", "CITY_SLUG_LIST import"),
+        ("MOCK_PROVINCE_LIST", "MOCK_PROVINCE_LIST import"),
+    ]
+    for needle, label in required_home_anchors:
+        if needle not in home_code:
+            errors.append(f"app/page.tsx missing {label} (per tasking 280 §NOW-1)")
+    if all(n in home_code for n, _ in required_home_anchors):
+        ok("app/page.tsx contains all 4 home sections (indicator + 省级 + 地市 + 横向)")
+
+    # 11b. 10 城首页链接守门：home page 必须为每个锁定 slug 含 /cities/{slug} 链接.
+    #      Accept both literal `/cities/<slug>` and template-literal
+    #      `/cities/${...slug...}` variants (per knife 28 home page).
+    def _has_city_link(code: str, slug: str) -> bool:
+        if f"/cities/{slug}" in code:
+            return True
+        # template literal form: `/cities/${...slug...}` where ...slug... is
+        # `entry.slug` or `slug` (any expression). We accept either.
+        if re.search(rf"/cities/\$\{{\s*(?:entry\.slug|slug)\s*\}}", code):
+            # generic template covers all slugs iterated from CITY_SLUG_LIST
+            return True
+        return False
+
+    home_city_link_hits = sum(
+        1 for s in locked_slugs if _has_city_link(home_code, s)
+    )
+    if home_city_link_hits < len(locked_slugs):
+        errors.append(
+            f"app/page.tsx missing /cities/{{slug}} links for locked cities: "
+            f"got {home_city_link_hits}/10"
+        )
+    else:
+        ok(f"app/page.tsx links all 10 locked cities via /cities/{{slug}} (template or literal)")
+
+    # 11c. 横向视角入口守门：/seven-dim + /peer-compare (各 1 个)
+    for url, label in [("/seven-dim", "/seven-dim"), ("/peer-compare", "/peer-compare")]:
+        if url not in home_code:
+            errors.append(f"app/page.tsx missing {label} nav anchor")
+
+    # 11d. 首页禁词守门 (per docs/06 §6.6 + docs/42 §8 + docs/43 §8):
+    #      home page 不出现 score/rating/rank 数值化逻辑.
+    for pat, label in [
+        (r"\bscore\b", "score"),
+        (r"\brating\b", "rating"),
+        (r"\brank(?:ing)?\b", "rank"),
+        (r"\btotal[_-]?score\b", "total_score"),
+        (r"\bconfidence[_-]?score\b", "confidence_score"),
+        (r"\bpeer_rank\b", "peer_rank"),
+    ]:
+        if re.search(pat, home_code, re.IGNORECASE):
+            errors.append(
+                f"app/page.tsx contains forbidden term {label!r} "
+                f"(per docs/06 §6.6 + 280 §红线)"
+            )
+        else:
+            ok(f"app/page.tsx has no forbidden {label!r} term")
+
+    # 11e. 7 维度枚举守门 (per docs/42 §3.1 — 仅展示枚举名称, 不派生 score).
+    seven_dim_card_path = ROOT / "lib/types_seven_dim.ts"
+    if seven_dim_card_path.exists():
+        tsrc = seven_dim_card_path.read_text(encoding="utf-8")
+        expected_dims = [
+            "POLICY_DELIVERY", "FISCAL_EXECUTION", "PROJECT_DELIVERY",
+            "ECONOMIC_ADAPTATION", "PUBLIC_SERVICES", "RISK_MANAGEMENT",
+            "GOAL_CONSISTENCY",
+        ]
+        for dim in expected_dims:
+            if dim not in tsrc:
+                errors.append(f"types_seven_dim.ts missing enum: {dim}")
+        if all(d in tsrc for d in expected_dims):
+            ok(f"types_seven_dim.ts declares all 7 dimension enums")
+
     if errors:
         for e in errors:
             fail(e)
         return 1
 
-    print("\n=== S2.0.1 + S2.7-a + S2.7-a2 + S2.7-b-lite + S2.7-b-full-lite mart-shape smoke: PASS ===")
+    print(
+        "\n=== S2.0.1 + S2.7-a + S2.7-a2 + S2.7-b-lite + S2.7-b-full-lite mart-shape "
+        "+ home nav (S2.7-a + S2.7-b + S2.8-lite + S2.9-lite, per tasking 280) smoke: PASS ==="
+    )
     return 0
 
 
