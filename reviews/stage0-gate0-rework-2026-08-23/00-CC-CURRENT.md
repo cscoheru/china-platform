@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `96` |
-| **origin_head** | `96dbe84` |
-| **cc_head** | `96dbe84`；`245` 已交 |
-| **cc_receipt** | `245` |
-| **cursor_ack** | `245` |
-| **last_audit** | `246` PASS |
+| **queue_rev** | `97` |
+| **origin_head** | `bf1962e` |
+| **cc_head** | `bf1962e`；`248` 已交 |
+| **cc_receipt** | `248` |
+| **cursor_ack** | `248` |
+| **last_audit** | `249` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T10:00:00+08:00` |
+| **updated_at** | `2026-08-26T10:06:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`247`** — S2.10 Gate 2 评审包规划（见 `247-stage2-s210-gate2-package-planning-tasking-20260826.md`）。
+**`250`** — S2.10-lite Gate 2 评审索引（见 `250-stage2-s210-lite-gate2-index-tasking-20260826.md`）。
 
-1. 起草 **`docs/44`**（只规划；**不**宣布 Gate 2 PASS）
-2. 补 pack → commit → `origin` + `github` → 回执 **`248`**
+1. 落地评审索引（**严禁**「Gate 2 PASS」字样）
+2. 补 pack → commit → `origin` + `github` → 回执 **`251`**
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
