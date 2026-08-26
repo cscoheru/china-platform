@@ -1,5 +1,5 @@
 {
-  "artifact_count": 676,
+  "artifact_count": 679,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -4056,6 +4056,24 @@
       "role": "documentation",
       "sha256": "f9eae19593e7e94bebe8a85d3bdcf867240982fa9ecc4c3b8d6c590264a3329a",
       "size_bytes": 4259
+    },
+    {
+      "path": "data/public_extracts/sz.gov.cn/MUNICIPAL_BULLETIN.json",
+      "role": "data_contract_suite",
+      "sha256": "937255a5c82b41ecd0db75ac3863db6620632bbeecad761131ec79ccab70fd94",
+      "size_bytes": 24021
+    },
+    {
+      "path": "scripts/_knife58_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "d851b11452471a1785f677f497ffd980eff4c459a8a94678e915ad22549fb290",
+      "size_bytes": 4385
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/368-stage0-cc-shenzhen-extract-fix-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "7bb48311df080477b0347cba980da3b1ed64056f5a5c21919859a22b76fe1dcd",
+      "size_bytes": 5809
     }
   ],
   "commit": {
@@ -4088,8 +4106,8 @@
   },
   "python_version": "3.14.3",
   "role_count": {
-    "data_contract_suite": 24,
-    "documentation": 108,
+    "data_contract_suite": 25,
+    "documentation": 109,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -4101,7 +4119,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 68,
+    "spike_helper": 69,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

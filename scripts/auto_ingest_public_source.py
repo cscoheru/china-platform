@@ -557,13 +557,74 @@ def extract_xlsx_tables(blob: bytes) -> list[dict[str, str]]:
         wb.close()
 
 
+def extract_municipal_tables(blob: bytes) -> list[dict[str, str]]:
+    """MUNICIPAL_BULLETIN extractor: real HTML tables first, prose fallback.
+
+    Shenzhen sz.gov.cn 公报 pages embed their data tables as PNG images and
+    ship the content as prose paragraphs (registry access_shape: 'HTML（散文
+    形式 + 嵌入表格）'); the only literal <table> on the article page is a
+    JS-populated search shell that is EMPTY at snapshot time, so the
+    first-table-only NBS walker yields 0 rows (per tasking 367 前置).
+
+    Strategy (per tasking 367 §SCHEMA, no fabricated rows):
+      1. Walk EVERY <table> with the NBS header/row logic and concatenate —
+         genuinely embedded tables win; empty JS shells contribute nothing.
+      2. If no table produced a row, fall back to prose: every non-empty <p>
+         in the article container (div.news_cont_d_wrap; falls back to body)
+         becomes one row {"section": <current 中文序号 header or "">,
+         "paragraph": <text>}. Section-header paragraphs (一、综合 style)
+         update the running section and are emitted too (lossless).
+    """
+    try:
+        from bs4 import BeautifulSoup  # local import; dry-run friendly
+    except ImportError as exc:  # pragma: no cover
+        raise RuntimeError("beautifulsoup4 missing") from exc
+    soup = BeautifulSoup(blob, "html.parser")
+
+    table_rows: list[dict[str, str]] = []
+    for table in soup.find_all("table"):
+        header: list[str] | None = None
+        for tr in table.find_all("tr"):
+            cells = [td.get_text(strip=True) for td in tr.find_all(["td", "th"])]
+            if not cells:
+                continue
+            if header is None:
+                header = cells
+                continue
+            table_rows.append({h: c for h, c in zip(header, cells)})
+
+    if table_rows:
+        return table_rows
+
+    # Prose fallback: the bulletin body itself (no fabrication — one row per
+    # real content paragraph).
+    import re
+
+    container = soup.find("div", class_="news_cont_d_wrap")
+    if container is None:
+        container = soup.body if soup.body is not None else soup
+    section_header_re = re.compile(r"^[一二三四五六七八九十百]+、")
+    rows: list[dict[str, str]] = []
+    current_section = ""
+    for p in container.find_all("p"):
+        text = p.get_text(strip=True)
+        if not text:
+            continue
+        if section_header_re.match(text):
+            current_section = text
+        rows.append({"section": current_section, "paragraph": text})
+    return rows
+
+
 def extract_tables(blob: bytes, *, category: str) -> list[dict[str, str]]:
     """Dispatcher: pick the right extractor based on registry.csv category.
 
     Per tasking 336 §SCHEMA "extract(xlsx)" + tasking 343 §SCHEMA — routes by category:
-      - NATIONAL_BULLETIN   → HTML (NBS zxfb index)
+      - NATIONAL_BULLETIN   → HTML (NBS zxfb index; first table, NBS 63-row
+                              contract UNCHANGED per tasking 367 §红线)
       - PROVINCIAL_BULLETIN → XLSX (Hubei 月度统计)
-      - MUNICIPAL_BULLETIN  → HTML (Shenzhen sz.gov.cn 公报散文 + 嵌入表格)
+      - MUNICIPAL_BULLETIN  → HTML (Shenzhen sz.gov.cn 公报散文 + 嵌入表格;
+                              all-tables walk + prose fallback, per tasking 367)
     Unknown categories raise ValueError (red line: do not silently
     downgrade to HTML for an EXCEL source or vice versa)."""
     if category == "NATIONAL_BULLETIN":
@@ -571,7 +632,7 @@ def extract_tables(blob: bytes, *, category: str) -> list[dict[str, str]]:
     if category == "PROVINCIAL_BULLETIN":
         return extract_xlsx_tables(blob)
     if category == "MUNICIPAL_BULLETIN":
-        return extract_html_tables(blob)
+        return extract_municipal_tables(blob)
     raise ValueError(
         f"unknown category '{category}'; no extractor registered "
         f"(supported: NATIONAL_BULLETIN, PROVINCIAL_BULLETIN, MUNICIPAL_BULLETIN)"

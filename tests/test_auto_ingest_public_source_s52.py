@@ -1693,3 +1693,84 @@ def test_refresh_requires_live_authorization(tmp_path, monkeypatch):
     ]
     rc = aips.main(argv)
     assert rc == 6
+
+
+# ---------------------------------------------------------------------------
+# Section 15 — 深圳散文抽取修复 (tasking 367 / knife 58)
+# ---------------------------------------------------------------------------
+
+SZ_SAMPLE = PROJECT_ROOT / "spikes" / "03-municipal-bulletin" / "sample.html"
+NBS_SAMPLE = PROJECT_ROOT / "spikes" / "01-national-yearbook" / "sample.html"
+SZ_EXTRACT_JSON = (
+    PROJECT_ROOT / "data" / "public_extracts" / "sz.gov.cn" / "MUNICIPAL_BULLETIN.json"
+)
+
+
+def test_municipal_extract_real_sample_prose_rows():
+    """Per 367 §SCHEMA (1): real sz.gov.cn sample → ≥1 row via the prose
+    fallback (the only <table> on the page is an empty JS search shell;
+    data tables are embedded as PNG images). No fabricated rows — every
+    row is a real content paragraph."""
+    rows = aips.extract_tables(SZ_SAMPLE.read_bytes(), category="MUNICIPAL_BULLETIN")
+    assert len(rows) >= 1, "municipal extract must not be empty (367)"
+    for r in rows:
+        assert set(r.keys()) == {"section", "paragraph"}
+        assert r["paragraph"], "paragraph text must be non-empty"
+    # 12 中文序号 section headers detected (一、综合 … 十二、城市环境和应急管理)
+    headers = {r["section"] for r in rows if r["section"]}
+    assert len(headers) == 12
+    assert "一、综合" in headers and "十二、城市环境和应急管理" in headers
+    # Known content needle: 2024 Shenzhen GDP lands under 一、综合 (real prose,
+    # not fabricated).
+    gdp = [r for r in rows if "36801.87" in r["paragraph"]]
+    assert gdp and gdp[0]["section"] == "一、综合"
+
+
+def test_municipal_extract_prefers_embedded_tables():
+    """Embedded real tables win over prose; empty JS shells contribute
+    nothing. Synthetic page: shell table + real 2-col table + prose."""
+    html = """<html><body>
+      <table class="mt10"><tbody id="rdsslist"></tbody></table>
+      <div class="news_cont_d_wrap">
+        <table><tr><th>指标</th><th>数值</th></tr>
+        <tr><td>GDP</td><td>36801.87</td></tr></table>
+        <p>一、综合</p><p>纯散文段落不应出现在表抽取结果里</p>
+      </div>
+    </body></html>""".encode("utf-8")
+    rows = aips.extract_tables(html, category="MUNICIPAL_BULLETIN")
+    assert rows == [{"指标": "GDP", "数值": "36801.87"}]
+
+
+def test_nbs_extract_no_regression_63_rows():
+    """Per 367 §SCHEMA (1): NBS NATIONAL_BULLETIN 63-row contract UNCHANGED —
+    first-table walker, same header keys, no municipal fallback involved."""
+    rows = aips.extract_tables(NBS_SAMPLE.read_bytes(), category="NATIONAL_BULLETIN")
+    assert len(rows) == 63
+    assert list(rows[0].keys()) == ["指 标", "7月", "1—7月"]
+
+
+def test_sz_delivered_extract_json_shape():
+    """Per 367 §SCHEMA (2): the re-run --from-local-sample artifact on disk
+    carries the prose rows with registry-anchored SHA + WORM archive path."""
+    d = json.loads(SZ_EXTRACT_JSON.read_text())
+    assert d["domain"] == "sz.gov.cn"
+    assert d["category"] == "MUNICIPAL_BULLETIN"
+    assert d["row_count"] == len(d["rows"]) >= 1
+    assert d["source_sha256"].startswith("d5e2c73196b43cec")
+    assert d["source_archive_path"].endswith("sz.gov.cn/sample.html")
+    assert d["source_sample_path"] == "spikes/03-municipal-bulletin/sample.html"
+
+
+def test_municipal_dispatch_routes_prose_fallback(tmp_path):
+    """Dispatcher-level: prose-only page (no tables at all) still yields
+    rows for MUNICIPAL_BULLETIN; the sz extract JSON written by an
+    in-process intake (tmp roots, 352 discipline) matches its rows."""
+    html = (
+        '<html><body><div class="news_cont_d_wrap">'
+        "<p>一、综合</p><p>全年数据。</p></div></body></html>"
+    ).encode("utf-8")
+    rows = aips.extract_tables(html, category="MUNICIPAL_BULLETIN")
+    assert rows == [
+        {"section": "一、综合", "paragraph": "一、综合"},
+        {"section": "一、综合", "paragraph": "全年数据。"},
+    ]
