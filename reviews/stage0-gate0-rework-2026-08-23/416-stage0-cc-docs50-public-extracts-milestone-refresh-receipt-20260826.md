@@ -3,7 +3,7 @@
 - 编号：`416-stage0-cc-docs50-public-extracts-milestone-refresh-receipt-20260826`
 - 任务书：`415-stage2-docs50-public-extracts-milestone-refresh-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TBD-pre-push`
+- cc_head：`7dafefb`
 - 日期：2026-08-26
 
 ---
