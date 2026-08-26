@@ -8,30 +8,34 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `POLL` |
-| **queue_rev** | `135` |
-| **origin_head** | `502a17c` |
-| **cc_head** | `502a17c`；`325` 已交 |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `136` |
+| **origin_head** | `e051131` |
+| **cc_head** | `e051131`；`325` 已交 |
 | **cc_receipt** | `325` |
 | **cursor_ack** | `325` |
 | **last_audit** | `326` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**尽快真数据**；O1 WAITING_FILE — **按 docs/51 投递** |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**不再等用户投喂**；产品=官方公开源**自动获取**+结构化呈现；遵守 PRD：不绕验证码/付费墙 |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL_ONLY` |
-| **updated_at** | `2026-08-26T16:55:00+08:00` |
-| **blocked_by** | 真 O1：用户按 `docs/51` 投递 allowlist 文件后 Cursor 再 bump |
+| **expect_cc_poll** | `EXEC_THEN_POLL` |
+| **updated_at** | `2026-08-26T17:00:00+08:00` |
+| **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**无。** docs/51 已交；下一刀待用户投递真文件（或另下 OCR 引擎裁定）后 Cursor bump。
+**`327`** — 官方公开源自动获取规划（见 `327-stage2-official-open-source-auto-ingest-plan-tasking-20260826.md`）。
+
+1. 写 `docs/52`（只规划；允许公开源自动下载入库；禁止绕验证码/付费墙）
+2. 补 pack → 回执 **`328`**
+3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
 
 ## POLL
 
-`cursor_ack=325`；CC `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**。
+交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
 
 探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
@@ -39,4 +43,4 @@
 
 ## BLOCKED
 
-（无用户裁定代号。）物理依赖：`docs/51` 投递。
+（无。）
