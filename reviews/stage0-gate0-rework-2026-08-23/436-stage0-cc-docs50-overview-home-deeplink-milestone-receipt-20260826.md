@@ -3,7 +3,7 @@
 - 编号：`436-stage0-cc-docs50-overview-home-deeplink-milestone-receipt-20260826`
 - 任务书：`436-stage2-docs50-overview-home-deeplink-milestone-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TBD`（git commit 后回填）
+- cc_head：`d4fb7d4`（双推：origin e84df56..d4fb7d4，github e84df56..d4fb7d4）
 - 日期：2026-08-26
 
 ---
