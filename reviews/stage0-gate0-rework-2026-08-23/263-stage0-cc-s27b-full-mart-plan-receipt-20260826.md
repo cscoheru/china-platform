@@ -21,9 +21,9 @@
 | 5 | 创建 `scripts/_knife24_manifest_bump.py`（2 NEW_ARTIFACTS：docs/47 + receipt 263）| ✅ | — | spike_helper |
 | 6 | bump pack（587 → **589**；+2 = docs/47 + receipt 263）| ✅ | — | — |
 | 7 | 写回执 `263` 入 `reviews/`（本文件）| ✅（本文件）| — | documentation |
-| 8 | commit → `origin` 优先 → `github` | ⏳ | — | — |
-| 9 | 三路对齐 | ⏳ | — | — |
-| 10 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ | — | — |
+| 8 | commit → `origin` 优先 → `github` | ✅ commit `6f937f58`（backfill this line）| — | — |
+| 9 | 三路对齐 | ✅ local = origin = github = `6f937f58` | — | — |
+| 10 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — | — |
 
 ---
 
@@ -152,11 +152,12 @@
 | docs/47 起草 | 11 节 + 红线 + OPEN | ✅ sha `fdb6fb28`（18983 bytes）|
 | docs/47 file-level guard | 扫描 forbidden tokens | ✅ CLEAN |
 | bump script | `scripts/_knife24_manifest_bump.py` | ✅ 587 → 589（+2 = docs/47 + receipt 263）|
-| 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ⏳（待 bump 重跑后 589 == 589 == 589）|
-| commit | `git add docs/47-...md evidence_pack/manifest.json scripts/_knife24_manifest_bump.py reviews/.../263-...md && git commit -m "feat(docs): add docs/47 S2.7-b-full mart plan (只规划; 10 城 mart + person/tenure 契约; 不宣布 PASS)"` | ⏳ |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ |
-| github push | `git push github HEAD`（带 proxy）| ⏳ |
-| 三路对齐 | origin/main = github/main = local HEAD | ⏳ |
+| 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ✅ 589 == 589 == 589 |
+| commit (knife 24 主提交) | `git add docs/47-...md evidence_pack/manifest.json scripts/_knife24_manifest_bump.py reviews/.../263-...md && git commit -m "feat(docs): add docs/47 S2.7-b-full mart plan (只规划; 10 城 mart + person/tenure 契约; 不宣布 PASS)"` | ✅ `6f937f58` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `f8aadf9..6f937f5` |
+| github push | `git push github HEAD`（带 proxy）| ✅ `f8aadf9..6f937f5` |
+| 三路对齐 | origin/main = github/main = local HEAD = `6f937f58` | ✅ |
+| backfill commit (this) | `git commit --amend --no-edit` ❌（禁止 amend-after-push）; 改用独立 commit | ⏳ |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
