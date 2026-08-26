@@ -21,9 +21,9 @@
 | 4 | 创建 `scripts/_knife38_manifest_bump.py`（2 NEW + 1 REFRESH）| ✅ NEW | spike_helper |
 | 5 | bump pack（628 → **630**；+2 = bump + receipt + docs/45 REFRESH）| ✅ | — |
 | 6 | 写回执 `306` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 7 | commit → `origin` 优先 → `github` | ⏳ this commit | — |
+| 7 | commit → `origin` 优先 → `github` | ✅ commit `447b340f58f48ca6b36bed788d8e5feeb283b693` | — |
 | 8 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 9 | 三路对齐 | ✅ local = origin = github | — |
+| 9 | 三路对齐 | ✅ local = origin = github = `447b340f58f48ca6b36bed788d8e5feeb283b693` | — |
 | 10 | → `84` POLL + `cc_gate_watch` re-arm | ✅ re-armed → `CC_ACTION=POLL` | — |
 
 ---
@@ -234,11 +234,11 @@ OK manifest updated; added 2 artifacts
 | docs/45 修改 | `docs/45-stage2-s210-lite-gate2-review-index-20260826.md`（§2 + §3 + §5.5 + §6 + §6.1 + §6.2 + §7 + header）| ✅ MOD |
 | bump script | `scripts/_knife38_manifest_bump.py`（2 NEW + 1 REFRESH）| ✅ 628 → 630（+2）|
 | 本地校验 | manifest invariant | ✅ 630 == 630 == 630 |
-| commit (knife 38 主提交) | `git add ... && git commit -m "docs(45): 305 person/tenure demo 刷新 — 登记 303 + 修正 relatedPersons=[] 过时 OPEN"` | ✅ `<this_commit>` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ `<this_commit>` → origin/main |
-| github push | `git push github HEAD` | ✅ `<this_commit>` → github/main |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ `<this_commit>` |
-| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill |
+| commit (knife 38 主提交) | `git add ... && git commit -m "docs(45): 305 person/tenure demo 刷新 — 登记 303 + 修正 relatedPersons=[] 过时 OPEN"` | ✅ `447b340f58f48ca6b36bed788d8e5feeb283b693` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `447b340` → origin/main |
+| github push | `git push github HEAD` | ✅ `447b340` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `447b340f58f48ca6b36bed788d8e5feeb283b693` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill `<backfill_sha>` |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
