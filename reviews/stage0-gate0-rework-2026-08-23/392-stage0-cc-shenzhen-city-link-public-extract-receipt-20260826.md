@@ -3,7 +3,7 @@
 - 编号：`392-stage0-cc-shenzhen-city-link-public-extract-receipt-20260826`
 - 任务书：`391-stage2-shenzhen-city-link-public-extract-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`
+- cc_head：`d2ee8d3`
 - 日期：2026-08-26
 
 ---
