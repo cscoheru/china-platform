@@ -27,10 +27,10 @@
 | 11 | 创建 `scripts/_knife33_manifest_bump.py`（5 NEW_ARTIFACTS）| ✅ | spike_helper |
 | 12 | bump pack（613 → **618**；+5 = docs/48 + script + pytest + bump + receipt）| ✅ | — |
 | 13 | 写回执 `291` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 14 | commit → `origin` 优先 → `github` | ✅ commit `____`（backfill this line）| — |
+| 14 | commit → `origin` 优先 → `github` | ✅ commit `8d673c252c765fefd086026fd11ec128750fbd0a` | — |
 | 15 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 16 | 三路对齐 | ⏳ local = origin = github = `____` | — |
-| 17 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — |
+| 16 | 三路对齐 | ✅ local = origin = github = `8d673c252c765fefd086026fd11ec128750fbd0a` | — |
+| 17 | → `84` POLL + `cc_gate_watch` re-arm | ✅ re-armed → `CC_ACTION=POLL` | — |
 
 ---
 
@@ -255,11 +255,11 @@ OK manifest updated; added 5 artifacts
 | 不写 forbidden 文件 | pytest `test_no_writes_to_forbidden_files` | ✅ PASS（mtimes 未变）|
 | bump script | `scripts/_knife33_manifest_bump.py` | ✅ 613 → 618（+5）|
 | 本地校验 | manifest invariant | ✅ 618 == 618 == 618 |
-| commit (knife 33 主提交) | `git add docs/48-stage2-real-sha-intake-handbook-20260826.md scripts/intake_real_sha_if_present.py tests/test_intake_real_sha_live_s2022.py scripts/_knife33_manifest_bump.py evidence_pack/manifest.json reviews/.../291-...md && git commit -m "feat(intake): S2.0.2.3 真 SHA 投递上线 — docs/48 手册 + intake script + 8 pytest 守门；当前 allowlist WAITING_FILE（fixture only；O1 OPEN）"` | ✅ `____` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ |
-| github push | `git push github HEAD`（带 proxy）| ✅ |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ |
-| backfill commit (this) | 独立 commit（不 amend-after-push）| ⏳ this commit |
+| commit (knife 33 主提交) | `git add ... && git commit -m "feat(intake): S2.0.2.3 真 SHA 投递上线 — docs/48 手册 + intake script + 8 pytest 守门；当前 allowlist WAITING_FILE（fixture only；O1 OPEN）"` | ✅ `8d673c252c765fefd086026fd11ec128750fbd0a` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `8d673c2` → origin/main |
+| github push | `git push github HEAD`（带 proxy）| ✅ `8d673c2` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `8d673c252c765fefd086026fd11ec128750fbd0a` |
+| backfill commit (this) | 独立 commit（不 amend-after-push）| ✅ backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
