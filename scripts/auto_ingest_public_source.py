@@ -61,6 +61,7 @@ import csv
 import datetime as _dt
 import hashlib
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -69,6 +70,34 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY_CSV = PROJECT_ROOT / "source_registry" / "registry.csv"
 PUBLIC_ARCHIVE_ROOT = PROJECT_ROOT / "data" / "public_archives"
 PUBLIC_EXTRACTS_ROOT = PROJECT_ROOT / "data" / "public_extracts"
+
+
+def get_archive_root() -> Path:
+    """Resolve the WORM archive root at CALL time (per tasking 352 §SCHEMA).
+
+    Precedence: CEGR_ARCHIVE_ROOT env (also set by --archive-root) >
+    module default PUBLIC_ARCHIVE_ROOT (monkeypatchable in-process).
+    Resolving per-call is what lets pytest — including subprocess tests,
+    which inherit the parent env — redirect writes to tmp dirs so the
+    committed data/public_extracts tree is never dirtied (cf. 7f04237 /
+    95a8569, both of which restored extracts a test had clobbered)."""
+    env = os.environ.get("CEGR_ARCHIVE_ROOT")
+    if env:
+        return Path(env)
+    return PUBLIC_ARCHIVE_ROOT
+
+
+def get_extracts_root() -> Path:
+    """Resolve the structured-extracts root at CALL time (per tasking 352).
+
+    Precedence: CEGR_EXTRACT_ROOT env (also set by --extract-root) >
+    module default PUBLIC_EXTRACTS_ROOT."""
+    env = os.environ.get("CEGR_EXTRACT_ROOT")
+    if env:
+        return Path(env)
+    return PUBLIC_EXTRACTS_ROOT
+
+
 REVIEWS_DIR = (
     PROJECT_ROOT / "reviews" / "stage0-gate0-rework-2026-08-23"
 )
@@ -315,7 +344,7 @@ def archive(
     WORM guarantee is enforced by filesystem ACLs in production (out of
     scope here)."""
     ym = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m")
-    out_dir = PUBLIC_ARCHIVE_ROOT / ym / domain
+    out_dir = get_archive_root() / ym / domain
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / filename
     if out_path.exists():
@@ -549,17 +578,23 @@ def write_extract_json(
     archive_path: Path,
     sha256_hex: str,
     source_sample_path: str,
-    output_root: Path = PUBLIC_EXTRACTS_ROOT,
+    output_root: Path | None = None,
 ) -> Path:
-    """Write structured extract JSON to data/public_extracts/{domain}/{category}.json.
+    """Write structured extract JSON to {extracts_root}/{domain}/{category}.json.
 
     Per tasking 346 §SCHEMA: stores REGISTRY_SAMPLE_INTAKED row's extracted
     table rows alongside provenance (archive path, source sample path, SHA).
     is_demo is implicit (caller decides via lineage row, not via this JSON).
 
+    `output_root` resolves at CALL time via get_extracts_root() when not
+    supplied (per tasking 352: a module-constant DEFAULT ARG would bind at
+    import and ignore both monkeypatching and CEGR_EXTRACT_ROOT, which is
+    exactly how pytest runs clobbered the committed extracts).
+
     Returns the written path. Caller is responsible for ensuring tables is
     the result of extract_tables(blob, category=pilot.category)."""
-    out_dir = output_root / domain
+    root = output_root if output_root is not None else get_extracts_root()
+    out_dir = root / domain
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"{category}.json"
     record = {
@@ -890,9 +925,10 @@ def write_sha_drift_report(
         f"{ts}-stage2-public-source-sha-drift-{domain}-{category}.md"
     )
     # Locate the most-recent archive for this domain+category so the
-    # report can reference the WORM-stored bytes.
+    # report can reference the WORM-stored bytes. Honor root overrides so
+    # test-run reports reference the redirected archive, not the repo one.
     ym = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m")
-    archive_dir = PUBLIC_ARCHIVE_ROOT / ym / domain
+    archive_dir = get_archive_root() / ym / domain
     archive_ref = "(not yet archived)"
     if archive_dir.exists():
         candidates = sorted(archive_dir.iterdir(), key=lambda p: p.stat().st_mtime, reverse=True)
@@ -999,7 +1035,27 @@ def main(argv: list[str] | None = None) -> int:
              "(live mode) OR write REGISTRY_SAMPLE_INTAKED lineage "
              "(--from-local-sample mode); PATH is the lineage JSONL output",
     )
+    parser.add_argument(
+        "--archive-root", default=None, metavar="DIR",
+        help="override the WORM archive root (default: data/public_archives "
+             "under the repo). Equivalent to CEGR_ARCHIVE_ROOT (per tasking "
+             "352 §SCHEMA; pytest MUST point this at a tmp dir)",
+    )
+    parser.add_argument(
+        "--extract-root", default=None, metavar="DIR",
+        help="override the structured-extracts root (default: "
+             "data/public_extracts under the repo). Equivalent to "
+             "CEGR_EXTRACT_ROOT (per tasking 352 §SCHEMA)",
+    )
     args = parser.parse_args(argv)
+
+    # Root overrides resolve BEFORE any write path can run (per tasking 352:
+    # both the CLI flag and the env var funnel into the same call-time
+    # resolution in get_archive_root()/get_extracts_root()).
+    if args.archive_root:
+        os.environ["CEGR_ARCHIVE_ROOT"] = args.archive_root
+    if args.extract_root:
+        os.environ["CEGR_EXTRACT_ROOT"] = args.extract_root
 
     if args.live and not args.confirm_live:
         print(

@@ -947,7 +947,9 @@ def test_extract_dispatcher_unknown_category_still_raises():
 def test_sz_worm_archive_path_format(tmp_path, monkeypatch):
     """archive() must produce {YYYY-MM}/{domain}/{filename} paths under
     data/public_archives/ for sz.gov.cn (per docs/52 §5 namespace)."""
-    monkeypatch.setattr(aips, "PUBLIC_ARCHIVE_ROOT", tmp_path)
+    # Patch the ENV override (highest precedence, per tasking 352) so the
+    # autouse fixture's redirect and this test's expected root agree.
+    monkeypatch.setenv("CEGR_ARCHIVE_ROOT", str(tmp_path))
     fake_blob = b"<html><body>shenzhen pilot bytes</body></html>"
     out = aips.archive(blob=fake_blob, domain="sz.gov.cn", filename="zfgb_2026.html")
     assert out.exists()
@@ -1035,10 +1037,25 @@ def test_sz_extensions_include_html_and_pdf():
 # 11. Local-sample structured intake (per tasking 346 §SCHEMA ≥8 pytest)
 # ---------------------------------------------------------------------------
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def tmp_archive_root(tmp_path, monkeypatch):
-    """Monkeypatch both archive() and write_extract_json() output roots
-    so tests do NOT pollute data/public_archives / data/public_extracts."""
+    """Redirect ALL archive()/write_extract_json() writes to tmp dirs
+    (per tasking 352 §SCHEMA "所有 pytest（含 subprocess）必须传入临时 root,
+    或设环境变量").
+
+    Three mechanisms, belt-and-suspenders:
+      1. monkeypatch.setenv CEGR_ARCHIVE_ROOT / CEGR_EXTRACT_ROOT — the
+         connector resolves roots at CALL time via get_archive_root()/
+         get_extracts_root(); subprocess tests inherit the parent env
+         (subprocess.run without env=), so this closes the 7f04237/95a8569
+         clobber vector (subprocess bypassed the old module-attr patch).
+      2. monkeypatch.setattr module attrs — keeps the pre-352 in-process
+         patching working (get_*_root() falls back to the module attr).
+      3. autouse — future tests are protected by default; nobody can add
+         a write-path test that forgets this fixture.
+    """
+    monkeypatch.setenv("CEGR_ARCHIVE_ROOT", str(tmp_path / "archives"))
+    monkeypatch.setenv("CEGR_EXTRACT_ROOT", str(tmp_path / "extracts"))
     monkeypatch.setattr(aips, "PUBLIC_ARCHIVE_ROOT", tmp_path / "archives")
     monkeypatch.setattr(aips, "PUBLIC_EXTRACTS_ROOT", tmp_path / "extracts")
     return tmp_path
@@ -1351,6 +1368,128 @@ def test_local_sample_main_returns_0_for_sz(tmp_path):
     )
     assert "REGISTRY_SAMPLE_INTAKED" in proc.stdout
     assert confirm_live.exists()
+
+
+# ---------------------------------------------------------------------------
+# 12. Extract-tree protection (per tasking 352 §SCHEMA ≥ regression test)
+# ---------------------------------------------------------------------------
+
+def test_regression_real_extracts_not_clobbered_by_pytest(tmp_path):
+    """Per tasking 352 §SCHEMA (3): after running the local-sample intake
+    via subprocess (the exact vector that clobbered the committed extracts
+    in 7f04237 / 95a8569), the REAL data/public_extracts/stats.gov.cn/
+    NATIONAL_BULLETIN.json must be byte-identical (source_sha256 and
+    row_count unchanged), while the redirected tmp roots receive the
+    writes instead.
+
+    Uses the NEW --archive-root/--extract-root CLI flags explicitly —
+    exercising the flag path, not just the env inheritance path."""
+    real_extract = (
+        aips.PROJECT_ROOT / "data" / "public_extracts"
+        / "stats.gov.cn" / "NATIONAL_BULLETIN.json"
+    )
+    assert real_extract.is_file(), "committed NBS extract missing"
+    before = real_extract.read_bytes()
+    before_rec = json.loads(before)
+
+    # The regression vector, verbatim: subprocess local-sample intake for
+    # BOTH pilots, with tmp roots via the new CLI flags.
+    for domain, category in (
+        ("stats.gov.cn", "NATIONAL_BULLETIN"),
+        ("sz.gov.cn", "MUNICIPAL_BULLETIN"),
+    ):
+        proc = subprocess.run(
+            [
+                sys.executable, str(SCRIPT),
+                f"--pilot-domain={domain}",
+                f"--pilot-category={category}",
+                "--from-local-sample",
+                f"--confirm-live={tmp_path / f'{domain}.lineage.jsonl'}",
+                f"--archive-root={tmp_path / 'archives'}",
+                f"--extract-root={tmp_path / 'extracts'}",
+            ],
+            capture_output=True, text=True, timeout=10,
+        )
+        assert proc.returncode == 0, (
+            f"{domain} local-sample should rc=0; got {proc.returncode}\n"
+            f"stdout: {proc.stdout}\nstderr: {proc.stderr}"
+        )
+
+    # Writes landed in the tmp roots (redirection actually happened) …
+    tmp_archives = list((tmp_path / "archives").rglob("*"))
+    tmp_extracts = list((tmp_path / "extracts").rglob("*.json"))
+    assert tmp_archives, "no archive writes under tmp archive root"
+    assert len(tmp_extracts) == 2, (
+        f"expected 2 extract JSONs under tmp extract root, got {len(tmp_extracts)}"
+    )
+    tmp_nbs = json.loads(
+        (tmp_path / "extracts" / "stats.gov.cn" / "NATIONAL_BULLETIN.json")
+        .read_text(encoding="utf-8")
+    )
+    assert tmp_nbs["row_count"] == 63
+
+    # … and the committed extract is untouched (the 352 contract).
+    after = real_extract.read_bytes()
+    after_rec = json.loads(after)
+    assert after == before, "committed NBS extract bytes changed during pytest"
+    assert after_rec["source_sha256"] == before_rec["source_sha256"]
+    assert after_rec["row_count"] == before_rec["row_count"] == 63
+
+
+def test_root_override_env_directs_in_process_intake(tmp_path, monkeypatch):
+    """Per tasking 352 §SCHEMA (2): CEGR_EXTRACT_ROOT / CEGR_ARCHIVE_ROOT
+    env vars redirect IN-PROCESS intake writes too (the write_extract_json
+    default-arg used to bind the repo constant at import — the second
+    clobber vector besides subprocess)."""
+    monkeypatch.setenv("CEGR_ARCHIVE_ROOT", str(tmp_path / "a"))
+    monkeypatch.setenv("CEGR_EXTRACT_ROOT", str(tmp_path / "e"))
+    fake_html = (
+        b'<html><body><table>'
+        b'<tr><th>k</th><th>v</th></tr>'
+        b'<tr><td>a</td><td>1</td></tr>'
+        b'</table></body></html>'
+    )
+    sample = tmp_path / "s.html"
+    sample.write_bytes(fake_html)
+    pilot_row = {
+        "domain": "example.test.cn",
+        "organization": "Example",
+        "category": "MUNICIPAL_BULLETIN",
+        "primary_url": "https://example.test.cn/",
+        "enabled": "TRUE",
+        "auth_note": "public",
+        "access_method": "HTML",
+        "file_hash_sha256": aips.sha256_of_bytes(fake_html),
+        "local_sample_path": str(sample),
+        "__lineage_output__": str(tmp_path / "lineage.jsonl"),
+    }
+    archive_path, extract_json_path, _ = aips.intake_from_local_sample(
+        pilot_row=pilot_row, allow_disabled=False
+    )
+    assert tmp_path / "a" in archive_path.parents
+    assert tmp_path / "e" in extract_json_path.parents
+    # And nothing leaked into the repo roots.
+    assert not (
+        aips.PROJECT_ROOT / "data" / "public_extracts" / "example.test.cn"
+    ).exists()
+
+
+def test_root_override_cli_flags_equal_env(tmp_path):
+    """Per tasking 352 §SCHEMA (1): --archive-root/--extract-root are the
+    CLI equivalent of the env vars. A dry-run must echo acceptance of the
+    flags (rc=0) so future callers can rely on them."""
+    proc = subprocess.run(
+        [
+            sys.executable, str(SCRIPT),
+            f"--archive-root={tmp_path / 'a'}",
+            f"--extract-root={tmp_path / 'e'}",
+        ],
+        capture_output=True, text=True, timeout=10,
+    )
+    assert proc.returncode == 0, (
+        f"dry-run with root overrides should rc=0; got {proc.returncode}\n"
+        f"stdout: {proc.stdout}\nstderr: {proc.stderr}"
+    )
 
 
 if __name__ == "__main__":
