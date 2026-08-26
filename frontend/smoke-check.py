@@ -758,6 +758,46 @@ def main() -> int:
     ):
         ok("app/page.tsx NBS sample deeplink row: REGISTRY_SAMPLE / demo / 非 O1")
 
+    # 12b''. 首页 NBS live 候选轨显式 deeplink (per tasking 424 §SCHEMA "本刀做")
+    # 镜像 NBS sample `#track-nbs-sample` 行 + 湖北 `#track-hb` 行;
+    # 文案标明 LIVE_CANDIDATE / drift 候选 / 非 O1 收口;
+    # 含 data-testid 供 pytest 守门; 不动 4 fixture 字节 / SHA;
+    # 不引入 next/link; 不分支 params.*.
+    if 'href="/public-extracts#track-nbs-live"' not in home_code:
+        errors.append(
+            "app/page.tsx missing /public-extracts#track-nbs-live NBS live "
+            "candidate deeplink anchor (per tasking 424)"
+        )
+    else:
+        ok("app/page.tsx links /public-extracts#track-nbs-live deeplink")
+    if 'data-testid="home-public-extracts-nbs-live"' not in home_code:
+        errors.append(
+            "app/page.tsx missing data-testid='home-public-extracts-nbs-live' "
+            "(per tasking 424 §NOW)"
+        )
+    else:
+        ok("app/page.tsx testId=home-public-extracts-nbs-live")
+    for label in ("LIVE_CANDIDATE", "drift 候选", "非 O1 收口"):
+        if label not in home_code:
+            errors.append(
+                f"app/page.tsx NBS live deeplink row missing {label!r} marker "
+                f"(per tasking 424)"
+            )
+    if all(
+        s in home_code
+        for s in (
+            "LIVE_CANDIDATE",
+            "drift 候选",
+            "非 O1 收口",
+            "/public-extracts#track-nbs-live",
+            "home-public-extracts-nbs-live",
+        )
+    ):
+        ok(
+            "app/page.tsx NBS live deeplink row: LIVE_CANDIDATE / drift 候选 "
+            "/ 非 O1 收口"
+        )
+
     # 12c. LIVE_CANDIDATE 并列分轨 — knife 55 (tasking 358). Per `358` §SCHEMA:
     #     (1) live WORM 提取 fixture 在位 (LIVE_CANDIDATE 语义);
     #     (2) /public-extracts 展示 live 候选区块 (显式非 O1);

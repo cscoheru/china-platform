@@ -173,6 +173,24 @@ export default async function HomePage() {
             </td>
           </tr>
           <tr>
+            <td style={cellStyle}>公开提取 NBS live 候选轨（candidate demo）</td>
+            <td style={cellStyle}>
+              <a
+                href="/public-extracts#track-nbs-live"
+                data-testid="home-public-extracts-nbs-live"
+              >
+                /public-extracts#track-nbs-live
+              </a>
+            </td>
+            <td style={cellStyle}>
+              stats.gov.cn / NATIONAL_BULLETIN 60 行（WORM `zxfb`
+              LIVE_CANDIDATE 提取；drift 候选；per 回执 `359` / `362`）
+            </td>
+            <td style={cellStyle}>
+              LIVE_CANDIDATE · drift 候选 · 非 O1 收口
+            </td>
+          </tr>
+          <tr>
             <td style={cellStyle}>公开提取湖北轨（xlsx demo）</td>
             <td style={cellStyle}>
               <a href="/public-extracts#track-hb">/public-extracts#track-hb</a>
