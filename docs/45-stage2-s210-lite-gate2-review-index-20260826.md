@@ -4,6 +4,7 @@
 > 前置：`249` docs/44 规划 PASS；`docs/08` §3.2（Gate 2 七条）；`docs/34` §2/§3；`docs/10` §3.1-3.5
 > 用户裁定：**D**（缩刀节奏）+ Stage 2 **C**
 > 任务书：`250-stage2-s210-lite-gate2-index-tasking-20260826`
+> 刷新：queue_rev 103（per `259-stage2-gate2-index-s27b-refresh-tasking-20260826`）— §2 #1 + §5.5 + §6.1 反映 S2.7-b-lite 收口（回执 `257` + commit `c8ee2b9`/`cd936ab`）
 >
 > ⚠ **本文件是 Gate 2 评审索引；不宣布 Gate 2 PASS**（per `docs/34 §1` + §8 #8 + §133 + `247` §红线 + `250` §红线）
 
@@ -21,7 +22,7 @@
 
 | # | 验收项 | 阶段来源 | 证据路径 | OPEN |
 |---|---|---|---|---|
-| **1** | 5 省 + 10 地市观察页面上线 | S2.7 | 5 省 lite：`frontend/app/provinces/{jiangsu,zhejiang,guangdong,shandong,sichuan}/page.tsx` | ⚠️ 10 地市 OPEN（S2.7-b tasking 待发）|
+| **1** | 5 省 + 10 地市观察页面上线 | S2.7 | 5 省 lite：`frontend/app/provinces/{jiangsu,zhejiang,guangdong,shandong,sichuan}/page.tsx`；10 地市 lite：`frontend/app/cities/[slug]/page.tsx`（`generateStaticParams` 预生成 10 slug；`dynamicParams = false` 404 兜底）| ✅ S2.7-b-lite 已交（mock 壳）— 回执 `257`；mart / person 真数据仍 OPEN → S2.7-b-full |
 | **2** | 六段证据链完整可点击 | S2.6 + S2.7 | `frontend/app/components/EvidenceChain.tsx` + 反例 trigger `schema/migrations/013_counterexample_gate.sql` | ✅ 不可降级 — 已守（lite UI + migration 013）|
 | **3** | 七维度观察卡可展开 | S2.8 | `frontend/app/components/SevenDimGrid.tsx` + `frontend/lib/types_seven_dim.ts` + `frontend/lib/mock_seven_dim.ts` | ✅ 演示级可过 |
 | **4** | 没有「官员能力总分」 | PRD 红线 + docs/08 §3.3 | `frontend/smoke-check.py` + file-level forbidden-token guard（每次新文件 CLEAN） | ✅ 已守门 |
@@ -102,6 +103,26 @@
 | `frontend/lib/types_peer_compare.ts`（8 enum + 5 isValid*）| ✅ |
 | `frontend/lib/mock_peer_compare.ts`（江苏 + 浙粤鲁 4 维度匹配）| ✅ |
 
+### 5.5 10 地市 lite 页面（S2.7-b-lite 收口 — 回执 `257`）
+
+| 地市 | slug | 省份 | 路由 | 状态 |
+|---|---|---|---|---|
+| 南京 | `nanjing` | 江苏 | `/cities/nanjing` | ✅ S2.7-b-lite 已交（mock） |
+| 苏州 | `suzhou` | 江苏 | `/cities/suzhou` | ✅ S2.7-b-lite 已交（mock） |
+| 无锡 | `wuxi` | 江苏 | `/cities/wuxi` | ✅ S2.7-b-lite 已交（mock） |
+| 南通 | `nantong` | 江苏 | `/cities/nantong` | ✅ S2.7-b-lite 已交（mock） |
+| 杭州 | `hangzhou` | 浙江 | `/cities/hangzhou` | ✅ S2.7-b-lite 已交（mock） |
+| 宁波 | `ningbo` | 浙江 | `/cities/ningbo` | ✅ S2.7-b-lite 已交（mock） |
+| 温州 | `wenzhou` | 浙江 | `/cities/wenzhou` | ✅ S2.7-b-lite 已交（mock） |
+| 广州 | `guangzhou` | 广东 | `/cities/guangzhou` | ✅ S2.7-b-lite 已交（mock） |
+| 深圳 | `shenzhen` | 广东 | `/cities/shenzhen` | ✅ S2.7-b-lite 已交（mock） |
+| 东莞 | `dongguan` | 广东 | `/cities/dongguan` | ✅ S2.7-b-lite 已交（mock） |
+
+**OPEN（推 S2.7-b-full）**：
+- `mart_city_evidence_chain` + `mart_city_seven_dim_overview`（per docs/46 §6.2）
+- person/tenure 真数据接入契约（per docs/46 §5.2 OPEN）
+- 依赖：O1 真实 SHA 收口 + Stage 1 OPEN 收口（per docs/34 §3）
+
 ---
 
 ## 6. 不可降级 / 演示级 / OPEN 守门汇总（per docs/44 §6）
@@ -115,6 +136,12 @@
 | **部分已交** | 验收项 #7（docs/10 §3.1-3.5）| ✅ §3.1/§3.5 schema；§3.2-§3.4 stub |
 | **OPEN** | O1 真实 SHA + O3 OCR | ⚠️ Gate 2 评审包必带 OPEN 清单 |
 | **OPEN** | 10 地市（S2.7-b）| ⚠️ S2.7-b tasking 待发 |
+
+### 6.1 S2.7-b 落地回执登记（per `258` §0 + `259` §SCHEMA）
+
+| 回执 | 内容 | 落地 commit | pack 注册 |
+|---|---|---|---|
+| `reviews/stage0-gate0-rework-2026-08-23/257-stage0-cc-s27b-lite-cities-impl-receipt-20260826.md` | S2.7-b-lite 10 地市 mock 壳 + dynamic segment + 复用三件套 + 6 pytest PASS | `c8ee2b9`（feat） + `cd936ab`（backfill） | ✅ 本刀登记进 manifest `evidence_pack/manifest.json`（per `259` §SCHEMA "回执 257 pack OPEN 若可则登记"） |
 
 ---
 

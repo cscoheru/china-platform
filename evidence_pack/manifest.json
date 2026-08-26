@@ -1,5 +1,5 @@
 {
-  "artifact_count": 586,
+  "artifact_count": 587,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3516,6 +3516,12 @@
       "role": "spike_helper",
       "sha256": "7c7518f49e53d2644037d6a2a88f9679fa4def5bcfebaabc9f393c7e2a994344",
       "size_bytes": 18265
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/257-stage0-cc-s27b-lite-cities-impl-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "6903169fffd819729f780372b129714a0ce2e9eaa9181b8f01bd8c6ffcd7b1f0",
+      "size_bytes": 13512
     }
   ],
   "commit": {
@@ -3549,7 +3555,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 20,
-    "documentation": 69,
+    "documentation": 70,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
