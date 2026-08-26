@@ -9,29 +9,27 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `100` |
-| **origin_head** | `82611f4` |
-| **cc_head** | `82611f4`；`253` 已交（S2.10 pytest）|
-| **cc_receipt** | `253` |
-| **cursor_ack** | `253` |
-| **last_audit** | `254` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**2026-08-26 自主推进** |
+| **queue_rev** | `101` |
+| **origin_head** | `90b51c4` |
+| **cc_head** | `90b51c4`；`254` 已交 |
+| **cc_receipt** | `254` |
+| **cursor_ack** | `254` |
+| **last_audit** | `255` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进 |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T12:10:00+08:00` |
+| **updated_at** | `2026-08-26T12:14:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`253-stage2-s27b-cities-plan-tasking`** — S2.7-b 规划（10 城名单已锁）。
+**`256`** — S2.7-b-lite（见 `256-stage2-s27b-lite-cities-impl-tasking-20260826.md`）。
 
-1. 起草 **`docs/46`**（只规划）
-2. 补 pack → commit → `origin` + `github` → 回执 **`255`**
+1. 10 城 `/cities/{slug}` mock 壳
+2. 最小 pytest → 补 pack → commit → 回执 **`257`**
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
-
-> 注：回执 `253` 已被 S2.10 pytest 占用；本刀用 **`255`**。
 
 ---
 
