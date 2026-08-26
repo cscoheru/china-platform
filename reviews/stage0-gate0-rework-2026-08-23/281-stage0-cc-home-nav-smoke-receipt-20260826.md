@@ -22,9 +22,9 @@
 | 6 | 创建 `scripts/_knife30_manifest_bump.py`（2 NEW_ARTIFACTS：bump + receipt）| ✅ | spike_helper |
 | 7 | bump pack（604 → **606**；+2 = bump + receipt；smoke-check.py 已在 manifest knife 13 入册）| ⏳ this step | — |
 | 8 | 写回执 `281` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 9 | commit → `origin` 优先 → `github` | ✅ commit `____`（backfill this line）| — |
+| 9 | commit → `origin` 优先 → `github` | ✅ commit `96d2dea`（backfill this line）| — |
 | 10 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 11 | 三路对齐 | ⏳ local = origin = github = `____` | — |
+| 11 | 三路对齐 | ✅ local = origin = github = `96d2dea` | — |
 | 12 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — |
 
 ---
@@ -180,10 +180,10 @@ INVARIANT: sum(role_count)=606 == artifact_count=606 == len(artifacts)=606
 | file-level forbidden-token guard | grep 禁词清单 | ✅ CLEAN（0 hit）|
 | bump script | `scripts/_knife30_manifest_bump.py` | ✅ 604 → 606（+2 = bump + receipt）|
 | 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ✅ 606 == 606 == 606 |
-| commit (knife 30 主提交) | `git add frontend/smoke-check.py scripts/_knife30_manifest_bump.py evidence_pack/manifest.json reviews/.../281-...md && git commit -m "test(smoke): 加 #11 home nav section 守门 4 sections + 10 城链接 + 禁词 + 7 维度枚举"` | ✅ `____` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ |
-| github push | `git push github HEAD`（带 proxy）| ✅ |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ |
+| commit (knife 30 主提交) | `git add frontend/smoke-check.py scripts/_knife30_manifest_bump.py evidence_pack/manifest.json reviews/.../281-...md && git commit -m "test(smoke): 加 #11 home nav section 守门 4 sections + 10 城链接 + 禁词 + 7 维度枚举"` | ✅ `96d2dea` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `dd8d18f..96d2dea` |
+| github push | `git push github HEAD`（带 proxy）| ✅ `dd8d18f..ae11cb8` |
+| 三路对齐 | origin/main = github/main = local HEAD = `96d2dea` | ✅ |
 | backfill commit (this) | 独立 commit（不 amend-after-push）| ⏳ this commit |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
