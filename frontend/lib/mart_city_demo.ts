@@ -1,18 +1,18 @@
 // Stage 2 / S2.7-b-full-lite — 10 地市 mart-shape 演示 fixture。
 //
 // Per docs/47 §3.1 (mart_city_evidence_chain 投影) + §3.2 (mart_city_seven_dim_overview 投影)
-// + §3.3 (person/tenure 接入 OPEN) + `265` §SCHEMA "is_demo fixture"。
+// + §3.3 (person/tenure 接入契约 demo) + `302` §SCHEMA "10 城 demo relatedPersons/tenure"。
 //
 // ⚠ 本文件 = mart-shape demo fixture（TypeScript 投影）；
 // dbt mart 真表在 S2.7-b-full 落地刀 (tasking 26X+) 写。
 // lineage.source_file_sha256 全部为 '0'*64 占位（per docs/47 §3.1 ⚠️ OPEN）。
 //
-// 红线 (per docs/47 §1.2 + `265` §红线 + docs/34 §1 + docs/06 §6.6 + docs/42 §8):
+// 红线 (per docs/47 §1.2 + `302` §红线 + docs/34 §1 + docs/06 §6.6 + docs/42 §8):
 //   - 不爬网 / 不引入 seed 数据
 //   - 不引入 score / rating / rank / total_score / confidence_score / credibility_score
 //   - 不派生 "地区得分" / 不派生 "地区排名" / 不做 peer_rank
 //   - 不接真 SHA 样本（lineage.source_file_sha256 = '0'*64 占位）
-//   - 不接 person/tenure 真数据（relatedPersons 留空数组；OPEN → full 刀）
+//   - 不接 person/tenure 真数据（canonical_name 全部 demo 占位 "演示 人物"；UI 必显式 demo 标识）
 //   - 不擅自增减 10 城名单（Cursor 锁定）
 
 import {
@@ -21,6 +21,7 @@ import {
   assertMartRowHasNoForbiddenFields,
   type MartCityViewProps,
   type MartLineageProps,
+  type MartPersonTenureRowProps,
 } from "./mart_city_types";
 import { CITY_SLUG_MAP, CITY_SLUG_LIST } from "./city_slug_map";
 import { BALANCE_STATUS, type BalanceStatus, type SevenDimCardId } from "./types_seven_dim";
@@ -111,6 +112,48 @@ function buildMartSevenDimOverview(citySlug: string) {
   });
 }
 
+// mart-shape person/tenure 接入契约最小子集（per docs/47 §3.3 + `302` §SCHEMA）
+//
+// 每城 2 行 demo：市委书记 + 市长。canonical_name 全部 demo 占位（"演示 人物 N (mock)"），
+// **绝不**写真实姓名（per `302` §红线 "不伪造真身份材料"）。
+// 真实 person/tenure 接入在 S2.1-lite `mart_person_tenure` PASS 后由 S2.7-b-full 真数据
+// 迁移刀 (tasking 26X+) 替换。
+function buildMartRelatedPersons(citySlug: string): MartPersonTenureRowProps[] {
+  const lineage = buildMartLineage(citySlug);
+  const cityNameZh = CITY_SLUG_MAP[citySlug].nameZh;
+  const demoRows: Array<{
+    personId: string;
+    canonicalName: string;
+    positionTitle: string;
+  }> = [
+    {
+      personId: `demo-person-${citySlug}-secretary`,
+      canonicalName: `演示 人物 A (mock, ${citySlug})`,
+      positionTitle: "市委书记（演示职位）",
+    },
+    {
+      personId: `demo-person-${citySlug}-mayor`,
+      canonicalName: `演示 人物 B (mock, ${citySlug})`,
+      positionTitle: "市长（演示职位）",
+    },
+  ];
+  return demoRows.map((d, idx) => {
+    const row: MartPersonTenureRowProps = {
+      personId: d.personId,
+      canonicalName: d.canonicalName,
+      positionTitle: d.positionTitle,
+      geoCanonicalName: cityNameZh,
+      isCurrent: true, // demo 演示均视为现任；真实 is_current 由 S2.1-lite 落地
+      lineage,
+    };
+    assertMartRowHasNoForbiddenFields(
+      row as unknown as Record<string, unknown>,
+      `mart_related_persons[${idx}]`,
+    );
+    return row;
+  });
+}
+
 // mart-shape 地市视图聚合（per docs/47 §3.1 + §3.2 + §3.3）
 function buildMartCityView(citySlug: string): MartCityViewProps {
   const lineage = buildMartLineage(citySlug);
@@ -120,7 +163,7 @@ function buildMartCityView(citySlug: string): MartCityViewProps {
     provinceSlug: CITY_SLUG_MAP[citySlug].provinceSlug,
     evidenceChain: buildMartEvidenceChain(citySlug),
     sevenDimOverview: buildMartSevenDimOverview(citySlug),
-    relatedPersons: [], // OPEN — S2.7-b-full 接 mart_person_tenure（per docs/47 §3.3 + S2.1-lite）
+    relatedPersons: buildMartRelatedPersons(citySlug),
     lineage,
   };
 }
@@ -139,3 +182,7 @@ export const MART_CITY_DEMO_PROVINCE_SLUGS = Array.from(
   new Set(CITY_SLUG_LIST.map((slug) => CITY_SLUG_MAP[slug].provinceSlug)),
 );
 export const MART_IS_DEMO_SENTINEL = MART_IS_DEMO;
+// 10 城 × 2 行 demo（市委书记 + 市长）= 20 demo 相关人物行（per `302` §SCHEMA）
+export const MART_CITY_DEMO_RELATED_PERSONS_PER_CITY = 2;
+export const MART_CITY_DEMO_RELATED_PERSONS_TOTAL =
+  MART_CITY_DEMO_COUNT * MART_CITY_DEMO_RELATED_PERSONS_PER_CITY;

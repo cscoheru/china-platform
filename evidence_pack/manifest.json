@@ -1,5 +1,5 @@
 {
-  "artifact_count": 625,
+  "artifact_count": 628,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3544,14 +3544,14 @@
     {
       "path": "frontend/lib/mart_city_demo.ts",
       "role": "data_contract_suite",
-      "sha256": "a70b3dfb4e1532dc6e0bad8148b8eeed31b6fa44b8851ea93fa1301d01193a63",
-      "size_bytes": 5666
+      "sha256": "746eaafbb7cca1e0a73206e01f3d8dde6fcfd445fbd0348defe17f19694eecf5",
+      "size_bytes": 7549
     },
     {
       "path": "frontend/app/components/CityPageMart.tsx",
       "role": "spike_helper",
-      "sha256": "b6646ae920de1bb73339242fcae0329024a5be942dc526284a3f580d71537611",
-      "size_bytes": 7118
+      "sha256": "761c869526637ec6c5911062ec8d475165c7eafa2c861e9e7a5420c2ae473424",
+      "size_bytes": 8852
     },
     {
       "path": "tests/test_mart_city_types_s27bf.py",
@@ -3750,6 +3750,24 @@
       "role": "documentation",
       "sha256": "3ae0fb0df79e97e756cc03bae8db1a907714992a637705fdd38b29aa01d28cb8",
       "size_bytes": 17792
+    },
+    {
+      "path": "tests/test_mart_related_persons_demo_s302.py",
+      "role": "schema_negative_test",
+      "sha256": "ffea904b8300842978731288a62b3c8c4ceac9e29136d2f82f46548d1ac1a7ed",
+      "size_bytes": 10779
+    },
+    {
+      "path": "scripts/_knife37_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "e03e3a9334fc874eba5b94533226dae6368839a25bf3eb9f926ce4dec1d74019",
+      "size_bytes": 3851
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/303-stage0-cc-s27b-person-tenure-demo-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "75f6c7ea3a8c31c88b928618f132c77c06577741d719ff775aae83ce8066096d",
+      "size_bytes": 22228
     }
   ],
   "commit": {
@@ -3783,19 +3801,19 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 21,
-    "documentation": 85,
+    "documentation": 86,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 39,
+    "schema_negative_test": 40,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 45,
+    "spike_helper": 46,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

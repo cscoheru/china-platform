@@ -1,17 +1,18 @@
 // Stage 2 / S2.7-b-full-lite — 10 地市 mart-shape 接驳组件。
 //
 // Per docs/47 §3.1 (mart_city_evidence_chain 投影) + §3.2 (mart_city_seven_dim_overview 投影)
-// + §4.1 (段级字段契约) + §4.2 (七维度 cell 契约) + `265` §SCHEMA
-// "CityPage 可切 mock→mart-shape"（feature-flag，默认 demo）。
+// + §3.3 (person/tenure 接入契约 demo) + §4.1 (段级字段契约) + §4.2 (七维度 cell 契约)
+// + `265` §SCHEMA "CityPage 可切 mock→mart-shape"（feature-flag，默认 demo）
+// + `302` §SCHEMA "10 城 demo relatedPersons/tenure 接驳"。
 //
 // ⚠ 默认走 mock_cities（per [slug]/page.tsx 的 feature-flag）。
 // 设 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 启用 mart-shape 接驳（per `265` §NOW-1）。
 //
-// 红线 (per docs/47 §1.2 + `265` §红线 + docs/34 §1 + docs/06 §6.6 + docs/42 §8):
+// 红线 (per docs/47 §1.2 + `302` §红线 + docs/34 §1 + docs/06 §6.6 + docs/42 §8):
 //   - 不派生 score / rating / rank / total_score / confidence_score
 //   - 不做"地区得分" / 不做"地区排名" / 不做 peer_rank
 //   - 不接真 SHA 样本（lineage.source_file_sha256 = '0'*64 占位）
-//   - 不接 person/tenure 真数据（relatedPersons 留空数组；OPEN → full 刀）
+//   - 不接 person/tenure 真数据（canonical_name 全部 demo 占位；is_demo 显式标注）
 
 import type { ReactElement } from "react";
 import type { MartCityViewProps } from "../../lib/mart_city_types";
@@ -176,6 +177,40 @@ export function CityPageMart({ mart }: CityPageMartProps): ReactElement {
           group,
         }}
       />
+
+      {/* person/tenure demo 接驳（per docs/47 §3.3 + `302` §SCHEMA）*/}
+      <section
+        data-testid="city-page-mart-related-persons"
+        data-related-persons-count={mart.relatedPersons.length}
+        data-is-demo={mart.lineage.isDemo}
+        style={{ marginTop: 24, padding: "12px 16px", background: "#fafafa", border: "1px solid #eee" }}
+      >
+        <h3 style={{ fontSize: 14, margin: "0 0 8px 0" }}>
+          履历卡（person/tenure demo 接驳 · per docs/47 §3.3）
+          <small style={{ marginLeft: 8, color: "#888", fontSize: 12 }}>
+            is_demo=true · 演示人物（mock）· 不构成真实身份核验
+          </small>
+        </h3>
+        <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13 }}>
+          {mart.relatedPersons.map((p) => (
+            <li key={p.personId} style={{ marginBottom: 4 }}>
+              <code>{p.canonicalName}</code>
+              {" — "}
+              <span>{p.positionTitle}</span>
+              {" · "}
+              <span style={{ color: "#666" }}>{p.geoCanonicalName}</span>
+              {" · "}
+              <span style={{ color: p.isCurrent ? "#0a0" : "#888" }}>
+                {p.isCurrent ? "现任" : "历任"}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p style={{ fontSize: 11, color: "#999", marginTop: 8, marginBottom: 0 }}>
+          canonical_name 全部为演示占位（per `302` §红线 "不伪造真身份材料"）；
+          真实 person/tenure 接入待 S2.1-lite `mart_person_tenure` PASS 后由 S2.7-b-full 真数据迁移刀替换。
+        </p>
+      </section>
 
       <p style={{ fontSize: 12, color: "#999", marginTop: 24 }}>
         S2.7-b-full-lite = mart-shape 接驳（演示 fixture；lineage.source_file_sha256 占位）；
