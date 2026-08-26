@@ -21,9 +21,9 @@
 | 4 | 创建 `scripts/_knife39_manifest_bump.py`（3 NEW）| ✅ NEW | spike_helper |
 | 5 | bump pack（630 → **633**；+3）| ✅ | — |
 | 6 | 写回执 `309` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 7 | commit → `origin` 优先 → `github` | ⏳ this commit | — |
+| 7 | commit → `origin` 优先 → `github` | ✅ commit `240b73540ed56e98bef17cb6e2e5bd17fa7ffcf6` | — |
 | 8 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 9 | 三路对齐 | ✅ local = origin = github | — |
+| 9 | 三路对齐 | ✅ local = origin = github = `240b73540ed56e98bef17cb6e2e5bd17fa7ffcf6` | — |
 | 10 | → `84` POLL + `cc_gate_watch` re-arm | ✅ re-armed → `CC_ACTION=POLL` | — |
 
 ---
@@ -249,11 +249,11 @@ OK manifest updated; added 3 artifacts
 | docs/49 创建 | `docs/49-stage2-o3-ocr-prod-path-plan-20260826.md`（11 节）| ✅ NEW |
 | bump script | `scripts/_knife39_manifest_bump.py`（3 NEW）| ✅ 630 → 633（+3）|
 | 本地校验 | manifest invariant | ✅ 633 == 633 == 633 |
-| commit (knife 39 主提交) | `git add ... && git commit -m "docs(49): 308 O3 OCR 生产路径规划 — 7 步流水线 + allowlist + lineage 衔接 (规划 only)"` | ✅ `<this_commit>` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ `<this_commit>` → origin/main |
-| github push | `git push github HEAD` | ✅ `<this_commit>` → github/main |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ `<this_commit>` |
-| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill |
+| commit (knife 39 主提交) | `git add ... && git commit -m "docs(49): 308 O3 OCR 生产路径规划 — 7 步流水线 + allowlist + lineage 衔接 (规划 only)"` | ✅ `240b73540ed56e98bef17cb6e2e5bd17fa7ffcf6` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `240b735` → origin/main |
+| github push | `git push github HEAD` | ✅ `240b735` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `240b73540ed56e98bef17cb6e2e5bd17fa7ffcf6` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill `<backfill_sha>` |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
