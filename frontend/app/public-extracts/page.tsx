@@ -28,8 +28,15 @@
 // frontend/public/public-extracts/{nbs,nbs-live-candidate,sz,hubei}.json
 // (download attr); 一览表增「下载 JSON」列 (8 列) → /public-extracts/*.json.
 // 静态路由: 无 params.*, 无 force-dynamic (纯 fixture 消费).
+// Per tasking 397 §SCHEMA (行筛选): 四个数据表各增每轨独立轻量行筛选
+//   (单输入框, 客户端单元格文本包含匹配, 大小写不敏感); 纯客户端
+//   ("use client" + useState), 不改 fixture 字节 / SHA / 列序; 筛选仅为
+//   视图过滤 (匹配 X / Y 行), 非权威库检索; demo/candidate 标注在表外,
+//   不受筛选影响; 静态路由不变 (无 params.*, 无运行时 fetch).
 
-import type { ReactElement } from "react";
+"use client";
+
+import { useState, type ReactElement } from "react";
 import DemoBadge from "../DemoBadge";
 import fixture from "../../lib/public_extract_nbs.json";
 import liveCandidateFixture from "../../lib/public_extract_nbs_live_candidate.json";
@@ -87,7 +94,65 @@ const cellStyle: React.CSSProperties = {
   textAlign: "left",
 };
 
+// Per tasking 397 §SCHEMA (1): 轻量行筛选 — 单元格文本包含匹配,
+// 大小写不敏感; 空查询 = 全量. 只过滤视图, 不改 fixture 数据/SHA/列序.
+function filterRows(
+  rows: ExtractRow[],
+  keys: string[],
+  query: string
+): ExtractRow[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return rows;
+  return rows.filter((row) =>
+    keys.some((key) => (row[key] ?? "").toLowerCase().includes(q))
+  );
+}
+
+// Per tasking 397: 每轨独立筛选输入框 (受控) + 匹配计数 + 守门文案.
+function TrackFilterInput(props: {
+  testId: string;
+  ariaLabel: string;
+  value: string;
+  onChange: (v: string) => void;
+  matched: number;
+  total: number;
+}): ReactElement {
+  return (
+    <p style={{ margin: "8px 0", fontSize: 13 }}>
+      <label>
+        <span style={{ marginRight: 8 }}>行筛选 (客户端包含匹配):</span>
+        <input
+          type="text"
+          data-testid={props.testId}
+          aria-label={props.ariaLabel}
+          placeholder="输入关键词, 过滤本轨行 (单元格文本包含匹配)"
+          value={props.value}
+          onChange={(e) => props.onChange(e.target.value)}
+          style={{ padding: "4px 8px", width: 260 }}
+        />
+      </label>{" "}
+      <span style={{ color: "#999", fontSize: 12 }}>
+        匹配 {props.matched} / {props.total} 行 — 筛选仅为客户端视图过滤
+        (demo/candidate 数据), 非权威库检索, 不改数据 / SHA。
+      </span>
+    </p>
+  );
+}
+
 export default function PublicExtractsPage(): ReactElement {
+  // Per tasking 397: 四轨各自独立筛选查询 (互不影响).
+  const [nbsSampleFilter, setNbsSampleFilter] = useState("");
+  const [nbsLiveFilter, setNbsLiveFilter] = useState("");
+  const [szFilter, setSzFilter] = useState("");
+  const [hbFilter, setHbFilter] = useState("");
+  const filteredExtractRows = filterRows(
+    extract.rows,
+    columnKeys,
+    nbsSampleFilter
+  );
+  const filteredLiveRows = filterRows(live.rows, liveColumnKeys, nbsLiveFilter);
+  const filteredSzRows = filterRows(sz.rows, szColumnKeys, szFilter);
+  const filteredHbRows = filterRows(hb.rows, hbColumnKeys, hbFilter);
   return (
     <main className="public-extracts-page">
       <header className="public-extracts-page__header">
@@ -322,6 +387,14 @@ export default function PublicExtractsPage(): ReactElement {
 
       <section className="public-extracts-page__table">
         <h2>提取表 ({extract.rows.length} 行,全量展示)</h2>
+        <TrackFilterInput
+          testId="track-filter-nbs-sample"
+          ariaLabel="NBS sample 轨行筛选 (客户端包含匹配, demo 数据)"
+          value={nbsSampleFilter}
+          onChange={setNbsSampleFilter}
+          matched={filteredExtractRows.length}
+          total={extract.rows.length}
+        />
         <table
           style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}
         >
@@ -335,15 +408,23 @@ export default function PublicExtractsPage(): ReactElement {
             </tr>
           </thead>
           <tbody>
-            {extract.rows.map((row, idx) => (
-              <tr key={idx}>
-                {columnKeys.map((key) => (
-                  <td key={key} style={cellStyle}>
-                    {row[key] ?? ""}
-                  </td>
-                ))}
+            {filteredExtractRows.length === 0 ? (
+              <tr>
+                <td style={cellStyle} colSpan={columnKeys.length || 1}>
+                  无匹配行 — 客户端筛选 demo 数据, 非权威库检索; 清空输入恢复全量。
+                </td>
               </tr>
-            ))}
+            ) : (
+              filteredExtractRows.map((row, idx) => (
+                <tr key={idx}>
+                  {columnKeys.map((key) => (
+                    <td key={key} style={cellStyle}>
+                      {row[key] ?? ""}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
         <p style={{ marginTop: 8, fontSize: 12, color: "#999" }}>
@@ -426,6 +507,14 @@ export default function PublicExtractsPage(): ReactElement {
         </table>
 
         <h3 style={{ marginTop: 24 }}>候选提取表 ({live.rows.length} 行,全量)</h3>
+        <TrackFilterInput
+          testId="track-filter-nbs-live"
+          ariaLabel="NBS live 候选轨行筛选 (客户端包含匹配, candidate 数据)"
+          value={nbsLiveFilter}
+          onChange={setNbsLiveFilter}
+          matched={filteredLiveRows.length}
+          total={live.rows.length}
+        />
         <table
           style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}
         >
@@ -439,15 +528,23 @@ export default function PublicExtractsPage(): ReactElement {
             </tr>
           </thead>
           <tbody>
-            {live.rows.map((row, idx) => (
-              <tr key={idx}>
-                {liveColumnKeys.map((key) => (
-                  <td key={key} style={cellStyle}>
-                    {row[key] ?? ""}
-                  </td>
-                ))}
+            {filteredLiveRows.length === 0 ? (
+              <tr>
+                <td style={cellStyle} colSpan={liveColumnKeys.length || 1}>
+                  无匹配行 — 客户端筛选 candidate 数据, 非权威库检索; 清空输入恢复全量。
+                </td>
               </tr>
-            ))}
+            ) : (
+              filteredLiveRows.map((row, idx) => (
+                <tr key={idx}>
+                  {liveColumnKeys.map((key) => (
+                    <td key={key} style={cellStyle}>
+                      {row[key] ?? ""}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
         <p style={{ marginTop: 8, fontSize: 12, color: "#999" }}>
@@ -531,6 +628,14 @@ export default function PublicExtractsPage(): ReactElement {
         </table>
 
         <h3 style={{ marginTop: 24 }}>散文段落表 ({sz.rows.length} 行,全量)</h3>
+        <TrackFilterInput
+          testId="track-filter-sz"
+          ariaLabel="深圳轨行筛选 (客户端包含匹配, demo 散文数据)"
+          value={szFilter}
+          onChange={setSzFilter}
+          matched={filteredSzRows.length}
+          total={sz.rows.length}
+        />
         <table
           style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}
         >
@@ -544,15 +649,23 @@ export default function PublicExtractsPage(): ReactElement {
             </tr>
           </thead>
           <tbody>
-            {sz.rows.map((row, idx) => (
-              <tr key={idx}>
-                {szColumnKeys.map((key) => (
-                  <td key={key} style={cellStyle}>
-                    {row[key] ?? ""}
-                  </td>
-                ))}
+            {filteredSzRows.length === 0 ? (
+              <tr>
+                <td style={cellStyle} colSpan={szColumnKeys.length || 1}>
+                  无匹配行 — 客户端筛选 demo 数据, 非权威库检索; 清空输入恢复全量。
+                </td>
               </tr>
-            ))}
+            ) : (
+              filteredSzRows.map((row, idx) => (
+                <tr key={idx}>
+                  {szColumnKeys.map((key) => (
+                    <td key={key} style={cellStyle}>
+                      {row[key] ?? ""}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
         <p style={{ marginTop: 8, fontSize: 12, color: "#999" }}>
@@ -641,6 +754,14 @@ export default function PublicExtractsPage(): ReactElement {
         <h3 style={{ marginTop: 24 }}>
           月报统计表 ({hb.rows.length} 行,全量)
         </h3>
+        <TrackFilterInput
+          testId="track-filter-hb"
+          ariaLabel="湖北轨行筛选 (客户端包含匹配, demo xlsx 数据)"
+          value={hbFilter}
+          onChange={setHbFilter}
+          matched={filteredHbRows.length}
+          total={hb.rows.length}
+        />
         <table
           style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}
         >
@@ -654,15 +775,23 @@ export default function PublicExtractsPage(): ReactElement {
             </tr>
           </thead>
           <tbody>
-            {hb.rows.map((row, idx) => (
-              <tr key={idx}>
-                {hbColumnKeys.map((key) => (
-                  <td key={key} style={cellStyle}>
-                    {row[key] ?? ""}
-                  </td>
-                ))}
+            {filteredHbRows.length === 0 ? (
+              <tr>
+                <td style={cellStyle} colSpan={hbColumnKeys.length || 1}>
+                  无匹配行 — 客户端筛选 demo 数据, 非权威库检索; 清空输入恢复全量。
+                </td>
               </tr>
-            ))}
+            ) : (
+              filteredHbRows.map((row, idx) => (
+                <tr key={idx}>
+                  {hbColumnKeys.map((key) => (
+                    <td key={key} style={cellStyle}>
+                      {row[key] ?? ""}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
         <p style={{ marginTop: 8, fontSize: 12, color: "#999" }}>

@@ -1049,6 +1049,51 @@ def main() -> int:
                 "(nbs / nbs-live-candidate / sz / hubei)"
             )
 
+    # §12h — 四轨轻量行筛选 (per tasking 397)
+    # 每轨数据表上方独立 input (客户端包含匹配); 纯客户端 (use client +
+    # useState), 不改 fixture 字节/SHA; 须标非权威库检索; 空匹配占位.
+    if pe_page_path.is_file():
+        pe_src7 = pe_page_path.read_text(encoding="utf-8")
+        pe_code7 = re.sub(r"//[^\n]*", "", pe_src7)
+        pe_code7 = re.sub(r"/\*.*?\*/", "", pe_code7, flags=re.DOTALL)
+        for needle, label in [
+            ('"use client"', "use client 指令 (纯客户端筛选)"),
+            ("useState(", "useState 状态 (4 轨筛选查询)"),
+            ("data-testid={props.testId}", "testId 渲染为 data-testid 属性"),
+            (
+                'testId="track-filter-nbs-sample"',
+                "NBS sample 轨筛选 input",
+            ),
+            ('testId="track-filter-nbs-live"', "NBS live 轨筛选 input"),
+            ('testId="track-filter-sz"', "深圳轨筛选 input"),
+            ('testId="track-filter-hb"', "湖北轨筛选 input"),
+            ("toLowerCase().includes(", "包含匹配 + 大小写不敏感过滤逻辑"),
+            ("匹配 {props.matched} / {props.total} 行", "匹配计数行"),
+            ("非权威库检索", "筛选非权威库检索守门"),
+            ("无匹配行", "空匹配占位行"),
+        ]:
+            if needle not in pe_code7:
+                errors.append(
+                    f"public-extracts/page.tsx missing {label} (per tasking 397)"
+                )
+        if all(
+            n in pe_code7
+            for n in (
+                '"use client"',
+                "useState(",
+                'testId="track-filter-nbs-sample"',
+                'testId="track-filter-nbs-live"',
+                'testId="track-filter-sz"',
+                'testId="track-filter-hb"',
+                "toLowerCase().includes(",
+                "非权威库检索",
+            )
+        ):
+            ok(
+                "public-extracts/page.tsx: 四轨行筛选 input (testid ×4) + "
+                "客户端包含匹配 + 非权威库检索守门"
+            )
+
     # §13 — 深圳城页链到 /public-extracts#track-sz (per tasking 391)
     # CityPage.tsx + CityPageMart.tsx 各含 slug/cityId === 'shenzhen'
     # 条件分支 → /public-extracts#track-sz 链 + REGISTRY_SAMPLE demo 标注 +

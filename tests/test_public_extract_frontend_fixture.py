@@ -439,3 +439,98 @@ def test_page_renders_download_json_column_and_links() -> None:
         dl = f'download="public-extracts-{pub_name}"'
         assert href in code, f"页面须含 {href}"
         assert dl in code, f"页面 download attr 须含 {dl}"
+
+
+# ---------------------------------------------------------------------------
+# Knife 68 / tasking 397 — 四轨轻量行筛选 (每轨独立 input, 客户端包含匹配)
+# ---------------------------------------------------------------------------
+
+TRACK_FILTER_TESTIDS = (
+    "track-filter-nbs-sample",
+    "track-filter-nbs-live",
+    "track-filter-sz",
+    "track-filter-hb",
+)
+
+
+def test_track_filter_inputs_present_per_track() -> None:
+    """Per 397 §SCHEMA (1): 四轨数据表上方各一独立 input (data-testid +
+    受控 value/onChange); 每轨独立 state, 非共用一个 filter."""
+    src = PE_PAGE.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", src)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    for testid in TRACK_FILTER_TESTIDS:
+        # testId 经 TrackFilterInput prop 传入, 渲染为 data-testid 属性
+        assert f'testId="{testid}"' in code, (
+            f"/public-extracts 须含每轨行筛选 input (testId={testid}, "
+            f"per 397 §SCHEMA-1 每轨独立)"
+        )
+        assert "data-testid={props.testId}" in code, (
+            "TrackFilterInput 须把 testId 渲染为 data-testid 属性"
+        )
+    # 4 轨受控绑定 (各自独立 state → 各自独立 value prop)
+    for value_binding in (
+        "value={nbsSampleFilter}",
+        "value={nbsLiveFilter}",
+        "value={szFilter}",
+        "value={hbFilter}",
+    ):
+        assert value_binding in code, f"筛选 input 须受控绑定 {value_binding}"
+    # 匹配计数行 (视图过滤透明度: X / Y 行)
+    assert "匹配 {props.matched} / {props.total} 行" in code, (
+        "筛选行须展示匹配计数 (匹配 X / Y 行)"
+    )
+
+
+def test_track_filter_logic_contains_match_client_side() -> None:
+    """Per 397 §SCHEMA (1)+(2): 过滤 = 单元格文本包含匹配 (大小写不敏感,
+    toLowerCase + includes); 纯客户端 — use client + 本地 filterRows, tbody
+    消费 filtered 数组 (视图过滤); fixture import 原样, 无运行时 fetch."""
+    src = PE_PAGE.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", src)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    assert '"use client"' in code, "页面须为客户端组件 (纯客户端筛选, per 397 §SCHEMA-2)"
+    assert "filterRows(" in code, "须有本地 filterRows 帮助函数"
+    assert ".toLowerCase().includes(" in code, (
+        "过滤须为单元格文本包含匹配 + 大小写不敏感"
+    )
+    # 4 filtered 数组被 tbody 消费 (视图过滤而非改写 fixture)
+    for filtered in (
+        "filteredExtractRows",
+        "filteredLiveRows",
+        "filteredSzRows",
+        "filteredHbRows",
+    ):
+        assert f"{filtered}.length === 0" in code, (
+            f"须有 {filtered} 空匹配分支 (占位行)"
+        )
+        assert f"{filtered}.map(" in code, (
+            f"tbody 须消费 {filtered} (视图过滤, 不改 fixture)"
+        )
+    # fixture import 原样 (未改为运行时 fetch/重算)
+    for imp in (
+        "public_extract_nbs.json",
+        "public_extract_nbs_live_candidate.json",
+        "public_extract_sz.json",
+        "public_extract_hubei.json",
+    ):
+        assert imp in code, f"fixture import 须原样保留: {imp}"
+    assert "fetch(" not in code, (
+        "行筛选不得引入运行时抓取 (纯 fixture 消费, per 397 §SCHEMA-2)"
+    )
+
+
+def test_track_filter_disclaimer_and_empty_state() -> None:
+    """Per 397 §禁止: 不得谎称筛选结果=权威库 — 筛选行须标 demo 视图过滤 +
+    非权威库检索; 空匹配须有占位行 (不伪造数据); demo/candidate 标注
+    (REGISTRY_SAMPLE / LIVE_CANDIDATE) 在表外, 不受筛选影响."""
+    src = PE_PAGE.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", src)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    assert "非权威库检索" in code, "筛选行须显式非权威库检索守门 (per 397 §禁止)"
+    assert "视图过滤" in code, "筛选行须标客户端视图过滤 (不改数据)"
+    assert "无匹配行" in code, "空匹配须有占位行, 不得留空歧义"
+    # demo/candidate 标注仍在 (筛选不移除标注 — 标注在表外)
+    assert "REGISTRY_SAMPLE" in code
+    assert "LIVE_CANDIDATE" in code
+    assert "O1_AUTO_INTAKED" not in code, "不得宣称 O1 收口"
