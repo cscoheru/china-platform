@@ -1,0 +1,59 @@
+-- Migration 011 log — S2.4-lite budget_allocation + budget_execution additive columns applied
+--
+-- Per Cursor tasking 218 §NOW.1 (落地 migration + 可选空 seed).
+-- Apply via:
+--   psql "$CEGR_TEST_DSN" -v ON_ERROR_STOP=1 \
+--        -f schema/migrations/011_budget_execution_alignment.sql
+--
+-- This file is informational; the canonical DDL is in
+-- schema/migrations/011_budget_execution_alignment.sql.
+
+SET search_path = cegr, public;
+
+-- step 1: budget_allocation (+ 8 cols additive)
+ALTER TABLE budget_allocation
+    ADD COLUMN IF NOT EXISTS canonical_category TEXT,
+    ADD COLUMN IF NOT EXISTS canonical_unit TEXT,
+    ADD COLUMN IF NOT EXISTS allocation_currency_canonical TEXT,
+    ADD COLUMN IF NOT EXISTS budget_class TEXT,
+    ADD COLUMN IF NOT EXISTS fiscal_year_int INTEGER,
+    ADD COLUMN IF NOT EXISTS lineage JSONB,
+    ADD COLUMN IF NOT EXISTS budget_hash_canonical TEXT,
+    ADD COLUMN IF NOT EXISTS progress_note TEXT;
+
+-- step 2: budget_execution (+ 7 cols additive)
+ALTER TABLE budget_execution
+    ADD COLUMN IF NOT EXISTS canonical_unit TEXT,
+    ADD COLUMN IF NOT EXISTS execution_currency_canonical TEXT,
+    ADD COLUMN IF NOT EXISTS execution_date DATE,
+    ADD COLUMN IF NOT EXISTS fiscal_year_int INTEGER,
+    ADD COLUMN IF NOT EXISTS lineage JSONB,
+    ADD COLUMN IF NOT EXISTS execution_hash_canonical TEXT,
+    ADD COLUMN IF NOT EXISTS variance_reason TEXT;
+
+-- step 3: indexes (7)
+CREATE INDEX IF NOT EXISTS idx_budget_alloc_canonical_category
+    ON budget_allocation (canonical_category)
+    WHERE canonical_category IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_budget_alloc_class
+    ON budget_allocation (budget_class)
+    WHERE budget_class IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_budget_alloc_hash_canonical
+    ON budget_allocation (budget_hash_canonical)
+    WHERE budget_hash_canonical IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_budget_alloc_lineage_gin
+    ON budget_allocation USING gin (lineage jsonb_path_ops)
+    WHERE lineage IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_budget_exec_hash_canonical
+    ON budget_execution (execution_hash_canonical)
+    WHERE execution_hash_canonical IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_budget_exec_lineage_gin
+    ON budget_execution USING gin (lineage jsonb_path_ops)
+    WHERE lineage IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_budget_exec_date
+    ON budget_execution (execution_date)
+    WHERE execution_date IS NOT NULL;
+
+RESET search_path;
+
+-- End of migration 011 log.
