@@ -22,8 +22,8 @@
 | 7 | 文件级 forbidden-token guard（"Gate 2 PASS" 4 处全部为否定语境；CLEAN）| ✅ | — | — |
 | 8 | 补 pack（586 → **587**；+1 = 回执 257）| ✅ | — | documentation |
 | 9 | 写回执 `260` 入 `reviews/` | ✅（本文件）| — | documentation |
-| 10 | commit → `origin` 优先 → `github` | ⏳ `pending` | — | — |
-| 11 | 三路对齐 | ⏳ `pending` | — | — |
+| 10 | commit → `origin` 优先 → `github` | ✅ `b8ba801` | — | — |
+| 11 | 三路对齐 | ✅ local = origin = github = `b8ba801` | — | — |
 | 12 | → `84` POLL + `cc_gate_watch` | ⏳ re-arm | — | — |
 
 ---
@@ -120,10 +120,10 @@
 | docs/45 file-level guard | 扫描 forbidden tokens（"Gate 2 PASS" 4 处否定语境）| ✅ CLEAN |
 | bump pack | `python3 scripts/_knife23_manifest_bump.py` | ✅ 586 → 587（+1 = 回执 257）|
 | 本地校验 | `python3 -c "json.load(...)" manifest invariant` | ✅ 587 == 587 == 587 |
-| commit | `git add docs/45-...md evidence_pack/manifest.json scripts/_knife23_manifest_bump.py reviews/.../257-...md reviews/.../260-...md && git commit -m "feat(docs): refresh docs/45 for S2.7-b-lite pass (10 地市路径 ✅; 回执 257 登记; 不宣布 PASS)"` | ⏳ `pending` |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ `pending` |
-| github push | `git push github HEAD`（带 proxy）| ⏳ `pending` |
-| 三路对齐 | origin/main = github/main = local HEAD = `pending` | ⏳ `pending` |
+| commit | `git add docs/45-...md evidence_pack/manifest.json scripts/_knife23_manifest_bump.py reviews/.../257-...md reviews/.../260-...md && git commit -m "feat(docs): refresh docs/45 for S2.7-b-lite pass (10 地市路径 ✅; 回执 257 登记; 不宣布 PASS)"` | ✅ `b8ba801` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ |
+| github push | `git push github HEAD`（带 proxy）| ✅ |
+| 三路对齐 | origin/main = github/main = local HEAD = `b8ba801` | ✅ |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
