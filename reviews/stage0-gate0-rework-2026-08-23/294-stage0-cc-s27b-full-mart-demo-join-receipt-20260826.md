@@ -25,10 +25,10 @@
 | 9 | 创建 `scripts/_knife34_manifest_bump.py`（2 NEW_ARTIFACTS：bump + receipt）+ REFRESH 3 改动文件 SHA | ✅ | spike_helper |
 | 10 | bump pack（618 → **620**；+2 = bump + receipt）+ REFRESH 3 文件 SHA | ✅ | — |
 | 11 | 写回执 `294` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 12 | commit → `origin` 优先 → `github` | ✅ commit `____`（backfill this line）| — |
+| 12 | commit → `origin` 优先 → `github` | ✅ commit `025904c8402e3973e4bc522285cd297c0a8aeb44` | — |
 | 13 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 14 | 三路对齐 | ⏳ local = origin = github = `____` | — |
-| 15 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — |
+| 14 | 三路对齐 | ✅ local = origin = github = `025904c8402e3973e4bc522285cd297c0a8aeb44` | — |
+| 15 | → `84` POLL + `cc_gate_watch` re-arm | ✅ re-armed → `CC_ACTION=POLL` | — |
 
 ---
 
@@ -274,11 +274,11 @@ OK manifest updated; added 2 artifacts
 | file-level forbidden-token guard | grep 禁词清单 | ✅ CLEAN（0 hit）|
 | bump script | `scripts/_knife34_manifest_bump.py`（2 NEW + 3 REFRESH）| ✅ 618 → 620（+2）|
 | 本地校验 | manifest invariant | ✅ 620 == 620 == 620 |
-| commit (knife 34 主提交) | `git add dbt/models/marts/mart_city_evidence_chain.sql dbt/models/marts/mart_city_seven_dim_overview.sql tests/test_mart_city_dbt_skel_s27bf.py scripts/_knife34_manifest_bump.py evidence_pack/manifest.json reviews/.../294-...md && git commit -m "feat(dbt): S2.7-b-full mart demo-join — mart_city_evidence_chain 60 行 + mart_city_seven_dim_overview 70 行（10 城 × 6 段/7 维；is_demo=true；SHA '0'*64 占位）"` | ✅ `____` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ |
-| github push | `git push github HEAD`（带 proxy）| ✅ |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ |
-| backfill commit (this) | 独立 commit（不 amend-after-push）| ⏳ this commit |
+| commit (knife 34 主提交) | `git add ... && git commit -m "feat(dbt): S2.7-b-full mart demo-join — mart_city_evidence_chain 60 行 + mart_city_seven_dim_overview 70 行（10 城 × 6 段/7 维；is_demo=true；SHA '0'*64 占位）"` | ✅ `025904c8402e3973e4bc522285cd297c0a8aeb44` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `025904c` → origin/main |
+| github push | `git push github HEAD`（带 proxy）| ✅ `025904c` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `025904c8402e3973e4bc522285cd297c0a8aeb44` |
+| backfill commit (this) | 独立 commit（不 amend-after-push）| ✅ backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
