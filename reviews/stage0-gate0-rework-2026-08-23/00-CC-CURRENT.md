@@ -9,27 +9,28 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `137` |
-| **origin_head** | `51a785c` |
-| **cc_head** | `51a785c`；`325` 已交 |
-| **cc_receipt** | `325` |
-| **cursor_ack** | `325` |
-| **last_audit** | `326` PASS |
+| **queue_rev** | `138` |
+| **origin_head** | `2c566be` |
+| **cc_head** | `2c566be`；`328` 已交 |
+| **cc_receipt** | `328` |
+| **cursor_ack** | `328` |
+| **last_audit** | `329` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；**不再等用户投喂**；官方公开源自动获取+结构化呈现；**遇登录/验证码/付费 → 报告用户（用户可提供授权），禁止绕过** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T17:02:00+08:00` |
+| **updated_at** | `2026-08-26T17:09:30+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`327`** — 官方公开源自动获取规划（见 `327-…tasking…md`；**含 AUTH 升级协议**）。
+**`330`** — 首个公开源 connector（见 `330-…tasking…md`）。
 
-1. 写 `docs/52`（公开源自动获取；AUTH 遇阻 → 报告用户）
-2. 补 pack → 回执 **`328`**
-3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+1. `scripts/auto_ingest_public_source.py` + tests（≥12）
+2. 试点仅 **NBS `NATIONAL_BULLETIN`**（registry 公开 URL）；AUTH 遇阻 → 报告用户停刀
+3. 补 pack → 回执 **`331`**
+4. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
 
