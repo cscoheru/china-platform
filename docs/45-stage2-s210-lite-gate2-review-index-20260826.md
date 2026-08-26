@@ -12,6 +12,7 @@
 > 刷新：queue_rev 130（per `312-stage2-docs45-o3-plan-refresh-tasking-20260826`）— §3 O3 + §5.5 + §6.2 + §7 反映 O3 OCR 生产路径规划落地（`309` 7 步流水线设计 + allowlist + is_demo/SHA lineage 衔接 + 验收清单 + 显式禁爬网/登录绕过；见 `docs/49`）；**O3 仍 OPEN**（未实装 OCR 引擎 + 未收口；tasking 31X+）；Gate 2 评审必带 OPEN 清单
 > 刷新：queue_rev 132（per `318-stage2-docs45-gate2-packet-refresh-tasking-20260826`）— 登记 **`docs/50`** Gate 2 评审包**草稿**（11 节；七条 ↔ 证据 + OPEN 必带 + 不可隐藏清单 8 项 + 预览路径；回执 `316`）；§1 + §6 + §6.2 + §7 同步指向 docs/50；**docs/50 是草稿（不宣布 Gate 2 PASS）**，O1 WAITING_FILE + O3 规划已交实装仍 OPEN + docs/10 §3.2-3.4 xfail stub 必带 OPEN 清单；Gate 2 评审日期 W8（per docs/34 §10.4，不擅自提前）
 > 刷新：queue_rev 134（per `324-stage2-docs45-o1-checklist-refresh-tasking-20260826`）— 登记 **`docs/51`** O1 投递**清单**（10 节；5 省 + 10 地市 + 4 退出码契约 + 不可隐藏清单 11 项 + 链到 docs/48 intake 操作手册；回执 `322`）；§1 + §3 O1 详细 + §6.2 + §7 同步指向 docs/51；**O1 仍 OPEN（WAITING_FILE）**，不擅自 O1 收口，真数据物理依赖用户按 docs/51 §1-§4 投递 → `--confirm-o1=PATH` 显式确认
+> 刷新：queue_rev 150（per `364-stage2-docs53-public-ingest-ops-handbook-tasking-20260826`）— 登记 **`docs/52`** 公开源自动获取规划 + **`docs/53`** 公开提取 ops 手册 + **公开提取双轨**（REGISTRY_SAMPLE sample 轨 ↔ LIVE_CANDIDATE 候选轨；回执 `350`/`353`/`356`/`359`/`362`）；§1 + §6.2；**公开提取双轨是 demo/drift 候选演示，非 O1 收口；仍不宣布 Gate 2 PASS**
 >
 > ⚠ **本文件是 Gate 2 评审索引；不宣布 Gate 2 PASS**（per `docs/34 §1` + §8 #8 + §133 + `247` §红线 + `250` §红线）
 
@@ -24,6 +25,8 @@
 **Gate 2 评审包草稿**（per `docs/50-stage2-gate2-review-packet-draft-20260826.md`，11 节；回执 `316`）：§2 七条 ↔ 证据路径 + §3 三类划分（不可降级 / 演示级 / 仍 OPEN）+ §4 演示场景（5 省 + 10 地市）+ §5 OPEN 必带（O1 WAITING_FILE + O3 规划已交实装仍 OPEN）+ §6 评审脚本清单 + §7 预览路径（**非 O1/O3 收口**）+ §8 红线自检 + §9 不可隐藏清单 8 项 + §10 备注。**docs/50 是评审包草稿（不宣布 Gate 2 PASS）**（per `315` §SCHEMA "本刀做" + `318` §红线）。
 
 **O1 投递清单**（per `docs/51-stage2-o1-drop-checklist-20260826.md`，10 节；回执 `322`）：§0 一句话总览 + §1 pre-conditions 5 项 + §2 allowlist 3 前缀 + §3 4 退出码契约（WAITING_FILE / CANDIDATE_FOUND / CONTRACT_VIOLATION / 内部错误）+ §4 `--confirm-o1=PATH` 显式确认 + §5 收口预览 + §6 不可隐藏清单 11 项 + §7 红线 + §8 不在范围 + §9 下次心跳预期。**docs/51 不是 O1 收口宣告**（per `321` §SCHEMA "本刀做" + `324` §红线）；O1 仍 OPEN（WAITING_FILE）直到用户主动 `--confirm-o1=PATH`；真数据物理依赖用户按 docs/51 §1-§4 投递。
+
+**公开源自动获取 + ops 手册 + 公开提取双轨**（per `docs/52-stage2-official-open-source-auto-ingest-plan-20260826.md`（规划；queue_rev 137）+ `docs/53-stage2-public-ingest-ops-handbook-20260826.md`（ops 手册；回执 `365`））：stats.gov.cn 试点 connector（`scripts/auto_ingest_public_source.py`）四种模式（dry-run / `--from-local-sample` / `--live --confirm-live` / `--refresh-live-candidate`）+ 10 出口码契约；**公开提取双轨** = REGISTRY_SAMPLE sample 轨（63 行 / `dea13b8a…`，registry 锚定，`intake_status=REGISTRY_SAMPLE_INTAKED`，is_demo=true）↔ LIVE_CANDIDATE 候选轨（60 行 / `0b85212f…`，WORM `zxfb` 归档锚定，`intake_status=LIVE_CANDIDATE`，is_demo=true）；两轨互不覆盖（pytest 字节级锁定）；预览 `/public-extracts`（静态分节，显式标注 demo/candidate）。回执链：`350`（前端 sample 区块）→ `353`（pytest 提取保护）→ `356`（JS 壳启发式 + NBS live 过壳）→ `359`（live WORM 提取 + LIVE_CANDIDATE 前端区块）→ `362`（一键刷新 CLI）。**双轨是 demo/drift 候选演示：live SHA drift 等 user 裁定，不自动改 registry、不自动 O1 收口**（per knife 333 drift 契约 + `364` §红线）。
 
 **Gate 2 评审日期**：暂定 W8（per `docs/34 §10.4`；不擅自提前）。
 
@@ -213,6 +216,9 @@
 | **Gate 2 评审包草稿**（per `docs/50` + `316`）| `docs/50-stage2-gate2-review-packet-draft-20260826.md`（11 节：§0 红线 / §1 结构 / §2 七条 ↔ 证据 / §3 三类划分 / §4 演示场景 / §5 OPEN 必带 / §6 评审脚本 / §7 预览路径 / §8 红线自检 / §9 不可隐藏清单 8 项 / §10 备注；文首/文末禁止 PASS 措辞；grep 验证无 bare PASS）| ✅ Gate 2 评审包草稿已交（回执 `316`；**docs/50 是草稿，不宣布 Gate 2 PASS**；O1 WAITING_FILE + O3 规划已交实装仍 OPEN + docs/10 §3.2-3.4 xfail stub 必带 OPEN 清单；Gate 2 评审日期 W8 不擅自提前）|
 | **Gate 2 三类划分**（per `docs/50` §3）| 不可降级 4 项（#2/#4/#5/#6）+ 演示级 2 项（#1/#3）+ 仍 OPEN 5 项（dbt mart 真表 / docs/10 §3.2-3.4 / O1 / O3 / person/tenure 真数据）| ✅ 草稿已交（评审会议必带）|
 | **O1 投递一页清单**（per `docs/51` + `322`）| `docs/51-stage2-o1-drop-checklist-20260826.md`（10 节：§0 一句话 / §1 pre-conditions 5 项 / §2 allowlist 3 前缀 / §3 4 退出码契约（WAITING_FILE / CANDIDATE_FOUND / CONTRACT_VIOLATION / 内部错误）/ §4 `--confirm-o1=PATH` 显式确认 / §5 收口预览 / §6 不可隐藏清单 11 项 / §7 红线 / §8 不在范围 / §9 下次心跳预期；文首/文末禁止收口宣告措辞）| ✅ O1 投递清单已交（回执 `322`；**O1 仍 OPEN（WAITING_FILE）**，真数据物理依赖用户按 docs/51 §1-§4 投递 → `--confirm-o1=PATH` 显式确认；不擅自 O1 收口）|
+| **公开源自动获取规划**（per `docs/52` + queue_rev 137）| `docs/52-stage2-official-open-source-auto-ingest-plan-20260826.md`（CC 起草规划：stats.gov.cn 试点 connector / WORM 归档 / SHA drift 契约 / 前端预览）| ✅ 规划已交（回执链 `344`-`362` 落地；本刀 queue_rev 150 登记）|
+| **公开提取 ops 手册**（per `docs/53` + `365`）| `docs/53-stage2-public-ingest-ops-handbook-20260826.md`（7 节：§1 工具入口 / §2 四种运行模式命令例 / §3 10 出口码速查 / §4 sample vs LIVE_CANDIDATE 分轨契约 / §5 预览 `/public-extracts` / §6 红线 / §7 相关测试；诚实标注 demo/candidate）| ✅ ops 手册已交（回执 `365`；**手册不宣称 Gate/O1 PASS**）|
+| **公开提取双轨**（sample ↔ candidate）| sample 轨：`data/public_extracts/stats.gov.cn/NATIONAL_BULLETIN.json`（63 行 / `dea13b8a…`）+ `frontend/lib/public_extract_nbs.json`；候选轨：`data/public_extracts/stats.gov.cn/NATIONAL_BULLETIN_LIVE_CANDIDATE.json`（60 行 / `0b85212f…`）+ `frontend/lib/public_extract_nbs_live_candidate.json`；预览 `frontend/app/public-extracts/page.tsx`（静态两区块，各带 provenance + demo/candidate 标注）；smoke §12c 门 | ✅ 双轨已交（回执 `350`/`353`/`356`/`359`/`362`；92 pytest + smoke PASS；**drift 候选非 O1 收口，等用户裁定；两轨永不互覆**）|
 
 **预览路径（per `294` + `297`）**：
 - 用户运行 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 看 demo mart-shape 管道（10 城 × 6 段 × 7 维度，全部 `is_demo=true`）
@@ -240,7 +246,7 @@
 | ❌ 改 `00-CC-CURRENT.md` | ✅ Cursor 拥有 |
 | ❌ --force / --force-with-lease | ✅ ff-only pull |
 | ❌ 索要 PAT | ✅ |
-| ✅ pack invariant | ⏳ bump + commit 后 643 == 643 == 643（knife 44: docs/45 登记 docs/51 投递清单 + 回执 325 + bump；641 → 643；+2 = bump + receipt；docs/45 SHA REFRESH 不增计数；前置 knife 43 = docs/51 NEW + 回执 322 639 → 641；knife 42 = docs/45 登记 docs/50 637 → 639；knife 41 = docs/50 NEW + 回执 316 635 → 637）|
+| ✅ pack invariant | ⏳ bump + commit 后 676 == 676 == 676（knife 57: docs/45 登记 docs/52+53+公开提取双轨 + 回执 365 + bump；673 → 676；+3 = docs/53 NEW + bump + receipt；docs/45 SHA REFRESH 不增计数；前置 knife 56 = LIVE_CANDIDATE 刷新 CLI 671 → 673；knife 55 = 候选双轨 667 → 671；knife 44: docs/45 登记 docs/51 641 → 643；knife 43 = docs/51 NEW 639 → 641；knife 42 = docs/45 登记 docs/50 637 → 639；knife 41 = docs/50 NEW 635 → 637）|
 | ✅ receipts 仅写 `reviews/stage0-gate0-rework-2026-08-23/` | ✅ |
 | ✅ 不改 docs/06 / docs/08 / docs/10 / docs/34 内容（Cursor 拥有）| ✅ |
 | ✅ 不擅自提前 Gate 2 评审日期 | ✅ W8（per docs/34 §10.4）|
