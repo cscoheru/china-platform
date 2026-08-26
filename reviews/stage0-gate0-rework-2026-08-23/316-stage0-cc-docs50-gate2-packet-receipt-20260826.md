@@ -236,11 +236,11 @@ $ grep -nE "P\W?A\W?S\W?S\W?E\W?D|P\W?A\W?S\W?S\W?S" docs/50-stage2-gate2-review
 | docs/50 新建 | `docs/50-stage2-gate2-review-packet-draft-20260826.md`（11 节；~280 行）| ✅ NEW |
 | bump script | `scripts/_knife41_manifest_bump.py`（2 NEW）| ✅ 635 → 637（+2）|
 | 本地校验 | manifest invariant | ✅ 637 == 637 == 637 |
-| commit (knife 41 主提交) | `git add ... && git commit -m "docs(50): 315 Gate 2 评审包草稿 — 七条 ↔ 证据 + OPEN 必带"` | ✅ `<this_commit>` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ `<this_commit>` → origin/main |
-| github push | `git push github HEAD` | ✅ `<this_commit>` → github/main |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ `<this_commit>` |
-| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill |
+| commit (knife 41 主提交) | `git add ... && git commit -m "docs(50): 315 Gate 2 评审包草稿 — 七条 ↔ 证据 + OPEN 必带"` | ✅ `82c50d4e9dff74ecbc4bc229f824f85e160456f2` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `82c50d4` → origin/main |
+| github push | `git push github HEAD` | ✅ `82c50d4` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `82c50d4e9dff74ecbc4bc229f824f85e160456f2` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ `82c50d4` + receipt backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
