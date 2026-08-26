@@ -271,7 +271,7 @@ OK manifest updated; added 3 artifacts
 | origin push | `git push origin HEAD`（**priority**）| ✅ `372961d` → origin/main |
 | github push | `git push github HEAD` | ✅ `372961d` → github/main |
 | 三路对齐 | origin/main = github/main = local HEAD | ✅ `372961d330a607f42627d1ba62d7251e665594ad` |
-| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill `<backfill_sha>` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill `38ff790` |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
