@@ -98,6 +98,18 @@ def get_extracts_root() -> Path:
     return PUBLIC_EXTRACTS_ROOT
 
 
+def get_frontend_lib_root() -> Path:
+    """Resolve the frontend lib dir at CALL time (per tasking 361 §SCHEMA:
+    --refresh-live-candidate syncs the NBS live-candidate fixture here).
+    Precedence: CEGR_FRONTEND_LIB_ROOT env > module default — same pytest
+    redirection discipline as 352's extract/archive roots, so connector
+    tests never dirty the committed frontend fixture."""
+    env = os.environ.get("CEGR_FRONTEND_LIB_ROOT")
+    if env:
+        return Path(env)
+    return PROJECT_ROOT / "frontend" / "lib"
+
+
 REVIEWS_DIR = (
     PROJECT_ROOT / "reviews" / "stage0-gate0-rework-2026-08-23"
 )
@@ -614,6 +626,61 @@ def write_extract_json(
     return out_path
 
 
+def write_live_candidate_files(
+    *,
+    domain: str,
+    category: str,
+    tables: list[dict[str, str]],
+    archive_path: Path,
+    sha256_hex: str,
+    deeplink_url: str,
+) -> tuple[Path, Path | None]:
+    """Per tasking 361 §SCHEMA (1): write the LIVE_CANDIDATE double track —
+    data-side {extracts_root}/{domain}/{category}_LIVE_CANDIDATE.json plus a
+    byte-verbatim frontend fixture sync (stats.gov.cn/NATIONAL_BULLETIN
+    only — the file 358 named: public_extract_nbs_live_candidate.json).
+
+    NEVER touches the sample track: {category}.json, the sample fixture,
+    and the registry sample hash are off-limits (361 §SCHEMA 2 红线).
+    Record shape mirrors knife 55's one-shot candidate: intake_status=
+    LIVE_CANDIDATE, is_demo=true (knife 333 CANDIDATE_AUTO convention),
+    deeplink + WORM + SHA provenance, rows as-extracted.
+
+    Returns (data_path, fixture_path_or_None)."""
+    record = {
+        "domain": domain,
+        "category": f"{category}_LIVE_CANDIDATE",
+        "intake_status": "LIVE_CANDIDATE",
+        "is_demo": "true",
+        "demo_reason": (
+            "LIVE_CANDIDATE — live deeplink 文章 drift 候选 (per knife 333 "
+            "CANDIDATE_AUTO); 非经用户裁定的 O1 收口; sample 锚定 "
+            "(NATIONAL_BULLETIN.json / registry file_hash_sha256) 分轨不受影响"
+        ),
+        "source_sample_path": None,
+        "source_deeplink_url": deeplink_url,
+        "source_archive_path": _relative_or_abs(archive_path),
+        "source_sha256": sha256_hex,
+        "row_count": len(tables),
+        "rows": tables,
+        "extracted_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
+    }
+    payload = json.dumps(record, ensure_ascii=False, indent=2) + "\n"
+
+    data_path = get_extracts_root() / domain / f"{category}_LIVE_CANDIDATE.json"
+    data_path.parent.mkdir(parents=True, exist_ok=True)
+    data_path.write_text(payload, encoding="utf-8")
+
+    fixture_path: Path | None = None
+    if domain == "stats.gov.cn" and category == "NATIONAL_BULLETIN":
+        fixture_path = (
+            get_frontend_lib_root() / "public_extract_nbs_live_candidate.json"
+        )
+        fixture_path.parent.mkdir(parents=True, exist_ok=True)
+        fixture_path.write_text(payload, encoding="utf-8")
+    return data_path, fixture_path
+
+
 # ---------------------------------------------------------------------------
 # Deeplink discovery (per tasking 339 §SCHEMA — no headless, no JS exec)
 # ---------------------------------------------------------------------------
@@ -1056,6 +1123,17 @@ def main(argv: list[str] | None = None) -> int:
              "(--from-local-sample mode); PATH is the lineage JSONL output",
     )
     parser.add_argument(
+        "--refresh-live-candidate", action="store_true",
+        help="after a successful live pipeline (shell gate + deeplink + "
+             "archive), write the LIVE_CANDIDATE double track: "
+             "{category}_LIVE_CANDIDATE.json under the extracts root plus a "
+             "byte-verbatim frontend fixture sync (stats.gov.cn/"
+             "NATIONAL_BULLETIN only, per tasking 361 §SCHEMA). Requires "
+             "--live --confirm-live=PATH; NEVER touches the sample track "
+             "(sample JSON/fixture/registry hash); drift/AUTH/tech-blocked "
+             "exit codes are unchanged",
+    )
+    parser.add_argument(
         "--archive-root", default=None, metavar="DIR",
         help="override the WORM archive root (default: data/public_archives "
              "under the repo). Equivalent to CEGR_ARCHIVE_ROOT (per tasking "
@@ -1088,6 +1166,15 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "❌ --from-local-sample requires --confirm-live=PATH (lineage "
             "writes still require explicit authorization)",
+            file=sys.stderr,
+        )
+        return 6
+
+    if args.refresh_live_candidate and not args.live:
+        print(
+            "❌ --refresh-live-candidate requires --live --confirm-live=PATH "
+            "(refresh IS a live run; same authorization discipline, per "
+            "tasking 361 §SCHEMA)",
             file=sys.stderr,
         )
         return 6
@@ -1320,6 +1407,19 @@ def main(argv: list[str] | None = None) -> int:
             "NOT O1 收口。等用户裁定。",
             file=sys.stderr,
         )
+        if args.refresh_live_candidate:
+            tables = extract_tables(blob, category=pilot["category"])
+            cand_path, fx_path = write_live_candidate_files(
+                domain=pilot["domain"],
+                category=pilot["category"],
+                tables=tables,
+                archive_path=archive_path,
+                sha256_hex=sha,
+                deeplink_url=chosen_url,
+            )
+            print(f"OK refresh: live candidate JSON: {cand_path}")
+            if fx_path is not None:
+                print(f"OK refresh: frontend fixture sync: {fx_path}")
         return 4
 
     # SHA matches → O1_AUTO_INTAKED path (unchanged from knife 46).
@@ -1341,6 +1441,18 @@ def main(argv: list[str] | None = None) -> int:
         output_path=Path(args.confirm_live),
     )
     print(f"OK observation written: {args.confirm_live}")
+    if args.refresh_live_candidate:
+        cand_path, fx_path = write_live_candidate_files(
+            domain=pilot["domain"],
+            category=pilot["category"],
+            tables=tables,
+            archive_path=archive_path,
+            sha256_hex=sha,
+            deeplink_url=chosen_url,
+        )
+        print(f"OK refresh: live candidate JSON: {cand_path}")
+        if fx_path is not None:
+            print(f"OK refresh: frontend fixture sync: {fx_path}")
     return 0
 
 

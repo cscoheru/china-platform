@@ -1139,6 +1139,10 @@ def tmp_archive_root(tmp_path, monkeypatch):
     """
     monkeypatch.setenv("CEGR_ARCHIVE_ROOT", str(tmp_path / "archives"))
     monkeypatch.setenv("CEGR_EXTRACT_ROOT", str(tmp_path / "extracts"))
+    # Per tasking 361: --refresh-live-candidate syncs a frontend fixture;
+    # CEGR_FRONTEND_LIB_ROOT keeps that sync off the committed fixture
+    # (same 352 discipline — call-time env resolution).
+    monkeypatch.setenv("CEGR_FRONTEND_LIB_ROOT", str(tmp_path / "frontend_lib"))
     monkeypatch.setattr(aips, "PUBLIC_ARCHIVE_ROOT", tmp_path / "archives")
     monkeypatch.setattr(aips, "PUBLIC_EXTRACTS_ROOT", tmp_path / "extracts")
     return tmp_path
@@ -1577,3 +1581,115 @@ def test_root_override_cli_flags_equal_env(tmp_path):
 
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__, "-v"]))
+
+# ---------------------------------------------------------------------------
+# 14. --refresh-live-candidate (per tasking 361 §SCHEMA)
+# ---------------------------------------------------------------------------
+
+def _fake_live_article_blob() -> bytes:
+    """A large index+article blob that passes the (tightened) shell gate,
+    carries one same-domain .html deeplink, and extracts to 2 rows."""
+    return (
+        b'<html><head><title>zxfb</title></head><body>'
+        b'<a href="https://www.stats.gov.cn/sj/zxfb/202608/t20260821_fake.html">'
+        b'2026-08-21 fake article</a>'
+        b'<table>'
+        b'<tr><th>k</th><th>v</th></tr>'
+        b'<tr><td>a</td><td>1</td></tr>'
+        b'<tr><td>b</td><td>2</td></tr>'
+        b'</table>'
+        + b' ' * 4000
+        + b'</body></html>'
+    )
+
+
+def _run_refresh(tmp_path, monkeypatch, blob=None):
+    """Shared in-process harness: fake live download + tmp roots."""
+    if blob is None:
+        blob = _fake_live_article_blob()
+    monkeypatch.setattr(aips, "download", lambda url: blob)
+    monkeypatch.setattr(aips, "REVIEWS_DIR", tmp_path / "reviews")
+    argv = [
+        "--pilot-domain=stats.gov.cn",
+        "--pilot-category=NATIONAL_BULLETIN",
+        "--live",
+        f"--confirm-live={tmp_path / 'lineage.jsonl'}",
+        "--refresh-live-candidate",
+    ]
+    return aips.main(argv)
+
+
+def test_refresh_writes_candidate_double_track(tmp_path, monkeypatch):
+    """Per 361 §SCHEMA (1): refresh on the drift path writes the LIVE_
+    CANDIDATE JSON under the extracts root AND the byte-verbatim frontend
+    fixture sync; rc stays 4 (drift 照旧, 不伪 O1)."""
+    rc = _run_refresh(tmp_path, monkeypatch)
+    assert rc == 4, "fake blob SHA != registry → drift path, rc=4 照旧"
+
+    cand = (
+        tmp_path / "extracts" / "stats.gov.cn"
+        / "NATIONAL_BULLETIN_LIVE_CANDIDATE.json"
+    )
+    fx = tmp_path / "frontend_lib" / "public_extract_nbs_live_candidate.json"
+    assert cand.is_file(), "candidate JSON missing under tmp extracts root"
+    assert fx.is_file(), "frontend fixture sync missing under tmp lib root"
+    rec = json.loads(cand.read_text(encoding="utf-8"))
+    assert rec["intake_status"] == "LIVE_CANDIDATE"
+    assert rec["is_demo"] == "true"
+    assert rec["category"] == "NATIONAL_BULLETIN_LIVE_CANDIDATE"
+    assert rec["source_deeplink_url"].endswith("t20260821_fake.html")
+    assert rec["row_count"] == len(rec["rows"]) == 2
+    # byte-verbatim sync (双写同一份 payload)
+    assert fx.read_bytes() == cand.read_bytes()
+
+
+def test_refresh_does_not_touch_sample_track(tmp_path, monkeypatch):
+    """Per 361 §SCHEMA (2) 红线: sample JSON / sample fixture / registry
+    sample hash 全部零改动 — refresh 前后字节级不变。"""
+    real_sample = (
+        aips.PROJECT_ROOT / "data" / "public_extracts" / "stats.gov.cn"
+        / "NATIONAL_BULLETIN.json"
+    )
+    real_fixture = (
+        aips.PROJECT_ROOT / "frontend" / "lib" / "public_extract_nbs.json"
+    )
+    registry = aips.PROJECT_ROOT / "source_registry" / "registry.csv"
+    before = (
+        real_sample.read_bytes(),
+        real_fixture.read_bytes(),
+        registry.read_bytes(),
+    )
+
+    rc = _run_refresh(tmp_path, monkeypatch)
+    assert rc == 4
+
+    after = (
+        real_sample.read_bytes(),
+        real_fixture.read_bytes(),
+        registry.read_bytes(),
+    )
+    assert after == before, "sample track was mutated by refresh (361 红线)"
+
+
+def test_refresh_tech_blocked_writes_no_candidate(tmp_path, monkeypatch):
+    """Per 361 §SCHEMA (3): tech-blocked 路径照旧 — 小壳 rc=7, 不写任何
+    candidate / fixture。"""
+    shell = (
+        b'<script language="javascript">window.location="./2026yb/";</script>'
+    )
+    rc = _run_refresh(tmp_path, monkeypatch, blob=shell)
+    assert rc == 7
+    assert not list((tmp_path / "extracts").rglob("*LIVE_CANDIDATE*"))
+    assert not list((tmp_path / "frontend_lib").glob("*.json"))
+
+
+def test_refresh_requires_live_authorization(tmp_path, monkeypatch):
+    """--refresh-live-candidate without --live is refused (rc=6): refresh
+    IS a live run; same confirm-live authorization discipline (361)."""
+    argv = [
+        "--pilot-domain=stats.gov.cn",
+        "--pilot-category=NATIONAL_BULLETIN",
+        "--refresh-live-candidate",
+    ]
+    rc = aips.main(argv)
+    assert rc == 6
