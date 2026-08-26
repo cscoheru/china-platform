@@ -3264,6 +3264,12 @@
       "role": "documentation"
     },
     {
+      "path": "docs/41-stage2-s26-counterexample-plan-20260826.md",
+      "size_bytes": 26068,
+      "sha256": "dfb1aac78d36296dd7f1adca89ed72d1b15af09331fa4fcc6ce55f3fd1894a9d",
+      "role": "documentation"
+    },
+    {
       "path": "reviews/stage0-gate0-rework-2026-08-23/224-stage0-cc-s25-inference-planning-receipt-20260826.md",
       "size_bytes": 10260,
       "sha256": "32266221dcd4f2a8b69ddae95fecae46df567efa62beb5ca92807bff85d555f2",
@@ -3292,9 +3298,15 @@
       "size_bytes": 9684,
       "sha256": "a0329b3ea95d44946860d5daa3f0687fcfc200b378b268bd6301bf019984593c",
       "role": "documentation"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/230-stage0-cc-s26-counterexample-planning-receipt-20260826.md",
+      "size_bytes": 9342,
+      "sha256": "4717d53821dc59400a5fdcda44464238487da2d4db7c26a77704a58d6e8819c4",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 547,
+  "artifact_count": 549,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
