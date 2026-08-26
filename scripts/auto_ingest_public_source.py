@@ -340,12 +340,13 @@ def extract_html_tables(blob: bytes) -> list[dict[str, str]]:
     if table is None:
         return []
     rows: list[dict[str, str]] = []
+    header: list[str] | None = None
     for tr in table.find_all("tr"):
         cells = [td.get_text(strip=True) for td in tr.find_all(["td", "th"])]
         if not cells:
             continue
-        if not rows:
-            # First row treated as header.
+        if header is None:
+            # First non-empty row treated as header.
             header = cells
             continue
         rows.append({h: c for h, c in zip(header, cells)})
@@ -395,19 +396,21 @@ def extract_xlsx_tables(blob: bytes) -> list[dict[str, str]]:
 def extract_tables(blob: bytes, *, category: str) -> list[dict[str, str]]:
     """Dispatcher: pick the right extractor based on registry.csv category.
 
-    Per tasking 336 §SCHEMA "extract(xlsx)" — routes by category:
+    Per tasking 336 §SCHEMA "extract(xlsx)" + tasking 343 §SCHEMA — routes by category:
       - NATIONAL_BULLETIN   → HTML (NBS zxfb index)
       - PROVINCIAL_BULLETIN → XLSX (Hubei 月度统计)
-      - MUNICIPAL_BULLETIN  → HTML (Shenzhen, future)
+      - MUNICIPAL_BULLETIN  → HTML (Shenzhen sz.gov.cn 公报散文 + 嵌入表格)
     Unknown categories raise ValueError (red line: do not silently
     downgrade to HTML for an EXCEL source or vice versa)."""
     if category == "NATIONAL_BULLETIN":
         return extract_html_tables(blob)
     if category == "PROVINCIAL_BULLETIN":
         return extract_xlsx_tables(blob)
+    if category == "MUNICIPAL_BULLETIN":
+        return extract_html_tables(blob)
     raise ValueError(
         f"unknown category '{category}'; no extractor registered "
-        f"(supported: NATIONAL_BULLETIN, PROVINCIAL_BULLETIN)"
+        f"(supported: NATIONAL_BULLETIN, PROVINCIAL_BULLETIN, MUNICIPAL_BULLETIN)"
     )
 
 
@@ -893,6 +896,10 @@ def main(argv: list[str] | None = None) -> int:
         extensions = (".xlsx", ".xls")
     elif pilot["category"] == "NATIONAL_BULLETIN":
         extensions = (".html", ".htm")  # article pages
+    elif pilot["category"] == "MUNICIPAL_BULLETIN":
+        # Shenzhen sz.gov.cn 公报：散文形式 + 嵌入表格；本页 HTML 即可，
+        # 不强求附件 deeplink。若后续 tasking 要求附件直链再加 extensions。
+        extensions = (".html", ".htm", ".pdf")
     else:
         extensions = (".xlsx", ".xls", ".html", ".htm", ".pdf")
 
