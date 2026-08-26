@@ -1,5 +1,5 @@
 {
-  "artifact_count": 667,
+  "artifact_count": 671,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -4002,6 +4002,30 @@
       "role": "documentation",
       "sha256": "8e8fb2582719e1a038e5a299e023aec9b8795496fd77884d186bdad635642e6a",
       "size_bytes": 6171
+    },
+    {
+      "path": "data/public_extracts/stats.gov.cn/NATIONAL_BULLETIN_LIVE_CANDIDATE.json",
+      "role": "data_contract_suite",
+      "sha256": "9232efdbe1c3798a8251777c74930d54cf4e70d62af3708c07af0fbcbe2a3a23",
+      "size_bytes": 13025
+    },
+    {
+      "path": "frontend/lib/public_extract_nbs_live_candidate.json",
+      "role": "data_contract_suite",
+      "sha256": "9232efdbe1c3798a8251777c74930d54cf4e70d62af3708c07af0fbcbe2a3a23",
+      "size_bytes": 13025
+    },
+    {
+      "path": "scripts/_knife55_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "4e44423e2cb3fb06a133601b8d58b84d33599b7cdab486f2c75eae39f2d8107a",
+      "size_bytes": 3914
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/359-stage0-cc-live-worm-frontend-candidate-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "edbe1675f2c9790488f30f208258626b2b29df680da41c7ace31cf7dd194a790",
+      "size_bytes": 5333
     }
   ],
   "commit": {
@@ -4034,8 +4058,8 @@
   },
   "python_version": "3.14.3",
   "role_count": {
-    "data_contract_suite": 22,
-    "documentation": 104,
+    "data_contract_suite": 24,
+    "documentation": 105,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -4047,7 +4071,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 65,
+    "spike_helper": 66,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

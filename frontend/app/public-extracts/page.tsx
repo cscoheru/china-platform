@@ -9,11 +9,16 @@
 //   (3) 保留 mart demo 旗标逻辑; 不谎称真收口.
 //
 // 红线 (per 349 §红线): sample ≠ live; 不伪造; 不宣称 O1/Gate PASS.
+// Per tasking 358 §SCHEMA (live candidate 并列): 同页第二区块展示
+// NATIONAL_BULLETIN_LIVE_CANDIDATE (live deeplink 文章 drift 候选,
+// frontend/lib/public_extract_nbs_live_candidate.json) — 显式
+// LIVE_CANDIDATE / 非 O1 / 与 sample 分轨, 不覆盖 sample.
 // 静态路由: 无 params.*, 无 force-dynamic (纯 fixture 消费).
 
 import type { ReactElement } from "react";
 import DemoBadge from "../DemoBadge";
 import fixture from "../../lib/public_extract_nbs.json";
+import liveCandidateFixture from "../../lib/public_extract_nbs_live_candidate.json";
 
 interface ExtractRow {
   [columnKey: string]: string;
@@ -30,11 +35,29 @@ interface PublicExtractFixture {
   extracted_at: string;
 }
 
+interface LiveCandidateFixture {
+  domain: string;
+  category: string;
+  intake_status: string;
+  is_demo: string;
+  demo_reason: string;
+  source_sample_path: string | null;
+  source_deeplink_url: string;
+  source_archive_path: string;
+  source_sha256: string;
+  row_count: number;
+  rows: ExtractRow[];
+  extracted_at: string;
+}
+
 const extract = fixture as PublicExtractFixture;
+const live = liveCandidateFixture as LiveCandidateFixture;
 
 // 列序 = 首行键序 (spike 提取保序); 不重排、不重命名、不 reinterpret.
 const columnKeys: string[] =
   extract.rows.length > 0 ? Object.keys(extract.rows[0]) : [];
+const liveColumnKeys: string[] =
+  live.rows.length > 0 ? Object.keys(live.rows[0]) : [];
 
 const cellStyle: React.CSSProperties = {
   border: "1px solid #ddd",
@@ -120,7 +143,8 @@ export default function PublicExtractsPage(): ReactElement {
         <p style={{ marginTop: 8, fontSize: 12, color: "#999" }}>
           注:source_sha256 与 source_registry/registry.csv 中 stats.gov.cn /
           NATIONAL_BULLETIN 行的 file_hash_sha256 一致(样本锁定);live 收口
-          (O1) 尚未宣布,live 探测仍为 JS 壳 tech-blocked (rc=7)。
+          (O1) 尚未宣布。live 探测已过 JS 壳门 (per tasking 355),当前为
+          drift 候选 → 见下方 LIVE_CANDIDATE 分轨。
         </p>
       </section>
 
@@ -153,6 +177,111 @@ export default function PublicExtractsPage(): ReactElement {
         <p style={{ marginTop: 8, fontSize: 12, color: "#999" }}>
           注:列名/首行为 spike 提取原样 (原表两层表头被展平);仅展示,不派生
           指标、不评分、不排名。表内空白与「…」为源表原样保留,未补造。
+        </p>
+      </section>
+
+      <hr style={{ margin: "32px 0", border: 0, borderTop: "1px solid #ccc" }} />
+
+      <section className="public-extracts-page__live-candidate">
+        <h2>
+          Live 候选提取 — NBS 2026-08-21 文章 (drift)
+          <DemoBadge
+            lineage={{
+              is_demo: live.is_demo,
+              demo_reason: live.demo_reason,
+            }}
+          />
+        </h2>
+        <p style={{ color: "#856404", fontWeight: 600 }}>
+          标注:LIVE_CANDIDATE — live deeplink 文章经 WORM 归档后结构化提取;
+          SHA 对 registry 锚定为 drift(rc=4 候选,等用户裁定)。
+          非 O1 收口数据;与上方 REGISTRY_SAMPLE 分轨互不覆盖。
+        </p>
+
+        <table
+          style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}
+        >
+          <tbody>
+            <tr>
+              <th style={cellStyle}>domain</th>
+              <td style={cellStyle}>
+                <code>{live.domain}</code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>category</th>
+              <td style={cellStyle}>
+                <code>{live.category}</code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>intake_status</th>
+              <td style={cellStyle}>
+                <code>{live.intake_status}</code>(is_demo={live.is_demo})
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>source_deeplink_url</th>
+              <td style={cellStyle}>
+                <code style={{ fontSize: 11, wordBreak: "break-all" }}>
+                  {live.source_deeplink_url}
+                </code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>source_archive_path (WORM)</th>
+              <td style={cellStyle}>
+                <code>{live.source_archive_path}</code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>source_sha256 (drift)</th>
+              <td style={cellStyle}>
+                <code style={{ fontSize: 11, wordBreak: "break-all" }}>
+                  {live.source_sha256}
+                </code>
+              </td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>row_count</th>
+              <td style={cellStyle}>{live.row_count}</td>
+            </tr>
+            <tr>
+              <th style={cellStyle}>extracted_at</th>
+              <td style={cellStyle}>{live.extracted_at}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style={{ marginTop: 24 }}>候选提取表 ({live.rows.length} 行,全量)</h3>
+        <table
+          style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}
+        >
+          <thead>
+            <tr style={{ background: "#eee" }}>
+              {liveColumnKeys.map((key) => (
+                <th key={key} style={cellStyle}>
+                  {key}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {live.rows.map((row, idx) => (
+              <tr key={idx}>
+                {liveColumnKeys.map((key) => (
+                  <td key={key} style={cellStyle}>
+                    {row[key] ?? ""}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p style={{ marginTop: 8, fontSize: 12, color: "#999" }}>
+          注:live drift 候选按提取原样展示 (2026年8月中旬流通领域重要生产
+          资料市场价格变动情况);仅展示,不派生指标、不评分、不排名。registry
+          sample 锚定 (dea13b8a…) 未被本候选改动。
         </p>
       </section>
     </main>

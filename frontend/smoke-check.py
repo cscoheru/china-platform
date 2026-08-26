@@ -723,6 +723,66 @@ def main() -> int:
     else:
         ok("app/page.tsx links /public-extracts nav anchor")
 
+    # 12c. LIVE_CANDIDATE 并列分轨 — knife 55 (tasking 358). Per `358` §SCHEMA:
+    #     (1) live WORM 提取 fixture 在位 (LIVE_CANDIDATE 语义);
+    #     (2) /public-extracts 展示 live 候选区块 (显式非 O1);
+    #     (3) sample 分轨不被覆盖 (row_count 仍 63 / registry SHA 锚定不变).
+    live_fixture_path = ROOT / "lib/public_extract_nbs_live_candidate.json"
+    if not live_fixture_path.is_file():
+        errors.append(
+            "lib/public_extract_nbs_live_candidate.json missing (per tasking 358 §NOW-1)"
+        )
+    else:
+        try:
+            lfx = json.loads(live_fixture_path.read_text(encoding="utf-8"))
+            if lfx.get("intake_status") != "LIVE_CANDIDATE":
+                errors.append(
+                    f"live candidate fixture: intake_status={lfx.get('intake_status')!r} "
+                    f"!= LIVE_CANDIDATE"
+                )
+            if lfx.get("is_demo") != "true":
+                errors.append("live candidate fixture: is_demo != 'true' (333 候选惯例)")
+            if not isinstance(lfx.get("rows"), list) or len(lfx["rows"]) < 1:
+                errors.append("live candidate fixture: rows empty (≥1 行可见 per 358)")
+            else:
+                ok(
+                    f"public_extract_nbs_live_candidate.json: LIVE_CANDIDATE fixture "
+                    f"在位 ({lfx.get('row_count')} 行)"
+                )
+            if fixture_path.is_file():
+                sfx = json.loads(fixture_path.read_text(encoding="utf-8"))
+                if sfx.get("row_count") != 63 or sfx.get("source_sha256") != (
+                    "dea13b8a4ff116ca91403b189cdd60705545b28200f9023c3d56e6db03f3939d"
+                ):
+                    errors.append(
+                        "REGISTRY_SAMPLE fixture 被覆盖/漂移 (row_count 或 registry "
+                        "SHA 锚定变化; per 358 §红线 'sample 与 live candidate 分轨')"
+                    )
+        except json.JSONDecodeError as e:
+            errors.append(f"public_extract_nbs_live_candidate.json is not valid JSON: {e}")
+    if pe_page_path.is_file():
+        pe_src_full = pe_page_path.read_text(encoding="utf-8")
+        pe_code2 = re.sub(r"//[^\n]*", "", pe_src_full)
+        pe_code2 = re.sub(r"/\*.*?\*/", "", pe_code2, flags=re.DOTALL)
+        for needle, label in [
+            ("public_extract_nbs_live_candidate.json", "live candidate fixture import"),
+            ("LIVE_CANDIDATE", "LIVE_CANDIDATE 标注"),
+            ("source_deeplink_url", "live deeplink provenance"),
+            ("非 O1 收口", "非 O1 免责"),
+        ]:
+            if needle not in pe_code2:
+                errors.append(f"public-extracts/page.tsx missing {label} (per tasking 358)")
+        if all(
+            n in pe_code2
+            for n in (
+                "public_extract_nbs_live_candidate.json",
+                "LIVE_CANDIDATE",
+                "source_deeplink_url",
+                "非 O1 收口",
+            )
+        ):
+            ok("public-extracts/page.tsx: LIVE_CANDIDATE 分轨区块 + 非 O1 免责")
+
     if errors:
         for e in errors:
             fail(e)

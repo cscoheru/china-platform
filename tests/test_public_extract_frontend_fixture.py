@@ -105,3 +105,86 @@ def test_home_page_links_public_extracts() -> None:
     src = HOME_PAGE.read_text(encoding="utf-8")
     assert "/public-extracts" in src
     assert "REGISTRY_SAMPLE" in src
+
+
+# ---------------------------------------------------------------------------
+# Knife 55 (tasking 358) — LIVE_CANDIDATE 并列分轨 (live WORM 提取候选)
+# ---------------------------------------------------------------------------
+
+LIVE_EXTRACT = (
+    PROJECT_ROOT / "data" / "public_extracts" / "stats.gov.cn"
+    / "NATIONAL_BULLETIN_LIVE_CANDIDATE.json"
+)
+LIVE_FIXTURE = (
+    PROJECT_ROOT / "frontend" / "lib" / "public_extract_nbs_live_candidate.json"
+)
+WORM_ARCHIVE = (
+    PROJECT_ROOT / "data" / "public_archives" / "2026-08" / "stats.gov.cn"
+    / "zxfb"
+)
+
+
+@pytest.fixture(scope="module")
+def live_extract_json() -> dict:
+    assert LIVE_EXTRACT.is_file(), f"missing live extract: {LIVE_EXTRACT}"
+    return json.loads(LIVE_EXTRACT.read_text(encoding="utf-8"))
+
+
+def test_live_candidate_extract_shape(live_extract_json: dict) -> None:
+    """Per 358 §SCHEMA (1): live WORM 提取 JSON 带 sha/path/row_count/rows,
+    intake_status 语义 = LIVE_CANDIDATE; SHA 必须锚定 WORM 归档实字节。"""
+    rec = live_extract_json
+    assert rec["intake_status"] == "LIVE_CANDIDATE"
+    assert rec["is_demo"] == "true"  # knife 333 CANDIDATE_AUTO 惯例
+    assert rec["domain"] == "stats.gov.cn"
+    assert rec["source_archive_path"].endswith("public_archives/2026-08/stats.gov.cn/zxfb")
+    assert rec["source_deeplink_url"].startswith("https://www.stats.gov.cn/sj/zxfb/2026")
+    assert isinstance(rec["rows"], list) and len(rec["rows"]) >= 1
+    assert rec["row_count"] == len(rec["rows"])
+    # SHA 锚定:提取记录的 sha == WORM 归档文件实算 sha == knife 54 live 实录
+    import hashlib
+    h = hashlib.sha256(WORM_ARCHIVE.read_bytes()).hexdigest()
+    assert rec["source_sha256"] == h
+    assert h == "0b85212f70055c38" + h[16:]  # knife 54 回执实录前缀
+
+
+def test_live_candidate_fixture_mirrors_extract(
+    live_extract_json: dict,
+) -> None:
+    """Per 358 §SCHEMA (3): 前端 fixture 与 data 侧 live 提取一致
+    (knife 55 为一次性快照,数据文件不再被 connector 改写 — 352 已护)。"""
+    assert LIVE_FIXTURE.is_file(), f"missing live fixture: {LIVE_FIXTURE}"
+    fx = json.loads(LIVE_FIXTURE.read_text(encoding="utf-8"))
+    assert fx == live_extract_json, "live fixture must mirror data-side extract"
+
+
+def test_sample_track_not_overwritten(fixture_json: dict) -> None:
+    """Per 358 §红线 'sample 与 live candidate 分轨': 交付后 sample 提取
+    (data 侧) 与 sample fixture 仍锁定 registry 锚定 — 未被覆盖。"""
+    sample_extract = (
+        PROJECT_ROOT / "data" / "public_extracts" / "stats.gov.cn"
+        / "NATIONAL_BULLETIN.json"
+    )
+    data_rec = json.loads(sample_extract.read_text(encoding="utf-8"))
+    assert data_rec["row_count"] == 63
+    assert data_rec["source_sha256"] == (
+        "dea13b8a4ff116ca91403b189cdd60705545b28200f9023c3d56e6db03f3939d"
+    )
+    assert fixture_json["row_count"] == 63
+    assert fixture_json["source_sha256"] == data_rec["source_sha256"]
+    # live candidate 的 SHA 必须与 sample 锚定不同 (分轨存在的意义)
+    live = json.loads(LIVE_EXTRACT.read_text(encoding="utf-8"))
+    assert live["source_sha256"] != data_rec["source_sha256"]
+
+
+def test_page_renders_live_candidate_track() -> None:
+    """Per 358 §SCHEMA (3): /public-extracts 页 import live fixture、标注
+    LIVE_CANDIDATE、非 O1 免责、不宣称收口。"""
+    src = PE_PAGE.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", src)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    assert "public_extract_nbs_live_candidate.json" in code
+    assert "LIVE_CANDIDATE" in code
+    assert "source_deeplink_url" in code
+    assert "非 O1 收口" in code, "live candidate 区块须显式非 O1 免责"
+    assert "O1_AUTO_INTAKED" not in code
