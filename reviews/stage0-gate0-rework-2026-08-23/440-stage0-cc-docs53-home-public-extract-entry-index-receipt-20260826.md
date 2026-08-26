@@ -3,7 +3,7 @@
 - 编号：`440-stage0-cc-docs53-home-public-extract-entry-index-receipt-20260826`
 - 任务书：`440-stage2-docs53-home-public-extract-entry-index-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：（双推：origin b52a9cc..14c801d，github b52a9cc..14c801d）→ 待回填
+- cc_head：`0ad62e0`（双推：origin 19484a7..0ad62e0，github 19484a7..0ad62e0）
 - 日期：2026-08-26
 
 ---
