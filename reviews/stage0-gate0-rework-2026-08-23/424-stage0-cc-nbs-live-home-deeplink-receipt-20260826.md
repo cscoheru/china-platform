@@ -3,7 +3,7 @@
 - 编号：`424-stage0-cc-nbs-live-home-deeplink-receipt-20260826`
 - 任务书：`424-stage2-nbs-live-home-deeplink-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TBD-pre-push`
+- cc_head：`1ced2bd`
 - 日期：2026-08-26
 
 ---
