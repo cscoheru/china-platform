@@ -1,5 +1,5 @@
 {
-  "artifact_count": 613,
+  "artifact_count": 618,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3678,6 +3678,36 @@
       "role": "documentation",
       "sha256": "f126a4f6c598812c1c71773e1853d85fe9d8407eaee742b59be6f526d0ea6669",
       "size_bytes": 17326
+    },
+    {
+      "path": "docs/48-stage2-real-sha-intake-handbook-20260826.md",
+      "role": "documentation",
+      "sha256": "5bcee2b2b91bee32df59317609de6a68f9566908c64ac64f38416c419b1f2fb7",
+      "size_bytes": 6050
+    },
+    {
+      "path": "scripts/intake_real_sha_if_present.py",
+      "role": "spike_helper",
+      "sha256": "d8e242658c8001e981fe61a2625ffd48bcbf4548e9a730aeafae5aa18471ed5b",
+      "size_bytes": 11950
+    },
+    {
+      "path": "tests/test_intake_real_sha_live_s2022.py",
+      "role": "schema_negative_test",
+      "sha256": "83037c755a99cb45d1aa282ca401f9a83840342b67932fb95ca4e5e36aa6704d",
+      "size_bytes": 10208
+    },
+    {
+      "path": "scripts/_knife33_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "3fe9d1c4404397b22d307e783593db56cc9a61d52fdceeba58570067f8a3b0d9",
+      "size_bytes": 3257
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/291-stage0-cc-real-sha-intake-live-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "a4748c8e5a086548289cde7e9bc6ad657d1700f73e2831d579ae00278a551b53",
+      "size_bytes": 19704
     }
   ],
   "commit": {
@@ -3711,19 +3741,19 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 21,
-    "documentation": 80,
+    "documentation": 82,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 37,
+    "schema_negative_test": 38,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 40,
+    "spike_helper": 42,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
