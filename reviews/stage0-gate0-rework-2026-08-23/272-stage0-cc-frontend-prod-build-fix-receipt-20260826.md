@@ -25,9 +25,9 @@
 | 9 | 创建 `scripts/_knife27_manifest_bump.py`（3 NEW_ARTIFACTS：package-lock + bump + receipt）| ✅ | spike_helper |
 | 10 | bump pack（597 → **600**；+3 = package-lock + bump + receipt；2 MODIFIED 文件已在 manifest knife 15/17 入册）| ⏳ this step | — |
 | 11 | 写回执 `272` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 12 | commit → `origin` 优先 → `github` | ⏳ commit `<this-sha>`（backfill this line）| — |
-| 13 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 14 | 三路对齐 | ⏳ local = origin = github = `<this-sha>` | — |
+| 12 | commit → `origin` 优先 → `github` | ✅ commit `04e87ca`（backfill this line）| — |
+| 13 | commit SHA backfill（独立 commit；不 amend-after-push）| ✅ this commit | — |
+| 14 | 三路对齐 | ✅ local = origin = github = `04e87ca` | — |
 | 15 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — |
 
 ---
@@ -210,11 +210,11 @@ $ grep -E "(score|rating|rank|total_score|confidence_score|credibility_score)" \
 | smoke-check | `python3 frontend/smoke-check.py` | ✅ §10 mart-shape PASS |
 | file-level forbidden-token guard | grep 禁词清单（3 文件）| ✅ CLEAN |
 | bump script | `scripts/_knife27_manifest_bump.py` | ✅ 597 → 600（+3 = package-lock + bump + receipt）|
-| 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ⏳ 600 == 600 == 600 |
-| commit (knife 27 主提交) | `git add frontend/app/components/PeerCompareCard.tsx frontend/app/components/SevenDimGrid.tsx frontend/package-lock.json scripts/_knife27_manifest_bump.py evidence_pack/manifest.json reviews/.../272-...md && git commit -m "fix(frontend): 加 'use client' + SevenDimCardId 重导 → next build PASS (21/21 static pages；不宣布 PASS)"` | ⏳ `<this-sha>` |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ |
-| github push | `git push github HEAD`（带 proxy）| ⏳ |
-| 三路对齐 | origin/main = github/main = local HEAD = `<this-sha>` | ⏳ |
+| 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ✅ 600 == 600 == 600 |
+| commit (knife 27 主提交) | `git add frontend/app/components/PeerCompareCard.tsx frontend/app/components/SevenDimGrid.tsx frontend/package-lock.json scripts/_knife27_manifest_bump.py evidence_pack/manifest.json reviews/.../272-...md && git commit -m "fix(frontend): 加 'use client' + SevenDimCardId 重导 → next build PASS (21/21 static pages；不宣布 PASS)"` | ✅ `04e87ca` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `e1a8434..04e87ca` |
+| github push | `git push github HEAD`（带 proxy）| ✅ `e1a8434..04e87ca` |
+| 三路对齐 | origin/main = github/main = local HEAD = `04e87ca` | ✅ |
 | backfill commit (this) | 独立 commit（不 amend-after-push）| ⏳ this commit |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
