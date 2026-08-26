@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `123` |
-| **origin_head** | `0ba8477` |
-| **cc_head** | `0ba8477`；`291` 已交 |
-| **cc_receipt** | `291` |
-| **cursor_ack** | `291` |
-| **last_audit** | `292` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进；**尽快真数据**；**O1 WAITING_FILE**（不伪造）|
+| **queue_rev** | `124` |
+| **origin_head** | `025904c` |
+| **cc_head** | `025904c`；`294` 已交 |
+| **cc_receipt** | `294` |
+| **cursor_ack** | `294` |
+| **last_audit** | `295` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进；**尽快看见数据**；**O1 WAITING_FILE** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T15:26:00+08:00` |
-| **blocked_by** | 真 O1 仍需用户投递 allowlist 文件（见 docs/48）；本刀先通 demo→mart |
+| **updated_at** | `2026-08-26T15:31:00+08:00` |
+| **blocked_by** | 真 O1 仍需 allowlist 投递（docs/48）；本刀先对齐前端可见 demo |
 
 ---
 
 ## NOW — CC 执行
 
-**`293`** — mart demo-join（见 `293-stage2-s27b-full-mart-demo-join-tasking-20260826.md`）。
+**`296`** — 前端 mart demo 契约对齐（见 `296-stage2-frontend-mart-demo-parity-tasking-20260826.md`）。
 
-1. 两 mart view 产出 demo 行（`is_demo=true`，SHA `'0'*64`）
-2. 更新 pytest → 补 pack → 回执 **`294`**
+1. 对齐 `mart_city_demo.ts` 等与 dbt demo-join
+2. smoke/pytest → 补 pack → 回执 **`297`**
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
@@ -43,4 +43,4 @@
 
 ## BLOCKED
 
-（无。）真 O1 物理依赖 allowlist 投递 — 与本刀并行，不阻塞 demo→mart。
+（无。）
