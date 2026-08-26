@@ -13,7 +13,7 @@
 | phase | CC_ACTION_REQUIRED |
 | queue_rev | 145 |
 | cc_receipt | 350 |
-| cc_head | TBD（commit 后 backfill,另起 commit,per knife 17） |
+| cc_head | `d321a65`（knife 52 feature commit;已推 origin + github,三向收敛） |
 | user_ruling | D + 源工程 Cursor 代判;本地样本结构化已通 → 接前端呈现 |
 | 测试 | **pytest 7/7 新 case PASS + 69 connector 无回归 = 76/76;smoke-check 全 PASS（含 §12 新 gate）;`next build` exit 0,`/public-extracts` 静态预渲染（22/22 pages）** |
 | pack | 658 → 663（+5:fixture + page + pytest + bump + receipt） |
@@ -141,11 +141,12 @@ connector pytest 的覆写打破（7f04237 教训）,前者是稳定契约。
 
 ## §8 推 / 落地
 
-- commit: TBD（本 commit 即 knife 52 feature commit;SHA 于 push 后 backfill）
-- push origin: TBD
-- push github: TBD
-- three-way convergence: TBD
-- backfill SHA: §META `cc_head` commit 后另起 commit 填（per knife 17:不 amend-after-push）
+- commit: **`d321a65`** `feat(frontend): 349 public-extract wire — /public-extracts REGISTRY_SAMPLE page`
+- push origin: ✅ `95a8569..d321a65 HEAD -> main`
+- push github: ✅ `95a8569..d321a65 HEAD -> main`
+- three-way convergence: ✅ `HEAD = origin/main = github/main = d321a65`
+- 期间 Cursor 提交 `95a8569`（再次恢复 NBS extract 被 subprocess 测试覆写）— 与本刀 `git checkout` 恢复等价,fast-forward 无冲突
+- backfill SHA: 本 commit（另起,per knife 17:不 amend-after-push）
 
 ## §9 下次心跳预期
 
