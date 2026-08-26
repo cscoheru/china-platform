@@ -8,34 +8,30 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `110` |
-| **origin_head** | `60aa36e` |
-| **cc_head** | `60aa36e`；`269` 已交 |
-| **cc_receipt** | `269` |
-| **cursor_ack** | `269` |
-| **last_audit** | `270` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**恢复自主推进**（取消空 POLL）|
+| **phase** | `POLL` |
+| **queue_rev** | `111` |
+| **origin_head** | `3a7f577` |
+| **cc_head** | `3a7f577`；`272` 已交 |
+| **cc_receipt** | `272` |
+| **cursor_ack** | `272` |
+| **last_audit** | `273` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进；**O1 无材料 → OPEN 不挡演示** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T13:45:00+08:00` |
+| **expect_cc_poll** | `POLL_ONLY` |
+| **updated_at** | `2026-08-26T13:55:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`271`** — 前端生产构建硬化（见 `271-stage2-frontend-prod-build-fix-tasking-20260826.md`）。
-
-1. `"use client"` + `SevenDimCardId` 导入修复
-2. `NEXT_PUBLIC_USE_MOCK=true npm run build` → 补 pack → 回执 **`272`**
-3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+**无。** 前端 prod-build 硬化已审 PASS；下一刀待 Cursor bump。
 
 ---
 
 ## POLL
 
-交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
+`cursor_ack=272`；CC `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**。
 
 探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
