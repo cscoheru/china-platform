@@ -1,0 +1,30 @@
+Migration 013 — S2.6-lite 反例守门 (assert_min_one_contradicts 触发器 + 函数)
+
+Per Cursor tasking 232 §SCHEMA + docs/41 §2.5.
+
+apply:  `psql "postgresql://postgres:postgres@127.0.0.1:55440/cegr_test" -v ON_ERROR_STOP=1 -f schema/migrations/013_counterexample_gate.sql`
+verify: `\df+ assert_min_one_contradicts`; `\d claim_evidence_link` (应见 trigger claim_evidence_link_after_change)
+
+依赖:
+- schema/01-core.sql §956-966 (claim_evidence_link 表)
+- schema/migrations/012_inference_alignment.sql (additive 列)
+
+新增:
+- 1 函数: assert_min_one_contradicts() LANGUAGE plpgsql
+- 1 触发器: claim_evidence_link_after_change (AFTER INSERT OR UPDATE OR DELETE)
+
+不动:
+- claim_evidence_link 表结构
+- polarity CHECK (01-core.sql §965)
+- 既有触发器 (trg_set_updated_at 等)
+- information_layer ENUM (01-core.sql §25-30)
+
+列选择 deviation from docs/41 §2.5 示例: 见 migration 013 header 注释 (CC 推荐用 polarity 而非 canonical_polarity).
+
+红线:
+- ❌ 不引入 score/rating/rank/total_score/confidence_score/credibility_score 列
+- ❌ 不引入新业务表
+- ❌ 不写 seed 数据
+- ❌ 不写 dbt mart
+- ❌ 不接 admin UI (per docs/41 §2.0 + §5 + §8)
+- ❌ 不跨行 CHECK (PostgreSQL 不支持 subquery CHECK; 用触发器)

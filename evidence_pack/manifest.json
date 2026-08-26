@@ -3304,9 +3304,27 @@
       "size_bytes": 9342,
       "sha256": "4717d53821dc59400a5fdcda44464238487da2d4db7c26a77704a58d6e8819c4",
       "role": "documentation"
+    },
+    {
+      "path": "schema/migrations/013_counterexample_gate.sql",
+      "size_bytes": 5543,
+      "sha256": "c0896702360bbf096dc3f478acc2d722d3be35c031c351be8e94ccd1b0a77c9d",
+      "role": "schema_migration_ddl"
+    },
+    {
+      "path": "schema/migrations/013_counterexample_gate.log",
+      "size_bytes": 1274,
+      "sha256": "e3f36cde067f1d347deb31ad48ec1336dd3b46b2eb3a8caab94837eaf3e670c3",
+      "role": "schema_migration_log"
+    },
+    {
+      "path": "tests/test_counterexample_s26lite.py",
+      "size_bytes": 13918,
+      "sha256": "c5bf1401df775a9ee8d1eb3b789f6552f24eec9e5dfe420d7bc919d9e35ad7fd",
+      "role": "schema_negative_test"
     }
   ],
-  "artifact_count": 549,
+  "artifact_count": 552,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
