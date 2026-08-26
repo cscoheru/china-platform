@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `131` |
-| **origin_head** | `6ac6837` |
-| **cc_head** | `6ac6837`；`313` 已交 |
-| **cc_receipt** | `313` |
-| **cursor_ack** | `313` |
-| **last_audit** | `314` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进；**不宣布 Gate 2 PASS**；O1 WAITING_FILE |
+| **queue_rev** | `132` |
+| **origin_head** | `a9e55e0` |
+| **cc_head** | `a9e55e0`；`316` 已交 |
+| **cc_receipt** | `316` |
+| **cursor_ack** | `316` |
+| **last_audit** | `317` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**不宣布 Gate 2 PASS**；O1 WAITING_FILE |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T16:31:00+08:00` |
+| **updated_at** | `2026-08-26T16:37:00+08:00` |
 | **blocked_by** | 真 O1 仍需 allowlist 投递（docs/48）|
 
 ---
 
 ## NOW — CC 执行
 
-**`315`** — Gate 2 评审包草稿（见 `315-stage2-gate2-review-packet-draft-tasking-20260826.md`）。
+**`318`** — docs/45 登记 Gate 2 评审包草稿（见 `318-stage2-docs45-gate2-packet-refresh-tasking-20260826.md`）。
 
-1. 写 `docs/50`（七条证据 + OPEN 清单；禁止 PASS 措辞）
-2. 补 pack → 回执 **`316`**
+1. 刷新 `docs/45` → `docs/50`
+2. 补 pack → 回执 **`319`**
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
