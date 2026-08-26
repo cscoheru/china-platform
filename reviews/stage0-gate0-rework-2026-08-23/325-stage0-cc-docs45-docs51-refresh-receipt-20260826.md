@@ -241,11 +241,11 @@ docs/45 修改前已有 "收口宣告" 字样 = 无；本次新增 docs/51 cross
 | docs/45 修改 | header + §1 + §3 O1 详细 + §6.2 + §7 ×2 | ✅ 6 处同步 |
 | bump script | `scripts/_knife44_manifest_bump.py`（2 NEW）| ✅ 641 → 643（+2）|
 | 本地校验 | manifest invariant | ✅ 643 == 643 == 643 |
-| commit (knife 44 主提交) | `git add ... && git commit -m "docs(45): 324 docs/51 O1 投递清单登记 — §1/§3 O1 详细/§6.2/§7 同步"` | ⏳ this commit |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ this commit |
-| github push | `git push github HEAD` | ⏳ this commit |
-| 三路对齐 | origin/main = github/main = local HEAD | ⏳ this commit |
-| backfill commit | 独立 commit（不 amend-after-push）| ⏳ this commit |
+| commit (knife 44 主提交) | `git add ... && git commit -m "docs(45): 324 docs/51 O1 投递清单登记 — §1/§3 O1 详细/§6.2/§7 同步"` | ✅ `502a17c9410ed706b5b4fdcfb275951af823b61c` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `502a17c` → origin/main |
+| github push | `git push github HEAD` | ✅ `502a17c` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `502a17c9410ed706b5b4fdcfb275951af823b61c` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ `502a17c` + receipt backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
