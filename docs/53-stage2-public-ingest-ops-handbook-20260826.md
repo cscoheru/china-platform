@@ -16,7 +16,7 @@
 
 - 脚本：`scripts/auto_ingest_public_source.py`（single-file connector）
 - 试点：`--pilot-domain=stats.gov.cn --pilot-category=NATIONAL_BULLETIN`（均为默认值）
-- registry：`source_registry/public_sources.csv`（`file_hash_sha256` 是 sample 轨锚；live drift **不**自动改写 registry，per knife 333 drift 契约）
+- registry：`source_registry/registry.csv`（`file_hash_sha256` 是 sample 轨锚；live drift **不**自动改写 registry，per knife 333 drift 契约 + Cursor `341`）
 - 根目录覆盖（先于任何写路径解析）：
   - CLI：`--archive-root=DIR` / `--extract-root=DIR`
   - 环境变量：`CEGR_ARCHIVE_ROOT` / `CEGR_EXTRACT_ROOT` / `CEGR_FRONTEND_LIB_ROOT`（pytest 用它们把三个写根全部指到 tmp 目录，per tasking 352）
