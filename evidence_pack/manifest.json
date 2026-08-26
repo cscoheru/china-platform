@@ -1,5 +1,5 @@
 {
-  "artifact_count": 694,
+  "artifact_count": 700,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -4164,6 +4164,42 @@
       "role": "documentation",
       "sha256": "7eab73c2943410bea68da6a5ea0b5ac46a7c4e1668d5bf730499a788bfefe4eb",
       "size_bytes": 4455
+    },
+    {
+      "path": "frontend/public/public-extracts/nbs.json",
+      "role": "data_contract_suite",
+      "sha256": "e30ee811daef5594b374aa436163570f06e896ee7301b77fbb8c90730af6040d",
+      "size_bytes": 7183
+    },
+    {
+      "path": "frontend/public/public-extracts/nbs-live-candidate.json",
+      "role": "data_contract_suite",
+      "sha256": "9232efdbe1c3798a8251777c74930d54cf4e70d62af3708c07af0fbcbe2a3a23",
+      "size_bytes": 13025
+    },
+    {
+      "path": "frontend/public/public-extracts/sz.json",
+      "role": "data_contract_suite",
+      "sha256": "937255a5c82b41ecd0db75ac3863db6620632bbeecad761131ec79ccab70fd94",
+      "size_bytes": 24021
+    },
+    {
+      "path": "frontend/public/public-extracts/hubei.json",
+      "role": "data_contract_suite",
+      "sha256": "9056001c521c63182674410218213dc4e9da4ac7d4b2ca13301add8506d35eb6",
+      "size_bytes": 2907
+    },
+    {
+      "path": "scripts/_knife65_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "4f08fa4cee33f1d0a659bc5fa67bc1b24d7c66eed4c91ea91b5c915dbde51f0d",
+      "size_bytes": 4794
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/389-stage0-cc-public-extracts-json-download-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "d0fdbfddd47a7e63e6110a28c6b061f28485200a6623992017d733586486dadc",
+      "size_bytes": 6605
     }
   ],
   "commit": {
@@ -4196,8 +4232,8 @@
   },
   "python_version": "3.14.3",
   "role_count": {
-    "data_contract_suite": 28,
-    "documentation": 115,
+    "data_contract_suite": 32,
+    "documentation": 116,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -4209,7 +4245,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 75,
+    "spike_helper": 76,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

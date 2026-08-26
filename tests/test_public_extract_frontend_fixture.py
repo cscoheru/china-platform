@@ -387,3 +387,55 @@ def test_overview_strip_reads_only_from_existing_fixtures() -> None:
     assert not sha_compute_re.search(strip_no_field_ref), (
         "overview strip 不得调用 sha256(...)/hashlib (per 382 §SCHEMA-2 不重算)"
     )
+
+
+# Knife 65 / tasking 388 — 四轨 JSON 静态下载 fixtures
+PUBLIC_DIR = PROJECT_ROOT / "frontend" / "public" / "public-extracts"
+PUBLIC_FILES = {
+    "nbs.json": FIXTURE,
+    "nbs-live-candidate.json": PROJECT_ROOT
+    / "frontend"
+    / "lib"
+    / "public_extract_nbs_live_candidate.json",
+    "sz.json": PROJECT_ROOT / "frontend" / "lib" / "public_extract_sz.json",
+    "hubei.json": HB_FIXTURE,
+}
+
+
+@pytest.mark.parametrize(
+    "pub_name,fixture_path",
+    list(PUBLIC_FILES.items()),
+    ids=list(PUBLIC_FILES.keys()),
+)
+def test_public_json_byte_identical_to_fixture(
+    pub_name: str, fixture_path: Path
+) -> None:
+    """Per 388 §SCHEMA (1) + §红线: 4 fixture 字节一致拷到
+    frontend/public/public-extracts/; public 拷贝与 lib fixture 字节必须
+    完全相同 (shasum == fixture shasum)."""
+    pub_path = PUBLIC_DIR / pub_name
+    assert pub_path.is_file(), f"missing public copy: {pub_path}"
+    assert fixture_path.is_file(), f"missing source fixture: {fixture_path}"
+    pub_bytes = pub_path.read_bytes()
+    fix_bytes = fixture_path.read_bytes()
+    assert pub_bytes == fix_bytes, (
+        f"public/public-extracts/{pub_name} 字节 != "
+        f"{fixture_path.name} (per 388 §红线 字节一致)"
+    )
+    assert len(pub_bytes) > 0, f"public/public-extracts/{pub_name} 空文件"
+
+
+def test_page_renders_download_json_column_and_links() -> None:
+    """Per 388 §SCHEMA (2): 一览表增「下载 JSON」列 + 4 download 链 +
+    /public-extracts/*.json 锚 (download attr 可选但建议加)."""
+    src = PE_PAGE.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", src)
+    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
+    # 列头
+    assert "下载 JSON" in code, "overview 表须含「下载 JSON」列头"
+    # 4 download 链 (href + download attr)
+    for pub_name in PUBLIC_FILES:
+        href = f'href="/public-extracts/{pub_name}"'
+        dl = f'download="public-extracts-{pub_name}"'
+        assert href in code, f"页面须含 {href}"
+        assert dl in code, f"页面 download attr 须含 {dl}"

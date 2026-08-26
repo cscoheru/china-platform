@@ -24,6 +24,9 @@
 // Per tasking 382 §SCHEMA (四轨一览条): 页首增四轨 summary (非 card 堆砌);
 // 读自既有 4 fixture (NBS sample/live + 深圳 + 湖北), 不重算; 锚点链到各
 // 分节 section; 四轨皆 demo/candidate 演示, 非 O1/Gate PASS.
+// Per tasking 388 §SCHEMA (JSON 静态下载): 4 fixture 字节一致拷到
+// frontend/public/public-extracts/{nbs,nbs-live-candidate,sz,hubei}.json
+// (download attr); 一览表增「下载 JSON」列 (8 列) → /public-extracts/*.json.
 // 静态路由: 无 params.*, 无 force-dynamic (纯 fixture 消费).
 
 import type { ReactElement } from "react";
@@ -126,6 +129,7 @@ export default function PublicExtractsPage(): ReactElement {
               <th style={cellStyle}>SHA 前 8</th>
               <th style={cellStyle}>demo|candidate 标注</th>
               <th style={cellStyle}>分节锚点</th>
+              <th style={cellStyle}>下载 JSON</th>
             </tr>
           </thead>
           <tbody>
@@ -147,6 +151,14 @@ export default function PublicExtractsPage(): ReactElement {
               <td style={cellStyle}>
                 <a href="#track-nbs-sample">↓ NBS sample 分节</a>
               </td>
+              <td style={cellStyle}>
+                <a
+                  href="/public-extracts/nbs.json"
+                  download="public-extracts-nbs.json"
+                >
+                  ⬇ nbs.json
+                </a>
+              </td>
             </tr>
             <tr>
               <td style={cellStyle}>NBS live 候选</td>
@@ -165,6 +177,14 @@ export default function PublicExtractsPage(): ReactElement {
               </td>
               <td style={cellStyle}>
                 <a href="#track-nbs-live">↓ NBS live 候选分节</a>
+              </td>
+              <td style={cellStyle}>
+                <a
+                  href="/public-extracts/nbs-live-candidate.json"
+                  download="public-extracts-nbs-live-candidate.json"
+                >
+                  ⬇ nbs-live-candidate.json
+                </a>
               </td>
             </tr>
             <tr>
@@ -185,6 +205,14 @@ export default function PublicExtractsPage(): ReactElement {
               <td style={cellStyle}>
                 <a href="#track-sz">↓ 深圳分节</a>
               </td>
+              <td style={cellStyle}>
+                <a
+                  href="/public-extracts/sz.json"
+                  download="public-extracts-sz.json"
+                >
+                  ⬇ sz.json
+                </a>
+              </td>
             </tr>
             <tr>
               <td style={cellStyle}>湖北 sample</td>
@@ -203,6 +231,14 @@ export default function PublicExtractsPage(): ReactElement {
               </td>
               <td style={cellStyle}>
                 <a href="#track-hb">↓ 湖北分节</a>
+              </td>
+              <td style={cellStyle}>
+                <a
+                  href="/public-extracts/hubei.json"
+                  download="public-extracts-hubei.json"
+                >
+                  ⬇ hubei.json
+                </a>
               </td>
             </tr>
           </tbody>

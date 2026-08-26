@@ -974,6 +974,81 @@ def main() -> int:
                 "4 锚点 (sample/live/sz/hb) + 非 O1/Gate PASS 守门"
             )
 
+    # §12g — JSON 静态下载 (per tasking 388)
+    # 4 fixture 字节一致拷到 frontend/public/public-extracts/{nbs,nbs-live-candidate,
+    # sz,hubei}.json; 一览表增「下载 JSON」列 (download attr + /public-extracts/*.json 锚).
+    public_dir = ROOT / "public" / "public-extracts"
+    public_files = {
+        "nbs.json": ROOT / "lib" / "public_extract_nbs.json",
+        "nbs-live-candidate.json": ROOT
+        / "lib"
+        / "public_extract_nbs_live_candidate.json",
+        "sz.json": ROOT / "lib" / "public_extract_sz.json",
+        "hubei.json": ROOT / "lib" / "public_extract_hubei.json",
+    }
+    for pub_name, fixture_path in public_files.items():
+        pub_path = public_dir / pub_name
+        if not pub_path.is_file():
+            errors.append(
+                f"public/public-extracts/{pub_name} missing (per tasking 388 §SCHEMA-1)"
+            )
+            continue
+        try:
+            pub_bytes = pub_path.read_bytes()
+            fix_bytes = fixture_path.read_bytes()
+            if pub_bytes != fix_bytes:
+                errors.append(
+                    f"public/public-extracts/{pub_name} 字节不一致 fixture "
+                    f"(per tasking 388 §红线 字节一致)"
+                )
+            else:
+                ok(
+                    f"public/public-extracts/{pub_name} 字节 == "
+                    f"{fixture_path.name} (size={len(pub_bytes)})"
+                )
+        except OSError as e:
+            errors.append(
+                f"public/public-extracts/{pub_name} read fail: {e}"
+            )
+
+    # 一览表「下载 JSON」列 + 4 download 链 + /public-extracts/*.json 锚
+    if pe_page_path.is_file():
+        pe_src6 = pe_page_path.read_text(encoding="utf-8")
+        pe_code6 = re.sub(r"//[^\n]*", "", pe_src6)
+        pe_code6 = re.sub(r"/\*.*?\*/", "", pe_code6, flags=re.DOTALL)
+        for needle, label in [
+            ("下载 JSON", "下载 JSON 列头"),
+            ('href="/public-extracts/nbs.json"', "NBS 下载链"),
+            ("download=\"public-extracts-nbs.json\"", "NBS download attr"),
+            ('href="/public-extracts/nbs-live-candidate.json"', "NBS live 下载链"),
+            (
+                "download=\"public-extracts-nbs-live-candidate.json\"",
+                "NBS live download attr",
+            ),
+            ('href="/public-extracts/sz.json"', "深圳下载链"),
+            ("download=\"public-extracts-sz.json\"", "深圳 download attr"),
+            ('href="/public-extracts/hubei.json"', "湖北下载链"),
+            ("download=\"public-extracts-hubei.json\"", "湖北 download attr"),
+        ]:
+            if needle not in pe_code6:
+                errors.append(
+                    f"public-extracts/page.tsx missing {label} (per tasking 388 §SCHEMA-2)"
+                )
+        if all(
+            n in pe_code6
+            for n in (
+                "下载 JSON",
+                "/public-extracts/nbs.json",
+                "/public-extracts/nbs-live-candidate.json",
+                "/public-extracts/sz.json",
+                "/public-extracts/hubei.json",
+            )
+        ):
+            ok(
+                "public-extracts/page.tsx: 下载 JSON 列 + 4 download 链 "
+                "(nbs / nbs-live-candidate / sz / hubei)"
+            )
+
     if errors:
         for e in errors:
             fail(e)
