@@ -3,7 +3,7 @@
 - 编号：`418-stage0-cc-docs45-docs50-milestone-crosslink-receipt-20260826`
 - 任务书：`418-stage2-docs45-docs50-milestone-crosslink-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TBD-pre-push`
+- cc_head：`66da7bd`
 - 日期：2026-08-26
 
 ---
