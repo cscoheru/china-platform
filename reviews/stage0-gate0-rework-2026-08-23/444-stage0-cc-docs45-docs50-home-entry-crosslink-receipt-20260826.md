@@ -3,7 +3,7 @@
 - 编号：`444-stage0-cc-docs45-docs50-home-entry-crosslink-receipt-20260826`
 - 任务书：`444-stage2-docs45-docs50-home-entry-crosslink-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：（待双推回填）
+- cc_head：`7e50ba6`（双推：origin 7b7a56a..7e50ba6，github 7b7a56a..7e50ba6）
 - 日期：2026-08-26
 
 ---
