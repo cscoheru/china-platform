@@ -204,6 +204,26 @@ export default async function HomePage() {
               暂缓（非 live O1）
             </td>
           </tr>
+          <tr>
+            <td style={cellStyle}>公开提取四轨一览（overview strip）</td>
+            <td style={cellStyle}>
+              <a
+                href="/public-extracts#overview"
+                data-testid="home-public-extracts-overview"
+              >
+                /public-extracts#overview
+              </a>
+            </td>
+            <td style={cellStyle}>
+              stats.gov.cn / sz.gov.cn / tjj.hubei.gov.cn 7 列 × 4 行
+              overview（轨 / domain / category / 行数 / SHA 前 8 / demo\|candidate
+              标注 / 分节锚点；数据只读自既有 4 fixture，不重算；per 回执 `383`；
+              smoke §12f 门）
+            </td>
+            <td style={cellStyle}>
+              OVERVIEW · 四轨 demo · 非 O1
+            </td>
+          </tr>
         </tbody>
       </table>
       <p style={{ marginTop: 24, fontSize: 12, color: "#999" }}>

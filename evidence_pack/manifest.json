@@ -1,5 +1,5 @@
 {
-  "artifact_count": 743,
+  "artifact_count": 746,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -4458,6 +4458,24 @@
       "role": "documentation",
       "sha256": "1542f43700277abdc69e7dc20085b8b972015785024bd143a89858a01fa52c2b",
       "size_bytes": 8383
+    },
+    {
+      "path": "tests/test_overview_home_deeplink_public_extract.py",
+      "role": "schema_negative_test",
+      "sha256": "0cfd816c6c8561e1f3d0d35c2b50da9b3a2e342e9311d42b42ce80a9846e68a7",
+      "size_bytes": 5143
+    },
+    {
+      "path": "scripts/_knife82_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "ed2b0fe1cabf4fb4b75bcfd34b4135b96c0976934c32f9f3a85d35b674167e38",
+      "size_bytes": 4283
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/432-stage0-cc-home-overview-deeplink-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "b5650e5678ad6bd231d4d8a36032f13a4de2453f23626880f04dee8678ac304d",
+      "size_bytes": 7354
     }
   ],
   "commit": {
@@ -4491,19 +4509,19 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 36,
-    "documentation": 132,
+    "documentation": 133,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 47,
+    "schema_negative_test": 48,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 93,
+    "spike_helper": 94,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
