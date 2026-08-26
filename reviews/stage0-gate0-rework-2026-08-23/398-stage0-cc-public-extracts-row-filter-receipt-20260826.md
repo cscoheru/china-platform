@@ -3,7 +3,7 @@
 - 编号：`398-stage0-cc-public-extracts-row-filter-receipt-20260826`
 - 任务书：`397-stage2-public-extracts-row-filter-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`(交卷 commit, 推送后回填)`
+- cc_head：`13501f8`
 - 日期：2026-08-26
 
 ---
