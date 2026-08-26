@@ -3,7 +3,7 @@
 - 编号：`413-stage0-cc-docs45-site-nav-csv-refresh-receipt-20260826`
 - 任务书：`412-stage2-docs45-site-nav-csv-refresh-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TODO_BACKFILL`
+- cc_head：`8e21612`
 - 日期：2026-08-27
 
 ---
