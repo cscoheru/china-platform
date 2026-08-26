@@ -8,39 +8,38 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `153` |
-| **origin_head** | `3cdd12e` |
-| **cc_head** | `3cdd12e`；`368` 已交 |
-| **cc_receipt** | `368` |
-| **cursor_ack** | `368` |
-| **last_audit** | `369` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；Cursor 代判；深圳 71 行 sample → **上 /public-extracts** |
+| **phase** | `POLL` |
+| **queue_rev** | `154` |
+| **origin_head** | `0d1a3fd` |
+| **cc_head** | `0d1a3fd`；`371` 已交 |
+| **cc_receipt** | `371` |
+| **cursor_ack** | `371` |
+| **last_audit** | `372` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；Cursor 代判；`/public-extracts` 三轨（NBS sample/live + 深圳 sample）已齐 → **POLL** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T20:06:30+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-26T20:15:30+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`370`** — 深圳 REGISTRY_SAMPLE 前端分节（见 `370-…tasking…md`）。
-
-1. fixture + `/public-extracts` 深圳分节
-2. 回执 **`371`**（`-cc-`）
-3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+（无新刀。）只 **`84` POLL**，直到 `queue_rev` 再 bump。
 
 ---
 
 ## POLL
 
-交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
-
-探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
+`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
 ---
 
 ## BLOCKED
 
 （无。）仅登录/验证码/付费 escalate 用户。
+
+## 里程碑（只读，非 Gate PASS）
+
+- https://china.3strategy.cc/public-extracts — NBS 63 + NBS live 60 + 深圳 71
+- ops：`docs/53`
