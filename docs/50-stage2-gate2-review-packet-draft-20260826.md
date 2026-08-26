@@ -1,0 +1,416 @@
+# 50 — Stage 2 Gate 2 评审包（草稿）
+
+> ⚠ **本文是 Gate 2 评审包草稿**（per `315` 缩刀任务书）。
+> ⚠ **本包不宣布 Gate 1 / Gate 2 PASS**（per docs/34 §1 + §8 #8 + §133 + `315` §红线）。
+> ⚠ **本包不宣布 O1 / O3 收口**（per docs/34 §3 + `284` §SCHEMA + `309` + `docs/49` §5.3）。
+> ⚠ **本包不伪造证据**（per docs/06 §6.6 + `315` §红线）。
+> ⚠ **本包不爬源站 / 不登录绕过 / 不 OCR 降门槛**（per PRD 红线 + `315` §红线 + docs/49 §2.2）。
+
+> 起草：CC · 2026-08-26 · queue_rev 131
+> 前置：`314` docs/45 PASS；`docs/08` §3.2（Gate 2 七条）；`docs/34` §2/§3；`docs/10` §3.1-3.5；`docs/44` §2（Stage 2 Gate 2 评审包规划）
+> 用户裁定：**D**；**不宣布 Gate 2 PASS**；O1/O3 必带 OPEN 清单
+> 任务性质：**评审包草稿**（per `315` §SCHEMA "本刀做"）— 按七条验收逐条挂证据路径（链到已交回执/页面/测试）；显式 OPEN 清单（O1 WAITING_FILE + O3 规划未实装）；预览 URL；**文首/文末禁止 PASS 措辞**
+> Gate 2 评审日期：暂定 W8（per docs/34 §10.4）；**不擅自提前**
+
+---
+
+## §0. 范围 / 红线
+
+### 0.1 本刀做
+- 按 **`docs/08 §3.2` Gate 2 七条验收** 逐条挂证据路径（链到**已交回执 / 页面 / 测试 / dbt 验证**）
+- 显式 **OPEN 清单**（O1 WAITING_FILE / O3 规划未实装 / docs/10 §3.2-3.4 stub）
+- 列出**演示级可过** vs **不可降级** vs **仍 OPEN** 三类
+- 预览 URL（演示场景）
+- **文首/文末禁止 PASS 措辞**
+
+### 0.2 本刀不做
+- ❌ 宣布 Gate 1 / Gate 2 PASS
+- ❌ 宣布 O1 / O3 收口
+- ❌ 伪造证据（假造 SHA / 假造 PDF / 假造履历）
+- ❌ 爬源站 / 登录绕过 / OCR 降门槛 / 未授权 cloud OCR
+- ❌ 派生官员评分 / 排名 / DSH / 实时数据
+- ❌ 改业务代码 / 改 Cursor 拥有架构文档
+
+### 0.3 红线条目（per docs/34 §1 + §8 + `315` §红线 + docs/49 §2.2 + docs/06 §6.6）
+- ❌ 不宣布 Gate 1 / Gate 2 PASS
+- ❌ 不擅自收口 O1（真实 SHA-locked 江苏样本，per `284`）
+- ❌ 不擅自收口 O3（OCR 生产路径，per `docs/49`）
+- ❌ 不派生 score / rating / rank / total_score / confidence_score / credibility_score / peer_rank
+- ❌ 不做官员能力总分 / 排名 / DSH / 实时数据
+- ❌ 不批量爬政策研究 / 财政预决算 / 官员履历
+- ❌ 不 HTTP 爬源 / 不登录绕过 / 不未授权 cloud OCR / 不 symlink / 不伪造
+- ❌ 不启用 pgvector / RLS / partition
+- ❌ 不改 `gate_thresholds.json`
+- ❌ 不碰 `00-CC-CURRENT.md`
+- ❌ 不擅自 `--force` / `--force-with-lease`
+- ❌ 不替用户下裁定
+- ❌ 不在聊天复述 Cursor 长文
+- ❌ 不索要 PAT
+
+---
+
+## §1. 评审包结构
+
+| 节 | 内容 | 来源 |
+|---|---|---|
+| §2 | Gate 2 七条验收 ↔ 证据路径映射表 | docs/08 §3.2 + docs/44 §2 + docs/45 §2 |
+| §3 | 不可降级 vs 演示级 vs 仍 OPEN 三类划分 | docs/34 §1 + docs/44 §1.2 |
+| §4 | 演示场景（5 省 + 10 地市页面 + EvidenceChain + 七维度）| docs/44 §1.1 + docs/36/37/38/39/40/41/42 |
+| §5 | Stage 1 OPEN 继承清单（O1 / O3 必带；O2 / O5 / others 状态）| docs/34 §3 + `284` + `309` + `docs/49` |
+| §6 | 评审脚本清单（pytest + smoke-check + dbt + 端到端）| docs/10 §3.1-3.5 + docs/44 §4 |
+| §7 | 预览路径（演示管道，**非 O1 收口**）| docs/45 §5.5 + `303` + `297` + `294` |
+| §8 | 红线自检 + 不变量 | docs/34 §8 + `315` §红线 + `06` §6.6 |
+| §9 | 不可隐藏清单（Gate 2 评审必带）| docs/34 §3 + §120 |
+| §10 | 备注 / 不在范围 / 下次心跳预期 | `315` §NOW + `docs/49` §11 |
+
+---
+
+## §2. Gate 2 七条验收 ↔ 证据路径（per docs/08 §3.2 + docs/44 §2 + docs/45 §2）
+
+### 七条原文（per docs/08 §3.2）
+
+| # | 验收项 | 阶段来源 | 不可降级 vs 演示级 vs OPEN |
+|---|---|---|---|
+| 1 | 5 省 + 10 地市观察页面上线 | S2.7 | **演示级可过**（lite 已交 mock 壳）；dbt mart 真表 / person/tenure 真数据仍 OPEN → S2.7-b-full 真数据迁移刀（tasking 26X+）|
+| 2 | 六段证据链完整可点击 | S2.6 + S2.7 | **不可降级** — 已守（lite UI + migration 013）|
+| 3 | 七维度观察卡可展开 | S2.8 | **演示级可过**（lite UI + types + mock）|
+| 4 | 没有「官员能力总分」| PRD 红线 + docs/08 §3.3 | **不可降级** — smoke-check + file-level forbidden-token guard 已守门 |
+| 5 | 每条 governance 观察标注 INFERENCE/JUDGMENT | S2.5 + S2.7 | **不可降级** — migration 012 + types §2.5 已交 |
+| 6 | 至少 1 个反例被显式登记并展示 | S2.6 | **不可降级** — migration 013 trigger + docs/41 规划已交 |
+| 7 | docs/10 测试 §3.1-3.5 全过 | Stage 2 收口 | **演示级 + 部分必过**（§3.1 + §3.5 schema/types 已交；§3.2-3.4 xfail stub）|
+
+### 证据路径（链到已交回执 / 页面 / 测试）
+
+| # | 验收项 | 证据路径 | 已交回执 / 来源 | 状态 |
+|---|---|---|---|---|
+| **1** | 5 省 + 10 地市观察页面上线 | **5 省 lite 页面**：`frontend/app/provinces/{jiangsu,zhejiang,guangdong,shandong,sichuan}/page.tsx`<br>**10 地市 lite 页面**：`frontend/app/cities/[slug]/page.tsx`（`generateStaticParams` 预生成 10 slug；`dynamicParams = false` 404 兜底）| `257`（S2.7-b-lite 已交 mock 壳）<br>`266`（mart-shape 接驳；feature-flag；默认 demo）<br>`288`（dbt mart 骨架；WHERE FALSE）<br>`294`（dbt mart demo-join；60+70 demo 行；10 城 × 6 段 / 7 维度；`is_demo='true'`）<br>`297`（前端 mart demo 契约对齐；20 pytest 锁定 TS demo ↔ dbt mart）<br>`303`（S2.7-b person/tenure demo 接驳；10 城 × 2 demo 行 = 20 demo 相关人物行：市委书记 + 市长 mock 占位；TS fixture 主路径；UI 显式 demo 标识；15 pytest 锁定）| ✅ 演示级可过（lite + demo）；dbt mart 真表 / person/tenure 真数据仍 OPEN → S2.7-b-full 真数据迁移刀 |
+| **2** | 六段证据链完整可点击 | `frontend/app/components/EvidenceChain.tsx`（CONDITION / COMMITMENT / PROCESS / OUTPUT / OUTCOME / FEEDBACK 六段）<br>反例 trigger：`schema/migrations/013_counterexample_gate.sql` | `255`（S2.6 反例 gate 已交）<br>`257`（lite UI）| ✅ **不可降级** — 已守（lite UI + migration 013）|
+| **3** | 七维度观察卡可展开 | `frontend/app/components/SevenDimGrid.tsx`<br>类型契约：`frontend/lib/types_seven_dim.ts`<br>演示 mock：`frontend/lib/mock_seven_dim.ts` | `270`（S2.8 七维度 lite 已交 mock）| ✅ **演示级可过**（lite UI + types + mock）|
+| **4** | 没有「官员能力总分」| runtime 守门：`frontend/smoke-check.py` §10 mart-shape 扫描<br>静态守门：file-level forbidden-token guard（每次新文件 CLEAN）<br>禁词列表：`score` / `rating` / `rank` / `total_score` / `confidence_score` / `credibility_score` / `peer_rank` / DSH | `284` + `294` + `297` + `303` + `docs/45 §6.2` 禁词 3 重守门 | ✅ **不可降级** — 已守门 |
+| **5** | 每条 governance 观察标注 INFERENCE/JUDGMENT | schema：`schema/migrations/012_inference_alignment.sql`<br>类型：`frontend/lib/types_seven_dim.ts` §2.5 | `251`（S2.5 inference 已交）| ✅ **不可降级** — migration 012 + types §2.5 已交 |
+| **6** | 至少 1 个反例被显式登记并展示 | schema trigger：`schema/migrations/013_counterexample_gate.sql`<br>规划：`docs/41-stage2-s26-counterexample-plan-20260826.md` | `255`（S2.6 反例 gate 已交）| ✅ **不可降级** — migration 013 trigger + docs/41 规划已交 |
+| **7** | docs/10 测试 §3.1-3.5 全过 | 跨 lite 回归：`tests/test_*_s*lite.py`（当前 42/42 PASS）<br>§3.1 同类比较匹配依据：✅ schema + types 已交<br>§3.2 回归模型参数：⚠️ xfail stub（Stage 3 收口）<br>§3.3 缺失值处理：⚠️ xfail stub（Stage 3 收口）<br>§3.4 因果设计假设：⚠️ xfail stub（Stage 3 收口）<br>§3.5 归因措辞：✅ schema + types 已交 | docs/45 §4 + docs/44 §3 + `315` §SCHEMA | ⚠️ §3.1 + §3.5 已交 schema/types；§3.2-3.4 待 S2.10 落地刀（tasking 251+）；Gate 2 评审**必带 OPEN** |
+
+---
+
+## §3. 三类划分（不可降级 vs 演示级 vs 仍 OPEN）
+
+### 3.1 不可降级（Gate 2 评审必须 100% 通过）
+
+| # | 验收项 | 证据路径 | 守门 |
+|---|---|---|---|
+| 2 | 六段证据链完整可点击 | `EvidenceChain.tsx` + `migration 013` | ✅ 已守 |
+| 4 | 没有「官员能力总分」| `smoke-check.py` + file-level forbidden-token guard | ✅ 已守门 |
+| 5 | 每条 governance 观察标注 INFERENCE/JUDGMENT | `migration 012` + `types_seven_dim.ts` §2.5 | ✅ 已交 |
+| 6 | 至少 1 个反例被显式登记并展示 | `migration 013 trigger` + `docs/41` 规划 | ✅ 已交 |
+
+### 3.2 演示级可过（Gate 2 评审可演示，不构成 PASS）
+
+| # | 验收项 | 证据路径 | 守门 |
+|---|---|---|---|
+| 1 | 5 省 + 10 地市观察页面上线 | lite 页面 + demo mart-shape + dbt mart 骨架（WHERE FALSE）+ dbt mart demo-join | ✅ 演示级可过（`257` + `266` + `288` + `294` + `297` + `303`）；真数据仍 OPEN |
+| 3 | 七维度观察卡可展开 | lite UI + types + mock | ✅ 演示级可过（`270`）|
+
+### 3.3 仍 OPEN（Gate 2 评审**必带 OPEN 清单**，不擅自收口）
+
+| OPEN | 来源 | 当前状态 | 收口前置 |
+|---|---|---|---|
+| **O1** 真实 SHA-locked 江苏样本 | S1.18 DEMO 路径 | **WAITING_FILE**（用户 2026-08-26 确认本机/仓库**未持有**江苏真实 SHA-locked 样本；`lineage.source_file_sha256` 恒为 `'0'*64` 占位 per docs/47 §3.1 ⚠️）| 用户线下渠道（政府文件 PDF/扫描件原件）+ `--confirm-o1=PATH` 显式 flag + intake 4 退出码契约（per `291` + docs/48 §4.3）|
+| **O3** OCR 生产路径 | S1.17 scanned PDF | **规划已交，实装仍 OPEN**（per `docs/49` + `309`）| 用户裁定 OCR 引擎（paddle-ocr 推荐 / tesseract / cloud）+ `--confirm-o3=PATH` + 端到端 pytest PASS（per `docs/49` §5.3 + §8 + §10）|
+| docs/10 §3.2-3.4 | Stage 2 收口 | ⚠️ xfail stub（Stage 3 收口）| S2.10 落地刀（tasking 251+）；Gate 2 评审**必带 OPEN 清单**|
+| **mart-shape 真表** | S2.7-b-full | OPEN（演示级 dbt mart 骨架 WHERE FALSE）| S2.7-b-full 真数据迁移刀（tasking 26X+）|
+| **person/tenure 真数据** | S2.1 | OPEN（person/tenure demo 已交 `303`；真数据待 S2.1-lite PASS OPEN per Cursor 174）| S2.1-lite 落地刀 + O1 真实 SHA 收口（per docs/45 §5.5 OPEN + docs/47 §6.3）|
+
+---
+
+## §4. 演示场景（5 省 + 10 地市 + EvidenceChain + 七维度）
+
+### 4.1 5 省 + 10 地市演示页面（per docs/36-42 + S2.7-a + S2.7-a2）
+
+#### 5 省 lite 页面（per `257`）
+```
+frontend/app/provinces/
+├── jiangsu/page.tsx       # 江苏
+├── zhejiang/page.tsx      # 浙江
+├── guangdong/page.tsx     # 广东
+├── shandong/page.tsx      # 山东
+└── sichuan/page.tsx       # 四川
+```
+
+#### 10 地市 lite 页面（per `257` + `303`）
+```
+frontend/app/cities/
+└── [slug]/page.tsx        # generateStaticParams 预生成 10 slug：
+                          # nanjing / suzhou / wuxi / nantong
+                          # hangzhou / ningbo / wenzhou
+                          # guangzhou / shenzhen / dongguan
+                          # dynamicParams = false → 404 兜底
+```
+
+#### CityPageMart 组件（per `266` + `294` + `297` + `303`）
+- `frontend/app/components/CityPageMart.tsx`
+- `<section data-testid="city-page-mart-evidence-chain">` — evidence_chain 6 段 + is_demo 标识
+- `<section data-testid="city-page-mart-seven-dim">` — seven_dim_overview 7 维度 + is_demo 标识
+- `<section data-testid="city-page-mart-related-persons">` — 10 城 × 2 demo 相关人物行（市委书记 + 市长 mock；演示标识）
+
+### 4.2 EvidenceChain（六段）
+```
+frontend/app/components/EvidenceChain.tsx
+  ├─ CONDITION      条件（per S2.6）
+  ├─ COMMITMENT     承诺（per S2.6）
+  ├─ PROCESS        过程（per S2.6）
+  ├─ OUTPUT         输出（per S2.6）
+  ├─ OUTCOME        结果（per S2.6）
+  └─ FEEDBACK       反馈（per S2.6）
+```
+每段渲染：observation_id + evidence_refs[] + source_document + is_demo 标识。
+
+### 4.3 七维度观察卡（per `270` + docs/42）
+```
+frontend/app/components/SevenDimGrid.tsx
+  1. policy_direction       # 政策方向
+  2. fiscal_input           # 财政投入
+  3. institutional_capacity # 制度能力
+  4. process_disclosure     # 过程披露
+  5. outcome_observability  # 结果可观测
+  6. feedback_loop          # 反馈回路
+  7. cross_source_consistency # 跨源一致性
+```
+类型契约：`frontend/lib/types_seven_dim.ts`；mock：`frontend/lib/mock_seven_dim.ts`。
+
+---
+
+## §5. Stage 1 OPEN 继承清单（per docs/34 §3 + `284` + `309` + `docs/49`）
+
+### 5.1 Gate 2 评审**必带 OPEN 清单**（per docs/34 §3 + §120）
+
+| OPEN | 来源 | 当前状态 | Gate 2 必带？| 收口前置 |
+|---|---|---|---|---|
+| **O1** 真实 SHA-locked 江苏样本 | S1.18 DEMO 路径 | **WAITING_FILE** | ✅ **必带**（per docs/34 §3 + §120）| `--confirm-o1=PATH` + intake 4 退出码契约 |
+| **O2** cron / 通知 / 真实联外探针 | Stage 1 运维 | 演示级可过 | ⚠️ 演示级可过 | S1.x 运维刀（Stage 2 后）|
+| **O3** OCR 生产路径 | S1.17 scanned PDF | **规划已交（`docs/49` + `309`），实装仍 OPEN** | ✅ **必带**（per docs/34 §3 + `docs/49` §5.3）| OCR 引擎选型 + `--confirm-o3=PATH` + 端到端 pytest PASS |
+| O4 `is_demo` 机制 | S1.18 | ✅ 已交 | — | — |
+| **O5** docs/10 测试 §3.2-3.4 | Stage 2 收口 | ⚠️ xfail stub | ✅ **必带**（Gate 2 评审包必带 OPEN 清单）| S2.10 落地刀（tasking 251+）|
+| O6 FastAPI 只读服务 | S1.10 | ✅ 已交 | — | — |
+| O7 dbt staging candidate | S1.19 | ✅ 已交 | — | — |
+
+### 5.2 O1 详细状态（per `284` §SCHEMA + `299` §SCHEMA + 用户 2026-08-26 裁定）
+
+- **用户 2026-08-26 确认**：本机/仓库**未持有**江苏真实 SHA-locked 样本；无 OCR 后入库的江苏政府文件。
+- **演示路径**：继续走 `lib/mart_city_demo.ts` 的 S1.18 DEMO sentinel；`lineage.source_file_sha256` 恒为 `'0'*64` 占位（per docs/47 §3.1 ⚠️）。
+- **dbt mart demo-join（per `294`）**：`mart_city_evidence_chain` 60 demo 行 + `mart_city_seven_dim_overview` 70 demo 行；行级 lineage `lineage_is_demo='true'` + `is_demo='true'`；SHA `'0'*64` 占位。
+- **真 SHA 投递入口（per `291` intake）**：`docs/48-stage2-real-sha-intake-handbook-20260826.md` + `scripts/intake_real_sha_if_present.py`；当前 runtime allowlist = 4 fixtures（j2.json fixture 文件）→ 全部 `WAITING_FILE` 退出（rc=0）；4 退出状态：`WAITING_FILE` / `CANDIDATE_FOUND` / `O1_INTAKED` / `CONTRACT_VIOLATION`。
+- **前端 parity 守门（per `297`）**：`tests/test_frontend_mart_demo_parity_s296.py` 20 pytest cases 锁定 TS demo（4-file 契约 surface）↔ dbt mart 契约对齐。
+- **person/tenure demo 接驳（per `303`）**：`frontend/lib/mart_city_demo.ts` 新增 `buildMartRelatedPersons(citySlug)` 工厂（每城 2 demo 行：市委书记 + 市长）；`canonical_name` 全部 demo 占位 `"演示 人物 A (mock, {slug})"` / `"演示 人物 B (mock, {slug})"`（含 "演示" + "mock" 双标识）；`positionTitle` = `"市委书记（演示职位）"` / `"市长（演示职位）"`；`isCurrent=true`（demo 简化）；`lineage.isDemo=true` + `sourceFileSha256='0'*64` 占位。10 城 × 2 = 20 demo 行（`MART_CITY_DEMO_RELATED_PERSONS_TOTAL` 导出常量）。`CityPageMart.tsx` 新增 `<section data-testid="city-page-mart-related-persons">` UI 渲染块 + "演示人物（mock）· 不构成真实身份核验" 显式小字。15 pytest cases（`test_mart_related_persons_demo_s302.py`）守门。**主路径选择 = TS fixture**（dbt 侧 `mart_person_tenure` 依赖 S2.1-lite PASS OPEN per Cursor 174）。
+- **预览路径（演示，非 O1 收口）**：用户运行 `NEXT_PUBLIC_USE_MART_FIXTURE=1` 看 demo mart-shape 管道（10 城 × 6 段 × 7 维度 + 10 城 × 2 demo 相关人物行，全部 `is_demo=true`）；**该预览仅是 demo 演示管道，不构成 O1 收口**。
+- **不伪造**：禁止假造江苏政府文件 SHA；禁止拿 mock fixture 冒充真实样本；禁止拿 cursor-demo 等替代物冒充（per `284` §SCHEMA "本刀不做" + docs/06 §6.6 红线）。
+- **不爬网**：不 HTTP 抓政府站；不调用第三方 API 抓江苏 GDP / 财政 / 履历（per `284` §SCHEMA "本刀不做" + `284` §红线）。
+- **Gate 2 评审必带 OPEN**：Gate 2 评审包必须显式携带 O1 OPEN 清单（per docs/34 §3 + §120）；不擅自宣布 O1 收口。
+- **收口路径**：O1 真实 SHA 由用户后续提供（线下渠道：政府文件 PDF/扫描件原件）；收口前 demo 恒占位（per docs/47 §6.3 切刀风险 + `284` §SCHEMA）。用户主动 `--confirm-o1=PATH` 显式 flag 才允许 flip O1 状态（per `291` intake + docs/48 §4.3）。
+
+### 5.3 O3 OCR 生产路径详细状态（per `309` + `docs/49` + `313`）
+
+- **规划蓝图已交**（per `docs/49-stage2-o3-ocr-prod-path-plan-20260826.md`，11 节）：7 步流水线设计（upload → validate → sha256 → ocr → text extract → lineage write → ingest）；allowlist 复用 `docs/48` §2（`ALLOWED_UPLOAD_DIR` + `data/seed_archives/`）；`is_demo/SHA lineage` 衔接 `docs/48` §3 4 退出码契约（WAITING_FILE / CANDIDATE_FOUND / O1_INTAKED / CONTRACT_VIOLATION）；`is_demo=false` 翻转 = O3 收口标志事件（lineage JSONB `source_file_sha256` ≠ `'0'*64` + `demo_reason=NULL` + `source_file_url="(OCR_SCAN_FROM_UPLOAD:{user_id}:{uploaded_at})"`）。
+- **输入边界显式禁止**：❌ HTTP 爬源（gov.cn / 任何第三方）；❌ 登录绕过（cookie / 账号 / headless browser / Selenium / Playwright）；❌ 未授权 cloud OCR API（默认离线；须 `--enable-cloud-ocr=PROVIDER` 显式 flag + 用户裁定）；❌ symlink/path traversal；❌ 伪造样本（per `docs/48` §4.1 控制流 fixture 判定契约）。
+- **OCR 引擎选型待用户裁定**：默认推荐 paddle-ocr（中文精度高 + 本地离线）；tesseract / cloud 备选；最终由用户裁定（per `docs/49` §3.2 步骤 4 + §10 Q1）。
+- **O3 仍 OPEN — 未实装**：实装（tasking 31X+）依赖用户裁定 OCR 引擎 + 用户主动 `--confirm-o3=PATH` 提供真实 PDF + 端到端 pytest PASS（per `docs/49` §5.3 + §8 + §10 Q4）。
+- **依赖**：S2.1-lite `mart_person_tenure` PASS（干部任免 PDF OCR → person/tenure 表）；S2.2 `policy_observation` schema（政府工作报告 OCR）；S2.4 `fiscal_observation` schema（财政预决算 OCR）— per `docs/49` §6.2 下游消费者。
+- **docs/45 §3 O3 + §5.5 + §6 + §6.2 多处显式标注 O3 仍 OPEN**（per `313`）。
+
+### 5.4 不可隐藏清单（Gate 2 评审**必带**）
+
+- ⚠ O1 真实 SHA-locked 江苏样本 **WAITING_FILE**（per docs/34 §3 + §120）
+- ⚠ O3 OCR 生产路径 **规划已交，实装仍 OPEN**（per `docs/49` + `309` + `313`）
+- ⚠ docs/10 §3.2-3.4 **xfail stub**（Stage 3 收口）
+- ⚠ dbt mart **真表** OPEN（演示级 WHERE FALSE 骨架已交 `288`）
+- ⚠ person/tenure **真数据** OPEN（demo 已交 `303`；真数据待 S2.1-lite PASS）
+- ⚠ S2.7-b-full **真数据迁移刀** tasking 26X+ OPEN（per docs/47 §6.3 + `284` §依赖）
+
+---
+
+## §6. 评审脚本清单（per docs/10 §3.1-3.5 + docs/44 §4）
+
+### 6.1 pytest 全集（按 docs/45 §4）
+
+| 测试组 | 文件模式 | 当前状态 | Gate 2 要求 |
+|---|---|---|---|
+| S1.x stage1 回归 | `tests/test_*_s1*.py` | 39/39 PASS | ✅ 必过 |
+| S2.x lite 回归 | `tests/test_*_s*lite.py` | 42/42 PASS | ✅ 必过 |
+| S2.7-b person/tenure demo（`303`）| `tests/test_mart_related_persons_demo_s302.py` | 15/15 PASS | ✅ 必过 |
+| S2.7-b frontend mart demo parity（`297`）| `tests/test_frontend_mart_demo_parity_s296.py` | 20/20 PASS | ✅ 必过 |
+| docs/10 §3.1 同类比较匹配依据 | （待 S2.10 落地刀）| ✅ schema + types 已交 | ✅ 必过 |
+| docs/10 §3.2 回归模型参数 | xfail stub | ⚠️ Stage 3 收口 | stub 即可（**必带 OPEN 清单**）|
+| docs/10 §3.3 缺失值处理 | xfail stub | ⚠️ Stage 3 收口 | stub 即可（**必带 OPEN 清单**）|
+| docs/10 §3.4 因果设计假设 | xfail stub | ⚠️ Stage 3 收口 | stub 即可（**必带 OPEN 清单**）|
+| docs/10 §3.5 归因措辞 | （待 S2.10 落地刀）| ✅ schema + types 已交 | ✅ 必过 |
+
+### 6.2 dbt 验证
+
+| 模型 | 状态 | Gate 2 要求 |
+|---|---|---|
+| `mart_city_evidence_chain` | ✅ 骨架已交（`288`，WHERE FALSE）；demo-join 已交（`294`，60 demo 行 + `is_demo='true'`）| ✅ 演示级可过；真表 OPEN |
+| `mart_city_seven_dim_overview` | ✅ 骨架已交（`288`）；demo-join 已交（`294`，70 demo 行 + `is_demo='true'`）| ✅ 演示级可过；真表 OPEN |
+| `mart_person_tenure` | ⚠️ 依赖 S2.1-lite PASS（OPEN per Cursor 174）| ⚠️ 必带 OPEN 清单 |
+
+### 6.3 smoke-check（per docs/45 §6.2 禁词 3 重守门）
+
+| 检查项 | 状态 | Gate 2 要求 |
+|---|---|---|
+| §10 mart-shape 禁词扫描（runtime） | ✅ 已守门（每次新文件 CLEAN）| ✅ 必过 |
+| file-level forbidden-token guard（静态）| ✅ 已守门（每次新文件 CLEAN）| ✅ 必过 |
+| TS 类型约束（mart-shape）| ✅ 已守门（`types_seven_dim.ts` + `mart_city_demo.ts`）| ✅ 必过 |
+| 禁词列表（per docs/45 §6.2）| score / rating / rank / total_score / confidence_score / credibility_score / peer_rank / DSH / 实时数据 | ✅ 已守门 |
+
+### 6.4 端到端验证（演示场景）
+
+| 场景 | 路径 | 守门 |
+|---|---|---|
+| 5 省 lite 页面 | `localhost:3000/provinces/{jiangsu,zhejiang,guangdong,shandong,sichuan}` | ✅ mock 数据 + is_demo 标识 |
+| 10 地市 lite 页面 | `localhost:3000/cities/{nanjing,suzhou,wuxi,nantong,hangzhou,ningbo,wenzhou,guangzhou,shenzhen,dongguan}` | ✅ generateStaticParams + dynamicParams=false 兜底 |
+| CityPageMart 演示管道 | `NEXT_PUBLIC_USE_MART_FIXTURE=1` | ✅ demo mart-shape + is_demo 标识 |
+| EvidenceChain 六段 | lite UI | ✅ mock 数据 |
+| SevenDimGrid 七维度 | lite UI | ✅ mock 数据 |
+| relatedPersons demo | `<section data-testid="city-page-mart-related-persons">` | ✅ 演示标识 "演示人物（mock）· 不构成真实身份核验" |
+
+---
+
+## §7. 预览路径（演示管道，**非 O1 收口**）
+
+### 7.1 演示启动（per docs/45 §5.5 + `303` + `297` + `294`）
+
+```bash
+# 启动本地 dev server
+cd frontend
+NEXT_PUBLIC_USE_MART_FIXTURE=1 npm run dev
+
+# 访问演示页面（10 地市）
+open http://localhost:3000/cities/nanjing
+open http://localhost:3000/cities/suzhou
+...
+open http://localhost:3000/cities/dongguan
+
+# 访问演示页面（5 省）
+open http://localhost:3000/provinces/jiangsu
+...
+open http://localhost:3000/provinces/sichuan
+```
+
+### 7.2 演示管道组件
+
+| 组件 | 数据源 | is_demo | 守门 |
+|---|---|---|---|
+| `CityPageMart` evidence_chain 段 | `lib/mart_city_demo.ts` 的 `MART_CITY_DEMO_EVIDENCE_CHAIN`（60 demo 行）| ✅ `is_demo=true` | ✅ mock 标识显式 |
+| `CityPageMart` seven_dim 段 | `lib/mart_city_demo.ts` 的 `MART_CITY_DEMO_SEVEN_DIM_OVERVIEW`（70 demo 行）| ✅ `is_demo=true` | ✅ mock 标识显式 |
+| `CityPageMart` related_persons 段 | `lib/mart_city_demo.ts` 的 `buildMartRelatedPersons(citySlug)`（10 城 × 2 demo 行 = 20 行）| ✅ `lineage.isDemo=true` | ✅ "演示人物（mock）· 不构成真实身份核验" 显式小字 |
+| `EvidenceChain` 六段 | mock data | ✅ is_demo 标识 | ✅ mock 数据 |
+| `SevenDimGrid` 七维度 | mock data + types | ✅ is_demo 标识 | ✅ mock 数据 |
+
+### 7.3 演示路径**不构成 O1 / O3 收口**
+
+- ⚠ **该预览仅是 demo 演示管道**（per docs/45 §5.5 + `284` §SCHEMA）
+- ⚠ **不构成 O1 收口**：`lineage.source_file_sha256` 恒为 `'0'*64` 占位（per docs/47 §3.1 ⚠️）
+- ⚠ **不构成 O3 收口**：OCR 引擎未实装（per `docs/49` §0 + §8 不在范围）
+- ⚠ **不构成 Gate 2 PASS**（per docs/34 §1 + §8 #8 + `315` §红线）
+
+---
+
+## §8. 红线自检（per docs/34 §1 + §8 + `315` §红线 + docs/49 §0/§7 + docs/06 §6.6 + docs/42 §8 + docs/45 §6.2）
+
+| 红线 | 状态 | 守门位置 |
+|---|---|---|
+| ❌ 不宣布 Gate 1 / Gate 2 PASS | ✅ | docs/50 header + §0 + §10 多次显式守门 |
+| ❌ 不擅自 O1 收口 | ✅ | §3.3 + §5.1 + §5.2 + §5.4 多处显式 OPEN（WAITING_FILE）|
+| ❌ 不擅自 O3 收口 | ✅ | §3.3 + §5.1 + §5.3 + §5.4 多处显式 OPEN（规划已交，实装仍 OPEN）|
+| ❌ 不宣布 docs/10 §3.2-3.4 PASS | ✅ | §3.3 + §5.1 + §5.4 + §6.1 显式 xfail stub + Stage 3 收口 |
+| ❌ 不派生 score / rating / rank / total_score / confidence_score / credibility_score / peer_rank | ✅ | §2 #4 + §3.1 + §6.3 + docs/45 §6.2 禁词 3 重守门 |
+| ❌ 不做官员能力总分 / 排名 / DSH / 实时数据 | ✅ | §0.2 + §0.3 + §8 显式守门；docs/45 §6.2 沿用 |
+| ❌ 不批量爬政策研究 / 财政预决算 / 官员履历 | ✅ | §0.3 + §8 + docs/34 §1 沿用 |
+| ❌ HTTP 爬源 | ✅ | §5.3 显式禁止；本包不引入新 HTTP |
+| ❌ 登录绕过 | ✅ | §5.3 显式禁止；本包不引入 |
+| ❌ 未授权 cloud OCR API | ✅ | §5.3 显式禁止；本包不引入 |
+| ❌ 降 OCR 门槛 | ✅ | §5.3 + docs/49 §2.2 守门 |
+| ❌ 启用 pgvector / RLS / partition | ✅ | Stage 2 边界；本包不动 |
+| ❌ 改 `gate_thresholds.json` | ✅ | 未读未写 |
+| ❌ 不碰 `00-CC-CURRENT.md` | ✅ | Cursor 拥有 |
+| ❌ 不擅自 `--force` / `--force-with-lease` | ✅ | ff-only pull |
+| ❌ 不替用户下裁定 | ✅ | §0.2 + §5.2 + §5.3 显式 OPEN 携带 |
+| ❌ 不在聊天复述 Cursor 长文 | ✅ | 仅评审包要点 |
+| ❌ 不索要 PAT | ✅ | — |
+| ✅ docs/50 = CC 维护评审包草稿 | ✅ | CC 拥有（per `315` §SCHEMA "本刀做"）|
+| ✅ docs/45 §2 七条 ↔ docs/50 §2 七条**1:1**对齐 | ✅ | 本包直接复用 docs/45 §2 措辞 + 加证据路径详情 |
+| ✅ 七条验收全部挂证据路径 | ✅ | §2 表 7 行（链到已交回执 / 页面 / 测试 / dbt 验证）|
+| ✅ OPEN 清单**必带** | ✅ | §3.3 + §5.1 + §5.2 + §5.3 + §5.4 多处显式 |
+| ✅ 演示级 vs 不可降级 vs 仍 OPEN 三类划分 | ✅ | §3.1 + §3.2 + §3.3 |
+| ✅ 演示场景（5 省 + 10 地市）| ✅ | §4.1 5 省 + 10 地市路径齐全 |
+| ✅ EvidenceChain 六段 + 七维度 七卡 | ✅ | §4.2 + §4.3 |
+| ✅ 预览 URL + 演示管道 | ✅ | §7.1 + §7.2 + §7.3 |
+| ✅ **不构成 Gate 2 PASS** | ✅ | §0 + §7.3 + §10 多次显式守门 |
+| ✅ docs/50 文首/文末**禁止 PASS 措辞** | ✅ | header + §0 + §10 多次 ⚠ 显式 |
+| ✅ docs/50 = markdown-only（无业务代码改动）| ✅ | §0.2 显式 "不创业务代码" |
+| ✅ Cursor 拥有架构文档未动 | ✅ | docs/06/08/10/34/40-44/46-49 / `00-CC-CURRENT.md` 未读未写 |
+
+---
+
+## §9. 不可隐藏清单（Gate 2 评审必带，per docs/34 §3 + §120）
+
+> ⚠ **以下事项必须在 Gate 2 评审会上显式呈现，不得以任何方式省略、隐藏或改写**：
+
+1. ⚠ **O1 真实 SHA-locked 江苏样本 WAITING_FILE** — `lineage.source_file_sha256` 恒为 `'0'*64` 占位；演示管道全部走 demo sentinel；不擅自宣布 O1 收口
+2. ⚠ **O3 OCR 生产路径规划已交（`docs/49` + `309`），实装仍 OPEN** — 7 步流水线已规划，OCR 引擎未实装；tasking 31X+ 待用户裁定 + `--confirm-o3=PATH` + 端到端 pytest PASS
+3. ⚠ **docs/10 §3.2-3.4 xfail stub** — Stage 3 收口；Gate 2 评审**必带 OPEN 清单**
+4. ⚠ **dbt mart 真表 OPEN** — 演示级 WHERE FALSE 骨架已交（`288`）；demo-join 已交（`294`）；真数据待 S2.7-b-full 真数据迁移刀（tasking 26X+）
+5. ⚠ **person/tenure 真数据 OPEN** — demo 已交（`303`，10 城 × 2 demo 行）；真数据待 S2.1-lite PASS（OPEN per Cursor 174）
+6. ⚠ **mart-shape feature-flag 默认 mock** — `NEXT_PUBLIC_USE_MART_FIXTURE !== "1"` 默认走 mock；用户需显式开启 `=1` 才看 demo mart-shape 管道
+7. ⚠ **cloud OCR 默认离线** — 须 `--enable-cloud-ocr=PROVIDER` 显式 flag 才允许；默认 paddle-ocr 离线推荐（per `docs/49` §3.2 步骤 4）
+8. ⚠ **预览路径不构成 O1 / O3 收口** — demo 演示管道仅用于 Gate 2 评审展示；不构成 O1 真实 SHA 收口 + 不构成 O3 OCR 收口
+
+---
+
+## §10. 备注 / 不在范围 / 下次心跳预期
+
+### 10.1 备注
+
+- **本包是 Gate 2 评审包草稿**（per `315` §SCHEMA "本刀做"），不是 Gate 2 PASS 宣告
+- **本包**禁止 PASS 措辞**（per `315` §SCHEMA 文首/文末）
+- **本包**不创业务代码**（per `315` §SCHEMA "本刀不做"）— 仅 markdown 文档 + 回执 + bump + commit + push
+- **docs/50 = CC 维护评审包草稿**（per `315` §SCHEMA），不属于 Cursor 拥有架构文档（docs/06/08/10/34/40-44/46-49 / `00-CC-CURRENT.md`）
+- **Gate 2 评审日期暂定 W8**（per docs/34 §10.4），由 Cursor/用户裁定，不擅自提前
+- **O1 真实 SHA 收口前恒占位 `'0'*64`**（per docs/47 §3.1 ⚠️ + `315` §红线 + docs/45 §3 O1）
+- **O3 真收口须用户主动 `--confirm-o3=PATH` + OCR 引擎选型裁定 + 端到端 pytest PASS**（per `docs/49` §5.3 + §8 + §10 + docs/48 §3）
+- **cloud OCR 默认离线**（per `docs/49` §2.2 + §3.2 步骤 4）
+- **输入边界 = 仅用户/admin upload；禁止 HTTP 爬源 / 登录绕过 / 未授权 API / symlink / 伪造**（per `docs/49` §2.2）
+
+### 10.2 不在范围（per `315` §SCHEMA "本刀不做" + docs/49 §8）
+
+- ❌ Gate 1 / Gate 2 PASS 宣告
+- ❌ O1 / O3 收口
+- ❌ 业务代码改动（schema / migration / dbt / pytest / TS / frontend / smoke-check）
+- ❌ Cursor 拥有架构文档（docs/06/08/10/34/40-44/46-49）— 不读不改
+- ❌ `00-CC-CURRENT.md` — Cursor 拥有
+- ❌ `gate_thresholds.json` — 红线条目
+- ❌ OCR 引擎实装（paddle-ocr / tesseract / cloud 选型待用户裁定）
+- ❌ 真实 PDF 投递（须用户主动 `--confirm-o3=PATH` + `--confirm-o1=PATH`）
+
+### 10.3 下次心跳预期
+
+- `queue_rev 131` 完成后：Cursor 收 `316` → 下发 `317-stage0-cursor-s315-docs50-gate2-packet-audit-…md`（PASS/FAIL）
+- 若 PASS：Gate 2 评审包草稿齐；Gate 2 评审会议筹备就绪（必带 OPEN 清单）
+- 若 FAIL：`316-correction` 回合（修 §2 七条措辞 / 修 OPEN 清单 / 修预览路径 / re-commit）
+
+---
+
+— End of `docs/50` —
+
+> ⚠ **本包是 Gate 2 评审包草稿**（per `315` §SCHEMA "本刀做"），不是 Gate 2 PASS 宣告。
+> ⚠ **本包不宣布 Gate 1 / Gate 2 PASS**（per docs/34 §1 + §8 #8 + §133 + `315` §红线）。
+> ⚠ **本包不宣布 O1 收口**（WAITING_FILE；per docs/47 §3.1 ⚠️ + `284` §SCHEMA + `315` §红线）。
+> ⚠ **本包不宣布 O3 收口**（规划已交，实装仍 OPEN；per `docs/49` §5.3 + §8 + §10 + `309` + `315` §红线）。
+> ⚠ **本包不伪造证据**（per docs/06 §6.6 + `315` §红线）。
+> ⚠ **本包不爬源站 / 不登录绕过 / 不 OCR 降门槛**（per PRD 红线 + `315` §红线 + docs/49 §2.2）。
+> ⚠ **本包不派生 score / rating / rank / total_score / confidence_score / credibility_score / peer_rank**（per docs/45 §6.2 禁词 3 重守门）。
+> ⚠ **O1 真实 SHA 收口前恒占位 `'0'*64`**（per docs/47 §3.1 ⚠️ + `315` §红线）。
+> ⚠ **O3 真收口须用户主动 `--confirm-o3=PATH` + OCR 引擎选型裁定 + 端到端 pytest PASS**（per `docs/49` §5.3 + §8 + §10 + docs/48 §3）。
+> ⚠ **cloud OCR 默认离线；须 `--enable-cloud-ocr=PROVIDER` 显式 flag**（per `docs/49` §2.2 + §3.2 步骤 4）。
+> ⚠ **输入边界 = 仅用户/admin upload；禁止 HTTP 爬源 / 登录绕过 / 未授权 API / symlink / 伪造**（per `docs/49` §2.2）。
+> ⚠ **docs/10 §3.2-3.4 xfail stub（Stage 3 收口）；Gate 2 评审必带 OPEN 清单**。
+> ⚠ **Gate 2 评审日期暂定 W8**（per docs/34 §10.4），由 Cursor/用户裁定，**不擅自提前**。
