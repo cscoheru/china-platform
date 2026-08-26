@@ -178,14 +178,62 @@ def test_lineage_column_jsonb_on_project_event(conn) -> None:
 
 
 def test_migration_010_idempotent(conn, migration_sql) -> None:
-    """Case 5 (bonus): migration 010 must apply cleanly twice (IF NOT EXISTS)."""
-    # split on `;` is unsafe in general; the 010 file has only DDL with no
-    # embedded semicolons inside strings/comments, so simple split is OK for
-    # verification run. Real apply uses psql -v ON_ERROR_STOP=1.
-    statements = [
-        s.strip() for s in migration_sql.split(";") if s.strip()
-    ]
-    assert statements, "migration 010 has no statements"
+    """Case 5 (bonus): migration 010 must apply cleanly twice (IF NOT EXISTS).
+
+    Per Cursor audit 206 FAIL fix:
+      naive split on `;` broke two ways:
+        (a) trailing `-- End of migration 010.` became an empty query;
+        (b) `COMMENT ON COLUMN ... IS '...; ...'` lines have `;` inside a
+            single-quoted string literal, so naive split chopped them mid-string
+            and produced unterminated-quote SyntaxErrors.
+      Fix: strip line + block comments first, then split on `;` with a
+      quote-aware state machine that respects `'...'` literals (handling `''`
+      as an escaped single quote). Empty / whitespace-only statements are
+      dropped. The 010 file has no `$$`-quoted strings, so single-quote only
+      is sufficient.
+    """
+    import re
+
+    def _split_quote_aware(sql: str) -> list[str]:
+        statements: list[str] = []
+        buf: list[str] = []
+        in_quote = False
+        i = 0
+        n = len(sql)
+        while i < n:
+            ch = sql[i]
+            if in_quote:
+                buf.append(ch)
+                if ch == "'":
+                    # check for escaped single quote ''
+                    if i + 1 < n and sql[i + 1] == "'":
+                        buf.append("'")
+                        i += 2
+                        continue
+                    in_quote = False
+            else:
+                if ch == "'":
+                    buf.append(ch)
+                    in_quote = True
+                elif ch == ";":
+                    stmt = "".join(buf).strip()
+                    if stmt:
+                        statements.append(stmt)
+                    buf = []
+                else:
+                    buf.append(ch)
+            i += 1
+        tail = "".join(buf).strip()
+        if tail:
+            statements.append(tail)
+        return statements
+
+    # Strip line + block comments first so trailing `-- End of migration 010.`
+    # becomes a no-op chunk rather than a fake empty query.
+    sql_no_comments = re.sub(r"--[^\n]*", "", migration_sql)
+    sql_no_comments = re.sub(r"/\*.*?\*/", "", sql_no_comments, flags=re.DOTALL)
+    statements = _split_quote_aware(sql_no_comments)
+    assert statements, "migration 010 has no statements after comment strip"
 
     psycopg2.extras.register_uuid()
     with conn.cursor() as cur:

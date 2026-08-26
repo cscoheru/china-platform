@@ -3205,8 +3205,8 @@
     },
     {
       "path": "tests/test_project_event_s23lite.py",
-      "size_bytes": 9019,
-      "sha256": "922fe598dddb4dbb00036d65fdff8844127a6e93807ea1d8ed288cad144b3bb1",
+      "size_bytes": 10823,
+      "sha256": "07acc43555fdb12776ecfbf3a31d6624d3f7741cded0e120a3f90aa0fc2f1cbc",
       "role": "schema_negative_test"
     },
     {
@@ -3214,9 +3214,15 @@
       "size_bytes": 7701,
       "sha256": "63dad1179080880dd7e6e27220c77f50b93fa7df611c96c577498930e981a3c4",
       "role": "documentation"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/208-stage0-cc-s23-lite-idempotent-pytest-fix-receipt-20260826.md",
+      "size_bytes": 6461,
+      "sha256": "8199cee3a829bb56012420fbb1ba526e5b13a3cb643a0cf33fd82492d25d9daa",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 534,
+  "artifact_count": 535,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
