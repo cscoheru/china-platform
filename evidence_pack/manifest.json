@@ -1,5 +1,5 @@
 {
-  "artifact_count": 587,
+  "artifact_count": 589,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3522,6 +3522,18 @@
       "role": "documentation",
       "sha256": "6903169fffd819729f780372b129714a0ce2e9eaa9181b8f01bd8c6ffcd7b1f0",
       "size_bytes": 13512
+    },
+    {
+      "path": "docs/47-stage2-s27b-full-mart-evidence-plan-20260826.md",
+      "role": "documentation",
+      "sha256": "fdb6fb28af802f88d9242ea5913c1a0eb0af274111c381852ec4167a70053655",
+      "size_bytes": 18983
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/263-stage0-cc-s27b-full-mart-plan-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "3e39baa80a50469b40b9a3dff3739f634272736574d5434861f54ba0e57d579a",
+      "size_bytes": 13769
     }
   ],
   "commit": {
@@ -3555,7 +3567,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 20,
-    "documentation": 70,
+    "documentation": 72,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
