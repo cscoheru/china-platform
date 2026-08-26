@@ -8,34 +8,30 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `101` |
-| **origin_head** | `90b51c4` |
-| **cc_head** | `90b51c4`；`254` 已交 |
-| **cc_receipt** | `254` |
-| **cursor_ack** | `254` |
-| **last_audit** | `255` PASS |
+| **phase** | `POLL` |
+| **queue_rev** | `102` |
+| **origin_head** | `cd936ab` |
+| **cc_head** | `cd936ab`；`257` 已交 |
+| **cc_receipt** | `257` |
+| **cursor_ack** | `257` |
+| **last_audit** | `258` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进 |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T12:14:00+08:00` |
+| **expect_cc_poll** | `POLL_ONLY` |
+| **updated_at** | `2026-08-26T12:35:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`256`** — S2.7-b-lite（见 `256-stage2-s27b-lite-cities-impl-tasking-20260826.md`）。
-
-1. 10 城 `/cities/{slug}` mock 壳
-2. 最小 pytest → 补 pack → commit → 回执 **`257`**
-3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+**无。** S2.7-b-lite 已审 PASS；下一刀待 Cursor bump。
 
 ---
 
 ## POLL
 
-交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
+`cursor_ack=257`；CC `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**。
 
 探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
