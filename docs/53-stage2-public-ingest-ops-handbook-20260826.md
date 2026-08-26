@@ -113,6 +113,8 @@ cd frontend && npm run dev   # 或 npm run build && npm start
 
 > 📍 **Gate 2 评审包端到端交付清单节点** = `docs/50-stage2-gate2-review-packet-draft-20260826.md` **§4.4「公开提取演示里程碑」**（per `416` cc 回执；queue_rev 176 落地）：四轨 + 一览条 + 行筛选 + JSON/CSV 下载 + 全站顶栏 site-nav + 预览 URL 的 9 行里程碑表 + 5 条 ⚠「预览路径不构成 O1 / Gate 2 收口」守门清单；链到 `docs/45` §1 + §6.2 + §7。docs/50 §4.4 是 Gate 2 评审包草稿新增节点，不宣布 Gate 2 PASS。
 
+> 🔗 **首页 NBS sample 轨显式 deeplink**（per `420` cc 回执；queue_rev 179 落地；commit `a70a557` + cc_head backfill `bee7950`）：`frontend/app/page.tsx` 公开提取表内「公开提取样本（四轨 demo）」行 → 「公开提取 NBS sample 轨（demo）」行；href `/public-extracts` → `/public-extracts#track-nbs-sample` + `data-testid="home-public-extracts-nbs-sample"`；结构镜像本表第 4 项湖北轨 `#track-hb`（per knife 67 tasking 394）；smoke §12b' 4 针 + `tests/test_nbs_home_deeplink_public_extract.py` 3 cases；不动 4 fixture byte SHA（`nbs=e30ee811` / `nbs_live=9232efdb` / `sz=937255a5` / `hb=9056001c`）。**首页 NBS deeplink 是顶栏入口之外的首页表内显式锚链演示，非 O1/Gate PASS；不动 4 fixture 字节；不引入 next/link；不分支 `params.*`**。
+
 冒烟：`python3 frontend/smoke-check.py`（§12c 门含候选 fixture 在位 + 分轨交叉检查；§12d 门含深圳 fixture 在位 + 三轨交叉检查；§12e 门含湖北 fixture 在位 + 四轨交叉检查；**§12f 门含 overview strip 在位 + 4 锚点 id + 4 锚链 href + demo|candidate 标注 + 守门 13 针**；**§12h 门含四轨行筛选 input（4 testId）+ 客户端包含匹配 + 非权威库检索守门**；**§13c 门含 `site-nav` 容器 + `/public-extracts` 链 + 链 testId + 四轨 demo + 非 O1 + 不宣布 Gate PASS + 不分支 `params.*`**）。
 
 ## 6. 红线（运维时同样生效）
