@@ -3268,17 +3268,41 @@
       "size_bytes": 10260,
       "sha256": "32266221dcd4f2a8b69ddae95fecae46df567efa62beb5ca92807bff85d555f2",
       "role": "documentation"
+    },
+    {
+      "path": "schema/migrations/012_inference_alignment.sql",
+      "size_bytes": 6249,
+      "sha256": "44f59cdc4dafc5c44f862cea0c574c30422fce3a3a6dc9d8dc90e7d8ad2cb8bb",
+      "role": "schema_migration_ddl"
+    },
+    {
+      "path": "schema/migrations/012_inference_alignment.log",
+      "size_bytes": 2397,
+      "sha256": "d8c1a8fe4f00f4952959e00db7c34abddb60886ef80cf432af4e2f39e29dbfc3",
+      "role": "schema_migration_log"
+    },
+    {
+      "path": "tests/test_inference_s25lite.py",
+      "size_bytes": 10564,
+      "sha256": "e3bfef5f14e2cb7ee731c9c032aba5ca1e330b270de68fee2c01077fac54754a",
+      "role": "schema_negative_test"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/227-stage0-cc-s25-lite-ddl-impl-receipt-20260826.md",
+      "size_bytes": 9684,
+      "sha256": "a0329b3ea95d44946860d5daa3f0687fcfc200b378b268bd6301bf019984593c",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 543,
+  "artifact_count": 547,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
-    "documentation": 52,
+    "documentation": 53,
     "schema_ddl": 1,
-    "schema_migration_log": 6,
-    "schema_migration_ddl": 10,
+    "schema_migration_log": 7,
+    "schema_migration_ddl": 11,
     "source_registry_doc": 1,
     "source_registry_csv": 1,
     "spike_helper": 13,
@@ -3288,7 +3312,7 @@
     "spike_truth_builder": 2,
     "spike_evaluator": 2,
     "test_conftest": 1,
-    "schema_negative_test": 27,
+    "schema_negative_test": 28,
     "data_contract_suite": 20
   },
   "db_ddl_execution": {

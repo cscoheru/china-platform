@@ -1,0 +1,57 @@
+-- Migration 012 log — S2.5-lite inference_record + claim_evidence_link additive columns applied
+--
+-- Per Cursor tasking 226 §NOW.1 (落地 migration + 可选空 seed).
+-- Apply via:
+--   psql "$CEGR_TEST_DSN" -v ON_ERROR_STOP=1 \
+--        -f schema/migrations/012_inference_alignment.sql
+--
+-- This file is informational; the canonical DDL is in
+-- schema/migrations/012_inference_alignment.sql.
+
+SET search_path = cegr, public;
+
+-- step 1: inference_record (+ 8 cols additive)
+ALTER TABLE inference_record
+    ADD COLUMN IF NOT EXISTS canonical_statement TEXT,
+    ADD COLUMN IF NOT EXISTS canonical_layer TEXT,
+    ADD COLUMN IF NOT EXISTS inference_method TEXT,
+    ADD COLUMN IF NOT EXISTS inference_year INTEGER,
+    ADD COLUMN IF NOT EXISTS lineage JSONB,
+    ADD COLUMN IF NOT EXISTS inference_hash_canonical TEXT,
+    ADD COLUMN IF NOT EXISTS polarity_summary TEXT,
+    ADD COLUMN IF NOT EXISTS geo_entity_id UUID;
+
+-- step 2: claim_evidence_link (+ 5 cols additive)
+ALTER TABLE claim_evidence_link
+    ADD COLUMN IF NOT EXISTS canonical_polarity TEXT,
+    ADD COLUMN IF NOT EXISTS evidence_strength TEXT,
+    ADD COLUMN IF NOT EXISTS lineage JSONB,
+    ADD COLUMN IF NOT EXISTS claim_evidence_hash_canonical TEXT,
+    ADD COLUMN IF NOT EXISTS geo_entity_id UUID;
+
+-- step 3: indexes (7)
+CREATE INDEX IF NOT EXISTS idx_inference_canonical_layer
+    ON inference_record (canonical_layer)
+    WHERE canonical_layer IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_inference_method
+    ON inference_record (inference_method)
+    WHERE inference_method IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_inference_hash_canonical
+    ON inference_record (inference_hash_canonical)
+    WHERE inference_hash_canonical IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_inference_lineage_gin
+    ON inference_record USING gin (lineage jsonb_path_ops)
+    WHERE lineage IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_claim_evidence_canonical_polarity
+    ON claim_evidence_link (canonical_polarity)
+    WHERE canonical_polarity IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_claim_evidence_hash_canonical
+    ON claim_evidence_link (claim_evidence_hash_canonical)
+    WHERE claim_evidence_hash_canonical IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_claim_evidence_lineage_gin
+    ON claim_evidence_link USING gin (lineage jsonb_path_ops)
+    WHERE lineage IS NOT NULL;
+
+RESET search_path;
+
+-- End of migration 012 log.
