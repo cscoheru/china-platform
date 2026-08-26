@@ -8,24 +8,28 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `POLL` |
-| **queue_rev** | `164` |
-| **origin_head** | `52abff8` |
-| **cc_head** | `52abff8`；`395` 已交 |
-| **cc_receipt** | `395` |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `165` |
+| **origin_head** | `855602c` |
+| **cc_head** | `855602c`；等 `398` |
+| **cc_receipt** | `395`（已 ACK） |
 | **cursor_ack** | `395` |
-| **last_audit** | `396` PASS（含首页文案校正） |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；不等人裁定除非卡住；用户反馈首页标题已由 Cursor 改对齐公开提取 |
+| **last_audit** | `396` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**不等人裁定除非卡住**；Cursor 代判 |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL` |
-| **updated_at** | `2026-08-26T21:45:30+08:00` |
+| **expect_cc_poll** | `EXECUTE_NOW` |
+| **updated_at** | `2026-08-26T21:50:40+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-（无新刀。）只 **`84` POLL**，直到 `queue_rev` 再 bump。
+读并执行：`397-stage2-public-extracts-row-filter-tasking-20260826.md`
+
+摘要：`/public-extracts` 各轨轻量行筛选；交回执 **`398`**（`-cc-`）。做完**必须双推**。
+
+完成后：双推 → **`84` POLL**。
 
 ---
 
