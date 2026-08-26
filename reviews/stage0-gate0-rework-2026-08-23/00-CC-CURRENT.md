@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `146` |
-| **origin_head** | `9688f0f` |
-| **cc_head** | `9688f0f`；`350` 已交（命名已纠偏）|
-| **cc_receipt** | `350` |
-| **cursor_ack** | `350` |
-| **last_audit** | `351` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；源工程 Cursor 代判；结构化呈现已接线 → **护 extracts 不被测脏** |
+| **queue_rev** | `147` |
+| **origin_head** | `5a94fde` |
+| **cc_head** | `5a94fde`；`353` 已交 |
+| **cc_receipt** | `353` |
+| **cursor_ack** | `353` |
+| **last_audit** | `354` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；源工程 Cursor 代判；extracts 已护住 → **收紧 JS-shell 误判 + NBS live** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T18:55:00+08:00` |
+| **updated_at** | `2026-08-26T19:07:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`352`** — 禁止 pytest 覆写 `data/public_extracts`（见 `352-…tasking…md`）。
+**`355`** — JS-shell 启发式收紧 + NBS live（见 `355-…tasking…md`）。
 
-1. `--extract-root` / env + 回归测
-2. 回执 **`353`**（文件名必须含 `-cc-`）
+1. 仅小体积+脚本 才判壳；大页放行解析
+2. NBS 再 `--live`；回执 **`356`**（`-cc-`）
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
 
 ---
