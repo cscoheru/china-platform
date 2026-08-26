@@ -42,8 +42,10 @@ CC_RECEIPT_META="$(meta_field cc_receipt)"
 ORIGIN_HEAD_META="$(meta_field origin_head)"
 CC_HEAD_META="$(meta_field cc_head | cut -d'；' -f1)"
 
+# 仅以 origin/main 已跟踪回执为准（忽略本地未 push 的 WIP）
 LATEST_RECEIPT="$(
-  find "$REVIEWS" -maxdepth 1 -name '*-cc-*-receipt-*.md' -print 2>/dev/null \
+  git ls-tree -r --name-only origin/main -- "$REVIEWS" 2>/dev/null \
+    | grep -E '/[0-9]+-.*-cc-.*-receipt-.*\.md$' \
     | sed -n 's|.*/\([0-9][0-9]*\)-.*|\1|p' | sort -n | tail -1
 )"
 LATEST_RECEIPT="${LATEST_RECEIPT:-0}"
