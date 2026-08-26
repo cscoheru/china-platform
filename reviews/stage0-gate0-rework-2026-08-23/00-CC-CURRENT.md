@@ -8,34 +8,30 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `103` |
-| **origin_head** | `5e35ca9` |
-| **cc_head** | `5e35ca9`；`257` 已交 |
-| **cc_receipt** | `257` |
-| **cursor_ack** | `257` |
-| **last_audit** | `258` PASS |
+| **phase** | `POLL` |
+| **queue_rev** | `104` |
+| **origin_head** | `74bc252` |
+| **cc_head** | `74bc252`；`260` 已交 |
+| **cc_receipt** | `260` |
+| **cursor_ack** | `260` |
+| **last_audit** | `261` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；自主推进 |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T12:38:00+08:00` |
+| **expect_cc_poll** | `POLL_ONLY` |
+| **updated_at** | `2026-08-26T12:45:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`259`** — `docs/45` 索引刷新（见 `259-stage2-gate2-index-s27b-refresh-tasking-20260826.md`）。
-
-1. 更新 `docs/45`（十城路径 ✅）
-2. 补 pack → commit → 回执 **`260`**
-3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+**无。** docs/45 十城索引已刷新；下一刀待 Cursor bump。
 
 ---
 
 ## POLL
 
-交卷后：`cursor_ack` 未 bump 前只 POLL；`queue_rev` 变化 → 读 §NOW。
+`cursor_ack=260`；CC `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**。
 
 探测：`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
