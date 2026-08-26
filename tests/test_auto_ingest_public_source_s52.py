@@ -731,6 +731,89 @@ def test_is_js_only_shell_false_for_tiny_no_script():
     assert aips.is_js_only_shell(tiny) is False
 
 
+# ---------------------------------------------------------------------------
+# 13. JS-shell heuristic tightened (per tasking 355 §SCHEMA)
+# ---------------------------------------------------------------------------
+
+def test_is_js_only_shell_false_for_large_page_with_redirect():
+    """Per tasking 355 §SCHEMA (1): a LARGE page (>= threshold) containing
+    BOTH `<script>` and `window.location` must NOT be tech-blocked as a
+    JS-only shell by the heuristic alone. This is the exact NBS false
+    positive that rc=7'd the live attempt (388KB page embedding redirect
+    snippets)."""
+    nbs_like = (
+        b'<html><head><script>var _hmt=_hmt||[];</script></head>'
+        b'<body><div><p>' + b'x' * 4000 + b'</p>'
+        b'<script>window.location.hash="";</script>'
+        b'</div></body></html>'
+    )
+    assert len(nbs_like) > aips.JS_SHELL_SIZE_THRESHOLD
+    assert aips.is_js_only_shell(nbs_like) is False
+
+
+def test_is_js_only_shell_small_redirect_without_script_tag_blocked():
+    """Per tasking 355 红线 '小壳仍拦': a SMALL blob carrying a redirect
+    marker (even without a full `<script>` tag) is still a shell."""
+    small = b'window.location="./2026yb/";' + b' ' * 100
+    assert len(small) < aips.JS_SHELL_SIZE_THRESHOLD
+    assert aips.is_js_only_shell(small) is True
+
+
+def test_is_js_only_shell_hubei_71b_still_blocked():
+    """Per tasking 355 §SCHEMA (3) 回归 Hubei 71B: the exact 71-byte
+    Hubei shell must remain blocked after the tightening."""
+    hubei_js = (
+        b'<script language="javascript">\nwindow.location = "./2026yb/";\n</script>\n'
+    )
+    assert len(hubei_js) < aips.JS_SHELL_SIZE_THRESHOLD
+    assert aips.is_js_only_shell(hubei_js) is True
+
+
+def test_is_empty_content_page_classification():
+    """Per tasking 355 §SCHEMA (2): large + no `<table>` → 空内容 True;
+    large + `<table>` → False (real content); small + no table → False
+    (that's the JS-shell / other classification's job, not 空内容)."""
+    large_no_table = b"<html><body><p>" + b' ' * 4000 + b"</p></body></html>"
+    large_with_table = (
+        b"<html><body><table><tr><td>a</td></tr></table>"
+        + b' ' * 4000
+        + b"</body></html>"
+    )
+    small_no_table = b"<html><body></body></html>"
+    assert aips.is_empty_content_page(large_no_table) is True
+    assert aips.is_empty_content_page(large_with_table) is False
+    assert aips.is_empty_content_page(small_no_table) is False
+
+
+def test_main_reports_empty_content_not_js_shell(tmp_path, monkeypatch):
+    """Per tasking 355 §SCHEMA (2): a LARGE table-less page with a redirect
+    snippet and zero same-domain deeplinks must tech-block rc=7 with the
+    「空内容」phenomenon — explicitly NOT the JS-only-shell verdict."""
+    blob = (
+        b'<html><head><script>window.location.hash="";</script></head>'
+        b'<body><p>' + b' ' * 4000 + b'</p></body></html>'
+    )
+    assert len(blob) > aips.JS_SHELL_SIZE_THRESHOLD
+    monkeypatch.setattr(aips, "download", lambda url: blob)
+    monkeypatch.setattr(aips, "REVIEWS_DIR", tmp_path)
+
+    argv = [
+        "--pilot-domain=stats.gov.cn",
+        "--pilot-category=NATIONAL_BULLETIN",
+        "--live",
+        f"--confirm-live={tmp_path / 'lineage.jsonl'}",
+        f"--archive-root={tmp_path / 'archives'}",
+        f"--extract-root={tmp_path / 'extracts'}",
+    ]
+    rc = aips.main(argv)
+    assert rc == 7
+    reports = list(tmp_path.glob("*tech-blocked*.md"))
+    assert len(reports) == 1, f"expected 1 tech-blocked report, got {reports}"
+    text = reports[0].read_text(encoding="utf-8")
+    assert "空内容" in text
+    assert "JS-only shell" not in text
+
+
 def test_discover_deeplinks_finds_xlsx_href():
     """discover_deeplinks must surface same-domain `.xlsx` hrefs in
     document order (per tasking 339 §SCHEMA)."""

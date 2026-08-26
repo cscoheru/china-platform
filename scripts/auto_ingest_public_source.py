@@ -625,20 +625,40 @@ def is_js_only_shell(blob: bytes, *, threshold: int = JS_SHELL_SIZE_THRESHOLD) -
     """Heuristic: return True if the blob looks like a JS-only shell (e.g.
     Hubei's 71-byte ``<script>window.location=...</script>``).
 
-    Triggers on either:
-      - size <= threshold AND content contains a `<script>` tag, OR
-      - content contains the literal `window.location` redirect marker.
-    The connector does NOT execute JS (per tasking 339 §红线 '不执行页面 JS');
-    this check only inspects the bytes statically.
+    Per tasking 355 §SCHEMA (tightened after the NBS false positive): a
+    blob is a shell ONLY when it is BOTH small (``len(blob) < threshold``)
+    AND contains a ``<script`` tag or a ``window.location`` /
+    ``location.replace`` redirect marker. Large pages routinely embed
+    analytics / redirect snippets without being shells, so size alone
+    vetoes the heuristic — a big page is NEVER a JS-only shell by this
+    check (a large page that yields nothing goes through the separate
+    空内容 / 0-deeplink classification instead). The connector does NOT
+    execute JS (per tasking 339 §红线 '不执行页面 JS'); this check only
+    inspects the bytes statically.
     """
     if not blob:
         return True
+    if len(blob) >= threshold:
+        return False
     text = blob.decode("utf-8", errors="replace")
     has_script = "<script" in text.lower()
     has_redirect = "window.location" in text or "location.replace" in text
-    if has_redirect:
-        return True
-    return has_script and len(blob) < threshold
+    return has_script or has_redirect
+
+
+def is_empty_content_page(
+    blob: bytes, *, threshold: int = JS_SHELL_SIZE_THRESHOLD
+) -> bool:
+    """Per tasking 355 §SCHEMA (2): a LARGE page (>= threshold, hence not a
+    JS shell) that contains neither same-domain deeplinks nor any ``<table>``
+    is classified as 空内容 (empty content) — a distinct tech-block reason,
+    NOT a JS shell. Used by the 0-deeplink branch to pick the honest
+    phenomenon text."""
+    if not blob:
+        return False
+    if len(blob) < threshold:
+        return False
+    return b"<table" not in blob.lower()
 
 
 def discover_deeplinks(
@@ -1184,9 +1204,10 @@ def main(argv: list[str] | None = None) -> int:
             category=pilot["category"],
             url=pilot["primary_url"],
             phenomenon=(
-                f"下载字节仅 {len(blob)} bytes,且包含 `<script>` 或 "
-                f"`window.location` 重定向标记。判定为 JS-only shell "
-                f"(per tasking 339 §SCHEMA)。connector **不执行 JS**,也"
+                f"下载字节仅 {len(blob)} bytes(< {JS_SHELL_SIZE_THRESHOLD}),"
+                f"且包含 `<script>` 或 `window.location` 重定向标记 → 判定为"
+                f" JS-only shell (per tasking 339/355 §SCHEMA:小体积+脚本 才判"
+                f"壳;大页不因启发式单独判壳)。connector **不执行 JS**,也"
                 f"**不切 headless browser** 跟随;等用户提供稳定直链或暂缓。"
             ),
         )
@@ -1211,16 +1232,25 @@ def main(argv: list[str] | None = None) -> int:
         extensions=extensions,
     )
     if not deeplinks:
-        report = write_tech_blocked_report(
-            domain=pilot["domain"],
-            category=pilot["category"],
-            url=pilot["primary_url"],
-            phenomenon=(
+        if is_empty_content_page(blob):
+            phenomenon = (
+                f"已下载 {len(blob)} bytes(≥ {JS_SHELL_SIZE_THRESHOLD},"
+                f"非 JS 壳),但 HTML 中既无同域附件 href 也无任何 `<table>`"
+                f" → 判定「空内容」tech-blocked(非 JS 壳;per tasking 355"
+                f" §SCHEMA)。等用户提供稳定直链或暂缓。"
+            )
+        else:
+            phenomenon = (
                 f"已下载 {len(blob)} bytes 但 HTML 中未发现任何同域附件 "
                 f"href(扩展名: {', '.join(extensions)})。可能是 JS 渲染页面、"
                 f"iframe 内嵌、或附件链接通过 JS 动态生成。connector 静态解析"
                 f"不到 → 0 deeplink → tech-blocked,等用户提供稳定直链。"
-            ),
+            )
+        report = write_tech_blocked_report(
+            domain=pilot["domain"],
+            category=pilot["category"],
+            url=pilot["primary_url"],
+            phenomenon=phenomenon,
         )
         print(f"❌ 0 deeplinks; tech-blocked report: {report}", file=sys.stderr)
         return 7
