@@ -1,3404 +1,3422 @@
 {
-  "schema_version": "1.1-R3G-R4",
-  "stage": "Stage 0 Gate 0 R3 rework + R4 hardening",
-  "commit": {
-    "committed": true,
-    "commit_sha": "fe564ee",
-    "commit_sha_short": "fe564ee",
-    "commit_timestamp_utc": "2026-08-25T14:35:00+08:00",
-    "branch": "main"
-  },
-  "python_version": "3.14.3",
-  "platform": "macOS-26.6-arm64-arm-64bit-Mach-O",
+  "artifact_count": 561,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
-      "size_bytes": 1504564,
+      "role": "extracted_artifact",
       "sha256": "73b4c37ffffbac26f25efbc24101fa40acd8623d8a783c687f97d8a32ee2b5ea",
-      "role": "extracted_artifact"
+      "size_bytes": 1504564
     },
     {
       "path": "data/extracts/00-national-yearbook-table/per_column_accuracy.json",
-      "size_bytes": 5097,
+      "role": "extracted_artifact",
       "sha256": "3c4ae7a70ff088ca8e235f3cacbe3b7359475101769caf2387f8d83707ef7720",
-      "role": "extracted_artifact"
+      "size_bytes": 5097
     },
     {
       "path": "data/extracts/00-provincial-yearbook-table/extracted.json",
-      "size_bytes": 907264,
+      "role": "extracted_artifact",
       "sha256": "f4860e42505d5b4a106059819d84c7a8e87062660316d0e1ca8be9f7538eba54",
-      "role": "extracted_artifact"
+      "size_bytes": 907264
     },
     {
       "path": "data/extracts/01-national-yearbook/extracted.json",
-      "size_bytes": 7288,
+      "role": "extracted_artifact",
       "sha256": "e708de6612e7a0b9e05eb0eb744a44c653c81697269d689505a939918fca4925",
-      "role": "extracted_artifact"
+      "size_bytes": 7288
     },
     {
       "path": "data/extracts/02-provincial-yearbook/extracted.json",
-      "size_bytes": 22624,
+      "role": "extracted_artifact",
       "sha256": "0eed6ae0a5d7e857b9a29471de9275114974453ee01b00fd530c1473005674d7",
-      "role": "extracted_artifact"
+      "size_bytes": 22624
     },
     {
       "path": "data/extracts/03-municipal-bulletin/extracted.json",
-      "size_bytes": 6448,
+      "role": "extracted_artifact",
       "sha256": "3c9293aef25d264f5fbf3f98d3d2e8087fc30df5baffc2b8b58488cede5fdbdf",
-      "role": "extracted_artifact"
+      "size_bytes": 6448
     },
     {
       "path": "data/extracts/04-scanned-pdf/eval_report.json",
-      "size_bytes": 647,
+      "role": "extracted_artifact",
       "sha256": "6e0c9e1184ee56c4233f65c97e22a49109823b2cbdcbb75bfabcb445aa2032cd",
-      "role": "extracted_artifact"
+      "size_bytes": 647
     },
     {
       "path": "data/extracts/04-scanned-pdf/extracted.json",
-      "size_bytes": 479256,
+      "role": "extracted_artifact",
       "sha256": "16b30edd346dd0c4be50a86f0719c1359598e42aec7fa7cd60320783e8981caa",
-      "role": "extracted_artifact"
+      "size_bytes": 479256
     },
     {
       "path": "data/extracts/04-scanned-pdf/shaanxi_text_eval_report.json",
-      "size_bytes": 4712,
+      "role": "research_non_gating_eval_report",
       "sha256": "28d37f8c06949abf40afcbe35b71afab2971bcf7e364caa6156abe442e90ddb0",
-      "role": "research_non_gating_eval_report"
+      "size_bytes": 4712
     },
     {
       "path": "data/extracts/04-scanned-pdf/shaanxi_text_ocr.json",
-      "size_bytes": 19120,
+      "role": "research_non_gating_extracted_artifact",
       "sha256": "3d21d48df6d4e522d799ab39aeee47ec2691ec304da5965b401d457c5e31e96a",
-      "role": "research_non_gating_extracted_artifact"
+      "size_bytes": 19120
     },
     {
       "path": "docs/26-stage1-s12-gate1-prep-plan-20260825.md",
-      "size_bytes": 9465,
+      "role": "documentation",
       "sha256": "9e8d4b4e5dab44a8eebf4aab6d54a09dcd2f1d8a8e0d7e8c4f7b1a3e8c5d4c5b",
-      "role": "documentation"
+      "size_bytes": 9465
     },
     {
       "path": "docs/27-stage1-s12-gate1-prep-pack-20260825.md",
-      "size_bytes": 10783,
+      "role": "documentation",
       "sha256": "48506665b7fc4f3ca769da46e17b7efb37b8c11d4f85a4023366d98a522fb3bf",
-      "role": "documentation"
+      "size_bytes": 10783
     },
     {
       "path": "docs/01-current-architecture.md",
-      "size_bytes": 2601,
+      "role": "documentation",
       "sha256": "11657e53852d09cb8e3a41061c5d158239fee04c63dfcdb363ab407e149c537a",
-      "role": "documentation"
+      "size_bytes": 2601
     },
     {
       "path": "docs/02-target-architecture.md",
-      "size_bytes": 12337,
+      "role": "documentation",
       "sha256": "aa6b09c0352ad3913d47824c24284db0408294e46b92ff7893af6226e9972788",
-      "role": "documentation"
+      "size_bytes": 12337
     },
     {
       "path": "docs/03-source-registry.md",
-      "size_bytes": 19570,
+      "role": "documentation",
       "sha256": "af920756fd6a6dd136dc47faf26e6f99b0d06377a44a3f1b6f31d621b3d2ea42",
-      "role": "documentation"
+      "size_bytes": 19570
     },
     {
       "path": "docs/04-data-model.md",
-      "size_bytes": 17002,
+      "role": "documentation",
       "sha256": "35da76c6985067d96a3097e71b275b992e2f7954af9dba9b213ba3b09eed77e3",
-      "role": "documentation"
+      "size_bytes": 17002
     },
     {
       "path": "docs/05-indicator-methodology.md",
-      "size_bytes": 11224,
+      "role": "documentation",
       "sha256": "3f8045ed5d4b9edf7ddef6b467346879a404f220d990e0c042ff77fc0e8b6963",
-      "role": "documentation"
+      "size_bytes": 11224
     },
     {
       "path": "docs/06-governance-observation-method.md",
-      "size_bytes": 10186,
+      "role": "documentation",
       "sha256": "287edfec94692d07e28f862559f7cabcdf56a334f443dbc4cf221ee0b63fe9db",
-      "role": "documentation"
+      "size_bytes": 10186
     },
     {
       "path": "docs/07-dsh-decision.md",
-      "size_bytes": 7734,
+      "role": "documentation",
       "sha256": "ce679a2db9ff04b13cce11b814db5aab91fa8a10508703d21f407c688d32caa9",
-      "role": "documentation"
+      "size_bytes": 7734
     },
     {
       "path": "docs/08-mvp-plan.md",
-      "size_bytes": 10053,
+      "role": "documentation",
       "sha256": "4ec1eadaa76e109ca06076f0a5a3d7e2c189e4c9bad9def45a8116c3afba2ec0",
-      "role": "documentation"
+      "size_bytes": 10053
     },
     {
       "path": "docs/08b-strict-mvp.md",
-      "size_bytes": 10920,
+      "role": "documentation",
       "sha256": "0f0b5fb811539941592f44d71515e88d82631b6b341a931525532f1c05a5215d",
-      "role": "documentation"
+      "size_bytes": 10920
     },
     {
       "path": "docs/09-risk-register.md",
-      "size_bytes": 23688,
+      "role": "documentation",
       "sha256": "7305acd4af445ea4c8bc755282a8e897d8b37df673ed2b190911fa75f481bc43",
-      "role": "documentation"
+      "size_bytes": 23688
     },
     {
       "path": "docs/10-acceptance-tests.md",
-      "size_bytes": 11733,
+      "role": "documentation",
       "sha256": "b0991ac40c2c2a7f0d91cdd8eb7f2c6d6dbadd6fd82a2d08ecf993cd603b2154",
-      "role": "documentation"
+      "size_bytes": 11733
     },
     {
       "path": "docs/11-stage0-review.md",
-      "size_bytes": 30777,
+      "role": "documentation",
       "sha256": "451ac6f22585b4aa7bd086d3166f4ef39e77c1556ba49cd3e6b636271da312bd",
-      "role": "documentation"
+      "size_bytes": 30777
     },
     {
       "path": "docs/12-stage0-closure-and-report.md",
-      "size_bytes": 18414,
+      "role": "documentation",
       "sha256": "477aae05d616458b8fde96d68922ca618e0d8974b152003d41bcbb66d66dbe4d",
-      "role": "documentation"
+      "size_bytes": 18414
     },
     {
       "path": "docs/13-r4-final-verification.md",
-      "size_bytes": 16315,
+      "role": "documentation",
       "sha256": "2fe06ddbdfd9ed0c7be390e508858148066aba0f45e588bee8aaa79e606368e8",
-      "role": "documentation"
+      "size_bytes": 16315
     },
     {
       "path": "docs/15-stage0-p0p1-handoff-20260824.md",
-      "size_bytes": 13712,
+      "role": "documentation",
       "sha256": "2abda87620c69524d0604c246f555cdc8da120c7705a5fd6c3463c1d91f11e45",
-      "role": "documentation"
+      "size_bytes": 13712
     },
     {
       "path": "docs/16-e1-candidate-report-20260824.md",
-      "size_bytes": 16465,
+      "role": "documentation",
       "sha256": "d2b9ed90c7e9b8eda26e4deb710df21496ed67846945b6c20484a48f94b4aa92",
-      "role": "documentation"
+      "size_bytes": 16465
     },
     {
       "path": "docs/17-stage1-kickoff-plan-20260824.md",
-      "size_bytes": 9536,
+      "role": "documentation",
       "sha256": "3077b0c91edc2a352c71cf866176f5a8fefc5bfc720b052cbcd50044061937ee",
-      "role": "documentation"
+      "size_bytes": 9536
     },
     {
       "path": "docs/18-stage1-s14-nbs-connector-plan-20260824.md",
-      "size_bytes": 7101,
+      "role": "documentation",
       "sha256": "82f239a136c887e182943916bd61ee85552b54e214d1ba747a69c7b8fbb2f860",
-      "role": "documentation"
+      "size_bytes": 7101
     },
     {
       "path": "docs/19-stage1-s15-shenzhen-bulletin-plan-20260824.md",
-      "size_bytes": 10584,
+      "role": "documentation",
       "sha256": "f7b90366a21fa5dcaf24618a0a4b0d5e2c6cabae03414489349ab1dc119d9560",
-      "role": "documentation"
+      "size_bytes": 10584
     },
     {
       "path": "docs/20-stage1-s16-provincial-yearbook-plan-20260824.md",
-      "size_bytes": 14345,
+      "role": "documentation",
       "sha256": "b92e09e0825d26c85d879c0b2ee568347a468f7787817b636fd09a84ecc50b6b",
-      "role": "documentation"
+      "size_bytes": 14345
     },
     {
       "path": "docs/21-stage1-s17-scanned-pdf-ocr-plan-20260825.md",
-      "size_bytes": 17761,
+      "role": "documentation",
       "sha256": "f8d8c0933470f7ef1d4ba0953cfa1ffc01f63a8ac8c35710f78746a3c33984d8",
-      "role": "documentation"
+      "size_bytes": 17761
     },
     {
       "path": "docs/22-stage1-s18-ingest-run-monitoring-plan-20260825.md",
-      "size_bytes": 15377,
+      "role": "documentation",
       "sha256": "e65dd5f0618f97d6a7ce064098a466e72df8f9649ccc980c391f602478339a76",
-      "role": "documentation"
+      "size_bytes": 15377
     },
     {
       "path": "docs/23-stage1-s19-dbt-staging-plan-20260825.md",
-      "size_bytes": 17400,
+      "role": "documentation",
       "sha256": "07f6b6b9fe2d3f2b76126a39d467da5c5af4301a36869f81b7650e3826d28be4",
-      "role": "documentation"
+      "size_bytes": 17400
     },
     {
       "path": "docs/24-stage1-s10-fastapi-readonly-plan-20260825.md",
-      "size_bytes": 19775,
+      "role": "documentation",
       "sha256": "31fbdafe7e14c0ac2d79ad435a75c03f24068ff08be2fd20200d0ad993038858",
-      "role": "documentation"
+      "size_bytes": 19775
     },
     {
       "path": "docs/25-stage1-s11-data-contracts-plan-20260825.md",
-      "size_bytes": 13885,
+      "role": "documentation",
       "sha256": "ea9eaf81ac86bb684067461da2aa8940a33390cbcc6fad5c89f862f50230b312",
-      "role": "documentation"
+      "size_bytes": 13885
     },
     {
       "path": "schema/01-core.sql",
-      "size_bytes": 51589,
+      "role": "schema_ddl",
       "sha256": "09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea",
-      "role": "schema_ddl"
+      "size_bytes": 51589
     },
     {
       "path": "schema/migrations/001_create_core.log",
-      "size_bytes": 4939,
+      "role": "schema_migration_log",
       "sha256": "646c545f2b22dab610063202ae907791500c38988b411f154e4c6dc1b31d77cc",
-      "role": "schema_migration_log"
+      "size_bytes": 4939
     },
     {
       "path": "schema/migrations/002_source_governance.log",
-      "size_bytes": 2071,
+      "role": "schema_migration_log",
       "sha256": "b36f6a45b6126ad70644d2bceb119d5ff05246fdcf3522bda0da8fcc081d34a2",
-      "role": "schema_migration_log"
+      "size_bytes": 2071
     },
     {
       "path": "schema/migrations/002_source_governance.sql",
-      "size_bytes": 5006,
+      "role": "schema_migration_ddl",
       "sha256": "c41161a86fb68e882bc4925ebec758f2b2616d0f4914b023dc8c5a5ec85e168b",
-      "role": "schema_migration_ddl"
+      "size_bytes": 5006
     },
     {
       "path": "schema/migrations/003_source_registry_declared_level.sql",
-      "size_bytes": 2962,
+      "role": "schema_migration_ddl",
       "sha256": "2b4b1f1ce0f2bd39d8b4f97af3b32a93716bfaba67083b48564027456fadee90",
-      "role": "schema_migration_ddl"
+      "size_bytes": 2962
     },
     {
       "path": "schema/migrations/004_observation_period_lineage.sql",
-      "size_bytes": 7207,
+      "role": "schema_migration_ddl",
       "sha256": "5af35bd96416c4da0e5d4534c288d9260b03c940c5674f6bae478ac62c810490",
-      "role": "schema_migration_ddl"
+      "size_bytes": 7207
     },
     {
       "path": "source_registry/README.md",
-      "size_bytes": 357,
+      "role": "source_registry_doc",
       "sha256": "f1457f23590d0c518ef988328fab0ea4803481c351875e033dfc36054c8d8af2",
-      "role": "source_registry_doc"
+      "size_bytes": 357
     },
     {
       "path": "source_registry/registry.csv",
-      "size_bytes": 3718,
+      "role": "source_registry_csv",
       "sha256": "359e3bdc08d7d206a2932435f0f2365c7b0d16aeb41935a51c71a0d37b8b6bdb",
-      "role": "source_registry_csv"
+      "size_bytes": 3718
     },
     {
       "path": "scripts/compute_file_sha.py",
-      "size_bytes": 4311,
+      "role": "spike_helper",
       "sha256": "b5d284986afd7596a5bd54fbf0ff4542ec5d2bab480ff9023357c871b0216ef6",
-      "role": "spike_helper"
+      "size_bytes": 4311
     },
     {
       "path": "scripts/replace_demo_with_real.py",
-      "size_bytes": 6384,
+      "role": "spike_helper",
       "sha256": "20d3b28e5283b220e9fb3e3580bf324c594c2b65c859e80d16a9377c34827a7e",
-      "role": "spike_helper"
+      "size_bytes": 6384
     },
     {
       "path": "spikes/00-national-yearbook-table/build_per_column_accuracy.py",
-      "size_bytes": 7554,
+      "role": "spike_helper",
       "sha256": "f5dd8b908f2f612cb609d351931c66d531c9360054090861414f3cdbb4606ea4",
-      "role": "spike_helper"
+      "size_bytes": 7554
     },
     {
       "path": "spikes/00-national-yearbook-table/data/c0309.jpg",
-      "size_bytes": 550889,
+      "role": "spike_sample_or_truth",
       "sha256": "9576529a881b83beac4718594f3a26d2e1949947a65c7e375b4a5f1c6a69688e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 550889
     },
     {
       "path": "spikes/00-national-yearbook-table/extract_00_national_yearbook_table.py",
-      "size_bytes": 35425,
+      "role": "spike_extractor",
       "sha256": "af748e9e3c082e94d821171510fb024fc41f476759cd9771d2de837f03b67859",
-      "role": "spike_extractor"
+      "size_bytes": 35425
     },
     {
       "path": "spikes/00-national-yearbook-table/test_00_national_yearbook_table.py",
-      "size_bytes": 24409,
+      "role": "spike_test",
       "sha256": "d54cb98438d31318dc60ab44a56757e6dcfc7a49596ba82d33847e67b2a5c91c",
-      "role": "spike_test"
+      "size_bytes": 24409
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0100 综合.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "a2bfc0d57faf4209aefe2cee225ef0722ed1f4d7eb691f85a4df090bf076ea6a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0101-土地面积与行政区划.xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "71861cd8c095c898d3ce3bc20cf4ec48f7e23d09350056aedc40f6f7a905cdd4",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0102-市、州行政区划.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "a17ff5e76ea9d62e56222d0b260c8380355f67602adf976b05d226cd4232b28a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0103-0-法人单位数（2024）.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "7384e313d94c34f836981df1431622dcfd39bd2f071997dd305926fc06ecc91a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0103-1-全省法人单位数（2024）续.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "b128886e5cb2480609b06cdacc88e405464aa1c70e876bde528d4613cf7c52d8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0104-0-国民经济和社会发展总量与速度指标.xls",
-      "size_bytes": 67584,
+      "role": "spike_sample_or_truth",
       "sha256": "ccad1793b96b6fd20dc8c6cfb0c468d304919fb8130dd46e3f89e7365537c288",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 67584
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0104-1-国民经济和社会发展总量与速度指标1.xls",
-      "size_bytes": 55296,
+      "role": "spike_sample_or_truth",
       "sha256": "8affa3db695623809c8a9651c3a00be6351270946f6252c67e29ef3448cab06a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 55296
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0104-2-国民经济和社会发展总量与速度指标2.xls",
-      "size_bytes": 32768,
+      "role": "spike_sample_or_truth",
       "sha256": "b14d60203415e900c2a7440ef8f485975aca88407f587c5bd8a6f44a8122e93a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 32768
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0105-0-国民经济和社会发展结构指标.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "c81e22437bd149b940f52a451cebe6bfc6142799682420cfe41adf8b897387e0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0105-1-国民经济和社会发展结构指标.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "2e4179760684add1197f4ed1e831c46a50b7d129487b3a04024622c22514ab7a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0105-2-国民经济和社会发展结构指标.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "36a4f1d7a0e6b1966b9c61fa811b2ae62bfff4086ea9c47e56485af83af0ae0e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0106-湖北国民经济占全国的比重（2024）.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "5a31d358377441646c1af478b7f9d39718d7a26eb823f4be134ce159dd622b2e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0107-人均国民经济主要指标.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "a0436276875e351bd803b9852d360b267a9581de3c76778a353763886a847512",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0108-湖北的一天.xls",
-      "size_bytes": 28672,
+      "role": "spike_sample_or_truth",
       "sha256": "d0d551f9dcdf81ce4969eef3fcca253b36ac9a9ddbc2e8b136832ddf474ee4a9",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28672
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0109-地区生产总值.xls",
-      "size_bytes": 31744,
+      "role": "spike_sample_or_truth",
       "sha256": "076b41ab615079b043228af028ee158a04089ed6fc75ad70098597295545a7b2",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 31744
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0110-地区生产总值指数（上年=100）.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "1834a7fe81ad3276f44a3ad6ceecd0b6ce7b9d87cefd5a830621f132192ded88",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0111-地区生产总值指数（1952年=100）.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "d41a8193fffafeac020aa2fc03c05ea411f2fec1e582d4b0e55de10ca60e12e8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0112-地区生产总值构成.xls",
-      "size_bytes": 25088,
+      "role": "spike_sample_or_truth",
       "sha256": "ae3fe55c807fc51670bbb7d4101c05e7ac05f0493b40f3f09da95c3a423324ce",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25088
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0113-三次产业贡献率.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "49d52577efa9be56bef40f150e001abeca9e466916d0c758ad9f3aa9df5688b3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0114-三次产业拉动率.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "b517aff0f5ae230d298255296752aec74c58160d421037364f267d0f3051b0fb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0115-市、州生产总值（2024）.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "91ec0201b79a6ee37416096baeeb4077d752f78dac655798d5bd7fc2ead5e536",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第01章  综合/0116-市、州生产总值指数（2024）.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "b81d9757119b3a5371b3231e593cb304e34d5ba1c5d5562dd7dbb022ee389030",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第02章 人口/0201-人口数.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "ced9c1955f04f2c289f6153755d08fd73f087104a81ada4e8ce687539f654a8d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第02章 人口/0202-人口城乡构成.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "0cfac95e5c02ed5015298dfb10049cd9ead0465be39cf56b33f29cff73f40ead",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第02章 人口/0203-全省人口自然变动.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "ebdef87b18ec072133b749555898c07f7b132fb89d8468c82d56424429092543",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第02章 人口/0204-0-全省市、州、县年底人口数（2024）.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "0600fb54ef388a3fc801f7744494f6bd75c9379e72b11ffd871487f1ed1f7dcf",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第02章 人口/0204-1-全省市、州、县年底人口数（2024）续.xls",
-      "size_bytes": 26112,
+      "role": "spike_sample_or_truth",
       "sha256": "1137b3c02a61774afa95567f3eeeb84f51b0c9f9eb2713288d4622d38da01f08",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26112
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第03章 就业和工资/0301-全社会从业人员.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "c52c22172c0e4fa85a11e885c0e868c5d309b9bcb8e84a7e7f77780197c6664a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第03章 就业和工资/0302 按登记注册统计类别和行业分城镇非私营单位就业人员数 (2024年底数).xls",
-      "size_bytes": 30208,
+      "role": "spike_sample_or_truth",
       "sha256": "d6ad9c50415259271fe8dd1aeb72ad1c56c6226a33fb5bd096459deb7af44d7f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 30208
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第03章 就业和工资/0303 按登记注册统计类别和行业分城镇非私营单位工资总额 (2024年底数).xls",
-      "size_bytes": 30208,
+      "role": "spike_sample_or_truth",
       "sha256": "a69be7ccd2e67c5d680b0cad386689a14c8da2f487aea1128dfb1be87e45f5ae",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 30208
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第03章 就业和工资/0304 按行业分城镇单位在岗职工平均工资(2024).xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "464c2ed77fad378893554270e697abd94ec9b26d4623b440ea62769639bc1067",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第03章 就业和工资/0305 按行业分城镇非私营单位、私营单位就业人员平均工资(2024).xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "8003c100b21acfe3eee27a8631f1df1fe3796ddf79bc33a63ec7fad2944d0c41",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第03章 就业和工资/0306城镇单位就业人员平均工资及指数.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "82706626a36d1a8383e647ee3d24ef6838270b0dd89099a82573386fb6ce63d3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0400-固定资产投资.xls",
-      "size_bytes": 49152,
+      "role": "spike_sample_or_truth",
       "sha256": "cf9193234a2552a3386dadbbc6ee8444621cd144e0405f7ecc44b16848ecc294",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 49152
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0401-固定资产投资主要指标.xls",
-      "size_bytes": 33792,
+      "role": "spike_sample_or_truth",
       "sha256": "50065fe61cc78994cb1e3ba4ee34c04fb14b5a6f357811748a20cb76b426218f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 33792
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0402-固定资产投资额.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "476a084fceca31d0b705d95e51765343b62d1ee94df2a2591b085aaea59b6d97",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0403-0-按构成分固定资产投资增幅（2024）.xls",
-      "size_bytes": 27136,
+      "role": "spike_sample_or_truth",
       "sha256": "ba71666c6aeaa7132b2adeda9ffbb7c94ca9bed9a773931177aa6a6cdd911806",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27136
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0403-1-按构成分固定资产投资增幅（2024）续.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "b30adfda2862e8b64af1228487a7bd0e796c172409f9b5338a0a7ab0e189340f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0404-0-按建设性质分固定资产投资增幅（2024）.xls",
-      "size_bytes": 27136,
+      "role": "spike_sample_or_truth",
       "sha256": "af1b52a18b2a88cca52687fa2c5583f9f31c3e3c772660133d76ce675c112dc3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27136
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0404-1-按建设性质分固定资产投资增幅（2024）续.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "808da0d31237425a45fb5f06f0a1f728d868bd047ebc546735c79c8b08eb3b63",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0405-0-按行业分施工投产项目个数（2024）.xls",
-      "size_bytes": 38912,
+      "role": "spike_sample_or_truth",
       "sha256": "857ba17652ed1da0ff60b96a45e8d5ebd604a198e09194b42954cb62267c53a5",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 38912
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0405-1-按行业分施工投产项目个数（2024）续.xls",
-      "size_bytes": 34304,
+      "role": "spike_sample_or_truth",
       "sha256": "08f308c80c8a393ca1568201adc07ff04c23680b604f7de25728da54ab73ee7a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 34304
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0406-0-按国民经济行业分的固定资产投资增幅.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "f11ff287b0195b8286ad5df9624a4e5dba442049c213021091b5937955726052",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0406-1-按国民经济行业分的固定资产投资增幅续.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "df9cd21c0c03bfae04fed2001da83f110bcfa9c02f167aa09134d987e76f90bf",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0407-按资金来源和构成分固定资产投资.xls",
-      "size_bytes": 27136,
+      "role": "spike_sample_or_truth",
       "sha256": "c2ba77bd8f00aa24a8adc1f0ef747a63b9ce0f89a4e6713f315618f7e1e497c8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27136
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0408-0-按国民经济行业分的改建和技术改造投资增幅.xls",
-      "size_bytes": 27136,
+      "role": "spike_sample_or_truth",
       "sha256": "c72a30267cd7645c73955d76538c37d65e419ed6caad00dfd554771c1a42d61f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27136
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0408-1-按国民经济行业分的改建和技术改造投资增幅.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "5cdbef6d664416b75a8aa5fd4a70a9921390d41fa7cac524d505d658102cc352",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0409-房地产开发投资主要指标.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "68e5719158ca89fe111e4984c134efc93561ee1ead2e34178ed4a7bbef043985",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0410-按登记注册类型分房地产开发投资（2024） - 报综合.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "47de9598764b02fdc4a6c0761aa3ac1d20f09625b02b199b89c210d3c74ed3f0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0411-市、州固定资产投资增幅.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "03ef7b5e0c8692534b4c7ee19e267ae8cb912c21eb80f4ae30ebbfad83e65970",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0412-市、州民间固定资产投资增幅.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "8255474ebbbf3ac680f6df2939370d326d5bc8d2bf8aa714b8059334967d0e98",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0413-市、州基础设施投资增幅(2024).xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "278254aee11db20d18f7a179bf540e9abb29300e55acab18a14e823ce43d6dfa",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0414-市、州工业投资增幅.xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "45fbbe4a9ef8d48084bc4a144f09f10f12802795677b418019c895a8760a2c30",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0415-市州改建和技术改造投资增幅.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "c86608eeef3c50c76cc7270b4d37399a3b75cb5f531ddda6449f878f7f562c98",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0416-按构成分的固定资产投资.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "2c54706e1bd0ccf44ff798e16a4b44b991cb40a6583fcb4174a6a9ba7d95b54e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0417-按三次产业划分的固定资产投资.xls",
-      "size_bytes": 18432,
+      "role": "spike_sample_or_truth",
       "sha256": "7a83d1115a11a97789a1d2e9b06b1587e0d8872b628f93425e22b1a3c6c38d86",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第04章 固定资产投资/0418-市、州房地产开发投资.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "0a43cbbd5b7e91127dc8662b06ce5db1ef8b835fd845f3adc45a0ff84db16443",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0501-对外经济主要指标.xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "96db887f4760b276f58904dd02d3582c1519e9bda6dd686aa06f5e6ac4b1e62f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0502-对外贸易进出口总额.xls",
-      "size_bytes": 18432,
+      "role": "spike_sample_or_truth",
       "sha256": "0a51cc388dfa3b774174f3d4325de60551dd0499158367e95d907c45e9be4f56",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0503-按贸易方式和经济类型分的进出口总额.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "9d966498e8217664354cef7185fae78ee0c3db05b72f5af0953efbbed9a404d8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0504-进出口商品主要国别和地区.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "fd7a273c3dbde79aa7019181ebd781eac7edd425dc5cc6d877d9d0fd85be407d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0505-合同外商直接投资项目.xls",
-      "size_bytes": 15872,
+      "role": "spike_sample_or_truth",
       "sha256": "ce9a1be0e9958bcb2d16d7f0d556133ea1b5e808ddb182079399d987e948fa21",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 15872
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0506-合同外商直接投资金额.xls",
-      "size_bytes": 15872,
+      "role": "spike_sample_or_truth",
       "sha256": "4380b7713bbd0f60078579a3375c7c95ed532de50691ecd476de6f0bb8ac66b2",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 15872
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0507-0-实际外商直接投资金额.xls",
-      "size_bytes": 17408,
+      "role": "spike_sample_or_truth",
       "sha256": "909e659c052dd0962da1740fa0d700a0b6e2918d5188e5d4f50dd5952ad4483b",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17408
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0507-1-实际外商直接投资金额.xls",
-      "size_bytes": 18432,
+      "role": "spike_sample_or_truth",
       "sha256": "42e1f685d908aa828b96efffc560cfcac46c74e49c29469d4f5467031a700a1e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0508-按行业分外商直接投资（2024）.xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "44172c166c9a28a3188fdd9d337b26053284efe2bd5e0f38031ed14219cd0950",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0509-对外承包工程.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "05d64011cb43cf90c02ac8c622d4e6a179a2b2badc11ba1d8ed649ab2aeeff87",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0510-湖北旅游主要指标.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "59de951049a9d359659cfb77af4ce1ae95ab9e91f16361cf54c02fca02a2a5c7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0511-接待入境旅游人数.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "5bce13f6089149d01b6e3a84e880e5d9a7e9d97e4794f0ce72a9c9a70e0ccedf",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0512-入境旅游外汇收入.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "8b7fafb0a1f46f98b093b2b79a37a48776061d2c689cca90994532f03893fba4",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0513-接待入境旅游者天数.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "e166cf55c921a90e8b7604c272fa1d6545c77b093e34f1486a1b173ae694ddc1",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0514-湖北国内旅游接待人数及收入.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "f4fcdb28ea41021d5714cc66c73c1337f5a8c73c7001de408b887226b83b3db0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第05章 对外经济贸易和旅游/0515-湖北旅游总收入.xls",
-      "size_bytes": 16384,
+      "role": "spike_sample_or_truth",
       "sha256": "900615ab9dee01a3ea761c90d7711eacdb9d27eaa939de6a6ef3478695cc4233",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 16384
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第06章 能源/0601-工业能源生产量.xls",
-      "size_bytes": 14848,
+      "role": "spike_sample_or_truth",
       "sha256": "81f5dcb4c51d70c35436558c51a3e09c601150bc220172e232190c5fc83c098c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 14848
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第06章 能源/0602-规模以上工业能源消费量 .xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "906ae9c7262dc462ad0f8e56d05c646e9f19bd35d26124f1811061792fdeb585",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第06章 能源/0603-规模以上工业分行业能源消费量（2024） .xls",
-      "size_bytes": 28672,
+      "role": "spike_sample_or_truth",
       "sha256": "4fe564637bf2be560b2e720a254f2e98c5cc83f650a6b03bcf64365724e4a9f7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28672
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第06章 能源/0604-全社会综合能源平衡表（等价值）.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "abfa08d74cbc97525fe4265891c3706eeac66b5b3dc21c11a9a012628fee112d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第06章 能源/0605-全社会煤炭平衡表.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "69c6d1a431d9c374c6ab8967cd64918e7a7655732730dfd914ce1fae9ce47537",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第06章 能源/0606-全社会石油平衡表.xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "ee9cbb3569ae5bfe0cbc5af4d021c898d88cfc9650b48aeb254b7bb4272dcd9a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第06章 能源/0607-全社会电力平衡表.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "ca62191d738ddaa845700fb9a38de25b0eb8ef6d129f157df0d26e198471a95f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第06章 能源/0608-全社会用电情况.xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "2df00397a32e9fc45d30927aadc1814b7a90baa4652e4d7871f3288ae64de83e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第07章 财政和金融/0700-财政和金融.xls",
-      "size_bytes": 158208,
+      "role": "spike_sample_or_truth",
       "sha256": "803735b6c55734d3046944f1822a245f16b761b144ea6a35076d50582dd37ec2",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 158208
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第07章 财政和金融/0701-历年地方财政收支额及指数.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "9491dbf35edbc933fbb2c02c237143139e9a1ffc440d0aaae44020ac17571fef",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第07章 财政和金融/0702-财政收支.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "e32661c02efca50647250c2614b5ac340092fecbaaa7fb62faa95d0e304b9983",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第07章 财政和金融/0703-财政收入占地区生产总值的比重.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "41e96686d48e476b8866a8db731bae84bfceaba8d01aa8aea5f5f71def4344f3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第07章 财政和金融/0704-市州一般公共预算收入.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "031313c495d486aee8cc494faa1723f6dae9d0d3dbf729b53e5c9f8fd9a40344",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第07章 财政和金融/0705-市州一般公共预算支出.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "359e07c33b1761e3879bc7bc1b40cbd9fbc58b84d155cc8562c665942361dedb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第07章 财政和金融/0706-金融机构（含外资）本外币存款年末余额.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "c3fcd353df31f9dbfab1d29b92abe403056edd47d990e8a5d1c0af1657ebfd1f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第07章 财政和金融/0707-金融机构（含外资）本外币贷款年末余额.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "ad19d5fdff432d5d35c07dd70bf0c52982552711e7aa46dcf285da8247f7f6a9",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第07章 财政和金融/0708-保险业务主要指标.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "5b8f39a6658e6a73d99d51f4193045640683cd060f8b0aa7f204c1517370b442",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第08章 价格/0801-物价总指数（2024）.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "5eb07a8467a2792a4aa57784ec4ef6a12ca98f0941a8d49e8e0305e6be2866ec",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第08章 价格/0802-各市、县物价指数（2024）.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "a9b46b93b9ecd8c1cd64cfc65ae72457ba55f7086014887599f7bdb36c7ddbe0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第08章 价格/0803-全省居民消费、商品零售价格分类指数（2024）.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "677571dd8ee83bcca8d0a1b6b061ead207a097fcaf3f8280b0cfc975894d6524",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第08章 价格/0804-工业生产者出厂价格指数.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "00d5ab0fdb461e8a507f0133b40540b697d08840d50c0bd77cf58bfeb4a40c4e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第08章 价格/0805-原材料、燃料、动力购进价格指数.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "9e61bb01dd27355cbb4b4c4cd753e72a9b3450e1caa7676b23cf906007141451",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0901-居民生活水平情况.xls",
-      "size_bytes": 27136,
+      "role": "spike_sample_or_truth",
       "sha256": "ba8fd2b58cb4322472966c7983b7f33ee4f6a9871a79cd1179adaed67b8c8763",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27136
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0902-城镇居民家庭基本情况.xls",
-      "size_bytes": 30720,
+      "role": "spike_sample_or_truth",
       "sha256": "39efaac84ca0ac3fe2c5efdc287e5d3a8dfec587575f3aae1966ae467e9a023e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 30720
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0903-城镇居民家庭收支情况（2024）.xls",
-      "size_bytes": 32256,
+      "role": "spike_sample_or_truth",
       "sha256": "3ed3062462ef8de7ce434c3d7a777c6a6a8f1baecce0137f1e5ebd37035eba03",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 32256
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0904-城镇居民家庭平均每百户年末耐用品拥有量（2024）.xls",
-      "size_bytes": 25600,
+      "role": "spike_sample_or_truth",
       "sha256": "2ae870f41bfb40e6433c090ee04ad59acdd2ad4580fa2e2df99ba06b04f2e560",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25600
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0905-城镇居民家庭房屋居住分布情况.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "e67b40a6e0a9e499ba09cc1bdf0a945d60ef7aab62a0ecde98d256559e4b51b2",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0906-市、州城镇（常住）居民年人均可支配收入.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "332ac4e0cce35bef21fbc7214cda3ae3d9c4d302a85061c4d2aa2f72db59129a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0907-1-农村居民家庭基本情况.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "3814b16fdf54159cd14352bd4ddd72e3f227cf7b0af1f9ef1d6bf8f0468414c2",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0907-2-农村居民家庭基本情况  续1.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "d355dc7bb890fedf917f47809ee36dbce7da476e26f656b77d15135ddfd16c05",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0907-3-农村居民家庭基本情况  续2.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "457c36d81a1bc92b0e188330cef70af087be92fa49e16cf016a788d3b65e5963",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0908-农村居民家庭年人均可支配收入及构成.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "74437f125955ffb8599e21a40e0e3ece4ab18b836f8e7fb10e5b547932fe9210",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0909-农村居民家庭年人均可支配收入分组.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "0eb255e4718b5073872632a1d11a78d4b34c4ba1b2c51987effd7f98405507ae",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0910-农村居民家庭年人均经营总收入.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "260f9c77ea2e322ea72ede995a4b9586b2210882026dd6c4c51867c59816468e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0911-农村居民家庭年人均生产支出.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "6dd4c1700a6f7d5fe709815c20cfdce580497ab9f6c626278784c18a010ed031",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0912-农村居民家庭年人均生活消费支出.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "741975efb88080edeac5d86b483c4ff1bc0ee7ef6f017a97f3a0be2052f107fb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0913-农村居民家庭年人均现金收支.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "3822f980cfa9d63607316b4e41e3224e02d6ed11fc5ad0f05f290610bff08cf6",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0914-农村居民家庭年人均出售主要农副产品情况.xls",
-      "size_bytes": 17408,
+      "role": "spike_sample_or_truth",
       "sha256": "8dacb221b016a58779257c4ddc6ca185b7df9a12c5a4e8fa6cf0b390d1ab49d9",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17408
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0915-农村居民家庭主要生活用品购买量.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "93fb2ea880e468fc6dff401abdcf7d959941cfe7555b398301528a97df3b13d9",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0916-农村居民家庭年人均主要食品消费量.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "a72da85c331f9f709ccc15c438de61275d9f41da6bd8111680cf94deb7c8966c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0917-农村居民家庭每百户主要耐用消费品拥有量.xls",
-      "size_bytes": 16384,
+      "role": "spike_sample_or_truth",
       "sha256": "a43269f7cb6fdd2f0a300f8e86ea1ba7eb2b4da045502246bbea68d18b20f366",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 16384
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0918-市、州农村居民年人均可支配收入.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "9a23f0d74686708a5507d9238c26908d596f499adecfbf1b1ce49f6d8261b320",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第09章 人民生活/0919-城乡居民储蓄年末余额.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "90810925c99b52f6f01b49b46286697f982dff2372406a56a094ca34c3c90dea",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第10章 城市概况/1001-主要城市人口密度和地区生产总值(2024).xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "148df078dfdec8f054749318ec550667204c71ceb633c9eb5bfb9be7c77f9c07",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第10章 城市概况/1002-主要城市财政收支(2024).xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "70e87522fb5a1636fc951680994e94e31450344b09fd71a17e40011ef8da73bc",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第10章 城市概况/1003-主要城市金融机构存贷款余额(2024).xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "c9d0014ee33baf65c449f754de3ab3abe8e69c5cf9de65a1012c3f97db0a7fcc",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第10章 城市概况/1004-主要城市对外经济贸易情况(2024).xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "7d5930370b92e831fe202e63907777980eda59443930a8dee48da7135188258b",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第10章 城市概况/1005-主要城市电力情况(2024）.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "3103501be8e9d846044736bc26e9e1bf14e4f354b91f6fce6ed4c3834a228e8a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第10章 城市概况/1006-主要城市居民消费支出(2024).xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "068da5197f45b2110b7fd1fe5e7bd5b251b0fe2fb7a4b5aecb7d4c4ef64a2596",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第10章 城市概况/1007-主要城市文教、卫生情况(2024).xls",
-      "size_bytes": 18432,
+      "role": "spike_sample_or_truth",
       "sha256": "d09efd72eeabef12652aff53fc39472a1e601cf69568e3fc71049972b75fdeae",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第11章 资源和环境/1101-“三废”排放和处理综合利用情况.xls",
-      "size_bytes": 26112,
+      "role": "spike_sample_or_truth",
       "sha256": "7b9118778fde9cd534ac5208a173de7a374524edd06efcf8842f02f1429b1219",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26112
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第11章 资源和环境/1102-工业污染治理情况.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "1ec667a4cd4c80840d26665211ea264cb0ce3ba0cbaa5f5491b62c31e6cf7263",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第11章 资源和环境/1103-工业企业废水处理设施情况.xls",
-      "size_bytes": 16384,
+      "role": "spike_sample_or_truth",
       "sha256": "4c0a4ae65bceaffff16b98c7b9b541b667b0b95e407cdd3fec2cf287fa419db6",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 16384
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1201-农村基层组织和农业基本情况.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "75e232c1c2ecaf17828de3b4f6dbb938450ea7766b483678b31971bb855d8d1c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1202-农、林、牧、渔业总产值.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "24a139464c3ef2e839c32840ad0416de1dca3c245a86ec22f99723be995dd372",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1203-农、林、牧、渔业总产值指数（上年=100）.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "20830aa3bcaaa92cd4e14d02a0e4a6b246307acbdfa2d8471fd8d97fac187dd4",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1204-农、林、牧、渔业总产值指数（1978年=100）.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "674618d69ad19bc36a4e413ac06f6216f9e7aa4c99cb061dd66b5e2882c278b2",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1205-农作物播种面积.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "1541660f73ff56059ab35888a3aaf44d079d5cbeb6812e5132ec5834e09cf213",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1206-主要农作物播种面积和产量（2024）.xls",
-      "size_bytes": 29696,
+      "role": "spike_sample_or_truth",
       "sha256": "96385afe69cca0a46c048c0211986429bda1ef5cbd2841bfa21d53165cd8061f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 29696
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1207-主要农产品产量.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "87c1bdf162bca1959198705a8108e0c8b9b6be623b92f2e79e30cfc1e4798b81",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1208-人均占有主要农产品产量.xls",
-      "size_bytes": 18432,
+      "role": "spike_sample_or_truth",
       "sha256": "6c432ff0aabaeae777d080579d9372acf0f5b64ebe4bf03e96c90ba7d8696ef9",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1209-蚕、茶、果生产情况.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "a9eb682ebfcaff3b5adb085de290ecebb21d4b039c62cbc2d8efb2b2a755078c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1210-林业生产情况.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "f25fc3b8e0c46a183748216c5e9d83955b64a01cbd1ffc3e39649a47db2077f7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1211-畜牧业生产情况.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "6990a311a64dd868ce90a7c5fb57504360edfaf5ace24eeb5f5ea8e6da9f1728",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1212-水产品产量.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "1541222aacc941932818e60ceaf7660e906a4e8160791dd7d39b3829a30e50d8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1213-农业现代化情况.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "1e970b8953fb06e14def8a66f70e899d0e1d5b062a5a81540adaa32caf7a2bc9",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1214-主要农业机械.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "1434b072388c1c429da6b3933b479bb22425b6d500163c71c9f566711182dd14",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1215-市、州农、林、牧、渔业总产值及指数.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "da9f54d143eae29d56e595f627099a0bbb6f0df9256153a0fd16faf23f06af30",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1216-市、州农、林、牧、渔业产值（现价）（2024）.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "bf2c4bf135431855c366f66dda0b8461064834d1e92807d481186c02eeae5c0f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1217-市、州耕地面积（2024）.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "8a035923d23402eb89fda19f4fec32e2ba0d8de9487309c42d92f7d3e07fee76",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1218-市、州农作物总播种面积.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "a43a62bd35de74e7722d9ca564ff51dd8021365f584c2b55695b1bc294d5bce3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1219-市、州主要农作物产量（2024）.xls",
-      "size_bytes": 26112,
+      "role": "spike_sample_or_truth",
       "sha256": "dc9dffe4492f51c88a310952c6a6311c9d0c1b583e0dd6b0d698a0d38e5a6651",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26112
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1220-市、州大牲畜、羊、猪年末存栏、出栏、肉产量（2024）.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "d3e9d40db4469fa19da8413580a6220c0f46ac5b1aebf9181029efe9d8da5e20",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1221-市、州主要土特产品产量（2024）.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "6cc08a089117668e484a4c686ae04220c29d59d98f27575aad2f24992ba68094",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1222-市、州人均粮、棉、油、肉、水产品生产水平（2024）.xls",
-      "size_bytes": 29696,
+      "role": "spike_sample_or_truth",
       "sha256": "43d6872fcec15e0f77dae23e2ce4c5ae5e7b4647589071ce843daeb9a9bfeefc",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 29696
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第12章 农业/1223-市、州农业机械、化肥使用情况（2024）.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "0253d5012ff306de0299567b625ff2f57a12d9be7dd27dddfa937c3c43a86467",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1300.xls",
-      "size_bytes": 115712,
+      "role": "spike_sample_or_truth",
       "sha256": "4cc0b0ca1a0629c0c5ca4d4a65a40797c0312ba556622af4dec1d160bf9cfb5b",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 115712
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1301-0-工业发展基本情况.xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "a3a9e1918bf151cc9d7aba2c56e4f2d0892bcb607b6bfc3d8b631d21e5932e4a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1301-1-工业发展基本情况续1.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "dcc771488c1417ae807a97a98b6a0581ad38f9a03a3f1d0db4f342f40d9652b0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-0-规模以上工业企业单位数和主要经济指标（2024）.xls",
-      "size_bytes": 27136,
+      "role": "spike_sample_or_truth",
       "sha256": "fcea909037e185cee0d529970ec4da301c1802be83e0cceb200f84210f7d81e4",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27136
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-1-规模以上工业企业单位数和主要经济指标（2024）续 1.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "a3b5095f325d965ad7ac78f1559f3d41d00793043ba4c694b7878d1683255b9e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-10-规模以上工业企业单位数和主要经济指标（2024）续10.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "d2c1f9728f864752beb446546e1c099cc61a42f12e861f5e6c0b71e0eb8e489d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-11-规模以上工业企业单位数和主要经济指标（2024）续11.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "27f96eec7dbea62f31119500131e10a40ff801991bdf4df4b2a609a3c008ba94",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-12-规模以上工业企业单位数和主要经济指标（2024）续12.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "80040283bbb354de99b69c618dc182ec6ba2ee01fc226570713d012489a0f65b",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-13-规模以上工业企业单位数和主要经济指标（2024）续13.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "c7e089cc5f92b983bd142918f84dd9e79650accaa59c7f6b4ed5320caba7631a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-2-规模以上工业企业单位数和主要经济指标（2024）续 2.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "22555ff539a95ec66c3be847e07c57e7ac3a26d7d3ceec69b5610dd32fc6c7d6",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-3-规模以上工业企业单位数和主要经济指标（2024）续 3.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "fa7607f35439ccc86f5ab99ccd0c87b1afed75d93716b66d9fa82bf4910011a7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-4-规模以上工业企业单位数和主要经济指标（2024）续 4.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "cf266fddc6087af9ba8006a043456bd33224de28a3845b0f690b3c4c15ca01ee",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-5-规模以上工业企业单位数和主要经济指标（2024）续 5.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "4128b24aee334aeb6f42f9faaef58c48ef997e870a2ce0780e9eb998ee85aaba",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-6-规模以上工业企业单位数和主要经济指标（2024）续 6.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "781e31a5ccb8f790c3ce6ca4a8b827a00362616a028975aaacc713ffa1553237",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-7-规模以上工业企业单位数和主要经济指标（2024）续 7.xls",
-      "size_bytes": 27136,
+      "role": "spike_sample_or_truth",
       "sha256": "3aab2d11ac73850c8322a99f46acf3ea3df61b5d418f5f5a017ae066ae859264",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27136
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-8-规模以上工业企业单位数和主要经济指标（2024）续 8.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "4a45020d6cfdc0480f9d8cb26be805150fca8c315c0d441d2939f6ee73d816e1",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1302-9-规模以上工业企业单位数和主要经济指标（2024）续 9.xls",
-      "size_bytes": 28160,
+      "role": "spike_sample_or_truth",
       "sha256": "967ff0eb54adf5a326126213ad10e12abf5cadf251910ad8ffa3581d248e94bb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28160
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1303-国有控股工业企业单位数和主要经济指标 (2024).xls",
-      "size_bytes": 26112,
+      "role": "spike_sample_or_truth",
       "sha256": "294a79e6cd9efadd64dabf23ddd3d78111bc3e582ef13aa605ca303dab3f1b58",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26112
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1304-私营工业企业单位数和主要经济指标(2024).xls",
-      "size_bytes": 30720,
+      "role": "spike_sample_or_truth",
       "sha256": "7a099b668f85090865b09a1f1c8ae7e5a5175a9cfa0d4d1d4419e221b852263a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 30720
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1305-外商投资和港澳台商投资工业企业单位数和主要经济指标（2024）.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "b74ef0c2246f841da49921bbaaff6e7b8033373ceb9aff94377be2c3d2d44da7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1306-大中型工业企业单位数和主要经济指标 (2024).xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "fb915a719db6cd2f510cb5db4d44558a40013e064608266540b4bfc21e373019",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1307-规模以上工业企业生产能力（2024）.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "fe9a568ba7b54bc4a494f9f4cf10b98e8ed270912d799cea4df59a801f150b6d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1308-规模以上工业主要产品产量（2024）.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "24790599587811954a9c380c3b8e332b23e67a106fa78fbdb1f7edc7916f7c03",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1308-规模以上工业主要产品产量（2024）续表1.xls",
-      "size_bytes": 28160,
+      "role": "spike_sample_or_truth",
       "sha256": "ca098d4f55a3c64d5b9cb2fc4f1f4309b6ab4a044e79f1dbec7b3a322342b1ac",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28160
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1308-规模以上工业主要产品产量（2024）续表2.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "fcb57b4c74ccd22898745555e1d1cdc699aeec3518e4390a38f8d11a08bd382d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1308-规模以上工业主要产品产量（2024）续表3.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "eb1bc5a940cd1d01b34a8c346b5c8c7a70278526a56580800d6539faa3d9b92e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1308-规模以上工业主要产品产量（2024）续表4.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "f8991fd8bde7ff83cb4715cbd3b4dc6bd98bd4bcee27e559a90ef690ad5cd8c0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1308-规模以上工业主要产品产量（2024）续表5.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "a4c24db58c3ac103a60f284fdb93aae0f44b2f3aa4c6a3eebeb1caad3fedf017",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1308-规模以上工业主要产品产量（2024）续表6.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "aa6369f8112b4dc4e86b7e8899f6948040bbe9f70c061478f09bc30c812580c8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1308-规模以上工业主要产品产量（2024）续表7.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "fbf1a32d12f566ffe3d3ea3fc3a52956183e8f09a3cbe7eca44504a5c4adf40e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1308-规模以上工业主要产品产量（2024）续表8.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "903b248bbb965d2d09206d636aeea91d67c01932863d91197a9a44d52f200edf",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1309-0-规模以上工业企业主要经济效益指标(2024).xls",
-      "size_bytes": 25088,
+      "role": "spike_sample_or_truth",
       "sha256": "4405d1c45852f4fb28ff7f35b928c4d9560a6dd81382377af038e52cf7fb2cbe",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25088
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1309-1-规模以上工业企业主要经济效益指标(2024)续1.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "710774f060feac4c24cdaa3be8bb04e3bbefbd2a602218509ba493b2ed7ffd12",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1310-0-规模以上工业企业主要经济指标(分地区)(2024).xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "14389774ee0522e12e8934fe9c038c2ce9593b92ee87a8917c0cf2cbea9cc180",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1310-1-规模以上工业企业主要经济指标(分地区)(2024)续1.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "bfecc40e96c36f81c1aae1940fa5238cac7923caadd684d85457d9e3bcd82547",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1310-2-规模以上工业企业主要经济指标(分地区)(2024)续2.xls",
-      "size_bytes": 17408,
+      "role": "spike_sample_or_truth",
       "sha256": "c18d0272c3c85d0a3dc51df47f0f4d293d974874cbfa8e2cf7832785eed13fd3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17408
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1310-3-规模以上工业企业主要经济指标(分地区)(2024)续3.xls",
-      "size_bytes": 15360,
+      "role": "spike_sample_or_truth",
       "sha256": "5712983506bc46cf57872812e0db795925ec9dd2c4775bad484fad3be360a184",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 15360
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第13章 工业/1311-分市州规模以上工业企业主要经济效益指标(2024).xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "9316c4f53745341c871feef6161848f605cf232bdd0b8b9e21746fa3172ee5b0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-1  建筑业企业概况.xlsx",
-      "size_bytes": 15653,
+      "role": "spike_sample_or_truth",
       "sha256": "84fbdb87ac8f5ba212c79c1ede20a4ffc4a266f203e5bbad96f9169a9ebe2701",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 15653
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-1  续表 1.xlsx",
-      "size_bytes": 15245,
+      "role": "spike_sample_or_truth",
       "sha256": "e30970735288eb24ddcc9a3c92632269ccf4f840c99ddb61aa2012cb9874d4fb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 15245
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-1  续表 2.xlsx",
-      "size_bytes": 14948,
+      "role": "spike_sample_or_truth",
       "sha256": "551b2f3166f18d0d244f9bb5837da6aa44cc26b87334f54cd297f6030b47aa72",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 14948
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-10  分地区建筑业企业资产 (2024).xlsx",
-      "size_bytes": 12512,
+      "role": "spike_sample_or_truth",
       "sha256": "f363788f99dbe70fe1d43ce4301dde4ee9907f442a5ea8f5145979a2fa352937",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12512
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-11  分地区建筑业企业负债及所有者权益 (2024).xlsx",
-      "size_bytes": 12723,
+      "role": "spike_sample_or_truth",
       "sha256": "2c3df8fc8d6bc93fc4d737a17c7c526850464ecc9fc71321908aea8ebc02594c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12723
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-12  分地区按登记注册统计类别分建筑业企业资产 (2024).xlsx",
-      "size_bytes": 12672,
+      "role": "spike_sample_or_truth",
       "sha256": "c6894566dcd993a76d0ff73de55864f032bf88cdc71980e17702849abfb716f1",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12672
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-13  分地区按登记注册统计类别分建筑业企业负债 (2024).xlsx",
-      "size_bytes": 12676,
+      "role": "spike_sample_or_truth",
       "sha256": "d1a03e84e79074b3f2bb5d32e8fe9208754b095594d45a4a2b5a4969199eb661",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12676
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-14  分地区按登记注册统计类别分建筑业企业所有者权益 (2024).xlsx",
-      "size_bytes": 12553,
+      "role": "spike_sample_or_truth",
       "sha256": "8aef94c875d8e8003214b1202e810bdf9db5beae4f617b53be2dedbc8b9ce7e7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12553
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-15  分地区按登记注册统计类别分建筑业企业营业收入 (2024).xlsx",
-      "size_bytes": 12862,
+      "role": "spike_sample_or_truth",
       "sha256": "9e74695d2da8463827214cb847d25b8716b7b182632f31eca41becdf0fdc5098",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12862
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-16  分地区按登记注册统计类别分建筑业企业利润总额 (2024).xlsx",
-      "size_bytes": 12688,
+      "role": "spike_sample_or_truth",
       "sha256": "bb8798d644bc08d86bc3784170227cdc53f6ee7b0067badaa6a197c7c4e598cd",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12688
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-2  按登记注册统计类别分建筑业企业主要经济指标 (2024).xlsx",
-      "size_bytes": 13435,
+      "role": "spike_sample_or_truth",
       "sha256": "d912917455a87c96b052ba73c25ddd62944916e07fd01f8edaff74a26b2cd2fb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 13435
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-3  分地区按登记注册统计类别分建筑业企业单位数 (2024).xlsx",
-      "size_bytes": 12983,
+      "role": "spike_sample_or_truth",
       "sha256": "5b9afc129f36d59d594795cea1d54ff455c994a935bfe79f91929320cc9060a8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12983
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-4  分地区按登记注册统计类别分建筑业企业签订的合同额 (2024).xlsx",
-      "size_bytes": 13093,
+      "role": "spike_sample_or_truth",
       "sha256": "bc2afa25e81bb86f3973a508ba8439a6ce64001729b60bff3c9c9328b7538e68",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 13093
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-5  分地区按登记注册统计类别分建筑业总产值 (2024).xlsx",
-      "size_bytes": 12568,
+      "role": "spike_sample_or_truth",
       "sha256": "79c50bd9d63d23fe5cafd37cb7e2083cc09cbeec27bd2365602622fb806971e1",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12568
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-6  分地区建筑业总产值 (2024).xlsx",
-      "size_bytes": 12984,
+      "role": "spike_sample_or_truth",
       "sha256": "9263384bd0ad9ae055deb3d6e24aaac3ef210f75450da5c950cee6dde7feaf72",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12984
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-7  分地区按行业分建筑业总产值 (2024).xlsx",
-      "size_bytes": 12912,
+      "role": "spike_sample_or_truth",
       "sha256": "07c77b63c56ceaf5931faced8251c3f345d0f76ff649c7b6b396351000907455",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12912
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-8  分地区建筑业企业签订合同和承包工程完成情况 (2024).xlsx",
-      "size_bytes": 14550,
+      "role": "spike_sample_or_truth",
       "sha256": "02667e911a13acd73d15d23820a6bcff4d4845948d19c0d75a3dbfd83538a7ed",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 14550
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/14-9  分地区建筑业企业房屋建筑面积 (2024).xlsx",
-      "size_bytes": 12086,
+      "role": "spike_sample_or_truth",
       "sha256": "e2fd389d81cc5c4c9da89edb844329ffcc4f11abfbbf0e38736e25228887d0ec",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12086
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第14章 建筑业/~$14-5  分地区按登记注册统计类别分建筑业总产值 (2024年).xlsx",
-      "size_bytes": 165,
+      "role": "spike_sample_or_truth",
       "sha256": "ff9ef8a42b0561387a27958a6c91df1b3a39eaf6efe984154b4aeea5cdeb07a8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 165
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第15章 服务业/1501-主要年份规模以上服务业企业财务状况主要指标.xlsx",
-      "size_bytes": 11347,
+      "role": "spike_sample_or_truth",
       "sha256": "7a62e06f8e43d0cd5ec1bf7c25701421867039e0cc035bd090a487b237b9ebbf",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 11347
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第15章 服务业/1502-分类型规模以上服务业企业财务状况主要指标（2024）.xlsx",
-      "size_bytes": 12588,
+      "role": "spike_sample_or_truth",
       "sha256": "1e6dbb9e6383c20b2d6a3453b3cc68b239b082e97bc85f28c572d17e1c8cf237",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12588
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第15章 服务业/1503-分行业规模以上服务业企业财务状况主要指标（2024）.xlsx",
-      "size_bytes": 16261,
+      "role": "spike_sample_or_truth",
       "sha256": "caa6d6329b9eeb31130d0f13e6f6b458a2f99863a2027006105dde5351cb21e8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 16261
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第15章 服务业/1504-分地区规模以上服务业企业财务状况主要指标（2024）.xlsx",
-      "size_bytes": 12902,
+      "role": "spike_sample_or_truth",
       "sha256": "6b66722614d1a840b1aa1b6a327a0ad538745f3bed4ffa2ea8d237a8ccf6c48d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12902
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1600.xls",
-      "size_bytes": 68096,
+      "role": "spike_sample_or_truth",
       "sha256": "af594043a949805d98d49f7d6b3cbac1330bffbf4bb113c8d88d67563931a3c6",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 68096
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1601-交通运输业基本情况.xls",
-      "size_bytes": 28160,
+      "role": "spike_sample_or_truth",
       "sha256": "5a87d5da5c505db0eb3ed5761e79e660724140cb7c6b711822ced53a549e013e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28160
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1602-客运量.xls",
-      "size_bytes": 25600,
+      "role": "spike_sample_or_truth",
       "sha256": "ddcf36cdd3aab399af8599ab0bfdcea8a6c949955da1a812e53ea25a10c0106e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25600
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1603-旅客周转量.xls",
-      "size_bytes": 45056,
+      "role": "spike_sample_or_truth",
       "sha256": "1ee9394696a47a832f7c5a2ca1e83660b6f5d98314bfe2ca272c2072bbacc7c4",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 45056
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1604-货运量.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "085a394383b55bb72ca0b6affea2bbf248585bd1855681c0054bd926b3d23805",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1605-货物周转量.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "bd40034ad75babde409b2532a64bffd06f40f9659c0cb6c5167ebec5b14cd556",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1606-民用车辆拥有量（2024）.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "9d43a09352ae5590181a4d7acb715cefd009bf4eee9a8afc9c7d7a5acf364821",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1607-私人车辆拥有量.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "932a41613b7271ea173011b8fb1683ab75b02352022322650ea8713e1113b407",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1608-水路运输工具拥有量（2024）.xls",
-      "size_bytes": 33280,
+      "role": "spike_sample_or_truth",
       "sha256": "ae9d31b788ce8b540f5a27d79930c4fc91b420ef675b9f15bf056ca890325814",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 33280
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1609-分市、州公路旅客运输完成情况（2024）.xls",
-      "size_bytes": 15872,
+      "role": "spike_sample_or_truth",
       "sha256": "73ad714c4dc93e9f35b209874705b2d4c29695337bffe950065124c198e9d090",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 15872
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1610-邮电业务基本情况.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "b9bde7905a2bb609cde40990f1eb398aeb6e17082a9c49dd498c1d2da7eb6e55",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第16章 交通与邮电数据/1611-邮电通信水平.xls",
-      "size_bytes": 16896,
+      "role": "spike_sample_or_truth",
       "sha256": "c78ee8aa8bae14a581e13fcca840538fb61dae20b238cb45e4e23e155959c614",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 16896
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1700.xls",
-      "size_bytes": 47104,
+      "role": "spike_sample_or_truth",
       "sha256": "c61aedba16f0f39cae1834e1bc39eca6f0767ad95496d40c788ea4af85130ba6",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 47104
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1701-按地区分社会消费品零售总额.xls",
-      "size_bytes": 28672,
+      "role": "spike_sample_or_truth",
       "sha256": "bde2ad5e32b98910814e6aa9ae6f14be4093265cb28eb4dcdcc792c361b7ca71",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28672
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1702-分市、州社会消费品零售总额.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "f07055516194f0799d1922727bcc004b8a455e0ee73cbfa7670fb6c61af48835",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1703-批发和零售业连锁经营情况.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "30020ab9325de48d3b0c575190c89f1ef24871dffaec3736f16161084961b8a3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1704-住宿和餐饮业连锁经营情况.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "4d6ad3b85cf2bc9e260223dd20d74906677908171034edf463e880cceccf9ecb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1705-0-按登记注册类型分限额以上批发零售业基本情况（2024）.xls",
-      "size_bytes": 25088,
+      "role": "spike_sample_or_truth",
       "sha256": "ae371e3c58bd9f8129168c5713d89b6153838e0670549a3683f420a36d598610",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25088
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1705-1-按登记注册类型分限额以上批发零售业基本情况（2024）续.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "467df3a6f11eb0b63e946ea75e46d6e6af157035fb35b629aae2acdf4cb88b24",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1706-按国民经济行业分限额以上批发零售业基本情况（2024）.xls",
-      "size_bytes": 47616,
+      "role": "spike_sample_or_truth",
       "sha256": "eb5b564a87481ca0760871e26c7a318ceccc1ab494675bbe2c43ef3db5a1cde7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 47616
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1707-按登记注册类型分限额以上住宿和餐饮业基本情况（2024）.xls",
-      "size_bytes": 25088,
+      "role": "spike_sample_or_truth",
       "sha256": "96e54b314edc3ae9a890c23bba4a4f99ebf7c3997340d175f78c725844cdbf36",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25088
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1708-按国民经济行业分限额以上住宿和餐饮业基本情况（2024）.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "82fc236d241beb0394467c7398032be96b0754f1e4920d82f12b86b4e1df1b8e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1709-按国民经济行业分限额以上住宿和餐饮业经营情况（2024）.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "32b6b7fabb1cef7e9f347559a66de88054e850f88e90f92959fa61f96f38a5d3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1710-按登记注册类型分限额以上住宿和餐饮业经营情况（2024）.xls",
-      "size_bytes": 31232,
+      "role": "spike_sample_or_truth",
       "sha256": "1edf519a5b88b55c879cb936db73bcddaf489cbd90d1874d02699914276e8d85",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 31232
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1711-按登记注册类型分限额以上批发和零售业商品购、销、存总额（2024）.xls",
-      "size_bytes": 31232,
+      "role": "spike_sample_or_truth",
       "sha256": "3c6b1b4a710847c967bdb1d7a1e73f095cc9e7ea8df91fcdf3fc153c1d7d2295",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 31232
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1712-按国民经济行业分限额以上批发和零售业商品购、销、存总额（2024）.xls",
-      "size_bytes": 30208,
+      "role": "spike_sample_or_truth",
       "sha256": "6f081d539021de51d8c6a1ab5476361d3bca8631b2cb462c52d55b5790d1be44",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 30208
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1713-0-限额以上批发和零售业企业资产及负债（2024）.xls",
-      "size_bytes": 30720,
+      "role": "spike_sample_or_truth",
       "sha256": "2cd9f41083337b16ae0a51b30230e6c352c0baad70fcaf5ac27344722252e07c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 30720
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1713-1-限额以上批发和零售业企业资产及负债（2024）续1.xls",
-      "size_bytes": 29184,
+      "role": "spike_sample_or_truth",
       "sha256": "6601b09f13f550b59e74f54d74b23657107cfd06eead81fd7dd5e2d35d027c6f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 29184
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1714-0-限额以上批发和零售业企业主要财务指标（2024）.xls",
-      "size_bytes": 32256,
+      "role": "spike_sample_or_truth",
       "sha256": "b2421f8453f996ec6403af4c0bb2d0de28106f8ff1fa36f67741a6860e03e767",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 32256
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1714-1-限额以上批发和零售业企业主要财务指标（2024）续.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "bf7492a2dd569745ea9098697439e2ee8d5f08750ba63afc3a6145457f7720bf",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1715-限额以上餐饮业企业资产及负债（2024）.xls",
-      "size_bytes": 25600,
+      "role": "spike_sample_or_truth",
       "sha256": "300ca6846cbe1c4c0f1a729a398ec734a47a37cad7c2f4f14be44a9f0c94fa65",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25600
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1716-限额以上餐饮业企业主要财务指标（2024）.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "1298befadd473c8b9bf2e06929a5d1afdb3d60e8e61a349296111a2115a9c5df",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1717-限额以上住宿业企业资产及负债（2024）.xls",
-      "size_bytes": 25600,
+      "role": "spike_sample_or_truth",
       "sha256": "7cabf0041d43fdf12eadf1a9a1488e2370e53932c23b4b131dc18ce65290d3a9",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25600
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1718-限额以上住宿业企业主要财务指标（2024）.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "929692baec60caa8b9ffd1342738973af8ebdf4edcd5e6b8e0579b789ca1d603",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1719-0-亿元以上商品交易市场基本情况（2024）.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "4199a8bc4d18f1f6fb1e71cd068054bca1fdba0b3d7ac47e7a475b0a36d76a0c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第17章 国内贸易/1719-1-亿元以上商品交易市场基本情况（2024）续.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "d2cfc80b559c875a512d544496ddcc5f9ca9718158ccea75ec0db0953782796c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1801-科技活动基本情况(1).xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "15aeb218d64dfeb8d7e67cf9f22f42c607e5eb87c66664de61bfd98c27451a4e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1802-政府部门所属科学研究与开发机构科技活动情况.xls",
-      "size_bytes": 39424,
+      "role": "spike_sample_or_truth",
       "sha256": "142b6f4e27302a6facbb5ed8a4ebb91edb0ee3bbd05428d8fd46805fa99017cb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 39424
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1803-科学情报文献机构情况.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "f0b2db02ff7793483dbee1d0c5029001849cc8f31f60980ed73f9dfa17658c38",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1804-高等院校科技活动情况.xls",
-      "size_bytes": 29696,
+      "role": "spike_sample_or_truth",
       "sha256": "54052cd1a5cc60c51b948132dfed85ac5f7f0e6a13b50bf538e6c8654aa88b12",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 29696
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1805-大中型工业企业科技活动情况.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "ea1afd1f5d35fd3e7716c3bd90970e8f5373f08d33299dd6816c6b85b9c26049",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1806-0-有科技活动的规模以上工业企业主要分组指标.xls",
-      "size_bytes": 34304,
+      "role": "spike_sample_or_truth",
       "sha256": "36b2330610d7cefe7ac6046ca2d1037f36e795c9583440ba7aeb628fdee724de",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 34304
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1806-1-有科技活动的规模以上工业企业主要分组指标续.xls",
-      "size_bytes": 31232,
+      "role": "spike_sample_or_truth",
       "sha256": "06b956310416b2f0ecc63e7605ef70aa06b400c567549a8c8135c67edfbd7410",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 31232
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1807-全省高新技术产业发展情况（2024）.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "38a8e7189dc8e13e0e56dfe7cf67d5a7d53d753fa8c665e4496b0a91997d55a0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1808-市州高新技术产业发展情况（2024）.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "9567d1ce0c81479fcc16c3355c398a233871010ed7f73700a443314c47490a77",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1809-申报登记省、部级以上成果分类及经济效益.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "28f8ab14b9ca7c058e6d1728d0a4699ec40cb5bea12cde7e23760cd3f0bf5c32",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1810-科学技术协会组织与活动 1103.xls",
-      "size_bytes": 33792,
+      "role": "spike_sample_or_truth",
       "sha256": "35076232f3a275a736caedd191b79567a41e9b06b7612ffdafa6831229499baa",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 33792
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1811-专利批准量及分布状况.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "ed4552108df84767da3ff124dc53d1c7b7653929bbefc9b0ddedf36639405a37",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1812  按市州分三种专利授权状况(2024).xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "db51d871094022b488bae813b39bce69c6d37e507d5a5876562029ec6a5bc3c8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1813-各类技术合同签定及执行情况.xlsx",
-      "size_bytes": 12916,
+      "role": "spike_sample_or_truth",
       "sha256": "6fe5ace68adb773b4beb02c193d71346d21b880f28cc91aee0789969aa157211",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12916
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1814-0-全省技术买卖情况(2024).xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "75076c59056bf01dd4bfb1f1296c92ed004bb2ba1e42ac8150679260215c3b9c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1814-1-全省技术买卖情况(2024)续.xls",
-      "size_bytes": 18432,
+      "role": "spike_sample_or_truth",
       "sha256": "96ba7ccb3a1c258860978920af8fffe76f5ab6d72611209ec73b99b3f96a9b12",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1815-地震观测及地方地震工作情况.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "e9587471f5bfaad295c811d2c3d78bcc80afc34d3eb08609aad486dae349bc15",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1816-气象部门基本情况-202410.xlsx",
-      "size_bytes": 12003,
+      "role": "spike_sample_or_truth",
       "sha256": "e4f64e6c0e9b64451b6a00e819452ad0ed6d03c3b4103913c1f56af82ca291b3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 12003
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1817-标准和计量基本情况.xlsx",
-      "size_bytes": 10722,
+      "role": "spike_sample_or_truth",
       "sha256": "8d2a255b2bf16168f485ad10d2ed57b5b6512b2ed5d47e0bc30febc952597815",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 10722
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1818-档案事业基本情况.xls",
-      "size_bytes": 28672,
+      "role": "spike_sample_or_truth",
       "sha256": "5ed5446c6da37f03d9e944e3dcae750637fd703e317b9f561ea58e95fd588c29",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28672
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1819-各级各类学校数.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "a9f12cea617e8b727e887fd57384c011b425235c7b971945e216614a122da4d8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1820-各级各类学校在校学生数.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "3ba1b7fed6725e4660461e0b49aa986dc69bea902f4313a0dff404b2e00b1bdc",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1821-各级各类学校招生数.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "cf66eb41b1a7493af51e0c8c70c168ed4e01b9088a1771f7d4c676fd36b67b0a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1822-各级各类学校毕业生数.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "40f47d6d377c135af7683162d9758c2451fe31bdfdd204fac8e1e2adccd31a66",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1823-各级各类学校教职工数.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "bbac77a0095009d7db950327b9fbd3682d47238faf5a51b7ca6a1f74c64e4d0e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1824-各级各类学校专任教师数.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "6f4404f4db1e33c9f2d5e33915c069463e5fd566577a01b280da88bf1736f62e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1825-各级各类学校专任教师学历分类.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "b18df3a19972bfc9214480e5f84ce61e7c88ab5ecab868575fa8817726cefb3a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1826-高等学校分类别情况.xls",
-      "size_bytes": 29184,
+      "role": "spike_sample_or_truth",
       "sha256": "89663dd1fed3c9adf2c310e7a52bc8d77861c7cf34bf8a16c9b148bcc2ad49f0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 29184
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1827-大学、中专专任教师职称情况.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "75e1e79ffa39c9fec16024916d5ce31bdf82ad184a1247b94c73275622fe96eb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1828-各级各类学校校舍建筑面积情况（2024）.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "8290d3da228448c891789758e73b207c3a16aa7ad692bcb3647e5e9443697990",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1829-初中毕业生升入高中和小学毕业生升入初中的升学率.xls",
-      "size_bytes": 25600,
+      "role": "spike_sample_or_truth",
       "sha256": "7c6a93e09fbb880e649dcfccc087e7e2c734c8678420dd4d6c282ab10dd5203c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25600
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1830-小学学龄儿童入学率.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "2faf3d6df931e6464a313ec23044497b6c5f27de9c3ec16ee7e61de5076b2254",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1831-各级各类学校服务的人口及每万人口中在校学生数.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "31b15a6d02f2c876866e1b0ed9e074733566d7ceb2f0e3aff45376fc2959a4f3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1832-各级各类学校每个专任教师负担的学生数.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "42f6b541db73963dd0d213babed2e2e5b13f93c2b4d0e2bbaefe7eb1226309fa",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1833-各级各类成人学校在校学生数.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "8002afed21c5d35e1e4f6f8a15680fbbaaf43ca1a91faae2cf3dae25bd5a531d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第18章 科技和教育/1834-研究生基本情况.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "dc1e4fd762266ade8e1c0bc88a0cb8a0bdac40aec1ba4dc936aa7307f308b9bb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第19章 卫生和社会服务/1901-0-卫生机构数.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "c5b50fc0be44dc35bbaaf411c7779cd5a1b3e0b8c68b34fe7dad1e1fd583a23f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第19章 卫生和社会服务/1901-1-卫生机构数续.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "ec1118df7573c23254d0538de949caf7808f79c811a5a44a93115f7119d45ae6",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第19章 卫生和社会服务/1902-卫生机构人员数.xls",
-      "size_bytes": 25600,
+      "role": "spike_sample_or_truth",
       "sha256": "06f5bd51e9f3e729a9a5506c4b48961f17f7882e80b9a61b0da40f2fb471de3a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25600
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第19章 卫生和社会服务/1903-卫生机构床位数.xls",
-      "size_bytes": 25088,
+      "role": "spike_sample_or_truth",
       "sha256": "7a237ba0b7628b11c98be1f44663b263faeb475c954982c3e630b11037d7d3dd",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25088
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第19章 卫生和社会服务/1904-分等级医疗卫生机构情况（2024）.xls",
-      "size_bytes": 155136,
+      "role": "spike_sample_or_truth",
       "sha256": "01de053e0302e0e0b53973fabd1992ee8105a6a5c84976ec40ca2090d0bb98e2",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 155136
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第19章 卫生和社会服务/1905-医院业务工作开展情况.xls",
-      "size_bytes": 160256,
+      "role": "spike_sample_or_truth",
       "sha256": "a9c4b6180ad199c17ede7fcfe1d2c76126c40aee923af4a8c8466ee33dd51aee",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 160256
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第19章 卫生和社会服务/1906-农村村级卫生组织情况.xls",
-      "size_bytes": 154624,
+      "role": "spike_sample_or_truth",
       "sha256": "5a856ee61b05a2d29827fe0b100e08c5d2e225e2d71f63f2117cb5eceb66351c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 154624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2001-文化事业机构、人员数.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "e1786f279fc2530d261385812af174decc4d090a9884a264e4f8374bd94b239b",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2002-公共图书馆发展情况.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "7ebd44208552a32e0af8f1a8acf4c851136197751e3b863cf431085ef26a7c69",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2003-公共图书馆藏书及分类情况.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "47f2e0cbbffc957f0730f860f5468c93ea0b60768f80e14fc6ed28c3089ef4af",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2004-图书、报纸、期刊出版情况.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "32e419ec870b94bec4997e501ce66a6f5863e2ddb8d73dc85571e6b2b804b187",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2005-艺术活动、群众文化活动、图书馆及博物馆活动情况.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "517f860fafffb065130f669ce37bf59296e5b21951b9de8553a37a002a4fe787",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2006-文化、文物事业经费支出及基本建设情况.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "32733832505e01f111464f355bbcd374044d7e24734fa56d138c24c3f6fdfe2e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2007-广播电视从业人员基本情况（2024）.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "c3b6d9e2875694c72bd56df133174582eddd0461f57c422bb797723c3254eb07",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2008-广播电视传输覆盖情况.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "ee8612bef283db16836729aec7a7a32f43a45439b376411dc903c7b5661e99b0",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2009-广播电视宣传、节目制作和电影活动.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "0347512464c6dcce8723b90d3aa088107789e396d43edc6bfa0821ee90519d9e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2010-分单位类型、分人员类型体育系统从业人员数（2024）.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "683e0bbf5cc70a0527068784886c8acd359abfa132499e48ec2a7ab0dcf16c8b",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2011-等级裁判员、运动员情况.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "8e273cf1d03322002c5b99fa8fe9120b5a17df57ba75c4699b95ddd7a569bbfb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2012-体育竞赛成果情况.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "4a753524f6cffef590e63a54c3737f9821052efff002406d730e9edc0e35f36d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2013  体育场地数量、面积.xls",
-      "size_bytes": 17408,
+      "role": "spike_sample_or_truth",
       "sha256": "70e450e6bbbc1500ad5b101f76deab5b481ccd593cb60df505994f87438ad679",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17408
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2014  市、州体育场地数量、面积.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "2ed626e80559cc00d2d8a37b3d7e7abeb089b28946c0dfb902fa032d48865532",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2015-分市州规模以上文化及相关产业法人单位数（2024）.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "b38568ded93559cf8391aa7542a9fa6966f0bd25f3867ffe3de7131dbd7cf024",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2016-分市州规模以上文化制造业企业基本情况（2024）.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "6826cd88c26a876750b4d5aa613bcf488d914defe432e26e396b20cf57fcf92e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2017-分市州限额以上文化批发和零售企业基本情况（2024）.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "33351b4368286a1426eec4ef7c671efbfc30e252ce8effa8f9d4b99c198f5d4a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第20章 文化和体育/2018-分市州规模以上文化服务业企业基本情况（2024）.xls",
-      "size_bytes": 25088,
+      "role": "spike_sample_or_truth",
       "sha256": "38cbc88839eee5065000ccde8bec004b0fa9387d17be44a5c0d6bf93040d287a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25088
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2101-工会组织情况.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "f812d64213e2163c4178da4b6863ab87ec82dad8493eb4165de8f3ade1ac12e7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2102-基层政权和村（居）委会情况.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "e297babb9d2f3db9fe17e4921a52035c45c7713e16756a4881ab456daf97f46a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2103-提供住宿的社会服务床位数.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "48b7dfd00782757df1ed88490a68655f664ca37b32abb9450d04bec69388b59d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2104-社会救助情况.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "dafd023988db935c37c2dad0509b87717a91854ba9973e260b40bfbeb35953c9",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2105-社会保险基本情况.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "17ab65fe318eafe8dea4209fa48f4738fdb6610123ed89529fa51b9c6d6e07f3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2106-参加基本养老保险人数.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "ee9ddccb41a89dffc4c86e2759a7c8d9edcf0952753abb40856ee1da8937a2af",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2107-婚姻登记和离婚情况.xls",
-      "size_bytes": 22016,
+      "role": "spike_sample_or_truth",
       "sha256": "e6242ac28a295eb070a8411fb8cfcdf584ac72c7b38e11acc28197b4badf7a9c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22016
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2108-残疾人基本情况.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "afd441f680c7d9f2339d796081cd5c0e88ed7f22a36bd3982dbe94a96d8a1a52",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2109-刑事案件发、破案情况.xls",
-      "size_bytes": 18432,
+      "role": "spike_sample_or_truth",
       "sha256": "9174345b6d3f142156255caeca5fa2a999a4cad72d2d89b75dd5e49640a37f3a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2110-交通事故与火灾情况.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "f9c2cc801cfd36ea884b6667cd345bb1d8d9496b0a57cf5854ccd97074e34fef",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2111-审查批捕、起诉情况.xls",
-      "size_bytes": 18432,
+      "role": "spike_sample_or_truth",
       "sha256": "bdfb202d742b330b642019d9f2cc45287c94de8585df12c5f31c41d1df2d8a2b",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2112-律师、公证、调解工作基本情况.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "8591061f221a5e79d829ff0d02044a28dc6c7994b1be11881ef5d8fe91e8b329",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2113-公证文书分类情况.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "d5eb1c7fb092f9b698d805b80475a1124882ab3c1281d6b92e796fc652a87959",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2114-履行法律监督情况.xls",
-      "size_bytes": 17408,
+      "role": "spike_sample_or_truth",
       "sha256": "93a00793056c8e97c926bee6ddeb7f23baf4cffb9fd1364904cafacf616d071c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17408
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2115-调解民间纠纷分类.xls",
-      "size_bytes": 21504,
+      "role": "spike_sample_or_truth",
       "sha256": "7fb33612bae2dd47c3f058229c64458b997d480a44740f16545c01a0e4d6b994",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21504
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2116-人民法院审理一审案件情况.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "f2df6141c4686116f121fecd9be0d968c3e2343f8fd44cef9c9be93cc972a045",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2117-人民法院刑事一审案件收结案情况.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "8b9246fccd3975d753b6760911d99ff5480f06007db9fc6939bc2928415ba2ad",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2118-人民法院刑事案件中青少年犯罪情况.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "b59ddcbc067a7cd848812a3e619fc4f2acf411a6c7498a114e599e2a0d6c45ed",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2119-人民法院民事一审案件收结案情况（2024）.xls",
-      "size_bytes": 20992,
+      "role": "spike_sample_or_truth",
       "sha256": "ec779ef417e9470f2cd0876ea641a5f6de4b3f17cb66862d1d547864f86e2c72",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20992
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第21章 公共管理及其他/2120-人民法院行政一审案件收结案情况（2024）.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "8e6c3089a953c20df808356d592cf882a871ae3bfcf1f413616b117bdeceb9da",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第22章 长江经济带国民经济和社会发展主要指标/2201-长江经济带国民经济和社会发展主要指标（2022年）.xls",
-      "size_bytes": 25088,
+      "role": "spike_sample_or_truth",
       "sha256": "af11cc64499e28a2c8e4c7feee28d0ff409cd049715f4f0bd27dc7f0b7c24b1d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25088
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第22章 长江经济带国民经济和社会发展主要指标/2202-长江经济带国民经济和社会发展主要指标（2023年）.xls",
-      "size_bytes": 24576,
+      "role": "spike_sample_or_truth",
       "sha256": "09dea5374a7c6284dd23e314f1da07879cbc26d63249de3308822ddda3ad360e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24576
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第22章 长江经济带国民经济和社会发展主要指标/2203-长江经济带国民经济和社会发展主要指标（2024年）.xlsx",
-      "size_bytes": 14538,
+      "role": "spike_sample_or_truth",
       "sha256": "d42c42bcf52f4b06ce80468fb3c1b27364ce0f559b8239bd6cf42673f8537e81",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 14538
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第23章 县域经济主要指标/2301-0-县域经济主要指标（2024）.xls",
-      "size_bytes": 26112,
+      "role": "spike_sample_or_truth",
       "sha256": "8ce6fca8ee783dcc51e40522663336d7d4a093edee3fcc9ed835ce6296d4d6d8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26112
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第23章 县域经济主要指标/2301-1-县域经济主要指标续2-3.xls",
-      "size_bytes": 82432,
+      "role": "spike_sample_or_truth",
       "sha256": "809b209b4a32af031fd94f3070ef357cc0a470bcdeab19974ed77d42e4fcafbd",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 82432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第23章 县域经济主要指标/2301-2-县域经济主要指标续4-5.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "ac5e25248e28f7ae4c3cfd0876768d318400cd7eb7e90d9811503fc781e2ee6d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/第23章 县域经济主要指标/2301-3-县域经济主要指标续6-7.xls",
-      "size_bytes": 31744,
+      "role": "spike_sample_or_truth",
       "sha256": "2dd55898b38f9920b4153ee3515d59960323068bda00aa0d549d7fe3f3900461",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 31744
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/~$附录124-分地区建筑业劳动生产率（2024）.xlsx",
-      "size_bytes": 165,
+      "role": "spike_sample_or_truth",
       "sha256": "ff9ef8a42b0561387a27958a6c91df1b3a39eaf6efe984154b4aeea5cdeb07a8",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 165
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录101-0-分地区行政区划.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "cd18d8e8aa3999f34aecc2bf8b67f256596c315300bbc98a913b49016073c066",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录101-1-分地区行政规划续.xls",
-      "size_bytes": 26112,
+      "role": "spike_sample_or_truth",
       "sha256": "95049edf9fc9f263aaa5f74eab7dbc847a48331e14b75df1b0d287951fcdf597",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26112
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录102-分地区按三次产业分法人单位数（2023）.xls",
-      "size_bytes": 18432,
+      "role": "spike_sample_or_truth",
       "sha256": "bc8bb5f78e694e4ae67c313e525916b9e2e335ea6b043672b41630b547409cc1",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18432
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录103-0-分地区按行业分法人单位数（2023）.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "961e4a2c82ceeefeed867389941f4d611730f43b4d730cce08cc819de6b1d77f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录103-1-分地区按行业分法人单位数（2023）续.xls",
-      "size_bytes": 23040,
+      "role": "spike_sample_or_truth",
       "sha256": "e3b537fd06591ba6cee7a0342dbbafa4b5d160be56cf88d5435baf8bea49ee68",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23040
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录103-2-分地区按行业分法人单位数（2023）续.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "cbe53156b36f4e6e75c578443db928607b5a5d72e4d9778d5065d79f17d0c5cd",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录104-分地区年末常住人口.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "d3f334ec944f70af46d8d42f4134ecf58cf66c2887c5bfa1eb24466cd55ae6fc",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录105-分地区年末城镇人口比重.xls",
-      "size_bytes": 25600,
+      "role": "spike_sample_or_truth",
       "sha256": "80cceb79af3883fb38580e1fea5b05af2ec625a3a98d893777f6aff14d772ef1",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25600
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录106-0-地区生产总值（2024）.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "a5d0f83be955b156d3bd30a07fac4e3bfe5f1e8cc40451d70eaef66245ea8f2e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录107-分地区居民消费价格指数.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "672bd7cefee52c9b9a6c56b6b91740817551fb9d3c71cf2ba7fbb25b772f6123",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录108-分地区全体居民人均可支配收入与消费支出.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "ec106b07e05abbf2da75dc6ddfc95f8da7e04c40a95025131a6cb5c4dce24174",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录109-分地区城镇居民人均可支配收入与消费支出.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "6b23ced77d00e0650eae98f241af5ec89d7f05cd0abc108fb6c7834eb1110f14",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录110-分地区农村居民人均可支配收入与消费支出.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "87c398d034a1a4f083a475d5106ba2d2e868ff19d78c5ba8d81e0ab4e51d386f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录111-分地区一般公共预算收入.xls",
-      "size_bytes": 28160,
+      "role": "spike_sample_or_truth",
       "sha256": "133cb4777c92bb35b76540a5fff0ad84c153f240420371c3b303c08beeb6f04c",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28160
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录112-分地区一般公共预算支出.xls",
-      "size_bytes": 28160,
+      "role": "spike_sample_or_truth",
       "sha256": "06a20660a54ba1e78bb024dba986e0b29000858c5b49fd2b73c0a3cd309992d5",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28160
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录113-分地区电力消费量.xls",
-      "size_bytes": 25600,
+      "role": "spike_sample_or_truth",
       "sha256": "9e4736998dc3b874e5e2fe0141048a79f37ef80d41960160e13e03eb83e9d2a7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 25600
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录114-分地区固定资产投资（不含农户）比上年增长情况.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "9cbb158e84607947f215e7c2d5db15f66974458715526479b3a73ffe76daee6a",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录115-分地区房地产开发企业（单位）房屋施工、竣工面积和商品房销售面积.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "9f50c3031eb7956491ce728146690a1010a691bc1c4af296b997c97c7a486892",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录116-分地区房地产开发企业（单位）投资和商品房销售额.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "490497e271aa2680294ebc1026e0bc96ff534f50836f904ba9edc484dc046703",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录117-按收发货人所在地分分地区货物进出口总额（2024）.xls",
-      "size_bytes": 18944,
+      "role": "spike_sample_or_truth",
       "sha256": "61812bc5e83d3076e78a4c33a5127a1fdedff9f63ac680f90954c265c27e2afe",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18944
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录118-按境内目的地和货源地分分地区货物进出口总额（2024）.xls",
-      "size_bytes": 17920,
+      "role": "spike_sample_or_truth",
       "sha256": "6318d70e6517e4d3b435f1cdc82eed3e2af14920b67d64dfbccbe9179214fb28",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 17920
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录119-分地区农、林、牧、渔业总产值及增长速度（2024）.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "d189ac30ba121e3d7332dd308fe631c408143b43e675228a4e84397c182824d6",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录120-0-分地区主要农产品产量（2024）.xls",
-      "size_bytes": 20480,
+      "role": "spike_sample_or_truth",
       "sha256": "784a51db8afb4187e1b29a76588943f83ad78c2aa40b4ec3b19494592f95a97e",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 20480
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录120-1-分地区主要农产品产量（2024）续.xls",
-      "size_bytes": 19456,
+      "role": "spike_sample_or_truth",
       "sha256": "c6216b1798c3202c884a47cc40bf284aebe0b3debb445646c0af6e4febe58485",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19456
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录121-0-分地区规模以上工业企业主要经济指标（2024）.xls",
-      "size_bytes": 19968,
+      "role": "spike_sample_or_truth",
       "sha256": "3dc45f31901430cd97a01a7fb57c70582ee4bf0e84cfd60aa56c264162b012a9",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 19968
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录121-1-分地区规模以上工业企业主要经济指标（2024  ）续.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "31db313f7c9ee3fdffb72bff74908f3890f4539e6d7b5d24290e2c973a35c5d4",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录122-0-分地区主要工业产品产量（2024 ）.xls",
-      "size_bytes": 24064,
+      "role": "spike_sample_or_truth",
       "sha256": "fa31890facc6913f16bfe091375b2a5f8e774b7bd4cb41ac2e3d8f825a73a558",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 24064
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录122-1-分地区主要工业产品产量（2024  ）续.xls",
-      "size_bytes": 22528,
+      "role": "spike_sample_or_truth",
       "sha256": "53099dfa6f23070e91043b660980cc13b985a48e01a016570ce116ed6e83e1cb",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 22528
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录123-分地区建筑业总产值和房屋面积（2024）.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "bd2e5dddfa15349b3c6a7f4905f41c758208e28445f758c1505cc24aa767afb5",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录124-分地区建筑业劳动生产率（2024）.xlsx",
-      "size_bytes": 13965,
+      "role": "spike_sample_or_truth",
       "sha256": "37bce31d651ab2073bd50bdcb6106e2570c2e0dfd27789d658fbb3a483ec2946",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 13965
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录125-分地区社会消费品零售总额.xls",
-      "size_bytes": 23552,
+      "role": "spike_sample_or_truth",
       "sha256": "f90de66c08df268fa99ba79263f6623dd18ddf36c6da401c66c1cc29fe574635",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23552
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录126-分地区网上零售额（2024）.xls",
-      "size_bytes": 27648,
+      "role": "spike_sample_or_truth",
       "sha256": "e3c5acb08a464759a94680a4450c93d847268149319cb56f996d5a9df93722a5",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 27648
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录127-分地区客运量和旅客周转量（2024）.xls",
-      "size_bytes": 28160,
+      "role": "spike_sample_or_truth",
       "sha256": "5f22b8bb30be96248f015017ecce17bfde904d5ee153650479d70d4f8f16e798",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 28160
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/extracted/湖北统计年鉴2025-定/湖北统计年鉴2025-定/附录 全国分省主要指标/附录128-分地区货运量和货物周转量（2024）.xls",
-      "size_bytes": 26624,
+      "role": "spike_sample_or_truth",
       "sha256": "abb3ca13a6cfac23446d1791d6709ab66d750f15e4aa09be06631f62cb544caa",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 26624
     },
     {
       "path": "spikes/00-provincial-yearbook-table/data/hubei_2025_yearbook.zip",
-      "size_bytes": 6389929,
+      "role": "spike_sample_or_truth",
       "sha256": "be4c83cc4378b5987f8eac669683bee244e9091d1f502a1a4efa6e4e5cd6c9b2",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 6389929
     },
     {
       "path": "spikes/00-provincial-yearbook-table/extract_00_provincial_yearbook_table.py",
-      "size_bytes": 16820,
+      "role": "spike_extractor",
       "sha256": "24e58f59b8d07265ddd6c210a04dac0cfdf5ba5dd500eb6217937637baedcb4b",
-      "role": "spike_extractor"
+      "size_bytes": 16820
     },
     {
       "path": "spikes/00-provincial-yearbook-table/test_00_provincial_yearbook_table.py",
-      "size_bytes": 11782,
+      "role": "spike_test",
       "sha256": "6aa702ca87c6df21ee3a62605f210cda4cbc2e741a416768c03941fb294cb5ee",
-      "role": "spike_test"
+      "size_bytes": 11782
     },
     {
       "path": "spikes/01-national-yearbook/extract_01_national_yearbook.py",
-      "size_bytes": 7884,
+      "role": "spike_extractor",
       "sha256": "cf2263c245220c9bb52d93dca38d5b59a21d4e72e92a72404f25c78cdfe91d2f",
-      "role": "spike_extractor"
+      "size_bytes": 7884
     },
     {
       "path": "spikes/01-national-yearbook/sample.html",
-      "size_bytes": 388238,
+      "role": "spike_sample_or_truth",
       "sha256": "dea13b8a4ff116ca91403b189cdd60705545b28200f9023c3d56e6db03f3939d",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 388238
     },
     {
       "path": "spikes/01-national-yearbook/test_01_national_yearbook.py",
-      "size_bytes": 6730,
+      "role": "spike_test",
       "sha256": "1c37bb5e07e5dcbc9141d9b75b9938ed3c25082af0943659704c5224ed27dc19",
-      "role": "spike_test"
+      "size_bytes": 6730
     },
     {
       "path": "spikes/02-provincial-yearbook/extract_02_provincial_yearbook.py",
-      "size_bytes": 21581,
+      "role": "spike_extractor",
       "sha256": "27e2babcfd92815aa495bd7d2a8f2e9afd086e1f17f6527e43933fb36101816a",
-      "role": "spike_extractor"
+      "size_bytes": 21581
     },
     {
       "path": "spikes/02-provincial-yearbook/hubei_2026_06.xlsx",
-      "size_bytes": 11261,
+      "role": "spike_sample_or_truth",
       "sha256": "c5cf5abeb4fdf97af52567f0640470d631bc9ac329dcc98f14e5d40bf6a5cac7",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 11261
     },
     {
       "path": "spikes/02-provincial-yearbook/test_02_provincial_yearbook.py",
-      "size_bytes": 14582,
+      "role": "spike_test",
       "sha256": "d361d4f0a719bb469a9e6ba98f3c59074e1f6d000e7ab56621fd7e241791af2f",
-      "role": "spike_test"
+      "size_bytes": 14582
     },
     {
       "path": "spikes/03-municipal-bulletin/extract_03_municipal_bulletin.py",
-      "size_bytes": 16526,
+      "role": "spike_extractor",
       "sha256": "e38198db1628bb13210d711f67594d6b5903a70a98ebf2db73950ee8c58a5eb3",
-      "role": "spike_extractor"
+      "size_bytes": 16526
     },
     {
       "path": "spikes/03-municipal-bulletin/sample.html",
-      "size_bytes": 62831,
+      "role": "spike_sample_or_truth",
       "sha256": "d5e2c73196b43cecc8efa20e174d30bf78c382e21a1cda956f0637aeb9022d29",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 62831
     },
     {
       "path": "spikes/03-municipal-bulletin/test_03_municipal_bulletin.py",
-      "size_bytes": 8139,
+      "role": "spike_test",
       "sha256": "7b14a7797fe9d490e7bdbe91374f50064b066bc0077f5474b45abc084ed2f798",
-      "role": "spike_test"
+      "size_bytes": 8139
     },
     {
       "path": "spikes/04-scanned-pdf/.fetch_time_1909.txt",
-      "size_bytes": 21,
+      "role": "spike_sample_or_truth",
       "sha256": "b40b6ef7203a7cac027ed150ba88988764c0210c0e4540a63207281aa86020c3",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 21
     },
     {
       "path": "spikes/04-scanned-pdf/build_truth_p24.py",
-      "size_bytes": 14639,
+      "role": "spike_truth_builder",
       "sha256": "6c9b08fa5cf060156b1775912625e32a1eeade5cb337fbf799e3a01ad0ff6494",
-      "role": "spike_truth_builder"
+      "size_bytes": 14639
     },
     {
       "path": "spikes/04-scanned-pdf/build_truth_shaanxi_flk.py",
-      "size_bytes": 7248,
+      "role": "spike_truth_builder",
       "sha256": "034fbe4afd014c225e49de6d84f2b3f85916e3d7257836eb026ec25168d8ae4a",
-      "role": "spike_truth_builder"
+      "size_bytes": 7248
     },
     {
       "path": "spikes/04-scanned-pdf/data/shaanxi_fiscal_regulation_flk.pdf",
-      "size_bytes": 1007943,
+      "role": "spike_sample_or_truth",
       "sha256": "f34b2e57ae08620cb6a6afb98b3983d805d53e3bae78b969795987a7ebe71488",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 1007943
     },
     {
       "path": "spikes/04-scanned-pdf/evaluate_04.py",
-      "size_bytes": 7032,
+      "role": "spike_evaluator",
       "sha256": "eadae7700682fea2f5f3ae53a2cf28eeba589ba350d12e475f01aa2c81121172",
-      "role": "spike_evaluator"
+      "size_bytes": 7032
     },
     {
       "path": "spikes/04-scanned-pdf/evaluate_04_shaanxi_text.py",
-      "size_bytes": 8833,
+      "role": "spike_evaluator",
       "sha256": "40eec2c1fecffcdecb6308ed0818806cdfe8018d8848d1d9cbfe06f11310fa1d",
-      "role": "spike_evaluator"
+      "size_bytes": 8833
     },
     {
       "path": "spikes/04-scanned-pdf/extract_04_scanned_pdf.py",
-      "size_bytes": 20794,
+      "role": "spike_extractor",
       "sha256": "ac96e8107bcf585cb863b92ae2c212cb05f3970c04cbf98a2945024916060f79",
-      "role": "spike_extractor"
+      "size_bytes": 20794
     },
     {
       "path": "spikes/04-scanned-pdf/extract_04_shaanxi_text.py",
-      "size_bytes": 9871,
+      "role": "spike_extractor",
       "sha256": "6ef7f9d0bf56241439e47d284860d6403ca2e24e3dc195b8df6cdcaca6a0be62",
-      "role": "spike_extractor"
+      "size_bytes": 9871
     },
     {
       "path": "spikes/04-scanned-pdf/gate_thresholds.json",
-      "size_bytes": 3709,
+      "role": "spike_sample_or_truth",
       "sha256": "81f3c83acdd5111b7db9648ccf40273545b22688249f8e60a843eb482a14154f",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 3709
     },
     {
       "path": "spikes/04-scanned-pdf/ocr_text_layout.py",
-      "size_bytes": 5265,
+      "role": "spike_helper",
       "sha256": "7b1af33b5338518f73eed0c5791219f3aea8d118bbb40bba8a9deefb918a9ac0",
-      "role": "spike_helper"
+      "size_bytes": 5265
     },
     {
       "path": "spikes/04-scanned-pdf/provenance.json",
-      "size_bytes": 5677,
+      "role": "spike_sample_or_truth",
       "sha256": "859e0aacd5c2e3dd85a02620270408926dc2fe363bfa51c4f1d72a3ea6f69aaf",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 5677
     },
     {
       "path": "spikes/04-scanned-pdf/safc1909_djvu.txt",
-      "size_bytes": 1625057,
+      "role": "spike_sample_or_truth",
       "sha256": "9032f835695ceb08c4469214c3b16f1ff77d0eea8bfcdfce972389021d55a617",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 1625057
     },
     {
       "path": "spikes/04-scanned-pdf/statistical_abstract_foreign_countries_1909.pdf",
-      "size_bytes": 32182398,
+      "role": "spike_sample_or_truth",
       "sha256": "6fa36e6853dbe39c026febbb66f9abcfcc08c8e7e38bcec048f6becc3ce203ae",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 32182398
     },
     {
       "path": "spikes/04-scanned-pdf/test_04_scanned_pdf.py",
-      "size_bytes": 10642,
+      "role": "spike_test",
       "sha256": "a6175e34f4597d34b1811bc03a44ab9797fc2f3152feacc976a7bf0175cf325c",
-      "role": "spike_test"
+      "size_bytes": 10642
     },
     {
       "path": "spikes/04-scanned-pdf/test_04_shaanxi_text.py",
-      "size_bytes": 10471,
+      "role": "spike_test",
       "sha256": "65e9d68f66ea4c2bbc4f8a2d5729363d7f2ad51b809e0e64e12a5c7395304ba2",
-      "role": "spike_test"
+      "size_bytes": 10471
     },
     {
       "path": "spikes/04-scanned-pdf/truth_p24.json",
-      "size_bytes": 23093,
+      "role": "spike_sample_or_truth",
       "sha256": "317e9e14777c7a5ca791d25762bf806144110b9502073bbb38ea46b270ffbd81",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 23093
     },
     {
       "path": "spikes/04-scanned-pdf/truth_shaanxi_flk.json",
-      "size_bytes": 18266,
+      "role": "spike_sample_or_truth",
       "sha256": "8b964efe20cf37762f44729f22717231b9aaff2341fc2850c7298d7dd7d3a429",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 18266
     },
     {
       "path": "data/seeds/jiangsu_gdp_2020_2024.json",
-      "size_bytes": 6700,
+      "role": "spike_sample_or_truth",
       "sha256": "0324a0b382b3d4f6995c81b5bc431925680037ea8e0b61def91d36365fece9d2",
-      "role": "spike_sample_or_truth"
+      "size_bytes": 6700
     },
     {
       "path": "scripts/seed_jiangsu_gdp_demo.py",
-      "size_bytes": 18403,
+      "role": "spike_helper",
       "sha256": "07ba5054203006ae2de56abce7ac8abddc26f1e1e65dc594c0f2c5f977cb7708",
-      "role": "spike_helper"
+      "size_bytes": 18403
     },
     {
       "path": "tests/conftest.py",
-      "size_bytes": 5234,
+      "role": "test_conftest",
       "sha256": "91fe765d77118a3a022e3795e978c3d8aab552f559c7eee91738b749a59cfefb",
-      "role": "test_conftest"
+      "size_bytes": 5234
     },
     {
       "path": "tests/test_api_s110.py",
-      "size_bytes": 16917,
+      "role": "schema_negative_test",
       "sha256": "67148d0bbc52922c2027488f960df5e35cbb47b07e594895f8e22cdcae00d00c",
-      "role": "schema_negative_test"
+      "size_bytes": 16917
     },
     {
       "path": "tests/test_cleanliness.py",
-      "size_bytes": 9046,
+      "role": "schema_negative_test",
       "sha256": "17b0f6478e0131f2672d4a59e47d35159e98ff0d55e96f4be1948a827ff981c5",
-      "role": "schema_negative_test"
+      "size_bytes": 9046
     },
     {
       "path": "tests/test_compute_file_sha.py",
-      "size_bytes": 6995,
+      "role": "schema_negative_test",
       "sha256": "31ba233afa0e2519122460f515c92695b2cae0d53704bec712de676490ff79c0",
-      "role": "schema_negative_test"
+      "size_bytes": 6995
     },
     {
       "path": "tests/test_demo_sha_sentinel.py",
-      "size_bytes": 12903,
+      "role": "schema_negative_test",
       "sha256": "f7272cc70b66ccba1e4527a848a57c06fa059bd22d6bd21df5a46e2bc21accd8",
-      "role": "schema_negative_test"
+      "size_bytes": 12903
     },
     {
       "path": "tests/test_evidence_builder.py",
-      "size_bytes": 14071,
+      "role": "schema_negative_test",
       "sha256": "990deec0d186fb1fb991ed94f0c6f45bfdb3d3921cf5ee0e980e7971711a522b",
-      "role": "schema_negative_test"
+      "size_bytes": 14071
     },
     {
       "path": "tests/test_evidence_chain_s27a.py",
-      "size_bytes": 7477,
+      "role": "schema_negative_test",
       "sha256": "97acad80c19dc542df5fb4a2086eef75f62897df8838edcf5cb1ff0499961ac8",
-      "role": "schema_negative_test"
+      "size_bytes": 7477
     },
     {
       "path": "tests/test_ingest_monitor.py",
-      "size_bytes": 16513,
+      "role": "schema_negative_test",
       "sha256": "bd3fd84dbd4821dca47bcfbbb47127f97477ab5948d55ae7ba76e59b05546426",
-      "role": "schema_negative_test"
+      "size_bytes": 16513
     },
     {
       "path": "tests/test_nbs_monthly_connector.py",
-      "size_bytes": 8652,
+      "role": "schema_negative_test",
       "sha256": "b15228cea0f54b284b2552e320e5537af7e9e63455722b0c47068d3217ed513e",
-      "role": "schema_negative_test"
+      "size_bytes": 8652
     },
     {
       "path": "tests/test_provincial_yearbook_connector.py",
-      "size_bytes": 14812,
+      "role": "schema_negative_test",
       "sha256": "2457330eae61a9702a76e31e513b277cbfb006b3d5b171beb0f51241afc80c4e",
-      "role": "schema_negative_test"
+      "size_bytes": 14812
     },
     {
       "path": "tests/test_registry_import.py",
-      "size_bytes": 8511,
+      "role": "schema_negative_test",
       "sha256": "167cfc1c53553bc5d1bedac7b6eaf4bde8a42de1585cd4db84427ad776c30cba",
-      "role": "schema_negative_test"
+      "size_bytes": 8511
     },
     {
       "path": "tests/test_replace_demo_with_real_s2022.py",
-      "size_bytes": 7584,
+      "role": "schema_negative_test",
       "sha256": "0bbfcc62627c1e689214ecedf044e034f053703aa03b66152ca8d1e02359a26d",
-      "role": "schema_negative_test"
+      "size_bytes": 7584
     },
     {
       "path": "tests/test_s201_skeleton_smoke.py",
-      "size_bytes": 5118,
+      "role": "schema_negative_test",
       "sha256": "25f781075823f7a665ec51e5720f5b7f28a5482dfd96760154951a817226f786",
-      "role": "schema_negative_test"
+      "size_bytes": 5118
     },
     {
       "path": "tests/test_scanned_pdf_ocr_connector.py",
-      "size_bytes": 21253,
+      "role": "schema_negative_test",
       "sha256": "36422de7be96dce3e9c2c064411e7995ada664f420e0c6a6e4b526b956f56943",
-      "role": "schema_negative_test"
+      "size_bytes": 21253
     },
     {
       "path": "tests/test_schema_negative.py",
-      "size_bytes": 53096,
+      "role": "schema_negative_test",
       "sha256": "c351755480e6e7a7544a36185d665f7a556360dbae5ad6df30732fee083e02eb",
-      "role": "schema_negative_test"
+      "size_bytes": 53096
     },
     {
       "path": "tests/test_source_governance.py",
-      "size_bytes": 15941,
+      "role": "schema_negative_test",
       "sha256": "78fc857a0b2bff3e53a8dd1c0832b326faa9b3f34cc7d267a5207535623b6a60",
-      "role": "schema_negative_test"
+      "size_bytes": 15941
     },
     {
       "path": "tests/test_sz_municipal_bulletin_connector.py",
-      "size_bytes": 9577,
+      "role": "schema_negative_test",
       "sha256": "8d0ff39c6659e194a4e29fe56f1eb79c938f83293ca5a7ea3df73e4d7df64f7b",
-      "role": "schema_negative_test"
+      "size_bytes": 9577
     },
     {
       "path": "ge/README.md",
-      "size_bytes": 2885,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 2885
     },
     {
       "path": "ge/great_expectations.yml",
-      "size_bytes": 1932,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 1932
     },
     {
       "path": "ge/expectations/d1_source_registry_suite.json",
-      "size_bytes": 3567,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 3567
     },
     {
       "path": "ge/expectations/d2_source_document_suite.json",
-      "size_bytes": 3155,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 3155
     },
     {
       "path": "ge/expectations/d3_ingestion_run_suite.json",
-      "size_bytes": 3208,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 3208
     },
     {
       "path": "ge/expectations/d4_observation_suite.json",
-      "size_bytes": 4008,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 4008
     },
     {
       "path": "ge/expectations/d5_indicator_timeseries_suite.json",
-      "size_bytes": 3335,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 3335
     },
     {
       "path": "ge/checkpoints/ci_checkpoint.yml",
-      "size_bytes": 1923,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 1923
     },
     {
       "path": "ge/checkpoints/dev_checkpoint.yml",
-      "size_bytes": 739,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 739
     },
     {
       "path": "ge/plugins/__init__.py",
-      "size_bytes": 46,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 46
     },
     {
       "path": "ge/plugins/custom_data_docs/__init__.py",
-      "size_bytes": 69,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 69
     },
     {
       "path": "ge/plugins/custom_data_docs/empty_table_handler.py",
-      "size_bytes": 3436,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 3436
     },
     {
       "path": "ge/scripts/ge_run.sh",
-      "size_bytes": 1541,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 1541
     },
     {
       "path": "ge/tests/__init__.py",
-      "size_bytes": 51,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 51
     },
     {
       "path": "ge/tests/conftest.py",
-      "size_bytes": 730,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 730
     },
     {
       "path": "ge/tests/test_ge_suites_loadable.py",
-      "size_bytes": 5783,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 5783
     },
     {
       "path": "ge/tests/test_empty_table_strategy.py",
-      "size_bytes": 2710,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 2710
     },
     {
       "path": "ge/tests/test_checkpoints_loadable.py",
-      "size_bytes": 2758,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 2758
     },
     {
       "path": "Makefile",
-      "size_bytes": 989,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 989
     },
     {
       "path": ".github/workflows/ge-check.yml",
-      "size_bytes": 2290,
+      "role": "data_contract_suite",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "role": "data_contract_suite"
+      "size_bytes": 2290
     },
     {
       "path": "schema/migrations/005_admin_upload_audit.sql",
-      "size_bytes": 2795,
+      "role": "schema_migration_ddl",
       "sha256": "c090c6ade1349b70304110d23c30715fc4a3abf9f784f4020539177ef1a878cc",
-      "role": "schema_migration_ddl"
+      "size_bytes": 2795
     },
     {
       "path": "tests/test_admin_upload_s131.py",
-      "size_bytes": 12147,
+      "role": "schema_negative_test",
       "sha256": "7475a71934e6709a7f151474a8e918c09494883a3b78268666cd071d9a93bc54",
-      "role": "schema_negative_test"
+      "size_bytes": 12147
     },
     {
       "path": "docs/29-stage1-s14-cross-source-consistency-plan-20260825.md",
-      "size_bytes": 13867,
+      "role": "documentation",
       "sha256": "0c84529f7ee7d8347ceaee24ee105a5d7e73cd4bdc03a0971bdcc6ee22afb686",
-      "role": "documentation"
+      "size_bytes": 13867
     },
     {
       "path": "schema/migrations/006_source_disagreement.sql",
-      "size_bytes": 3183,
+      "role": "schema_migration_ddl",
       "sha256": "324797334db6ce50a8bc0f8f08d4c2ec9871f088a55cca1f70e650d312c1f787",
-      "role": "schema_migration_ddl"
+      "size_bytes": 3183
     },
     {
       "path": "dbt/models/staging/stg_source_disagreement_candidate.sql",
-      "size_bytes": 4693,
+      "role": "spike_helper",
       "sha256": "e06e7e0845e2d4f3a5e1b616fe26f03f2eac48f8a95dcd38e95288c39c9bd1d5",
-      "role": "spike_helper"
+      "size_bytes": 4693
     },
     {
       "path": "dbt/models/marts/mart_source_disagreement.sql",
-      "size_bytes": 2410,
+      "role": "spike_helper",
       "sha256": "d3518b11347216e2771170a0db404a72ef63f49466b5e905edfd1d5e38ad2873",
-      "role": "spike_helper"
+      "size_bytes": 2410
     },
     {
       "path": "tests/test_source_disagreement_s141.py",
-      "size_bytes": 27256,
+      "role": "schema_negative_test",
       "sha256": "02748cb2e2678eb439671f0b8d9dbdb9bd6d00085bbb879d1470a76301ec54b1",
-      "role": "schema_negative_test"
+      "size_bytes": 27256
     },
     {
       "path": "docs/30-stage1-s15-acceptance-e2e-279-plan-20260825.md",
-      "size_bytes": 11078,
+      "role": "documentation",
       "sha256": "4b4ffd5a1336923d22eee77b29d3bd62b38f96169a1366da05ae8317a5a73aa0",
-      "role": "documentation"
+      "size_bytes": 11078
     },
     {
       "path": "schema/migrations/007_ocr_review_queue.sql",
-      "size_bytes": 4052,
+      "role": "schema_migration_ddl",
       "sha256": "e25df23707423888c48242eeca836d2d13a0f352dba13e8acdc2fa7ad73f85be",
-      "role": "schema_migration_ddl"
+      "size_bytes": 4052
     },
     {
       "path": "tests/test_acceptance_e2e_s15.py",
-      "size_bytes": 25200,
+      "role": "schema_negative_test",
       "sha256": "85e4073a10cefc05f0947fedfa712ca434b54e2d6fe09840343544763e3b9b5a",
-      "role": "schema_negative_test"
+      "size_bytes": 25200
     },
     {
       "path": "docs/31-stage1-s16-r03-cross-source-dbt-plan-20260825.md",
-      "size_bytes": 7490,
+      "role": "documentation",
       "sha256": "c397230fd8d5962b8cc9abc2407d019458fd4201803f1b02d1b5457e8c38c295",
-      "role": "documentation"
+      "size_bytes": 7490
     },
     {
       "path": "dbt/packages.yml",
-      "size_bytes": 77,
+      "role": "documentation",
       "sha256": "3135a8533b6284390712d921ce2a3fa6f2cc3db98c4f3061dfc1f1cabaa7041e",
-      "role": "documentation"
+      "size_bytes": 77
     },
     {
       "path": "dbt/package-lock.yml",
-      "size_bytes": 133,
+      "role": "documentation",
       "sha256": "a4d6f0312e87bc544fc7597cc6bee377e68355e9964a9380f33cf5b387a81452",
-      "role": "documentation"
+      "size_bytes": 133
     },
     {
       "path": "dbt/tests/test_cross_source_consistency_threshold.sql",
-      "size_bytes": 592,
+      "role": "spike_helper",
       "sha256": "72ebf50b5c483e77a2eaa84fd1826a08cc69a7405d3c2f5a7d4716c589574317",
-      "role": "spike_helper"
+      "size_bytes": 592
     },
     {
       "path": "docs/35-stage2-s202-real-sha-probe-plan-20260825.md",
-      "size_bytes": 12684,
+      "role": "documentation",
       "sha256": "9188604e529f0e11d7838c8a3ac780cfeebcb46e20b46a56b295fdb3afab0a64",
-      "role": "documentation"
+      "size_bytes": 12684
     },
     {
       "path": "requirements-dbt.txt",
-      "size_bytes": 349,
+      "role": "documentation",
       "sha256": "db73c34251af1d3754ed55d7f8a80b2bb827527078fadf596221f6657cbcbc2a",
-      "role": "documentation"
+      "size_bytes": 349
     },
     {
       "path": "tests/test_r03_cross_source_dbt.py",
-      "size_bytes": 13885,
+      "role": "schema_negative_test",
       "sha256": "991ec9d5e4184824422bbab0e9e9d7b6f2b37a78628722e060dde6b84602239f",
-      "role": "schema_negative_test"
+      "size_bytes": 13885
     },
     {
       "path": "docs/32-stage1-s17-r12-url-health-plan-20260825.md",
-      "size_bytes": 11695,
+      "role": "documentation",
       "sha256": "0c7d28b444ff4d6497bf388a81b2c784d55d08749f3f21c1b60b3fea18d7984d",
-      "role": "documentation"
+      "size_bytes": 11695
     },
     {
       "path": "docs/33-stage1-s18-demo-sha-lock-plan-20260825.md",
-      "size_bytes": 18321,
+      "role": "documentation",
       "sha256": "9dd39654ddbeb53d722e88b32524a1060c74acd440c5721344c56c529e81ebae",
-      "role": "documentation"
+      "size_bytes": 18321
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/125-stage0-cc-s17-plan-receipt-20260825.md",
-      "size_bytes": 5042,
+      "role": "documentation",
       "sha256": "8846af2c0f96994793324e92334ccb3bcf929ccdb5a873eb96cba46a357592bc",
-      "role": "documentation"
+      "size_bytes": 5042
     },
     {
       "path": "scripts/url_health_probe.py",
-      "size_bytes": 8156,
+      "role": "spike_helper",
       "sha256": "24332c6b192abca5bf831cc4fe864a7b62a1c525c2f30341c48be604344f5748",
-      "role": "spike_helper"
+      "size_bytes": 8156
     },
     {
       "path": "tests/test_monitor_ingest_cli.py",
-      "size_bytes": 5730,
+      "role": "schema_negative_test",
       "sha256": "e1fedec71ff513f5d37436b880bec1c6b3b99ce9b0dfaf56c08ba628c7e19414",
-      "role": "schema_negative_test"
+      "size_bytes": 5730
     },
     {
       "path": "tests/test_url_health_probe.py",
-      "size_bytes": 10859,
+      "role": "schema_negative_test",
       "sha256": "5b0f745a85f841586fcaad66911d7e833ea04cddf075acf82f971faca6212ad9",
-      "role": "schema_negative_test"
+      "size_bytes": 10859
     },
     {
       "path": "docs/34-stage2-s20-kickoff-plan-20260825.md",
-      "size_bytes": 9631,
+      "role": "documentation",
       "sha256": "f72454d2ea14cde63284e9a99b2cd20cadf9297b30454806d05882425b55a452",
-      "role": "documentation"
+      "size_bytes": 9631
     },
     {
       "path": "tests/test_url_health_probe_live.py",
-      "size_bytes": 8177,
+      "role": "schema_negative_test",
       "sha256": "5cac799b0938eec8beb55301bca034e3c4f273db8b81c27aac785c2540949ff4",
-      "role": "schema_negative_test"
+      "size_bytes": 8177
     },
     {
       "path": "docs/36-stage2-s21-person-tenure-plan-20260825.md",
-      "size_bytes": 11402,
+      "role": "documentation",
       "sha256": "b82fa3ee6af49c6fd10a2e7a14a1b2a217f5b003ff8e7947dc8f91db5140e25a",
-      "role": "documentation"
+      "size_bytes": 11402
     },
     {
       "path": "docs/37-stage2-s22-policy-plan-20260825.md",
-      "size_bytes": 20257,
+      "role": "documentation",
       "sha256": "55bb4750e86608d5f24d2b38e5812fd2991267d24fbe097db2e1df2d94861d88",
-      "role": "documentation"
+      "size_bytes": 20257
     },
     {
       "path": "docs/38-stage2-s23-project-plan-20260825.md",
-      "size_bytes": 18664,
+      "role": "documentation",
       "sha256": "74e46fb6b17d9e39e090d3b83308282dceb9f01fb6cee69f161f248aa8ca60ef",
-      "role": "documentation"
+      "size_bytes": 18664
     },
     {
       "path": "schema/migrations/008_person_tenure_alignment.sql",
-      "size_bytes": 9861,
+      "role": "schema_migration_ddl",
       "sha256": "51760c92d8a3e09cc80fd73e32a31bd8535acce4474e7f2ee571ce4e761f026b",
-      "role": "schema_migration_ddl"
+      "size_bytes": 9861
     },
     {
       "path": "schema/migrations/008_person_tenure_alignment.log",
-      "size_bytes": 2122,
+      "role": "schema_migration_log",
       "sha256": "e1b90615f6d5edd8c9bbcd870dcc605109a4ba778823f848dcd6f1e89c3b24bf",
-      "role": "schema_migration_log"
+      "size_bytes": 2122
     },
     {
       "path": "schema/migrations/009_policy_commitment_alignment.sql",
-      "size_bytes": 7323,
+      "role": "schema_migration_ddl",
       "sha256": "9c14880271f59cef4ea21a9e7d9a74ca311482e0e3b5a1905a724776c2a0002a",
-      "role": "schema_migration_ddl"
+      "size_bytes": 7323
     },
     {
       "path": "schema/migrations/009_policy_commitment_alignment.log",
-      "size_bytes": 1610,
+      "role": "schema_migration_log",
       "sha256": "239a4ce249f5dc8a7cda2fbd40022883dfc96570fbf9619d5e203e827f0b8325",
-      "role": "schema_migration_log"
+      "size_bytes": 1610
     },
     {
       "path": "scripts/seed_person_tenure_s21lite.py",
-      "size_bytes": 15220,
+      "role": "spike_helper",
       "sha256": "1ca002e7f293a41f748a336524b0a9fa099553e97226c952d48428f8ddc813ef",
-      "role": "spike_helper"
+      "size_bytes": 15220
     },
     {
       "path": "tests/test_person_tenure_s21lite.py",
-      "size_bytes": 10864,
+      "role": "schema_negative_test",
       "sha256": "7ce87690aa314886c75640d9bd6fbfaa032f74c20babfe885bacd861a87c8c05",
-      "role": "schema_negative_test"
+      "size_bytes": 10864
     },
     {
       "path": "tests/test_policy_commitment_s22lite.py",
-      "size_bytes": 8302,
+      "role": "schema_negative_test",
       "sha256": "adaacddb8661a0c0d623666290036e40986527f87b65773c8a687972a9691ca5",
-      "role": "schema_negative_test"
+      "size_bytes": 8302
     },
     {
       "path": "frontend/app/provinces/guangdong/page.tsx",
-      "size_bytes": 1431,
+      "role": "spike_helper",
       "sha256": "25f290a0c94f4408a45c5077e243dd515de5795f0315d5ea648b7153dca05087",
-      "role": "spike_helper"
+      "size_bytes": 1431
     },
     {
       "path": "frontend/app/provinces/sichuan/page.tsx",
-      "size_bytes": 1423,
+      "role": "spike_helper",
       "sha256": "35a70dc18f52f54382a261acb5520332352f366a051849f6578cbeb801c39971",
-      "role": "spike_helper"
+      "size_bytes": 1423
     },
     {
       "path": "frontend/app/provinces/shandong/page.tsx",
-      "size_bytes": 1427,
+      "role": "spike_helper",
       "sha256": "8394bfd707aba35c829bd448c7401bdf00efeaecf2954a57ea22485420e1a058",
-      "role": "spike_helper"
+      "size_bytes": 1427
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/191-stage0-cc-s22-plan-receipt-20260825.md",
-      "size_bytes": 5899,
+      "role": "documentation",
       "sha256": "a5544238228c170be426b0ff08fba86adda54d353bad028460bed1368218debb",
-      "role": "documentation"
+      "size_bytes": 5899
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/196-stage0-cc-s22-lite-ddl-impl-receipt-20260825.md",
-      "size_bytes": 6716,
+      "role": "documentation",
       "sha256": "8d0e6829a2d0e27dd517a24b3f8e9c3c6011e943956d977f316c6a773849129a",
-      "role": "documentation"
+      "size_bytes": 6716
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/199-stage0-cc-s22-lite-pytest-import-fix-receipt-20260825.md",
-      "size_bytes": 2739,
+      "role": "documentation",
       "sha256": "0683feb1308e16c6996f378198597d9c1ec49ad91e4d70321420421f54ae68bf",
-      "role": "documentation"
+      "size_bytes": 2739
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/202-stage0-cc-s23-plan-receipt-20260825.md",
-      "size_bytes": 6185,
+      "role": "documentation",
       "sha256": "87b9c2be3175a2ed00ca5e606ed310b3477cb9a77d7a0984594f8bc2b219de45",
-      "role": "documentation"
+      "size_bytes": 6185
     },
     {
       "path": "schema/migrations/010_project_event_alignment.sql",
-      "size_bytes": 4092,
+      "role": "schema_migration_ddl",
       "sha256": "fac3318a73d2b2f769e0c215b7a1f50075917a92b067d1c398dea030787085b3",
-      "role": "schema_migration_ddl"
+      "size_bytes": 4092
     },
     {
       "path": "schema/migrations/010_project_event_alignment.log",
-      "size_bytes": 1714,
+      "role": "schema_migration_log",
       "sha256": "63b1982e034aa461327d0c847a0d5e67de56996a123fd079689a5dbded906bd2",
-      "role": "schema_migration_log"
+      "size_bytes": 1714
     },
     {
       "path": "tests/test_project_event_s23lite.py",
-      "size_bytes": 10823,
+      "role": "schema_negative_test",
       "sha256": "07acc43555fdb12776ecfbf3a31d6624d3f7741cded0e120a3f90aa0fc2f1cbc",
-      "role": "schema_negative_test"
+      "size_bytes": 10823
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/205-stage0-cc-s23-lite-ddl-impl-receipt-20260825.md",
-      "size_bytes": 7701,
+      "role": "documentation",
       "sha256": "63dad1179080880dd7e6e27220c77f50b93fa7df611c96c577498930e981a3c4",
-      "role": "documentation"
+      "size_bytes": 7701
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/208-stage0-cc-s23-lite-idempotent-pytest-fix-receipt-20260826.md",
-      "size_bytes": 6461,
+      "role": "documentation",
       "sha256": "8199cee3a829bb56012420fbb1ba526e5b13a3cb643a0cf33fd82492d25d9daa",
-      "role": "documentation"
+      "size_bytes": 6461
     },
     {
       "path": "docs/39-stage2-s24-budget-plan-20260826.md",
-      "size_bytes": 25076,
+      "role": "documentation",
       "sha256": "aa654af9a00d8836b957c2935fe35cbdeaa59a1690b36d75f3ad20e8366151b5",
-      "role": "documentation"
+      "size_bytes": 25076
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/215-stage0-cc-s24-budget-planning-receipt-20260826.md",
-      "size_bytes": 6124,
+      "role": "documentation",
       "sha256": "067c2383c4a382ccee90c25b31a11c9f80f298c7f024bbc3a3cc10a4fee33147",
-      "role": "documentation"
+      "size_bytes": 6124
     },
     {
       "path": "schema/migrations/011_budget_execution_alignment.sql",
-      "size_bytes": 5969,
+      "role": "schema_migration_ddl",
       "sha256": "087f9b6b813ceebaba43f3459196fa21d52ebcd601db0c9e97dbf31a46b8edb0",
-      "role": "schema_migration_ddl"
+      "size_bytes": 5969
     },
     {
       "path": "schema/migrations/011_budget_execution_alignment.log",
-      "size_bytes": 2478,
+      "role": "schema_migration_log",
       "sha256": "6673ec3ad1db1f6c49b74bf4f545f75032819be4ef14a86e33c32ea963009c4a",
-      "role": "schema_migration_log"
+      "size_bytes": 2478
     },
     {
       "path": "tests/test_budget_s24lite.py",
-      "size_bytes": 10542,
+      "role": "schema_negative_test",
       "sha256": "cf30316a6df110013499963ca499b91b0963c8a974515123a01060ef9127de56",
-      "role": "schema_negative_test"
+      "size_bytes": 10542
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/219-stage0-cc-s24-lite-ddl-impl-receipt-20260826.md",
-      "size_bytes": 9025,
+      "role": "documentation",
       "sha256": "9413ff24565606af22b7086d4ad0e6045bbef204b9f6e62dbd898043f103cdf7",
-      "role": "documentation"
+      "size_bytes": 9025
     },
     {
       "path": "docs/40-stage2-s25-inference-plan-20260826.md",
-      "size_bytes": 33652,
+      "role": "documentation",
       "sha256": "4359a3869fa7429268ff180fb214ad48dcd405bb225491c9e0f20a3a168f062e",
-      "role": "documentation"
+      "size_bytes": 33652
     },
     {
       "path": "docs/41-stage2-s26-counterexample-plan-20260826.md",
-      "size_bytes": 26068,
+      "role": "documentation",
       "sha256": "dfb1aac78d36296dd7f1adca89ed72d1b15af09331fa4fcc6ce55f3fd1894a9d",
-      "role": "documentation"
+      "size_bytes": 26068
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/224-stage0-cc-s25-inference-planning-receipt-20260826.md",
-      "size_bytes": 10260,
+      "role": "documentation",
       "sha256": "32266221dcd4f2a8b69ddae95fecae46df567efa62beb5ca92807bff85d555f2",
-      "role": "documentation"
+      "size_bytes": 10260
     },
     {
       "path": "schema/migrations/012_inference_alignment.sql",
-      "size_bytes": 6249,
+      "role": "schema_migration_ddl",
       "sha256": "44f59cdc4dafc5c44f862cea0c574c30422fce3a3a6dc9d8dc90e7d8ad2cb8bb",
-      "role": "schema_migration_ddl"
+      "size_bytes": 6249
     },
     {
       "path": "schema/migrations/012_inference_alignment.log",
-      "size_bytes": 2397,
+      "role": "schema_migration_log",
       "sha256": "d8c1a8fe4f00f4952959e00db7c34abddb60886ef80cf432af4e2f39e29dbfc3",
-      "role": "schema_migration_log"
+      "size_bytes": 2397
     },
     {
       "path": "tests/test_inference_s25lite.py",
-      "size_bytes": 10564,
+      "role": "schema_negative_test",
       "sha256": "e3bfef5f14e2cb7ee731c9c032aba5ca1e330b270de68fee2c01077fac54754a",
-      "role": "schema_negative_test"
+      "size_bytes": 10564
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/227-stage0-cc-s25-lite-ddl-impl-receipt-20260826.md",
-      "size_bytes": 9684,
+      "role": "documentation",
       "sha256": "a0329b3ea95d44946860d5daa3f0687fcfc200b378b268bd6301bf019984593c",
-      "role": "documentation"
+      "size_bytes": 9684
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/230-stage0-cc-s26-counterexample-planning-receipt-20260826.md",
-      "size_bytes": 9342,
+      "role": "documentation",
       "sha256": "4717d53821dc59400a5fdcda44464238487da2d4db7c26a77704a58d6e8819c4",
-      "role": "documentation"
+      "size_bytes": 9342
     },
     {
       "path": "schema/migrations/013_counterexample_gate.sql",
-      "size_bytes": 5543,
+      "role": "schema_migration_ddl",
       "sha256": "c0896702360bbf096dc3f478acc2d722d3be35c031c351be8e94ccd1b0a77c9d",
-      "role": "schema_migration_ddl"
+      "size_bytes": 5543
     },
     {
       "path": "schema/migrations/013_counterexample_gate.log",
-      "size_bytes": 1274,
+      "role": "schema_migration_log",
       "sha256": "e3f36cde067f1d347deb31ad48ec1336dd3b46b2eb3a8caab94837eaf3e670c3",
-      "role": "schema_migration_log"
+      "size_bytes": 1274
     },
     {
       "path": "tests/test_counterexample_s26lite.py",
-      "size_bytes": 13918,
+      "role": "schema_negative_test",
       "sha256": "c5bf1401df775a9ee8d1eb3b789f6552f24eec9e5dfe420d7bc919d9e35ad7fd",
-      "role": "schema_negative_test"
+      "size_bytes": 13918
     },
     {
       "path": "docs/42-stage2-s28-seven-dim-plan-20260826.md",
-      "size_bytes": 31348,
+      "role": "documentation",
       "sha256": "3d2fcd73c25fa2401fdca8ac01372046f18cfd2e108e78ab2d0b004f41c4e4df",
-      "role": "documentation"
+      "size_bytes": 31348
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/236-stage0-cc-s28-seven-dim-planning-receipt-20260826.md",
-      "size_bytes": 10155,
+      "role": "documentation",
       "sha256": "c67f468660a90d523fc5709f1504acabba15e6cafb75141d8977ba85d7e94c42",
-      "role": "documentation"
+      "size_bytes": 10155
     },
     {
       "path": "frontend/lib/types_seven_dim.ts",
-      "size_bytes": 5575,
+      "role": "spike_helper",
       "sha256": "44a0e5409ed66f330323143fb22d0322d0c7f05045f5dffe5ecebe0a2253cd45",
-      "role": "spike_helper"
+      "size_bytes": 5575
     },
     {
       "path": "frontend/lib/mock_seven_dim.ts",
-      "size_bytes": 3894,
+      "role": "spike_helper",
       "sha256": "764a1ae2184b2614dcf3b4734de86b5ca6d9a97d6c3b6c9add9461ca60a97817",
-      "role": "spike_helper"
+      "size_bytes": 3894
     },
     {
       "path": "frontend/app/components/SevenDimGrid.tsx",
-      "size_bytes": 5073,
+      "role": "spike_helper",
       "sha256": "d1c69f04ae44c5ef819c651e9efd35692a37b57c285d57ad87b191dce85ceef9",
-      "role": "spike_helper"
+      "size_bytes": 5073
     },
     {
       "path": "frontend/app/seven-dim/page.tsx",
-      "size_bytes": 993,
+      "role": "spike_helper",
       "sha256": "4bf7e9aea842d2878f44d118c8b4d781bff1d0583367aa1d32047185b48f7838",
-      "role": "spike_helper"
+      "size_bytes": 993
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/239-stage0-cc-s28-lite-seven-dim-impl-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "4ffaef42b2e5b0e66cbc5714d622b8d44d28cf076f7de4ec1be556dbc360adf2",
+      "size_bytes": 10488
+    },
+    {
+      "path": "docs/43-stage2-s29-peer-compare-plan-20260826.md",
+      "role": "documentation",
+      "sha256": "0cbd8bf60e9d1ef62b8fcd99270ad1c470540723d7e4f0f88c243120b1ea48b5",
+      "size_bytes": 32266
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/242-stage0-cc-s29-peer-compare-planning-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "bb261cefb01dcb23c4a9884ab79acf77b9d3addc93b0f633cbe2149e9418af54",
+      "size_bytes": 10636
     }
   ],
-  "artifact_count": 558,
-  "role_count": {
-    "extracted_artifact": 8,
-    "research_non_gating_eval_report": 1,
-    "research_non_gating_extracted_artifact": 1,
-    "documentation": 53,
-    "schema_ddl": 1,
-    "schema_migration_log": 7,
-    "schema_migration_ddl": 11,
-    "source_registry_doc": 1,
-    "source_registry_csv": 1,
-    "spike_helper": 13,
-    "spike_sample_or_truth": 383,
-    "spike_extractor": 7,
-    "spike_test": 7,
-    "spike_truth_builder": 2,
-    "spike_evaluator": 2,
-    "test_conftest": 1,
-    "schema_negative_test": 28,
-    "data_contract_suite": 20
+  "commit": {
+    "branch": "main",
+    "commit_sha": "fe564ee",
+    "commit_sha_short": "fe564ee",
+    "commit_timestamp_utc": "2026-08-25T14:35:00+08:00",
+    "committed": true
   },
   "db_ddl_execution": {
-    "exit_code": -1,
-    "ddl_sha256": "09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea",
+    "command": "<skipped via SKIP_PSQL=1>",
     "ddl_path": "schema/01-core.sql",
-    "skipped": true,
+    "ddl_sha256": "09aa46f9f6713b17d7e7171799a769c600f4b6eb26f37631039ffb77b7e089ea",
+    "exit_code": -1,
     "note": "SKIP_PSQL=1 — psql skipped in test (exit -1)",
-    "command": "<skipped via SKIP_PSQL=1>"
+    "skipped": true
   },
+  "platform": "macOS-26.6-arm64-arm-64bit-Mach-O",
   "pytest_run": {
     "command": "<skipped via SKIP_PYTEST=1>",
     "exit_code": -1,
-    "stdout_tail": "",
-    "stderr_tail": "skipped in test",
     "skipped": true,
     "stats": {
-      "passed": 0,
       "failed": 0,
+      "passed": 0,
       "skipped": 0
-    }
-  }
+    },
+    "stderr_tail": "skipped in test",
+    "stdout_tail": ""
+  },
+  "python_version": "3.14.3",
+  "role_count": {
+    "data_contract_suite": 20,
+    "documentation": 60,
+    "extracted_artifact": 8,
+    "research_non_gating_eval_report": 1,
+    "research_non_gating_extracted_artifact": 1,
+    "schema_ddl": 1,
+    "schema_migration_ddl": 12,
+    "schema_migration_log": 8,
+    "schema_negative_test": 29,
+    "source_registry_csv": 1,
+    "source_registry_doc": 1,
+    "spike_evaluator": 2,
+    "spike_extractor": 7,
+    "spike_helper": 17,
+    "spike_sample_or_truth": 383,
+    "spike_test": 7,
+    "spike_truth_builder": 2,
+    "test_conftest": 1
+  },
+  "schema_version": "1.1-R3G-R4",
+  "stage": "Stage 0 Gate 0 R3 rework + R4 hardening"
 }
