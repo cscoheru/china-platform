@@ -8,28 +8,24 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
+| **phase** | `POLL` |
 | **queue_rev** | `178` |
-| **origin_head** | `61984fb` |
-| **cc_head** | `61984fb`；等 `418` |
-| **cc_receipt** | `416` |
-| **cursor_ack** | `416` |
-| **last_audit** | `417` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀 |
+| **origin_head** | `ce87626` |
+| **cc_head** | `ce87626`；`418` 已交 |
+| **cc_receipt** | `418` |
+| **cursor_ack** | `418` |
+| **last_audit** | `419` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T07:50:00+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-27T07:56:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`418-stage2-docs45-docs50-milestone-crosslink-tasking-20260826.md`
-
-摘要：`docs/45` ↔ `docs/50` §4.4 里程碑互链；交回执 **`418`**。**必须双推**。
-
-完成后：双推 → **`84` POLL**。
+（无新刀。）只 **`84` POLL**。
 
 ---
 
