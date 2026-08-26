@@ -3,7 +3,7 @@
 - 编号：`359-stage0-cc-live-worm-frontend-candidate-receipt-20260826`
 - 任务书：`358-stage2-live-worm-extract-frontend-candidate-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<BACKFILL>`
+- cc_head：`a25e05e`
 - 日期：2026-08-26
 
 ---
