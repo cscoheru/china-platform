@@ -5,6 +5,7 @@
 > 用户裁定：**D**（缩刀节奏）+ Stage 2 **C**
 > 任务书：`250-stage2-s210-lite-gate2-index-tasking-20260826`
 > 刷新：queue_rev 103（per `259-stage2-gate2-index-s27b-refresh-tasking-20260826`）— §2 #1 + §5.5 + §6.1 反映 S2.7-b-lite 收口（回执 `257` + commit `c8ee2b9`/`cd936ab`）
+> 刷新：queue_rev 108（per `268-stage2-gate2-index-s27bf-refresh-tasking-20260826`）— §2 #1 + §5.6 + §6.2 反映 S2.7-b-full-lite 收口（回执 `266` + commit `beea282`/`0e0a6cf`）— mart-shape TS 类型 + demo fixture + CityPage 接驳（feature-flag；默认 demo）
 >
 > ⚠ **本文件是 Gate 2 评审索引；不宣布 Gate 2 PASS**（per `docs/34 §1` + §8 #8 + §133 + `247` §红线 + `250` §红线）
 
@@ -22,7 +23,7 @@
 
 | # | 验收项 | 阶段来源 | 证据路径 | OPEN |
 |---|---|---|---|---|
-| **1** | 5 省 + 10 地市观察页面上线 | S2.7 | 5 省 lite：`frontend/app/provinces/{jiangsu,zhejiang,guangdong,shandong,sichuan}/page.tsx`；10 地市 lite：`frontend/app/cities/[slug]/page.tsx`（`generateStaticParams` 预生成 10 slug；`dynamicParams = false` 404 兜底）| ✅ S2.7-b-lite 已交（mock 壳）— 回执 `257`；mart / person 真数据仍 OPEN → S2.7-b-full |
+| **1** | 5 省 + 10 地市观察页面上线 | S2.7 | 5 省 lite：`frontend/app/provinces/{jiangsu,zhejiang,guangdong,shandong,sichuan}/page.tsx`；10 地市 lite：`frontend/app/cities/[slug]/page.tsx`（`generateStaticParams` 预生成 10 slug；`dynamicParams = false` 404 兜底）| ✅ S2.7-b-lite 已交（mock 壳）— 回执 `257`；mart-shape 接驳（feature-flag；默认 demo）— 回执 `266`；dbt mart 真表 / person/tenure 真数据仍 OPEN → S2.7-b-full 真数据迁移刀 |
 | **2** | 六段证据链完整可点击 | S2.6 + S2.7 | `frontend/app/components/EvidenceChain.tsx` + 反例 trigger `schema/migrations/013_counterexample_gate.sql` | ✅ 不可降级 — 已守（lite UI + migration 013）|
 | **3** | 七维度观察卡可展开 | S2.8 | `frontend/app/components/SevenDimGrid.tsx` + `frontend/lib/types_seven_dim.ts` + `frontend/lib/mock_seven_dim.ts` | ✅ 演示级可过 |
 | **4** | 没有「官员能力总分」 | PRD 红线 + docs/08 §3.3 | `frontend/smoke-check.py` + file-level forbidden-token guard（每次新文件 CLEAN） | ✅ 已守门 |
@@ -118,10 +119,11 @@
 | 深圳 | `shenzhen` | 广东 | `/cities/shenzhen` | ✅ S2.7-b-lite 已交（mock） |
 | 东莞 | `dongguan` | 广东 | `/cities/dongguan` | ✅ S2.7-b-lite 已交（mock） |
 
-**OPEN（推 S2.7-b-full）**：
-- `mart_city_evidence_chain` + `mart_city_seven_dim_overview`（per docs/46 §6.2）
-- person/tenure 真数据接入契约（per docs/46 §5.2 OPEN）
-- 依赖：O1 真实 SHA 收口 + Stage 1 OPEN 收口（per docs/34 §3）
+**OPEN（推 S2.7-b-full 真数据迁移刀）**：
+- `dbt/models/marts/mart_city_evidence_chain.sql` + `mart_city_seven_dim_overview.sql`（per docs/47 §3.1/§3.2）
+- person/tenure 真数据接入契约（per docs/47 §3.3 OPEN）
+- 依赖：**O1 真实 SHA 收口 + Stage 1 OPEN 收口 + S2.1-lite `mart_person_tenure` PASS**（per docs/34 §3 + docs/47 §6.3 切刀风险）
+- 路线图：S2.7-b-full 真数据迁移刀（tasking 26X+；OPEN）= 接 dbt mart 真表 + 接 person/tenure 真数据（`relatedPersons` 数组填充）+ lineage.source_file_sha256 从占位 `'0'*64` 替换为 O1 真实 SHA
 
 ---
 
@@ -135,13 +137,33 @@
 | **已交** | 验收项 #5（INFERENCE/JUDGMENT 角标）/ #6（反例 trigger）| ✅ |
 | **部分已交** | 验收项 #7（docs/10 §3.1-3.5）| ✅ §3.1/§3.5 schema；§3.2-§3.4 stub |
 | **OPEN** | O1 真实 SHA + O3 OCR | ⚠️ Gate 2 评审包必带 OPEN 清单 |
-| **OPEN** | 10 地市（S2.7-b）| ⚠️ S2.7-b tasking 待发 |
+| **OPEN** | 10 地市（S2.7-b）| ✅ S2.7-b-lite（mock 壳）已交 — 回执 `257`；S2.7-b-full-lite（mart-shape 接驳）已交 — 回执 `266`；S2.7-b-full 真数据迁移刀（dbt mart 真表 + person/tenure 真数据）OPEN（tasking 26X+）|
 
-### 6.1 S2.7-b 落地回执登记（per `258` §0 + `259` §SCHEMA）
+### 6.1 S2.7-b 落地回执登记
 
-| 回执 | 内容 | 落地 commit | pack 注册 |
+| 回执 | 范围 | commit | 状态 |
 |---|---|---|---|
-| `reviews/stage0-gate0-rework-2026-08-23/257-stage0-cc-s27b-lite-cities-impl-receipt-20260826.md` | S2.7-b-lite 10 地市 mock 壳 + dynamic segment + 复用三件套 + 6 pytest PASS | `c8ee2b9`（feat） + `cd936ab`（backfill） | ✅ 本刀登记进 manifest `evidence_pack/manifest.json`（per `259` §SCHEMA "回执 257 pack OPEN 若可则登记"） |
+| `257-stage0-cc-s27b-lite-impl-receipt-20260826` | S2.7-b-lite（10 地市 mock 壳）| `c8ee2b9` / `cd936ab` | ✅ 已交 |
+| `266-stage0-cc-s27b-full-lite-impl-receipt-20260826` | S2.7-b-full-lite（mart-shape TS 类型 + demo fixture + CityPage 接驳；feature-flag；默认 mock）| `beea282` / `0e0a6cf` | ✅ 已交 |
+
+### 6.2 S2.7-b-full-lite mart-shape 接驳路径（回执 `266`）
+
+| 元素 | 路径 | 状态 |
+|---|---|---|
+| mart-shape TS 类型契约 | `frontend/lib/mart_city_types.ts` | ✅ S2.7-b-full-lite 已交 |
+| mart-shape demo fixture（10 城 × 6 段 × 7 cell）| `frontend/lib/mart_city_demo.ts` | ✅ S2.7-b-full-lite 已交 |
+| mart-shape 接驳组件（复用三件套）| `frontend/app/components/CityPageMart.tsx` | ✅ S2.7-b-full-lite 已交 |
+| Dynamic segment route feature-flag | `frontend/app/cities/[slug]/page.tsx`（`NEXT_PUBLIC_USE_MART_FIXTURE`；默认 mock）| ✅ S2.7-b-full-lite 已交 |
+| mart-shape 守门 pytest（10 PASS）| `tests/test_mart_city_types_s27bf.py` | ✅ S2.7-b-full-lite 已交 |
+| smoke-check §10 mart-shape 守门 | `frontend/smoke-check.py` §10a–§10e | ✅ S2.7-b-full-lite 已交 |
+| lineage.source_file_sha256 占位 | `'0'*64`（O1 真实 SHA 收口前恒占位）| ⚠️ OPEN — 推 S2.7-b-full 真数据迁移刀 |
+| person/tenure 真数据接入（`relatedPersons`）| demo 当前 = `[]`（OPEN → S2.7-b-full 接 `mart_person_tenure`）| ⚠️ OPEN — 推 S2.7-b-full 真数据迁移刀 |
+| 应用层 enum 守门（runtime + 静态 + 编译时 3 重）| `assertMartRowHasNoForbiddenFields` + smoke-check §10c + pytest `test_*_no_forbidden_tokens` | ✅ 已守门 |
+
+**禁词守门（per docs/06 §6.6 + docs/42 §8 + docs/47 §1.2）**:
+- ❌ 不派生 `score` / `rating` / `rank` / `total_score` / `confidence_score` / `credibility_score`
+- ❌ 不做"地区得分" / 不做"地区排名" / 不做 `peer_rank`
+- ✅ runtime 守门 + 静态 scanner + TS 类型约束（`MartCityEvidenceChainRowProps` 字段白名单）
 
 ---
 
@@ -159,10 +181,14 @@
 | ❌ 改 `00-CC-CURRENT.md` | ✅ Cursor 拥有 |
 | ❌ --force / --force-with-lease | ✅ ff-only pull |
 | ❌ 索要 PAT | ✅ |
-| ✅ pack invariant | ⏳ bump + commit 后 570 == 570 == 570 |
+| ✅ pack invariant | ⏳ bump + commit 后 597 == 597 == 597（knife 26: docs/45 刷新 + 回执 269 + bump；595 → 597；+2 = bump + receipt）|
 | ✅ receipts 仅写 `reviews/stage0-gate0-rework-2026-08-23/` | ✅ |
 | ✅ 不改 docs/06 / docs/08 / docs/10 / docs/34 内容（Cursor 拥有）| ✅ |
 | ✅ 不擅自提前 Gate 2 评审日期 | ✅ W8（per docs/34 §10.4）|
+| ✅ mart-shape 禁词 3 重守门 | ✅ runtime `assertMartRowHasNoForbiddenFields` + 静态 scanner smoke-check §10c + pytest `test_*_no_forbidden_tokens` + 编译时 TS 字段白名单 |
+| ✅ mart-shape feature-flag 默认值 | ✅ `NEXT_PUBLIC_USE_MART_FIXTURE !== "1"` 默认走 mock（S2.7-b-lite；保护已交页面） |
+| ✅ 兼容 S2.7-b-lite 已交路径 | ✅ [slug]/page.tsx 默认 `getMockCity` + `CityPage`（per receipt 257）；mart-shape opt-in（per receipt 266）|
+| ✅ O1 + O8 OPEN 清单显式携带 | ✅ §3 + §5.5 + §6.2（lineage.source_file_sha256 + relatedPersons）推 S2.7-b-full 真数据迁移刀 |
 
 ---
 
