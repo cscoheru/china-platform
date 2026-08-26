@@ -44,10 +44,15 @@ REQUIRED_FILES = [
     "app/provinces/guangdong/page.tsx",         # S2.7-a2 路由壳
     "app/provinces/sichuan/page.tsx",           # S2.7-a2 路由壳
     "app/provinces/shandong/page.tsx",          # S2.7-a2 路由壳
+    "app/cities/[slug]/page.tsx",               # S2.7-b-lite dynamic route
+    "app/components/CityPage.tsx",              # S2.7-b-lite 组件
     "lib/api.ts",
     "lib/types.ts",
     "lib/mock.ts",
     "lib/mock_evidence_chain.ts",               # S2.7-a mock
+    "lib/city_slug_map.ts",                     # S2.7-b-lite slug 映射
+    "lib/mock_cities.ts",                       # S2.7-b-lite 10 城 mock
+    "lib/types_cities.ts",                      # S2.7-b-lite 类型契约
 ]
 
 
@@ -284,7 +289,130 @@ def main() -> int:
             fail(e)
         return 1
 
-    print("\n=== S2.0.1 + S2.7-a + S2.7-a2 skeleton smoke: PASS ===")
+    # 9. S2.7-b-lite — 10 地市 dynamic route + slug map 守门.
+    #    Per docs/46 §3.2 (路由) + §3.1 (slug 字符集 [a-z0-9-]+) +
+    #    `256` §SCHEMA "10 城锁定"; per Cursor 锁定清单 = 南京/苏州/无锡/南通 +
+    #    杭州/宁波/温州 + 广州/深圳/东莞.
+    slug_map_src = (ROOT / "lib/city_slug_map.ts").read_text(encoding="utf-8")
+    locked_slugs = [
+        "nanjing", "suzhou", "wuxi", "nantong",
+        "hangzhou", "ningbo", "wenzhou",
+        "guangzhou", "shenzhen", "dongguan",
+    ]
+    for s in locked_slugs:
+        if f'slug: "{s}"' not in slug_map_src:
+            errors.append(f"city_slug_map.ts missing locked slug: {s}")
+    if all(f'slug: "{s}"' in slug_map_src for s in locked_slugs):
+        ok(f"city_slug_map.ts contains all 10 locked slugs")
+
+    # 9b. CITY_SLUG_LIST 顺序 + 长度 (per Cursor 裁定; 不擅自增减).
+    m = re.search(
+        r"export const CITY_SLUG_LIST:\s*readonly string\[\]\s*=\s*\[([^\]]+)\]",
+        slug_map_src,
+    )
+    if not m:
+        errors.append("city_slug_map.ts: CITY_SLUG_LIST not found")
+    else:
+        items = [s.strip().strip('"') for s in m.group(1).split(",") if s.strip()]
+        if items != locked_slugs:
+            errors.append(
+                f"city_slug_map.ts: CITY_SLUG_LIST order/length mismatch: "
+                f"got {items}, expected {locked_slugs}"
+            )
+        else:
+            ok("city_slug_map.ts: CITY_SLUG_LIST ordered == 10 locked slugs")
+
+    # 9c. Dynamic segment route must use generateStaticParams + dynamicParams=false.
+    city_route = (ROOT / "app/cities/[slug]/page.tsx").read_text(encoding="utf-8")
+    city_route_code = re.sub(r"//[^\n]*", "", city_route)
+    city_route_code = re.sub(r"/\*.*?\*/", "", city_route_code, flags=re.DOTALL)
+    if "generateStaticParams" not in city_route_code:
+        errors.append(
+            "cities/[slug]/page.tsx missing generateStaticParams "
+            "(per docs/46 §3.2 dynamic segment + 256 §SCHEMA)"
+        )
+    else:
+        ok("cities/[slug]/page.tsx declares generateStaticParams")
+    if "dynamicParams" not in city_route_code:
+        errors.append(
+            "cities/[slug]/page.tsx missing dynamicParams=false "
+            "(per docs/46 §3.1 slug 守门)"
+        )
+    if "params.slug" not in city_route_code:
+        errors.append(
+            "cities/[slug]/page.tsx must read params.slug in executable code"
+        )
+
+    # 9d. CityPage component 必须复用三件套 (EvidenceChain + SevenDimGrid + PeerCompareCard).
+    city_page_src = (ROOT / "app/components/CityPage.tsx").read_text(encoding="utf-8")
+    for needle, label in [
+        ("EvidenceChain", "EvidenceChain"),
+        ("SevenDimGrid", "SevenDimGrid"),
+        ("PeerCompareCard", "PeerCompareCard"),
+    ]:
+        if needle not in city_page_src:
+            errors.append(f"components/CityPage.tsx missing {label} reuse")
+    if all(n in city_page_src for n in ("EvidenceChain", "SevenDimGrid", "PeerCompareCard")):
+        ok("components/CityPage.tsx reuses EvidenceChain + SevenDimGrid + PeerCompareCard")
+
+    # 9e. mock_cities.ts 必须覆盖 10 城 (per Cursor 锁定).
+    # 覆盖证据：(a) CITY_SLUG_LIST 已从 city_slug_map.ts 导入并参与迭代
+    # (Object.fromEntries 沿 CITY_SLUG_LIST map); (b) 单条 slug 字面量出现.
+    mock_cities_src = (ROOT / "lib/mock_cities.ts").read_text(encoding="utf-8")
+    coverage_via_import = (
+        "CITY_SLUG_LIST" in mock_cities_src
+        and "city_slug_map" in mock_cities_src
+        and (
+            "Object.fromEntries" in mock_cities_src
+            or ".map(" in mock_cities_src
+        )
+    )
+    literal_hits = sum(
+        1 for s in locked_slugs
+        if (
+            f'"{s}"' in mock_cities_src
+            or f"'{s}'" in mock_cities_src
+            or f'slug: "{s}"' in mock_cities_src
+            or f"[{s}]" in mock_cities_src
+        )
+    )
+    if not coverage_via_import and literal_hits < len(locked_slugs):
+        errors.append(
+            f"mock_cities.ts missing coverage for 10 cities: "
+            f"literal_hits={literal_hits}/10, via_import={coverage_via_import}"
+        )
+    else:
+        ok(
+            f"mock_cities.ts covers 10 cities (via_import={coverage_via_import}, "
+            f"literal_hits={literal_hits}/10)"
+        )
+
+    # 9f. 禁词守门 (per docs/46 §1.2 + 256 §红线): mock_cities.ts 不出现
+    # score / rating / rank / total_score / confidence_score 字段 (应用层).
+    mock_cities_code = re.sub(r"//[^\n]*", "", mock_cities_src)
+    mock_cities_code = re.sub(r"/\*.*?\*/", "", mock_cities_code, flags=re.DOTALL)
+    forbidden_terms = [
+        (r"\bscore\b", "score"),
+        (r"\brating\b", "rating"),
+        (r"\brank(?:ing)?\b", "rank"),
+        (r"\btotal[_-]?score\b", "total_score"),
+        (r"\bconfidence[_-]?score\b", "confidence_score"),
+    ]
+    for pat, label in forbidden_terms:
+        if re.search(pat, mock_cities_code, re.IGNORECASE):
+            errors.append(
+                f"mock_cities.ts contains forbidden term {label!r} "
+                f"(per docs/46 §1.2 + 256 §红线)"
+            )
+        else:
+            ok(f"mock_cities.ts has no forbidden {label!r} term")
+
+    if errors:
+        for e in errors:
+            fail(e)
+        return 1
+
+    print("\n=== S2.0.1 + S2.7-a + S2.7-a2 + S2.7-b-lite skeleton smoke: PASS ===")
     return 0
 
 

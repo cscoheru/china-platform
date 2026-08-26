@@ -1,5 +1,5 @@
 {
-  "artifact_count": 579,
+  "artifact_count": 586,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3474,6 +3474,48 @@
       "role": "documentation",
       "sha256": "c7c799303c576e1cee5700c2d9117c1872318454c7ec8af7d40477d80f0c4b1a",
       "size_bytes": 10430
+    },
+    {
+      "path": "frontend/lib/city_slug_map.ts",
+      "role": "spike_helper",
+      "sha256": "3ad77c2b0e56ad9124a633ca90b0da287fb53c05c46a0c365ae8ad1d3024e8a3",
+      "size_bytes": 2683
+    },
+    {
+      "path": "frontend/lib/types_cities.ts",
+      "role": "spike_helper",
+      "sha256": "09d069d8b6fc477cf75eb96cf2e544d4d63f74150b445f26ca1c8d53f20ad294",
+      "size_bytes": 2566
+    },
+    {
+      "path": "frontend/lib/mock_cities.ts",
+      "role": "spike_helper",
+      "sha256": "b3d0153a3542cf427d0c639b44f6d1d21a31bfdad11732a1db5f60cc2106f255",
+      "size_bytes": 6630
+    },
+    {
+      "path": "frontend/app/components/CityPage.tsx",
+      "role": "spike_helper",
+      "sha256": "308fd084114887f453b15ef90440f9ba19754442754445bbf98dcee1f0c6f36b",
+      "size_bytes": 2167
+    },
+    {
+      "path": "frontend/app/cities/[slug]/page.tsx",
+      "role": "spike_helper",
+      "sha256": "3b350431cf6ed51722181fd4bc5faa5690c06abdcf2239be15f48dc749c21abd",
+      "size_bytes": 1438
+    },
+    {
+      "path": "tests/test_city_slug_map_s27b.py",
+      "role": "schema_negative_test",
+      "sha256": "8dce8f1a6df20fbee06779f34b44cd24bb4862c0d7170d1fe2b583a49bd7af08",
+      "size_bytes": 4588
+    },
+    {
+      "path": "frontend/smoke-check.py",
+      "role": "spike_helper",
+      "sha256": "7c7518f49e53d2644037d6a2a88f9679fa4def5bcfebaabc9f393c7e2a994344",
+      "size_bytes": 18265
     }
   ],
   "commit": {
@@ -3514,12 +3556,12 @@
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 34,
+    "schema_negative_test": 35,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 21,
+    "spike_helper": 27,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
