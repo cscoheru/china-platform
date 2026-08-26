@@ -3328,9 +3328,39 @@
       "size_bytes": 31348,
       "sha256": "3d2fcd73c25fa2401fdca8ac01372046f18cfd2e108e78ab2d0b004f41c4e4df",
       "role": "documentation"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/236-stage0-cc-s28-seven-dim-planning-receipt-20260826.md",
+      "size_bytes": 10155,
+      "sha256": "c67f468660a90d523fc5709f1504acabba15e6cafb75141d8977ba85d7e94c42",
+      "role": "documentation"
+    },
+    {
+      "path": "frontend/lib/types_seven_dim.ts",
+      "size_bytes": 5575,
+      "sha256": "44a0e5409ed66f330323143fb22d0322d0c7f05045f5dffe5ecebe0a2253cd45",
+      "role": "spike_helper"
+    },
+    {
+      "path": "frontend/lib/mock_seven_dim.ts",
+      "size_bytes": 3894,
+      "sha256": "764a1ae2184b2614dcf3b4734de86b5ca6d9a97d6c3b6c9add9461ca60a97817",
+      "role": "spike_helper"
+    },
+    {
+      "path": "frontend/app/components/SevenDimGrid.tsx",
+      "size_bytes": 5073,
+      "sha256": "d1c69f04ae44c5ef819c651e9efd35692a37b57c285d57ad87b191dce85ceef9",
+      "role": "spike_helper"
+    },
+    {
+      "path": "frontend/app/seven-dim/page.tsx",
+      "size_bytes": 993,
+      "sha256": "4bf7e9aea842d2878f44d118c8b4d781bff1d0583367aa1d32047185b48f7838",
+      "role": "spike_helper"
     }
   ],
-  "artifact_count": 553,
+  "artifact_count": 558,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
