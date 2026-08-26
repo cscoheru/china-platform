@@ -14,6 +14,7 @@
 | phase | CC_ACTION_REQUIRED |
 | queue_rev | 143 |
 | cc_receipt | 344 |
+| cc_head | `1326603cb8ae605584951098b92f18f1533ebc4b`（已 commit + push origin + push github + three-way converged）|
 | user_ruling | D + 源工程 **Cursor 代判（`341`）**;AUTH/付费才问用户 |
 | 测试 | **59/59 pytest PASS（49 → 59,+10:9 Shenzhen + 1 Hubei-disabled assertion;3 既有 Hubei-TRUE 测试改为新 disabled 契约）** |
 | Hubei 状态 | `enabled=FALSE`（Cursor 341 暂缓;JS-shell tech-blocked 永久留痕 reviews/.../20260826T095832Z-...md） |
@@ -274,11 +275,11 @@ OK pilot matched: sz.gov.cn / MUNICIPAL_BULLETIN
 
 ## §10 推 / 落地
 
-- commit: TBD（pending knife50_manifest_bump.py 执行后）
-- push origin: TBD
-- push github: TBD
-- three-way convergence: TBD
-- backfill SHA: 本 receipt `cc_head` 字段在 commit 后填;按 knife 17 教训另起 commit（不 amend-after-push）
+- commit: `1326603cb8ae605584951098b92f18f1533ebc4b` (`feat(connector): 343 defer Hubei + Shenzhen HTML connector + extract bug fix`)
+- push origin: ✅ `1326603` (`69f3c5f..1326603 HEAD -> main`)
+- push github: ✅ `1326603` (`69f3c5f..1326603 HEAD -> main`)
+- three-way convergence: ✅ `local = origin = github = 1326603cb8ae605584951098b92f18f1533ebc4b`
+- backfill SHA: 本 receipt §META `cc_head` 已更新;按 knife 17 教训另起 commit（不 amend-after-push）
 
 ## §11 下次心跳预期
 
