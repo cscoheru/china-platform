@@ -21,9 +21,9 @@
 | 4 | 创建 `scripts/_knife36_manifest_bump.py`（2 NEW + 1 REFRESH）| ✅ NEW | spike_helper |
 | 5 | bump pack（623 → **625**；+2 = bump + receipt + docs/45 REFRESH）| ✅ | — |
 | 6 | 写回执 `300` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 7 | commit → `origin` 优先 → `github` | ✅ this commit | — |
+| 7 | commit → `origin` 优先 → `github` | ✅ commit `5a55ab084ed7d7af52d4a293cc0d2b1cad76b826` | — |
 | 8 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 9 | 三路对齐 | ✅ local = origin = github = | — |
+| 9 | 三路对齐 | ✅ local = origin = github = `5a55ab084ed7d7af52d4a293cc0d2b1cad76b826` | — |
 | 10 | → `84` POLL + `cc_gate_watch` re-arm | ✅ re-armed → `CC_ACTION=POLL` | — |
 
 ---
@@ -218,10 +218,10 @@ OK manifest updated; added 2 artifacts
 | docs/45 修改 | `docs/45-stage2-s210-lite-gate2-review-index-20260826.md`（§2 + §3 + §5.5 + §6 + §6.1 + §6.2）| ✅ MOD |
 | bump script | `scripts/_knife36_manifest_bump.py`（2 NEW + 1 REFRESH）| ✅ 623 → 625（+2）|
 | 本地校验 | manifest invariant | ✅ 625 == 625 == 625 |
-| commit (knife 36 主提交) | `git add ... && git commit -m "docs(45): 299 mart/intake/parity refresh — 登记 288/291/294/297 + 预览路径明确非 O1"` | ✅ this commit |
-| origin push | `git push origin HEAD`（**priority**）| ✅ this commit → origin/main |
-| github push | `git push github HEAD` | ✅ this commit → github/main |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ |
+| commit (knife 36 主提交) | `git add ... && git commit -m "docs(45): 299 mart/intake/parity refresh — 登记 288/291/294/297 + 预览路径明确非 O1"` | ✅ `5a55ab084ed7d7af52d4a293cc0d2b1cad76b826` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `5a55ab0` → origin/main |
+| github push | `git push github HEAD` | ✅ `5a55ab0` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `5a55ab084ed7d7af52d4a293cc0d2b1cad76b826` |
 | backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
