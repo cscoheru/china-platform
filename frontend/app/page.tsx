@@ -150,7 +150,7 @@ export default async function HomePage() {
             <td style={cellStyle}>mock（S2.9-lite）</td>
           </tr>
           <tr>
-            <td style={cellStyle}>公开提取样本（NBS）</td>
+            <td style={cellStyle}>公开提取样本（四轨 demo）</td>
             <td style={cellStyle}>
               <a href="/public-extracts">/public-extracts</a>
             </td>

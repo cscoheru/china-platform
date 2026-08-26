@@ -106,8 +106,9 @@ cd frontend && npm run dev   # 或 npm run build && npm start
 1. 上半区 = sample 轨区块（REGISTRY_SAMPLE，63 行 + provenance）
 2. 下半区 = live 候选区块（LIVE_CANDIDATE，60 行 + deeplink/WORM/SHA provenance + DemoBadge 注明 drift 候选、非 O1 收口、与上方 sample 分轨互不覆盖）
 3. 尾部 = 深圳区块（REGISTRY_SAMPLE 散文轨，sz.gov.cn MUNICIPAL_BULLETIN，71 行 `{section, paragraph}` + provenance + DemoBadge 注明 demo、SSL 暂缓未做过 live 探测、与 NBS 两轨分轨互不覆盖；per 回执 `368`/`371`）
+4. 尾尾 = 湖北区块（REGISTRY_SAMPLE xlsx 轨，tjj.hubei.gov.cn PROVINCIAL_BULLETIN，21 行 `{指标, 单位, 增速}` + provenance + DemoBadge 注明 demo、live `enabled=FALSE` 暂缓未做过 live 探测、与 NBS+深圳三轨分轨互不覆盖；per 回执 `377`）
 
-冒烟：`python3 frontend/smoke-check.py`（§12c 门含候选 fixture 在位 + 分轨交叉检查；§12d 门含深圳 fixture 在位 + 三轨交叉检查）。
+冒烟：`python3 frontend/smoke-check.py`（§12c 门含候选 fixture 在位 + 分轨交叉检查；§12d 门含深圳 fixture 在位 + 三轨交叉检查；§12e 门含湖北 fixture 在位 + 四轨交叉检查）。
 
 ## 6. 红线（运维时同样生效）
 
