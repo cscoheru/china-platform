@@ -14,7 +14,7 @@
 | phase | CC_ACTION_REQUIRED |
 | queue_rev | 140 |
 | cc_receipt | 337 |
-| cc_head | 待 commit + push origin + push github 落地 |
+| cc_head | `4d9e28f`（已 commit + push origin + push github + three-way converged）|
 | user_ruling | D（Hubei pilot + 复用 AUTH + drift + 不 headless + ≥8 pytest + 一次 live 探测）|
 | 测试 | 41/41 pytest PASS（knife 47 是 31/31,新增 10 Hubei case;超 tasking 336 §SCHEMA "≥8 pytest"）|
 | live 探测 | rc=4（drift handled, NOT O1 收口）;见 §5 |
@@ -184,11 +184,11 @@ docs/52 §3 首批 1-3 试点源建议:NBS HTML → **Hubei EXCEL** → Shenzhen
 
 ## §9 推 / 落地
 
-- commit: 待落地(receipt 中 cc_head 待填)
-- push origin: 待落地(`git push origin HEAD` 优先)
-- push github: 待落地(`git push github HEAD`)
-- three-way convergence: 待验
-- backfill SHA: 在 receipt 后续 commit 中填 `cc_head`(per knife 17 教训:不 amend-after-push)
+- commit: `4d9e28f` (`feat(connector): 336 Hubei EXCEL pilot + extract_tables dispatcher`)
+- push origin: ✅ `4d9e28f` (`5505627..4d9e28f HEAD -> main`)
+- push github: ✅ `4d9e28f` (`5505627..4d9e28f HEAD -> main`)
+- three-way convergence: ✅ `local = origin = github = 4d9e28f179712320533cbb2f9d508230cf2b2890`
+- backfill SHA: 本 receipt `cc_head` 字段已更新;若需补 commit 则按 knife 17 教训另起（不 amend-after-push）
 
 ## §10 下次心跳预期
 
