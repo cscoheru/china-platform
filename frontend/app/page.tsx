@@ -162,6 +162,20 @@ export default async function HomePage() {
               REGISTRY_SAMPLE · demo（非 live O1）
             </td>
           </tr>
+          <tr>
+            <td style={cellStyle}>公开提取湖北轨（xlsx demo）</td>
+            <td style={cellStyle}>
+              <a href="/public-extracts#track-hb">/public-extracts#track-hb</a>
+            </td>
+            <td style={cellStyle}>
+              tjj.hubei.gov.cn / PROVINCIAL_BULLETIN 21 行 xlsx 月报统计
+              （--from-local-sample --allow-disabled-local-sample 提取）
+            </td>
+            <td style={cellStyle}>
+              REGISTRY_SAMPLE · xlsx · demo · live <code>enabled=FALSE</code>
+              暂缓（非 live O1）
+            </td>
+          </tr>
         </tbody>
       </table>
       <p style={{ marginTop: 24, fontSize: 12, color: "#999" }}>

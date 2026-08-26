@@ -1089,6 +1089,39 @@ def main() -> int:
                 f"+ REGISTRY_SAMPLE demo 标注 + 非 O1 守门"
             )
 
+    # §13b — 首页湖北轨链 (per tasking 394; 无湖北专用页 → 首页兜底)
+    # page.tsx 公开提取表格 + 一行「公开提取湖北轨」→ /public-extracts#track-hb
+    # + REGISTRY_SAMPLE / xlsx / enabled=FALSE / 非 O1 提示.
+    home_path = ROOT / "app" / "page.tsx"
+    if home_path.is_file():
+        home_src = home_path.read_text(encoding="utf-8")
+        home_code = re.sub(r"//[^\n]*", "", home_src)
+        home_code = re.sub(r"/\*.*?\*/", "", home_code, flags=re.DOTALL)
+        for needle, desc in (
+            ("公开提取湖北轨", "首页湖北轨行"),
+            ("/public-extracts#track-hb", "首页 #track-hb 链"),
+            ("PROVINCIAL_BULLETIN", "首页 PROVINCIAL_BULLETIN 标注"),
+            ("enabled=FALSE", "首页 live FALSE 暂缓"),
+            ("非 live O1", "首页非 O1 守门"),
+        ):
+            if needle not in home_code:
+                errors.append(
+                    f"app/page.tsx missing {desc} (per tasking 394)"
+                )
+        if all(
+            n in home_code
+            for n in (
+                "公开提取湖北轨",
+                "/public-extracts#track-hb",
+                "enabled=FALSE",
+                "非 live O1",
+            )
+        ):
+            ok(
+                "app/page.tsx: 公开提取湖北轨行 → /public-extracts#track-hb 链 "
+                "+ REGISTRY_SAMPLE xlsx demo + enabled=FALSE 暂缓 + 非 O1 守门"
+            )
+
     if errors:
         for e in errors:
             fail(e)

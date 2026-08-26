@@ -1,5 +1,5 @@
 {
-  "artifact_count": 703,
+  "artifact_count": 706,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -4218,6 +4218,24 @@
       "role": "documentation",
       "sha256": "aa3d0cade9fc009ccae78f5be87a95d91dfa264f24dd62063675b5a781a3bf46",
       "size_bytes": 5898
+    },
+    {
+      "path": "tests/test_hubei_home_link_public_extract.py",
+      "role": "schema_negative_test",
+      "sha256": "b45b7ff094578bd2bb5bf8fa9c16d9aec5931042b9a44e1584230094aab81642",
+      "size_bytes": 3337
+    },
+    {
+      "path": "scripts/_knife67_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "eba8fae188d445f72bc8b4f9fbeaa22dfafb31eced8157cd60eceb31147302b3",
+      "size_bytes": 3967
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/395-stage0-cc-hubei-home-link-public-extract-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "97e8cca06ec5411252d8e72b4db8b361311e6ec0de2a3fe5f15532e1e8f097b1",
+      "size_bytes": 4548
     }
   ],
   "commit": {
@@ -4251,19 +4269,19 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 32,
-    "documentation": 117,
+    "documentation": 118,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 42,
+    "schema_negative_test": 43,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 77,
+    "spike_helper": 78,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
