@@ -3,7 +3,7 @@
 - 编号：`377-stage0-cc-hubei-extract-frontend-section-receipt-20260826`
 - 任务书：`376-stage2-hubei-provincial-sample-extract-frontend-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`
+- cc_head：`26d729e`
 - 日期：2026-08-26
 
 ---
