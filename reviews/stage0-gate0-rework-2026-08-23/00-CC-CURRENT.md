@@ -9,25 +9,25 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `157` |
-| **origin_head** | `a308b0a` |
-| **cc_head** | `a308b0a`；等 `377` |
-| **cc_receipt** | `374`（已 ACK） |
-| **cursor_ack** | `374` |
-| **last_audit** | `375` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**2026-08-26：不要等用户裁定，除非卡住（登录/验证码/付费/技术死墙）**；Cursor 代判继续下刀 |
+| **queue_rev** | `158` |
+| **origin_head** | `4df622f` |
+| **cc_head** | `4df622f`；等 `380` |
+| **cc_receipt** | `377` |
+| **cursor_ack** | `377` |
+| **last_audit** | `378` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**不等人裁定除非卡住**；Cursor 代判 |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-26T20:46:10+08:00` |
+| **updated_at** | `2026-08-26T20:55:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`376-stage2-hubei-provincial-sample-extract-frontend-tasking-20260826.md`
+读并执行：`379-stage2-docs45-four-track-extracts-refresh-tasking-20260826.md`
 
-摘要：湖北 `PROVINCIAL_BULLETIN` **local-sample**（`--allow-disabled-local-sample`）→ extract + `/public-extracts` 第四分节；交回执 **`377`**（`-cc-`）。**禁止** live/headless。
+摘要：`docs/45` 登记四轨 + 首页文案；交回执 **`380`**（`-cc-`）。
 
 完成后：双推 → **`84` POLL**。
 
