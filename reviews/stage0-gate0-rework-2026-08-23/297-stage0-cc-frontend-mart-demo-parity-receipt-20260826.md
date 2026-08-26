@@ -23,9 +23,9 @@
 | 7 | 创建 `scripts/_knife35_manifest_bump.py`（3 NEW_ARTIFACTS：pytest + bump + receipt）| ✅ NEW | spike_helper |
 | 8 | bump pack（620 → **623**；+3）| ✅ | — |
 | 9 | 写回执 `297` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 10 | commit → `origin` 优先 → `github` | ✅ this commit | — |
+| 10 | commit → `origin` 优先 → `github` | ✅ commit `e5e216ddf3bf6af908448ea3f200cec95eeb868d` | — |
 | 11 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 12 | 三路对齐 | ✅ local = origin = github = | — |
+| 12 | 三路对齐 | ✅ local = origin = github = `e5e216ddf3bf6af908448ea3f200cec95eeb868d` | — |
 | 13 | → `84` POLL + `cc_gate_watch` re-arm | ✅ re-armed → `CC_ACTION=POLL` | — |
 
 ---
@@ -260,10 +260,10 @@ OK manifest updated; added 3 artifacts
 | file-level forbidden-token guard | grep 禁词清单（8 文件）| ✅ CLEAN（0 hit）|
 | bump script | `scripts/_knife35_manifest_bump.py`（3 NEW）| ✅ 620 → 623（+3）|
 | 本地校验 | manifest invariant | ✅ 623 == 623 == 623 |
-| commit (knife 35 主提交) | `git add ... && git commit -m "test(frontend): 296 mart demo parity guard — 20 pytest cases lock TS demo ↔ dbt mart 契约对齐"` | ✅ this commit |
-| origin push | `git push origin HEAD`（**priority**）| ✅ this commit → origin/main |
-| github push | `git push github HEAD` | ✅ this commit → github/main |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ |
+| commit (knife 35 主提交) | `git add ... && git commit -m "test(frontend): 296 mart demo parity guard — 20 pytest cases lock TS demo ↔ dbt mart 契约对齐"` | ✅ `e5e216ddf3bf6af908448ea3f200cec95eeb868d` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `e5e216d` → origin/main |
+| github push | `git push github HEAD` | ✅ `e5e216d` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `e5e216ddf3bf6af908448ea3f200cec95eeb868d` |
 | backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
