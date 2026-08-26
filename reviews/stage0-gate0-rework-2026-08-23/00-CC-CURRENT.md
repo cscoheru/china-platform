@@ -9,27 +9,29 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `99` |
-| **origin_head** | `ffc3eed` |
-| **cc_head** | `ffc3eed`；`251` 已交 |
-| **cc_receipt** | `251` |
-| **cursor_ack** | `251` |
-| **last_audit** | `252` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**2026-08-26 自主推进**（仅功能测试 / BLOCKED 找用户） |
+| **queue_rev** | `100` |
+| **origin_head** | `82611f4` |
+| **cc_head** | `82611f4`；`253` 已交（S2.10 pytest）|
+| **cc_receipt** | `253` |
+| **cursor_ack** | `253` |
+| **last_audit** | `254` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**2026-08-26 自主推进** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXEC_THEN_POLL` |
-| **updated_at** | `2026-08-26T12:00:00+08:00` |
+| **updated_at** | `2026-08-26T12:10:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`253`** — S2.7-b 规划（见 `253-stage2-s27b-cities-plan-tasking-20260826.md`）。
+**`253-stage2-s27b-cities-plan-tasking`** — S2.7-b 规划（10 城名单已锁）。
 
-1. 起草 **`docs/46`**（只规划；10 城名单已在任务书锁定）
-2. 补 pack → commit → `origin` + `github` → 回执 **`254`**
+1. 起草 **`docs/46`**（只规划）
+2. 补 pack → commit → `origin` + `github` → 回执 **`255`**
 3. `./scripts/cc_gate_watch.sh --pull` → **`84` POLL**
+
+> 注：回执 `253` 已被 S2.10 pytest 占用；本刀用 **`255`**。
 
 ---
 
