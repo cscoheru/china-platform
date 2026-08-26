@@ -1,5 +1,5 @@
 {
-  "artifact_count": 561,
+  "artifact_count": 566,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3366,6 +3366,36 @@
       "role": "documentation",
       "sha256": "bb261cefb01dcb23c4a9884ab79acf77b9d3addc93b0f633cbe2149e9418af54",
       "size_bytes": 10636
+    },
+    {
+      "path": "frontend/lib/types_peer_compare.ts",
+      "role": "spike_helper",
+      "sha256": "459a7d44e82e1058b81a81c48a24fd4564714e699b06399b018fbbb6df786375",
+      "size_bytes": 5885
+    },
+    {
+      "path": "frontend/lib/mock_peer_compare.ts",
+      "role": "spike_helper",
+      "sha256": "91744429352aa1b9004fbe5f6393e691b5ba9824fb7e4ae26ff3568aa1462a4c",
+      "size_bytes": 5679
+    },
+    {
+      "path": "frontend/app/components/PeerCompareCard.tsx",
+      "role": "spike_helper",
+      "sha256": "84368f6944c0cf0d08901b90dfdcdafed67ff81d5e1f40e225f8bd408ca367d0",
+      "size_bytes": 10055
+    },
+    {
+      "path": "frontend/app/peer-compare/page.tsx",
+      "role": "spike_helper",
+      "sha256": "0840f40fc64a8ca05ffa02d97b94a92d6fe383540d7d3737ee84fc0fc46532a9",
+      "size_bytes": 1396
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/245-stage0-cc-s29-lite-peer-compare-impl-receipt-20260826.md",
+      "role": "documentation",
+      "sha256": "8739a3ce622263626a33b10e3482e27fe4fd079f600f5c48e8fe5df6f080871c",
+      "size_bytes": 14147
     }
   ],
   "commit": {
@@ -3399,7 +3429,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 20,
-    "documentation": 60,
+    "documentation": 61,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -3411,7 +3441,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 17,
+    "spike_helper": 21,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
