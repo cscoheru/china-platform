@@ -223,11 +223,11 @@ $ grep -nE "收口宣告|P\W?A\W?S\W?S" docs/51-stage2-o1-drop-checklist-2026082
 | docs/51 新建 | `docs/51-stage2-o1-drop-checklist-20260826.md`（10 节；~210 行）| ✅ NEW |
 | bump script | `scripts/_knife43_manifest_bump.py`（2 NEW）| ✅ 639 → 641（+2）|
 | 本地校验 | manifest invariant | ✅ 641 == 641 == 641 |
-| commit (knife 43 主提交) | `git add ... && git commit -m "docs(51): 321 O1 投递一页清单 — 5 省 + 10 地市 + 4 退出码契约"` | ✅ `<this_commit>` |
-| origin push | `git push origin HEAD`（**priority**）| ✅ `<this_commit>` → origin/main |
-| github push | `git push github HEAD` | ✅ `<this_commit>` → github/main |
-| 三路对齐 | origin/main = github/main = local HEAD | ✅ `<this_commit>` |
-| backfill commit | 独立 commit（不 amend-after-push）| ✅ backfill |
+| commit (knife 43 主提交) | `git add ... && git commit -m "docs(51): 321 O1 投递一页清单 — 5 省 + 10 地市 + 4 退出码契约"` | ✅ `8007ba01159a02f9dd67b5e0791b1c2ffa0174b6` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `8007ba0` → origin/main |
+| github push | `git push github HEAD` | ✅ `8007ba0` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `8007ba01159a02f9dd67b5e0791b1c2ffa0174b6` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ `8007ba0` + receipt backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
