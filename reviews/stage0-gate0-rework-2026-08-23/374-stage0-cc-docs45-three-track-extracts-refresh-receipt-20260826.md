@@ -3,7 +3,7 @@
 - 编号：`374-stage0-cc-docs45-three-track-extracts-refresh-receipt-20260826`
 - 任务书：`373-stage2-docs45-three-track-extracts-refresh-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`
+- cc_head：`c03d6f8`
 - 日期：2026-08-26
 
 ---
