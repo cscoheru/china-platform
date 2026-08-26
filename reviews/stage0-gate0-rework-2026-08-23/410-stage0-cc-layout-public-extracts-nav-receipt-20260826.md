@@ -3,7 +3,7 @@
 - 编号：`410-stage0-cc-layout-public-extracts-nav-receipt-20260826`
 - 任务书：`409-stage2-layout-public-extracts-nav-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`TODO_BACKFILL`
+- cc_head：`f5151ee`
 - 日期：2026-08-26
 
 ---
