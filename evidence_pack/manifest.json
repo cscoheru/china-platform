@@ -3220,9 +3220,21 @@
       "size_bytes": 6461,
       "sha256": "8199cee3a829bb56012420fbb1ba526e5b13a3cb643a0cf33fd82492d25d9daa",
       "role": "documentation"
+    },
+    {
+      "path": "docs/39-stage2-s24-budget-plan-20260826.md",
+      "size_bytes": 25076,
+      "sha256": "aa654af9a00d8836b957c2935fe35cbdeaa59a1690b36d75f3ad20e8366151b5",
+      "role": "documentation"
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/215-stage0-cc-s24-budget-planning-receipt-20260826.md",
+      "size_bytes": 6124,
+      "sha256": "067c2383c4a382ccee90c25b31a11c9f80f298c7f024bbc3a3cc10a4fee33147",
+      "role": "documentation"
     }
   ],
-  "artifact_count": 535,
+  "artifact_count": 537,
   "role_count": {
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
