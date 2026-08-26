@@ -9,25 +9,25 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `160` |
-| **origin_head** | `2f126e4` |
-| **cc_head** | `2f126e4`；等 `386` |
-| **cc_receipt** | `383` |
-| **cursor_ack** | `383` |
-| **last_audit** | `384` PASS |
+| **queue_rev** | `161` |
+| **origin_head** | `7c5112c` |
+| **cc_head** | `7c5112c`；等 `389` |
+| **cc_receipt** | `386` |
+| **cursor_ack** | `386` |
+| **last_audit** | `387` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；**不等人裁定除非卡住**；Cursor 代判 |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-26T21:13:40+08:00` |
+| **updated_at** | `2026-08-26T21:18:40+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`385-stage2-docs45-overview-strip-refresh-tasking-20260826.md`
+读并执行：`388-stage2-public-extracts-json-download-tasking-20260826.md`
 
-摘要：`docs/45` 登记四轨一览条；交回执 **`386`**（`-cc-`）。
+摘要：四轨 JSON 静态下载（`frontend/public/public-extracts/`）；交回执 **`389`**（`-cc-`）。
 
 完成后：双推 → **`84` POLL**。
 
