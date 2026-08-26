@@ -8,28 +8,24 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
+| **phase** | `POLL` |
 | **queue_rev** | `190` |
-| **origin_head** | `d38cb0f` |
-| **cc_head** | `d38cb0f`；等 `442` |
-| **cc_receipt** | `440` |
-| **cursor_ack** | `440` |
-| **last_audit** | `441` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀 |
+| **origin_head** | `6de6c5a` |
+| **cc_head** | `6de6c5a`；`442` 已交 |
+| **cc_receipt** | `442` |
+| **cursor_ack** | `442` |
+| **last_audit** | `443` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T10:59:00+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-27T11:01:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-读并执行：`442-stage2-docs50-home-entry-index-milestone-tasking-20260826.md`
-
-摘要：`docs/50` §4.4 补登首页入口一览里程碑；交回执 **`442`**。**必须双推**。
-
-完成后：双推 → **`84` POLL**。
+（无新刀。）只 **`84` POLL**。
 
 ---
 
