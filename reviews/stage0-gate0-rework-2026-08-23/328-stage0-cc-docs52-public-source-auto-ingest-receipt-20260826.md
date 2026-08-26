@@ -263,11 +263,11 @@ $ git diff source_registry/registry.csv | head
 | docs/52 新建 | `docs/52-stage2-official-open-source-auto-ingest-plan-20260826.md`（13 节；~310 行）| ✅ NEW |
 | bump script | `scripts/_knife45_manifest_bump.py`（2 NEW）| ✅ 643 → 645（+2）|
 | 本地校验 | manifest invariant | ✅ 645 == 645 == 645 |
-| commit (knife 45 主提交) | `git add ... && git commit -m "docs(52): 327 官方公开源自动获取规划 — 6 步流水线 + AUTH 升级协议"` | ⏳ this commit |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ this commit |
-| github push | `git push github HEAD` | ⏳ this commit |
-| 三路对齐 | origin/main = github/main = local HEAD | ⏳ this commit |
-| backfill commit | 独立 commit（不 amend-after-push）| ⏳ this commit |
+| commit (knife 45 主提交) | `git add ... && git commit -m "docs(52): 327 官方公开源自动获取规划 — 6 步流水线 + AUTH 升级协议"` | ✅ `8579a3aec2d8f08761aaf3f3480bd1c3395379fe` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `8579a3a` → origin/main |
+| github push | `git push github HEAD` | ✅ `8579a3a` → github/main |
+| 三路对齐 | origin/main = github/main = local HEAD | ✅ `8579a3aec2d8f08761aaf3f3480bd1c3395379fe` |
+| backfill commit | 独立 commit（不 amend-after-push）| ✅ `8579a3a` + receipt backfill |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
 
