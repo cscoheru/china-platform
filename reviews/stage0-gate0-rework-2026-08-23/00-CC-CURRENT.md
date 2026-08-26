@@ -8,24 +8,28 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `POLL` |
-| **queue_rev** | `187` |
-| **origin_head** | `440c7c9` |
-| **cc_head** | `440c7c9`；`436` 已交 |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `188` |
+| **origin_head** | `585cd84` |
+| **cc_head** | `585cd84`；等 `438` |
 | **cc_receipt** | `436` |
 | **cursor_ack** | `436` |
 | **last_audit** | `437` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D** |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀 |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL` |
-| **updated_at** | `2026-08-27T10:14:00+08:00` |
+| **expect_cc_poll** | `EXECUTE_NOW` |
+| **updated_at** | `2026-08-27T10:22:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-（无新刀。）只 **`84` POLL**。
+读并执行：`438-stage2-docs45-docs50-overview-crosslink-tasking-20260826.md`
+
+摘要：`docs/45` ↔ `docs/50` §4.4 overview 互链；交回执 **`438`**。**必须双推**。
+
+完成后：双推 → **`84` POLL**。
 
 ---
 
