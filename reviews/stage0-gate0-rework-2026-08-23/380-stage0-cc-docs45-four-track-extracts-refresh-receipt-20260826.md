@@ -3,7 +3,7 @@
 - 编号：`380-stage0-cc-docs45-four-track-extracts-refresh-receipt-20260826`
 - 任务书：`379-stage2-docs45-four-track-extracts-refresh-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`
+- cc_head：`f1feda5`
 - 日期：2026-08-26
 
 ---
