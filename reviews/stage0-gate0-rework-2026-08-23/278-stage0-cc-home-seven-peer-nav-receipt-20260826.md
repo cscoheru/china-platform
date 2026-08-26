@@ -23,9 +23,9 @@
 | 7 | 创建 `scripts/_knife29_manifest_bump.py`（2 NEW_ARTIFACTS：bump + receipt）| ✅ | spike_helper |
 | 8 | bump pack（602 → **604**；+2 = bump + receipt；page.tsx 已在 manifest knife 13/22/28 入册）| ⏳ this step | — |
 | 9 | 写回执 `278` 入 `reviews/`（本文件）| ✅（本文件）| documentation |
-| 10 | commit → `origin` 优先 → `github` | ⏳ commit `<this-sha>`（backfill this line）| — |
-| 11 | commit SHA backfill（独立 commit；不 amend-after-push）| ⏳ this commit | — |
-| 12 | 三路对齐 | ⏳ local = origin = github = `<this-sha>` | — |
+| 10 | commit → `origin` 优先 → `github` | ✅ commit `f17413b`（backfill this line）| — |
+| 11 | commit SHA backfill（独立 commit；不 amend-after-push）| ✅ this commit | — |
+| 12 | 三路对齐 | ✅ local = origin = github = `f17413b` | — |
 | 13 | → `84` POLL + `cc_gate_watch` re-arm | ⏳ re-arm | — |
 
 ---
@@ -187,11 +187,11 @@ $ grep -n -E "(?i)\b(score|rating|rank|total_score|confidence_score|credibility_
 | smoke-check | `python3 frontend/smoke-check.py` | ✅ §10 mart-shape PASS |
 | file-level forbidden-token guard | grep 禁词清单 | ✅ CLEAN（0 hit）|
 | bump script | `scripts/_knife29_manifest_bump.py` | ✅ 602 → 604（+2 = bump + receipt）|
-| 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ⏳ 604 == 604 == 604 |
-| commit (knife 29 主提交) | `git add frontend/app/page.tsx scripts/_knife29_manifest_bump.py evidence_pack/manifest.json reviews/.../278-...md && git commit -m "feat(home): 加 /seven-dim + /peer-compare 横向视角入口（mock；不评分/不排名/不派生地区得分）"` | ⏳ `<this-sha>` |
-| origin push | `git push origin HEAD`（**priority**）| ⏳ |
-| github push | `git push github HEAD`（带 proxy）| ⏳ |
-| 三路对齐 | origin/main = github/main = local HEAD = `<this-sha>` | ⏳ |
+| 本地校验 | `python3 -c "json.load(...)"` manifest invariant | ✅ 604 == 604 == 604 |
+| commit (knife 29 主提交) | `git add frontend/app/page.tsx scripts/_knife29_manifest_bump.py evidence_pack/manifest.json reviews/.../278-...md && git commit -m "feat(home): 加 /seven-dim + /peer-compare 横向视角入口（mock；不评分/不排名/不派生地区得分）"` | ✅ `f17413b` |
+| origin push | `git push origin HEAD`（**priority**）| ✅ `61044e7..f17413b` |
+| github push | `git push github HEAD`（带 proxy）| ✅ `61044e7..f17413b` |
+| 三路对齐 | origin/main = github/main = local HEAD = `f17413b` | ✅ |
 | backfill commit (this) | 独立 commit（不 amend-after-push）| ⏳ this commit |
 
 > **禁止 amend-after-push**：receipt SHA + commit SHA 必须在独立 commit 里 backfill（per knife 2/3/4 经验）。
