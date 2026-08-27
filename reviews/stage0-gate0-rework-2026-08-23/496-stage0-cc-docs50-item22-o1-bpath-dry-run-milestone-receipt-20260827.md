@@ -3,7 +3,7 @@
 - 编号：`496-stage0-cc-docs50-item22-o1-bpath-dry-run-milestone-receipt-20260827`
 - 任务书：`496-stage2-docs50-item22-o1-bpath-dry-run-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<TBD-backfill>`（双推：backfill 单独 commit 后回填）
+- cc_head：`83cd4f1`（双推：origin 10af7a9..83cd4f1，github 10af7a9..83cd4f1；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
