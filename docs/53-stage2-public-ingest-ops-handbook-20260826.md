@@ -141,6 +141,8 @@ cd frontend && npm run dev   # 或 npm run build && npm start
 
 > 🔧 **redeploy 命令链**（per 回执 `446` §分工：ops 侧在 newvps 执行，CC 只做公网 HTTP 验收）：`ssh newvps` → `cd /opt/china-platform/frontend`（先 rsync 或 git pull 同步 repo 至宿主路径）→ `npm ci` → `NEXT_PUBLIC_USE_MOCK=true npm run build` → `systemctl restart china-platform-frontend`（SSH 易超时用 `nohup` 包裹长命令）。公网验收基线（per 回执 `446`，2026-08-27 实测）：首页 4/4 deeplink（`#track-nbs-sample` / `#track-nbs-live` / `#overview` / `#track-hb`，含 3 个 `home-public-extracts-*` testId）+ `/public-extracts` HTTP 200（105,893 bytes；5 锚点 id + `site-nav-public-extracts` testId + 4 `track-filter-*` testId）。**预览部署登记是运维信息补登，非 O1/Gate PASS；preview 容器化择机另刀（本刀不做 Docker）；不换服务器；不动 4 fixture 字节（`nbs=e30ee811` / `nbs_live=9232efdb` / `sz=937255a5` / `hb=9056001c`，与 knife 76/78/81/82/84/85/86/87 锁值完全一致）；不改代码**。
 
+> 🔗 **`docs/45` ↔ `docs/50` §4.4 公网预览 redeploy 运维行 互链**（per `450` cc 回执；queue_rev 197 落地；commit `c7a4c5d` + cc_head backfill `eaebe43`）：docs/50 §4.4 里程碑表行 200 补登「公网预览 redeploy 运维」里程碑（本节第 16 项 📍 运维登记 + 🔧 redeploy 命令链为其交付列登记源，per 回执 `448` + `69090e7`；公网验收基线 per 回执 `446`）；docs/45 文首 queue_rev 199 刷新行 + §1 + §6.2 + §7 互链；链 docs/45 §1 + §6.2 + §7 + docs/53 §5 第 16 项（双向，docs/45 §7 pack invariant 链亦指向 docs/50 §4.4 行 200）。**非 O1/Gate PASS；不换服务器；不动 4 fixture 字节**。
+
 冒烟：`python3 frontend/smoke-check.py`（§12c 门含候选 fixture 在位 + 分轨交叉检查；§12d 门含深圳 fixture 在位 + 三轨交叉检查；§12e 门含湖北 fixture 在位 + 四轨交叉检查；**§12f 门含 overview strip 在位 + 4 锚点 id + 4 锚链 href + demo|candidate 标注 + 守门 13 针**；**§12h 门含四轨行筛选 input（4 testId）+ 客户端包含匹配 + 非权威库检索守门**；**§13c 门含 `site-nav` 容器 + `/public-extracts` 链 + 链 testId + 四轨 demo + 非 O1 + 不宣布 Gate PASS + 不分支 `params.*`**）。
 
 ## 6. 红线（运维时同样生效）
