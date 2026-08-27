@@ -3,7 +3,7 @@
 - 编号：`524-stage0-cc-docs52-sha-drift-fork-crosslink-receipt-20260827`
 - 任务书：`524-stage2-docs52-sha-drift-fork-crosslink-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推 origin/github 后由 backfill 单独 commit 回填）
+- cc_head：`f24cf48`（双推：origin 0169ecf..f24cf48，github 0169ecf..f24cf48；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
