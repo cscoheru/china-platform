@@ -3,7 +3,7 @@
 - 编号：`518-stage0-cc-docs50-item27-extended-arc-milestone-receipt-20260827`
 - 任务书：`518-stage2-docs50-item27-o1-bpath-extended-arc-close-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推 origin/github 后由 backfill 单独 commit 回填）
+- cc_head：`6b3aaeb`（双推：origin 7e1849b..6b3aaeb，github 7e1849b..6b3aaeb；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
