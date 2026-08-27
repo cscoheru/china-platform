@@ -97,6 +97,8 @@ python3 scripts/auto_ingest_public_source.py --live \
 
 ## 5. 预览
 
+> 🌐 **公网预览**：`https://china.3strategy.cc/public-extracts`（HTTP 200 per 回执 `446` 公网验收基线：四轨 + 一览条 + 行筛选 + JSON/CSV + 全站顶栏 site-nav 常驻入口）+ 首页 4 deeplink 提示（`https://china.3strategy.cc/` → `/public-extracts#track-nbs-sample` / `#track-nbs-live` / `#overview` / `#track-hb`）；命令链见本节第 16 项 🔧 条目，URL 块互链登记见第 18 项 + `docs/50` §4.4 公网预览段（per 回执 `454`）。**公网 URL 是运维演示入口，与本地预览同构（demo/candidate build），非 O1/Gate PASS**。本地预览说明保留于下：
+
 ```bash
 cd frontend && npm run dev   # 或 npm run build && npm start
 ```
