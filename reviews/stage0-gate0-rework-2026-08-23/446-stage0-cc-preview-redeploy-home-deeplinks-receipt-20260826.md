@@ -3,7 +3,7 @@
 - 编号：`446-stage0-cc-preview-redeploy-home-deeplinks-receipt-20260826`
 - 任务书：`446-stage2-preview-redeploy-home-deeplinks-tasking-20260826`
 - 作者：CC（heartbeat 84）
-- cc_head：（待双推回填）
+- cc_head：`1ab09a7`（双推：origin c8f1811..1ab09a7，github c8f1811..1ab09a7）
 - 日期：2026-08-27
 
 ---
