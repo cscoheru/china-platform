@@ -3,7 +3,7 @@
 - 编号：`484-stage0-cc-docs45-o1-open-bpath-status-refresh-receipt-20260827`
 - 任务书：`484-stage2-docs45-o1-open-bpath-status-refresh-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：待回填（见下）
+- cc_head：`7ac7008`（双推：origin 4bfecc2..7ac7008，github 4bfecc2..7ac7008；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
