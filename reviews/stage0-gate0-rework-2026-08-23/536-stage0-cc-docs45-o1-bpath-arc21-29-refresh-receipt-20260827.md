@@ -3,7 +3,7 @@
 - 编号：`536-stage0-cc-docs45-o1-bpath-arc21-29-refresh-receipt-20260827`
 - 任务书：`536-stage2-docs45-o1-bpath-arc21-29-refresh-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推：origin `PENDING_ORIGIN_RANGE`、github `PENDING_GITHUB_RANGE`；backfill 单独 commit）
+- cc_head：`76d7072`（双推：origin f16dcf0..76d7072，github f16dcf0..76d7072；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
