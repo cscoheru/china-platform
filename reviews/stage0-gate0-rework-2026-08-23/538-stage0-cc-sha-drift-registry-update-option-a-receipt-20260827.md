@@ -4,7 +4,7 @@
 - 任务书：`538-stage2-sha-drift-registry-update-option-a-tasking-20260827`（gate queue_rev 285 → 偏差接受登记 286）
 - 偏差接受书：`538-stage2-cursor-local-live-reverify-and-deviation-accept-20260827`（D1–D5；用户 2026-08-27 明示 ACCEPT）
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推范围回填于 backfill 单独 commit）
+- cc_head：`7081bd7`（双推：origin 572733a..7081bd7，github 572733a..7081bd7；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
