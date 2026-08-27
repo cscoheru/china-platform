@@ -3,7 +3,7 @@
 - 编号：`520-stage0-cc-docs53-sha-drift-fork-registration-receipt-20260827`
 - 任务书：`520-stage2-docs53-sha-drift-candidate-disposition-fork-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推 origin/github 后由 backfill 单独 commit 回填）
+- cc_head：`5bdfc37`（双推：origin 79cfcea..5bdfc37，github 79cfcea..5bdfc37；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
