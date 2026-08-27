@@ -3,7 +3,7 @@
 - 编号：`530-stage0-cc-docs53-item29-extended-arc-close-receipt-20260827`
 - 任务书：`530-stage2-docs53-item29-extended-arc-close-21-28-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推：origin `PENDING_ORIGIN_RANGE`、github `PENDING_GITHUB_RANGE`；backfill 单独 commit）
+- cc_head：`2cf49df`（双推：origin 7287763..2cf49df，github 7287763..2cf49df；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
