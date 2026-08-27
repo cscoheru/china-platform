@@ -3,7 +3,7 @@
 - 编号：`488-stage0-cc-docs52-body-waiting-file-phrase-cleanup-receipt-20260827`
 - 任务书：`488-stage2-docs52-body-waiting-file-phrase-cleanup-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<backfill>`（双推后单独 commit 回填）
+- cc_head：`f1f4ac6`（双推：origin c8e982f..f1f4ac6，github c8e982f..f1f4ac6；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
