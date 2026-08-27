@@ -3,7 +3,7 @@
 - 编号：`504-stage0-cc-docs50-intro-receipt-chain-502-receipt-20260827`
 - 任务书：`504-stage2-docs50-intro-receipt-chain-502-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推 origin/github；backfill 单独 commit）
+- cc_head：`39d31c3`（双推：origin ab1b87d..39d31c3，github ab1b87d..39d31c3；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
