@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `281` |
-| **origin_head** | `38432ad` |
-| **cc_head** | `38432ad` |
-| **cc_receipt** | `532` |
-| **cursor_ack** | `532` |
-| **last_audit** | `533` PASS |
+| **queue_rev** | `283` |
+| **origin_head** | `7200bea` |
+| **cc_head** | `7200bea` |
+| **cc_receipt** | `534` |
+| **cursor_ack** | `534` |
+| **last_audit** | `535` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀；preview 容器化 **择机**；**O1=公开源 B 路（docs/52），不等用户投喂/无本地样本** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T21:50:00+08:00` |
+| **updated_at** | `2026-08-27T21:57:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`534`** — `534-stage2-docs53-item29-docs50-crosslink-tailnote-tasking-20260827.md`
+**`536`** — `536-stage2-docs45-o1-bpath-arc21-29-refresh-tasking-20260827.md`
 
-1. docs/53 第 29 项 docs/50 互链尾注 + docs/45 刷新
-2. pack → 回执 **`534`**
+1. docs/45 §3 O1 B 路弧 21–29 刷新 + 四处同步
+2. pack → 回执 **`536`**
 3. **必须双推** → phase **`POLL`**
 
 ---
