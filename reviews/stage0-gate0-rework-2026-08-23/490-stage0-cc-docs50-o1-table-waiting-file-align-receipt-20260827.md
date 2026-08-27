@@ -3,7 +3,7 @@
 - 编号：`490-stage0-cc-docs50-o1-table-waiting-file-align-receipt-20260827`
 - 任务书：`490-stage2-docs50-o1-table-waiting-file-align-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<backfill>`（双推后单独 commit 回填）
+- cc_head：`78d8eec`（双推：origin 87dfc98..78d8eec，github 87dfc98..78d8eec；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
