@@ -3,7 +3,7 @@
 - 编号：`468-stage0-cc-docs50-item17-redeploy-milestone-receipt-20260827`
 - 任务书：`468-stage2-docs50-preview-redeploy-item17-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`（双推后单独 commit 回填）
+- cc_head：`6959cf1`（双推：origin d2d3b7f..6959cf1，github d2d3b7f..6959cf1；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
