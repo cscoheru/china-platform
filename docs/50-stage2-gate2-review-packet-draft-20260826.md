@@ -201,7 +201,7 @@ frontend/app/components/SevenDimGrid.tsx
 
 **预览 URL（per §4.4）**：
 
-**公网预览**（per 行 200 公网预览 redeploy 运维里程碑 + `docs/53` §5 第 16 项 + 回执 `446`；源站 newvps 宿主机 systemd，redeploy 命令链见 `docs/53` §5 🔧 条目）：
+**公网预览**（per 行 200 公网预览 redeploy 运维里程碑 + `docs/53` §5 第 16 项 + 回执 `446`；源站 newvps 宿主机 systemd，redeploy 命令链见 `docs/53` §5 🔧 条目；`docs/53` §5 预览节首行亦已补 🌐 公网预览提示，per 回执 `458`）：
 
 ```bash
 open https://china.3strategy.cc/public-extracts   # 公网预览（HTTP 200，per 回执 446）：四轨 + 一览条 + 行筛选 + JSON/CSV + 全站顶栏 site-nav 常驻入口
