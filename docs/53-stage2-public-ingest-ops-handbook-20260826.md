@@ -149,6 +149,8 @@ cd frontend && npm run dev   # 或 npm run build && npm start
 
 > 🔗 **docs/53 §5 第 19 项（此条）· `docs/45` ↔ §5 🌐 公网预览首行 互链登记**（per `460` cc 回执；queue_rev 211 落地）：🌐 公网预览首行（回执 `458` 交付）与 `docs/45` 文首 queue_rev 刷新行 + §1 + §6.2 + §7 的双向对账登记；🌐 正文仅补互链指向句「`docs/45` 侧互链登记见第 19 项（per 回执 `464`）+ `docs/45` §1」，URL/deeplink 正文原样未动；链本节第 16 项（📍+🔧 redeploy 登记）/ 第 17 项（per-450 运维行互链，标签补登 per `462`）/ 第 18 项（URL 块互链）+ 回执 `446`（公网验收基线）/ `454`（docs/50 §4.4 公网预览段）；docs/50 §4.4 公网预览段头可选一句同步。本第 19 项互链已同步作为 `docs/50` §4.4 里程碑表「docs/53 §5 第 19 项 🌐 公网预览首行互链」行补登（per 回执 `470`）。**非 O1/Gate PASS；不改代码；不换服务器；不动 4 fixture 字节（`nbs=e30ee811` / `nbs_live=9232efdb` / `sz=937255a5` / `hb=9056001c`）**。
 
+> 🔗 **docs/53 §5 第 20 项（此条）· `docs/50` §4.4 第 16–19 项公网预览互链里程碑弧收口**（per `472` cc 回执；queue_rev 219 落地）：登记 `docs/50` §4.4 公网预览互链里程碑四节点弧——第 16 项 = 📍 运维登记 + 🔧 redeploy 命令链（per 回执 `448` + `69090e7`）；第 17 项 = redeploy 运维行互链（互链 per `452`；标签补登 per `462`；docs/50 里程碑行补登 per `468`）；第 18 项 = URL 块互链（per `454` 落地 / `456` 互链；docs/50 里程碑行补登 per `466`）；第 19 项 = 🌐 公网预览首行互链（per `458` 首行 / `460`+`464` 互链；docs/50 里程碑行补登 per `470`）；链行 200 + 回执 `446`（公网验收基线）/ `454`（公网段）；第 16–19 项既有正文原样未动，本条仅并列弧收口。**非 O1/Gate PASS；不改代码；不换服务器；不动 16–19 既有正文；不动 4 fixture 字节（`nbs=e30ee811` / `nbs_live=9232efdb` / `sz=937255a5` / `hb=9056001c`）**。
+
 冒烟：`python3 frontend/smoke-check.py`（§12c 门含候选 fixture 在位 + 分轨交叉检查；§12d 门含深圳 fixture 在位 + 三轨交叉检查；§12e 门含湖北 fixture 在位 + 四轨交叉检查；**§12f 门含 overview strip 在位 + 4 锚点 id + 4 锚链 href + demo|candidate 标注 + 守门 13 针**；**§12h 门含四轨行筛选 input（4 testId）+ 客户端包含匹配 + 非权威库检索守门**；**§13c 门含 `site-nav` 容器 + `/public-extracts` 链 + 链 testId + 四轨 demo + 非 O1 + 不宣布 Gate PASS + 不分支 `params.*`**）。
 
 ## 6. 红线（运维时同样生效）
