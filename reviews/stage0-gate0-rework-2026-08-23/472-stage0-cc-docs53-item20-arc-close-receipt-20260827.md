@@ -3,7 +3,7 @@
 - 编号：`472-stage0-cc-docs53-item20-arc-close-receipt-20260827`
 - 任务书：`472-stage2-docs53-preview-items16-19-arc-close-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：待回填（本文件随 knife 102 主 commit 落地；cc_head 在单独 backfill commit 补登）
+- cc_head：`4654917`（双推：origin cd19560..4654917，github cd19560..4654917；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
