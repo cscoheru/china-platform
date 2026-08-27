@@ -8,7 +8,7 @@
 
 | 决策点 | 裁定 |
 |---|---|
-| 本刀做 | (1) 港服 `china.3strategy.cc` redeploy 前端（`npm ci` + `NEXT_PUBLIC_USE_MOCK=true npm run build`；`nohup` 若 SSH 易超时）；(2) curl/HTTP 验收首页含 `#track-nbs-sample` / `#track-nbs-live` / `#overview` / `#track-hb` + `/public-extracts`；(3) 回执 **`446`**（`-cc-`）|
+| 本刀做 | (1) **正确源站**（勿用 hk `103.59.103.85`）：SSH **`newvps`** = `207.57.133.177:52134`，路径 **`/opt/china-platform/frontend`**，systemd **`china-platform-frontend`**，nginx `proxy_pass http://127.0.0.1:3000`（站点 `/etc/nginx/sites-enabled/china.3strategy.cc.conf`）。CF 橙云 A→`207.57.133.177`。redeploy：`npm ci` + `NEXT_PUBLIC_USE_MOCK=true npm run build` + `systemctl restart china-platform-frontend`（`nohup` 若 SSH 易超时）；(2) curl/HTTP 验收首页含 `#track-nbs-sample` / `#track-nbs-live` / `#overview` / `#track-hb` + `/public-extracts`；(3) 回执 **`446`**（`-cc-`）|
 | 本刀不做 | 改代码；Gate/O1 PASS；live 探测 |
 | 禁止 | 删减 OPEN；谎称 O1 |
 
