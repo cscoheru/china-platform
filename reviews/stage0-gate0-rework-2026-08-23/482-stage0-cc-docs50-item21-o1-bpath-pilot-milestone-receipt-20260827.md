@@ -3,7 +3,7 @@
 - 编号：`482-stage0-cc-docs50-item21-o1-bpath-pilot-milestone-receipt-20260827`
 - 任务书：`482-stage2-docs50-item21-o1-bpath-pilot-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：待回填（见下）
+- cc_head：`7fe71c4`（双推：origin 79849a3..7fe71c4，github 79849a3..7fe71c4；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
