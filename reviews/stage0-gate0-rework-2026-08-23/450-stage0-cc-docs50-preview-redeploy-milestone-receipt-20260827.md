@@ -3,7 +3,7 @@
 - 编号：`450-stage0-cc-docs50-preview-redeploy-milestone-receipt-20260827`
 - 任务书：`450-stage2-docs50-preview-redeploy-ops-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：（待双推回填）
+- cc_head：`c7a4c5d`（双推：origin 8650adf..c7a4c5d，github 8650adf..c7a4c5d）
 - 日期：2026-08-27
 
 ---
