@@ -203,7 +203,7 @@ discover → download → sha256 → archive → extract → observation
 | # | 项 | 必带位置 |
 |---|---|---|
 | 1 | 公开源自动获取**不是 Gate PASS 宣告** | §0 + §10 + header ⚠ |
-| 2 | 公开源自动获取**不构成 O1 收口**（O1 仍 OPEN WAITING_FILE；两条路径都需执行）| §0 + §5 + §10 + header ⚠ |
+| 2 | 公开源自动获取**不构成 O1 收口**（**O1 仍 OPEN**；主路径 = 本规划 B 路，`WAITING_FILE` = intake 出口码 / mart 真 SHA 未入仓语义、非「等用户投喂才可继续」per `484`/`486`/`488`；A/B 两条路径都需执行）| §0 + §5 + §10 + header ⚠ |
 | 3 | 公开源自动获取**不实装全量爬虫**（per `327` §SCHEMA "本刀不做"）| §0 + §8 + header ⚠ |
 | 4 | **不绕验证码 / 付费墙 / 登录 / 技术限制** | §2 + §6 + §10 + header ⚠ |
 | 5 | **不盲爬全国市县**（per docs/00 §3 红线 6）| §1 + §2 + §3 + §10 + header ⚠ |
@@ -223,7 +223,7 @@ discover → download → sha256 → archive → extract → observation
 ## §10. 红线（per docs/00 §3 + PRD 1.3 + 12.8 + 15.12 + `327` §SCHEMA "本刀不做" + docs/34 §1/§8 + docs/49 §2.2 + docs/06 §6.6 + docs/42 §8）
 
 - ❌ 不宣布 Gate 1 / Gate 2 PASS（per docs/34 §1 + §8 #8）
-- ❌ 不擅自 O1 收口（A 路径 docs/51 + B 路径 docs/52 两条路径都需执行；O1 仍 OPEN WAITING_FILE）
+- ❌ 不擅自 O1 收口（A 路径 docs/51 + B 路径 docs/52 两条路径都需执行；**O1 仍 OPEN**——主路径 = B 路，`WAITING_FILE` = intake 出口码 / 真 SHA 未入仓技术状态、非「等用户投喂才可继续」per `488` 措辞清理）
 - ❌ 不擅自 O3 收口（per `docs/49` §5.3；tasking 31X+ OPEN）
 - ❌ 不派生 score / rating / rank / total_score / confidence_score / credibility_score / peer_rank / DSH / 实时数据
 - ❌ 不做"地区得分" / 不做"地区排名" / 不做官员能力总分（per docs/00 §3 红线 1 + PRD 1.3 + 6.6）
@@ -271,7 +271,7 @@ discover → download → sha256 → archive → extract → observation
 — End of `docs/52` —
 
 > ⚠ **本文是规划，不是实装**（per `327` §SCHEMA "本刀做" + `327` §红线）。
-> ⚠ **O1 仍 OPEN（WAITING_FILE）** — A 路径（用户投递 per docs/51）+ B 路径（公开源自动 per docs/52）**并存**（per `327` §SCHEMA + 用户 2026-08-26 裁定）。
+> ⚠ **O1 仍 OPEN**（状态语义对齐 per `484`/`486`/`488`：`WAITING_FILE` 仅保留为 intake 出口码 / mart 真 SHA 未入仓的技术状态语义，非「等用户投喂才可继续」）— 主路径 = B 路径（公开源自动 per docs/52）；A 路径（用户投递 per docs/51）仍可用但非唯一，两路**并存**（per `327` §SCHEMA + 用户 2026-08-26 裁定）。
 > ⚠ **不绕过验证码 / 付费墙 / 登录 / 技术限制**（per docs/00 §3 红线 7 + PRD 1.3 + 12.8）。
 > ⚠ **不盲爬全国市县**（per docs/00 §3 红线 6 + PRD 1.3 + 15.12）。
 > ⚠ **不静默失败**（遇 AUTH 触发必须报告用户；不绕过）。
