@@ -3,7 +3,7 @@
 - 编号：`480-stage0-cc-docs53-o1-bpath-nbs-pilot-axis-receipt-20260827`
 - 任务书：`480-stage2-docs53-o1-bpath-nbs-pilot-axis-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：待回填（见下）
+- cc_head：`9bc2bb5`（双推：origin 779fd9c..9bc2bb5，github 779fd9c..9bc2bb5；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
