@@ -3,7 +3,7 @@
 - 编号：`460-stage0-cc-docs45-docs53-preview-section-public-url-crosslink-receipt-20260827`
 - 任务书：`460-stage2-docs45-docs53-preview-section-public-url-crosslink-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：（待回填）
+- cc_head：`3e0eeed`（双推：origin 3d8f14a..3e0eeed，github 3d8f14a..3e0eeed）
 - 日期：2026-08-27
 
 ---
