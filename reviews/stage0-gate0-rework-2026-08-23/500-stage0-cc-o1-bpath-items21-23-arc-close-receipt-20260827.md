@@ -3,7 +3,7 @@
 - 编号：`500-stage0-cc-o1-bpath-items21-23-arc-close-receipt-20260827`
 - 任务书：`500-stage2-docs53-o1-bpath-items21-23-arc-close-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推 origin/github；backfill 单独 commit）
+- cc_head：`8f82928`（双推：origin 44b3332..8f82928，github 44b3332..8f82928；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
