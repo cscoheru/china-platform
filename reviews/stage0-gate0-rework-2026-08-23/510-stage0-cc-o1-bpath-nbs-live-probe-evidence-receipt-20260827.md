@@ -3,7 +3,7 @@
 - 编号：`510-stage0-cc-o1-bpath-nbs-live-probe-evidence-receipt-20260827`
 - 任务书：`510-stage2-o1-bpath-nbs-live-candidate-probe-evidence-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推结果待回填；backfill 单独 commit）
+- cc_head：`87dd859`（双推：origin 5977499..87dd859，github 5977499..87dd859；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
