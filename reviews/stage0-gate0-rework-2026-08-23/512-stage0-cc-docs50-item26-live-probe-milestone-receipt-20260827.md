@@ -3,7 +3,7 @@
 - 编号：`512-stage0-cc-docs50-item26-live-probe-milestone-receipt-20260827`
 - 任务书：`512-stage2-docs50-item26-o1-bpath-live-probe-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推 origin/github 后由 backfill 单独 commit 回填）
+- cc_head：`bd701b5`（双推：origin cb17713..bd701b5，github cb17713..bd701b5；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
