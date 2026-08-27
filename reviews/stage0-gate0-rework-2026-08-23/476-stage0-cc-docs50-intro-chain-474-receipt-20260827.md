@@ -3,7 +3,7 @@
 - 编号：`476-stage0-cc-docs50-intro-chain-474-receipt-20260827`
 - 任务书：`476-stage2-docs50-intro-receipt-chain-474-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：待回填（本文件随 knife 104 主 commit 落地；cc_head 在单独 backfill commit 补登）
+- cc_head：`45f3d87`（双推：origin 046d09e..45f3d87，github 046d09e..45f3d87；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
