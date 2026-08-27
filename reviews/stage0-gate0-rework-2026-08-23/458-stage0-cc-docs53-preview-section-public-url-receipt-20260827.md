@@ -3,7 +3,7 @@
 - 编号：`458-stage0-cc-docs53-preview-section-public-url-receipt-20260827`
 - 任务书：`458-stage2-docs53-preview-section-public-url-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：（待回填）
+- cc_head：`67f3b7d`（双推：origin ecf3d39..67f3b7d，github ecf3d39..67f3b7d）
 - 日期：2026-08-27
 
 ---
