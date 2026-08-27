@@ -3,7 +3,7 @@
 - 编号：`470-stage0-cc-docs50-item19-globe-milestone-receipt-20260827`
 - 任务书：`470-stage2-docs50-preview-globe-item19-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`（双推后单独 commit 回填）
+- cc_head：`7cf146a`（双推：origin e141ce6..7cf146a，github e141ce6..7cf146a；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
