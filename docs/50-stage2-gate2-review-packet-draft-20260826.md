@@ -201,6 +201,15 @@ frontend/app/components/SevenDimGrid.tsx
 
 **预览 URL（per §4.4）**：
 
+**公网预览**（per 行 200 公网预览 redeploy 运维里程碑 + `docs/53` §5 第 16 项 + 回执 `446`；源站 newvps 宿主机 systemd，redeploy 命令链见 `docs/53` §5 🔧 条目）：
+
+```bash
+open https://china.3strategy.cc/public-extracts   # 公网预览（HTTP 200，per 回执 446）：四轨 + 一览条 + 行筛选 + JSON/CSV + 全站顶栏 site-nav 常驻入口
+open https://china.3strategy.cc/                  # 公网首页（per 回执 446）：4 deeplink 在位 → #track-nbs-sample / #track-nbs-live / #overview / #track-hb
+```
+
+**本地预览**：
+
 ```bash
 cd frontend && npm run dev   # 或 npm run build && npm start
 open http://localhost:3000/public-extracts   # 四轨 + 一览 + 行筛选 + JSON/CSV + 全站顶栏 site-nav 常驻入口
@@ -210,6 +219,7 @@ open http://localhost:3000/provinces/jiangsu  # 任意 5 省 / 10 地市页 → 
 ```
 
 **预览路径**不构成 O1 / Gate 2 收口**（per §7.3 + §9 + `docs/53` §6）：
+- ⚠ 公网预览与本地预览同构（`NEXT_PUBLIC_USE_MOCK=true` build 的 demo/candidate 数据），公网 URL 仅为运维演示入口，非 O1/Gate PASS（per 行 200 + 回执 `446`）
 - ⚠ 四轨皆 demo/candidate 演示（NBS sample 即 demo；NBS live 候选 = drift 候选待裁定；深圳/湖北 = REGISTRY_SAMPLE demo，live `enabled=FALSE` 暂缓）
 - ⚠ 行筛选仅客户端视图过滤，不改 fixture 字节/SHA
 - ⚠ CSV 是 fixture 快照确定性导出 (demo/candidate)，非权威库
