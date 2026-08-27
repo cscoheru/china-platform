@@ -247,6 +247,8 @@ open http://localhost:3000/provinces/jiangsu  # 任意 5 省 / 10 地市页 → 
 | O6 FastAPI 只读服务 | S1.10 | ✅ 已交 | — | — |
 | O7 dbt staging candidate | S1.19 | ✅ 已交 | — | — |
 
+> 刷新（per `484` 可选一句）：上表 O1 行状态语义已随 docs/45 §3 同步刷新——**`WAITING_FILE` 仅保留为 intake 出口码 / mart 真 SHA 未入仓语义，不再写成「等用户投喂才可继续」**；O1 主路径 = docs/52 官方公开源自动获取 B 路（试点轴 `NATIONAL_BULLETIN` per `480`/`482`）；A 路用户投递仍可用但非唯一（`--confirm-o1=PATH` 仅限 A 路出口）；详见 docs/45 §3 O1 表行 + 收口路径 bullet + 文首 queue_rev 231 刷新行。**O1 仍 OPEN——本清单不宣布任何收口**。
+
 ### 5.2 O1 详细状态（per `284` §SCHEMA + `299` §SCHEMA + 用户 2026-08-26 裁定）
 
 - **用户 2026-08-26 确认**：本机/仓库**未持有**江苏真实 SHA-locked 样本；无 OCR 后入库的江苏政府文件。
