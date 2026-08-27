@@ -3,7 +3,7 @@
 - 编号：`526-stage0-cc-docs53-item28-docs52-crosslink-tailnote-receipt-20260827`
 - 任务书：`526-stage2-docs53-item28-docs52-crosslink-tailnote-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_HEAD_SHA`（双推 origin/github 后由 backfill 单独 commit 回填）
+- cc_head：`ca463b8`（双推：origin c3d92cd..ca463b8，github c3d92cd..ca463b8；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
