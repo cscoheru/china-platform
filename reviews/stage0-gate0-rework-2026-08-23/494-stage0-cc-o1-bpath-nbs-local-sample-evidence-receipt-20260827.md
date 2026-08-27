@@ -3,7 +3,7 @@
 - 编号：`494-stage0-cc-o1-bpath-nbs-local-sample-evidence-receipt-20260827`
 - 任务书：`494-stage2-o1-bpath-nbs-local-sample-evidence-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<TBD-backfill>`（双推：backfill 单独 commit 后回填）
+- cc_head：`6ba7ddc`（双推：origin 2bb2c59..6ba7ddc，github 2bb2c59..6ba7ddc；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
