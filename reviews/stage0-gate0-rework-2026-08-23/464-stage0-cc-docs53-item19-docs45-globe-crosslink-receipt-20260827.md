@@ -3,7 +3,7 @@
 - 编号：`464-stage0-cc-docs53-item19-docs45-globe-crosslink-receipt-20260827`
 - 任务书：`464-stage2-docs53-preview-section-item19-docs45-globe-crosslink-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`（双推后单独 commit 回填）
+- cc_head：`d362ff3`（双推：origin f2154c2..d362ff3，github f2154c2..d362ff3；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
