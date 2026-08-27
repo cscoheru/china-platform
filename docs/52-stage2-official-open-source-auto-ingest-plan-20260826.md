@@ -12,6 +12,7 @@
 > 任务性质：**官方公开源自动获取规划**（per `327` §SCHEMA "本刀做"）— markdown-only；不实装全量爬虫；不绕过；不宣布 Gate/O1 PASS
 > 链到：`source_registry/registry.csv`（6 行 S0-S3 公开源）+ `docs/48-stage2-real-sha-intake-handbook-20260826.md`（intake 操作手册）+ `docs/51-stage2-o1-drop-checklist-20260826.md`（用户投递清单）+ `docs/00-project-assessment.md`（红线 7）
 > 链到（续 · per `506`）：下一探测轴 = **live-candidate 探测**登记（connector 模式 `--live --confirm-live`，per docs/53 §5 第 25 项；该刀只登记未运行；遇 AUTH 阻停报告不绕过）
+> 链到（续 · per `524`）：SHA drift 候选轨处置分叉已登记于 docs/53 §5 第 28 项（per `520` 落地 / `522` 里程碑行补登；`510` live-probe 实测 download 180165 B sha256 `a7e4029d…` ≠ registry expected `dea13b8a…`，stats.gov.cn / NATIONAL_BULLETIN）；分叉二选一：(a) 更新 registry.csv `file_hash_sha256` 认定源站换版 / (b) 改用稳定归档 URL——两选项均须**用户裁定后另起独立刀任务执行**，connector 不自动改 registry；本行为文档互链登记节点，drift ≠ 收口、非真 SHA 收口（O1 仍 OPEN）。
 
 ---
 
