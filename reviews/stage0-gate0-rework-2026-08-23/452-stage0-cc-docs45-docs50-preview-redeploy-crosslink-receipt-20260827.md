@@ -3,7 +3,7 @@
 - 编号：`452-stage0-cc-docs45-docs50-preview-redeploy-crosslink-receipt-20260827`
 - 任务书：`452-stage2-docs45-docs50-preview-redeploy-crosslink-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：（待双推回填）
+- cc_head：`31337ed`（双推：origin b4ec2a0..31337ed，github b4ec2a0..31337ed）
 - 日期：2026-08-27
 
 ---
