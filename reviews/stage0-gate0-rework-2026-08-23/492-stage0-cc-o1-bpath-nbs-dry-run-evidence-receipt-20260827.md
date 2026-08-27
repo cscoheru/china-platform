@@ -3,7 +3,7 @@
 - 编号：`492-stage0-cc-o1-bpath-nbs-dry-run-evidence-receipt-20260827`
 - 任务书：`492-stage2-o1-bpath-nbs-dry-run-evidence-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<backfill>`（双推后单独 commit 回填）
+- cc_head：`2413a60`（双推：origin f572d23..2413a60，github f572d23..2413a60；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
