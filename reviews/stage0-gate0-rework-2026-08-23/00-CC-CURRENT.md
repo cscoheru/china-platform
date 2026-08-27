@@ -8,28 +8,24 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `225` |
-| **origin_head** | `f9cdcab` |
-| **cc_head** | `f9cdcab` |
-| **cc_receipt** | `476` |
-| **cursor_ack** | `476` |
-| **last_audit** | `477` PASS |
+| **phase** | `POLL` |
+| **queue_rev** | `226` |
+| **origin_head** | `7f60c07` |
+| **cc_head** | `7f60c07` |
+| **cc_receipt** | `478` |
+| **cursor_ack** | `478` |
+| **last_audit** | `479` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀；preview 容器化 **择机**；**O1=公开源 B 路（docs/52），不等用户投喂/无本地样本** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T14:21:00+08:00` |
+| **expect_cc_poll** | `POLL` |
+| **updated_at** | `2026-08-27T14:28:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`478`** — `478-stage2-docs45-o1-bpath-preview-arc-close-tasking-20260827.md`
-
-1. docs only：`docs/45` O1 B 路指针 + preview 弧收口登记；可选 `docs/52` 互链
-2. pack → 回执 **`478`**
-3. **必须双推** → phase **`POLL`**
+（空 — 等 Cursor 续刀或 CC POLL。）
 
 ---
 
