@@ -15,7 +15,7 @@
 | **cc_receipt** | `464` |
 | **cursor_ack** | `464` |
 | **last_audit** | `465` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀；preview 容器化 **择机** |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀；preview 容器化 **择机**；**O1=公开源 B 路（docs/52），不等用户投喂/无本地样本** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
 | **updated_at** | `2026-08-27T12:46:00+08:00` |
