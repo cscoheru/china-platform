@@ -3,7 +3,7 @@
 - 编号：`466-stage0-cc-docs50-item18-url-block-milestone-receipt-20260827`
 - 任务书：`466-stage2-docs50-preview-url-block-item18-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<待回填>`（双推后单独 commit 回填）
+- cc_head：`6a4b746`（双推：origin 9d3e886..6a4b746，github 9d3e886..6a4b746；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
