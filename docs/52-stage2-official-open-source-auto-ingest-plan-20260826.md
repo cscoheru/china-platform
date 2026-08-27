@@ -18,7 +18,7 @@
 
 按 `source_registry/registry.csv` 登记的**公开**下载包 / 开放 API / 无登录公开页面稳定 URL → 走 **`discover → download → sha256 → archive → extract → observation`** 流水线 → 仅当 SHA-256 入仓 + lineage 字段齐才允许 `is_demo=false`；**遇登录 / 验证码 / 付费墙 / 技术限制 → 停止并报告用户（不绕过）**，等用户裁定授权后再继续。
 
-> **用户投递（per docs/51）仍可用**；本规划是 O1 自动获取路径补充，**用户投递不再是唯一路径**（per `327` §SCHEMA "本刀做" + 用户 2026-08-26 裁定）。
+> **用户投递（per docs/51）仍可用**；本规划是 O1 自动获取路径补充，**用户投递不再是唯一路径**（per `327` §SCHEMA "本刀做" + 用户 2026-08-26 裁定）。preview 公网预览互链弧文档链已完整收口（第 16–20 项，per `472`/`474`/`476`；docs/50 §4.4 intro 收据链尾 `474`），下一试点轴维持 `NATIONAL_BULLETIN`（stats.gov.cn HTML）（per `478` 登记于 docs/45 文首刷新行 + §1 + §6.2 + §7）。
 
 ---
 
