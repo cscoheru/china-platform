@@ -3,7 +3,7 @@
 - 编号：`478-stage0-cc-docs45-o1-bpath-preview-arc-close-receipt-20260827`
 - 任务书：`478-stage2-docs45-o1-bpath-preview-arc-close-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：待回填（本文件随 knife 105 主 commit 落地；cc_head 在单独 backfill commit 补登）
+- cc_head：`ac33440`（双推：origin 826af50..ac33440，github 826af50..ac33440；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
