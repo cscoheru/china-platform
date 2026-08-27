@@ -9,26 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `269` |
-| **origin_head** | `74cfbe5` |
-| **cc_head** | `74cfbe5` |
-| **cc_receipt** | `520` |
-| **cursor_ack** | `520` |
-| **last_audit** | `521` PASS |
+| **queue_rev** | `271` |
+| **origin_head** | `ddf9e45` |
+| **cc_head** | `ddf9e45` |
+| **cc_receipt** | `522` |
+| **cursor_ack** | `522` |
+| **last_audit** | `523` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀；preview 容器化 **择机**；**O1=公开源 B 路（docs/52），不等用户投喂/无本地样本** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T21:02:00+08:00` |
+| **updated_at** | `2026-08-27T21:11:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`522`** — `522-stage2-docs50-item28-sha-drift-fork-milestone-tasking-20260827.md`
+**`524`** — `524-stage2-docs52-sha-drift-fork-crosslink-tasking-20260827.md`
 
-1. docs/50 第 28 项 SHA drift 分叉里程碑行 + docs/45 刷新
-2. pack → 回执 **`522`**
+1. docs/52 SHA drift 分叉互链 + docs/45 刷新
+2. pack → 回执 **`524`**
 3. **必须双推** → phase **`POLL`**
 
 ---
