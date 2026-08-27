@@ -115,7 +115,7 @@
 
 | OPEN | 来源 | 当前状态 | 收口前置 |
 |---|---|---|---|
-| **O1** 真实 SHA-locked 江苏样本 | S1.18 DEMO 路径 | **WAITING_FILE**（用户 2026-08-26 确认本机/仓库**未持有**江苏真实 SHA-locked 样本；`lineage.source_file_sha256` 恒为 `'0'*64` 占位 per docs/47 §3.1 ⚠️）| 用户线下渠道（政府文件 PDF/扫描件原件）+ `--confirm-o1=PATH` 显式 flag + intake 4 退出码契约（per `291` + docs/48 §4.3）|
+| **O1** 真实 SHA-locked 江苏样本 | S1.18 DEMO 路径 | **WAITING_FILE**（= intake 出口码 / mart 真 SHA 未入仓技术状态语义，非「等用户投喂才可继续」per `484`/`486`/`488`/`490` 对齐；用户 2026-08-26 确认本机/仓库**未持有**江苏真实 SHA-locked 样本；`lineage.source_file_sha256` 恒为 `'0'*64` 占位 per docs/47 §3.1 ⚠️）| 主路径 = docs/52 B 路（公开源自动获取，试点轴 `NATIONAL_BULLETIN` per `480`/`482`）；A 路 = 用户线下渠道（政府文件 PDF/扫描件原件）+ `--confirm-o1=PATH` 显式 flag（仅限 A 路出口）+ intake 4 退出码契约（per `291` + docs/48 §4.3），仍可用但非唯一 |
 | **O3** OCR 生产路径 | S1.17 scanned PDF | **规划已交，实装仍 OPEN**（per `docs/49` + `309`）| 用户裁定 OCR 引擎（paddle-ocr 推荐 / tesseract / cloud）+ `--confirm-o3=PATH` + 端到端 pytest PASS（per `docs/49` §5.3 + §8 + §10）|
 | docs/10 §3.2-3.4 | Stage 2 收口 | ⚠️ xfail stub（Stage 3 收口）| S2.10 落地刀（tasking 251+）；Gate 2 评审**必带 OPEN 清单**|
 | **mart-shape 真表** | S2.7-b-full | OPEN（演示级 dbt mart 骨架 WHERE FALSE）| S2.7-b-full 真数据迁移刀（tasking 26X+）|
@@ -239,7 +239,7 @@ open http://localhost:3000/provinces/jiangsu  # 任意 5 省 / 10 地市页 → 
 
 | OPEN | 来源 | 当前状态 | Gate 2 必带？| 收口前置 |
 |---|---|---|---|---|
-| **O1** 真实 SHA-locked 江苏样本 | S1.18 DEMO 路径 | **WAITING_FILE** | ✅ **必带**（per docs/34 §3 + §120）| `--confirm-o1=PATH` + intake 4 退出码契约 |
+| **O1** 真实 SHA-locked 江苏样本 | S1.18 DEMO 路径 | **WAITING_FILE**（= intake 出口码 / mart 真 SHA 未入仓语义，非「等用户投喂」per `490` 对齐）| ✅ **必带**（per docs/34 §3 + §120）| 主路径 = docs/52 B 路（试点轴 `NATIONAL_BULLETIN` per `480`/`482`）；A 路 `--confirm-o1=PATH` + intake 4 退出码契约仍可用但非唯一 |
 | **O2** cron / 通知 / 真实联外探针 | Stage 1 运维 | 演示级可过 | ⚠️ 演示级可过 | S1.x 运维刀（Stage 2 后）|
 | **O3** OCR 生产路径 | S1.17 scanned PDF | **规划已交（`docs/49` + `309`），实装仍 OPEN** | ✅ **必带**（per docs/34 §3 + `docs/49` §5.3）| OCR 引擎选型 + `--confirm-o3=PATH` + 端到端 pytest PASS |
 | O4 `is_demo` 机制 | S1.18 | ✅ 已交 | — | — |
@@ -274,7 +274,7 @@ open http://localhost:3000/provinces/jiangsu  # 任意 5 省 / 10 地市页 → 
 
 ### 5.4 不可隐藏清单（Gate 2 评审**必带**）
 
-- ⚠ O1 真实 SHA-locked 江苏样本 **WAITING_FILE**（per docs/34 §3 + §120）
+- ⚠ O1 真实 SHA-locked 江苏样本 **WAITING_FILE**（per docs/34 §3 + §120；WAITING_FILE = intake 出口码 / 真 SHA 未入仓语义，非「等用户投喂」per `490` 对齐）
 - ⚠ O3 OCR 生产路径 **规划已交，实装仍 OPEN**（per `docs/49` + `309` + `313`）
 - ⚠ docs/10 §3.2-3.4 **xfail stub**（Stage 3 收口）
 - ⚠ dbt mart **真表** OPEN（演示级 WHERE FALSE 骨架已交 `288`）
@@ -410,7 +410,7 @@ open http://localhost:3000/provinces/sichuan
 
 > ⚠ **以下事项必须在 Gate 2 评审会上显式呈现，不得以任何方式省略、隐藏或改写**：
 
-1. ⚠ **O1 真实 SHA-locked 江苏样本 WAITING_FILE** — `lineage.source_file_sha256` 恒为 `'0'*64` 占位；演示管道全部走 demo sentinel；不擅自宣布 O1 收口
+1. ⚠ **O1 真实 SHA-locked 江苏样本 WAITING_FILE** — `lineage.source_file_sha256` 恒为 `'0'*64` 占位；演示管道全部走 demo sentinel；不擅自宣布 O1 收口；WAITING_FILE = intake 出口码 / mart 真 SHA 未入仓技术状态语义（per `490` 对齐）
 2. ⚠ **O3 OCR 生产路径规划已交（`docs/49` + `309`），实装仍 OPEN** — 7 步流水线已规划，OCR 引擎未实装；tasking 31X+ 待用户裁定 + `--confirm-o3=PATH` + 端到端 pytest PASS
 3. ⚠ **docs/10 §3.2-3.4 xfail stub** — Stage 3 收口；Gate 2 评审**必带 OPEN 清单**
 4. ⚠ **dbt mart 真表 OPEN** — 演示级 WHERE FALSE 骨架已交（`288`）；demo-join 已交（`294`）；真数据待 S2.7-b-full 真数据迁移刀（tasking 26X+）
@@ -458,7 +458,7 @@ open http://localhost:3000/provinces/sichuan
 
 > ⚠ **本包是 Gate 2 评审包草稿**（per `315` §SCHEMA "本刀做"），不是 Gate 2 PASS 宣告。
 > ⚠ **本包不宣布 Gate 1 / Gate 2 PASS**（per docs/34 §1 + §8 #8 + §133 + `315` §红线）。
-> ⚠ **本包不宣布 O1 收口**（WAITING_FILE；per docs/47 §3.1 ⚠️ + `284` §SCHEMA + `315` §红线）。
+> ⚠ **本包不宣布 O1 收口**（WAITING_FILE = intake 出口码 / 真 SHA 未入仓技术状态语义，非「等用户投喂」，per `484`/`486`/`488`/`490` 对齐；per docs/47 §3.1 ⚠️ + `284` §SCHEMA + `315` §红线）。
 > ⚠ **本包不宣布 O3 收口**（规划已交，实装仍 OPEN；per `docs/49` §5.3 + §8 + §10 + `309` + `315` §红线）。
 > ⚠ **本包不伪造证据**（per docs/06 §6.6 + `315` §红线）。
 > ⚠ **本包不爬源站 / 不登录绕过 / 不 OCR 降门槛**（per PRD 红线 + `315` §红线 + docs/49 §2.2）。
