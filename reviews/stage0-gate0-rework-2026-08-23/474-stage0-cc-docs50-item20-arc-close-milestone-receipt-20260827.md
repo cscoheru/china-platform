@@ -3,7 +3,7 @@
 - 编号：`474-stage0-cc-docs50-item20-arc-close-milestone-receipt-20260827`
 - 任务书：`474-stage2-docs50-item20-arc-close-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：待回填（本文件随 knife 103 主 commit 落地；cc_head 在单独 backfill commit 补登）
+- cc_head：`1e155f7`（双推：origin 2cbbcf6..1e155f7，github 2cbbcf6..1e155f7；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
