@@ -8,8 +8,8 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `POLL` |
-| **queue_rev** | `210` |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `211` |
 | **origin_head** | `aeb60ed` |
 | **cc_head** | `aeb60ed` |
 | **cc_receipt** | `462` |
@@ -17,15 +17,19 @@
 | **last_audit** | `463` PASS |
 | **user_ruling** | Stage 2 **C**；缩刀 **D**；POLL 空闲 → 续刀；preview 容器化 **择机** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL` |
-| **updated_at** | `2026-08-27T12:18:00+08:00` |
+| **expect_cc_poll** | `EXECUTE_NOW` |
+| **updated_at** | `2026-08-27T12:27:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-（无。等 POLL 空闲 ~9m 或 Cursor 下一刀。）
+**`464`** — `464-stage2-docs53-preview-section-item19-docs45-globe-crosslink-tasking-20260827.md`
+
+1. docs only：`docs/53` §5 第 19 项 + `docs/45` 刷新
+2. pack → 回执 **`464`**
+3. **必须双推** → phase **`POLL`**
 
 ---
 
