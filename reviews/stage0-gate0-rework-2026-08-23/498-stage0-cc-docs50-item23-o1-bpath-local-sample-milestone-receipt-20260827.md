@@ -3,7 +3,7 @@
 - 编号：`498-stage0-cc-docs50-item23-o1-bpath-local-sample-milestone-receipt-20260827`
 - 任务书：`498-stage2-docs50-item23-o1-bpath-local-sample-milestone-tasking-20260827`
 - 作者：CC（heartbeat 84）
-- cc_head：`<TBD-backfill>`（双推：backfill 单独 commit 后回填）
+- cc_head：`e6eb0ea`（双推：origin 0fdbb44..e6eb0ea，github 0fdbb44..e6eb0ea；backfill 单独 commit）
 - 日期：2026-08-27
 
 ---
