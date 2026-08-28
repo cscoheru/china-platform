@@ -4,7 +4,7 @@
 - 任务书：`548-stage2-docs50-item31-extended-arc-close-21-30-milestone-tasking-20260828`（gate queue_rev 296）
 - 前置：`547` PASS（audit 547；546 闭环完成）；用户裁定 SHA drift **(a) 已执行**（per `538`/`540`/`542`）
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_CC_HEAD_SHA`（双推：origin/github 范围见 backfill commit；backfill 单独 commit）
+- cc_head：`90c866e`（双推 origin/github 72def76..90c866e；cc_head backfill 单独 commit 再双推）
 - 日期：2026-08-28
 
 ---
