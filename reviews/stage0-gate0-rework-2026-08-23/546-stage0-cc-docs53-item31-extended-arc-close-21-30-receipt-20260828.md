@@ -4,7 +4,7 @@
 - 任务书：`546-stage2-docs53-item31-extended-arc-close-21-30-tasking-20260828`（gate queue_rev 294）
 - 前置：`545` PASS（audit 545；544 闭环完成）；用户裁定 SHA drift **(a) 已执行**（per `538`/`540`/`542`）
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_CC_HEAD_SHA`（双推：origin/github 范围见 backfill commit；backfill 单独 commit）
+- cc_head：`e890219`（双推：origin 9c5c21a..e890219，github 9c5c21a..e890219；backfill 单独 commit）
 - 日期：2026-08-28
 
 ---
