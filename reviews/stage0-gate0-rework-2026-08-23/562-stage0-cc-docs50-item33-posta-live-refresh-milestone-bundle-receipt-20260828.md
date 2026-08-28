@@ -4,7 +4,7 @@
 - 任务书：`562-stage2-docs50-item33-posta-live-refresh-milestone-bundle-tasking-20260828`（gate queue_rev 310；合刀：一把任务书多步、一个回执）
 - 前置：`561` PASS（audit 561；560 闭环完成）
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_CC_HEAD_SHA`（双推 origin/github 后 backfill 单独 commit 再双推）
+- cc_head：`f4d2a0f`（双推 origin/github fcb6c38..f4d2a0f；cc_head backfill 单独 commit 再双推）
 - 日期：2026-08-28
 
 ---
