@@ -4,7 +4,7 @@
 - 任务书：`560-stage2-o1-bpath-nbs-posta-live-refresh-evidence-bundle-tasking-20260828`（gate queue_rev 308；合刀：一把任务书多步、一个回执）
 - 前置：`559` PASS（audit 559；558 闭环完成）
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_CC_HEAD_SHA`（双推 origin/github 后 backfill 单独 commit 再双推）
+- cc_head：`3ec4ec8`（双推 origin/github 432d66f..3ec4ec8；cc_head backfill 单独 commit 再双推）
 - 日期：2026-08-28
 
 ---
