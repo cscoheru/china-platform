@@ -132,4 +132,8 @@ $ python3 scripts/_knife579_manifest_bump.py（末次：回执粘贴首跑输出
 
 ## cc_head（交付后回填，独立 commit）
 
-- （待回填）
+- **cc_head（合刀 commit）**: `6524155`（2026-08-28；`docs(s21): register O3 engine ruling (paddle-ocr) + inherited-failures log (knife 579)`；9 files changed, 511 insertions(+), 18 deletions(-)）
+- **双推**: origin `7c9668e..6524155 HEAD -> main` ✅ → github `7c9668e..6524155 HEAD -> main` ✅（严格顺序）
+- **queue**: `00-EXEC-QUEUE.md` §CURRENT status = **DELIVERED**（已随 `6524155` 入库；manifest 条目 SHA 刷新至 DELIVERED 态 `bcb0c4ec`，不增计数）
+- **manifest**: `907 == 907 == 907`（回执条目 SHA = `5c530b36` 即本文件 backfill 前最终态；本 backfill 为独立 commit，房规允许不再刷 manifest）
+- 执行端已停止，待架构师 `580` 号位审计；O3 实装刀（`58X`）待签发，真实 PDF `--confirm-o3=PATH` 为用户保留动作
