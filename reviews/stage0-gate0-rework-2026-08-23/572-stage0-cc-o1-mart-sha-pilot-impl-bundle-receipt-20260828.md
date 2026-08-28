@@ -4,7 +4,7 @@
 - 任务书：`572-stage2-o1-mart-sha-pilot-impl-bundle-tasking-20260828`（gate queue_rev 320；合刀：一把任务书多步、一个回执）
 - 前置：`571` PASS（570 闭环完成）；用户裁定：自主推进 O1 序列；**O1 仍 OPEN（本刀不宣布收口）**
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_CC_HEAD_SHA`（双推 origin/github 完成；cc_head backfill 单独 commit 再双推）
+- cc_head：`e8850d1`（双推 origin/github 完成；cc_head backfill 单独 commit 再双推）
 - 日期：2026-08-28
 
 ---
