@@ -1,5 +1,5 @@
 {
-  "artifact_count": 874,
+  "artifact_count": 876,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -5244,6 +5244,18 @@
       "role": "documentation",
       "sha256": "b3b0c8bc270692f286969071edcbbd23edb584bc555747e3e52d51ee77945c49",
       "size_bytes": 10417
+    },
+    {
+      "path": "scripts/_knife562_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "9f2fcda8ccaf1475eaace5a5b1a2d1b98667eddb31e0bc49abee42b36414eb0e",
+      "size_bytes": 4050
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/562-stage0-cc-docs50-item33-posta-live-refresh-milestone-bundle-receipt-20260828.md",
+      "role": "documentation",
+      "sha256": "9a9485b617bf9e82734e076df37719b49b1f027b10f3f378865bb7e64b316a1a",
+      "size_bytes": 8380
     }
   ],
   "commit": {
@@ -5277,7 +5289,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 36,
-    "documentation": 197,
+    "documentation": 198,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5289,7 +5301,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 158,
+    "spike_helper": 159,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
