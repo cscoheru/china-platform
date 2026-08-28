@@ -173,3 +173,11 @@ $ python3 scripts/_knife577_manifest_bump.py（末次：回执粘贴首跑输出
 ## 下一步
 
 `git push origin HEAD && git push github HEAD`（**必须双推、严格顺序** per tasking）→ 回填 cc_head（单独 commit，勿 amend，再双推）→ queue status → DELIVERED（已随本刀 commit）→ **停止并回报 cc_head**。架构师将出 `578` 号位审计，随后发放 O3 决策备忘刀（`579`）。
+
+## cc_head（交付后回填，独立 commit）
+
+- **cc_head（合刀 commit）**: `c8e2b9a`（2026-08-28；`feat(s21): register O1 as-scoped ruling, land person-tenure full dbt layer (knife 577)`；22 files changed, 4481 insertions(+)）
+- **双推**: origin `d95d21e..c8e2b9a HEAD -> main` ✅ → github `d95d21e..c8e2b9a HEAD -> main` ✅（严格顺序）
+- **queue**: `00-EXEC-QUEUE.md` §CURRENT status = **DELIVERED**（已随 `c8e2b9a` 入库；manifest 条目 SHA 刷新至 DELIVERED 态 `8777745c`，不增计数）
+- **manifest**: `904 == 904 == 904`（回执条目 SHA = `3626393d` 即本文件 backfill 前最终态；本 backfill 为独立 commit，房规允许不再刷 manifest）
+- 执行端已停止，待架构师 `578` 号位审计 + O3 决策备忘刀（`579`）
