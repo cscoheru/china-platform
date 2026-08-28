@@ -4,7 +4,7 @@
 - 任务书：`550-stage2-docs50-intro-receipt-chain-548-tasking-20260828`（gate queue_rev 298）
 - 前置：`549` PASS（audit 549；548 闭环完成）
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_CC_HEAD_SHA`（双推 origin/github 范围见 backfill commit；backfill 单独 commit）
+- cc_head：`90afd67`（双推 origin/github bca4475..90afd67；cc_head backfill 单独 commit 再双推）
 - 日期：2026-08-28
 
 ---
