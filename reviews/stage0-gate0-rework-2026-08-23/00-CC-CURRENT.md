@@ -9,16 +9,16 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `319` |
-| **origin_head** | `1000a1f` |
-| **cc_head** | `1000a1f` |
-| **cc_receipt** | `568` |
-| **cursor_ack** | `568` |
-| **last_audit** | `569` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**合刀**；**26X→O1 序列自主推进**（用户 2026-08-28 离席）；CC 卡住 Cursor 调整唤醒；**O1=公开源 B 路**；**O1 仍 OPEN（不宣布 PASS）** |
+| **queue_rev** | `320` |
+| **origin_head** | `538b53f` |
+| **cc_head** | `538b53f` |
+| **cc_receipt** | `570` |
+| **cursor_ack** | `570` |
+| **last_audit** | `571` PASS |
+| **user_ruling** | Stage 2 **C**；**合刀**；**自主推进 O1**（用户离席）；**O1 仍 OPEN（不宣布 PASS）** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-28T12:58:00+08:00` |
+| **updated_at** | `2026-08-28T13:12:00+08:00` |
 | **autonomous_plan** | `CURSOR-AUTONOMOUS-PLAN-20260828.md` |
 | **blocked_by** | — |
 
@@ -26,11 +26,11 @@
 
 ## NOW — CC 执行
 
-**`570`（合刀 · O1 kickoff）** — `570-stage2-o1-kickoff-mart-sha-next-axis-bundle-tasking-20260828.md`
+**`572`（合刀 · mart SHA pilot）** — `572-stage2-o1-mart-sha-pilot-impl-bundle-tasking-20260828.md`
 
-1. **A–D** docs/53 第 36–37 项 + docs/45/50 同步 + **E** 锚点核验 + mart skel pytest
-2. pack → 回执 **仅 `570`**
-3. **必须双推** → phase **`POLL`**
+1. **A–B** dbt mart pilot 行（nanjing CONDITION + `a7e4029d…`）+ pytest 扩 cases
+2. **C–D** docs 登记 + **E** pytest exit 0
+3. pack → 回执 **仅 `572`** → **必须双推**
 
 ---
 
@@ -42,4 +42,4 @@
 
 ## BLOCKED
 
-（无。用户已裁：**切 O1**。）
+（无。）
