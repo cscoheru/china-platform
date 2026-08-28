@@ -9,30 +9,26 @@
 | 字段 | 值 |
 |---|---|
 | **phase** | `CC_ACTION_REQUIRED` |
-| **queue_rev** | `286` |
-| **origin_head** | `e98e105` |
-| **cc_head** | `e98e105` |
-| **cc_receipt** | `536` |
-| **cursor_ack** | `536` |
-| **last_audit** | `537` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**O1=公开源 B 路**；SHA drift **(a)**；**knife 538 偏差交付 ACCEPT**（用户 2026-08-27 明示；见 `538-stage2-cursor-local-live-reverify-and-deviation-accept-20260827`） |
+| **queue_rev** | `288` |
+| **origin_head** | `009137b` |
+| **cc_head** | `009137b` |
+| **cc_receipt** | `538` |
+| **cursor_ack** | `538` |
+| **last_audit** | `539` PASS |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**O1=公开源 B 路**；SHA drift **(a) 已执行**（per `538`）；knife 538 **D1–D5 偏差交付 ACCEPT** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-27T22:58:00+08:00` |
+| **updated_at** | `2026-08-28T08:59:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-**`538`** — `538-stage2-sha-drift-registry-update-option-a-tasking-20260827.md`
+**`540`** — `540-stage2-docs53-item30-sha-drift-option-a-executed-tasking-20260828.md`
 
-**Cursor 已做：** 本机 live 复验 exit 0 · hash 匹配 · 见 `538-stage2-cursor-local-live-reverify-and-deviation-accept-20260827.md`
-
-**偏差交付 ACCEPT（D1–D5）** — CC 可交卷，不必本机再跑 live。
-
-1. commit + 双推 `registry.csv`（a7e4029d… / 180165）+ docs/45、docs/53 刷新
-2. 回执 **`538`** 引用偏差接受书
+1. docs/53 第 30 项 (a) 执行登记 + docs/45 刷新
+2. pack → 回执 **`540`**
 3. **必须双推** → phase **`POLL`**
 
 ---
