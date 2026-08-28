@@ -88,3 +88,79 @@ sources:
             description: "Period start date (migration 004)"
           - name: period_end
             description: "Period end date (migration 004)"
+
+      - name: geo_entity
+        description: "Geographic entities (province/city/district hierarchy)"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: canonical_name
+            description: "Canonical Chinese name"
+          - name: canonical_name_en
+            description: "Canonical English name"
+          - name: level
+            description: "PROVINCE / CITY / DISTRICT / etc."
+          - name: parent_id
+            description: "FK to parent geo_entity (NULL for top level)"
+
+      - name: person
+        description: "Person dossiers (public CV data only; S2.1 per docs/36 §2.1)"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: canonical_name
+            description: "Canonical person name"
+          - name: canonical_name_pinyin
+            description: "Pinyin rendering for sort/search (migration 008)"
+
+      - name: person_name_alias
+        description: "Person name aliases (same-name-different-person linking; docs/36 §2.2)"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: person_id
+            description: "FK to person"
+          - name: alias
+            description: "Alias string (UNIQUE with person_id)"
+
+      - name: position
+        description: "Positions / offices (docs/36 §2.3)"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: title
+            description: "Raw title"
+          - name: rank_level
+            description: "Enum-style filter dimension (NOT a capability metric)"
+
+      - name: tenure
+        description: "Person-in-position tenures (overlaps legal per docs/36 §2.4)"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: person_id
+            description: "FK to person"
+          - name: position_id
+            description: "FK to position"
+          - name: source_id
+            description: "FK to source_document"
+
+      - name: appointment_event
+        description: "Append-only appointment/departure events (docs/36 §2.5)"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: tenure_id
+            description: "FK to tenure"
+          - name: event_type
+            description: "APPOINTMENT / DEPARTURE / etc."
+
+      - name: person_source_evidence
+        description: "Per-person source evidence (docs/36 §2.6)"
+        columns:
+          - name: id
+            description: "UUID primary key"
+          - name: person_id
+            description: "FK to person"
+          - name: source_id
+            description: "FK to source_document"

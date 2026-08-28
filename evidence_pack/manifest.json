@@ -1,5 +1,5 @@
 {
-  "artifact_count": 889,
+  "artifact_count": 904,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "ec66678c1d40c88a64502b856d2ef66440e48e1769097c699c33fea41f2ff878",
-      "size_bytes": 262619
+      "sha256": "500766666957735bbad363299eb0f8f17c4eb63f20ad82c9f9ca48b5ef60b1dc",
+      "size_bytes": 267111
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -4042,8 +4042,8 @@
     {
       "path": "docs/53-stage2-public-ingest-ops-handbook-20260826.md",
       "role": "documentation",
-      "sha256": "893ecd2897ab5098545f49ed7d4b31ac05e8ad0e8b62105a56b6f21143ddd851",
-      "size_bytes": 60467
+      "sha256": "0aee13d832cc7d2ba83e383b90bb5d2590314020e0de4fec0ddd08cd1fa2b0d8",
+      "size_bytes": 62054
     },
     {
       "path": "scripts/_knife57_manifest_bump.py",
@@ -5334,6 +5334,96 @@
       "role": "documentation",
       "sha256": "25d11a1418c9018cb9f9e5000418f153be48120eed03490a2f9e4a1183b375a8",
       "size_bytes": 14793
+    },
+    {
+      "path": "data/seeds/person_tenure_demo.json",
+      "role": "data_contract_suite",
+      "sha256": "4afb8f09048c8daf38ada523d2de6850cee8fadc248782ff300d8f15a21decbb",
+      "size_bytes": 107604
+    },
+    {
+      "path": "scripts/seed_person_tenure_demo.py",
+      "role": "spike_helper",
+      "sha256": "199312c4f21daa519238aee8b8317cfe4ceb6edba27edbf34c51c56cc893a174",
+      "size_bytes": 13203
+    },
+    {
+      "path": "dbt/models/staging/stg_person.sql",
+      "role": "spike_helper",
+      "sha256": "540869b66ac08b53429f954b1bbe36a691cfafb350c8da3090ca5c519da739ce",
+      "size_bytes": 473
+    },
+    {
+      "path": "dbt/models/staging/stg_person_name_alias.sql",
+      "role": "spike_helper",
+      "sha256": "3363672c6a22bace245c6a3fae5cf58b39a04008acf51bca674ebed0f4568c03",
+      "size_bytes": 433
+    },
+    {
+      "path": "dbt/models/staging/stg_position.sql",
+      "role": "spike_helper",
+      "sha256": "f313121c9ca8a4c0a94fba2955810c37914d6a5f360a2cac9b98eae129582f5f",
+      "size_bytes": 600
+    },
+    {
+      "path": "dbt/models/staging/stg_tenure.sql",
+      "role": "spike_helper",
+      "sha256": "d198755ea65e22164c16a5784228323cd569a47023a9be6032c23c7289948733",
+      "size_bytes": 612
+    },
+    {
+      "path": "dbt/models/staging/stg_appointment_event.sql",
+      "role": "spike_helper",
+      "sha256": "493f743d3c90e69bfef3239b742a760b97348ebeb52a56754dc5a8beb5ccadbe",
+      "size_bytes": 545
+    },
+    {
+      "path": "dbt/models/staging/stg_person_source_evidence.sql",
+      "role": "spike_helper",
+      "sha256": "2c2b6befe85b76f8c42972a8f9aa1eb9f1b176e91135225b4b93f376cc7f3313",
+      "size_bytes": 469
+    },
+    {
+      "path": "dbt/models/marts/mart_person_tenure.sql",
+      "role": "spike_helper",
+      "sha256": "3ee811a9072fb52aa910e622198254cfbf58f12fcc1cd5813dda1d73073b4333",
+      "size_bytes": 2116
+    },
+    {
+      "path": "tests/test_person_tenure_s21_full.py",
+      "role": "schema_negative_test",
+      "sha256": "e714cd11ce65fb51ba9aa9ae656cb69ba308b12e34f6c76f0556160f5ab3af99",
+      "size_bytes": 12030
+    },
+    {
+      "path": "scripts/_knife577_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "089cea7c9c14730bb36ffe8a951f753fbb58cf378f9b0aaf05ec8ed9fcd423bf",
+      "size_bytes": 7500
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/577-stage0-cc-o1-close-person-tenure-full-receipt-20260828.md",
+      "role": "documentation",
+      "sha256": "3626393d4da1113b4f3f41a72ee980dfdd3191ca54de15e23c09111c5635b1d7",
+      "size_bytes": 21025
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/575-stage0-architect-s574-docs-closeout-audit-PASS-20260828.md",
+      "role": "documentation",
+      "sha256": "f401a3ad884597a8c9468655b643d37f108ac1d40cedaac5cd272a63cb940473",
+      "size_bytes": 2938
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
+      "role": "documentation",
+      "sha256": "8777745c5f7b6daa7192cfefbbfb555a1808900e69883d9070b42d749f26855d",
+      "size_bytes": 1972
+    },
+    {
+      "path": "scripts/exec_wake.sh",
+      "role": "spike_helper",
+      "sha256": "0149f533e27e4e4594d40d0200e124a56fc5b866f9341a825f58905affc76bfb",
+      "size_bytes": 2023
     }
   ],
   "commit": {
@@ -5366,20 +5456,20 @@
   },
   "python_version": "3.14.3",
   "role_count": {
-    "data_contract_suite": 36,
-    "documentation": 205,
+    "data_contract_suite": 37,
+    "documentation": 208,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 48,
+    "schema_negative_test": 49,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 165,
+    "spike_helper": 175,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

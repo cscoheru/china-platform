@@ -99,3 +99,93 @@ models:
         description: "5-factor composite score (0-1)"
         tests:
           - quality_score_range
+
+  - name: stg_person
+    description: "Person passthrough (S2.1-full, docs/36 §2.1; id→person_id rename)"
+    columns:
+      - name: person_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: canonical_name
+        tests:
+          - not_null
+
+  - name: stg_person_name_alias
+    description: "Person name aliases (docs/36 §2.2; 同名异人不直接合并)"
+    columns:
+      - name: alias_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: person_id
+        tests:
+          - not_null
+      - name: alias
+        tests:
+          - not_null
+
+  - name: stg_position
+    description: "Position passthrough (docs/36 §2.3; rank_level = filter enum)"
+    columns:
+      - name: position_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: title
+        tests:
+          - not_null
+
+  - name: stg_tenure
+    description: "Tenure passthrough (docs/36 §2.4; overlapping tenures legal)"
+    columns:
+      - name: tenure_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: person_id
+        tests:
+          - not_null
+      - name: position_id
+        tests:
+          - not_null
+      - name: source_id
+        tests:
+          - not_null
+
+  - name: stg_appointment_event
+    description: "Appointment events passthrough (docs/36 §2.5; append-only)"
+    columns:
+      - name: event_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: tenure_id
+        tests:
+          - not_null
+      - name: event_type
+        tests:
+          - not_null
+      - name: event_date
+        tests:
+          - not_null
+
+  - name: stg_person_source_evidence
+    description: "Person source evidence passthrough (docs/36 §2.6)"
+    columns:
+      - name: evidence_id
+        description: "UUID primary key"
+        tests:
+          - unique
+          - not_null
+      - name: person_id
+        tests:
+          - not_null
+      - name: source_id
+        tests:
+          - not_null
