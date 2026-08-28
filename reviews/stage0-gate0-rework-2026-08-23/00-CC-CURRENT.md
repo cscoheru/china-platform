@@ -15,10 +15,11 @@
 | **cc_receipt** | `568` |
 | **cursor_ack** | `568` |
 | **last_audit** | `569` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**合刀**；**26X 已收口（566/568）→ 切 O1**；**O1=公开源 B 路**；post-(a) live per `560`；**O1 仍 OPEN（不宣布收口）** |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**合刀**；**26X→O1 序列自主推进**（用户 2026-08-28 离席）；CC 卡住 Cursor 调整唤醒；**O1=公开源 B 路**；**O1 仍 OPEN（不宣布 PASS）** |
 | **cursor_poll** | `ARMED` |
 | **expect_cc_poll** | `EXECUTE_NOW` |
-| **updated_at** | `2026-08-28T12:57:00+08:00` |
+| **updated_at** | `2026-08-28T12:58:00+08:00` |
+| **autonomous_plan** | `CURSOR-AUTONOMOUS-PLAN-20260828.md` |
 | **blocked_by** | — |
 
 ---
