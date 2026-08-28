@@ -10,18 +10,22 @@
 - updated: 2026-08-28
 - architect: CC 架构师终端（本仓库唯一任务书/审计签发方；不写实现、不 commit）
 - executor: CC 执行终端（本仓库目录内运行；按任务书执行、自验、回执、commit、双推）
-- ruling: 用户（O1 / O3 / Gate 2 / 抽查）
+- ruling: 用户（O1 / O3 / Gate 2 / 抽查）；**常设授权（2026-08-28 夜起生效）：需用户裁定项一律按架构师推荐自动执行**；例外 = 必须用户亲自操作项（注册/登录/付费/UI 人工验收/提供真实文件如 O3 的 `--confirm-o3=PATH` PDF）；仓库常备红线不因授权失效（不宣布 Gate PASS、不 --force、不公网 redeploy 等仍按红线）
 
 ## §CURRENT
 
-- tasking: `reviews/stage0-gate0-rework-2026-08-23/577-stage2-o1-close-person-tenure-full-tasking-20260828.md`
+- tasking: `reviews/stage0-gate0-rework-2026-08-23/579-stage2-o3-memo-inherited-failures-docs-bundle-tasking-20260828.md`
 - status: **DELIVERED**       <!-- PENDING → ACK → DELIVERED → AUDITED；只改本行 -->
 - issued: 2026-08-28
-- note: O1 裁定登记 + S2.1-full（需本地 DB，Phase 0 起库 55440）；manifest 889→903（含本文件 + exec_wake.sh，+14）→ 回执 `577-stage0-cc-o1-close-person-tenure-full-receipt-20260828`（A–H 合刀单 commit + 双推完成）；实际 NEW 15 项 per §A「按 bump 实际值」→ **904 == 904 == 904**（任务书 §F 标注 +14→903 与实列 15 项不符，回执文首 ⚠1 显著披露）
+- note: O3 决策备忘（**引擎已裁定：用户 2026-08-28 选 A = paddle-ocr**，任务书 §A-4 已补注，照录入档）+ 全量 4 failed 继承登记；**docs-only 零网络**；manifest 904→907（+3：bump + 578 审计 + 回执，枚举即权威）；裁定 ≠ O3 收口（5.2.2–5.2.6 实装链 OPEN，真实 PDF `--confirm-o3=PATH` 为用户保留动作）→ 回执 `579-stage0-cc-o3-memo-inherited-failures-docs-bundle-receipt-20260828`（A–G 合刀单 commit + 双推完成）；manifest **907 == 907 == 907**
 
 ## §ACK
 
-- 2026-08-28T21:30+08:00 / CC-exec（Claude Code 执行终端，574 同 session） / 开始执行
+- 2026-08-28T22:25+08:00 / CC-exec（Claude Code 执行终端，577 同 session） / 开始执行
+
+## §ACK（577 刀存档）
+
+- 2026-08-28T21:30+08:00 / CC-exec（Claude Code 执行终端，574 同 session） / 开始执行 → 交付 `c8e2b9a` + `7c9668e` → `578` 审计 PASS
 
 ## §STATE 规则
 

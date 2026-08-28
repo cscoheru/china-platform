@@ -1,5 +1,5 @@
 {
-  "artifact_count": 904,
+  "artifact_count": 907,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "500766666957735bbad363299eb0f8f17c4eb63f20ad82c9f9ca48b5ef60b1dc",
-      "size_bytes": 267111
+      "sha256": "a115106d960df3dea201df50d72ded8da3f01d626ff91cd9d21da61c5bebd52f",
+      "size_bytes": 269940
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -4042,8 +4042,8 @@
     {
       "path": "docs/53-stage2-public-ingest-ops-handbook-20260826.md",
       "role": "documentation",
-      "sha256": "0aee13d832cc7d2ba83e383b90bb5d2590314020e0de4fec0ddd08cd1fa2b0d8",
-      "size_bytes": 62054
+      "sha256": "9becf2c4bb2cccaad87800b268ce2c0242de0ec43b103eebda81c37ba99b75e4",
+      "size_bytes": 64995
     },
     {
       "path": "scripts/_knife57_manifest_bump.py",
@@ -5416,14 +5416,32 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "8777745c5f7b6daa7192cfefbbfb555a1808900e69883d9070b42d749f26855d",
-      "size_bytes": 1972
+      "sha256": "bcb0c4ec94ce88ccb34be2ccfce4b7b5cbc623066f4436ec52429e4c113e8f21",
+      "size_bytes": 2633
     },
     {
       "path": "scripts/exec_wake.sh",
       "role": "spike_helper",
       "sha256": "0149f533e27e4e4594d40d0200e124a56fc5b866f9341a825f58905affc76bfb",
       "size_bytes": 2023
+    },
+    {
+      "path": "scripts/_knife579_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "5e57ed040b5688ba162f478552456732cdfaa0d3e3f80d35e2d369916cc8db9c",
+      "size_bytes": 6242
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/578-stage0-architect-s577-o1-close-s21full-audit-PASS-20260828.md",
+      "role": "documentation",
+      "sha256": "a2059fd1369e3a2c23b0ac2960039c25675b76f790de08cb6518aec11edeb587",
+      "size_bytes": 6646
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/579-stage0-cc-o3-memo-inherited-failures-docs-bundle-receipt-20260828.md",
+      "role": "documentation",
+      "sha256": "5c530b361841a2c512e2604bfa6fafcabcbaf78b4807a51c9929ca86027e2414",
+      "size_bytes": 16394
     }
   ],
   "commit": {
@@ -5457,7 +5475,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 208,
+    "documentation": 210,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5469,7 +5487,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 175,
+    "spike_helper": 176,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
