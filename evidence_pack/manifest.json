@@ -1,5 +1,5 @@
 {
-  "artifact_count": 907,
+  "artifact_count": 911,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -2722,8 +2722,8 @@
     {
       "path": "tests/test_cleanliness.py",
       "role": "schema_negative_test",
-      "sha256": "17b0f6478e0131f2672d4a59e47d35159e98ff0d55e96f4be1948a827ff981c5",
-      "size_bytes": 9046
+      "sha256": "1a0d2cd9ae473a30cf004d7d2b646f39a3d43d50231a7e744752fef8ecd51247",
+      "size_bytes": 9489
     },
     {
       "path": "tests/test_compute_file_sha.py",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "a115106d960df3dea201df50d72ded8da3f01d626ff91cd9d21da61c5bebd52f",
-      "size_bytes": 269940
+      "sha256": "a21ddcf3b818f76ea977e6953217492b524a6f87fbc6bec1c1b7ea74427c0654",
+      "size_bytes": 273023
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -3964,8 +3964,8 @@
     {
       "path": "tests/test_public_extract_frontend_fixture.py",
       "role": "schema_negative_test",
-      "sha256": "21724f18346ebe64dff214678bda486325d7055c9b1a27da237d1109c124ee50",
-      "size_bytes": 4260
+      "sha256": "c12f24921a7ea52b18bf986762cc9fcfa14b1ffda07fcaf22142322e50b3178e",
+      "size_bytes": 24863
     },
     {
       "path": "scripts/_knife52_manifest_bump.py",
@@ -4042,8 +4042,8 @@
     {
       "path": "docs/53-stage2-public-ingest-ops-handbook-20260826.md",
       "role": "documentation",
-      "sha256": "9becf2c4bb2cccaad87800b268ce2c0242de0ec43b103eebda81c37ba99b75e4",
-      "size_bytes": 64995
+      "sha256": "169ba426b0c67854bcd5563efe046b2c96eec1fe09f428781891174e3605888b",
+      "size_bytes": 67203
     },
     {
       "path": "scripts/_knife57_manifest_bump.py",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "bcb0c4ec94ce88ccb34be2ccfce4b7b5cbc623066f4436ec52429e4c113e8f21",
-      "size_bytes": 2633
+      "sha256": "9ef958540b40a3928abf38adbb47da84668b09cb1b50ca52d61f1ee42d4f40c9",
+      "size_bytes": 2907
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5442,6 +5442,30 @@
       "role": "documentation",
       "sha256": "5c530b361841a2c512e2604bfa6fafcabcbaf78b4807a51c9929ca86027e2414",
       "size_bytes": 16394
+    },
+    {
+      "path": "scripts/_knife581_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "11cdd8c57da9e8c603781371f609a828b35a53a351f69a77b03becf7f3c35aee",
+      "size_bytes": 7403
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/581-stage0-cc-inherited-4failed-fix-suite-green-receipt-20260828.md",
+      "role": "documentation",
+      "sha256": "ab45a1f3240f6c2e14b9168ed271e1be06761b6c6fbb18e4c30dda89fc4544dc",
+      "size_bytes": 22837
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/580-stage0-architect-s579-o3-memo-inherited-audit-PASS-20260828.md",
+      "role": "documentation",
+      "sha256": "ccee73a6681769062d06c828ea1430d15caec49f32429bea6ac37bf780910d5f",
+      "size_bytes": 6643
+    },
+    {
+      "path": "tests/test_auto_ingest_public_source_s52.py",
+      "role": "schema_negative_test",
+      "sha256": "60674219186f91096db55ea0594871ee914da35e57210e46a6adb398e34a3d42",
+      "size_bytes": 76099
     }
   ],
   "commit": {
@@ -5475,19 +5499,19 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 210,
+    "documentation": 212,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
     "schema_migration_ddl": 12,
     "schema_migration_log": 8,
-    "schema_negative_test": 49,
+    "schema_negative_test": 50,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 176,
+    "spike_helper": 177,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

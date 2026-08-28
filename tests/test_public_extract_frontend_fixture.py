@@ -18,6 +18,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -29,6 +30,9 @@ FIXTURE = PROJECT_ROOT / "frontend" / "lib" / "public_extract_nbs.json"
 PE_PAGE = PROJECT_ROOT / "frontend" / "app" / "public-extracts" / "page.tsx"
 HOME_PAGE = PROJECT_ROOT / "frontend" / "app" / "page.tsx"
 REGISTRY = PROJECT_ROOT / "source_registry" / "registry.csv"
+
+# Knife 581 — provenance 锚定 spike 样例文件的实字节 (活锚 = fixture 真实提取源).
+SAMPLE_HTML = PROJECT_ROOT / "spikes" / "01-national-yearbook" / "sample.html"
 
 # Knife 61 / tasking 376 — 湖北 PROVINCIAL_BULLETIN xlsx 提取 fixture
 HB_FIXTURE = PROJECT_ROOT / "frontend" / "lib" / "public_extract_hubei.json"
@@ -72,8 +76,17 @@ def test_fixture_row_count_is_63(fixture_json: dict) -> None:
 def test_fixture_provenance_sha_matches_registry(
     fixture_json: dict, registry_row: dict
 ) -> None:
-    """fixture.source_sha256 == registry file_hash_sha256 (样本锁定锚点)."""
-    assert fixture_json["source_sha256"] == registry_row["file_hash_sha256"]
+    """fixture.source_sha256 == sha256(spike sample.html 实字节) — 活锚定.
+
+    Three-object facts (per docs/53 §5 第 42 项 + `580` 审计定性):
+    - registry file_hash_sha256 (a7e4029d…, `538` 裁定值) = 远程权威公告
+      对象的契约 SHA (不变; 红线不可动 registry).
+    - fixture = 从 spike 样例 (spikes/01-national-yearbook/sample.html)
+      提取的演示快照 — 其 source_sha256 锁定的是该样例文件的实字节.
+    - 原断言把两个不同对象的两个真实 SHA 错绑为同一值 (per `581` 修复).
+    """
+    sample_bytes = SAMPLE_HTML.read_bytes()
+    assert fixture_json["source_sha256"] == hashlib.sha256(sample_bytes).hexdigest()
 
 
 def test_fixture_source_sample_path_matches_registry(

@@ -1461,16 +1461,22 @@ def test_local_sample_main_returns_0_for_sz(tmp_path):
 # 12. Extract-tree protection (per tasking 352 §SCHEMA ≥ regression test)
 # ---------------------------------------------------------------------------
 
-def test_regression_real_extracts_not_clobbered_by_pytest(tmp_path):
-    """Per tasking 352 §SCHEMA (3): after running the local-sample intake
-    via subprocess (the exact vector that clobbered the committed extracts
-    in 7f04237 / 95a8569), the REAL data/public_extracts/stats.gov.cn/
-    NATIONAL_BULLETIN.json must be byte-identical (source_sha256 and
-    row_count unchanged), while the redirected tmp roots receive the
-    writes instead.
+def test_regression_real_extracts_protected_and_sha_gate_refuses(tmp_path):
+    """Dual-path regression (per tasking 581 §B; per `346` 硬失败语义 + docs/53
+    §5 第 42 项 + `580` 审计定性).
 
-    Uses the NEW --archive-root/--extract-root CLI flags explicitly —
-    exercising the flag path, not just the env inheritance path."""
+    Path A — success (sz.gov.cn pilot, 零改动): local-sample intake rc=0,
+    writes redirected to tmp roots, committed extract byte-identical.
+    Path B — SHA-gate refusal (stats.gov.cn pilot, per 581): the spike
+    sample on disk (dea13b8a…) no longer matches the registry ruling SHA
+    (a7e4029d…, `538` 裁定值), so intake REFUSES with rc=8
+    (stderr: "SHA mismatch; refusing intake") and leaves ZERO artifacts
+    under the tmp roots. SHA 闸 (auto_ingest_public_source.py L1278) 是
+    防篡改机制, 零弱化 — rc=8 从「事故」转为「被测试钉死的预期行为」.
+
+    Both paths must keep data/public_extracts/stats.gov.cn/NATIONAL_BULLETIN.json
+    byte-identical (the 352 contract).
+    """
     real_extract = (
         aips.PROJECT_ROOT / "data" / "public_extracts"
         / "stats.gov.cn" / "NATIONAL_BULLETIN.json"
@@ -1479,41 +1485,65 @@ def test_regression_real_extracts_not_clobbered_by_pytest(tmp_path):
     before = real_extract.read_bytes()
     before_rec = json.loads(before)
 
-    # The regression vector, verbatim: subprocess local-sample intake for
-    # BOTH pilots, with tmp roots via the new CLI flags.
-    for domain, category in (
-        ("stats.gov.cn", "NATIONAL_BULLETIN"),
-        ("sz.gov.cn", "MUNICIPAL_BULLETIN"),
-    ):
-        proc = subprocess.run(
-            [
-                sys.executable, str(SCRIPT),
-                f"--pilot-domain={domain}",
-                f"--pilot-category={category}",
-                "--from-local-sample",
-                f"--confirm-live={tmp_path / f'{domain}.lineage.jsonl'}",
-                f"--archive-root={tmp_path / 'archives'}",
-                f"--extract-root={tmp_path / 'extracts'}",
-            ],
-            capture_output=True, text=True, timeout=10,
-        )
-        assert proc.returncode == 0, (
-            f"{domain} local-sample should rc=0; got {proc.returncode}\n"
-            f"stdout: {proc.stdout}\nstderr: {proc.stderr}"
-        )
+    # Path A — sz.gov.cn pilot (成功路径): rc=0 + tmp 重定向 (零改动).
+    sz_proc = subprocess.run(
+        [
+            sys.executable, str(SCRIPT),
+            "--pilot-domain=sz.gov.cn",
+            "--pilot-category=MUNICIPAL_BULLETIN",
+            "--from-local-sample",
+            f"--confirm-live={tmp_path / 'sz.gov.cn.lineage.jsonl'}",
+            f"--archive-root={tmp_path / 'archives'}",
+            f"--extract-root={tmp_path / 'extracts'}",
+        ],
+        capture_output=True, text=True, timeout=10,
+    )
+    assert sz_proc.returncode == 0, (
+        f"sz.gov.cn local-sample should rc=0; got {sz_proc.returncode}\n"
+        f"stdout: {sz_proc.stdout}\nstderr: {sz_proc.stderr}"
+    )
 
-    # Writes landed in the tmp roots (redirection actually happened) …
+    # Path B — stats.gov.cn pilot (SHA 闸路径): rc=8 + stderr SHA mismatch.
+    nbs_proc = subprocess.run(
+        [
+            sys.executable, str(SCRIPT),
+            "--pilot-domain=stats.gov.cn",
+            "--pilot-category=NATIONAL_BULLETIN",
+            "--from-local-sample",
+            f"--confirm-live={tmp_path / 'stats.gov.cn.lineage.jsonl'}",
+            f"--archive-root={tmp_path / 'archives'}",
+            f"--extract-root={tmp_path / 'extracts'}",
+        ],
+        capture_output=True, text=True, timeout=10,
+    )
+    assert nbs_proc.returncode == 8, (
+        f"stats.gov.cn local-sample SHA-mismatch should rc=8; got "
+        f"{nbs_proc.returncode}\nstdout: {nbs_proc.stdout}\n"
+        f"stderr: {nbs_proc.stderr}"
+    )
+    assert "SHA mismatch; refusing intake" in nbs_proc.stderr, (
+        f"SHA 闸必须输出明确拒入 stderr; got: {nbs_proc.stderr}"
+    )
+
+    # Path A writes landed in tmp roots (redirection actually happened) …
     tmp_archives = list((tmp_path / "archives").rglob("*"))
     tmp_extracts = list((tmp_path / "extracts").rglob("*.json"))
     assert tmp_archives, "no archive writes under tmp archive root"
-    assert len(tmp_extracts) == 2, (
-        f"expected 2 extract JSONs under tmp extract root, got {len(tmp_extracts)}"
+    assert len(tmp_extracts) == 1, (
+        f"expected exactly the sz.gov.cn extract under tmp root, "
+        f"got {len(tmp_extracts)}: {tmp_extracts}"
     )
-    tmp_nbs = json.loads(
-        (tmp_path / "extracts" / "stats.gov.cn" / "NATIONAL_BULLETIN.json")
-        .read_text(encoding="utf-8")
+    assert all("sz.gov.cn" in str(p) for p in tmp_extracts), (
+        f"all tmp extracts must be the sz.gov.cn pilot only; got {tmp_extracts}"
     )
-    assert tmp_nbs["row_count"] == 63
+
+    # … Path B (SHA-gate refusal) leaves ZERO stats.gov.cn artifacts under
+    # any tmp root (redirection still in effect, but gate refused intake).
+    tmp_nbs = [p for p in tmp_path.rglob("*") if "stats.gov.cn" in str(p)]
+    assert not tmp_nbs, (
+        f"SHA-gate refusal must leave zero stats.gov.cn artifacts under "
+        f"tmp roots; found: {tmp_nbs}"
+    )
 
     # … and the committed extract is untouched (the 352 contract).
     after = real_extract.read_bytes()

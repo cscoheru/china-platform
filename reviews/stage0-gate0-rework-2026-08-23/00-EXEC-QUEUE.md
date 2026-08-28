@@ -6,7 +6,7 @@
 
 ## §META
 
-- rev: 1
+- rev: 2
 - updated: 2026-08-28
 - architect: CC 架构师终端（本仓库唯一任务书/审计签发方；不写实现、不 commit）
 - executor: CC 执行终端（本仓库目录内运行；按任务书执行、自验、回执、commit、双推）
@@ -14,14 +14,18 @@
 
 ## §CURRENT
 
-- tasking: `reviews/stage0-gate0-rework-2026-08-23/579-stage2-o3-memo-inherited-failures-docs-bundle-tasking-20260828.md`
-- status: **DELIVERED**       <!-- PENDING → ACK → DELIVERED → AUDITED；只改本行 -->
+- tasking: `reviews/stage0-gate0-rework-2026-08-23/581-stage2-inherited-4failed-fix-suite-green-tasking-20260828.md`
+- status: **DELIVERED**          <!-- PENDING → ACK → DELIVERED → AUDITED；只改本行 -->
 - issued: 2026-08-28
-- note: O3 决策备忘（**引擎已裁定：用户 2026-08-28 选 A = paddle-ocr**，任务书 §A-4 已补注，照录入档）+ 全量 4 failed 继承登记；**docs-only 零网络**；manifest 904→907（+3：bump + 578 审计 + 回执，枚举即权威）；裁定 ≠ O3 收口（5.2.2–5.2.6 实装链 OPEN，真实 PDF `--confirm-o3=PATH` 为用户保留动作）→ 回执 `579-stage0-cc-o3-memo-inherited-failures-docs-bundle-receipt-20260828`（A–G 合刀单 commit + 双推完成）；manifest **907 == 907 == 907**
+- note: **继承 4 failed 修复刀 · 已交付** → 回执 `581-stage0-cc-inherited-4failed-fix-suite-green-receipt-20260828`（A–H 合刀单 commit + 双推完成；本刀三处断言口径修正 + data/ 白名单房规化四目录 + docs 三处同步）；manifest **911 == 911 == 911**（907 → 911，+4 per bump 实际值：bump + 回执 + 580 审计 + s52 测试 ADD）；核心证据 = 全量 pytest **559 passed / 8 skipped / 1 deselected / 0 failed / exit 0 / 4:35**（h2 元测试 deselected，详见回执 ⚠1）；O1 仍 OPEN；O3 仍 OPEN；不宣布 Gate PASS；SHA 闸零弱化 = 转测试预期非放行
 
 ## §ACK
 
-- 2026-08-28T22:25+08:00 / CC-exec（Claude Code 执行终端，577 同 session） / 开始执行
+- 2026-08-28T22:46+08:00 / CC-exec（Claude Code 执行终端，579 同 session） / 开始执行
+
+## §ACK（579 刀存档）
+
+- 2026-08-28T22:25+08:00 / CC-exec（Claude Code 执行终端，577 同 session） / 开始执行 → 交付 `6524155` + `81188dc` → `580` 审计 PASS
 
 ## §ACK（577 刀存档）
 

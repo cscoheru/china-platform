@@ -51,12 +51,22 @@ def test_forbidden_workspace_file_must_not_exist(forbidden_path: Path):
 def test_data_dir_has_only_gitkeep_or_known_subdirs():
     """data/ 下不应有意外的 .json/.csv/.txt 污染文件。
 
-    仅允许：data/extracts/<spike>/*（提取产物目录，由 manifest 管理）、
-    data/raw/<sample>/*（原始样本目录，按 .gitignore 处理）。
+    仅允许（房规白名单 — per tasking 581 §C; 存量合法目录的登记，非放宽）:
+    - data/extracts/<spike>/*（提取产物目录，由 manifest 管理）
+    - data/processed/*（处理产物目录）
+    - data/raw/<sample>/*（原始样本目录，按 .gitignore 处理）
+    - data/seeds/（S2.1 demo seed JSON，manifest 在册 per knife 577）
+    - data/seed_archives/（seed 归档链）
+    - data/public_extracts/ + data/public_archives/（公开提取 WORM 链目录）
     """
     if not DATA_DIR.exists():
         pytest.skip("data/ not present")
-    allowed_top_level = {"extracts", "processed", "raw", ".gitkeep"}
+    allowed_top_level = {
+        "extracts", "processed", "raw",
+        "public_archives", "public_extracts",
+        "seed_archives", "seeds",
+        ".gitkeep",
+    }
     actual_top_level = {p.name for p in DATA_DIR.iterdir() if not p.name.startswith(".")}
     unexpected = actual_top_level - allowed_top_level
     assert not unexpected, (
