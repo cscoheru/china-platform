@@ -8,33 +8,37 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `POLL` |
-| **queue_rev** | `318` |
-| **origin_head** | `f71953a` |
-| **cc_head** | `f71953a` |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `319` |
+| **origin_head** | `1000a1f` |
+| **cc_head** | `1000a1f` |
 | **cc_receipt** | `568` |
 | **cursor_ack** | `568` |
 | **last_audit** | `569` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**合刀**；分叉 **先 26X → 合刀 → 再 O1**；**O1 仍 OPEN（defer）** |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**合刀**；**26X 已收口（566/568）→ 切 O1**；**O1=公开源 B 路**；post-(a) live per `560`；**O1 仍 OPEN（不宣布收口）** |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL` |
-| **updated_at** | `2026-08-28T12:50:00+08:00` |
+| **expect_cc_poll** | `EXECUTE_NOW` |
+| **updated_at** | `2026-08-28T12:57:00+08:00` |
 | **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-（无。等 Cursor 下一刀 26X 续轴。）
+**`570`（合刀 · O1 kickoff）** — `570-stage2-o1-kickoff-mart-sha-next-axis-bundle-tasking-20260828.md`
+
+1. **A–D** docs/53 第 36–37 项 + docs/45/50 同步 + **E** 锚点核验 + mart skel pytest
+2. pack → 回执 **仅 `570`**
+3. **必须双推** → phase **`POLL`**
 
 ---
 
 ## POLL
 
-`./scripts/cc_gate_watch.sh --pull`（见 `216`）。可 POLL，**不**执行 §NOW。
+`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
 ---
 
 ## BLOCKED
 
-（无。）
+（无。用户已裁：**切 O1**。）
