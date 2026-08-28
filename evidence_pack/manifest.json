@@ -1,5 +1,5 @@
 {
-  "artifact_count": 868,
+  "artifact_count": 870,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -5208,6 +5208,18 @@
       "role": "documentation",
       "sha256": "5d35ec28d27bb0e65f81b88a561b146c57de62dea79c9c7d00644a233f430bdc",
       "size_bytes": 7747
+    },
+    {
+      "path": "scripts/_knife556_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "3bfd098f54b64a83a997862c0a5ed973e9a5e1fbe41ce9dedf4664185d2d1194",
+      "size_bytes": 4249
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/556-stage0-cc-docs50-item32-o1-next-axis-mart-sha-milestone-receipt-20260828.md",
+      "role": "documentation",
+      "sha256": "3a699702f2e4ad9e5f504ee37b2783f1c8bcb85c821276884baa12b4cd41047c",
+      "size_bytes": 8069
     }
   ],
   "commit": {
@@ -5241,7 +5253,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 36,
-    "documentation": 194,
+    "documentation": 195,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5253,7 +5265,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 155,
+    "spike_helper": 156,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
