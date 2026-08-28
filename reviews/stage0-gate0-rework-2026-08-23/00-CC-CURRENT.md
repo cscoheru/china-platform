@@ -8,41 +8,37 @@
 
 | 字段 | 值 |
 |---|---|
-| **phase** | `BLOCKED` |
-| **queue_rev** | `314` |
-| **origin_head** | `22f032c` |
-| **cc_head** | `22f032c` |
+| **phase** | `CC_ACTION_REQUIRED` |
+| **queue_rev** | `315` |
+| **origin_head** | `1afa409` |
+| **cc_head** | `1afa409` |
 | **cc_receipt** | `564` |
 | **cursor_ack** | `564` |
 | **last_audit** | `565` PASS |
-| **user_ruling** | Stage 2 **C**；缩刀 **D**；**合刀**；post-(a) live per `560`（hash 匹配 + `O1_AUTO_INTAKED`/`is_demo=false`）；**O1 仍 OPEN** — **等用户分叉裁定** |
+| **user_ruling** | Stage 2 **C**；缩刀 **D**；**合刀**；分叉序列 **先 26X → 合刀 → 再 O1**；**O1=公开源 B 路**；post-(a) live per `560`（**O1 仍 OPEN，defer**） |
 | **cursor_poll** | `ARMED` |
-| **expect_cc_poll** | `POLL` |
-| **updated_at** | `2026-08-28T11:35:00+08:00` |
-| **blocked_by** | `O1_OR_26X_FORK` |
+| **expect_cc_poll** | `EXECUTE_NOW` |
+| **updated_at** | `2026-08-28T12:05:00+08:00` |
+| **blocked_by** | — |
 
 ---
 
 ## NOW — CC 执行
 
-（无。phase=`BLOCKED` — 等用户代号。）
+**`566`（合刀 · 26X kickoff）** — `566-stage2-s27b-full-26x-kickoff-mart-fixture-verify-bundle-tasking-20260828.md`
+
+1. **A** docs/53 §5 第 34 项 26X kickoff + **B** docs/45 四处同步 + **C** docs/50 里程碑/intro 链尾 + **D** mart-shape pytest + smoke §10 实跑证据
+2. pack → 回执 **仅 `566`**
+3. **必须双推** → phase **`POLL`**
 
 ---
 
 ## POLL
 
-`./scripts/cc_gate_watch.sh --pull`（见 `216`）。可 POLL，**不**执行 §NOW。
+`./scripts/cc_gate_watch.sh --pull`（见 `216`）。
 
 ---
 
 ## BLOCKED
 
-**代号：`O1_OR_26X_FORK`** — post-(a) NATIONAL_BULLETIN 证据链已闭环到 docs（`560` live + `562`/`564` 里程碑/链尾）。请裁定下一轴：
-
-| 代号 | 含义 |
-|---|---|
-| **O1** | 推进 O1 收口路径（明确 mart/Gate 收口条件后另刀；本 tick **不**自动宣布 PASS） |
-| **26X** | 切到 S2.7-b-full / 前端去 demo（`NEXT_PUBLIC_USE_MOCK=false` 等） |
-| **C** | 继续合刀缩文档（弧收口/互链薄刀） |
-
-用户回代号后 Cursor 写 CURRENT + 下刀。
+（无。用户已裁：**先 26X → 合刀 → 再 O1**。）
