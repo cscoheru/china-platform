@@ -11,10 +11,14 @@ Red lines (per docs/47 §1.2 + `293` §红线 + docs/34 §1 + docs/06 §6.6 + do
   - column contracts must align with docs/47 §3.1 / §3.2
   - no score / rating / rank / total_score / confidence_score / credibility_score
     / peer_rank columns anywhere in the SQL
-  - lineage.source_file_sha256 MUST remain the '0'.repeat(64) / REPEAT('0', 64)
-    placeholder (NO real SHA fabrication under any pretext)
-  - all emitted rows must carry lineage_is_demo = 'true' (or is_demo = 'true'
-    for the seven_dim mart) — demo-join may NOT leak real rows
+  - lineage.source_file_sha256 stays the '0'.repeat(64) / REPEAT('0', 64)
+    placeholder on the 59 demo rows (NO real SHA fabrication elsewhere);
+    ONLY exception = pilot row (nanjing + CONDITION) per `572`, which
+    carries the registry post-(a) real SHA (per `538` (a) 裁定值 + `560`
+    hash 匹配 live refresh; pilot 1 行 ≠ O1 收口)
+  - emitted rows carry lineage_is_demo = 'true' on the 59 demo rows (or
+    is_demo = 'true' for the seven_dim mart); pilot row (nanjing +
+    CONDITION) = 'false' per `572` — demo-join may NOT leak other real rows
   - 10 cities must be enumerated (per docs/46 §2): nanjing / suzhou / wuxi /
     nantong / hangzhou / ningbo / wenzhou / guangzhou / shenzhen / dongguan
   - 6 segments enumerated (per docs/06 §2): CONDITION / COMMITMENT / INPUT /
@@ -207,12 +211,12 @@ def test_mart_evidence_chain_emits_demo_rows() -> None:
 
 
 def test_mart_evidence_chain_lineage_is_demo_true() -> None:
-    """All emitted rows must carry lineage_is_demo = 'true'."""
+    """59 demo rows must carry lineage_is_demo = 'true'（pilot 1 行 'false' per `572`）."""
     src = MART_EVIDENCE_CHAIN_PATH.read_text(encoding="utf-8")
     clean = _strip_sql_comments(src)
     assert "'true'" in clean and "lineage_is_demo" in clean, (
-        "mart_city_evidence_chain.sql: lineage_is_demo 必须 = 'true' "
-        "(per S1.18 sentinel + 293 §红线)"
+        "mart_city_evidence_chain.sql: 59 行 lineage_is_demo 必须 = 'true' "
+        "(per S1.18 sentinel + 293 §红线 + `572` pilot 例外单行)"
     )
 
 
@@ -395,3 +399,72 @@ def test_seven_dim_overview_cross_join_yields_70_rows() -> None:
     assert dim_block, "未找到 seven_dim VALUES 块"
     dims = re.findall(r"\(\s*'([^']+)'", dim_block.group(1))
     assert len(dims) == 7, f"seven_dim 应有 7 行，实际 {len(dims)}: {dims}"
+
+
+# ===== 8. O1 mart 真 SHA pilot 行（per `572`；pilot 1 行 ≠ O1 收口） =====
+
+# registry post-(a) NATIONAL_BULLETIN SHA（per `538` (a) 裁定值 + `560` hash
+# 匹配 live refresh, lineage O1_AUTO_INTAKED / is_demo='false'）
+PILOT_ROW_SHA = "a7e4029df707918a552ad2580e8088a945bfe43ec3a2447742553258d0f1f8eb"
+
+
+def test_mart_evidence_chain_pilot_row_real_sha_present() -> None:
+    """Pilot row (nanjing + CONDITION) carries the registry post-(a) real SHA."""
+    src = MART_EVIDENCE_CHAIN_PATH.read_text(encoding="utf-8")
+    clean = _strip_sql_comments(src)
+    assert PILOT_ROW_SHA in clean, (
+        "mart_city_evidence_chain.sql: pilot 行缺 registry 真 SHA "
+        "(per `572` §SCHEMA + `538` (a) 裁定值 + `560`)"
+    )
+
+
+def test_mart_evidence_chain_pilot_row_is_single_assignment() -> None:
+    """真 SHA 只允许出现在 pilot 1 行的 executable source（count == 1）。
+
+    其余 59 行必须保持 '0'*64 占位；把真 SHA 扩散到更多行 = 另刀（per `572`）。
+    """
+    src = MART_EVIDENCE_CHAIN_PATH.read_text(encoding="utf-8")
+    clean = _strip_sql_comments(src)
+    n = clean.count(PILOT_ROW_SHA)
+    assert n == 1, (
+        f"mart_city_evidence_chain.sql: 真 SHA executable 出现 {n} 次 "
+        "(必须恰 1 次 — pilot 单行; 扩散 = 另刀, per `572` 红线)"
+    )
+
+
+def test_mart_evidence_chain_pilot_condition_locks_nanjing_and_segment() -> None:
+    """Pilot CASE 条件必须精确锁定 (nanjing, CONDITION)（is_demo + sha 两处）。"""
+    src = MART_EVIDENCE_CHAIN_PATH.read_text(encoding="utf-8")
+    clean = _strip_sql_comments(src)
+    conds = re.findall(
+        r"WHEN\s+c\.city_slug\s*=\s*'nanjing'\s+AND\s+c\.segment\s*=\s*'CONDITION'",
+        clean,
+    )
+    assert len(conds) == 2, (
+        f"mart_city_evidence_chain.sql: pilot 条件出现 {len(conds)} 次 "
+        "(必须恰 2 次 = is_demo CASE + sha CASE; per `572` §SCHEMA)"
+    )
+
+
+def test_mart_evidence_chain_other_rows_keep_zero_placeholder() -> None:
+    """其余 59 行必须保持 '0'*64 占位（ELSE REPEAT('0', 64)::TEXT）。"""
+    src = MART_EVIDENCE_CHAIN_PATH.read_text(encoding="utf-8")
+    clean = _strip_sql_comments(src)
+    assert "ELSE REPEAT('0', 64)::TEXT" in clean, (
+        "mart_city_evidence_chain.sql: 非 pilot 行必须保持 '0'*64 占位 "
+        "(per docs/47 §3.1 ⚠️ OPEN + `572` §SCHEMA)"
+    )
+
+
+def test_mart_evidence_chain_pilot_lineage_is_demo_false_else_true() -> None:
+    """is_demo CASE: pilot 行 'false'、ELSE 'true'（不得反转/扩散）。"""
+    src = MART_EVIDENCE_CHAIN_PATH.read_text(encoding="utf-8")
+    clean = _strip_sql_comments(src)
+    pat = re.compile(
+        r"CASE\s+WHEN\s+c\.city_slug\s*=\s*'nanjing'\s+AND\s+c\.segment\s*=\s*'CONDITION'\s+"
+        r"THEN\s+'false'\s+ELSE\s+'true'\s+END\s+AS\s+lineage_is_demo"
+    )
+    assert pat.search(clean), (
+        "mart_city_evidence_chain.sql: pilot is_demo CASE 结构失守 "
+        "(pilot 'false' + ELSE 'true'; per `572` §SCHEMA)"
+    )

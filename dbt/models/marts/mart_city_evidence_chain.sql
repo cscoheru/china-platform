@@ -14,14 +14,21 @@
 --
 -- Demo-join status (per `293` §SCHEMA + §红线 + docs/47 §3.1):
 --   - 10 cities × 6 segments = 60 rows (per docs/46 §2 10 城锁定清单).
---   - lineage.is_demo = 'true' (per S1.18 sentinel).
---   - lineage.source_file_sha256 = REPEAT('0', 64)::TEXT 占位
---     (per docs/47 §3.1 ⚠️ OPEN；O1 真实 SHA 收口前恒占位).
+--   - lineage.is_demo = 'true' on 59 rows (per S1.18 sentinel);
+--     pilot row (nanjing, CONDITION) = 'false' (per `572`).
+--   - lineage.source_file_sha256 = REPEAT('0', 64)::TEXT 占位 on 59 rows
+--     (per docs/47 §3.1 ⚠️ OPEN；O1 真实 SHA 收口前恒占位);
+--     pilot row (nanjing, CONDITION) = registry post-(a) real SHA
+--     a7e4029df707918a552ad2580e8088a945bfe43ec3a2447742553258d0f1f8eb
+--     (per `538` (a) 裁定值 + `560` hash 匹配 live refresh; pilot ≠ O1 收口).
 --   - canonical_statement 仅 CONDITION 段非空演示占位
 --     （其余 5 段空演示"未覆盖"，与 docs/44 §1.1 S2.7-a 段级 gaps 守门一致）.
 --
 -- Red lines (per docs/47 §1.2 + docs/34 §1 + docs/06 §6.6 + docs/42 §8):
---   - No fake SHA — lineage.source_file_sha256 is always '0'*64 placeholder.
+--   - No fabricated SHA — the ONLY non-placeholder value is the registry-
+--     anchored post-(a) NATIONAL_BULLETIN SHA on the single pilot row
+--     (nanjing + CONDITION, per `538`/`560`/`572`); all other 59 rows keep
+--     '0'*64; spreading the real SHA to more rows = later knife (NOT this one).
 --   - No score / rating / rank / total_score / confidence_score columns.
 --   - No real person/tenure JOIN data (related_persons filled by S2.7-b-full
 --     landing knife after S2.1-lite mart_person_tenure PASS).
@@ -96,7 +103,18 @@ SELECT
         WHEN c.segment = 'CONDITION' THEN 'DERIVED'
         ELSE 'FACT'
     END                                                                      AS info_layer,          -- FACT / DERIVED / INFERENCE / JUDGMENT
-    -- lineage — ALWAYS placeholder until O1 SHA closes (per docs/47 §3.1 ⚠️ OPEN)
-    'true'                                                                   AS lineage_is_demo,     -- 'true' / 'false'
-    REPEAT('0', 64)::TEXT                                                    AS lineage_source_file_sha256  -- ⚠️ placeholder
+    -- lineage — O1 pilot row (nanjing + CONDITION) carries the registry
+    -- post-(a) real SHA (per `572` §SCHEMA + `538` (a) 裁定值 + `560` hash
+    -- 匹配 live refresh, lineage O1_AUTO_INTAKED / is_demo='false'); the
+    -- other 59 rows keep the '0'*64 demo placeholder (per docs/47 §3.1
+    -- ⚠️ OPEN; full 60-row flip = later knife, NOT this one).
+    CASE
+        WHEN c.city_slug = 'nanjing' AND c.segment = 'CONDITION' THEN 'false'
+        ELSE 'true'
+    END                                                                      AS lineage_is_demo,     -- pilot 行 'false'；其余 59 行 'true'
+    CASE
+        WHEN c.city_slug = 'nanjing' AND c.segment = 'CONDITION'
+            THEN 'a7e4029df707918a552ad2580e8088a945bfe43ec3a2447742553258d0f1f8eb'
+        ELSE REPEAT('0', 64)::TEXT
+    END                                                                      AS lineage_source_file_sha256  -- pilot 真 SHA（registry a7e4029d…）；其余 '0'*64 占位
 FROM cross_60 c
