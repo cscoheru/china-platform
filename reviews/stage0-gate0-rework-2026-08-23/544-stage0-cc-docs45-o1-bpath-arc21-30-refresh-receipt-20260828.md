@@ -4,7 +4,7 @@
 - 任务书：`544-stage2-docs45-o1-bpath-arc21-30-refresh-tasking-20260828`（gate queue_rev 292）
 - 前置：`543` PASS（audit 543；542 闭环完成）；用户裁定 SHA drift **(a) 已执行**（per `538`/`540`/`542`）
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_CC_HEAD_SHA`（双推：origin/github 范围见 backfill commit；backfill 单独 commit）
+- cc_head：`edc3b96`（双推：origin 4055cae..edc3b96，github 4055cae..edc3b96；backfill 单独 commit）
 - 日期：2026-08-28
 
 ---
