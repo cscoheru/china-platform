@@ -4,7 +4,7 @@
 - 任务书：`564-stage2-docs50-intro-chain-562-and-docs45-item33-refresh-bundle-tasking-20260828`（gate queue_rev 312；合刀：一把任务书多步、一个回执）
 - 前置：`563` PASS（audit 563；562 闭环完成）
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_CC_HEAD_SHA`（双推 origin/github 后回填；cc_head backfill 单独 commit 再双推）
+- cc_head：`3fd7b42`（双推 origin/github 245f638..3fd7b42；cc_head backfill 单独 commit 再双推）
 - 日期：2026-08-28
 
 ---
