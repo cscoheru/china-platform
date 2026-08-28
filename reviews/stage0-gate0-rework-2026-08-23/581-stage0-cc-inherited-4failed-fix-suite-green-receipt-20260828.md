@@ -173,8 +173,10 @@ OK manifest updated; added 4 artifacts
 - ✅ 回执位于 `reviews/stage0-gate0-rework-2026-08-23/`（含 `-cc-`）—— 达成
 - ✅ Co-Authored-By trailer 待 commit 时附加（per knife 16 fix）
 
-## 完成后（下一步）
+## cc_head（交付后回填，独立 commit）
 
-1. 双推完成（origin 优先，github 次之）；strict order = `git push origin HEAD` → `git push github HEAD`（per knife 16 fix）。
-2. cc_head backfill：**单独 commit，never amend**；`cc_head` 行追加 = `581-stage0-cc-inherited-4failed-fix-suite-green-receipt-20260828 → \`<commit-hash>\``；双推同上。
-3. 回报 cc_head；架构师出 `582` 号位审计；随后签发 **582 = O3 实装首刀**（`validate_ocr_input()` API + `source_document.doc_kind='OCR_SCAN'` migration 014，引擎 paddle-ocr per 裁定）。
+- **cc_head（合刀 commit）**: `fd483d1`（2026-08-28；`feat(stage0): knife 581 — 继承 4 failed 修复刀（恢复全量套件全绿 · 三处断言口径修正）`；12 files changed, 687 insertions(+), 68 deletions(-)）
+- **双推**: origin `81188dc..fd483d1 HEAD -> main` ✅ → github `81188dc..fd483d1 HEAD -> main` ✅（严格顺序）
+- **queue**: `00-EXEC-QUEUE.md` §CURRENT status = **DELIVERED**（已随 `fd483d1` 入库；manifest 条目 SHA 刷新至 DELIVERED 态 `9ef95854`，不增计数）
+- **manifest**: `911 == 911 == 911`（回执条目 SHA = `ab45a1f3` 即本文件 backfill 前最终态；本 backfill 为独立 commit，房规允许不再刷 manifest）
+- 执行端已停止，待架构师 `582` 号位审计；O3 实装刀（`582` = `validate_ocr_input()` + migration 014 `doc_kind='OCR_SCAN'`，引擎 paddle-ocr per 裁定）待签发，真实 PDF `--confirm-o3=PATH` 为用户保留动作
