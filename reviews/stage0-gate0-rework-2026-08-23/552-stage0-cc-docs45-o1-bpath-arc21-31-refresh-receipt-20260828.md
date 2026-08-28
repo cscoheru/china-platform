@@ -4,7 +4,7 @@
 - 任务书：`552-stage2-docs45-o1-bpath-arc21-31-refresh-tasking-20260828`（gate queue_rev 300）
 - 前置：`551` PASS（audit 551；550 闭环完成）
 - 作者：CC（heartbeat 84）
-- cc_head：`PENDING_CC_HEAD_SHA`（双推 origin/github 范围见 backfill commit；backfill 单独 commit）
+- cc_head：`568209a`（双推 origin/github 7c9708a..568209a；cc_head backfill 单独 commit 再双推）
 - 日期：2026-08-28
 
 ---
