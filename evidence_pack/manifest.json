@@ -1,5 +1,5 @@
 {
-  "artifact_count": 886,
+  "artifact_count": 889,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "c60e380ab66c0b2986affb7ea492511085b7b219b157823202055817f3b7e74e",
-      "size_bytes": 30145
+      "sha256": "ec66678c1d40c88a64502b856d2ef66440e48e1769097c699c33fea41f2ff878",
+      "size_bytes": 262619
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -4042,8 +4042,8 @@
     {
       "path": "docs/53-stage2-public-ingest-ops-handbook-20260826.md",
       "role": "documentation",
-      "sha256": "35a7c0bf077697712958cc8b521ef85978a6c81a9594c35d7914f3bdb4476ba5",
-      "size_bytes": 7010
+      "sha256": "893ecd2897ab5098545f49ed7d4b31ac05e8ad0e8b62105a56b6f21143ddd851",
+      "size_bytes": 60467
     },
     {
       "path": "scripts/_knife57_manifest_bump.py",
@@ -5316,6 +5316,24 @@
       "role": "documentation",
       "sha256": "a3efc7425e18c08ee2c6caf48502242a13b30fdd6927070332f757223057aa5b",
       "size_bytes": 11581
+    },
+    {
+      "path": "scripts/_knife574_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "c21af3247a4622a88b809ba1277c317de3342884171c7594f6b7a2be5cc4964c",
+      "size_bytes": 6161
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/573-stage0-architect-s572-mart-sha-pilot-audit-PASS-20260828.md",
+      "role": "documentation",
+      "sha256": "092c7b352d2e5d566000f29319e992316ac43a60dd6b9b385cff67e2f1c4ae8d",
+      "size_bytes": 3478
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/574-stage0-cc-o1-docs-closeout-bundle-receipt-20260828.md",
+      "role": "documentation",
+      "sha256": "25d11a1418c9018cb9f9e5000418f153be48120eed03490a2f9e4a1183b375a8",
+      "size_bytes": 14793
     }
   ],
   "commit": {
@@ -5349,7 +5367,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 36,
-    "documentation": 203,
+    "documentation": 205,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5361,7 +5379,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 164,
+    "spike_helper": 165,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
