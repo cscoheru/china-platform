@@ -1,5 +1,5 @@
 {
-  "artifact_count": 957,
+  "artifact_count": 961,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -268,8 +268,8 @@
     {
       "path": "source_registry/registry.csv",
       "role": "source_registry_csv",
-      "sha256": "359e3bdc08d7d206a2932435f0f2365c7b0d16aeb41935a51c71a0d37b8b6bdb",
-      "size_bytes": 3718
+      "sha256": "0fccd2757747477cebc8b04f15f3fb366eec843c889f395d1168deea9d0d59aa",
+      "size_bytes": 5802
     },
     {
       "path": "scripts/compute_file_sha.py",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "4bb9dd869be26631a3d8d48351bc896fbeb08439d6810e9435ea7c2fc5c57c5d",
-      "size_bytes": 182495
+      "sha256": "2bff46701575f1af299dc14ab4aa3bd322007234af651d4bb41005a8e4af8240",
+      "size_bytes": 209477
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5734,14 +5734,38 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/605-stage0-cc-o1-§5.2.x-real-sha-locked-江苏样本-tasking-20260829-receipt.md",
       "role": "documentation",
-      "sha256": "a22a5fbff9f563a6d19ec55fd620ed2f18c6acf6b392ad5cd00bd19e842b76c5",
-      "size_bytes": 18029
+      "sha256": "9493c375b7dc0fc37505ba67d889820f2709c8dc897a66dc36566b3a872de13e",
+      "size_bytes": 18030
     },
     {
       "path": "data/seed_archives/jiangsu_stats_gov_cn_zxfb_20260829.html",
       "role": "spike_sample_or_truth",
       "sha256": "450e7f723795241c58c34c3c8f18147cf289db04c3fa2bbbdd7c0db564f49279",
       "size_bytes": 73048
+    },
+    {
+      "path": "scripts/_knife606_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "41ec301b3e582c904f87e11c842eebbaf1f652090e04ffc56fd0258d920f7865",
+      "size_bytes": 9181
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/605-stage0-architect-s604-o1-§5.2.x-real-sha-locked-江苏样本-tasking-20260829-audit-PASS-20260829.md",
+      "role": "documentation",
+      "sha256": "96c1d00b4a47b17c8840bfab0145fa9db611c2fefe5aa335cc9d4d0a02b8ca94",
+      "size_bytes": 31842
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/606-stage0-cc-o1-§5.2.x-real-sha-locked-江苏地市样本-tasking-20260829-receipt.md",
+      "role": "documentation",
+      "sha256": "048cbab3f6d538bb19c46cbf8d2934425f29ea24ddd022a7a1521b757f3892c1",
+      "size_bytes": 21473
+    },
+    {
+      "path": "data/seed_archives/jiangsu_suzhou_tjj_gov_cn_20260829.html",
+      "role": "spike_sample_or_truth",
+      "sha256": "df3d8246679040968a747762d8c11eccf7b63647cadfc2c50719322badf7c7fd",
+      "size_bytes": 39324
     }
   ],
   "commit": {
@@ -5775,7 +5799,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 236,
+    "documentation": 238,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5787,8 +5811,8 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 194,
-    "spike_sample_or_truth": 384,
+    "spike_helper": 195,
+    "spike_sample_or_truth": 385,
     "spike_test": 7,
     "spike_truth_builder": 2,
     "test_conftest": 1,

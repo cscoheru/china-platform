@@ -550,6 +550,8 @@
 > ⚠ **docs/45 §6.x 状态行 append**（per 603 · 2026-08-29）：O1 §5.2.x 真实 SHA-locked 江苏样本刀待 docs/52 B 路落定后另刀下发；O3 §5.2.x 已闭合 per 588 + 590 + 597 + 598 + 599 + 600 + 601 + 602 八重声明（601 docs-only refresh 收口 + 602 audit 84/84 验证项 PASS）；dbt mart 真表 / docs/10 §3.2-3.4 / person/tenure 真数据 仍 OPEN（推 S2.7-b-full 真数据迁移刀）。
 
 > ⚠ **docs/45 §6.2 O1 status append**（per 605 · 2026-08-29）：O1 §5.2.x 真实 SHA-locked 江苏样本刀首批样本已落地（`450e7f723795` per source_registry/registry.csv +1 行；江苏统计局公开源 = 国家统计局 zxfb.html 江苏分省页面含 tj.jiangsu.gov.cn 江苏局 reference；执行端自取预 vetted 公开源走完整 e2e 流水线 per docs/52 B 路 spec；paddle-ocr e2e 在 .venv-paddle 隔离 venv 内接通 + HTML 路径走 docs/53 §5 connector 模式 + source_document + lineage JSONB mock writer 9 字段完整 + migration 001-013 零触碰）；后续江苏样本刀待续接。docs 房规 NOT-IN-MANIFEST。
+
+> ⚠ **docs/45 §6.2 O1 status append**（per 606 · 2026-08-29）：O1 §5.2.x 江苏地市样本刀首批地市样本已落地（`df3d824667904` per source_registry/registry.csv +1 行；江苏地市统计局公开源 = 执行端自取预 vetted 政府/统计局/研究机构公开源；执行端自取预 vetted 公开源走完整 e2e 流水线 per docs/52 B 路 spec；paddle-ocr e2e 在 .venv-paddle 隔离 venv 内接通 + HTML 路径走 docs/53 §5 connector 模式 + source_document + lineage JSONB mock writer 9 字段完整 + migration 001-013 零触碰 + 既有 8 行 SHA 零漂移）；后续江苏样本刀（5 省 + 10 地市）待续接。docs 房规 NOT-IN-MANIFEST。
 >
 > ⚠ **本文件不宣布 Gate 2 PASS**（per docs/34 §1 + §10.4 W8 评审日期不擅自提前；本节 status append 仅闭合 docs/45 §6.x 内 stale `--confirm-*` + `用户裁定` 字面零调用）。
 > Gate 2 评审日期暂定 W8（per docs/34 §10.4）。
