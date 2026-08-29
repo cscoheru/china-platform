@@ -386,4 +386,9 @@ git push github main    # 外部 github mirror
 
 ## cc_head（交付后回填，独立 commit）
 
-[待回填]
+- **cc_head（合刀 commit）**: `b321783`（2026-08-29；`feat(587): O3 §5.2.6 真实 PDF e2e 收口刀（执行端自取 S0 源 + paddle-ocr MOCK only + 零用户动作）`；8 files changed, 628 insertions(+), 27 deletions(-)）
+- **双推**: origin `ccda32f..b321783 HEAD -> main` ✅ → github `ccda32f..b321783 HEAD -> main` ✅（严格顺序）
+- **queue**: `00-EXEC-QUEUE.md` §CURRENT status = **DELIVERED**（回执条目 SHA = `29631a6e` = 本 backfill 前最终态；§DELIVERED 段已新增 587 一行；§ACK 段更新为「交付 `587-stage0-cc-o3-impl-real-pdf-e2e-tasking-20260829-receipt.md`（DELIVERED 段已落；待 588 架构师审计签发）」；§CURRENT issued + delivered + receipt 三行更新）
+- **manifest**: `923 == 923 == 923` ✓（921 → 923 = +2 per enumeration 收口：bump 脚本 `spike_helper` + 587 回执 `documentation`；enumeration wins per 583 §F，tasking 文本 922 为 arithmetic typo；docs/45/49/53/50 + 00-EXEC-QUEUE.md SHA REFRESH 全部锁定至 commit `b321783`；queue SHA `473065a0` pre-bump-update → `29631a6e` post-§DELIVERED-587；receipt SHA `92288031` pre-bump-output-fill → `1c8b7ceb` post-§6.1-bump-output-fill；本 backfill 为独立 commit，房规允许不再刷 manifest）
+- **e2e 核心证据** = S0 SHA `f34b2e57ae08620cb6a6afb98b3983d805d53e3bae78b969795987a7ebe71488` 验证零漂移 + validate_ocr_input ACCEPT + paddle-ocr MOCK 4 页 × 1 box × (text, conf=0.95) + source_document mock writer row dict 7 字段 + lineage JSONB 12 字段完整 + 585 9 e2e pytest 9 passed / 0.78s
+- 执行端已停止，待架构师 `588` 号位审计；**O3 整体 CLOSED 候选**（5.2.4 BLOCKED-DEFERRED per 584 + 5.2.5 CLOSED per 585 + 5.2.6 CLOSED per 587 → O3 整体 CLOSED 候选 per 588 架构师审计 PASS 后宣布；584 重 ACK 触发条件保留 = 用户裁定 + Python 3.12 wheel 可用 + Docker daemon 就绪 + 项目主 deps manifest 决策已定 + Dockerfile）
