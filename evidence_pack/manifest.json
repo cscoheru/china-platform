@@ -1,5 +1,5 @@
 {
-  "artifact_count": 911,
+  "artifact_count": 917,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "a21ddcf3b818f76ea977e6953217492b524a6f87fbc6bec1c1b7ea74427c0654",
-      "size_bytes": 273023
+      "sha256": "e48e2d16c3d5e36fa586cfbda2ed06c7b2d38d08e2dafeb36fc9a15ce4ba5403",
+      "size_bytes": 279571
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -3688,8 +3688,8 @@
     {
       "path": "scripts/intake_real_sha_if_present.py",
       "role": "spike_helper",
-      "sha256": "d8e242658c8001e981fe61a2625ffd48bcbf4548e9a730aeafae5aa18471ed5b",
-      "size_bytes": 11950
+      "sha256": "239b85c9c968df82e7c9f925bae037a54dfe468cfe8c6e05fc0d510aefcaa828",
+      "size_bytes": 14457
     },
     {
       "path": "tests/test_intake_real_sha_live_s2022.py",
@@ -3784,8 +3784,8 @@
     {
       "path": "docs/49-stage2-o3-ocr-prod-path-plan-20260826.md",
       "role": "documentation",
-      "sha256": "75991075abd1ce80e448a43d9d06343ee4532bd98321925cd8342f394089aae6",
-      "size_bytes": 22077
+      "sha256": "11dc0e166200d2028595d6c576882402b970de995216fa72524dd3203d9ecd67",
+      "size_bytes": 23514
     },
     {
       "path": "scripts/_knife39_manifest_bump.py",
@@ -4042,8 +4042,8 @@
     {
       "path": "docs/53-stage2-public-ingest-ops-handbook-20260826.md",
       "role": "documentation",
-      "sha256": "169ba426b0c67854bcd5563efe046b2c96eec1fe09f428781891174e3605888b",
-      "size_bytes": 67203
+      "sha256": "673af75002d538fb41f14327b47cede0e5153543f8d38f9b1f694f5bcf070d28",
+      "size_bytes": 72156
     },
     {
       "path": "scripts/_knife57_manifest_bump.py",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "9ef958540b40a3928abf38adbb47da84668b09cb1b50ca52d61f1ee42d4f40c9",
-      "size_bytes": 2907
+      "sha256": "beb90859fdab10963ad73a912341d7b56e2dc9d1fbf86b60f30d541fdfb6927f",
+      "size_bytes": 3969
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5466,6 +5466,42 @@
       "role": "schema_negative_test",
       "sha256": "60674219186f91096db55ea0594871ee914da35e57210e46a6adb398e34a3d42",
       "size_bytes": 76099
+    },
+    {
+      "path": "scripts/_knife583_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "a90acef6856ceaa3a6ee325aa5da718270e198e8fb3dabb04740a7604bda2460",
+      "size_bytes": 7978
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/583-stage0-cc-o3-impl-validate-api-doc-kind-receipt-20260828.md",
+      "role": "documentation",
+      "sha256": "27f971c4a6a926b4ede43f1b1ae85a23444e44fdd3b1bc15a0eca762d97665e9",
+      "size_bytes": 14255
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/582-stage0-architect-s581-inherited-fix-audit-PASS-20260828.md",
+      "role": "documentation",
+      "sha256": "6e5ad8f08033f9ca1352a25dacb0bca0bb38240e6673a6c53adeb0ca5504f61e",
+      "size_bytes": 12757
+    },
+    {
+      "path": "schema/migrations/014_source_document_doc_kind.sql",
+      "role": "schema_migration_ddl",
+      "sha256": "2af0e93355ecbd348fbfd42a041c562dc8f8701692bd47c56e390ab0b8a44196",
+      "size_bytes": 2064
+    },
+    {
+      "path": "schema/migrations/014_source_document_doc_kind.log",
+      "role": "schema_migration_log",
+      "sha256": "8301bf2cd922596512ed288ac456bf039eb1008080b33f2da8023aede0f152aa",
+      "size_bytes": 2358
+    },
+    {
+      "path": "tests/test_validate_ocr_input_583.py",
+      "role": "schema_negative_test",
+      "sha256": "260f4a58ab57795ec26065925d24196ada34a3b34808a35cec69efada58754c2",
+      "size_bytes": 9916
     }
   ],
   "commit": {
@@ -5499,19 +5535,19 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 212,
+    "documentation": 214,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
     "schema_ddl": 1,
-    "schema_migration_ddl": 12,
-    "schema_migration_log": 8,
-    "schema_negative_test": 50,
+    "schema_migration_ddl": 13,
+    "schema_migration_log": 9,
+    "schema_negative_test": 51,
     "source_registry_csv": 1,
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 177,
+    "spike_helper": 178,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

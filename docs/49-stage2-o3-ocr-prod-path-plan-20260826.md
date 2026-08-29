@@ -81,6 +81,8 @@ def validate_ocr_input(path: Path) -> Literal["ACCEPT", "REJECT_OUTSIDE_ALLOWLIS
 
 > 注：本刀不实装 `validate_ocr_input()`；仅规划 API 形态。实装留待后续 knife（tasking 31X+）。
 
+> **实装 per 583 任务书 §A（2026-08-29 落地，架构师治理模型第五刀）**：实际常量名 = `ALLOWED_PREFIXES`（`compute_file_sha.ALLOWED_PREFIXES`，含 `/tmp/cegr_uploads/` + `/private/tmp/cegr_uploads/` + `data/seed_archives/` 三前缀）+ `SEED_ARCHIVES`（`scripts/intake_real_sha_if_present.SEED_ARCHIVES`）+ `is_control_flow_fixture(path) -> bool` 公开 wrapper（包装既有私有 `_is_fixture`；`scripts/intake_real_sha_if_present.is_control_flow_fixture`）；MIME 检测采用 **stdlib `mimetypes.guess_type(name, strict=False)` 后缀匹配**（零新依赖；**不引入 `python-magic` / `libmagic`**；§5.2.4 后续刀如需 content sniffing 精度提升可切到 `python-magic` 单独议）；**§2.3 字面示例（`ALLOWED_UPLOAD_DIR` + `DATA_SEED_ARCHIVES_DIR` + `magic.from_file`）不动**（规划示意 ≠ 实装代码；记入 docs/49 修订议题，不阻塞 583）；**§5.2.2 + §5.2.3 = CLOSED per 583**（API 实装于 `scripts/intake_real_sha_if_present.py` + migration 014 `source_document.doc_kind='OCR_SCAN'` 上线，per `583-stage0-cc-o3-impl-validate-api-doc-kind-receipt-20260828`）；**5.2.4–5.2.6 + 真实 PDF `--confirm-o3=PATH` 用户保留动作 仍 OPEN**。
+
 ---
 
 ## §3. 流水线步骤（7 步；每步可独立验证）
@@ -244,8 +246,8 @@ def validate_ocr_input(path: Path) -> Literal["ACCEPT", "REJECT_OUTSIDE_ALLOWLIS
 | # | 验收项 | 当前状态 |
 |---|---|---|
 | 5.2.1 | OCR 引擎选型（paddle-ocr / tesseract / cloud）| ⚠️ 用户裁定（per `308` §SCHEMA "本刀不做"）|
-| 5.2.2 | `validate_ocr_input()` API 实装（per §2.3）| ⚠️ 后续 knife（tasking 31X+）|
-| 5.2.3 | `source_document.doc_kind = 'OCR_SCAN'` schema migration | ⚠️ 后续 knife（tasking 31X+；本刀不引入 migration）|
+| 5.2.2 | `validate_ocr_input()` API 实装（per §2.3）| ✅ **CLOSED per 583（2026-08-29）** — API 实装于 `scripts/intake_real_sha_if_present.py`（per `583-stage0-cc-o3-impl-validate-api-doc-kind-receipt-20260828`）|
+| 5.2.3 | `source_document.doc_kind = 'OCR_SCAN'` schema migration | ✅ **CLOSED per 583（2026-08-29）** — migration 014 NEW 上线（per `583-stage0-cc-o3-impl-validate-api-doc-kind-receipt-20260828`）|
 | 5.2.4 | paddle-ocr 本地依赖 + Dockerfile layer | ⚠️ 后续 knife |
 | 5.2.5 | 端到端 pytest（upload → OCR → SHA lineage → S2.2 ingestion）| ⚠️ 后续 knife |
 | 5.2.6 | 至少 1 个真实 PDF（用户裁定提供；非爬源）| ⚠️ O3 收口须用户主动 `--confirm-o3=PATH` |

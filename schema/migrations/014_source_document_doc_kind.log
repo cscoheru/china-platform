@@ -1,0 +1,49 @@
+Migration 014 — O3 OCR 生产路径：source_document.doc_kind 列（新增）
+
+Per docs/49 §3.2 Step 7 output spec + §5.2.3 + 583 任务书 §B。
+
+apply:  `psql "postgresql://postgres:postgres@127.0.0.1:55440/cegr_test" -v ON_ERROR_STOP=1 -f schema/migrations/014_source_document_doc_kind.sql`
+verify: `\d source_document` (应见 doc_kind TEXT NOT NULL DEFAULT 'NORMAL' + source_document_doc_kind_check CHECK + idx_source_doc_doc_kind)
+
+依赖:
+- schema/01-core.sql L312-334 (source_document 表)
+
+新增:
+- 1 列: doc_kind TEXT NOT NULL DEFAULT 'NORMAL'
+- 1 CHECK 约束: source_document_doc_kind_check (doc_kind IN ('NORMAL','OCR_SCAN'))
+- 1 索引: idx_source_doc_doc_kind ON source_document (doc_kind)
+- 1 COMMENT ON COLUMN doc_kind
+
+不动:
+- source_document 表既有列结构 (id / source_registry_id / source_level /
+  verification_status / title / publisher / publication_date / url /
+  file_path / file_hash_sha256 / file_format / file_size_bytes / language /
+  extraction_method / caveat_text / copyright_note / uploader_id / created_at)
+- migration 001-013 任何文件
+- schema/01-core.sql
+- 既有 CHECK 约束 (source_doc_has_hash / source_doc_hash_format / source_doc_size_positive)
+- 既有索引 (idx_source_doc_publisher / _level / _pubdate / _hash / _verification)
+- dbt / mart / 前端任何文件
+- 任何外部依赖 (paddle-ocr / paddleocr / python-magic / libmagic)
+
+列选择 deviation from docs/49 §3.2 Step 7: 见 migration 014 header 注释
+（仅新增 doc_kind 列；其余语义映射走既有列 file_hash_sha256 / language /
+uploader_id / created_at / file_format，避免列冗余；lineage JSONB 本期不增）。
+
+红线:
+- ❌ 不引入 score/rating/rank/total_score/confidence_score/credibility_score 列
+- ❌ 不引入新业务表
+- ❌ 不写 seed 数据
+- ❌ 不写 dbt mart
+- ❌ 不接 admin UI
+- ❌ 不引入外部依赖（零新依赖）
+
+静态核验 (2026-08-29; cc-exec 跟单 583):
+- 文件存在 ✅
+- 结构标准 (BEGIN/COMMIT + ALTER TABLE ADD COLUMN + ADD CONSTRAINT CHECK +
+  CREATE INDEX + COMMENT ON COLUMN) ✅
+- DEFAULT 'NORMAL' 保证既有行零数据迁移 ✅
+- 不动 001-013 / 01-core.sql / dbt / mart / 前端 ✅
+
+psql 实跑: 未执行（环境无 psql 启用，按 migration 013 范式 — 语法静态核验 +
+后续手动 apply；apply 后本旁车补 apply 日志行）。

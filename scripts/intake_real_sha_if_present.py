@@ -40,12 +40,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import mimetypes
 import re
 import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 import compute_file_sha  # type: ignore[import-not-found]  # scripts/ on PYTHONPATH via __file__
 
@@ -102,6 +103,64 @@ def _is_fixture(path: Path) -> tuple[bool, str]:
         if marker in head:
             return True, f"content marker: {marker!r}"
     return False, "passed all fixture checks"
+
+
+def is_control_flow_fixture(path: Path) -> bool:
+    """Public wrapper over private `_is_fixture` (per docs/48 §4.1).
+
+    Returns True iff `path` matches any control-flow fixture rule:
+      - filename matches FIXTURE_NAME_PATTERNS (regex)
+      - size < 1KiB AND mtime within CONTROL_FLOW_MTIME_WINDOW_S
+      - first 512 bytes contain FIXTURE_CONTENT_MARKERS
+    Used by `validate_ocr_input()` (per docs/49 §2.3 / 583 任务书 §A) and
+    any future O3 pipeline entrypoint that needs to refuse fixtures before
+    SHA / OCR work.
+    """
+    ok, _reason = _is_fixture(path)
+    return ok
+
+
+def validate_ocr_input(
+    path: Path,
+) -> Literal[
+    "ACCEPT", "REJECT_OUTSIDE_ALLOWLIST", "REJECT_CONTROL_FLOW_FIXTURE", "REJECT_MIME"
+]:
+    """OCR pipeline input gate (per docs/49 §2.3 + 583 任务书 §A; closes §5.2.2).
+
+    Three-step gate, in order:
+      1. `path.resolve()` must start with one of `ALLOWED_PREFIXES`
+         (mirrors `compute_file_sha._resolve_and_validate` semantics).
+         Otherwise → "REJECT_OUTSIDE_ALLOWLIST".
+      2. `is_control_flow_fixture(resolved)` must be False
+         (per docs/48 §4.1).
+         Otherwise → "REJECT_CONTROL_FLOW_FIXTURE".
+      3. `mimetypes.guess_type(name)` must be one of
+         {application/pdf, image/tiff, image/jpeg, image/png}.
+         Otherwise → "REJECT_MIME".
+      All three pass → "ACCEPT".
+
+    This function is PURE: it does NOT compute SHA, does NOT read file
+    contents beyond what `_is_fixture` does, and does NOT touch the DB.
+    SHA computation goes through the existing `compute_file_sha.py`
+    entrypoint downstream (per docs/49 §3.2 Step 3).
+
+    MIME detection uses stdlib `mimetypes` (suffix-based); a future
+    content-sniffing upgrade is deferred to §5.2.4+ (independent deps
+    decision — not in 583 scope).
+    """
+    resolved = path.resolve()
+    resolved_s = str(resolved)
+    # Step 1: allowlist (mirror compute_file_sha prefix check).
+    if not any(resolved_s.startswith(pref) for pref in ALLOWED_PREFIXES):
+        return "REJECT_OUTSIDE_ALLOWLIST"
+    # Step 2: control-flow fixture (per docs/48 §4.1).
+    if is_control_flow_fixture(resolved):
+        return "REJECT_CONTROL_FLOW_FIXTURE"
+    # Step 3: MIME whitelist (per docs/49 §2.1 legal-MIME set).
+    mime, _enc = mimetypes.guess_type(resolved.name, strict=False)
+    if mime not in ("application/pdf", "image/tiff", "image/jpeg", "image/png"):
+        return "REJECT_MIME"
+    return "ACCEPT"
 
 
 def _is_candidate_window(path: Path) -> tuple[bool, str]:
