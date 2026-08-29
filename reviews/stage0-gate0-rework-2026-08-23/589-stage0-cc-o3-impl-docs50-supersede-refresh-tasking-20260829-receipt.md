@@ -247,4 +247,22 @@ git push github main    # 外部 github mirror
 
 ## cc_head（交付后回填，独立 commit）
 
-[待回填]
+- exec_commit: `3fdb0ba17a12c29f5b0051270d1cff2c2cf4a513`
+- exec_message: `feat(589): docs/50 §5.1 row 119 stale --confirm-o3=PATH supersede refresh + 588 audit 入库（per 2026-08-29 治理铁律）`
+- exec_author: CC-exec（Claude Code 执行终端）
+- exec_date: 2026-08-29
+- files_changed: 6 (3 NEW + 3 MODIFIED)
+  - NEW: `reviews/stage0-gate0-rework-2026-08-23/588-stage0-architect-s587-o3-impl-real-pdf-e2e-audit-PASS-20260829.md` (21,194 bytes, sha `f033b009…`)
+  - NEW: `reviews/stage0-gate0-rework-2026-08-23/589-stage0-cc-o3-impl-docs50-supersede-refresh-tasking-20260829-receipt.md` (sha `fbb418f3…`)
+  - NEW: `scripts/_knife589_manifest_bump.py` (6,635 bytes, sha `54cf6013…`)
+  - MODIFIED: `docs/50-stage2-gate2-review-packet-draft-20260826.md` (+2 lines: row 119 supersede append)
+  - MODIFIED: `evidence_pack/manifest.json` (artifact_count 923 → 926; INVARIANT 926==926==926)
+  - MODIFIED: `reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md` (rev 7; §CURRENT status PENDING → DELIVERED; +§DELIVERED 589 entry)
+- double_push:
+  - origin/main: `7e4fd67..3fdb0ba` ✓
+  - github/main: `7e4fd67..3fdb0ba` ✓
+  - HEAD: `3fdb0ba17a12c29f5b0051270d1cff2c2cf4a513` ✓
+  - triple_side_convergence: 100% 一致 ✓
+- manifest_INVARIANT: 926 == 926 == 926 ✓（enumeration wins；tasking 文本 925 为 arithmetic typo）
+- audit_recommendation: ACCEPTED by 执行端（PASS 待 590 架构师审计签发）
+- next_audit: `590-stage0-architect-s589-o3-impl-docs50-supersede-refresh-audit-…md`（PASS/FAIL 签发）

@@ -5554,8 +5554,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/589-stage0-cc-o3-impl-docs50-supersede-refresh-tasking-20260829-receipt.md",
       "role": "documentation",
-      "sha256": "fbb418f3d426830f7ca8b1e7f3967597842b314b74442a38f6d5ccf8900f9541",
-      "size_bytes": 17898
+      "sha256": "a02f1d84b13242af3ccff71ec104c32dee359380734e397386d182dec007830d",
+      "size_bytes": 19431
     }
   ],
   "commit": {
