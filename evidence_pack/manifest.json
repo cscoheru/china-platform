@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "842de7666631e2474bf0a1a1f9f4d4a4ca3587b9f0c3617d47d8ccf10592a8dc",
-      "size_bytes": 110858
+      "sha256": "f37fa97268587f124238ff891c080e8a6a5411e931b56a7edcf5d98073c8b416",
+      "size_bytes": 116411
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5662,8 +5662,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/597-stage0-cc-584-reack-impl-tasking-20260829-receipt.md",
       "role": "documentation",
-      "sha256": "c5ce10ab6b4f9b0a6515cd90ae71e6ff0d28461c5762d45730cd3e122605003e",
-      "size_bytes": 24882
+      "sha256": "cc0ceb1b9c0e5274cf16f90d481a0ce86d48c37f193b196d9dca31a37f96c3df",
+      "size_bytes": 26004
     }
   ],
   "commit": {

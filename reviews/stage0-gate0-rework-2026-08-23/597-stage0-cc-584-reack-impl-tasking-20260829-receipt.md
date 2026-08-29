@@ -362,6 +362,37 @@ OK manifest updated; added 3 artifacts
 
 ---
 
+## §双推（per 596 + 595 + 594 + 593 + 591 + 589 平行模式）
+
+| 提交 | commit hash | 描述 |
+|---|---|---|
+| feat(597) | `d2505db` | 584 §5.2.4 paddle-ocr 引擎依赖实施 + 584 docs sync 收口 (manifest 941 → 944) |
+| cc_head(597) backfill | `TBD` | populate §CURRENT commit SHA + receipt §双推 + cc_head metadata（per 596 + 595 + 594 + 593 + 591 + 589 precedent）|
+
+双推链路：
+- `git push origin main`: `951cd63..d2505db main -> main`
+- `git push github main`: `951cd63..d2505db main -> main`
+
+三侧收敛（待 cc_head backfill commit 落地后 100% 一致）：
+- feat(597): `d2505db`
+- cc_head(597) backfill: `TBD`（待 populate）
+- §CURRENT commit SHA: `d2505db`
+
+---
+
+## §cc_head（backfill commit metadata）
+
+| 字段 | 值 |
+|---|---|
+| feat commit | `d2505db` |
+| cc_head commit | `TBD`（待 populate）|
+| 双推 chain | `951cd63..d2505db..TBD` |
+| manifest INVARIANT | 944 == 944 == 944 ✓ |
+| receipts INVARIANT | 13 受保护文件零漂移（per 597 §4 32 红线 100% 兑现）|
+| 待架构师审计 | 598-stage0-architect-s597-584-impl-audit-…md（PASS/FAIL）|
+
+---
+
 — End of `597-stage0-cc-584-reack-impl-tasking-20260829-receipt.md` —
 
 > ⚠ **本回执不宣布 Gate 0/1/2 / O1 PASS / O3 PASS**（per docs/34 §1 + 32 红线 100% 兑现 + O3 整体保持 CLOSED 候选 per 588+590 双重声明 + O1 整体保持 WAITING_FILE per docs/47 + 用户 2026-08-26 披露 + 2026-08-29 治理铁律）。
