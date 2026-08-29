@@ -264,12 +264,16 @@ OK manifest updated; added 3 artifacts
 
 | 提交 | commit hash | 描述 |
 |---|---|---|
-| feat(599) | TBD | docs/52 B 路 spec selective refresh + docs/47 SKIP + docs/48 §10 supersede + docs/49 §5.2 row 5.2.4 status append + docs/50 §5.1 O3 row 119 status append + manifest bump 944 → 947 |
+| feat(599) | `8cee256` | docs/52 B 路 spec selective refresh + docs/47 SKIP + docs/48 §10 supersede + docs/49 §5.2 row 5.2.4 status append + docs/50 §5.1 O3 row 119 status append + manifest bump 944 → 947 |
 | cc_head(599) backfill | TBD | populate §CURRENT commit SHA + receipt §双推 + cc_head metadata（per 596 + 595 + 594 + 593 + 591 + 589 + 597 precedent）|
 
 双推链路：
-- `git push origin main`: TBD
-- `git push github main`: TBD
+- `git push origin main`: `4bb17ac..8cee256 main -> main`
+- `git push github main`: `4bb17ac..8cee256 main -> main`
+
+三侧收敛 100% 一致：
+- feat(599): `8cee256`
+- §CURRENT commit SHA: `8cee256`
 
 ---
 
@@ -277,9 +281,9 @@ OK manifest updated; added 3 artifacts
 
 | 字段 | 值 |
 |---|---|
-| feat commit | TBD |
+| feat commit | `8cee256` |
 | cc_head commit | TBD |
-| 双推 chain | TBD |
+| 双推 chain | `4bb17ac..8cee256` |
 | manifest INVARIANT | 947 == 947 == 947 ✓ |
 | receipts INVARIANT | 13 受保护文件零漂移（per 599 §6 31 红线 100% 兑现）|
 | 待架构师审计 | 600-stage0-architect-s599-docs-52-b-route-spec-refresh-audit-…md（PASS/FAIL）|
