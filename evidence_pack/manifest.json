@@ -1,5 +1,5 @@
 {
-  "artifact_count": 926,
+  "artifact_count": 929,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "e78872b7906cb84e236bb1e64d346d88dbd4a7cf1c256735213080142fff93b2",
-      "size_bytes": 28539
+      "sha256": "3d7f06633a5412850d95d0c0418f5ff88b748d6439a17858bbd3c96d3d23a997",
+      "size_bytes": 37670
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5556,6 +5556,24 @@
       "role": "documentation",
       "sha256": "a02f1d84b13242af3ccff71ec104c32dee359380734e397386d182dec007830d",
       "size_bytes": 19431
+    },
+    {
+      "path": "scripts/_knife591_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "00c8d9d810a0e0c463131e7d7e904d21d6fd383e0c41b78484f055c09a7f7e1a",
+      "size_bytes": 6539
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/590-stage0-architect-s589-o3-impl-docs50-supersede-refresh-audit-PASS-20260829.md",
+      "role": "documentation",
+      "sha256": "715ec1d172e14f23585c997f92616823c5d8d3ee6788529307dd3af104ae247e",
+      "size_bytes": 29416
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/591-stage0-cc-o1-impl-docs50-o1-row117-supersede-refresh-tasking-20260829-receipt.md",
+      "role": "documentation",
+      "sha256": "b835f64ffe305610414098e8a4b24a99c2fd09c4fd4a254111e4054492ed2d6b",
+      "size_bytes": 24871
     }
   ],
   "commit": {
@@ -5589,7 +5607,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 219,
+    "documentation": 221,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5601,7 +5619,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 181,
+    "spike_helper": 182,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
