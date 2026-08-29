@@ -174,7 +174,7 @@
 
 **落地**: (A)(B)(C)(D)(E)(F)(G)(H) 八段交付 + 双推 + cc_head backfill + manifest INVARIANT 验证 + 13 受保护文件零漂移 + 31+ 红线 100% 兑现 + ⚠ disclosures（3 项）
 
-**双推链**: feat(605) `<TBD>` + cc_head backfill `<TBD>` + §DELIVERED populate `<TBD>` 三步 commit 链 per 599/601/603 precedent → 三侧收敛 100% (origin main + github main both = HEAD)
+**双推链**: feat(605) `c4fc4b2` + cc_head backfill `f23b01b` + §双推 populate `<TBD>` 三步 commit 链 per 599/601/603 precedent → 三侧收敛 100% (origin main + github main both = HEAD)
 
 **cc_head backfill**: per 583/585/587/589/591/593/594/595/596/597/598/599/600/601/603 precedent（feat + cc_head separate commits 模式）
 
