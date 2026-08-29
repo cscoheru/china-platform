@@ -278,3 +278,45 @@ sum(role_count) == artifact_count == len(artifacts)
 > ⚠ **O3 整体仍 OPEN**（5.2.4 BLOCKED-DEFERRED + 5.2.6 OPEN + 真实 PDF `--confirm-o3=PATH` 用户保留动作不变）。
 > ⚠ **584 重 ACK 触发条件保留不变**（用户裁定 + env 就绪 + 主 deps manifest 决策已定 + Dockerfile + Docker daemon）。
 > INVARIANT: 921 == 921 == 921 ✓
+
+---
+
+## §双推 + cc_head backfill 计划
+
+```bash
+# 单 commit, 11 files (含本回执 stub → 后续二次 bump 刷 SHA)
+git add docs/45-stage2-s210-lite-gate2-review-index-20260826.md \
+        docs/49-stage2-o3-ocr-prod-path-plan-20260826.md \
+        docs/50-stage2-gate2-review-packet-draft-20260826.md \
+        docs/53-stage2-public-ingest-ops-handbook-20260826.md \
+        evidence_pack/manifest.json \
+        reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md \
+        reviews/stage0-gate0-rework-2026-08-23/585-stage0-architect-s584-o3-impl-paddle-ocr-deps-audit-BLOCKED-20260829.md \
+        reviews/stage0-gate0-rework-2026-08-23/585-stage0-cc-o3-impl-e2e-pytest-tasking-20260829-receipt.md \
+        scripts/_knife585_manifest_bump.py \
+        tests/fixtures/_syn_pdf_585.py \
+        tests/test_o3_e2e_585.py
+git commit -m "feat(585): O3 §5.2.5 e2e pytest 刀 paddle-ocr MOCK only" \
+    --trailer "Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
+
+# 双推 (strict order: origin first, then github)
+git push origin main    # 内部 origin
+git push github main    # 外部 github mirror
+
+# cc_head backfill (separate commit, never amend)
+# 记录 cc_exec 跟单动作到 cc_head log
+```
+
+---
+
+## cc_head（交付后回填，独立 commit）
+
+- **cc_head（合刀 commit）**: `5028fb1`（2026-08-29；`feat(585): O3 §5.2.5 e2e pytest 刀 paddle-ocr MOCK only`；11 files changed, 1081 insertions(+), 28 deletions(-)）
+- **双推**: origin `1e4ef15..5028fb1 HEAD -> main` ✅ → github `1e4ef15..5028fb1 HEAD -> main` ✅（严格顺序）
+- **queue**: `00-EXEC-QUEUE.md` §CURRENT status = **PENDING**（指向 586 架构师审计待签发；§DELIVERED 段已新增 585 一行；§ACK 段 585 一行更新为「交付 `585-stage0-cc-o3-impl-e2e-pytest-tasking-20260829-receipt.md`（DELIVERED 段已落；待 586 架构师审计签发）」）
+- **manifest**: `921 == 921 == 921` ✓（917 → 921 = +4 per enumeration 收口：bump 脚本 `spike_helper` + 585 回执 `documentation` + 584 审计文件 `documentation` + tests/test_o3_e2e_585.py `test_e2e`；回执条目 SHA = `d42405a3` 即本文件 backfill 前最终态；queue 条目 SHA = `976a7e4d`；docs/45/49/53 SHA REFRESH 全部锁定至 commit `5028fb1`；本 backfill 为独立 commit，房规允许不再刷 manifest）
+- 执行端已停止，待架构师 `586` 号位审计；**O3 整体仍 OPEN**（5.2.4 BLOCKED-DEFERRED per 584 + 5.2.6 OPEN + 真实 PDF `--confirm-o3=PATH` 用户保留动作不变；584 重 ACK 触发条件保留 = 用户裁定 + env 就绪 + 主 deps manifest 决策已定）
+
+---
+
+— End of `585-stage0-cc-o3-impl-e2e-pytest-tasking-20260829-receipt.md` —
