@@ -1,5 +1,5 @@
 {
-  "artifact_count": 923,
+  "artifact_count": 926,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "29631a6e358b7b8d9ca3910a469d15219d2cdb3ca6781240e45c1d0df432cd88",
-      "size_bytes": 20445
+      "sha256": "e78872b7906cb84e236bb1e64d346d88dbd4a7cf1c256735213080142fff93b2",
+      "size_bytes": 28539
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5538,6 +5538,24 @@
       "role": "documentation",
       "sha256": "1c8b7ceb97c63fe8cfc8c41bde81357032bbefa3ca735dd88eb514ff373f8957",
       "size_bytes": 25860
+    },
+    {
+      "path": "scripts/_knife589_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "54cf6013f01bbf784a90a267f0593426c5059f72a99034d97be95c5d0582e4c4",
+      "size_bytes": 6635
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/588-stage0-architect-s587-o3-impl-real-pdf-e2e-audit-PASS-20260829.md",
+      "role": "documentation",
+      "sha256": "f033b0091297043194e163f91f2550609ea7846e81bb2f44c6709ed90a6093e8",
+      "size_bytes": 21194
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/589-stage0-cc-o3-impl-docs50-supersede-refresh-tasking-20260829-receipt.md",
+      "role": "documentation",
+      "sha256": "fbb418f3d426830f7ca8b1e7f3967597842b314b74442a38f6d5ccf8900f9541",
+      "size_bytes": 17898
     }
   ],
   "commit": {
@@ -5571,7 +5589,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 217,
+    "documentation": 219,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5583,7 +5601,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 180,
+    "spike_helper": 181,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
