@@ -5572,8 +5572,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/591-stage0-cc-o1-impl-docs50-o1-row117-supersede-refresh-tasking-20260829-receipt.md",
       "role": "documentation",
-      "sha256": "b835f64ffe305610414098e8a4b24a99c2fd09c4fd4a254111e4054492ed2d6b",
-      "size_bytes": 24871
+      "sha256": "7c3623608dcda4d1a8907a86ec3feff526647ba9adfcb3dad20814fa936f7ff1",
+      "size_bytes": 26741
     }
   ],
   "commit": {

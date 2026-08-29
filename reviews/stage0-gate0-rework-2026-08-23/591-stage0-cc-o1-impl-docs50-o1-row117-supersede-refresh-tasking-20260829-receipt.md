@@ -301,4 +301,23 @@ git push github main    # 外部 github mirror
 
 ## cc_head（交付后回填，独立 commit）
 
-[待回填]
+- exec_commit: `4951871`
+- exec_message: `feat(591): docs/50 §5.1 row 117 A 路 stale --confirm-o1=PATH supersede refresh + 590 audit 入库（per 2026-08-29 治理铁律对称应用）`
+- exec_author: CC-exec（Claude Code 执行终端）
+- exec_date: 2026-08-29
+- files_changed: 6 (3 NEW + 3 MODIFIED)
+  - NEW: `reviews/stage0-gate0-rework-2026-08-23/590-stage0-architect-s589-o3-impl-docs50-supersede-refresh-audit-PASS-20260829.md` (29,416 bytes, sha `715ec1d1…`)
+  - NEW: `reviews/stage0-gate0-rework-2026-08-23/591-stage0-cc-o1-impl-docs50-o1-row117-supersede-refresh-tasking-20260829-receipt.md` (sha `b835f64f…`)
+  - NEW: `scripts/_knife591_manifest_bump.py` (6,539 bytes, sha `00c8d9d8…`)
+  - MODIFIED: `docs/50-stage2-gate2-review-packet-draft-20260826.md` (+1 line: row 117 A 路 supersede append line 120 blockquote)
+  - MODIFIED: `evidence_pack/manifest.json` (artifact_count 926 → 929; INVARIANT 929==929==929)
+  - MODIFIED: `reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md` (rev 8; §CURRENT status PENDING → DELIVERED; +§DELIVERED 591 entry; SHA e78872b7 → 757b1f05 → 3d7f0663)
+- double_push:
+  - origin/main: `7d8637b..4951871` ✓
+  - github/main: `7d8637b..4951871` ✓
+  - HEAD: `4951871` ✓
+  - triple_side_convergence: 100% 一致 ✓
+- manifest_INVARIANT: 929 == 929 == 929 ✓（enumeration wins）
+- 5-grep_closure: 4 落点命中 + ⚠1 ACCEPTED with disclosure（tasking §1.4 (B) `WAITING_FILE per 591` 字面预期 vs 实际 blockquote 文本「O1 整体仍 WAITING_FILE」偏差 = tasking text discrepancy 模式 per 925→926 教训模式；非事实错误 / WAITING_FILE 本身 docs/50 多处出现确认状态保持）
+- audit_recommendation: ACCEPTED by 执行端（PASS 待 592 架构师审计签发）
+- next_audit: `592-stage0-architect-s591-o1-impl-docs50-o1-row117-supersede-refresh-audit-…md`（PASS/FAIL 签发）
