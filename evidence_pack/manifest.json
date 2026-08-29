@@ -1,5 +1,5 @@
 {
-  "artifact_count": 939,
+  "artifact_count": 941,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "5a8c20169e0d53cade3e9290e4c36ce76aaceb9f9c26d5c384b38758c67640b8",
-      "size_bytes": 84273
+      "sha256": "a13842fde098d7e882c072bdce5fa4b987090724efd26d1627f9ff3fb484f540",
+      "size_bytes": 95814
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5634,6 +5634,18 @@
       "role": "documentation",
       "sha256": "3d7a6c4ff1ea0ebb216cc38727665983939f5442d2ff6eb83aa13b55274da2ff",
       "size_bytes": 38777
+    },
+    {
+      "path": "scripts/_knife596_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "dff279b877e4981e881645b917be54c13f779d2b43e287d8c3d45cf0ba7436b4",
+      "size_bytes": 6999
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/596-stage0-cc-584-reack-ready-tasking-20260829-receipt.md",
+      "role": "documentation",
+      "sha256": "99b7a021a74070ece340b509022ce806b22b7322ecc05f50cb74b86fbf4d42e6",
+      "size_bytes": 29351
     }
   ],
   "commit": {
@@ -5667,7 +5679,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 225,
+    "documentation": 226,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5679,7 +5691,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 188,
+    "spike_helper": 189,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
