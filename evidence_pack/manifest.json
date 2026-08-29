@@ -1,5 +1,5 @@
 {
-  "artifact_count": 941,
+  "artifact_count": 944,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "c4528bdeb801a44057e37efbb36ea53e58763fb855eade318739d31db92f1a04",
-      "size_bytes": 102077
+      "sha256": "842de7666631e2474bf0a1a1f9f4d4a4ca3587b9f0c3617d47d8ccf10592a8dc",
+      "size_bytes": 110858
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5646,6 +5646,24 @@
       "role": "documentation",
       "sha256": "58d4c842859035ac0da9ddddcf1cf8aa000dd08d6326d6a60e633d6e99c80526",
       "size_bytes": 34731
+    },
+    {
+      "path": "scripts/_knife597_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "4d98b5d6ad0eaacba6f74968898360166d065ac73ffb8817b8558d80fda93386",
+      "size_bytes": 6992
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/596-stage0-architect-s595-blocker-relief-dockerfile-deps-audit-PASS-20260829.md",
+      "role": "documentation",
+      "sha256": "8e92ed9dbdbe2b9f07f8d804290f789c39bcc9874b5afd0252370423a09718d8",
+      "size_bytes": 27318
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/597-stage0-cc-584-reack-impl-tasking-20260829-receipt.md",
+      "role": "documentation",
+      "sha256": "c5ce10ab6b4f9b0a6515cd90ae71e6ff0d28461c5762d45730cd3e122605003e",
+      "size_bytes": 24882
     }
   ],
   "commit": {
@@ -5679,7 +5697,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 226,
+    "documentation": 228,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5691,7 +5709,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 189,
+    "spike_helper": 190,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,

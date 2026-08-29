@@ -1,0 +1,26 @@
+# paddle-ocr 引擎依赖声明 (per 597 tasking §A)
+#
+# 约束 (per 597 红线 12 条):
+# - paddlepaddle 2.6.2 + paddleocr 3.7.0 装在 .venv-paddle 隔离 venv
+# - 不污染 system site-packages
+# - .venv-dbt 与 requirements-dbt.txt 零触碰 (物理隔离)
+# - 不引入 python-magic / libmagic
+# - 不引入 GPU runtime (CPU-only paddlepaddle 即可)
+# - 不引入 cloud OCR (零 cloud 依赖)
+# - 不修改 001-014 任何 migration 文件
+# - 不修改 schema/01-core.sql
+# - 不修改 scripts/intake_real_sha_if_present.py 与 auto_ingest_public_source.py
+# - 不修改 4 fixture 字节 (nbs=e30ee811 / nbs_live=9232efdb / sz=937255a5 / hb=9056001c)
+# - 不修改 spikes/04-scanned-pdf/data/shaanxi_fiscal_regulation_flk.pdf 原始字节
+# - 不修改 spikes/04-scanned-pdf/gate_thresholds.json
+# - 不爬网
+# - 不写 dbt/mart/前端
+# - 不宣布 Gate PASS
+# - O3 整体仍 OPEN (待 588 架构师审计 PASS 后宣布)
+#
+# 用途: docs/49 §5.2.4 paddle-ocr 引擎依赖实施 (per 584 BLOCKED-DEFERRED 4 BLOCKER 全闭环收口)
+# 镜像构建: `python3 -m venv .venv-paddle && .venv-paddle/bin/pip install -r scripts/requirements-paddle.txt`
+# 实测验证: `.venv-paddle/bin/python -c "import paddleocr; print(paddleocr.__version__)"` → exit 0 + version 3.7.0
+
+paddlepaddle==2.6.2
+paddleocr==3.7.0
