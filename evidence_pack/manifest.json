@@ -5602,8 +5602,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/594-stage0-cc-eval-584-deps-reack-trigger-tasking-20260829-receipt.md",
       "role": "documentation",
-      "sha256": "872818496f39b30360eee8343c5e8beca8345de933c43dea727348355b356ca1",
-      "size_bytes": 35607
+      "sha256": "bd9e7f5ce45f066055fa473dc7351d2b58a962b2aec746ea3c64994991cd2b48",
+      "size_bytes": 35641
     }
   ],
   "commit": {

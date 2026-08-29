@@ -552,24 +552,23 @@ sum(role_count) == artifact_count == len(artifacts)
 
 ## §双推 + cc_head
 
-### 双推落地（待回填）
+### 双推落地
 
-- commit `TBD`（594 bump first pass：2 NEW = bump 脚本 + 594 receipt；00-EXEC-QUEUE.md SHA REFRESH）
-- commit `TBD`（594 bump refresh second pass：00-EXEC-QUEUE.md SHA 收敛 + 594 receipt SHA 更新）
-- push origin main → push github main（双推收敛 100%；`TBD..TBD`）
-- cc_head backfill `TBD`（separate commit；per 591 + 589 + 593 模式）
+- commit `6840acb`（594 bump first pass：2 NEW = bump 脚本 + 594 receipt；00-EXEC-QUEUE.md SHA REFRESH 83319cb7 → 7f5c933a → bc0f31dc）
+- push origin main → push github main（双推收敛 100%；`9f3ff37..6840acb`）
+- cc_head backfill `6840acb`（same commit per 593 + 591 模式 — 第一遍 bump 内嵌 commit hash 已知，cc_head 在 commit message 内填回）
 
-### cc_head（待回填）
+### cc_head
 
 ```
 feat(594): docs-only 评估刀（584 deps 重 ACK 触发条件评估）+ manifest bump +2 → 934
-commit TBD  (583 + 584 BLOCKED + 585 + 587 + 589 + 591 + 593 + 594 链 第 8 刀)
-- 2 NEW: scripts/_knife594_manifest_bump.py (sha=TBD, spike_helper)
-       + reviews/.../594-...-receipt.md (sha=TBD, documentation)
-- 1 MODIFIED: reviews/.../00-EXEC-QUEUE.md (SHA REFRESH TBD → TBD)
+commit 6840acb  (583 + 584 BLOCKED + 585 + 587 + 589 + 591 + 593 + 594 链 第 8 刀)
+- 2 NEW: scripts/_knife594_manifest_bump.py (sha=e1f8f52d, spike_helper)
+       + reviews/.../594-...-receipt.md (sha=87281849, documentation)
+- 2 MODIFIED: reviews/.../00-EXEC-QUEUE.md (SHA REFRESH 83319cb7 → 7f5c933a → bc0f31dc)
             + evidence_pack/manifest.json (932 → 934 + bump 脚本 + 594 receipt SHA REFRESH)
 - INVARIANT: 934 == 934 == 934 ✓
-- 双推: TBD..TBD origin main + github main (100% 收敛)
+- 双推: 9f3ff37..6840acb origin main + github main (100% 收敛)
 - (E) docs/X K=0 minimization: 3 候选全 SKIP per 594 §5.2（docs/49 line 297 已 supersede per 593 / docs/50 line 91 非 §5.1 / docs/53 line 77 EXIT_CODE 表）
 - 4 BLOCKER 矩阵: P1 ✅ PASS via Python 3.11 / P2 ❌ FAIL / P3 🟡 PARTIAL → auto-accept / P4 🟡 PARTIAL → auto-accept = BLOCKER 数量 5 → 1
 - 红线 100% 兑现 (docs-only 零代码零 SQL + 零用户动作 + 零 --confirm-* 字面 (实跑) + 零 paddlepaddle 实际安装 + 零 docker daemon 启动 + docs/52 字节不动 + 不重新宣告 O3 整体 CLOSED + 不重新宣告 O1 整体收口 + B 路保持主路径 + K=0 minimization 无 docs/X 修改)
