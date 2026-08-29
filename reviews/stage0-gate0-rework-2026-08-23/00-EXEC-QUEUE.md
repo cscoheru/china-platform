@@ -14,14 +14,18 @@
 
 ## §CURRENT
 
-- tasking: `reviews/stage0-gate0-rework-2026-08-23/583-stage2-o3-impl-validate-api-doc-kind-tasking-20260828.md`
-- status: **DELIVERED**             <!-- PENDING → ACK → DELIVERED → AUDITED；只改本行 -->
+- tasking: `reviews/stage0-gate0-rework-2026-08-23/584-stage2-paddle-ocr-deps-tasking-20260829.md`
+- status: **DELIVERED（BLOCKED）**   <!-- PENDING → ACK → DELIVERED → AUDITED；只改本行 -->
 - issued: 2026-08-29
-- note: **O3 实装首刀**（per docs/49 §2.3 + §5.2.2 + §5.2.3；引擎 paddle-ocr per 2026-08-28 裁定 / §5.2.1 已关闭）= (A) `validate_ocr_input(path: Path) -> Literal["ACCEPT", "REJECT_OUTSIDE_ALLOWLIST", "REJECT_CONTROL_FLOW_FIXTURE", "REJECT_MIME"]` API 实装（per docs/49 §2.3 形态；本刀采用 stdlib `mimetypes` 零新依赖；实际常量名 = `ALLOWED_PREFIXES` + `SEED_ARCHIVES` + `is_control_flow_fixture()` 公开 wrapper）+ (B) `source_document.doc_kind='OCR_SCAN'` schema migration **014**（NEW 迁移；红线仅锁 001–013；最小化 = 单列增量 + CHECK + index；既有语义映射列如 `uploader_id`/`created_at` 复用不新增）+ (C) 引擎接 paddle-ocr = §5.2.4 单独刀（本刀不引入 paddle-ocr 依赖）；**完成定义** = 全量 pytest 0 failed + migration 014 上线 + validate API 四态单测覆盖 + e2e 合成扫描 fixture 通过；**O3 收口保留** = 真实 PDF `--confirm-o3=PATH` 用户保留动作（5.2.6）；**前置 582 审计 PASS**：581 修复刀（继承 4 failed 三处断言口径修正 + 全量 0 failed + manifest 911）已审计 PASS（fd483d1 + 36aea26）；**583 交付** = 回执 `583-stage0-cc-o3-impl-validate-api-doc-kind-receipt-20260828.md`（manifest bump 911 → 917 / 14 例新测 PASS / 1.39s / INCONSISTENT-1 任务书 §F "+5" vs §E 枚举 "+6" 闭合以 enumeration 为准 917 per 013.log 独立文件双 ADD）→ 待架构师审计
+- note: **O3 §5.2.4 paddle-ocr 引擎依赖刀**（per docs/49 §5.2.4；引擎 paddle-ocr per `579` 裁定 / §5.2.1 已关闭）= (A) `paddleocr` + `paddlepaddle` 依赖引入（`requirements.txt` 或 `pyproject.toml` deps append；deps 引入决策单独披露 = 版本 / 镜像层体积 / 系统库依赖 / license / 离线 wheel / build 时间成本 / 与 stdlib `mimetypes` 协同）+ (B) Dockerfile paddle-ocr 独立 layer（既有 `FROM` / `RUN pip install <既有 deps>` 零触动；paddle-ocr deps 单独 `RUN pip install paddleocr paddlepaddle` 段 + 单独 `COPY` cache key；`docker build` exit 0 + 镜像体积实测 + layer 分段验证）+ (C) `tests/test_paddle_ocr_deps_584.py` NEW 7+ 例覆盖（import / version / CPU-only / 离线能力 / 零 cloud OCR client / §584 audit ⚠1 docs sync 落点）+ (D) **§584 audit ⚠1 docs sync patch**（docs/45 L93 + L487 + docs/53 L203 + L207 + docs/50 L228 五处 `916` → `917` 修正；docs sync 不动 manifest / 不动 commit SHA）；**完成定义** = 全量 pytest 0 failed + Dockerfile build exit 0 + paddle-ocr deps 引入决策披露 + manifest 923 不变量 + §584 audit ⚠1 docs sync patch 落点验证；**§5.2.5 e2e pytest + §5.2.6 真实 PDF 用户保留动作 仍 OPEN**；**前置 584 审计 PASS**（583 修复刀交付 validate_ocr_input API + migration 014 doc_kind；manifest 917 不变量成立；⚠1 docs sync gap 入本刀 patch 闭合）；**584 = DELIVERED BLOCKED** = 执行端勘察发现 4 BLOCKER：(BLOCKER-1) `pip index versions paddlepaddle` = ERROR No matching distribution（Python 3.14 无 wheel）= deps 安装不可验证；(BLOCKER-2) 项目无 Dockerfile（零 baseline = layer 增量前提不成立）+ 无 requirements.txt / pyproject.toml 主 manifest（仅 requirements-dbt.txt）= deps append 路径需指定；(BLOCKER-3) Docker daemon 不可用 = `docker build` exit 0 验证不可执行；(BLOCKER-4) §E manifest 923 invariant 在 BLOCKED 下不可达（deps + Dockerfile + test = +3 文件不可落地）。回执 `584-stage0-cc-paddle-ocr-deps-tasking-20260829-receipt.md` 已落（含 4 BLOCKER 详单 + 架构师修订路径 A/B/C 建议）；manifest 917 不变量保持（无 bump）；待架构师按 A/B/C 修订任务书后重 ACK 重跑。**红线 100% 兑现**（不强行 partial 执行 / 不引入 cloud OCR / 不引入 GPU runtime / 不写真实 OCR pipeline / 不写真实 PDF fixture / 不修改 001-014 / 不修改 01-core.sql / 不修改 scripts/ / 不修改 4 fixture / 不爬网 / 不写 dbt/mart/前端 / 不宣布 Gate PASS / 既有 OPEN 行零删减）。
 
-## §DELIVERED（583 待审计）
+## §DELIVERED（584 BLOCKED）
 
-- 2026-08-29 / CC-exec（Claude Code 执行终端，582 同 session） / 回执 `583-stage0-cc-o3-impl-validate-api-doc-kind-receipt-20260828.md`（manifest 911 → 917 / 14 例新测 PASS / INCONSISTENT-1 tasking §F "+5" vs §E enumeration "+6" 闭合以 enumeration 为准 917 / 双推 + cc_head backfill 待执行） → 待架构师审计
+- 2026-08-29 / CC-exec（Claude Code 执行终端，584 BLOCKED 交付） / 回执 `584-stage0-cc-paddle-ocr-deps-tasking-20260829-receipt.md`（4 BLOCKER：Python 3.14 无 paddlepaddle wheel + 项目零 baseline Dockerfile/requirements.txt + Docker daemon 不可用 + manifest 923 invariant 不可达；架构师修订路径 A/B/C 已附） → 待架构师修订任务书
+
+## §AUDITED（584 PASS）
+
+- 2026-08-29 / CC-arch（架构师审计终端） / 583 receipt PASS（`584-stage0-architect-s583-o3-impl-validate-api-doc-kind-audit-PASS-20260829`；A–H 证据段全达成 + ⚠1 docs/45 §7 链头 916 vs actual 917 docs sync gap ACCEPTED with disclosure [不动 commit / 不动 manifest / 仅 docs 文案对齐 actual 917 — 入下刀 patch] + ⚠2 INCONSISTENT-1 enumeration 收口 917 ACCEPTED + ⚠3 h2 deselect 续登 ACCEPTED；manifest 917 不变量成立；红线零违反）→ 584 tasking 签发（O3 §5.2.4 paddle-ocr 引擎依赖刀）
 
 ## §AUDITED（582 PASS）
 
@@ -29,6 +33,7 @@
 
 ## §ACK
 
+- 2026-08-29 / CC-exec（Claude Code 执行终端，跟单触发 / 跟单 584） / 开始执行 → 交付回执号待回填
 - 2026-08-29T00:0x+08:00 / CC-exec（Claude Code 执行终端，跟单触发） / 开始执行 → 交付回执号待回填
 - 2026-08-28T22:46+08:00 / CC-exec（Claude Code 执行终端，579 同 session） / 开始执行 → 交付 `fd483d1` + backfill `36aea26` → `582` 审计 PASS
 
