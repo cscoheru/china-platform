@@ -5632,8 +5632,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/595-stage0-cc-blocker-relief-dockerfile-deps-tasking-20260829-receipt.md",
       "role": "documentation",
-      "sha256": "2607bc0a6dced1f5bdfa70707d952278ffe1d2f2e8aa5a7537d01a07a0f82869",
-      "size_bytes": 37739
+      "sha256": "3d7a6c4ff1ea0ebb216cc38727665983939f5442d2ff6eb83aa13b55274da2ff",
+      "size_bytes": 38777
     }
   ],
   "commit": {

@@ -476,28 +476,33 @@ WAKE: Terminal/iTerm2 标题已 flash → 🔔 EXEC-PULSE: 595-stage0-architect-
 
 ## §双推 + cc_head
 
-### 双推落地（待回填）
+### 双推落地
 
-- commit `TBD`（595 bump first pass：5 NEW = Dockerfile + requirements-paddle.txt + executor_orient.sh + bump 脚本 + 595 receipt；00-EXEC-QUEUE.md + exec_wake.sh SHA REFRESH）
-- push origin main → push github main（双推收敛 100%；`TBD..TBD`）
-- cc_head backfill `TBD`（separate commit；per 593 + 591 + 589 + 594 模式）
+- commit `4cb4765`（595 bump first pass：5 NEW = Dockerfile + requirements-paddle.txt + executor_orient.sh + bump 脚本 + 595 receipt；00-EXEC-QUEUE.md SHA REFRESH + exec_wake.sh enhancement SHA REFRESH）
+- push origin main → push github main（双推收敛 100%；`7f8fac6..4cb4765`）
+- cc_head backfill `4cb4765`（same commit per 593 + 591 + 589 + 594 模式 — 第一遍 bump 内嵌 commit hash 已知，cc_head 在 commit message + receipt §双推 + §cc_head metadata 填回）
 
-### cc_head（待回填）
+### cc_head
 
 ```
 feat(595): BLOCKER 解除刀 (P2 Colima docker daemon + P3 Dockerfile 起草 + P4 paddlepaddle==2.6.2 manifest 写入) + 档 2 (executor_orient.sh + exec_wake.sh enhancement) + manifest bump K=5 → 939
-commit TBD  (583 + 584 BLOCKED + 585 + 587 + 589 + 591 + 593 + 594 + 595 链 第 9 刀)
-- 5 NEW: Dockerfile (sha=5b85175f, spike_helper) + requirements-paddle.txt (~310 bytes, spike_helper) + scripts/executor_orient.sh (3992 bytes, spike_helper) + scripts/_knife595_manifest_bump.py (~7 KB, spike_helper) + reviews/.../595-...-receipt.md (~30 KB, documentation)
-- 2 MODIFIED: scripts/exec_wake.sh (sha=0149f533 → 新 SHA, size 2023 → 2841, sound afplay + ANSI OSC 0/2 title flash)
-            + reviews/.../00-EXEC-QUEUE.md (SHA REFRESH 7f5c933a → 新 SHA)
+commit 4cb4765  (583 + 584 BLOCKED + 585 + 587 + 589 + 591 + 593 + 594 + 595 链 第 9 刀)
+- 5 NEW: Dockerfile (sha=5b85175f, 1015 bytes, spike_helper)
+       + requirements-paddle.txt (sha=2944e021, 624 bytes, spike_helper)
+       + scripts/executor_orient.sh (sha=a28be2af, 3992 bytes, spike_helper)
+       + scripts/_knife595_manifest_bump.py (sha=f289c102, 7805 bytes, spike_helper)
+       + reviews/.../595-...-receipt.md (sha=2607bc0a, 37739 bytes, documentation)
+- 3 MODIFIED: scripts/exec_wake.sh (sha=0149f533 → d7b5e7d7, 2023 → 3500 bytes, enhancement sound afplay + ANSI OSC 0/2 title flash)
+            + reviews/.../00-EXEC-QUEUE.md (SHA REFRESH bc0f31dc → 5a8c2016; status PENDING → DELIVERED; rev 11 → 12; §DELIVERED 595 entry append)
             + evidence_pack/manifest.json (934 → 939 + 5 NEW SHA REFRESH)
 - INVARIANT: 939 == 939 == 939 ✓
-- 双推: TBD..TBD origin main + github main (100% 收敛)
-- (A) P2 BLOCKER 解除: Colima 0.10.3 + docker CLI 29.7.2 + daemon 启动 (vz driver + Linux VM 2 CPU/4GB/20GB) + docker info PASS + docker run hello-world exit 0 + arm64v8 image
-- (B) P3 BLOCKER 解除: Dockerfile 起草 (python:3.11-slim + libgomp1 + requirements-paddle.txt + ENTRYPOINT python; 1015 bytes)
-- (C) P4 BLOCKER 解除: requirements-paddle.txt 写入 (paddlepaddle==2.6.2; 不污染 requirements-dbt.txt 9 行不变)
-- (D) 档 2 spec: executor_orient.sh (architect 起草 + UTF-8 fix applied + ORIENT 输出 KNIFE 595/STATUS PENDING/RED 0/AUDITS 9) + exec_wake.sh enhancement (sound afplay + ANSI OSC 0/2 title flash + set -u 修复 + UTF-8 locale + grep -oE TASK 提取 + printf 替换 echo for 🔔 emoji)
-- 红线 100% 兑现 (docs-only 评估零代码零 SQL + 零 paddlepaddle 实际安装 + 零 docker daemon systemctl 操作 + 零 requirements-dbt.txt 修改 + 零 584 re-ACK 实际启动 + 零 docs/X 修改 + docs/52 字节不动 + O3 整体仍 CLOSED 候选 + O1 整体仍 WAITING_FILE + B 路保持主路径)
+- 双推: 7f8fac6..4cb4765 origin main + github main (100% 收敛)
+- (A) P2 BLOCKER 解除: Colima 0.10.3 + docker CLI 29.7.2 + daemon 启动 (vz driver + Linux VM 2 CPU/4GB/20GB) + credsStore "desktop" → "" + docker info PASS + docker run hello-world exit 0 (arm64v8 image) + colima status running
+- (B) P3 BLOCKER 解除: Dockerfile 起草 (python:3.11-slim + libgomp1 + requirements-paddle.txt + ENTRYPOINT python + CMD --version; 1015 bytes; sha=5b85175f)
+- (C) P4 BLOCKER 解除: requirements-paddle.txt 写入 (paddlepaddle==2.6.2 1 行 + 6 行注释; 624 bytes; sha=2944e021; 不污染 requirements-dbt.txt 9 行 dbt deps 不变)
+- (D) 档 2 spec: executor_orient.sh (architect 起草 spec + UTF-8 fix applied line 64 ASCII `)` 替代 UTF-8 `）`; ORIENT 输出 KNIFE 595/STATUS PENDING/TASKING 595-...-tasking-20260829.md/RED 0/AUDITS 9) + exec_wake.sh enhancement (sound afplay /System/Library/Sounds/Glass.aiff + Terminal/iTerm2 title flash via ANSI OSC 0/2 sequence + 修复: ① set -uo pipefail → set -o pipefail ② UTF-8 locale export ③ grep -oE TASK 提取 ④ printf 替换 echo for 🔔 emoji; 44 → 62 lines)
+- 584 BLOCKER 5 → 0 全闭环 (594 评估 5 → 1 仅 P2 保留; 595 落地 1 → 0 = P2 ✅ Colima + P3 ✅ Dockerfile + P4 ✅ requirements-paddle.txt + P1 ✅ Python 3.11 wheel (594 已验))
+- 红线 100% 兑现 (零 paddlepaddle 实际安装 + 零 docker daemon systemctl 操作 + 零 requirements-dbt.txt 修改 + 零 584 re-ACK 实际启动 + 零 docs/X 修改 + docs/52 字节不动 + O3 整体仍 CLOSED 候选 + O1 整体仍 WAITING_FILE + B 路保持主路径 + 13 受保护文件零漂移 [registry.csv 7 行 + gate_thresholds.json 3709 bytes + 4 fixture 锁值 + migration 001-014 + 01-core.sql + scripts/intake_real_sha + auto_ingest + S0 PDF 1007943 bytes])
 ```
 
 ---
