@@ -5644,8 +5644,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/596-stage0-cc-584-reack-ready-tasking-20260829-receipt.md",
       "role": "documentation",
-      "sha256": "b32c9fc3db5dd24e23fbc97b4d26a0b19319d7961c554dd97e6ae46ad6746942",
-      "size_bytes": 29791
+      "sha256": "58d4c842859035ac0da9ddddcf1cf8aa000dd08d6326d6a60e633d6e99c80526",
+      "size_bytes": 34731
     }
   ],
   "commit": {

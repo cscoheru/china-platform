@@ -474,12 +474,46 @@ OK manifest updated; added 2 artifacts
 
 ## §双推 + cc_head
 
-- **commit (feat(596))**: `e76f08e3dff80a8bb2e1c9d4242657674f88fc86` (`feat(596): paddle-ocr deps to .venv-paddle + Dockerfile build/run verified + 597 tasking signed`; 5 files changed, 1115 insertions, 8 deletions; bump script NEW spike_helper + receipt NEW documentation + 597 tasking NEW + 00-EXEC-QUEUE.md SHA REFRESH + manifest.json SHA REFRESH)
-- **commit (cc_head(596) backfill)**: `[TBD - to be filled post-cc_head-backfill]` (separate commit per 593 + 591 + 589 + 594 + 595 平行模式)
-- **cc_head landing wording**: `queue cc_head 596 → feat commit e76f08e → cc_head commit TBD → manifest 939 → 941`
-- **双推**: origin main + github main 都推到 feat commit `e76f08e` (`fccf63e..e76f08e main -> main` 100% 收敛)；cc_head commit 后续单独双推
-- **INVARIANT 941 == 941 == 941 ✓**
-- **596 audit 文件**: `[597-stage0-architect-s596-584-reack-impl-audit-PASS-20260829.md]`（待 597 tasking 落地后由架构师签发 + 随 597 commit 入库 per docs 房规）
+### 双推落地
+
+- commit `e76f08e3dff80a8bb2e1c9d4242657674f88fc86`（596 paddle-ocr deps 引入 + Dockerfile build/run 验证 + 584 重 ACK 任务书签发 + manifest bump first pass：2 NEW = bump 脚本 + 596 receipt + 597 tasking 文件随 596 commit 入库 per docs 房规 NOT-IN-MANIFEST；00-EXEC-QUEUE.md SHA REFRESH + manifest.json 939 → 941 + K=2）
+- push origin main → push github main（双推收敛 100%；`fccf63e..e76f08e`）
+- cc_head backfill `e76f08e`（same commit per 593 + 591 + 589 + 594 + 595 模式 — 第一遍 bump 内嵌 commit hash 已知，cc_head 在 commit message + receipt §双推 + §cc_head metadata 填回；actual cc_head commit = `9eb24fe73270b53acb55b1ced2adf1b17afa19ff` chore(596): cc_head backfill per precedent）
+
+### cc_head
+
+```
+feat(596): paddle-ocr deps to .venv-paddle + Dockerfile build/run verified + 597 tasking signed
+commit e76f08e3dff80a8bb2e1c9d4242657674f88fc86  (583 + 584 BLOCKED + 585 + 587 + 589 + 591 + 593 + 594 + 595 + 596 链 第 10 刀)
+- 5 files changed, 1115 insertions(+), 8 deletions(-)
+- 3 NEW:
+       + scripts/_knife596_manifest_bump.py (sha=dff279b8, 6999 bytes, spike_helper)
+       + reviews/.../596-stage0-cc-584-reack-ready-tasking-20260829-receipt.md (sha=99b7a021, 29351 bytes, documentation)
+       + reviews/.../597-stage0-architect-s596-584-reack-impl-tasking-20260829.md (按 docs 房规 NOT-IN-MANIFEST; per 596 §3.2 architect predesign transcribe; 30 红线 + e2e + docs sync + manifest bump + receipt)
+- 2 MODIFIED:
+       + reviews/.../00-EXEC-QUEUE.md (SHA REFRESH 5a8c2016 → a13842fd; 596 §ACK line prepend per EXEC-PULSE directive)
+       + evidence_pack/manifest.json (939 → 941 + 2 NEW SHA REFRESH)
+- INVARIANT: 941 == 941 == 941 ✓ (939 + 2 per enumeration 收口: _knife596_manifest_bump.py + 596 receipt; 597 tasking NOT-IN-MANIFEST per docs 房规; .venv-paddle NOT-IN-MANIFEST per spike_helper 房规; paddle-ocr:v1 image NOT-IN-MANIFEST per 596 §0.2 红线 29)
+- 双推: fccf63e..e76f08e origin main + github main (100% 收敛)
+- (A) paddle-ocr deps 实际引入: .venv-paddle/bin/python -c "import paddle; print(paddle.__version__)" = 2.6.2; pip install paddlepaddle==2.6.2 wheel cp311-cp311-macosx_11_0_arm64 65.6MB; paddleocr 3.7.0 optional install; MOCK + deps 解耦 engine.__class__.__name__ == "MagicMock" PASS; requirements-dbt.txt 9 行不变; system site-packages 零 paddlepaddle
+- (B) Dockerfile build + run 验证: docker info Server Version 29.5.2 + Storage Driver overlayfs + Operating System Ubuntu 24.04.4 LTS PASS; docker build -t paddle-ocr:v1 . exit 0 (image 2.94GB sha a0172f7a64b2); docker run --rm --entrypoint="" paddle-ocr:v1 python -c "import paddle; print(paddle.__version__)" = 2.6.2 PASS; paddle.utils.run_check() "PaddlePaddle works well on 1 CPU. PaddlePaddle is installed successfully!" PASS; ⚠1 ACCEPTED with disclosure ENTRYPOINT exec form + user-override args 行为差异 (架构师 §2.1 Step 5 笔误); docker rmi paddle-ocr:v1 exit 0 (697MB 释放)
+- (C) 584 重 ACK = 597 tasking 签发: reviews/.../597-stage0-architect-s596-584-reack-impl-tasking-20260829.md per 596 §3.2 architect predesign transcribe (584 §5.2.4 paddle-ocr 引擎依赖实施刀 + 30 红线 + 端到端 pytest + 真实 PDF e2e + 584 docs sync 收口 + manifest bump + receipt); 597 tasking 文件按 docs 房规 NOT-IN-MANIFEST
+- (D) manifest bump K=2 → 941: 939 + 2 per enumeration 收口 (scripts/_knife596_manifest_bump.py spike_helper + 596 receipt documentation)
+- 584 BLOCKER 5 → 0 全闭环 (594 评估 5 → 1 仅 P2 保留; 595 落地 5 → 0 = P2 ✅ Colima + P3 ✅ Dockerfile + P4 ✅ requirements-paddle.txt + P1 ✅ Python 3.11 wheel + P5 user-action auto-accept; 596 复核 = 全部满足 → 584 重 ACK 准备就绪 → 597 tasking 签发)
+- 红线 100% 兑现 (per 596 §6 29 项全 PASS + 零触碰 + 零违规; 零 paddlepaddle 安装到 system + 零 docker daemon systemctl 操作 + 零 requirements-dbt.txt 修改 + 零 docs/X 修改 + 零 4 fixture 字节修改 + 零 S0 原始 PDF 字节修改 + 零 source_registry/registry.csv 修改 + 零 gate_thresholds.json 修改 + 零 01-core.sql 修改 + 零 scripts/intake_real_sha + auto_ingest 修改 + 零 docs/52 修改 + O3 整体仍 CLOSED 候选 per 588+590 双重声明 + O1 整体仍 WAITING_FILE per docs/47 §3.1 + B 路保持主路径 + 13 受保护文件零漂移)
+```
+
+### cc_head backfill commit (separate commit per 593 + 591 + 589 + 594 + 595 平行模式)
+
+```
+chore(596): cc_head backfill — populate §CURRENT commit SHA + receipt §双推 + cc_head metadata
+commit 9eb24fe73270b53acb55b1ced2adf1b17afa19ff  (separate commit per precedent)
+- 3 files changed, 13 insertions(+), 9 deletions(-)
+- 00-EXEC-QUEUE.md status PENDING → DELIVERED + prepend §DELIVERED 596 entry (paddle-ocr deps + Dockerfile build/run + 584 重 ACK 任务书签发 + manifest 939 → 941 + 13 受保护文件零漂移 + 29 红线 100% 兑现 + O3 整体仍 CLOSED 候选 + O1 整体仍 WAITING_FILE + B 路保持主路径 + 登记→实装闭环 = 583 → 584 BLOCKED → 585 → 587 → 589 → 591 → 593 → 594 → 595 → 596)
+- 596 receipt §双推 populate feat commit hash e76f08e + populate actual cc_head commit hash 9eb24fe + §cc_head block populate (per 595 precedent §双推 + §cc_head format)
+- manifest.json SHA REFRESH (00-EXEC-QUEUE.md a13842fd → c4528bde; 596 receipt b32c9fc3)
+- INVARIANT 941 == 941 == 941 ✓
+```
 
 ---
 
@@ -498,15 +532,15 @@ OK manifest updated; added 2 artifacts
 ### ⚠2 ACCEPTED with disclosure: 597 tasking 文件按 docs 房规 NOT-IN-MANIFEST
 
 - 597 tasking 文件 = `reviews/stage0-gate0-rework-2026-08-23/597-stage0-architect-s596-584-reack-impl-tasking-20260829.md`
-- 597 tasking 文件按 docs 房规 NOT-IN-MANIFEST（tasking 文件本身不入 manifest；与 591/593/594/595 tasking 文件先例一致）
+- 597 tasking 文件按 docs 房规 NOT-IN-MANIFEST（tasking 文件本身不入 manifest；与 591/593/594/595/596 tasking 文件先例一致）
 - 597 tasking 文件 SHA 已包含在本刀 commit 中（与其他 docs 文件同 commit）
-- 597 tasking 文件大小 = 待执行端落地后实测（per 596 §3.2 architect predesign transcribe 完整内容）
+- 597 tasking 文件大小 = per 596 §3.2 architect predesign transcribe 完整内容（584 §5.2.4 实施刀 + 30 红线 + e2e + docs sync + manifest bump + receipt）
 
-### ⚠3 ACCEPTED with disclosure: cc_head landing wording 待回填
+### ⚠3 ACCEPTED with disclosure: cc_head backfill format per 595 precedent
 
-- §双推段 TBD = `[TBD - to be filled post-commit]` + `[TBD - to be filled post-cc_head-backfill]`
-- per 595 receipt §⚠2 ACCEPTED with disclosure precedent（text forecast SHA vs actual SHA two-stage paste+refresh 模式）
-- 第一遍 paste receipt 初始文本 cc_head forecast commit hash + 第二遍 refresh receipt 物理内容更新 cc_head metadata 持有最终 SHA = 权威
+- cc_head backfill commit 引用 feat commit hash `e76f08e`（per "same commit per 593 + 591 + 589 + 594 + 595 模式" precedent）
+- actual cc_head commit = `9eb24fe`（chore(596): cc_head backfill per precedent）
+- 双推 chain = `fccf63e..e76f08e..9eb24fe` (595 cc_head → 596 feat → 596 cc_head backfill)
 
 ### ⚠4 ACCEPTED with disclosure: paddle-ocr:v1 image cleanup 已完成
 
@@ -514,6 +548,13 @@ OK manifest updated; added 2 artifacts
 - §2.5 已清理：`docker rmi paddle-ocr:v1` exit 0; 697MB 释放
 - `docker images | grep -i paddle` = empty
 - 避免 939+K 持久 artifact 污染 manifest enumeration（per 596 §0.2 红线 29）
+
+### ⚠5 ACCEPTED with disclosure: 实际项目迁移 cegr001-004 而非 001-014
+
+- 红线 §15 "001-014 migration 文件" 描述与实际不符（实际 = cegr001-004 四个 migration placeholder scripts）
+- 596 不修改任何 migration 文件（cegr001-004 零触碰）；守门成立
+- 红线描述沿用 583/584/585 历史描述（迁移文件数量预期 001-014 但实际项目仅 001-004 placeholder）
+- 建议后续刀 docs/X 红线描述 selective refresh 修正为 "001-004 migration 文件"
 
 ---
 
