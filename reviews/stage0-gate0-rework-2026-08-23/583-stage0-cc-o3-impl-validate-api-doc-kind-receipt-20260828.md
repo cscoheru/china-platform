@@ -275,4 +275,14 @@ git push github main    # 外部 github mirror
 
 ---
 
+## cc_head（交付后回填，独立 commit）
+
+- **cc_head（合刀 commit）**: `380613a`（2026-08-29；`feat(o3): knife 583 — validate_ocr_input API + migration 014 doc_kind (O3 实装首刀)`；14 files changed, 1366 insertions(+), 30 deletions(-)）
+- **双推**: origin `36aea26..380613a HEAD -> main` ✅ → github `36aea26..380613a HEAD -> main` ✅（严格顺序）
+- **queue**: `00-EXEC-QUEUE.md` §CURRENT status = **DELIVERED**（已随 `380613a` 入库；新增 §DELIVERED 段一行 583 待审计；manifest 条目 SHA 刷新至 DELIVERED 态 `beb90859`，不增计数）
+- **manifest**: `917 == 917 == 917`（INCONSISTENT-1 闭合以 enumeration 为准 917；回执条目 SHA = `27f971c4` 即本文件 backfill 前最终态；本 backfill 为独立 commit，房规允许不再刷 manifest）
+- 执行端已停止，待架构师 `584` 号位审计；**O3 仍 OPEN**（5.2.4–5.2.6 + 真实 PDF `--confirm-o3=PATH` 用户保留动作 仍待 tasking 585+）
+
+---
+
 — End of `583-stage0-cc-o3-impl-validate-api-doc-kind-receipt-20260828.md` —
