@@ -553,5 +553,6 @@
 
 > ⚠ **docs/45 §6.2 O1 status append**（per 606 · 2026-08-29）：O1 §5.2.x 江苏地市样本刀首批地市样本已落地（`df3d824667904` per source_registry/registry.csv +1 行；江苏地市统计局公开源 = 执行端自取预 vetted 政府/统计局/研究机构公开源；执行端自取预 vetted 公开源走完整 e2e 流水线 per docs/52 B 路 spec；paddle-ocr e2e 在 .venv-paddle 隔离 venv 内接通 + HTML 路径走 docs/53 §5 connector 模式 + source_document + lineage JSONB mock writer 9 字段完整 + migration 001-013 零触碰 + 既有 8 行 SHA 零漂移）；后续江苏样本刀（5 省 + 10 地市）待续接。docs 房规 NOT-IN-MANIFEST。
 >
+> ⚠ **docs/45 §6.2 O1 status append**（per 608 · 2026-08-29）：O1 §5.2.x 江苏样本第三刀（地市样本第二刀）已落地（`37ed4c223b16` per source_registry/registry.csv +1 行；tjj.nanjing.gov.cn 南京市统计局首页 40065 bytes per 606 §A 备选清单 + 607 audit §10 候选 #2 verbatim；执行端自取预 vetted 政府/统计局公开源走完整 e2e 流水线 per docs/52 B 路 spec；paddle-ocr e2e 在 .venv-paddle 隔离 venv 内接通 + HTML 路径走 docs/53 §5 connector 模式 + source_document + lineage JSONB mock writer 9 字段完整 + migration 001-013 零触碰 + 既有 9 行 SHA 零漂移）；江苏样本链路 3/15 节点；后续江苏样本刀待续接。docs 房规 NOT-IN-MANIFEST。
 > ⚠ **本文件不宣布 Gate 2 PASS**（per docs/34 §1 + §10.4 W8 评审日期不擅自提前；本节 status append 仅闭合 docs/45 §6.x 内 stale `--confirm-*` + `用户裁定` 字面零调用）。
 > Gate 2 评审日期暂定 W8（per docs/34 §10.4）。
