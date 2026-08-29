@@ -177,3 +177,12 @@ python3 scripts/intake_real_sha_if_present.py --confirm-o1=/tmp/cegr_uploads/jia
 > ⚠ **PDF 扫描件须先经 O3 OCR 流水线**（per docs/49 §5.3 + §10 Q4；O3 仍 OPEN，未实装）。
 > ⚠ **docs/51 = CC 维护投递清单**（per `321` §SCHEMA "本刀做"）；不属于 Cursor 拥有架构文档（docs/06/08/10/34/40-44/46-50）。
 > ⚠ **不在范围：实装 OCR / 改业务代码 / 改 Cursor 拥有文档 / 收口宣告**（per `321` §SCHEMA "本刀不做"）。
+
+## §11. docs/51 stale `--confirm-o1=PATH` + `用户裁定` 字面 selective refresh（per 601 · 2026-08-29）
+
+> [superseded per 601（2026-08-29）· per 2026-08-29 治理铁律：数据源唯一=政府/统计局/研究机构自取；执行端自取预 vetted 公开源走完整 e2e 流水线；零 `--confirm-*` 字面；零 `--confirm-o1=PATH` 字面；user-action 表述保留为治理教训（不删除、不调用）；docs/51 内 stale `--confirm-o1=PATH`（line 7 `不擅自 O1 收口 — 收口须用户主动 --confirm-o1=PATH`、line 19 `--confirm-o1=PATH` 显式确认 → O1_INTAKED、line 83 `python3 scripts/intake_real_sha_if_present.py --confirm-o1=/tmp/...`、line 95 `--confirm-o1=PATH` 不可省略 PATH、line 96 pytest 自动 --confirm-o1 禁止、line 117 O1 仍 OPEN 直到用户主动 --confirm-o1=PATH、line 121 禁止 --confirm-o1 由 pytest / 自动化脚本擅自触发、line 136 不擅自 O1 CLOSED 除非用户用 --confirm-o1=PATH 显式确认、line 161 用户投递真数据后...用户 --confirm-o1=PATH → O1_INTAKED、line 175 --confirm-o1=PATH 必须由用户主动显式触发）+ `用户裁定`（line 10 `用户裁定"尽快真数据"`、line 11 `用户裁定：**D**；O1 仍 OPEN`、line 71 `用户裁定闸门 OPEN`、line 138 `不调用未授权 cloud OCR API` + `用户裁定`）均 supersede；**A 路（用户投递 per docs/51）保留为 fallback 标注（不删除、不调用）**；B 路（公开源自动获取 per docs/52）为主路径；O1 整体仍 WAITING_FILE per docs/47 §3.1 + 用户 2026-08-26 披露；O3 整体 CLOSED 候选 per 588 + 590 + 597 三重声明 + 598 + 599 + 600 三重 audit 落；本 docs/51 原文（line 7 / 10 / 11 / 19 / 71 / 83 / 95 / 96 / 117 / 121 / 136 / 138 / 161 / 175）不删不改（per 「不删既有 OPEN 行」红线 + 「不删旧 row」教训模式），supersede 标注与原文共存（per 589 + 591 + 593 + 595 + 596 + 597 + 599 + 600 平行模式）；执行端自取路径无法取得样本时方由架构师夜间授权下自主评估是否启动 user-action]
+
+> ⚠ **A 路保留为 fallback 标注（不删除、不调用）**（per 601 · 2026-08-29；A 路用户投递 = fallback；B 路主路径 per docs/52 §13）。
+>
+> ⚠ **执行端自取预 vetted 公开源走完整 e2e 流水线**（per 601 · 2026-08-29；B 路为主路径；执行端自取 = `source_registry/registry.csv` 公开源 → `discover → download → sha256 → archive → extract → observation` 完整 e2e；零 `--confirm-o1=PATH` 字面）。
+> ⚠ **不在范围：实装 OCR / 改业务代码 / 改 Cursor 拥有文档 / 收口宣告 / 启动 user-action**（per `321` §SCHEMA "本刀不做" + 2026-08-29 治理铁律）。

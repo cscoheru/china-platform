@@ -537,4 +537,12 @@
 > 等待 Cursor 审验（预期 `252-stage0-cursor-s210-lite-index-audit-…md`）。
 > 通过后下发 pytest 落地任务（`253-stage2-s210-impl-tasking-…md`），进入 S2.10 实施 pytest case + stub。
 > ⚠ **本文件不宣布 Gate 2 PASS**。
+
+## §7. docs/45 §6.x 状态行 append（per 601 · 2026-08-29）
+
+> [superseded per 601（2026-08-29）· per 2026-08-29 治理铁律：数据源唯一=政府/统计局/研究机构自取；执行端自取预 vetted 公开源走完整 e2e 流水线；零 `--confirm-*` 字面；user-action 表述保留为治理教训（不删除、不调用）；docs/45 §6.1 row `291-stage0-cc-real-sha-intake-live-receipt-20260826` 状态「**O1 WAITING_FILE**；等用户 `--confirm-o1=PATH` 显式 flag」+ §6.2 row 「**O1 WAITING_FILE**」+ §6.2 「**O1 仍 OPEN**」 等字面均 supersede；本 docs/45 §6.1 / §6.2 / §6.3 既有 OPEN 行零删改；O1 整体仍 WAITING_FILE per docs/47 §3.1 + 用户 2026-08-26 披露；O3 整体 CLOSED 候选 per 588 + 590 + 597 + 598 + 599 + 600 六重声明；B 路（公开源自动获取 per docs/52）保持主路径；A 路（用户投递 per docs/51）保留为 fallback 标注（不删除、不调用）；执行端自取路径无法取得样本时方由架构师夜间授权下自主评估是否启动 user-action]
+
+> ⚠ **docs/45 §6.x 状态行 append**（per 601 · 2026-08-29）：O1 §5.2.x 真实 SHA-locked 江苏样本刀待 docs/52 B 路落定后另刀下发；O3 §5.2.x 已闭合 per 588 + 590 + 597 + 598 + 599 + 600 六重声明；dbt mart 真表 / docs/10 §3.2-3.4 / person/tenure 真数据 仍 OPEN（推 S2.7-b-full 真数据迁移刀）。
+>
+> ⚠ **本文件不宣布 Gate 2 PASS**（per docs/34 §1 + §10.4 W8 评审日期不擅自提前；本节 status append 仅闭合 docs/45 §6.x 内 stale `--confirm-*` + `用户裁定` 字面零调用）。
 > Gate 2 评审日期暂定 W8（per docs/34 §10.4）。

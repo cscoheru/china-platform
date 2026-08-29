@@ -238,3 +238,12 @@ python3 frontend/smoke-check.py
 （全量 `pytest tests/` 需本地 Postgres；日常回归以上面两文件为准。）
 
 — 完 —
+
+## §11. docs/53 stale `--confirm-live` + `等用户裁定` 字面 selective refresh（per 601 · 2026-08-29）
+
+> [superseded per 601（2026-08-29）· per 2026-08-29 治理铁律：数据源唯一=政府/统计局/研究机构自取；执行端自取预 vetted 公开源走完整 e2e 流水线；零 `--confirm-*` 字面；零 `--confirm-live` 字面；user-action 表述保留为治理教训（不删除、不调用）；docs/53 内 stale `--confirm-live`（line 38/49/58 ` --confirm-live=reviews/.../jsonl`、line 76 AUTH 链失败 检查 `--confirm-live`、line 79 `live 无 confirm (--live / --from-local-sample / --refresh-live-candidate 缺 --confirm-live; refresh 缺 --live)`）+ `等用户裁定`（line 4 `等用户裁定, 不是 O1 收口数据`、line 77 `SHA drift...等用户裁定; drift 报告 + WORM 已留档; 不自动改 registry`、line 93 `drift 候选, 非 O1 收口, 等用户裁定`）均 supersede；**B 路（公开源自动获取）保持主路径**；A 路（用户投递 per docs/51）保留为 fallback 标注（不删除、不调用）；O1 整体仍 WAITING_FILE per docs/47 §3.1 + 用户 2026-08-26 披露；O3 整体 CLOSED 候选 per 588 + 590 + 597 三重声明 + 598 + 599 + 600 三重 audit 落；本 docs/53 原文（line 4 / 38 / 49 / 58 / 76 / 77 / 79 / 93）不删不改（per 「不删既有 OPEN 行」红线 + 「不删旧 row」教训模式），supersede 标注与原文共存（per 589 + 591 + 593 + 595 + 596 + 597 + 599 + 600 平行模式）；执行端自取路径无法取得样本时方由架构师夜间授权下自主评估是否启动 user-action；drift 候选仍走 docs/53 §5 第 21 项 + 第 28 项登记节点 (per `480` + `522` 落地)，不静默失败，不自动改 registry.csv（per docs/52 §6 AUTH 升级协议）
+
+> ⚠ **B 路（公开源自动获取）保持主路径**（per 601 · 2026-08-29；B 路 = 公开源 connector 四种模式 `dry-run` + `local-sample` + `live` + `一键刷新 LIVE_CANDIDATE 候选双写`；零 `--confirm-live` 字面）。
+>
+> ⚠ **执行端自取预 vetted 公开源走完整 e2e 流水线**（per 601 · 2026-08-29；B 路为主路径；执行端自取 = `source_registry/registry.csv` 公开源 → `discover → download → sha256 → archive → extract → observation` 完整 e2e；零 `--confirm-live` 字面；零 `等用户裁定` 闸门 OPEN 表态）。
+> ⚠ **不在范围：实装爬虫 / 实装 OCR / 改业务代码 / 改 Cursor 拥有文档 / 改 source_registry 既有 7 行 / 收口宣告 / 启动 user-action**（per docs/52 §6 AUTH 升级协议 + 2026-08-29 治理铁律）。
