@@ -248,8 +248,8 @@ def validate_ocr_input(path: Path) -> Literal["ACCEPT", "REJECT_OUTSIDE_ALLOWLIS
 | 5.2.1 | OCR 引擎选型（paddle-ocr / tesseract / cloud）| ⚠️ 用户裁定（per `308` §SCHEMA "本刀不做"）|
 | 5.2.2 | `validate_ocr_input()` API 实装（per §2.3）| ✅ **CLOSED per 583（2026-08-29）** — API 实装于 `scripts/intake_real_sha_if_present.py`（per `583-stage0-cc-o3-impl-validate-api-doc-kind-receipt-20260828`）|
 | 5.2.3 | `source_document.doc_kind = 'OCR_SCAN'` schema migration | ✅ **CLOSED per 583（2026-08-29）** — migration 014 NEW 上线（per `583-stage0-cc-o3-impl-validate-api-doc-kind-receipt-20260828`）|
-| 5.2.4 | paddle-ocr 本地依赖 + Dockerfile layer | ⚠️ 后续 knife |
-| 5.2.5 | 端到端 pytest（upload → OCR → SHA lineage → S2.2 ingestion）| ⚠️ 后续 knife |
+| 5.2.4 | paddle-ocr 本地依赖 + Dockerfile layer | ⚠️ **BLOCKED-DEFERRED per 584（2026-08-29）· Path C**（4 BLOCKER：Python 3.14 无 paddlepaddle wheel + 项目零 baseline Dockerfile + Docker daemon 不可用 + 主 deps manifest 缺失；584 重 ACK 触发条件 = 用户裁定 + env 就绪 + 主 deps manifest 决策已定；paddle-ocr deps 引入走后续刀）|
+| 5.2.5 | 端到端 pytest（upload → OCR → SHA lineage → S2.2 ingestion）| ✅ **CLOSED per 585（2026-08-29）** — e2e pytest 守门落地（`tests/test_o3_e2e_585.py` NEW 9 例 PASS / 0.86s）；**paddle-ocr MOCK only**（584 deps 不落地 / 零真实 paddleocr API / 零真实 PDF / 零真实 DB；mock 路径与 deps 引入解耦）；syn-PDF 合成 fixture（`tests/fixtures/_syn_pdf_585.py`；≥1024 bytes 绕过控制流 fixture 规则）；mock writer 捕获 source_document row dict + lineage JSONB 含 `engine='paddle-ocr'` + `confidence` + `page_count` + `extracted_text`（per `585-stage0-cc-o3-impl-e2e-pytest-tasking-20260829-receipt`）|
 | 5.2.6 | 至少 1 个真实 PDF（用户裁定提供；非爬源）| ⚠️ O3 收口须用户主动 `--confirm-o3=PATH` |
 
 ### 5.3 必带 OPEN（per docs/34 §3 + docs/45 §6）

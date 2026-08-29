@@ -1,5 +1,5 @@
 {
-  "artifact_count": 917,
+  "artifact_count": 921,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "e48e2d16c3d5e36fa586cfbda2ed06c7b2d38d08e2dafeb36fc9a15ce4ba5403",
-      "size_bytes": 279571
+      "sha256": "d59691cc2424d3a0023041a2d6046a6e8cd7ba3ba31d97fe02fadd278e3e6694",
+      "size_bytes": 291702
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -3784,8 +3784,8 @@
     {
       "path": "docs/49-stage2-o3-ocr-prod-path-plan-20260826.md",
       "role": "documentation",
-      "sha256": "11dc0e166200d2028595d6c576882402b970de995216fa72524dd3203d9ecd67",
-      "size_bytes": 23514
+      "sha256": "045e860502d45b120890c8f74183742c0e0e8ce8a0a94e38e6c56e3a79653057",
+      "size_bytes": 24376
     },
     {
       "path": "scripts/_knife39_manifest_bump.py",
@@ -4042,8 +4042,8 @@
     {
       "path": "docs/53-stage2-public-ingest-ops-handbook-20260826.md",
       "role": "documentation",
-      "sha256": "673af75002d538fb41f14327b47cede0e5153543f8d38f9b1f694f5bcf070d28",
-      "size_bytes": 72156
+      "sha256": "f1eaa1eb022739ee6c382dbfc7d56e980ba8ec68b45f670a5719380f3142d692",
+      "size_bytes": 78307
     },
     {
       "path": "scripts/_knife57_manifest_bump.py",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "beb90859fdab10963ad73a912341d7b56e2dc9d1fbf86b60f30d541fdfb6927f",
-      "size_bytes": 3969
+      "sha256": "976a7e4d2573e0bf0184842e0a5bd70edf423a6a2854e7cbd5225a11bea5b116",
+      "size_bytes": 9143
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5502,6 +5502,30 @@
       "role": "schema_negative_test",
       "sha256": "260f4a58ab57795ec26065925d24196ada34a3b34808a35cec69efada58754c2",
       "size_bytes": 9916
+    },
+    {
+      "path": "scripts/_knife585_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "10c07c60caa1e8d397995d2ee3943be85ef8e215ef9a127db29ac41a5879b2f2",
+      "size_bytes": 7212
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/585-stage0-cc-o3-impl-e2e-pytest-tasking-20260829-receipt.md",
+      "role": "documentation",
+      "sha256": "d42405a31ae4fedd9b1794146f15f640a0f9c82ae9a47b2d7bc254e903401f03",
+      "size_bytes": 15156
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/585-stage0-architect-s584-o3-impl-paddle-ocr-deps-audit-BLOCKED-20260829.md",
+      "role": "documentation",
+      "sha256": "fe92f3d05f7e8adf38fbe298a8e99a033c7393d458c65631be2366a949a7a8b3",
+      "size_bytes": 145
+    },
+    {
+      "path": "tests/test_o3_e2e_585.py",
+      "role": "test_e2e",
+      "sha256": "4998b3f858877a258a1c31c0b9bff10f64a4677bd26971f5de487bd48ac86d7d",
+      "size_bytes": 12959
     }
   ],
   "commit": {
@@ -5535,7 +5559,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 214,
+    "documentation": 216,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5547,11 +5571,12 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 178,
+    "spike_helper": 179,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
-    "test_conftest": 1
+    "test_conftest": 1,
+    "test_e2e": 1
   },
   "schema_version": "1.1-R3G-R4",
   "stage": "Stage 0 Gate 0 R3 rework + R4 hardening"
