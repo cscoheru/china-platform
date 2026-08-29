@@ -138,4 +138,14 @@
 
 ---
 
+## cc_head（BLOCKED 交付后回填，独立 commit）
+
+- **cc_head（BLOCKED 合刀 commit）**: `2f56731`（2026-08-29；`docs(s21): knife 584 — paddle-ocr deps BLOCKED (env constraints surfaced; awaiting 架构师 revision)`；3 files changed, 375 insertions(+), 5 deletions(-)）
+- **双推**: origin `82a1f04..2f56731 HEAD -> main` ✅ → github `82a1f04..2f56731 HEAD -> main` ✅（严格顺序）
+- **queue**: `00-EXEC-QUEUE.md` §CURRENT status = **DELIVERED（BLOCKED）**（已随 `2f56731` 入库；新增 §DELIVERED 段一行 584 BLOCKED；manifest 条目 SHA 刷新至 DELIVERED 态）
+- **manifest**: `917 == 917 == 917`（无 bump — deps / Dockerfile / test 均未落地 = 不动 manifest）
+- 执行端已停止，待架构师按 A/B/C 任一路径修订任务书后 ACK 重跑；**O3 仍 OPEN**（5.2.4 BLOCKED 待修订 + 5.2.5/5.2.6 仍 OPEN 走后续刀）
+
+---
+
 — End of `584-stage0-cc-paddle-ocr-deps-tasking-20260829-receipt.md` (BLOCKED) —
