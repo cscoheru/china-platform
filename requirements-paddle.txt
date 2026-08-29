@@ -1,0 +1,8 @@
+# requirements-paddle.txt - paddle-ocr / paddlepaddle runtime deps
+# per 595 tasking §3 + docs/49 §5.2.1 paddle-ocr 引擎选型 (用户 2026-08-28 裁定)
+# + 594 §1.4 paddlepaddle==2.6.2 (2.x 系列最后版本; 与 Python 3.11 兼容; 与 .venv-dbt 一致)
+# 用途: Dockerfile pip install -r 使用; 实际 venv 不依赖此文件 (paddle-ocr MOCK only 路径)
+# 注释: paddlepaddle==2.6.2 是 2.x 系列最后版本 (2.5.2/2.6.0/2.6.1/2.7.0 已下架; 3.0.0 - 3.3.1 跨大版本)
+# 红线: 不污染 requirements-dbt.txt (dbt env) / 不实际安装到 system site-packages / 不引入 cloud OCR
+
+paddlepaddle==2.6.2

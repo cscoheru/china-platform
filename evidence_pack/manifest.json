@@ -1,5 +1,5 @@
 {
-  "artifact_count": 934,
+  "artifact_count": 939,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -5416,14 +5416,14 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "bc0f31dcd43ff1e22ab1592864d158f821efa2e13cefba59ee8cf9aa047143af",
-      "size_bytes": 66689
+      "sha256": "5a8c20169e0d53cade3e9290e4c36ce76aaceb9f9c26d5c384b38758c67640b8",
+      "size_bytes": 84273
     },
     {
       "path": "scripts/exec_wake.sh",
       "role": "spike_helper",
-      "sha256": "0149f533e27e4e4594d40d0200e124a56fc5b866f9341a825f58905affc76bfb",
-      "size_bytes": 2023
+      "sha256": "d7b5e7d75954e5c6c39df3a116ffb82047d34bba838bf976bbb9b72e320f9241",
+      "size_bytes": 3500
     },
     {
       "path": "scripts/_knife579_manifest_bump.py",
@@ -5604,6 +5604,36 @@
       "role": "documentation",
       "sha256": "bd9e7f5ce45f066055fa473dc7351d2b58a962b2aec746ea3c64994991cd2b48",
       "size_bytes": 35641
+    },
+    {
+      "path": "Dockerfile",
+      "role": "spike_helper",
+      "sha256": "5b85175f71b030d4d2c3db1b4e0da46b68cec603c7779c94c26b3349d6c03480",
+      "size_bytes": 1015
+    },
+    {
+      "path": "requirements-paddle.txt",
+      "role": "spike_helper",
+      "sha256": "2944e021388cdd140659c403adde7a5f104d101d8e91ea2325cea6a2ee17621c",
+      "size_bytes": 624
+    },
+    {
+      "path": "scripts/executor_orient.sh",
+      "role": "spike_helper",
+      "sha256": "a28be2af7483e0ff7c06a9ed39b4e8a99281d5be6183686a017ccf4522397df8",
+      "size_bytes": 3992
+    },
+    {
+      "path": "scripts/_knife595_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "f289c102193bbf8f736286e39adc2d50357bd5eba71b852e4ae577755a81b5c8",
+      "size_bytes": 7805
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/595-stage0-cc-blocker-relief-dockerfile-deps-tasking-20260829-receipt.md",
+      "role": "documentation",
+      "sha256": "2607bc0a6dced1f5bdfa70707d952278ffe1d2f2e8aa5a7537d01a07a0f82869",
+      "size_bytes": 37739
     }
   ],
   "commit": {
@@ -5637,7 +5667,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 224,
+    "documentation": 225,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5649,7 +5679,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 184,
+    "spike_helper": 188,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
