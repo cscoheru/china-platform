@@ -218,7 +218,7 @@ SKIP: reviews/stage0-gate0-rework-2026-08-23/608-stage0-cc-o1-§5.2.x-real-sha-l
 SKIP: data/seed_archives/jiangsu_nanjing_tjj_gov_cn_20260829.html
 REFRESH (unchanged): reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md sha=6b87661e
 REFRESH (unchanged): reviews/stage0-gate0-rework-2026-08-23/608-stage0-cc-o1-§5.2.x-real-sha-locked-江苏样本-地市第二刀-tasking-20260829-receipt.md sha=874504c2
-REFRESH (unchanged): source_registry/registry.csv sha=3639e729
+REFRESH (unchanged): source_registry/registry.csv sha=c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277
 OK obs: 965
 INVARIANT: sum(role_count)=965 == artifact_count=965 == len(artifacts)=965
 OK manifest updated; added 0 artifacts

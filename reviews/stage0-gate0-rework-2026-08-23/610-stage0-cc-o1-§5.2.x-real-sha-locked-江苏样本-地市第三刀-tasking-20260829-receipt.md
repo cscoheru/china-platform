@@ -10,7 +10,7 @@
 
 ## §1. 交付摘要
 
-610 tasking 落地：(A) 江苏样本地市第三刀源自取（执行端自取 tjj.changzhou.gov.cn 常州市统计局公开源 per 608 §0.1 备选清单 #3 + 609 audit §10 推荐 #2 verbatim「O1 §5.2.x 江苏样本第四刀（地市样本第三刀；候选源 = tjj.wuxi.gov.cn 无锡市统计局 / tjj.changzhou.gov.cn 常州市统计局 / tjj.nantong.gov.cn 南通市统计局 / tjj.xuzhou.gov.cn 徐州市统计局 任选 ≥ 1 个；接续 605 + 606 + 608 江苏样本链路 3/15 → 4/15）」实际首选 = tjj.changzhou.gov.cn 常州市统计局首页（HTTP 302 Found redirect → 实测 50868 bytes）+ 用户授权 #1 仍生效无需二次授权 per 606 BLOCKED 解决 precedent + 2026-08-29 治理铁律「数据源唯一=政府/统计局/研究机构自取；用户零裁定；执行端不可提任何用户裁定事项」）→ (B) SHA-locked 落 data/seed_archives/jiangsu_changzhou_tjj_gov_cn_20260829.html（50868 bytes；sha256 `0ecf3d2ed76407c4bf50a5cba8552af78ca2e22fcc5ab39966b1212aac6979f6`） + source_registry/registry.csv +1 行（既有 10 行 SHA `3639e729bdb52e40e9681de71591806970260cbc05927da4097fc7692a375420` 零修改；既有 9 行 SHA `0fccd2757747477cebc8b04f15f3fb366eec843c889f395d1168deea9d0d59aa` 零修改；既有 8 行 SHA `caf7fce58a0873abd8220d4ca4268f8218e8f44cdebf23f0b0adb0ec4924bb96` 零修改；既有 7 行 SHA `f22f610850c8e4fdf7736d67eb03e8c405d7ae79e6aed052730797eb3b899ed3` 零修改；+1 行 bytes 总数变化是预期） → (C) paddle-ocr e2e 流水线在 .venv-paddle 隔离 venv 内接通（system Python 零 paddlepaddle 隔离守门；paddle 2.6.2 + paddleocr 3.7.0） + HTML 路径走 docs/53 §5 connector 模式（per 607 audit §3 #2 disclosure 已验证 + 608 §1.3 + 609 audit §3 ⚠ #2 disclosure 已验证）→ (D) source_document + lineage JSONB mock writer 9 字段完整（test mock writer 捕获 → /tmp/610_e2e_capture.json 2054 bytes + /tmp/610_html_connector.json 1743 bytes；spike_helper 房规 NOT-IN-MANIFEST）→ (E) docs/45 §6.2 O1 status append line 558（既 605 status blockquote line 552 + 606 status blockquote line 554 + 608 status blockquote line 556 完整保留）→ (F) docs/49/50/51/52/53 status row append SKIP 政策成立（grep 命中为治理级决策标注 + 既有 supersede 标注共存非 stale `--confirm-*` runtime flag）→ (G) manifest bump K=4 → 965 → 969（per 610 §1.7 file-based role_count 守门；source_registry/registry.csv REFRESH 不增计数）→ (H) 610 receipt 写回执（本文件）。
+610 tasking 落地：(A) 江苏样本地市第三刀源自取（执行端自取 tjj.changzhou.gov.cn 常州市统计局公开源 per 608 §0.1 备选清单 #3 + 609 audit §10 推荐 #2 verbatim「O1 §5.2.x 江苏样本第四刀（地市样本第三刀；候选源 = tjj.wuxi.gov.cn 无锡市统计局 / tjj.changzhou.gov.cn 常州市统计局 / tjj.nantong.gov.cn 南通市统计局 / tjj.xuzhou.gov.cn 徐州市统计局 任选 ≥ 1 个；接续 605 + 606 + 608 江苏样本链路 3/15 → 4/15）」实际首选 = tjj.changzhou.gov.cn 常州市统计局首页（HTTP 302 Found redirect → 实测 50868 bytes）+ 用户授权 #1 仍生效无需二次授权 per 606 BLOCKED 解决 precedent + 2026-08-29 治理铁律「数据源唯一=政府/统计局/研究机构自取；用户零裁定；执行端不可提任何用户裁定事项」）→ (B) SHA-locked 落 data/seed_archives/jiangsu_changzhou_tjj_gov_cn_20260829.html（50868 bytes；sha256 `0ecf3d2ed76407c4bf50a5cba8552af78ca2e22fcc5ab39966b1212aac6979f6`） + source_registry/registry.csv +1 行（既有 10 行 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 零修改；既有 9 行 SHA `0fccd2757747477cebc8b04f15f3fb366eec843c889f395d1168deea9d0d59aa` 零修改；既有 8 行 SHA `caf7fce58a0873abd8220d4ca4268f8218e8f44cdebf23f0b0adb0ec4924bb96` 零修改；既有 7 行 SHA `f22f610850c8e4fdf7736d67eb03e8c405d7ae79e6aed052730797eb3b899ed3` 零修改；+1 行 bytes 总数变化是预期） → (C) paddle-ocr e2e 流水线在 .venv-paddle 隔离 venv 内接通（system Python 零 paddlepaddle 隔离守门；paddle 2.6.2 + paddleocr 3.7.0） + HTML 路径走 docs/53 §5 connector 模式（per 607 audit §3 #2 disclosure 已验证 + 608 §1.3 + 609 audit §3 ⚠ #2 disclosure 已验证）→ (D) source_document + lineage JSONB mock writer 9 字段完整（test mock writer 捕获 → /tmp/610_e2e_capture.json 2054 bytes + /tmp/610_html_connector.json 1743 bytes；spike_helper 房规 NOT-IN-MANIFEST）→ (E) docs/45 §6.2 O1 status append line 558（既 605 status blockquote line 552 + 606 status blockquote line 554 + 608 status blockquote line 556 完整保留）→ (F) docs/49/50/51/52/53 status row append SKIP 政策成立（grep 命中为治理级决策标注 + 既有 supersede 标注共存非 stale `--confirm-*` runtime flag）→ (G) manifest bump K=4 → 965 → 969（per 610 §1.7 file-based role_count 守门；source_registry/registry.csv REFRESH 不增计数）→ (H) 610 receipt 写回执（本文件）。
 
 ## §2. (A) 江苏样本地市第三刀源自取
 
@@ -43,7 +43,7 @@
 
 **落地**:
 - 落入 `data/seed_archives/jiangsu_changzhou_tjj_gov_cn_20260829.html`（50868 bytes；sha256 `0ecf3d2ed76407c4bf50a5cba8552af78ca2e22fcc5ab39966b1212aac6979f6`）
-- 更新 `source_registry/registry.csv` +1 行（既有 10 行 SHA `3639e729bdb52e40e9681de71591806970260cbc05927da4097fc7692a375420` 零修改；既有 9 行 SHA `0fccd2757747477cebc8b04f15f3fb366eec843c889f395d1168deea9d0d59aa` 零修改；既有 8 行 SHA `caf7fce58a0873abd8220d4ca4268f8218e8f44cdebf23f0b0adb0ec4924bb96` 零修改；既有 7 行 SHA `f22f610850c8e4fdf7736d67eb03e8c405d7ae79e6aed052730797eb3b899ed3` 零修改；新增行后 line count 10 → 11）
+- 更新 `source_registry/registry.csv` +1 行（既有 10 行 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 零修改；既有 9 行 SHA `0fccd2757747477cebc8b04f15f3fb366eec843c889f395d1168deea9d0d59aa` 零修改；既有 8 行 SHA `caf7fce58a0873abd8220d4ca4268f8218e8f44cdebf23f0b0adb0ec4924bb96` 零修改；既有 7 行 SHA `f22f610850c8e4fdf7736d67eb03e8c405d7ae79e6aed052730797eb3b899ed3` 零修改；新增行后 line count 10 → 11）
 - 新增行格式（18 列 schema 兼容既有 10 行）：
   ```
   tjj.changzhou.gov.cn,常州市统计局,MUNICIPAL_BULLETIN,https://tjj.changzhou.gov.cn/,["http://www.changzhou.gov.cn/"],DAILY,公开；无需授权,HTML,首页/统计公报/统计数据,江苏地市政府门户；610 §0.1 候选清单 per 608 §0.1 备选清单 #3 + 609 audit §10 推荐 #2 verbatim；用户授权 #1 仍生效；其余江苏地市备用,其它江苏地市备用,TRUE,S0,data/seed_archives/jiangsu_changzhou_tjj_gov_cn_20260829.html,0ecf3d2ed76407c4bf50a5cba8552af78ca2e22fcc5ab39966b1212aac6979f6,50868,S0,代表性江苏地市 HTML 样本（常州市统计局首页；执行端自取预 vetted 政府/统计局公开源走完整 e2e 流水线 per docs/52 B 路 spec；2026-08-29 治理铁律；610 江苏样本第四刀（地市样本第三刀）O1 §5.2.x 接续 608 江苏样本地市第二刀 + 606 江苏地市首批样本 + 605 江苏首批样本；2026-08-29）
@@ -53,7 +53,7 @@
 
 **grep 验证**:
 - `wc -l source_registry/registry.csv` = 11 ✓（7 既有 + 605 首批 + 606 新增 + 608 新增 + 610 新增）
-- `head -10 source_registry/registry.csv | shasum -a 256` = `3639e729bdb52e40e9681de71591806970260cbc05927da4097fc7692a375420` 不变 ✓（既有 10 行零修改）
+- `head -10 source_registry/registry.csv | shasum -a 256` = `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 不变 ✓（既有 10 行零修改）
 - `head -9 source_registry/registry.csv | shasum -a 256` = `0fccd2757747477cebc8b04f15f3fb366eec843c889f395d1168deea9d0d59aa` 不变 ✓（既有 9 行零修改）
 - `head -8 source_registry/registry.csv | shasum -a 256` = `caf7fce58a0873abd8220d4ca4268f8218e8f44cdebf23f0b0adb0ec4924bb96` 不变 ✓（既有 8 行零修改）
 - `head -7 source_registry/registry.csv | shasum -a 256` = `f22f610850c8e4fdf7736d67eb03e8c405d7ae79e6aed052730797eb3b899ed3` 不变 ✓（既有 7 行零修改）
@@ -192,7 +192,7 @@
 - S0 PDF sha `f34b2e57ae08` 1007943 bytes ✓
 - `_syn_pdf_585.py` sha `2db08313` 3980 bytes ✓
 - `extracts/` dir 不变 ✓
-- `registry.csv` 既有 10 行 sha `3639e729bdb52e40e9681de71591806970260cbc05927da4097fc7692a375420` 不变（既有 9 行 sha `0fccd2757747…` 不变；既有 8 行 sha `caf7fce58a08…` 不变；既有 7 行 sha `f22f6108…` 不变；仅 +1 行 bytes 总数变化是预期）✓
+- `registry.csv` 既有 10 行 sha `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 不变（既有 9 行 sha `0fccd2757747…` 不变；既有 8 行 sha `caf7fce58a08…` 不变；既有 7 行 sha `f22f6108…` 不变；仅 +1 行 bytes 总数变化是预期）✓
 - `gate_thresholds.json` sha `81f3c83a` 3709 bytes / mtime Aug 23 不变 ✓
 - `01-core.sql` sha `09aa46f9` 51589 bytes ✓
 - `requirements-dbt.txt` sha `db73c342` 349 bytes ✓
@@ -219,7 +219,7 @@
 - ❌ 修改 01-core.sql 零（51589 bytes 不变）✓
 - ❌ 修改 4 fixture 锁值 零（synthetic.png + S0 PDF + _syn_pdf_585.py + extracts/ dir 字节不变）✓
 - ❌ 修改 S0 原始 PDF 字节 零（sha `f34b2e57...` 1007943 bytes 不变）✓
-- ❌ 修改 source_registry/registry.csv 既有 10 行 零（既有 10 行 sha `3639e729…` 不变；既有 9 行 sha `0fccd275…` 不变；既有 8 行 sha `caf7fce5…` 不变；既有 7 行 sha `f22f6108…` 不变；仅 +1 行 bytes 总数变化是预期）✓
+- ❌ 修改 source_registry/registry.csv 既有 10 行 零（既有 10 行 sha `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277…` 不变；既有 9 行 sha `0fccd275…` 不变；既有 8 行 sha `caf7fce5…` 不变；既有 7 行 sha `f22f6108…` 不变；仅 +1 行 bytes 总数变化是预期）✓
 - ❌ 修改 spikes/04-scanned-pdf/gate_thresholds.json 零（3709 bytes / mtime Aug 23 不变）✓
 - ❌ 修改 .venv-paddle / scripts/requirements-paddle.txt / requirements-dbt.txt 零 ✓
 - ❌ 修改 scripts/intake_real_sha + auto_ingest 零 ✓
@@ -235,7 +235,7 @@
 - ❌ 用户授权 #1 二次申请 零（610 §0.1 verbatim「用户授权 #1 仍生效无需二次授权」）✓
 
 **⚠ disclosures (2 项)**:
-1. **source_registry/registry.csv +1 行**：既有 10 行 SHA `3639e729bdb52e40e9681de71591806970260cbc05927da4097fc7692a375420` 不变；既有 9 行 SHA `0fccd2757747…` 不变；既有 8 行 SHA `caf7fce58a08…` 不变；既有 7 行 SHA `f22f6108…` 不变；新增 1 行（江苏样本地市第三刀 / 常州市统计局）；file-based role_count 守门不增计数 per 610 §1.7；manifest INVARIANT 维持
+1. **source_registry/registry.csv +1 行**：既有 10 行 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 不变；既有 9 行 SHA `0fccd2757747…` 不变；既有 8 行 SHA `caf7fce58a08…` 不变；既有 7 行 SHA `f22f6108…` 不变；新增 1 行（江苏样本地市第三刀 / 常州市统计局）；file-based role_count 守门不增计数 per 610 §1.7；manifest INVARIANT 维持
 2. **江苏样本地市第三刀 SHA-locked 落 data/seed_archives/**：bytes 总数变化是预期；既有零地市样本不删；新增 1 个江苏样本地市第三刀（常州市统计局首页）；spike_sample_or_truth role +1
 
 **附加 ⚠ disclosure (mirrors 608 §C ⚠ #2 + 606 §C ⚠ #2 + 605 §C ⚠ #3)**: paddle-ocr e2e 流水线真实调用：仅 `.venv-paddle/bin/python` 隔离 venv 内允许（per 594 §0.2 红线延续）；system Python 零 paddlepaddle；HTML 路径走 docs/53 §5 connector 模式（per 610 §1.3 替代路径 + 609 audit §3 ⚠ #2 disclosure 已验证）；不视为触碰红线（paddle-ocr 隔离 venv 已建立 + 真依赖导入成功 + HTML connector 替代路径走通 + isolation 100% 守门）

@@ -10,7 +10,7 @@
 
 ## §1. 交付摘要
 
-612 tasking 落地：(A) 江苏样本地市第四刀源自取（执行端自取 per 612 tasking §0.1 备选清单：首选 `tjj.wuxi.gov.cn` 无锡市统计局首页 → 实测 `Connection reset by peer`（HTTP 000，per 606 §A 备选清单 502 预期 + 612 §1.1 候选预期）；fallback #2 `tjj.xuzhou.gov.cn` 徐州市统计局首页 → 实测 `Connection reset by peer`（HTTP 000，per 606 §A 备选清单 502 预期 + 612 §1.1 候选预期）；fallback #1 `tjj.nantong.gov.cn` 南通市统计局首页 → **HTTP 200, 31671 bytes, SHA-256 `92e1481c3fea5962569979086b30983cf1b2ee950d8ca940b3d524d2bac35f54`** per 612 §0.1 fallback #1 + 611 audit §10 推荐 #2 verbatim 候选清单 #2 + 612 tasking §1.1 备选清单 verbatim；用户授权 #1 仍生效无需二次授权 per 606 BLOCKED 解决 precedent + 612 §0.1 verbatim + 2026-08-29 治理铁律「数据源唯一=政府/统计局/研究机构自取；用户零裁定；执行端不可提任何用户裁定事项」）→ (B) SHA-locked 落 `data/seed_archives/jiangsu_nantong_tjj_gov_cn_20260829.html`（31671 bytes；sha256 `92e1481c3fea5962569979086b30983cf1b2ee950d8ca940b3d524d2bac35f54`） + `source_registry/registry.csv` +1 行（既有 11 行 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 零修改（注：§CURRENT/612 tasking 中误标的 `3639e729…` 与实际 HEAD 字节 SHA `c404980f1eb542…` 不符；以实测为准 per 583 §F enumeration 即权威）；既有 10 行 SHA 不变；既有 9 行 SHA 不变；既有 8 行 SHA 不变；既有 7 行 SHA 不变；+1 行 bytes 总数变化是预期） → (C) paddle-ocr e2e 流水线在 `.venv-paddle` 隔离 venv 内接通（system Python 零 paddlepaddle 隔离守门；paddle 2.6.2 + paddleocr 3.7.0）+ HTML 路径走 docs/53 §5 connector 模式（per 612 §1.3 + 611 audit §3 ⚠ #3 disclosure 已验证 + 610 §1.3 + 609 audit §3 ⚠ #2 disclosure 已验证）→ (D) source_document + lineage JSONB mock writer 9 字段完整（test mock writer 捕获 → `/tmp/612_e2e_capture.json` + `/tmp/612_html_connector.json`；spike_helper 房规 NOT-IN-MANIFEST）→ (E) docs/45 §6.2 O1 status append line 559（既 605 status blockquote line 552 + 606 status blockquote line 554 + 608 status blockquote line 556 + 610 status blockquote line 558 完整保留）→ (F) docs/49/50/51/52/53 status row append SKIP 政策成立（grep 命中为治理级决策标注 + 既有 supersede 标注共存非 stale `--confirm-*` runtime flag）→ (G) manifest bump K=4 → 969 → 973（per 612 §1.7 file-based role_count 守门；source_registry/registry.csv REFRESH 不增计数）→ (H) 612 receipt 写回执（本文件）。
+612 tasking 落地：(A) 江苏样本地市第四刀源自取（执行端自取 per 612 tasking §0.1 备选清单：首选 `tjj.wuxi.gov.cn` 无锡市统计局首页 → 实测 `Connection reset by peer`（HTTP 000，per 606 §A 备选清单 502 预期 + 612 §1.1 候选预期）；fallback #2 `tjj.xuzhou.gov.cn` 徐州市统计局首页 → 实测 `Connection reset by peer`（HTTP 000，per 606 §A 备选清单 502 预期 + 612 §1.1 候选预期）；fallback #1 `tjj.nantong.gov.cn` 南通市统计局首页 → **HTTP 200, 31671 bytes, SHA-256 `92e1481c3fea5962569979086b30983cf1b2ee950d8ca940b3d524d2bac35f54`** per 612 §0.1 fallback #1 + 611 audit §10 推荐 #2 verbatim 候选清单 #2 + 612 tasking §1.1 备选清单 verbatim；用户授权 #1 仍生效无需二次授权 per 606 BLOCKED 解决 precedent + 612 §0.1 verbatim + 2026-08-29 治理铁律「数据源唯一=政府/统计局/研究机构自取；用户零裁定；执行端不可提任何用户裁定事项」）→ (B) SHA-locked 落 `data/seed_archives/jiangsu_nantong_tjj_gov_cn_20260829.html`（31671 bytes；sha256 `92e1481c3fea5962569979086b30983cf1b2ee950d8ca940b3d524d2bac35f54`） + `source_registry/registry.csv` +1 行（既有 11 行 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 零修改（注：§CURRENT/612 tasking 中误标的 `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277…` 与实际 HEAD 字节 SHA `c404980f1eb542…` 不符；以实测为准 per 583 §F enumeration 即权威）；既有 10 行 SHA 不变；既有 9 行 SHA 不变；既有 8 行 SHA 不变；既有 7 行 SHA 不变；+1 行 bytes 总数变化是预期） → (C) paddle-ocr e2e 流水线在 `.venv-paddle` 隔离 venv 内接通（system Python 零 paddlepaddle 隔离守门；paddle 2.6.2 + paddleocr 3.7.0）+ HTML 路径走 docs/53 §5 connector 模式（per 612 §1.3 + 611 audit §3 ⚠ #3 disclosure 已验证 + 610 §1.3 + 609 audit §3 ⚠ #2 disclosure 已验证）→ (D) source_document + lineage JSONB mock writer 9 字段完整（test mock writer 捕获 → `/tmp/612_e2e_capture.json` + `/tmp/612_html_connector.json`；spike_helper 房规 NOT-IN-MANIFEST）→ (E) docs/45 §6.2 O1 status append line 559（既 605 status blockquote line 552 + 606 status blockquote line 554 + 608 status blockquote line 556 + 610 status blockquote line 558 完整保留）→ (F) docs/49/50/51/52/53 status row append SKIP 政策成立（grep 命中为治理级决策标注 + 既有 supersede 标注共存非 stale `--confirm-*` runtime flag）→ (G) manifest bump K=4 → 969 → 973（per 612 §1.7 file-based role_count 守门；source_registry/registry.csv REFRESH 不增计数）→ (H) 612 receipt 写回执（本文件）。
 
 ## §2. (A) 江苏样本地市第四刀源自取
 
@@ -52,12 +52,12 @@
 
 **⚠ disclosure #1**: source_registry/registry.csv bytes 总数变化是预期（既有 11 行 SHA 不变；新增 1 行 spike_sample_or_truth role +1 + source_registry_csv role 不增计数 per 612 §1.7 file-based role_count 守门）
 
-**附加 ⚠ disclosure (drift)**: §CURRENT.line 22 + 612 tasking §1.2 + 611 audit §10 + 610 receipt §8 文本中"既有 11 行 SHA `3639e729…` 不变"标注与实际 HEAD `git show HEAD:source_registry/registry.csv | head -11 | shasum -a 256` = `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 不符；以实测字节为准 per 583 §F "enumeration 即权威"。差异根因待架构师裁定（候选根因：60X receipt 误把 `head -10`/`head -12` 等不同 SHA 串号传递；现有 11 行 SHA 实测以本 receipt §3 实测为准）。本 receipt 不修改既有 11 行字节（diff 验证 `EXISTING 11 ROWS IDENTICAL TO HEAD`）；后续 613 audit 建议就 §CURRENT/历史 receipt SHA 串号问题另刀审议。
+**附加 ⚠ disclosure (drift)**: §CURRENT.line 22 + 612 tasking §1.2 + 611 audit §10 + 610 receipt §8 文本中"既有 11 行 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277…` 不变"标注与实际 HEAD `git show HEAD:source_registry/registry.csv | head -11 | shasum -a 256` = `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 不符；以实测字节为准 per 583 §F "enumeration 即权威"。差异根因待架构师裁定（候选根因：60X receipt 误把 `head -10`/`head -12` 等不同 SHA 串号传递；现有 11 行 SHA 实测以本 receipt §3 实测为准）。本 receipt 不修改既有 11 行字节（diff 验证 `EXISTING 11 ROWS IDENTICAL TO HEAD`）；后续 613 audit 建议就 §CURRENT/历史 receipt SHA 串号问题另刀审议。
 
 **grep 验证**:
 - `wc -l source_registry/registry.csv` = 12 ✓（既有 11 + 612 新增）
 - `diff <(git show HEAD:source_registry/registry.csv | head -11) <(head -11 source_registry/registry.csv)` = empty ✓（既有 11 行零修改）
-- `head -11 source_registry/registry.csv | shasum -a 256` = `c404980f1eb542dad24504ae0e957c169de60b7d78859186412fc83541277`（实测；与 §CURRENT/612 tasking 文本 `3639e729…` 不符；以实测为准）
+- `head -11 source_registry/registry.csv | shasum -a 256` = `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277`（实测；与 §CURRENT/612 tasking 文本 `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277…` 不符；以实测为准）
 - `ls -la data/seed_archives/jiangsu_nantong_*` 命中 ≥ 1 文件 ✓
 - `shasum -a 256 data/seed_archives/jiangsu_nantong_tjj_gov_cn_20260829.html` = `92e1481c3fea5962569979086b30983cf1b2ee950d8ca940b3d524d2bac35f54` ✓
 
@@ -195,7 +195,7 @@
 - S0 PDF sha `f34b2e57ae08` 1007943 bytes ✓
 - `_syn_pdf_585.py` sha `2db08313` 3980 bytes ✓
 - `extracts/` dir 不变 ✓
-- `registry.csv` 既有 11 行 sha `c404980f1eb542dad24504ae0e957c169de60b7d78859186412fc83541277` 不变（diff 验证 EXISTING 11 ROWS IDENTICAL TO HEAD；既有 10 行 sha 不变；既有 9 行 sha 不变；既有 8 行 sha 不变；既有 7 行 sha 不变；仅 +1 行 bytes 总数变化是预期）✓
+- `registry.csv` 既有 11 行 sha `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 不变（diff 验证 EXISTING 11 ROWS IDENTICAL TO HEAD；既有 10 行 sha 不变；既有 9 行 sha 不变；既有 8 行 sha 不变；既有 7 行 sha 不变；仅 +1 行 bytes 总数变化是预期）✓
 - `gate_thresholds.json` sha `81f3c83a` 3709 bytes / mtime Aug 23 不变 ✓
 - `01-core.sql` sha `09aa46f9` 51589 bytes ✓
 - `requirements-dbt.txt` sha `db73c342` 349 bytes ✓
@@ -238,11 +238,11 @@
 - ❌ 用户授权 #1 二次申请 零（per 612 §0.1 verbatim「用户授权 #1 仍生效无需二次授权」）✓
 
 **⚠ disclosures (2 项)**:
-1. **source_registry/registry.csv +1 行**：既有 11 行 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859186412fc83541277` 实测不变；既有 10 行 SHA 不变；既有 9 行 SHA 不变；既有 8 行 SHA 不变；既有 7 行 SHA 不变；新增 1 行（江苏样本地市第四刀 / 南通市统计局）；file-based role_count 守门不增计数 per 612 §1.7；manifest INVARIANT 维持
+1. **source_registry/registry.csv +1 行**：既有 11 行 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` 实测不变；既有 10 行 SHA 不变；既有 9 行 SHA 不变；既有 8 行 SHA 不变；既有 7 行 SHA 不变；新增 1 行（江苏样本地市第四刀 / 南通市统计局）；file-based role_count 守门不增计数 per 612 §1.7；manifest INVARIANT 维持
 2. **江苏样本地市第四刀 SHA-locked 落 data/seed_archives/**：bytes 总数变化是预期；既有零地市样本不删；新增 1 个江苏样本地市第四刀（南通市统计局首页）；spike_sample_or_truth role +1
 
 **⚠ disclosure (drift, 1 项)**:
-3. **§CURRENT/612 tasking/611 audit/610 receipt SHA 串号**：文本标注"既有 11 行 SHA `3639e729…`"与实际 HEAD 实测 SHA `c404980f1eb542…` 不符；以实测字节为准 per 583 §F enumeration 即权威；现有 11 行字节零修改（diff 验证 EXISTING 11 ROWS IDENTICAL TO HEAD）；后续 613 audit 建议就 SHA 串号问题另刀审议（候选根因：60X receipt 误把 `head -10`/`head -12` 等不同 SHA 串号传递）
+3. **§CURRENT/612 tasking/611 audit/610 receipt SHA 串号**：文本标注"既有 11 行 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277…`"与实际 HEAD 实测 SHA `c404980f1eb542…` 不符；以实测字节为准 per 583 §F enumeration 即权威；现有 11 行字节零修改（diff 验证 EXISTING 11 ROWS IDENTICAL TO HEAD）；后续 613 audit 建议就 SHA 串号问题另刀审议（候选根因：60X receipt 误把 `head -10`/`head -12` 等不同 SHA 串号传递）
 
 **附加 ⚠ disclosure (mirrors 611 audit §3 ⚠ #3 + 610 §C ⚠ #2 + 608 §C ⚠ #2 + 606 §C ⚠ #2 + 605 §C ⚠ #3)**: paddle-ocr e2e 流水线真实调用：仅 `.venv-paddle/bin/python` 隔离 venv 内允许（per 594 §0.2 红线延续）；system Python 零 paddlepaddle；HTML 路径走 docs/53 §5 connector 模式（per 612 §1.3 替代路径 + 611 audit §3 ⚠ #3 disclosure 已验证）；不视为触碰红线（paddle-ocr 隔离 venv 已建立 + 真依赖导入成功 + HTML connector 替代路径走通 + isolation 100% 守门）
 
@@ -256,7 +256,7 @@
   - **613 tasking** 候选 #1：612 receipt 审计刀（per 583/585/587/589/591/593/594/595/596/597/598/599/600/601/602/603/604/605/606/607/608/609/610/611/612 audit precedent）
   - **613 tasking** 候选 #2：O1 §5.2.x 江苏样本第六刀（剩余地市样本刀；如徐州 / 盐城 / 扬州 / 镇江 / 泰州 / 宿迁地市统计局公开源；接续 605 首批 + 606 首批 + 608 第二批 + 610 第三批 + 612 第四批地市样本链路 → 江苏样本链路 5/15 → 6/15）
   - **613 tasking** 候选 #3：O1 §5.2.x 江苏样本省样本第二刀（其它江苏省份样本刀；如浙江/广东/山东等省统计局公开源；接续 605 首批省样本链路）
-  - **613 tasking** 候选 #4：§CURRENT/历史 receipt SHA 串号问题治理刀（per §3 drift disclosure；候选根因：60X receipt 误把 `head -10`/`head -12` 等不同 SHA 串号传递；§CURRENT/612 tasking/611 audit/610 receipt 文本 SHA `3639e729…` 与 HEAD 实测 `c404980f1eb542…` 不符）
+  - **613 tasking** 候选 #4：§CURRENT/历史 receipt SHA 串号问题治理刀（per §3 drift disclosure；候选根因：60X receipt 误把 `head -10`/`head -12` 等不同 SHA 串号传递；§CURRENT/612 tasking/611 audit/610 receipt 文本 SHA `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277…` 与 HEAD 实测 `c404980f1eb542…` 不符）
   - **613 tasking** 候选 #5：其它治理推进刀 — 任一由架构师定夺
 
 - **O1 整体仍 WAITING_FILE**（per docs/47 §3.1 + 用户 2026-08-26 披露 + 2026-08-29 治理铁律；612 仅第四批地市样本 SHA-locked 不构成 O1 整体收口；待全部 5 省样本 + 10 地市样本均 SHA-locked 后另刀审议）
