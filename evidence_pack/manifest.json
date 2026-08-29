@@ -1,5 +1,5 @@
 {
-  "artifact_count": 929,
+  "artifact_count": 932,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -3412,8 +3412,8 @@
     {
       "path": "docs/45-stage2-s210-lite-gate2-review-index-20260826.md",
       "role": "documentation",
-      "sha256": "799d295bb9cc3a323e517db770f672863625b6407a8122e8a13b2069e4fbf91b",
-      "size_bytes": 304695
+      "sha256": "605deecd1896697193627f4489f4b5de83e5afe1a48cbf87d8bc7db97c032c33",
+      "size_bytes": 307058
     },
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/251-stage0-cc-s210-lite-gate2-index-impl-receipt-20260826.md",
@@ -3784,8 +3784,8 @@
     {
       "path": "docs/49-stage2-o3-ocr-prod-path-plan-20260826.md",
       "role": "documentation",
-      "sha256": "1f17d5ea894064359762b85bbf7c9e25903bb23d0f0226acfc408844792abade",
-      "size_bytes": 26380
+      "sha256": "7cebc806d038ded4e9239f4a7d1ce66c5f744f0e6d95229fe9aac635852c99b7",
+      "size_bytes": 35675
     },
     {
       "path": "scripts/_knife39_manifest_bump.py",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "3d7f06633a5412850d95d0c0418f5ff88b748d6439a17858bbd3c96d3d23a997",
-      "size_bytes": 37670
+      "sha256": "83319cb741f7778d2ea379efa915f5d319957bb72625e9c5a6332776fda98b58",
+      "size_bytes": 52105
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5574,6 +5574,24 @@
       "role": "documentation",
       "sha256": "7c3623608dcda4d1a8907a86ec3feff526647ba9adfcb3dad20814fa936f7ff1",
       "size_bytes": 26741
+    },
+    {
+      "path": "scripts/_knife593_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "68683f20fd9add247937725b008ffed41c62f5c84043adb0808ee956210a5105",
+      "size_bytes": 6910
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/592-stage0-architect-s591-o1-impl-docs50-o1-row117-supersede-refresh-audit-PASS-20260829.md",
+      "role": "documentation",
+      "sha256": "4958a7374e5ada8db65ffca9c6c9d8ee007e7ca4ebd5de2ac76a5ac10f0058c6",
+      "size_bytes": 45196
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/593-stage0-cc-o3-impl-docs-sync-full-sweep-tasking-20260829-receipt.md",
+      "role": "documentation",
+      "sha256": "f78fcf3d257e5f266883198e8420bad2e73be569476f301cc7ec2a6e46f36494",
+      "size_bytes": 23715
     }
   ],
   "commit": {
@@ -5607,7 +5625,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 221,
+    "documentation": 223,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5619,7 +5637,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 182,
+    "spike_helper": 183,
     "spike_sample_or_truth": 383,
     "spike_test": 7,
     "spike_truth_builder": 2,
