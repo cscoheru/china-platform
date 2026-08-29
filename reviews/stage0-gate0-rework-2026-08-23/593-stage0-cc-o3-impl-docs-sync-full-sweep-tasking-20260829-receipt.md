@@ -293,17 +293,27 @@ sum(role_count) == artifact_count == len(artifacts)
 
 ### 双推落地
 
-- commit `XXX`（593 bump first pass：3 NEW = bump 脚本 + 592 audit + 593 receipt；docs/49 + docs/45 + 00-EXEC-QUEUE.md SHA REFRESH）
-- commit `XXX`（593 bump refresh second pass：593 receipt SHA 收敛；00-EXEC-QUEUE.md SHA 收敛）
-- push origin main → push github main（双推收敛 100%）
-- cc_head backfill `XXX`（separate commit；per 591 模式）
-
-[待回填具体 commit SHA after git operations]
+- commit `a309e36`（593 bump first pass：3 NEW = bump 脚本 + 592 audit + 593 receipt；docs/49 + docs/45 + 00-EXEC-QUEUE.md SHA REFRESH）
+- commit `a309e36`（593 bump refresh second pass：00-EXEC-QUEUE.md SHA 收敛 `460b2b93 → 83319cb7`）
+- push origin main → push github main（双推收敛 100%；`6fb30fd..a309e36`）
+- cc_head backfill `TBD`（separate commit；per 591 + 589 模式）
 
 ### cc_head
 
 ```
-[待回填] cc_head commit metadata
+feat(593): docs-only docs sync 全量巡检刀 + 592 audit 入库 + manifest bump +3 → 932
+commit a309e36  (583 + 584 BLOCKED + 585 + 587 + 589 + 591 + 593 链 第 7 刀)
+- 3 NEW: scripts/_knife593_manifest_bump.py (sha=68683f20, spike_helper)
+       + reviews/.../592-...-audit-PASS-20260829.md (sha=4958a737, documentation)
+       + reviews/.../593-...-receipt.md (sha=f78fcf3d, documentation)
+- 4 MODIFIED: docs/45-...-20260826.md (SHA REFRESH 799d295b → 605deecd)
+            + docs/49-...-20260826.md (SHA REFRESH 1f17d5ea → 7cebc806)
+            + reviews/.../00-EXEC-QUEUE.md (SHA REFRESH 3d7f0663 → 460b2b93 → 83319cb7)
+            + evidence_pack/manifest.json (929 → 932 + bump 脚本 + 592 audit + 593 receipt SHA REFRESH)
+- INVARIANT: 932 == 932 == 932 ✓
+- 双推: 6fb30fd..a309e36 origin main + github main (100% 收敛)
+- 5 supersede appends: docs/49 line 248 + 260 + 293 + 294 + docs/45 line 409
+- 红线 100% 兑现 (docs-only 零代码零 SQL + 零用户动作 + 零 --confirm-* 字面 (实跑) + 不重新宣告 O3 整体 CLOSED + 不重新宣告 O1 整体收口 + B 路保持主路径)
 ```
 
 ---
