@@ -474,10 +474,10 @@ OK manifest updated; added 2 artifacts
 
 ## §双推 + cc_head
 
-- **commit (feat(596))**: `[TBD - to be filled post-commit]`
-- **commit (cc_head(596) backfill)**: `[TBD - to be filled post-cc_head-backfill]`
-- **cc_head landing wording**: `queue cc_head 596 → feat commit TBD → cc_head commit TBD → manifest 939 → 941`
-- **双推**: origin main + github main 都推到 `cc_head commit TBD`
+- **commit (feat(596))**: `e76f08e3dff80a8bb2e1c9d4242657674f88fc86` (`feat(596): paddle-ocr deps to .venv-paddle + Dockerfile build/run verified + 597 tasking signed`; 5 files changed, 1115 insertions, 8 deletions; bump script NEW spike_helper + receipt NEW documentation + 597 tasking NEW + 00-EXEC-QUEUE.md SHA REFRESH + manifest.json SHA REFRESH)
+- **commit (cc_head(596) backfill)**: `[TBD - to be filled post-cc_head-backfill]` (separate commit per 593 + 591 + 589 + 594 + 595 平行模式)
+- **cc_head landing wording**: `queue cc_head 596 → feat commit e76f08e → cc_head commit TBD → manifest 939 → 941`
+- **双推**: origin main + github main 都推到 feat commit `e76f08e` (`fccf63e..e76f08e main -> main` 100% 收敛)；cc_head commit 后续单独双推
 - **INVARIANT 941 == 941 == 941 ✓**
 - **596 audit 文件**: `[597-stage0-architect-s596-584-reack-impl-audit-PASS-20260829.md]`（待 597 tasking 落地后由架构师签发 + 随 597 commit 入库 per docs 房规）
 
