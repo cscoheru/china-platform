@@ -302,17 +302,17 @@ OK manifest updated; added 3 artifacts
 
 | 提交 | commit hash | 描述 |
 |---|---|---|
-| feat(603) | TBD | docs/45 文首刷新行 + docs/45 §5.5 链头 `944 → 950` 续接 + docs/45 §6.x 状态行 append + manifest bump 950 → 953 |
-| cc_head(603) backfill | TBD | populate §CURRENT commit SHA + receipt §双推 + cc_head metadata（per 596 + 595 + 594 + 593 + 591 + 589 + 597 + 599 + 601 precedent）|
+| feat(603) | `5eb6929` | docs/45 文首刷新行 + docs/45 §5.5 链头 `944 → 950` 续接 + docs/45 §6.x 状态行 append + manifest bump 950 → 953 |
+| cc_head(603) backfill | `eaddd38` | populate §CURRENT commit SHA + receipt §双推 + cc_head metadata（per 596 + 595 + 594 + 593 + 591 + 589 + 597 + 599 + 601 precedent）|
 
 双推链路：
-- `git push origin main`: `bcf8e26..<feat_603>..<cc_head> main -> main`
-- `git push github main`: `bcf8e26..<feat_603>..<cc_head> main -> main`
+- `git push origin main`: `9bf5cb9..5eb6929..eaddd38 main -> main`
+- `git push github main`: `9bf5cb9..5eb6929..eaddd38 main -> main`
 
 三侧收敛 100% 一致：
-- feat(603): TBD
-- cc_head(603): TBD
-- §CURRENT commit SHA: TBD
+- feat(603): `5eb6929`
+- cc_head(603): `eaddd38`
+- §CURRENT commit SHA: `eaddd38`
 
 ---
 
@@ -320,9 +320,9 @@ OK manifest updated; added 3 artifacts
 
 | 字段 | 值 |
 |---|---|
-| feat commit | TBD |
-| cc_head commit | TBD |
-| 双推 chain | `bcf8e26..<feat_603>..<cc_head>` |
+| feat commit | `5eb6929` |
+| cc_head commit | `eaddd38` |
+| 双推 chain | `9bf5cb9..5eb6929..eaddd38` |
 | manifest INVARIANT | 953 == 953 == 953 ✓ |
 | receipts INVARIANT | 13 受保护文件零漂移（per 603 §6 31 红线 100% 兑现）|
 | 待架构师审计 | 604-stage0-architect-s603-docs-45-chain-head-refresh-收口-audit-…md（PASS/FAIL）|
