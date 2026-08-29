@@ -310,15 +310,15 @@ OK manifest updated; added 3 artifacts
 
 | 提交 | commit hash | 描述 |
 |---|---|---|
-| feat(601) | TBD | docs/52 §14 §1-§12 stale refresh + docs/51 §11 stale `--confirm-o1=PATH` refresh + docs/53 §11 stale `--confirm-live` refresh + docs/45 §7 §6.x 状态行 append + manifest bump 947 → 950 |
+| feat(601) | `bcf8e26` | docs/52 §14 §1-§12 stale refresh + docs/51 §11 stale `--confirm-o1=PATH` refresh + docs/53 §11 stale `--confirm-live` refresh + docs/45 §7 §6.x 状态行 append + manifest bump 947 → 950 |
 | cc_head(601) backfill | TBD | populate §CURRENT commit SHA + receipt §双推 + cc_head metadata（per 596 + 595 + 594 + 593 + 591 + 589 + 597 + 599 precedent）|
 
-双推链路（落地后填充）：
-- `git push origin main`: `ce5a168..<feat>..<cc_head> main -> main`
-- `git push github main`: `ce5a168..<feat>..<cc_head> main -> main`
+双推链路：
+- `git push origin main`: `ce5a168..bcf8e26..<cc_head> main -> main`
+- `git push github main`: `ce5a168..bcf8e26..<cc_head> main -> main`
 
-三侧收敛 100% 一致（落地后）：
-- feat(601): TBD
+三侧收敛 100% 一致：
+- feat(601): `bcf8e26`
 - cc_head(601): TBD
 - §CURRENT commit SHA: TBD
 
@@ -328,9 +328,9 @@ OK manifest updated; added 3 artifacts
 
 | 字段 | 值 |
 |---|---|
-| feat commit | TBD |
+| feat commit | `bcf8e26` |
 | cc_head commit | TBD |
-| 双推 chain | TBD |
+| 双推 chain | `ce5a168..bcf8e26..<cc_head>` |
 | manifest INVARIANT | 950 == 950 == 950 ✓ |
 | receipts INVARIANT | 13 受保护文件零漂移（per 601 §6 31 红线 100% 兑现）|
 | 待架构师审计 | 602-stage0-architect-s601-docs-52-b-route-§1-§12-stale-refresh-audit-…md（PASS/FAIL）|
