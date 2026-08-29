@@ -367,15 +367,15 @@ OK manifest updated; added 3 artifacts
 | 提交 | commit hash | 描述 |
 |---|---|---|
 | feat(597) | `d2505db` | 584 §5.2.4 paddle-ocr 引擎依赖实施 + 584 docs sync 收口 (manifest 941 → 944) |
-| cc_head(597) backfill | `TBD` | populate §CURRENT commit SHA + receipt §双推 + cc_head metadata（per 596 + 595 + 594 + 593 + 591 + 589 precedent）|
+| cc_head(597) backfill | `22d498e` | populate §CURRENT commit SHA + receipt §双推 + cc_head metadata（per 596 + 595 + 594 + 593 + 591 + 589 precedent）|
 
 双推链路：
-- `git push origin main`: `951cd63..d2505db main -> main`
-- `git push github main`: `951cd63..d2505db main -> main`
+- `git push origin main`: `951cd63..d2505db..22d498e main -> main`
+- `git push github main`: `951cd63..d2505db..22d498e main -> main`
 
-三侧收敛（待 cc_head backfill commit 落地后 100% 一致）：
+三侧收敛 100% 一致：
 - feat(597): `d2505db`
-- cc_head(597) backfill: `TBD`（待 populate）
+- cc_head(597) backfill: `22d498e`
 - §CURRENT commit SHA: `d2505db`
 
 ---
@@ -385,8 +385,8 @@ OK manifest updated; added 3 artifacts
 | 字段 | 值 |
 |---|---|
 | feat commit | `d2505db` |
-| cc_head commit | `TBD`（待 populate）|
-| 双推 chain | `951cd63..d2505db..TBD` |
+| cc_head commit | `22d498e` |
+| 双推 chain | `951cd63..d2505db..22d498e` |
 | manifest INVARIANT | 944 == 944 == 944 ✓ |
 | receipts INVARIANT | 13 受保护文件零漂移（per 597 §4 32 红线 100% 兑现）|
 | 待架构师审计 | 598-stage0-architect-s597-584-impl-audit-…md（PASS/FAIL）|
