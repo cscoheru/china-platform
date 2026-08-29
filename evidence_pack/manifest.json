@@ -1,5 +1,5 @@
 {
-  "artifact_count": 965,
+  "artifact_count": 969,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -268,8 +268,8 @@
     {
       "path": "source_registry/registry.csv",
       "role": "source_registry_csv",
-      "sha256": "3639e729bdb52e40e9681de71591806970260cbc05927da4097fc7692a375420",
-      "size_bytes": 6706
+      "sha256": "c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277",
+      "size_bytes": 7597
     },
     {
       "path": "scripts/compute_file_sha.py",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "ec01f5907eef25f4968cac9549cd70acf98a844732c6c761c8e3e9180515bb33",
-      "size_bytes": 235842
+      "sha256": "82594c298dd5025a4b676db784ce1a4614912d7269418ecb576f71cdeabc682e",
+      "size_bytes": 260520
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5790,6 +5790,30 @@
       "role": "spike_sample_or_truth",
       "sha256": "37ed4c223b16397f66781744987dafa6ab975fc0ceb7006a028b3edb62ce2712",
       "size_bytes": 40065
+    },
+    {
+      "path": "scripts/_knife610_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "0fafaf00593daaf83dca4fa1661215f44a49d4a361bcdc73c7192e7d20a8d25b",
+      "size_bytes": 8925
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/609-stage0-architect-s608-o1-§5.2.x-real-sha-locked-江苏样本-地市第二刀-tasking-20260829-audit-PASS-20260829.md",
+      "role": "documentation",
+      "sha256": "590109223d5b7f29e99e46aa09d76132b99e52e50ab6a09e84914b6e69da7caa",
+      "size_bytes": 37857
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/610-stage0-cc-o1-§5.2.x-real-sha-locked-江苏样本-地市第三刀-tasking-20260829-receipt.md",
+      "role": "documentation",
+      "sha256": "26286a82accb8635c6d470c9118ca4d92ebec56f8489c108bdebea7e4bedd318",
+      "size_bytes": 25539
+    },
+    {
+      "path": "data/seed_archives/jiangsu_changzhou_tjj_gov_cn_20260829.html",
+      "role": "spike_sample_or_truth",
+      "sha256": "0ecf3d2ed76407c4bf50a5cba8552af78ca2e22fcc5ab39966b1212aac6979f6",
+      "size_bytes": 50868
     }
   ],
   "commit": {
@@ -5823,7 +5847,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 240,
+    "documentation": 242,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5835,8 +5859,8 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 196,
-    "spike_sample_or_truth": 386,
+    "spike_helper": 197,
+    "spike_sample_or_truth": 387,
     "spike_test": 7,
     "spike_truth_builder": 2,
     "test_conftest": 1,
