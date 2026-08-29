@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "622be2f7184b132ccc0c4a73c4ba6b48cb2ee83e4946c4dea2189f6e13726572",
-      "size_bytes": 125954
+      "sha256": "188ea417e19028991bd44b4304067425018f16a25a0acaad792dc9386e3a0e9b",
+      "size_bytes": 131441
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5680,8 +5680,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/599-stage0-cc-docs-52-b-route-spec-refresh-tasking-20260829-receipt.md",
       "role": "documentation",
-      "sha256": "34359f4e84d47b75160e0ca923f95839a1d902b744a020445a3c7c5de5c1df56",
-      "size_bytes": 23470
+      "sha256": "87dd34b897610adc33a426e31491607e73c864a825405dc267f90cb90770893c",
+      "size_bytes": 23704
     }
   ],
   "commit": {
