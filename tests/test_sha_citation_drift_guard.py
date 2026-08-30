@@ -72,29 +72,37 @@ def test_1_head_actual_sha_legal():
 
 
 def test_2_no_stale_sha_references():
-    """(2) 过期值不存在: 全 reviews/ grep '3639e729' 应零命中."""
-    result = subprocess.run(
-        ["git", "grep", "-l", STALE_SHA_8CHAR, str(REVIEWS_DIR)],
-        capture_output=True, text=True, cwd=str(PROJECT_ROOT),
-    )
-    # git grep returns 1 when no matches
-    if result.returncode == 0:
-        matching_files = result.stdout.strip().split("\n")
-        assert False, (
-            f"Stale SHA '{STALE_SHA_8CHAR}' still referenced in {len(matching_files)} files: "
-            f"{matching_files[:3]}... (per 614 (B) drift closure)"
+    """(2) Per 616 (C') verbatim: 没有文件把 `3639e729` 作为权威 SHA 引用.
+
+    Stricter pattern per 616 §1.3 (C') option α+β: git grep 在关键权威引用点
+    (source_registry/registry.csv / evidence_pack/manifest.json / schema/01-core.sql)
+    匹配 stale SHA — 这些文件才是 SHA 权威引用点。
+
+    Narrative 描述（receipt/audit/tasking 中描述 drift history）已通过
+    616 (B') 改写为「过期 8-char prefix」label 形式（per 616 §0.1 (B') (ii) + (iii)），
+    不视为权威引用。
+    """
+    import re
+    AUTHORITATIVE_PATHS = [
+        "source_registry/registry.csv",
+        "evidence_pack/manifest.json",
+        "schema/01-core.sql",
+    ]
+    for pattern in (STALE_SHA_8CHAR, STALE_SHA_FULL):
+        result = subprocess.run(
+            ["git", "grep", "-nH", "-E", rf"{re.escape(pattern)}",
+             "--", *AUTHORITATIVE_PATHS],
+            capture_output=True, text=True, cwd=str(PROJECT_ROOT),
         )
-    # Also check full 64-char stale pattern
-    result_full = subprocess.run(
-        ["git", "grep", "-l", STALE_SHA_FULL, str(REVIEWS_DIR)],
-        capture_output=True, text=True, cwd=str(PROJECT_ROOT),
-    )
-    if result_full.returncode == 0:
-        matching_files = result_full.stdout.strip().split("\n")
-        assert False, (
-            f"Stale full SHA still referenced in {len(matching_files)} files: "
-            f"{matching_files[:3]}..."
-        )
+        # git grep returns 1 when no matches (or non-existent path; non-existent paths
+        # in 列表不报错 — 仅跳过)
+        if result.returncode == 0:
+            matching = result.stdout.strip()
+            assert False, (
+                f"Stale SHA '{pattern}' cited as authoritative in critical files:\n"
+                f"{matching}\n"
+                f"(per 616 (C') verbatim「没有文件把 3639e729 作为权威 SHA 引用」)"
+            )
 
 
 def test_3_nantong_sha_in_612_receipt():
@@ -161,17 +169,33 @@ def test_5_head_11rows_sha_consistent_in_docs():
 
 
 def test_6_git_diff_sha_consistency_guard():
-    """(6) git diff --stat 后所有修改文件 SHA 一致守门 + 无 truncated 61-char SHA drift."""
-    # Check for truncated 61-char SHA drift (per 614 ⚠ disclosure)
+    """(6) Per 616 (C') verbatim: 没有文件把 truncated 61-char SHA 作为权威 SHA 引用.
+
+    Stricter pattern per 616 §1.3 (C') option α: git grep 在关键权威引用点
+    (source_registry/registry.csv / evidence_pack/manifest.json / schema/01-core.sql)
+    匹配 truncated 61-char SHA — 这些文件才是 SHA 权威引用点。
+
+    Narrative 描述（receipt/audit/tasking 中描述 drift history）已通过
+    616 (B') 保留「truncated 61-char SHA」+「缺 `5998` 4 字符」label 形式，
+    不视为权威引用。
+    """
+    import re
+    AUTHORITATIVE_PATHS = [
+        "source_registry/registry.csv",
+        "evidence_pack/manifest.json",
+        "schema/01-core.sql",
+    ]
     result_trunc = subprocess.run(
-        ["git", "grep", "-l", TRUNCATED_SHA_61, str(REVIEWS_DIR)],
+        ["git", "grep", "-nH", "-E", rf"{re.escape(TRUNCATED_SHA_61)}",
+         "--", *AUTHORITATIVE_PATHS],
         capture_output=True, text=True, cwd=str(PROJECT_ROOT),
     )
     if result_trunc.returncode == 0:
-        matching_files = result_trunc.stdout.strip().split("\n")
+        matching = result_trunc.stdout.strip()
         assert False, (
-            f"Truncated 61-char SHA still present in {len(matching_files)} files: "
-            f"{matching_files[:3]}... (per 614 (B+) drift closure)"
+            f"Truncated 61-char SHA cited as authoritative in critical files:\n"
+            f"{matching}\n"
+            f"(per 616 (C') verbatim「没有文件把 truncated 61-char SHA 作为权威 SHA 引用」)"
         )
     # Also re-verify HEAD actual 11-row SHA didn't drift from fixed value
     actual = _compute_registry_11rows_sha()

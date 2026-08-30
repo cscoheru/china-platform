@@ -167,7 +167,7 @@
 - spike_sample_or_truth role +1
 
 ### ⚠ disclosure #3 (drift): §CURRENT/历史 receipt SHA 串号问题
-- 文本层面（§CURRENT + 612 tasking line 110/120/266 + 611 audit + 610 receipt）：标注"既有 11 行 SHA `3639e729…`"
+- 文本层面（§CURRENT + 612 tasking line 110/120/266 + 611 audit + 610 receipt）：标注"既有 11 行 SHA `3639e729<…>` 过期 8-char prefix"
 - HEAD 实测：既有 11 行 SHA = `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277`
 - 差异：文本 SHA ≠ 实测 SHA；但实测既有 11 行字节零修改（diff 验证 EXISTING 11 ROWS IDENTICAL TO HEAD）
 - 根因：60X receipt 误把 `head -10`/`head -12` 等不同 SHA 串号传递（per 612 receipt §3 候选根因）
@@ -222,7 +222,7 @@
 
 per 612 receipt §9 + 612 tasking §4 关联文件清单 + 611 audit §10:
 
-- **614 tasking 候选 #1（最高优先）**：§CURRENT/历史 receipt SHA 串号问题治理刀（per §3 ⚠ disclosure #3；候选根因：60X receipt 误把 `head -10`/`head -12` 等不同 SHA 串号传递；§CURRENT/612 tasking line 110/120/266 + 611 audit + 610 receipt 文本 SHA `3639e729…` 与 HEAD 实测 `c404980f1eb542…` 不符；以实测为准；建议 614 audit 一次性 git grep + 全文校对修复 + 增单元测试守门）
+- **614 tasking 候选 #1（最高优先）**：§CURRENT/历史 receipt SHA 串号问题治理刀（per §3 ⚠ disclosure #3；候选根因：60X receipt 误把 `head -10`/`head -12` 等不同 SHA 串号传递；§CURRENT/612 tasking line 110/120/266 + 611 audit + 610 receipt 文本 SHA `3639e729<…>` 过期 8-char prefix 与 HEAD 实测 `c404980f1eb542…` 不符；以实测为准；建议 614 audit 一次性 git grep + 全文校对修复 + 增单元测试守门）
 - **614 tasking 候选 #2**：O1 §5.2.x 江苏样本第六刀（剩余地市样本刀；如徐州 / 盐城 / 扬州 / 镇江 / 泰州 / 宿迁地市统计局公开源；接续 605 + 606 + 608 + 610 + 612 江苏样本链路 5/15 → 6/15）
 - **614 tasking 候选 #3**：O1 §5.2.x 江苏样本省样本第二刀（其它江苏省份样本刀；如浙江/广东/山东等省统计局公开源；接续 605 首批省样本链路）
 - **614 tasking 候选 #4**：其它治理推进刀 — 任一由架构师定夺

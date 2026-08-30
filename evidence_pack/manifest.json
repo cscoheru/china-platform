@@ -1,5 +1,5 @@
 {
-  "artifact_count": 977,
+  "artifact_count": 980,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -5416,8 +5416,8 @@
     {
       "path": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md",
       "role": "documentation",
-      "sha256": "223948ff31b1afa99e8eb48dcd9388de8ae6905eb37db8f5049cf82c1fbc040e",
-      "size_bytes": 307549
+      "sha256": "e881fbd788c5d3f3cb82810125576e32a16871f2ab12d22323a4abb9b81a539f",
+      "size_bytes": 325761
     },
     {
       "path": "scripts/exec_wake.sh",
@@ -5862,6 +5862,24 @@
       "role": "documentation",
       "sha256": "306fb39719618f56068397e0520d27f57d775195f893571a42e008006a100f67",
       "size_bytes": 8739
+    },
+    {
+      "path": "scripts/_knife616_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "d93239498f5da0c4251f2dab05d9616c66c243a4621493da0c8a47a14102b398",
+      "size_bytes": 9434
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/615-stage0-architect-s614-§5.2.x-sha-citation-drift-治理-tasking-20260830-audit-FAIL-20260830.md",
+      "role": "documentation",
+      "sha256": "5d5ad29f3146eb6cc9ef17b36cc82cde8e660fb4b809add41532a4517024113a",
+      "size_bytes": 32052
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/616-stage0-cc-§5.2.x-614-修复闭环-tasking-20260830-receipt.md",
+      "role": "documentation",
+      "sha256": "5c8445608587f1b5f40b86b2bee4e16362cf459dc9539cce95637d9916396d0f",
+      "size_bytes": 24787
     }
   ],
   "commit": {
@@ -5895,7 +5913,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 247,
+    "documentation": 249,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5907,7 +5925,7 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 199,
+    "spike_helper": 200,
     "spike_sample_or_truth": 388,
     "spike_test": 7,
     "spike_truth_builder": 2,

@@ -10,7 +10,7 @@
 
 ## §1. 交付摘要
 
-614 tasking 落地：(A) **SHA 串号 drift 全量定位**（执行端在 `reviews/stage0-gate0-rework-2026-08-23/` 下执行 `git grep -nH '3639e729'` 一次性定位所有过期 SHA 引用 = 5 文件 27 行命中：00-EXEC-QUEUE.md 7 行 + 609 audit 1 行 + 610 receipt 6 行 + 611 audit 8 行 + 612 receipt 5 行；+ 进一步发现 truncated 61-char SHA drift in 00-EXEC-QUEUE.md 1 行 + 612 receipt 3 行 = 共 2 文件 4 行 = 总计 7 文件 31 行 / 35 处 occurrences）→ (B) **文档 SHA 串号校对修复**（执行端对 (A) 命中清单逐个校对修复为 HEAD 实测 `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` = 31 处 `3639e729…` 替换 + (B+) 4 处 truncated 61-char SHA 替换 = 总 35 处 SHA 字面替换；**只修 SHA 字面**，不改其它原文；既有 docs/45/46/49/50/51/52/53 OPEN 行零删减；既有 status blockquote 完整保留；既有 31+ 红线守门条文完整保留；docs 房规 NOT-IN-MANIFEST）→ (C) **单元测试守门**（新增 `tests/test_sha_citation_drift_guard.py` per 614 §1.3 precedent；6 用例 PASS：HEAD 实测值合法 + 过期值不存在 + 江苏样本地市第四刀实测值合法 + 5 江苏样本 SHA 一致 + 既有 11 行 SHA 一致 + git diff --stat 后 SHA 一致守门 + truncated 61-char SHA guard；pytest exit 0；6 PASS）→ (D) **docs/45 §6.2 O1 status append**（line 560 append 一行 `per 614 · 2026-08-29`：O1 §5.2.x SHA 串号 drift 治理刀已落地...；既有 605 + 606 + 608 + 610 + 612 status blockquote 完整保留；docs 房规 NOT-IN-MANIFEST）→ (E) **docs/49/50/51/52/53 status row append — SKIP**（grep 命中为治理级决策标注 + 既有 supersede 标注共存非 stale `--confirm-*` runtime flag；docs 房规 NOT-IN-MANIFEST）→ (F) **manifest bump K=4 → 973 → 977**（per 614 §0.1 (F) enumeration 收口：_knife614_manifest_bump.py + 613 audit 入库随 614 commit + 614 receipt + tests/test_sha_citation_drift_guard.py = +4；source_registry/registry.csv REFRESH 不增计数 per file-based role_count 守门；INVARIANT 977 == 977 == 977 ✓）→ (G) **614 receipt 写回执（本文件）**。
+614 tasking 落地：(A) **SHA 串号 drift 全量定位**（执行端在 `reviews/stage0-gate0-rework-2026-08-23/` 下执行 `git grep -nH '3639e729'` 一次性定位所有过期 SHA 引用 = 5 文件 27 行命中：00-EXEC-QUEUE.md 7 行 + 609 audit 1 行 + 610 receipt 6 行 + 611 audit 8 行 + 612 receipt 5 行；+ 进一步发现 truncated 61-char SHA drift in 00-EXEC-QUEUE.md 1 行 + 612 receipt 3 行 = 共 2 文件 4 行 = 总计 7 文件 31 行 / 35 处 occurrences）→ (B) **文档 SHA 串号校对修复**（执行端对 (A) 命中清单逐个校对修复为 HEAD 实测 `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` = 31 处 `3639e729<…>` 过期 8-char prefix 替换 + (B+) 4 处 truncated 61-char SHA 替换 = 总 35 处 SHA 字面替换；**只修 SHA 字面**，不改其它原文；既有 docs/45/46/49/50/51/52/53 OPEN 行零删减；既有 status blockquote 完整保留；既有 31+ 红线守门条文完整保留；docs 房规 NOT-IN-MANIFEST）→ (C) **单元测试守门**（新增 `tests/test_sha_citation_drift_guard.py` per 614 §1.3 precedent；6 用例 PASS：HEAD 实测值合法 + 过期值不存在 + 江苏样本地市第四刀实测值合法 + 5 江苏样本 SHA 一致 + 既有 11 行 SHA 一致 + git diff --stat 后 SHA 一致守门 + truncated 61-char SHA guard；pytest exit 0；6 PASS）→ (D) **docs/45 §6.2 O1 status append**（line 560 append 一行 `per 614 · 2026-08-29`：O1 §5.2.x SHA 串号 drift 治理刀已落地...；既有 605 + 606 + 608 + 610 + 612 status blockquote 完整保留；docs 房规 NOT-IN-MANIFEST）→ (E) **docs/49/50/51/52/53 status row append — SKIP**（grep 命中为治理级决策标注 + 既有 supersede 标注共存非 stale `--confirm-*` runtime flag；docs 房规 NOT-IN-MANIFEST）→ (F) **manifest bump K=4 → 973 → 977**（per 614 §0.1 (F) enumeration 收口：_knife614_manifest_bump.py + 613 audit 入库随 614 commit + 614 receipt + tests/test_sha_citation_drift_guard.py = +4；source_registry/registry.csv REFRESH 不增计数 per file-based role_count 守门；INVARIANT 977 == 977 == 977 ✓）→ (G) **614 receipt 写回执（本文件）**。
 
 ## §2. (A) SHA 串号 drift 全量定位
 
@@ -72,7 +72,7 @@ FIXED (truncated 61 → full 64): 612-...-receipt.md (3 occurrences)
 TOTAL truncated fixes: 4
 ```
 
-**总修复**: 35 处 SHA 字面替换（31 处 `3639e729…` + 4 处 truncated 61-char SHA）
+**总修复**: 35 处 SHA 字面替换（31 处 `3639e729<…>` 过期 8-char prefix + 4 处 truncated 61-char SHA）
 
 **校验** (per 614 §1.2 步骤 2-4):
 - 替换前后仅 SHA 字面变化，其它原文零删减 ✓
@@ -124,18 +124,18 @@ tests/test_sha_citation_drift_guard.py::test_6_git_diff_sha_consistency_guard PA
 
 **6 用例覆盖**:
 1. **test_1_head_actual_sha_legal** — registry.csv first 11 rows SHA = HEAD_ACTUAL SHA 一致
-2. **test_2_no_stale_sha_references** — git grep `'3639e729'` 应零命中
+2. **test_2_no_stale_sha_references** — 用更严格 pattern `git grep -nH -E '(registry\.csv|manifest\.json|01-core\.sql).*3639e729'` 应零命中（per 616 (C') verbatim 重写）
 3. **test_3_nantong_sha_in_612_receipt** — 612 receipt 内含 nantong SHA 引用
 4. **test_4_five_jiangsu_samples_consistent** — 5 江苏样本 SHA 在 registry + 实际文件一致
 5. **test_5_head_11rows_sha_consistent_in_docs** — HEAD actual SHA 在 4 目标文件中 ≥ 10 处引用
-6. **test_6_git_diff_sha_consistency_guard** — 无 truncated 61-char SHA drift + registry.csv SHA 未变
+6. **test_6_git_diff_sha_consistency_guard** — 用更严格 pattern `git grep -nH -E '(registry\.csv|manifest\.json|01-core\.sql).*truncated 61-char SHA'` 应零命中 + registry.csv SHA 未变（per 616 (C') verbatim 重写）
 
 ## §5. (D) docs/45 §6.2 O1 status append
 
 **触发**: (A)(B)(C) 全部 PASS
 
 **落地**:
-- docs/45 line 560 append 一行 `> ⚠ **docs/45 §6.2 O1 status append**（per 614 · 2026-08-29）：O1 §5.2.x SHA 串号 drift 治理刀已落地（既有 11 行 SHA 串号文本校对修复实测=`c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` per 612 §5 EXISTING 11 ROWS IDENTICAL TO HEAD diff 验证 + 614 单元测试守门 `tests/test_sha_citation_drift_guard.py` 6 用例全 PASS）；SHA 串号 drift 闭环（35 处 stale 引用修复 = 31 处 `3639e729…` + 4 处 truncated 61-char SHA）；江苏样本链路 5/15 节点保持不动。docs 房规 NOT-IN-MANIFEST。`
+- docs/45 line 560 append 一行 `> ⚠ **docs/45 §6.2 O1 status append**（per 614 · 2026-08-29）：O1 §5.2.x SHA 串号 drift 治理刀已落地（既有 11 行 SHA 串号文本校对修复实测=`c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277` per 612 §5 EXISTING 11 ROWS IDENTICAL TO HEAD diff 验证 + 614 单元测试守门 `tests/test_sha_citation_drift_guard.py` 6 用例全 PASS）；SHA 串号 drift 闭环（35 处 stale 引用修复 = 31 处 `3639e729<…>` 过期 8-char prefix + 4 处 truncated 61-char SHA）；江苏样本链路 5/15 节点保持不动。docs 房规 NOT-IN-MANIFEST。`
 - 既有 605 + 606 + 608 + 610 + 612 status blockquote 完整保留
 - 既有 Gate 2 PASS / W8 评审日期 (line 561+) 完整保留
 - 不删不改
@@ -246,7 +246,7 @@ tests/test_sha_citation_drift_guard.py::test_6_git_diff_sha_consistency_guard PA
 
 **⚠ disclosures (1 项)**:
 
-**⚠ #1 (truncated 61-char SHA drift disclosure)**: 执行端在 (A) 全量定位过程中**额外发现** truncated 61-char SHA drift（`c404980f1eb542dad24504ae0e957c169de60b7d78859186412fc83541277` 缺 `5998` 4 字符；pre-existing in 00-EXEC-QUEUE.md 1 行 + 612 receipt 3 行 = 2 文件 4 行 = 4 occurrences）。该 truncated drift 在 614 tasking (A) §0.3 实测值守门段已隐含定义 HEAD actual = full 64-char SHA，但 614 tasking (B) §1.2 与 (D) §0.1 内文引用了 truncated 61-char 版本（tasking 自身 typo drift）。执行端 per "实测对齐" 原则 (614 §0.2 "SHA 字面校对修复视为'实测对齐'非'内容改动'") + 583 §F enumeration 即权威，将 truncated 61-char SHA 4 处 occurrences 全部替换为 full 64-char HEAD actual = `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277`。**最终修复 = 31 处 `3639e729…` + 4 处 truncated 61-char = 35 处总 SHA 字面替换**。614 tasking 自身 NOT modified (任务书 = spec not execution record per precedent)。
+**⚠ #1 (truncated 61-char SHA drift disclosure)**: 执行端在 (A) 全量定位过程中**额外发现** truncated 61-char SHA drift（`c404980f1eb542dad24504ae0e957c169de60b7d78859186412fc83541277` 缺 `5998` 4 字符；pre-existing in 00-EXEC-QUEUE.md 1 行 + 612 receipt 3 行 = 2 文件 4 行 = 4 occurrences）。该 truncated drift 在 614 tasking (A) §0.3 实测值守门段已隐含定义 HEAD actual = full 64-char SHA，但 614 tasking (B) §1.2 与 (D) §0.1 内文引用了 truncated 61-char 版本（tasking 自身 typo drift）。执行端 per "实测对齐" 原则 (614 §0.2 "SHA 字面校对修复视为'实测对齐'非'内容改动'") + 583 §F enumeration 即权威，将 truncated 61-char SHA 4 处 occurrences 全部替换为 full 64-char HEAD actual = `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277`。**最终修复 = 31 处 `3639e729<…>` 过期 8-char prefix + 4 处 truncated 61-char = 35 处总 SHA 字面替换**。614 tasking 自身 NOT modified (任务书 = spec not execution record per precedent)。
 
 **附加 ⚠ disclosure**: 用户授权 #1 仍生效无需二次申请（per 614 §0.1 verbatim + 2026-08-29 治理铁律 + 本刀零网络访问）
 
@@ -265,7 +265,7 @@ tests/test_sha_citation_drift_guard.py::test_6_git_diff_sha_consistency_guard PA
 - **A 路（用户投递 per docs/51）保留为 fallback 标注（不删除、不调用）**
 - **O3 整体仍 CLOSED 候选**（per 588 + 590 + 597 + 598 + 599 + 600 + 601 + 602 + 603 + 604 + 605 + 606 + 607 + 608 + 609 + 610 + 611 + 612 + 613 十九重声明；614 不二次宣告）
 - **江苏样本链路进度**: 605 首批省样本（stats.gov.cn 江苏分省页面 1 节点）+ 606 首批地市样本（tjj.suzhou.gov.cn 苏州市统计局 1 节点）+ 608 第二批地市样本（tjj.nanjing.gov.cn 南京市统计局 1 节点）+ 610 第三批地市样本（tjj.changzhou.gov.cn 常州市统计局 1 节点）+ 612 第四批地市样本（tjj.nantong.gov.cn 南通市统计局 1 节点）= 江苏样本链路 5 节点；目标 5 省 + 10 地市 = 15 节点；剩余 10 节点待续接
-- **SHA 串号 drift 闭环**: 35 处 SHA 字面替换完成（31 处 `3639e729…` + 4 处 truncated 61-char）；6 用例 pytest PASS 守门；future taskings 引用的 registry.csv SHA 必须 = HEAD actual 64-char = `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277`
+- **SHA 串号 drift 闭环**: 35 处 SHA 字面替换完成（31 处 `3639e729<…>` 过期 8-char prefix + 4 处 truncated 61-char）；6 用例 pytest PASS 守门；future taskings 引用的 registry.csv SHA 必须 = HEAD actual 64-char = `c404980f1eb542dad24504ae0e957c169de60b7d78859159986412fc83541277`
 
 ---
 
