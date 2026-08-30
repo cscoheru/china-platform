@@ -1,5 +1,5 @@
 {
-  "artifact_count": 984,
+  "artifact_count": 988,
   "artifacts": [
     {
       "path": "data/extracts/00-national-yearbook-table/extracted.json",
@@ -268,8 +268,8 @@
     {
       "path": "source_registry/registry.csv",
       "role": "source_registry_csv",
-      "sha256": "49ec7efabf9c0d5b33c5df6ed5639c4bb4a892560cd32fe62473a2bb488311e4",
-      "size_bytes": 9844
+      "sha256": "44ec64cae4577fdc1bc653ec4d2a224d05d1faa51af60bff0442c97596cf4e66",
+      "size_bytes": 11053
     },
     {
       "path": "scripts/compute_file_sha.py",
@@ -5904,6 +5904,30 @@
       "role": "spike_sample_or_truth",
       "sha256": "f8a2d8ebbb6ce04fbe62cd54434dcde26f890102bf5f2c0eb6158632308b6c50",
       "size_bytes": 23721
+    },
+    {
+      "path": "scripts/_knife619_manifest_bump.py",
+      "role": "spike_helper",
+      "sha256": "cf6ea6fe07a3bffb0d5525017cc571c2c2bb5c1d4fc8d7b6ff836fd9f3781418",
+      "size_bytes": 10103
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/618-stage0-architect-s617-o1-§5.2.x-real-sha-locked-江苏样本-地市第六刀-tasking-20260830-audit-PASS-20260830.md",
+      "role": "documentation",
+      "sha256": "85b6252c5a236cf82ece0ade101df8f6c1e649c50be35f4e71e46192df90becd",
+      "size_bytes": 17272
+    },
+    {
+      "path": "reviews/stage0-gate0-rework-2026-08-23/619-stage0-cc-o1-§5.2.x-real-sha-locked-江苏样本-地市第七刀-tasking-20260830-receipt.md",
+      "role": "documentation",
+      "sha256": "addd647f339415c7a448d84eac1b88930b403e4cda450b09481f2cde996c196b",
+      "size_bytes": 19635
+    },
+    {
+      "path": "data/seed_archives/jiangsu_yangzhou_tjj_gov_cn_20260830.html",
+      "role": "spike_sample_or_truth",
+      "sha256": "21443988e223e48e65b0954916f73d28f85cadb7a9a17e631c1c3218c7b1ac3c",
+      "size_bytes": 45422
     }
   ],
   "commit": {
@@ -5937,7 +5961,7 @@
   "python_version": "3.14.3",
   "role_count": {
     "data_contract_suite": 37,
-    "documentation": 251,
+    "documentation": 253,
     "extracted_artifact": 8,
     "research_non_gating_eval_report": 1,
     "research_non_gating_extracted_artifact": 1,
@@ -5949,8 +5973,8 @@
     "source_registry_doc": 1,
     "spike_evaluator": 2,
     "spike_extractor": 7,
-    "spike_helper": 201,
-    "spike_sample_or_truth": 389,
+    "spike_helper": 202,
+    "spike_sample_or_truth": 390,
     "spike_test": 7,
     "spike_truth_builder": 2,
     "test_conftest": 1,
