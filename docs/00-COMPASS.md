@@ -14,8 +14,8 @@
 |---|---|
 | 计划 | `docs/54`（U1–U5 已批） |
 | 阶段 | **M2**（M1 **有限通过** 2026-08-31） |
-| 拆分 | `docs/56`；首刀 **631 = M2-a** |
-| NOW | **631** 31 省 geo + 2024 GDP 源清单 |
+| 拆分 | `docs/56`；M2-a（**631**）DELIVERED；等 M2-b |
+| NOW | 等架构师签 **M2-b** 任务书 |
 | 北极星 | 2024 年 31 省 GDP 一致率（08b） |
 | 试点 | 苏深挖 + 粤浙（M3） |
 | Gate | **未 PASS**。M1≠Gate1 全量；M2≠自动 PASS |
@@ -28,7 +28,8 @@ KPI：`geo×indicator×year` 覆盖率 + `missing_reason`；核对一致率。�
 
 ## NOW（本阶段）
 
-M2-a：`seed_m2_province_geo` + `m2_2024_gdp_inventory.csv` + coverage 空表。详见 `631`。
+M2-a 已完成（`631-stage0-cc-m2-a-geo-inventory-receipt-20260831.md`，8 tests green）。  
+等架构师签 M2-b：≥5 省 2024 GDP 表级源抓取 + SHA 锁 + observation 写入。
 
 ## POINTERS（冷）
 

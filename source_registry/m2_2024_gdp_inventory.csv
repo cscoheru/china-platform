@@ -1,0 +1,33 @@
+province_zh,geo_code,candidate_url,asset_kind,local_sample_path,file_hash_sha256,status,missing_reason,notes
+国家,00,https://www.stats.gov.cn/sj/zxfb/202402/t20240228_1947911.html,HTML_TABLE,,,PENDING,,2024 年国民经济和社会发展统计公报；待 M2-b 取 + SHA 锁
+北京市,11,https://tjj.beijing.gov.cn/tjsj/sjkscx/tjyb/,HTML_TABLE,,,PENDING,,北京统计局-统计公报-统计年报；待 M2-b 取 + SHA 锁
+天津市,12,https://stats.tj.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,天津统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+上海市,31,https://tjj.sh.gov.cn/tjgb/,HTML_TABLE,,,PENDING,,上海统计局-统计公报；待 M2-b 取 + SHA 锁
+重庆市,50,https://tjj.cq.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,重庆统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+河北省,13,https://tjj.hebei.gov.cn/tjsj/sjkscx/tjgb/,HTML_TABLE,,,PENDING,,河北统计局-统计公报；待 M2-b 取 + SHA 锁
+山西省,14,https://tjj.shanxi.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,山西统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+内蒙古自治区,15,https://tj.nmg.gov.cn/tjyjh/dcsj/,HTML_TABLE,,,PENDING,,内蒙古统计局-地区生产总值；待 M2-b 取 + SHA 锁
+辽宁省,21,https://tjj.ln.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,辽宁统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+吉林省,22,https://tjj.jl.gov.cn/tjsj/tjgb/,HTML_TABLE,,,PENDING,,吉林统计局-统计公报；待 M2-b 取 + SHA 锁
+黑龙江省,23,https://tjj.hlj.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,黑龙江统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+江苏省,32,https://tjj.jiangsu.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,江苏统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁 (试点优先: M2-b 优先入)
+浙江省,33,https://tjj.zj.gov.cn/col/col1229454049/index.html,HTML_TABLE,,,PENDING,,浙江统计局-统计公报；待 M2-b 取 + SHA 锁 (试点优先)
+安徽省,34,https://tjj.ah.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,安徽统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+福建省,35,https://tjj.fujian.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,福建统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+江西省,36,https://tjj.jx.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,江西统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+山东省,37,https://tjj.shandong.gov.cn/col/col6279/index.html,HTML_TABLE,,,PENDING,,山东统计局-统计公报；待 M2-b 取 + SHA 锁
+河南省,41,https://tjj.henan.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,河南统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+湖北省,42,https://tjj.hubei.gov.cn/tjsj/sjkscx/tjyb/202502/,HTML_TABLE,spikes/02-provincial-yearbook/hubei_2026_06.xlsx,c5cf5abeb4fdf97af52567f0640470d631bc9ac329dcc98f14e5d40bf6a5cac7,BLOCKED,,M1 样本是 2026H1; 2024 年度点未取; M2-b 需另取 2024 年报
+湖南省,43,https://tjj.hunan.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,湖南统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+广东省,44,https://tjj.gd.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,广东统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁 (试点优先: M2-b 优先入)
+广西壮族自治区,45,https://tjj.gxzf.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,广西统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+海南省,46,https://tjj.hainan.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,海南统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+四川省,51,https://tjj.sc.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,四川统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+贵州省,52,https://tjj.guizhou.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,贵州统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+云南省,53,https://tjj.yn.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,云南统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+西藏自治区,54,https://tjj.xizang.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,西藏统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+陕西省,61,https://tjj.shaanxi.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,陕西统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+甘肃省,62,https://tjj.gansu.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,甘肃统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+青海省,63,https://tjj.qinghai.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,青海统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+宁夏回族自治区,64,https://tjj.nx.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,宁夏统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+新疆维吾尔自治区,65,https://tjj.xinjiang.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,新疆统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
