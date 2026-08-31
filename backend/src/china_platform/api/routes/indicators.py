@@ -91,7 +91,7 @@ def indicator_series(
                     period_type, value, unit, status, comparison_basis,
                     source_domain, source_category, source_level,
                     verification_status, extraction_method, confidence,
-                    extracted_at
+                    caveat_text, source_hash_prefix, extracted_at
                 FROM cegr_staging.int_indicator_timeseries
                 WHERE indicator_id = %s
                 ORDER BY period_start DESC, geo_entity_id
@@ -134,7 +134,7 @@ def indicator_series_for_geo(
                     period_type, value, unit, status, comparison_basis,
                     source_domain, source_category, source_level,
                     verification_status, extraction_method, confidence,
-                    extracted_at
+                    caveat_text, source_hash_prefix, extracted_at
                 FROM cegr_staging.int_indicator_timeseries
                 WHERE indicator_id = %s AND geo_entity_id = %s
                 ORDER BY period_start DESC
@@ -174,5 +174,7 @@ def _row_to_series_point(row: tuple) -> IndicatorSeriesPoint:
         verification_status=row[12],
         extraction_method=row[13],
         confidence=(float(row[14]) if row[14] is not None else None),
-        extracted_at=row[15],
+        caveat_text=row[15],
+        source_hash_prefix=row[16],
+        extracted_at=row[17],
     )

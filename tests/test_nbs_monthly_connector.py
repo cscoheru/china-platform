@@ -138,7 +138,8 @@ def _dsn_conn() -> psycopg2.extensions.connection:
 
 
 def _registry_id_for_nbs(conn: psycopg2.extensions.connection) -> str:
-    """Resolve the source_registry id used by the connector."""
+    """Resolve the source_registry id used by the connector (NATIONAL_BULLETIN_SPIKE
+    after M1 T0 split, 2026-08-31)."""
     with conn.cursor() as cur:
         cur.execute(
             """
@@ -151,10 +152,89 @@ def _registry_id_for_nbs(conn: psycopg2.extensions.connection) -> str:
         row = cur.fetchone()
     if row is None:
         pytest.fail(
-            "source_registry row for stats.gov.cn/NATIONAL_BULLETIN missing; "
+            f"source_registry row for {DOMAIN}/{CATEGORY} missing; "
             "run scripts/import_registry_csv.py first"
         )
     return str(row[0])
+
+
+# ---------------------------------------------------------------------
+# M1 T0 split assertions (2026-08-31)
+# ---------------------------------------------------------------------
+
+
+def test_spike_registry_hash_matches_file_bytes(imported_registry) -> None:
+    """Per docs/55 §T0: NATIONAL_BULLETIN_SPIKE row file_hash_sha256 must equal
+    spikes/01-national-yearbook/sample.html bytes. This is the invariant the
+    M0.3 split restores: SHA=file bytes for any row that claims a local sample."""
+    if not SAMPLE_HTML.exists():
+        pytest.fail(f"mandatory sample missing: {SAMPLE_HTML}")
+    conn = _dsn_conn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT file_hash_sha256, file_size_bytes, local_sample_path
+                FROM cegr.source_registry
+                WHERE domain = %s AND category = 'NATIONAL_BULLETIN_SPIKE'
+                LIMIT 1
+                """,
+                (DOMAIN,),
+            )
+            row = cur.fetchone()
+        assert row is not None, (
+            "NATIONAL_BULLETIN_SPIKE row missing — M1 T0 split not applied; "
+            "re-run scripts/import_registry_csv.py"
+        )
+        reg_hash, reg_size, reg_path = row
+        assert reg_path == "spikes/01-national-yearbook/sample.html"
+        assert reg_hash == EXPECTED_SHA, (
+            f"SPIKE hash drift: registry={reg_hash} file={EXPECTED_SHA}"
+        )
+        assert reg_size == SAMPLE_HTML.stat().st_size, (
+            f"SPIKE size drift: registry={reg_size} "
+            f"file={SAMPLE_HTML.stat().st_size}"
+        )
+    finally:
+        conn.close()
+
+
+def test_live_registry_no_local_sample(imported_registry) -> None:
+    """Per docs/55 §T0: NATIONAL_BULLETIN (live) row must have empty
+    local_sample_path; it is now live-only and the file hash 180165 B is a
+    2026-08-27 live snapshot, not the local sample.html hash."""
+    conn = _dsn_conn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT local_sample_path, file_hash_sha256, file_size_bytes,
+                       purpose_note
+                FROM cegr.source_registry
+                WHERE domain = %s AND category = 'NATIONAL_BULLETIN'
+                LIMIT 1
+                """,
+                (DOMAIN,),
+            )
+            row = cur.fetchone()
+        assert row is not None, "NATIONAL_BULLETIN live row missing"
+        live_path, live_hash, live_size, live_note = row
+        assert live_path in (None, ""), (
+            f"NATIONAL_BULLETIN live row still claims local_sample_path={live_path!r}; "
+            "M1 T0 split requires this be empty (live-only)"
+        )
+        # Live row keeps the 2026-08-27 snapshot hash+size verbatim per docs/55 §T0.
+        assert live_hash == (
+            "a7e4029df707918a552ad2580e8088a945bfe43ec3a2447742553258d0f1f8eb"
+        ), f"NATIONAL_BULLETIN live hash drift: {live_hash}"
+        assert live_size == 180165, (
+            f"NATIONAL_BULLETIN live size drift: {live_size}"
+        )
+        assert "live-only" in (live_note or "").lower(), (
+            f"NATIONAL_BULLETIN purpose_note must mention live-only: {live_note!r}"
+        )
+    finally:
+        conn.close()
 
 
 def test_ingest_writes_ingestion_run_with_valid_status(

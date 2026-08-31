@@ -421,7 +421,8 @@ class ProvincialYearbookConnector:
                          value, raw_value, unit, comparison_basis,
                          value_type, status, extraction_method,
                          period_start, period_end, period_label, period_type,
-                         lineage, caveat_text, missing_reason, is_imputed)
+                         lineage, caveat_text, missing_reason, is_imputed,
+                         extracted_at, confidence)
                     VALUES (
                         %s, %s,
                         %s, %s, %s,
@@ -429,7 +430,8 @@ class ProvincialYearbookConnector:
                         %s, %s, %s, %s,
                         'FACT', 'PRELIMINARY', 'EXCEL_PARSE',
                         %s, %s, %s, %s,
-                        %s::jsonb, %s, %s, %s
+                        %s::jsonb, %s, %s, %s,
+                        NOW(), 0.90
                     )
                     """,
                     (

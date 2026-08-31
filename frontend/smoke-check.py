@@ -60,6 +60,7 @@ REQUIRED_FILES = [
     "app/provinces/shandong/page.tsx",          # S2.7-a2 路由壳
     "app/cities/[slug]/page.tsx",               # S2.7-b-lite dynamic route
     "app/components/CityPage.tsx",              # S2.7-b-lite 组件
+    "app/research/m1-series/page.tsx",         # M1 验收面 (knife 629 §2 T6)
     "lib/api.ts",
     "lib/types.ts",
     "lib/mock.ts",
@@ -1403,6 +1404,94 @@ def main() -> int:
     print(
         "\n=== S2.0.1 + S2.7-a + S2.7-a2 + S2.7-b-lite + S2.7-b-full-lite mart-shape "
         "+ home nav (S2.7-a + S2.7-b + S2.8-lite + S2.9-lite, per tasking 280) smoke: PASS ==="
+    )
+
+    # §14 — M1 验收面 (knife 629 §2 T6).
+    #     * app/research/m1-series/page.tsx 必须存在
+    #     * 页头字面量含「M1 验收面 · 湖北 2026 上半年 GDP（公报样本）· 非 31 省 · 非 Gate PASS」
+    #     * 通过 lib/api.ts (USE_MOCK=false 走 fetch) → 不硬编码 MOCK UUID
+    #     * 展示 caveat + SHA prefix 8 + 源 URL (非首页)
+    #     * 禁词守门 (与既有 11d 一致): 不评分/不排名
+    #     * 首页含一行链到 /research/m1-series
+    m1_page_path = ROOT / "app" / "research" / "m1-series" / "page.tsx"
+    if not m1_page_path.is_file():
+        errors.append(
+            "app/research/m1-series/page.tsx missing (per knife 629 §2 T6)"
+        )
+    else:
+        m1_src = m1_page_path.read_text(encoding="utf-8")
+        m1_code = re.sub(r"//[^\n]*", "", m1_src)
+        m1_code = re.sub(r"/\*.*?\*/", "", m1_code, flags=re.DOTALL)
+        expected_header = (
+            "M1 验收面 · 湖北 2026 上半年 GDP（公报样本）· 非 31 省 · 非 Gate PASS"
+        )
+        if expected_header not in m1_src:
+            errors.append(
+                f"m1-series/page.tsx missing required header: {expected_header!r}"
+            )
+        else:
+            ok("m1-series/page.tsx contains required M1 header")
+        if "indicatorSeries" not in m1_code:
+            errors.append("m1-series/page.tsx must call indicatorSeries() (no mock UUIDs)")
+        else:
+            ok("m1-series/page.tsx uses indicatorSeries() (live API path)")
+        # 禁: mock UUID 字面量
+        if "JIANGSU-GDP-INDICATOR-UUID-MOCK" in m1_code:
+            errors.append(
+                "m1-series/page.tsx contains JIANGSU-GDP-INDICATOR-UUID-MOCK "
+                "(forbidden per knife 629 §2 T5)"
+            )
+        # 禁词守门 (per docs/06 §6.6 + 629 §红线)
+        for pat, label in [
+            (r"\bscore\b", "score"),
+            (r"\brating\b", "rating"),
+            (r"\brank(?:ing)?\b", "rank"),
+            (r"\btotal[_-]?score\b", "total_score"),
+        ]:
+            if re.search(pat, m1_code, re.IGNORECASE):
+                errors.append(
+                    f"m1-series/page.tsx contains forbidden term {label!r}"
+                )
+        # caveat + SHA prefix 8 + 源 URL
+        for needle, label in [
+            ("caveat_text", "caveat_text 字段"),
+            ("source_hash_prefix", "source_hash_prefix 字段"),
+            ("c5cf5abe", "SHA 前 8 字面量"),
+            ("tjj.hubei.gov.cn", "源域名（非首页）"),
+        ]:
+            if needle not in m1_src:
+                errors.append(f"m1-series/page.tsx missing {label}")
+        if all(
+            n in m1_src
+            for n in (
+                "M1 验收面 · 湖北 2026 上半年 GDP",
+                "indicatorSeries",
+                "caveat_text",
+                "source_hash_prefix",
+                "c5cf5abe",
+                "tjj.hubei.gov.cn",
+            )
+        ):
+            ok(
+                "m1-series/page.tsx: header + indicatorSeries() + caveat + SHA prefix + 源 URL"
+            )
+
+    # §14b — 首页必须含一行链到 /research/m1-series (per knife 629 §2 T6)
+    if 'href="/research/m1-series"' not in home_code:
+        errors.append(
+            "app/page.tsx missing /research/m1-series nav anchor (per knife 629 §2 T6)"
+        )
+    else:
+        ok("app/page.tsx links /research/m1-series")
+
+    if errors:
+        for e in errors:
+            fail(e)
+        return 1
+
+    print(
+        "\n=== S2.0.1 + S2.7-a + S2.7-a2 + S2.7-b-lite + S2.7-b-full-lite mart-shape "
+        "+ home nav + M1 验收面 (knife 629 §2 T6) smoke: PASS ==="
     )
     return 0
 

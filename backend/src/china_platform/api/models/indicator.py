@@ -52,6 +52,8 @@ class IndicatorSeriesPoint(BaseModel):
     verification_status: str
     extraction_method: str
     confidence: float | None = None
+    caveat_text: str | None = None
+    source_hash_prefix: str | None = None
     extracted_at: datetime
 
 

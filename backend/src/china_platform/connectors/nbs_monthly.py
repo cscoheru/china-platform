@@ -1,6 +1,6 @@
 """Stage 1 / S1.4 — NBS Monthly Statistical Bulletin HTML connector.
 
-Per docs/18-stage1-s14-nbs-connector-plan-20260824.md.
+Per docs/18-stage1-s14-nbs-connector-plan-20260824.md + docs/55 §T0 (M1, 2026-08-31).
 
 Reuses `spikes/01-national-yearbook/extract_01_national_yearbook.py` for HTML
 table parsing (no copy-paste; same source of truth used by Stage 0 spike tests).
@@ -9,7 +9,9 @@ Single-period pilot: reads `spikes/01-national-yearbook/sample.html` by default.
 **No HTTP.** Production bulk ingestion of 2020–2025 is out of scope for S1.4.
 
 DB ingest flow:
-  1. Resolve source_registry row by (domain='stats.gov.cn', category='NATIONAL_BULLETIN')
+  1. Resolve source_registry row by
+     (domain='stats.gov.cn', category='NATIONAL_BULLETIN_SPIKE') — per M1 T0
+     (2026-08-31) split; NATIONAL_BULLETIN live row no longer claims sample.html.
   2. INSERT ingestion_run (status='RUNNING')
   3. Compute file SHA-256; INSERT source_document (VERIFIED — pre-existing spike sample)
   4. extract() → N observation dicts in memory
@@ -51,7 +53,10 @@ class NbsMonthlyConnector:
 
     DEFAULT_SAMPLE = SAMPLE_HTML
     DEFAULT_REGISTRY_DOMAIN = "stats.gov.cn"
-    DEFAULT_REGISTRY_CATEGORY = "NATIONAL_BULLETIN"
+    # Per M1 T0 (2026-08-31): NATIONAL_BULLETIN row split — live row no longer
+    # claims sample.html; SPIKE row carries the local sample with hash==bytes.
+    # Connector default points at the SPIKE row to keep SHA=file invariant.
+    DEFAULT_REGISTRY_CATEGORY = "NATIONAL_BULLETIN_SPIKE"
     DEFAULT_SAMPLE_TITLE = (
         "国家统计局 2026 年 7 月份规模以上工业增加值月度数据 (1—7月份)"
     )
@@ -266,8 +271,9 @@ class NbsMonthlyConnector:
         sr_id = self._resolve_source_registry(conn)
         if sr_id is None:
             raise RuntimeError(
-                "source_registry row for stats.gov.cn / NATIONAL_BULLETIN "
-                "not found; run scripts/import_registry_csv.py first"
+                "source_registry row for stats.gov.cn / NATIONAL_BULLETIN_SPIKE "
+                "not found; run scripts/import_registry_csv.py first "
+                "(per M1 T0 split · 2026-08-31)"
             )
 
         run_id = self._create_ingestion_run(conn, sr_id, triggered_by)

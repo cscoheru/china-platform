@@ -38,6 +38,12 @@ export default async function HomePage() {
           : null}
         请同时关注页面顶部 <code>mode-banner</code>。
       </p>
+
+      <p style={{ marginTop: 12 }}>
+        <a href="/research/m1-series">/research/m1-series</a>
+        {" "}— M1 验收面（湖北 2026 H1 GDP，1 行真 observation；非 31 省；非 Gate PASS）。
+      </p>
+
       <h2>Indicator inventory</h2>
       <table
         style={{

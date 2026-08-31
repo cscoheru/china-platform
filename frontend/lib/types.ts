@@ -34,6 +34,9 @@ export interface IndicatorSeriesPoint {
   verification_status: string | null; // "VERIFIED" | "UNVERIFIED" | ...
   extraction_method: string | null;
   confidence: number | null;
+  // S1.18/M1: provenance surfaced from cegr_staging.int_indicator_timeseries
+  caveat_text: string | null;
+  source_hash_prefix: string | null;
   extracted_at: string | null;
   // S1.18: lineage JSONB surfaced into API response.
   // When lineage.is_demo === "true", the row is a DEMO sentinel (placeholder

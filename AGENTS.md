@@ -1,13 +1,17 @@
 # Agent bootstrap（CC / Claude Code 必读）
 
-**每次会话第一条命令（强制）：**
+**每次会话 / `/compact` 后第一条命令（强制）：**
 
 ```bash
 git fetch origin && git pull --ff-only origin main
 ./scripts/cc_gate_watch.sh --pull
-grep -E '^(## META|phase|queue_rev|cursor_ack|cc_receipt|\| \*\*phase\*\*|\| \*\*queue_rev\*\*|\| \*\*cursor_ack\*\*)' reviews/stage0-gate0-rework-2026-08-23/00-CC-CURRENT.md
-cat reviews/stage0-gate0-rework-2026-08-23/00-CC-CURRENT.md
+# 热记忆：只读罗盘（≤80 行）。禁止 cat 00-CC-CURRENT / docs/45 / docs/54 / docs/55 全文。
+wc -l -c docs/00-COMPASS.md
+test "$(wc -l < docs/00-COMPASS.md)" -le 80
+cat docs/00-COMPASS.md
 ```
+
+深读规则：只打开 `docs/00-COMPASS.md` §POINTERS 里**当前 NOW 需要的一个文件**（M1 实现 → `docs/55`；改里程碑定义 → `docs/54`）。调度只 `sed -n '/^## §CURRENT/,/^## §CHAIN/p'` 读 `00-EXEC-QUEUE.md`，禁止 `cat` 其 archive。
 
 然后：
 

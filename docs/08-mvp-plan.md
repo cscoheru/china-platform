@@ -200,14 +200,15 @@ Stage 4 末决策：
 - 治理观察：`docs/06-governance-observation-method.md`
 - DSH 决策：`docs/07-dsh-decision.md`
 - 验收测试：`docs/10-acceptance-tests.md`（每 Stage Gate 必过项）
+- **现行里程碑（2026-08-30 起）：`docs/54-milestone-replan-20260830.md`** — 覆盖本文 §2–§6 剩余排序；本文 Gate 2 七条降级为产品壳评审
 
-## 9. Stage 0 状态（当前）
+## 9. Stage 状态（2026-08-30 对齐 docs/54）
 
-- [x] Stage 0：仓库审计与技术验证（本文档 + 9 份文档 + schema 草案 + 4 个 spike）— Gate 0 CLOSED 2026-08-24 per U-4=A
-- [x] Stage 1：已启动（2026-08-24）— 见 `reviews/23-stage1-kickoff-20260824.md` 与 `docs/17-stage1-kickoff-plan-20260824.md`
-- [ ] Stage 2：未启动
-- [ ] Stage 3：未启动
-- [ ] Stage 4：未启动
-- [ ] Stage 5：未启动
+- [x] Stage 0：仓库审计与技术验证 — Gate 0 CLOSED 2026-08-24 per U-4=A
+- [x] Stage 1：**已启动未完成**（连接器骨架 + API；无 31 省 GDP 生产入库）— 剩余工作 = docs/54 **M1–M2**
+- [~] Stage 2：**lite UI 已提前交付**；PRD 阶段 2（试点监测/采集质量）= docs/54 **M3**，未开始
+- [ ] Stage 3：未启动 → docs/54 **M4**
+- [ ] Stage 4：未启动 → docs/54 **M5**
+- [ ] Stage 5：未启动（全国地级/区县，不设一次性完成日）
 
-**Gate 0 已关闭；Stage 1 启动依据 U-4=A；不宣布 Stage 0 全 PASS（spike 00 needs_review 56% / 1909 FAILED / 陕西 research-only 由 Stage 1 继续诚实记录）。**
+**不宣布 Stage / Gate / O1 PASS。** 禁止用江苏样本 11/15 或首页 HTML 数当作本文进度。
