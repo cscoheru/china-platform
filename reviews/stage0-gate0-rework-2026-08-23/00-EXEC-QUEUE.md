@@ -13,7 +13,7 @@
 ## §CURRENT
 
 - status: **M2-b AUDITED · 635（M2-cde）NOW**
-- cc_head: 本批双推后回填
+- cc_head: `e1d682d`
 - last_audit: `634-stage0-cursor-s633-m2-b-audit-PASS-20260831.md`
 - tasking: `635-stage0-architect-m2-cde-coverage-crosscheck-page-tasking-20260831.md`
 - m2b_kpi: 省级 COVERED **5/31** + 国家 **1/1**
