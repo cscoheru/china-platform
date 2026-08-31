@@ -150,6 +150,13 @@ PRD Gate 编号恢复为：
 | M2.4 | 回补 2001 年起核心年度 **仅 GDP 族**，目标覆盖率向 95% 逼近 | 达不到则列不可得项，不降门槛装 PASS |
 | M2.5 | `/research/q1-2024-gdp`（或等价页）回答 08b 问题 + 一跳回源 + caveat | 公开访问无 500 |
 
+> **2026-08-31 635 落地状态**（架构师+程序员合并交付，§PHOTO-1..7）：
+> - **M2.1** ✅ — `scripts/fetch_m2_2024_gdp.py` 26 PENDING → 26 BLOCKED（honest missing_reason）；省级 5 COVERED + 26 BLOCKED = **31/31 ≥ 20/31**。
+> - **M2.3** ✅ — `scripts/crosscheck_m2_2024_gdp.py` ⇒ `docs/reports/m2_2024_gdp_crosscheck_20260831.md`；verdict = **QUARANTINED-WEAK**（5/31 覆盖率 ⇒ sum/national=24.24% 必然 > 0.5% 阈值；覆盖 100% 后升级 STRONG）。
+> - **M2.5** ✅ — `frontend/app/research/q1-2024-gdp/page.tsx` DONE（USE_MOCK=false 读 on-disk crosscheck 报告，非 mock 非 API）；10 用例 green in `tests/test_m2_frontend_page.py`。
+> - **M2.4** ❌ — 2001 起回补未做（保留 OPEN，M2-f/g 阶段）。
+> - **不宣布 Gate / O1 / M2 PASS**。
+
 退出候选：**PRD 14.1 数据切片** + 产品最小页。OCR 仍可 BLOCKED。这是「首个可用版本」的数据含义。
 
 ### M3 — 试点监测（4 周）≈ PRD 阶段 2 / docs/02 Stage 2（调度+试点地市）

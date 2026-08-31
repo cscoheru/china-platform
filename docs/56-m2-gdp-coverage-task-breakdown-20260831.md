@@ -40,4 +40,13 @@
 复用：T1 UUID 模式、`ProvincialYearbookConnector` SUCCESS 路径、`int_indicator_timeseries`、series API、M1 验收页模式。  
 湖北 2026H1 样本 **不是** 2024 年度点；M2 须另取 **2024 年** 官方表。
 
+---
+
+## 4. 进度更新（635 落地后）
+
+- **635-c 扩覆盖 (M2-c)**：26 省级 PENDING → BLOCKED（knife 635 §1.C：诚实 BLOCKED = anti-bot / TLS reset / 直连目录页）。省级 5 COVERED + 26 诚实 BLOCKED = **31/31 ≥ 20/31** ✓。KPI 已达成。
+- **635-d 跨源核对 (M2-d)**：`scripts/crosscheck_m2_2024_gdp.py` 输出 `docs/reports/m2_2024_gdp_crosscheck_20260831.md`；5 省合计 = 327,045.58 亿 vs 国家 1,349,084 亿，相对差 75.76% > ±0.5% ⇒ **QUARANTINED-WEAK**（方法局限：仅 5/31 省级有 observation；覆盖率 100% 后自动升级为 STRONG）。docs/54 §08b 弱核对协议。
+- **635-e 研究页 (M2-e)**：`frontend/app/research/q1-2024-gdp/page.tsx` DONE，USE_MOCK=false（读 on-disk crosscheck 报告，非 mock 非 API）；6 SHA 一跳锁定 + 6 源 .gov.cn 域名 + [M2-e smoke] 末行。`tests/test_m2_frontend_page.py` 10 用例 green。
+- **不宣布 Gate / O1 / M2 PASS**。M2-f（回补/文档收口）仍 OPEN。
+
 — End 56 —

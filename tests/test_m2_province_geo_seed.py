@@ -199,10 +199,17 @@ def test_inventory_status_distribution():
                 last = url.rsplit("/", 1)[-1]
                 if last == "":
                     fetched_root_only += 1
-    # Post-M2-b: 5 省级 COVERED + 1 国家 → 6 FETCHED; 31 - 6 = 25 PENDING
-    # (but Hubei moved from BLOCKED→FETCHED so blocked=0). Allow some slack.
-    assert pending >= 24, f"expected ≥24 PENDING rows after M2-b; got {pending}"
-    assert blocked >= 0, f"blocked rows should be ≥0; got {blocked}"
+    # Post-M2-b: 5 省级 COVERED + 1 国家 → 6 FETCHED
+    # Post-M2-c (635-C): 26 PENDING → 26 BLOCKED (knife 635 §1.C: directory-only
+    # URLs / anti-bot / TLS reset → BLOCKED + honest missing_reason).
+    # So after 635-C: pending=0, blocked=26, fetched=6.
+    assert pending == 0, (
+        f"post-M2-c: expected 0 PENDING (all → BLOCKED); got {pending}"
+    )
+    assert blocked >= 20, (
+        f"post-M2-c: expected ≥20 BLOCKED (knife 635-C KPI: 5 COVERED + "
+        f"26 BLOCKED = 31/31 ≥ 20/31); got {blocked}"
+    )
     assert fetched >= 6, (
         f"expected ≥6 FETCHED rows (M2-b 5 省级 + 国家); got {fetched}"
     )
@@ -217,7 +224,7 @@ def test_inventory_status_distribution():
 # ---------------------------------------------------------------------
 
 
-def test_coverage_script_exits_zero():
+def test_coverage_script_exits_zero(loaded_seed):
     """Asserts report_m2_gdp_coverage.py exits 0 and prints KPI line."""
     proc = subprocess.run(
         [sys.executable, str(COVERAGE_SCRIPT)],
@@ -236,7 +243,7 @@ def test_coverage_script_exits_zero():
     assert "31 省级" in proc.stdout, "31 省级 header missing"
 
 
-def test_coverage_script_includes_hubei_covered():
+def test_coverage_script_includes_hubei_covered(loaded_seed):
     """Asserts Hubei shows COVERED after M2-b (was BLOCKED in M2-a baseline;
     M2-b 633-C successfully fetched the 2024 annual page, NOT reusing
     the M1 2026H1 sample at c5cf5abe)."""
