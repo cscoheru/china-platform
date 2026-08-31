@@ -1,41 +1,44 @@
 # 00-EXEC-QUEUE — 架构师 ↔ 执行端 交接队列
 
-> **rev 54 · 2026-08-31。** 历史：`00-EXEC-QUEUE.archive-rev53-20260831.md`。
+> **rev 56 · 2026-08-31。** 历史：`00-EXEC-QUEUE.archive-rev53-20260831.md`。
 > `00-CC-CURRENT.md` 冻结 rev 320。热记忆：`docs/00-COMPASS.md`。
-> **禁止宣布 Gate / O1 / M2 PASS。禁止首页 HTML 当进度。**
+> **禁止宣布 Gate / O1 / M2 PASS。禁止首页/目录 HTML 当 FETCHED 完成。**
 
 ## §META
 
-- rev: 54
+- rev: 56
 - updated: 2026-08-31
-- ruling: 用户授权入库双推；**M1 有限通过**；**M2-a 631 完成**；等架构师签 M2-b
+- ruling: 632 PASS；用户签 **M2-b = 633**
 
 ## §CURRENT
 
-- status: **M1 有限通过 · M2-a（631）DELIVERED**
-- cc_head: `a8fb101`（M1 closeout + 631 签发；双推本批）
-- last_audit: `631-stage0-cc-m2-a-geo-inventory-receipt-20260831.md`
-- tasking: `631-stage0-architect-m2-a-geo-inventory-tasking-20260831.md`
-- m1: T0–T7 全勾；有限通过 ≠ Gate 1 PASS
+- status: **M2-b（633）NOW**
+- cc_head: `ee8e285`（631；633 交付后回填）
+- last_audit: `632-stage0-cursor-s631-m2-a-audit-PASS-20260831.md`
+- tasking: `633-stage0-architect-m2-b-first-batch-tasking-20260831.md`
 
 ## §NOW
 
-等架构师签 **M2-b**（首刀：≥5 省 2024 GDP 表级源抓取 + SHA 锁 + observation 写入）。
+执行 **633（M2-b）**：
 
-锁定研究问题（U2）：2024 年国家 + 31 省 GDP 一致率（docs/08b §1.2）。
+1. 修 `seed_m2` `unload()`：`DOC_ID` → `REGISTRY_ID`（+ 删对应 source_document）
+2. 首批：**国家 + 苏 + 浙 + 粤 + 湖北(另取 2024 年度，禁 c5cf5abe)**  
+3. 定稿表字节 → SHA → observation **SUCCESS**；coverage **COVERED≥5/31**
+4. 校验国家 URL 统计期是否真为 2024（疑似 2023 公报须更换）
+
+禁：目录/首页 FETCHED；补零；PARTIAL 当完成；宣布 M2/Gate PASS。
 
 ## §CHAIN_TAIL
 
 | 刀 | 状态 | 一句话 |
 |---|---|---|
-| M1-b | AUDITED | T2+T3（`0ee445e`） |
-| 629 | AUDITED | T4–T7；630 PASS |
-| M1 | **有限通过** | 用户 2026-08-31 |
-| 631 | **DELIVERED** | M2-a 31 省 geo + inventory + coverage；8 tests green |
-| M2-b… | — | 首批 ≥5 省表 ingest |
+| M1 | 有限通过 | 用户 2026-08-31 |
+| 631 | AUDITED | M2-a；632 PASS |
+| 633 | **NOW** | M2-b 首批 ≥5 表 ingest |
+| M2-c | — | 扩 31 省 |
+| M2-d | — | 跨源核对 |
 
 ## §ACK
 
-- 2026-08-31 / 用户 / 入库双推 · M1 有限通过 · 开 M2
-- 2026-08-31 / CC / 631 完成 · 等 M2-b
+- 2026-08-31 / 用户 / 签 M2-b
 - 不宣布 Gate / O1 / M2 PASS
