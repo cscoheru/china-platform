@@ -311,6 +311,18 @@ def status(verbose: bool = True) -> None:
 
 
 def unload(verbose: bool = True) -> None:
+    """Remove ONLY M2-a `a2000000-%` geo rows; preserve Hubei M1.
+
+    Source lineage anchors (`source_registry` / `source_document`) are
+    **intentionally not touched**: `source_document_no_delete` is a Stage 0
+    audit/lineage invariant trigger (schema/01-core.sql) that blocks DELETE.
+    `load_seed` is idempotent via `ON CONFLICT (primary_url) DO NOTHING` /
+    `ON CONFLICT (id) DO NOTHING`, so re-seeding does not require pre-cleanup.
+
+    M2-b 633-A fix:
+      - was: `DELETE source_registry WHERE id = DOC_ID` (wrong id; no-op).
+      - now: only delete M2-a geo rows; lineage rows preserved.
+    """
     with _connect() as conn:
         with conn.cursor() as cur:
             cur.execute(
@@ -327,17 +339,12 @@ def unload(verbose: bool = True) -> None:
                 "DELETE FROM cegr.geo_entity WHERE id::text LIKE 'a2000000-%'"
             )
             deleted_geo = cur.rowcount
-            cur.execute(
-                "DELETE FROM cegr.source_registry WHERE id = %s",
-                (str(GB_T_2260_DOC_ID),),
-            )
-            deleted_sr = cur.rowcount
         conn.commit()
 
     if verbose:
         print(
             f"[OK] unloaded: {deleted_geo} geo_entity + "
-            f"{deleted_cv} geo_code_version + {deleted_sr} source_registry"
+            f"{deleted_cv} geo_code_version (lineage anchors preserved)"
         )
 
 

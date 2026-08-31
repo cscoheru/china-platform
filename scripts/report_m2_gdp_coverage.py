@@ -1,18 +1,19 @@
-"""M2-a — 2024 GDP coverage empty matrix report (per docs/56 / knife 631 §1.C).
+"""M2-a/b — 2024 GDP coverage report (per docs/56 / knife 631 §1.C, knife 633 §3.D).
 
-For 31 省级行政区 (per `cegr.geo_entity` where level='PROVINCE') and the year 2024,
-print the coverage status of the official GDP table source (per
-`source_registry/m2_2024_gdp_inventory.csv`):
+For 31 省级行政区 + 1 全国主体 (per `cegr.geo_entity` where level IN
+('PROVINCE','COUNTRY')) and the year 2024, print the coverage status of
+the official GDP table source (per `source_registry/m2_2024_gdp_inventory.csv`):
 
-  - province_zh
+  - province_zh (or 国家)
   - geo_code
   - inventory_status (PENDING | BLOCKED | MISSING | FETCHED)
   - inventory_url    (candidate_url, 锁定 raw 表级 URL)
-  - observation_rows (count of cegr.observation with this geo + 2024; 0 in M2-a)
+  - observation_rows (count of cegr.observation with this geo + 2024)
   - missing_reason   (if any)
   - verdict          (COVERED | BLOCKED | PENDING | EMPTY)
 
-M2-a allows 全 0 有值 (empty matrix); exit 0 always.
+M2-a allows 全 0 有值 (empty matrix); M2-b KPI is 省级 COVERED ≥5/31,
+国家 row tracked separately (per knife 633 §2).
 
 Usage:
   python scripts/report_m2_gdp_coverage.py [--out path/to/coverage.md]
@@ -65,7 +66,7 @@ def _load_inventory() -> dict[str, dict[str, str]]:
 def _obs_count_by_geo(cur) -> dict[str, int]:
     """Return a dict {geo_entity_id: count} of observation rows for 2024 GDP.
 
-    Joins geo_entity (PROVINCE) -> observation rows where
+    Joins geo_entity (PROVINCE + COUNTRY) -> observation rows where
     observation.period_start falls in 2024 (calendar year).
     Returns 0 if no rows.
     """
@@ -77,7 +78,7 @@ def _obs_count_by_geo(cur) -> dict[str, int]:
             ON o.geo_entity_id = g.id
             AND o.period_start >= %s::date
             AND o.period_start <  %s::date
-        WHERE g.level = 'PROVINCE'
+        WHERE g.level IN ('PROVINCE', 'COUNTRY')
         GROUP BY g.id
         """,
         (f"{YEAR}-01-01", f"{YEAR + 1}-01-01"),
@@ -87,7 +88,8 @@ def _obs_count_by_geo(cur) -> dict[str, int]:
 
 def main() -> int:
     p = argparse.ArgumentParser(
-        description="M2-a 2024 GDP coverage report (knife 631 §1.C)"
+        description="M2-a/b 2024 GDP coverage report (knife 631 §1.C + "
+                    "633 §3.D)"
     )
     p.add_argument(
         "--out",
@@ -103,41 +105,51 @@ def main() -> int:
         with conn.cursor() as cur:
             cur.execute(
                 """
-                SELECT id::text, canonical_name, canonical_name_en
+                SELECT id::text, canonical_name, canonical_name_en, level
                 FROM cegr.geo_entity
-                WHERE level = 'PROVINCE'
-                ORDER BY canonical_name
+                WHERE level IN ('PROVINCE', 'COUNTRY')
+                ORDER BY CASE level WHEN 'COUNTRY' THEN 0 ELSE 1 END,
+                         canonical_name
                 """
             )
-            provinces = cur.fetchall()  # list of (id, zh, en)
+            geos = cur.fetchall()  # list of (id, zh, en, level)
             obs_count = _obs_count_by_geo(cur)
 
     # Build the report rows
     lines: list[str] = []
-    lines.append(f"# M2-a 2024 GDP coverage matrix ({len(provinces)} 省级)")
+    lines.append(
+        f"# M2-b 2024 GDP coverage matrix "
+        f"({sum(1 for _, _, _, l in geos if l == 'PROVINCE')} 省级 + "
+        f"{sum(1 for _, _, _, l in geos if l == 'COUNTRY')} 全国)"
+    )
     lines.append("")
     lines.append(
-        "| province_zh | geo_code | inventory_status | inventory_url | "
+        "| entity_zh | level | geo_code | inventory_status | inventory_url | "
         "observation_rows | missing_reason | verdict |"
     )
     lines.append(
-        "| --- | --- | --- | --- | --- | --- | --- |"
+        "| --- | --- | --- | --- | --- | --- | --- | --- |"
     )
 
     summary = {"COVERED": 0, "BLOCKED": 0, "PENDING": 0, "EMPTY": 0}
+    province_covered = 0
+    province_total = 0
+    national_covered = 0
+    national_total = 0
 
-    # Build a map geo_code (per inventory) -> admin_code from M1 seed
-    # We don't have direct mapping in this script; use inventory row directly.
     inv_by_name: dict[str, dict[str, str]] = {
         r.get("province_zh", ""): r for r in inventory.values()
     }
 
-    for geo_id, zh, _en in provinces:
+    for geo_id, zh, _en, level in geos:
         inv = inv_by_name.get(zh) or {}
         inv_status = (inv.get("status") or "MISSING").strip()
         inv_url = inv.get("candidate_url", "") or ""
         missing = (inv.get("missing_reason") or "").strip()
         n_obs = obs_count.get(geo_id, 0)
+        geo_code = inv.get("geo_code", "") or (
+            "00" if level == "COUNTRY" else ""
+        )
 
         if n_obs > 0:
             verdict = "COVERED"
@@ -149,28 +161,45 @@ def main() -> int:
             verdict = "PENDING"
 
         summary[verdict] += 1
+        if level == "PROVINCE":
+            province_total += 1
+            if verdict == "COVERED":
+                province_covered += 1
+        elif level == "COUNTRY":
+            national_total += 1
+            if verdict == "COVERED":
+                national_covered += 1
         lines.append(
-            f"| {zh} | {inv.get('geo_code', '')} | {inv_status} | "
+            f"| {zh} | {level} | {geo_code} | {inv_status} | "
             f"{inv_url} | {n_obs} | {missing} | {verdict} |"
         )
 
     lines.append("")
     lines.append("## Summary")
     lines.append("")
-    lines.append(f"- Total 省级 rows: **{len(provinces)}**")
-    lines.append(f"- COVERED (real observation 2024 GDP): **{summary['COVERED']}**")
-    lines.append(f"- BLOCKED (inventory status=BLOCKED): **{summary['BLOCKED']}**")
-    lines.append(f"- PENDING (inventory status=PENDING): **{summary['PENDING']}**")
-    lines.append(f"- EMPTY (no inventory row): **{summary['EMPTY']}**")
+    lines.append(f"- Total 省级 rows: **{province_total}**")
+    lines.append(f"- 省级 COVERED (real observation 2024 GDP): "
+                 f"**{province_covered}**")
+    lines.append(f"- 省级 BLOCKED (inventory status=BLOCKED): "
+                 f"**{summary['BLOCKED']}**")
+    lines.append(f"- 省级 PENDING (inventory status=PENDING): "
+                 f"**{summary['PENDING']}**")
+    lines.append(f"- 省级 EMPTY (no inventory row): **{summary['EMPTY']}**")
+    lines.append("")
+    lines.append(f"- 全国主体 rows: **{national_total}**")
+    lines.append(f"- 全国主体 COVERED: **{national_covered}**")
     lines.append("")
     lines.append(
-        f"KPI (per knife 631 §2): geo×indicator×year=2024 覆盖率 = "
-        f"**{summary['COVERED']}/{len(provinces)}** = "
-        f"{(summary['COVERED'] / max(len(provinces), 1)) * 100:.1f}%"
+        f"**KPI (knife 633 §2 + §3.D)**: 省级 COVERED = "
+        f"**{province_covered}/{province_total}** = "
+        f"{(province_covered / max(province_total, 1)) * 100:.1f}%  "
+        f"(M2-b 目标 ≥5/31); 国家行另列, COVERED="
+        f"**{national_covered}/{national_total}**。"
     )
     lines.append("")
     lines.append(
-        "M2-a allows 全 0 有值 (empty matrix); 此报告仅记录基线状态。"
+        "M2-b 633 §4 明确不做：未扩满 31 省 (→ M2-c)、未跨源核对 (→ M2-d)、"
+        "未建 /research/q1-2024-gdp (→ M2-e)。"
     )
 
     text = "\n".join(lines) + "\n"

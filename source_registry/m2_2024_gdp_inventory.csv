@@ -1,8 +1,8 @@
 province_zh,geo_code,candidate_url,asset_kind,local_sample_path,file_hash_sha256,status,missing_reason,notes
-国家,00,https://www.stats.gov.cn/sj/zxfb/202402/t20240228_1947911.html,HTML_TABLE,,,PENDING,,2024 年国民经济和社会发展统计公报；待 M2-b 取 + SHA 锁
-北京市,11,https://tjj.beijing.gov.cn/tjsj/sjkscx/tjyb/,HTML_TABLE,,,PENDING,,北京统计局-统计公报-统计年报；待 M2-b 取 + SHA 锁
+国家,00,https://www.stats.gov.cn/sj/zxfb/202502/t20250228_1958817.html,HTML_TABLE,data/seed_archives/m2_2024_gdp/00_national_gdp_bulletin_2024.html,3e732426d3cbdb84b13168a3fa2daa7aa30663e05d7247e090abd4506aa03e39,FETCHED,,2024 年国民经济和社会发展统计公报；M2-b 633-C 锁 SHA；value=1349084 亿元 +5.0%
+北京市,11,https://tjj.beijing.gov.cn/tjsj_31433/tjkd_31444/202503/t20250319_2955569.html,HTML_TABLE,data/seed_archives/m2_2024_gdp/11_beijing_gdp_bulletin_2024.html,073a544f16a1f5216578484eb10b4b1121df9b2ad0f39f46111ca69a14a9b0ee,FETCHED,,北京统计局 2024 年公报；M2-b 633-C 锁 SHA；value=49843.1 亿元 +5.2%
 天津市,12,https://stats.tj.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,天津统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
-上海市,31,https://tjj.sh.gov.cn/tjgb/,HTML_TABLE,,,PENDING,,上海统计局-统计公报；待 M2-b 取 + SHA 锁
+上海市,31,https://tjj.sh.gov.cn/tjgb/20250324/a7fe18c6d5c24d66bfca89c5bb4cdcfb.html,HTML_TABLE,data/seed_archives/m2_2024_gdp/31_shanghai_gdp_bulletin_2024.html,80aa92406e9846c30b0eea12b4dcce615e51f5c1ca2d224a092d74dae35d06fd,FETCHED,,上海统计局 2024 年公报；M2-b 633-C 锁 SHA；value=53926.71 亿元 +5.0%
 重庆市,50,https://tjj.cq.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,重庆统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
 河北省,13,https://tjj.hebei.gov.cn/tjsj/sjkscx/tjgb/,HTML_TABLE,,,PENDING,,河北统计局-统计公报；待 M2-b 取 + SHA 锁
 山西省,14,https://tjj.shanxi.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,山西统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
@@ -15,14 +15,14 @@ province_zh,geo_code,candidate_url,asset_kind,local_sample_path,file_hash_sha256
 安徽省,34,https://tjj.ah.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,安徽统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
 福建省,35,https://tjj.fujian.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,福建统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
 江西省,36,https://tjj.jx.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,江西统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
-山东省,37,https://tjj.shandong.gov.cn/col/col6279/index.html,HTML_TABLE,,,PENDING,,山东统计局-统计公报；待 M2-b 取 + SHA 锁
+山东省,37,http://tjj.shandong.gov.cn/art/2025/3/5/art_6196_10316729.html,HTML_TABLE,data/seed_archives/m2_2024_gdp/37_shandong_gdp_bulletin_2024.html,6ffaaffb3a0e9bd41b082da088aadc9eb0b8e2327b99852d210d45dffd9364ab,FETCHED,,山东统计局 2024 年公报；M2-b 633-C 锁 SHA；value=98565.8 亿元 +5.7%
 河南省,41,https://tjj.henan.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,河南统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
-湖北省,42,https://tjj.hubei.gov.cn/tjsj/sjkscx/tjyb/202502/,HTML_TABLE,spikes/02-provincial-yearbook/hubei_2026_06.xlsx,c5cf5abeb4fdf97af52567f0640470d631bc9ac329dcc98f14e5d40bf6a5cac7,BLOCKED,,M1 样本是 2026H1; 2024 年度点未取; M2-b 需另取 2024 年报
+湖北省,42,http://tjj.hubei.gov.cn/tjsj/tjgb/ndtjgb/qstjgb/202503/t20250321_5585085.shtml,HTML_TABLE,data/seed_archives/m2_2024_gdp/42_hubei_gdp_bulletin_2024.html,3022e7cacdd44dce8a17a50d37aba783d9fa47dbee6f24c0118c8804b89bfdd0,FETCHED,,M2-b 633-C 锁 SHA；value=60012.97 亿元 +5.8%；**NOT** 复用 M1 c5cf5abe 半年表
 湖南省,43,https://tjj.hunan.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,湖南统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
 广东省,44,https://tjj.gd.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,广东统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁 (试点优先: M2-b 优先入)
 广西壮族自治区,45,https://tjj.gxzf.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,广西统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
 海南省,46,https://tjj.hainan.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,海南统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
-四川省,51,https://tjj.sc.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,四川统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
+四川省,51,https://tjj.sc.gov.cn/scstjj/c112126/2025/3/17/35d7e3f9f0c34555a09c002535c26842.shtml,HTML_TABLE,data/seed_archives/m2_2024_gdp/51_sichuan_gdp_bulletin_2024.html,915c1b4537b3620c32c86c7c81d12197bd387af31b2905e83fb0196638c22379,FETCHED,,四川统计局 2024 年公报；M2-b 633-C 锁 SHA；value=64697.0 亿元 +5.7%
 贵州省,52,https://tjj.guizhou.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,贵州统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
 云南省,53,https://tjj.yn.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,云南统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁
 西藏自治区,54,https://tjj.xizang.gov.cn/tjsj/sjcx/tjgb/,HTML_TABLE,,,PENDING,,西藏统计局-统计查询-统计公报；待 M2-b 取 + SHA 锁

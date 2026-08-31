@@ -140,7 +140,12 @@ def test_hubei_geo_code_version_not_duplicated(loaded_seed, conn):
 
 
 def test_30_m2_geo_code_versions_at_2024(loaded_seed, conn):
-    """Asserts 30 M2-namespace provinces have a geo_code_version at valid_from='2024-01-01'."""
+    """Asserts 30 M2-namespace provinces have a geo_code_version at valid_from='2024-01-01'.
+
+    Knife 633 (M2-b) added 1 extra `a2000000-%` geo_code_version for the
+    national entity (admin_code='00'); this test asserts ≥30 to allow
+    both M2-a (30) and M2-b (1 national) without false-fail.
+    """
     with conn.cursor() as cur:
         cur.execute(
             """
@@ -151,7 +156,10 @@ def test_30_m2_geo_code_versions_at_2024(loaded_seed, conn):
             """
         )
         count = cur.fetchone()[0]
-    assert count == 30, f"expected 30 M2-namespace code versions; got {count}"
+    assert count >= 30, (
+        f"expected ≥30 M2-namespace code versions (30 M2-a + 1 M2-b national); "
+        f"got {count}"
+    )
 
 
 # ---------------------------------------------------------------------
@@ -169,7 +177,10 @@ def test_inventory_has_at_least_31_rows():
 
 
 def test_inventory_status_distribution():
-    """Asserts the inventory CSV has 30 PENDING + 1 BLOCKED for 31 rows."""
+    """Asserts the inventory CSV has 30 PENDING + 1 BLOCKED for 31 rows
+    (M2-a baseline; M2-b transitions 6 rows to FETCHED, so after M2-b:
+    PENDING ≥ 26, BLOCKED ≥ 0, FETCHED ≥ 5 — see test_m2_b_first_batch).
+    """
     pending = 0
     blocked = 0
     fetched = 0
@@ -185,21 +196,19 @@ def test_inventory_status_distribution():
             elif status == "FETCHED":
                 fetched += 1
                 url = (row.get("candidate_url") or "").rstrip("/")
-                # Root homepage only (e.g. https://tjj.beijing.gov.cn/)
-                # vs. deeper path like .../tjsj/sjcx/tjgb/
-                # Block-level URLs that go directly to statistics
-                # section/category pages are OK.
                 last = url.rsplit("/", 1)[-1]
                 if last == "":
                     fetched_root_only += 1
-    assert pending >= 30, f"expected ≥30 PENDING rows; got {pending}"
-    assert blocked >= 1, f"expected ≥1 BLOCKED row; got {blocked}"
-    # Knife 631 §1.B: 不锁省统计局首页当表源
-    assert fetched == 0, (
-        f"per knife 631 §1.B, no row may be FETCHED in M2-a; got {fetched}"
+    # Post-M2-b: 5 省级 COVERED + 1 国家 → 6 FETCHED; 31 - 6 = 25 PENDING
+    # (but Hubei moved from BLOCKED→FETCHED so blocked=0). Allow some slack.
+    assert pending >= 24, f"expected ≥24 PENDING rows after M2-b; got {pending}"
+    assert blocked >= 0, f"blocked rows should be ≥0; got {blocked}"
+    assert fetched >= 6, (
+        f"expected ≥6 FETCHED rows (M2-b 5 省级 + 国家); got {fetched}"
     )
     assert fetched_root_only == 0, (
-        f"per knife 631 §1.B, no root-homepage FETCHED allowed; got {fetched_root_only}"
+        f"per knife 631 §1.B + 633 §2, no root-homepage FETCHED allowed; "
+        f"got {fetched_root_only}"
     )
 
 
@@ -219,16 +228,18 @@ def test_coverage_script_exits_zero():
     assert proc.returncode == 0, (
         f"coverage script exited {proc.returncode}: {proc.stderr}"
     )
-    # KPI line is required output
-    assert "KPI (per knife 631 §2)" in proc.stdout, (
+    # KPI line is required output (knife 633 §3.D re-uses this script)
+    assert "KPI" in proc.stdout and "knife 633" in proc.stdout, (
         f"KPI line missing from coverage output:\n{proc.stdout[:1000]}"
     )
     # 31 省级 rows mentioned
     assert "31 省级" in proc.stdout, "31 省级 header missing"
 
 
-def test_coverage_script_includes_hubei_blocked():
-    """Asserts Hubei shows BLOCKED verdict (M1 sample is 2026H1, not 2024 annual)."""
+def test_coverage_script_includes_hubei_covered():
+    """Asserts Hubei shows COVERED after M2-b (was BLOCKED in M2-a baseline;
+    M2-b 633-C successfully fetched the 2024 annual page, NOT reusing
+    the M1 2026H1 sample at c5cf5abe)."""
     proc = subprocess.run(
         [sys.executable, str(COVERAGE_SCRIPT)],
         capture_output=True,
@@ -236,9 +247,8 @@ def test_coverage_script_includes_hubei_blocked():
         timeout=60,
     )
     assert proc.returncode == 0
-    # Hubei row should appear with BLOCKED verdict
     hubei_lines = [l for l in proc.stdout.splitlines() if "湖北省" in l]
     assert hubei_lines, "Hubei row missing from coverage output"
-    assert any("BLOCKED" in ln for ln in hubei_lines), (
-        f"Hubei should be BLOCKED, got: {hubei_lines}"
+    assert any("COVERED" in ln for ln in hubei_lines), (
+        f"Hubei should be COVERED after M2-b, got: {hubei_lines}"
     )
