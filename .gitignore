@@ -23,6 +23,7 @@ htmlcov/
 venv/
 env/
 .venv-dbt/
+.venv-paddle/
 
 # ===== Node =====
 node_modules/
