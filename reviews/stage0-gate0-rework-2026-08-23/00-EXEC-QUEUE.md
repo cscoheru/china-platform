@@ -13,7 +13,7 @@
 ## §CURRENT
 
 - status: **M1 有限通过 · M2-a（631）NOW**
-- cc_head: 本 commit 双推后回填
+- cc_head: `a8fb101`（M1 closeout + 631 签发；双推本批）
 - last_audit: `630-stage0-cursor-s629-m1-cd-t4-t7-audit-PASS-20260831.md`
 - tasking: `631-stage0-architect-m2-a-geo-inventory-tasking-20260831.md`
 - m1: T0–T7 全勾；有限通过 ≠ Gate 1 PASS
