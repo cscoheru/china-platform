@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-09-01T03:10:56.934011+00:00",
+  "summary": {
+    "total_cells": 3,
+    "probed_cells": 3,
+    "sample_only": false,
+    "by_verdict": {
+      "PARTIAL": 1,
+      "BLOCKED": 2
+    },
+    "by_entity": {
+      "中央纪委国家监委": "PARTIAL",
+      "全国人大": "BLOCKED",
+      "国务院": "BLOCKED"
+    }
+  },
+  "probed_count": 3,
+  "cells": [
+    {
+      "slug": "central-discipline",
+      "entity": "中央纪委国家监委",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT",
+      "url": "https://www.ccdi.gov.cn/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:10:40.596786+00:00"
+    },
+    {
+      "slug": "npc",
+      "entity": "全国人大",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT",
+      "url": "http://www.npc.gov.cn/",
+      "verdict": "BLOCKED",
+      "http_code": 0,
+      "reason": "timeout",
+      "probed_at": "2026-09-01T03:10:41.507474+00:00"
+    },
+    {
+      "slug": "central",
+      "entity": "国务院",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT",
+      "url": "https://www.gov.cn/zwgk/zfgbg.htm",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:10:56.536347+00:00"
+    }
+  ],
+  "probe_methodology": "REACHABLE: HTTP 200 + body contains 任免/任免名单 marker. PARTIAL: HTTP 200 + body loaded but no marker. BLOCKED: TLS reset / 403 WAF / 404 / connection error. Targets: 中央纪委国家监委 (ccdi.gov.cn) + 全国人大 (npc.gov.cn) + 国务院. Limited scope (3 URLs) per tasking §2.638-A.2 — 任免公告可扩展至省级人大."
+}
