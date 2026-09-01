@@ -247,4 +247,14 @@ Per 649 任务书 §A.1 显式 substitute 预授权池:
 
 ---
 
+### 6.1 649 审计裁定登记（per 650-A.0 + 650 任务书 §1.650-A.0）
+
+- **审验端**: Cursor 端 (`reviews/stage0-gate0-rework-2026-08-23/649-stage0-cursor-s649-m4-12-v6-audit-PASS-20260901.md`)
+- **裁定**: **PASS（有限通过）** — 98/98 独立复跑 green；4 commits 双推 origin→github=`6ddd5a2`；递补池首次激活合规（hubei 412+412 → liaoning 序位 #1）；backfill 三齐实质达成；evidence 代换留痕结构为全链最佳
+- **P3-1 蓝图更正（per 649 审计）**: 代换样本 h02 registry 行 province='HUBEI' + source_name="湖北省人民政府..." 与 source_url=https://www.ln.gov.cn/ 错位 → **650-A.0 行内更正**: h02 province→'LIAONING'、source_name 改辽宁口径; 同文件 h04/h11/h41/h51/h61 policy 表行 '湖北省'/'湖北' 字样同步更正; **红线 13 规范固化**: source_registry `province`/`source_name` 一律用 actual_province（URL 归属省），original_province 仅存 lineage JSONB
+- **P4×3 (rev84 陈旧三处)**: 650-C 顺手修 — EXEC-QUEUE 顶部 `> **rev N**` header 行同步 §META 的 `rev: 85/86`；status 行写"649 DELIVERED + 4 commits 双推 + backfill 三齐 已完成"；§NOW 措辞不再自指陈旧
+- **合并归档视图**: 649 审计 + 650 任务书 = `reviews/stage0-gate0-rework-2026-08-23/649-audit-650-tasking-consolidated-20260901.md`（148 行；用户指示 2026-09-01 起单文件模式）
+
+---
+
 — End 73 — M4.12 v6 真实化 spike 审查 20260901 —

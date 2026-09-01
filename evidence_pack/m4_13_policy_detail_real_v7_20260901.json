@@ -1,0 +1,129 @@
+{
+  "knife": "650-A.1",
+  "purpose": "M4.13 政策详情 v7 真实化 spike (guizhou + jiangsu 第 13/14 样本; 649 P3-1 蓝图更正 + 红线 13 增补; 递补池按序 shaanxi → sichuan)",
+  "chain_id": "real_650_m4_13_policy_detail_v7",
+  "uuid_prefix": "i",
+  "uuid_prefixes": {
+    "source_registry": "i0eebc99",
+    "source_document": "i0eebc99",
+    "policy_document": "i1eebc99",
+    "policy_target": "i2eebc99",
+    "policy_measure": "i3eebc99",
+    "government_commitment": "i4eebc99",
+    "commitment_progress": "i5eebc99",
+    "project_event": "i6eebc99"
+  },
+  "summary": {
+    "fetch_status": "REAL_FETCHED",
+    "fetched_count": 2,
+    "http_count": 3,
+    "http_limit": 12,
+    "substitute_used_count": 0,
+    "distinct_shas": [
+      "5c5b12952db6b4af8f63a8478100d1000765fcb8460f574dd8b480ce2aa56cc0",
+      "def18a2f8f025b5ae11c685725b96cbf181c19c4771ab56d5d4be12974c7e534"
+    ]
+  },
+  "cells": [
+    {
+      "province": "guizhou",
+      "actual_province": "guizhou",
+      "fetched_url": "https://www.guizhou.gov.cn/zwgk/",
+      "chain_index": 0,
+      "fallback_chain_used": [
+        "zwgk_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.guizhou.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 170166,
+          "anchor_hits_count": 1215,
+          "waf_marker_present": false,
+          "attempt_province": "guizhou"
+        }
+      ],
+      "file_hash_sha256": "5c5b12952db6b4af8f63a8478100d1000765fcb8460f574dd8b480ce2aa56cc0",
+      "file_size_bytes": 170166,
+      "http_code": 200,
+      "anchor_hits_count": 1215,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false
+    },
+    {
+      "province": "jiangsu",
+      "actual_province": "jiangsu",
+      "fetched_url": "https://www.jiangsu.gov.cn/",
+      "chain_index": 1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.jiangsu.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 404,
+          "reason": "ok",
+          "body_size_bytes": 146,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "jiangsu"
+        },
+        {
+          "url": "https://www.jiangsu.gov.cn/",
+          "label": "province_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 82985,
+          "anchor_hits_count": 306,
+          "waf_marker_present": false,
+          "attempt_province": "jiangsu"
+        }
+      ],
+      "file_hash_sha256": "def18a2f8f025b5ae11c685725b96cbf181c19c4771ab56d5d4be12974c7e534",
+      "file_size_bytes": 82985,
+      "http_code": 200,
+      "anchor_hits_count": 306,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false
+    }
+  ],
+  "fetch_log": [
+    {
+      "url": "https://www.guizhou.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 170166,
+      "anchor_hits_count": 1215,
+      "waf_marker_present": false,
+      "attempt_province": "guizhou"
+    },
+    {
+      "url": "https://www.jiangsu.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 404,
+      "reason": "ok",
+      "body_size_bytes": 146,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "jiangsu"
+    },
+    {
+      "url": "https://www.jiangsu.gov.cn/",
+      "label": "province_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 82985,
+      "anchor_hits_count": 306,
+      "waf_marker_present": false,
+      "attempt_province": "jiangsu"
+    }
+  ],
+  "methodology": "v7 spike fetch: 2 cells (guizhou + jiangsu), each with primary /zwgk/ + fallback #1 (省府根 /) + 递补池 (shaanxi→sichuan). 每 cell ≤4 attempts, 总预算 ≤12 HTTP. Per 650 §0.13: 附属复验/验证产物允许独立文件, 但主 evidence methodology 必须含指针. 代换行 source_registry province/source_name 一律用 actual_province (per 649 P3-1)."
+}

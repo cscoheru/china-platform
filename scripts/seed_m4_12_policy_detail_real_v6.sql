@@ -32,9 +32,9 @@ INSERT INTO source_registry (
 ) VALUES
     ('h0eebc99-9c0b-4ef8-bb6d-6bb9bd380h02',
      'https://www.ln.gov.cn/',
-     '湖北省人民政府 政务公开 landing (hubei 412+412 → liaoning 递补省府根 /)',
+     '辽宁省人民政府 政务公开 landing (hubei 槽 412×2 递补 per 649; per 650-A.0 P3-1 更正)',
      'PROVINCIAL_BULLETIN',
-     'CN', 'HUBEI', TRUE,
+     'CN', 'LIAONING', TRUE,
      '{"chain_id": "real_649_m4_12_policy_detail_v6",
        "source_file_sha256": "b22d1fb4d291e9e134166602757e5184c99f4a4d67c66abd2fdd20a5371d4f82",
        "source_file_url": "https://www.ln.gov.cn/",
@@ -69,7 +69,7 @@ INSERT INTO source_document (
 ) VALUES
     ('h0eebc99-9c0b-4ef8-bb6d-6bb9bd380h04',
      'h0eebc99-9c0b-4ef8-bb6d-6bb9bd380h02',
-     '湖北省人民政府 政务公开 landing (hubei→liaoning 递补)',
+     '辽宁省人民政府 政务公开 landing (hubei 槽 412×2 递补 per 649; per 650-A.0 P3-1 更正)',
      'POLICY_DETAIL_LIST',
      'https://www.ln.gov.cn/',
      '2026-09-01',
@@ -113,8 +113,8 @@ INSERT INTO policy_document (
 ) VALUES
     ('h1eebc99-9c0b-4ef8-bb6d-6bb9bd380h11',
      'POLICY_DETAIL',
-     '省政府政策详情 v6（湖北政务公开 landing, hubei→liaoning 递补）',
-     '湖北省人民政府',
+     '省政府政策详情 v6（辽宁政务公开 landing, hubei 槽 412×2 递补 per 649; per 650-A.0 P3-1 更正）',
+     '辽宁省人民政府',
      '2026-09-01',
      'h0eebc99-9c0b-4ef8-bb6d-6bb9bd380h04',
      'BULLETIN', 'PROVINCIAL',
@@ -213,7 +213,7 @@ INSERT INTO government_commitment (
 SELECT
     'h4eebc99-9c0b-4ef8-bb6d-6bb9bd380h41',
     'h2eebc99-9c0b-4ef8-bb6d-6bb9bd380h21',
-    'real-commitment-hubei-v6 (政策详情 v6 第 11 样本; 湖北省政府, hubei→liaoning 递补)',
+    'real-commitment-hubei-v6 (政策详情 v6 第 11 样本; 辽宁省政府, hubei 槽 412×2 递补 per 649; per 650-A.0 P3-1 更正)',
     NULL,
     g.id,
     '2026-09-01',
@@ -232,7 +232,7 @@ SELECT
         'substitute_reason', '原试点省 hubei 两级 fallback 均 412; 递补池 liaoning'
     )
 FROM geo_entity g
-WHERE g.canonical_name = '湖北省' AND g.level = 'PROVINCIAL'
+WHERE g.canonical_name = '辽宁省' AND g.level = 'PROVINCIAL'
 LIMIT 1
 ON CONFLICT (id) DO NOTHING;
 
@@ -276,7 +276,7 @@ INSERT INTO commitment_progress (
 ) VALUES
     ('h5eebc99-9c0b-4ef8-bb6d-6bb9bd380h51',
      'h4eebc99-9c0b-4ef8-bb6d-6bb9bd380h41',
-     0.5, 'PERCENT', '2026-09-01', '湖北省人民政府 (hubei→liaoning 递补)',
+     0.5, 'PERCENT', '2026-09-01', '辽宁省人民政府 (hubei 槽 412×2 递补 per 649; per 650-A.0 P3-1 更正)',
      '{"chain_id": "real_649_m4_12_policy_detail_v6",
        "source_file_sha256": "b22d1fb4d291e9e134166602757e5184c99f4a4d67c66abd2fdd20a5371d4f82",
        "source_file_url": "https://www.ln.gov.cn/",
@@ -307,7 +307,7 @@ SELECT
     'POLICY_DETAIL_RELEASE',
     '2026-09-01',
     'real-project-hubei-v6 (政策详情 v6 第 11 样本)',
-    '湖北省政府政策详情页落地; hubei /zwgk/ + / 两级均 412 → 递补池 liaoning /zwgk/ 404 → ln / 200 REACHABLE (全新 SHA b22d1fb4...)',
+    '辽宁省政府政策详情页落地 (hubei 槽 412×2 递补 per 649; per 650-A.0 P3-1 更正); hubei /zwgk/ + / 两级均 412 → 递补池 liaoning /zwgk/ 404 → ln / 200 REACHABLE (全新 SHA b22d1fb4...)',
     g.id,
     'h0eebc99-9c0b-4ef8-bb6d-6bb9bd380h04',
     jsonb_build_object(
@@ -322,7 +322,7 @@ SELECT
         'substitute_reason', '原试点省 hubei 两级 fallback 均 412; 递补池 liaoning 省府根 / 200'
     )
 FROM geo_entity g
-WHERE g.canonical_name = '湖北省' AND g.level = 'PROVINCIAL'
+WHERE g.canonical_name = '辽宁省' AND g.level = 'PROVINCIAL'
 LIMIT 1
 ON CONFLICT (id) DO NOTHING;
 
@@ -360,4 +360,23 @@ ON CONFLICT (id) DO NOTHING;
 -- UUID h 段 (h02-h62) ≠ 648 g 段 ≠ 647 f 段
 -- 2 NEW SHA: b22d1fb4 (hubei→liaoning 递补) + a1e49a91 (jilin)
 -- hubei substitute_reason: 两级 412 (Precondition Failed); 按 649 §0.13 递补池按序取 liaoning
+-- ----------------------------------------------------------------------------
+
+-- ----------------------------------------------------------------------------
+-- 650-A.0 行内更正 尾注 (per 649 审计 P3-1 / 2026-09-01)
+--   649 审计 P3-1: 代换样本 h02 registry 行 province='HUBEI' + source_name="湖北省人民政府..."
+--     但 source_url='https://www.ln.gov.cn/' (实际抓取 = 辽宁省府根) → 标注错位
+--   红线 13 规范固化 (per 649 审计 P3-1): source_registry `province`/`source_name`
+--     一律用 actual_province (URL 归属省), original_province 仅存 lineage JSONB
+--   本次行内更正 (蓝图 SQL 文件, 非 docs 正文, 允许行内更正 + 尾注标记):
+--     - h02 source_registry: province='HUBEI' → 'LIAONING'; source_name 同步更正为辽宁口径
+--     - h04 source_document title: 同步更正为辽宁口径
+--     - h11 policy_document title + publisher: 同步更正为辽宁口径
+--     - h41 government_commitment commitment_text: 同步更正为辽宁口径
+--     - h51 commitment_progress reporting_org: 同步更正为辽宁口径
+--     - h61 project_event description: 同步更正为辽宁口径
+--   lineage JSONB 内 original_province='hubei' / actual_province='liaoning' 保留
+--     (按红线 13 规范: original_province 仅存 lineage JSONB)
+--   h62 jilin 行 + lineage substitute_reason 描述性提及 "hubei" (拉丁名) 保留
+--     (描述实际抓取事实, 不指代归属)
 -- ----------------------------------------------------------------------------
