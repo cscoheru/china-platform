@@ -7,6 +7,96 @@
 
 ---
 
+## §0. 项目背景（Cursor 复原后必读）
+
+### §0.1 项目愿景
+
+**china-platform（国窖 / CEGR 治理仓）** — 中国地方政府公开数据治理仓，定位为政府/统计局/研究机构一手数据源的 **真实化 ETL + lineage 治理** 系统。
+
+**核心原则**（沿用 638-644 + 645, 不变量）:
+- **数据源唯一 = 政府/统计局/研究机构自取**；用户零裁定（除注册/登录/付费/UI 人工验收）；执行端不可提任何用户裁定事项（2026-08-29 数据源治理铁律）
+- **lineage JSONB `is_demo='false'` 真实化 sentinel** 沿用 docs/33 §3.2，9 真实化刀（641/642/643/644/645）一致 shape
+- **完成 = observation SUCCESS, 禁止 PARTIAL**（沿用红线）
+- **零爬网 / 零镀铬四轨 / 不把目录页标 FETCHED**（沿用红线）
+- **4 fixture 锁值永不动**：nbs=e30ee811 / nbs_live=9232efdb / sz=937255a5 / hb=9056001c（沿用红线）
+
+**技术栈**:
+- PostgreSQL schemas: `cegr` (production) + `cegr_staging` (spike 沙盒)
+- dbt mart 模型: `mart_city_evidence_chain` / `mart_city_seven_dim_overview` (10 城市 × 6 维度)
+- Migrations: 009 (5 政策表) + 010 (project_event) + 014/015 (spike 沿用)
+- 后端: Python 3.14 + pytest 9.0.2
+- 前端: skeleton mode by design（不渲染，仅 schema 占位）
+
+### §0.2 三角色机制
+
+```
+架构师（本终端，Claude Opus）         执行端（另开 CC 实例）           用户（人类裁决者）
+       │                                  │                              │
+       │ ── tasking (645-tasking) ──────► │                              │
+       │                                  │ ── 5 commits + 双推 ───────► │
+       │ ◄─ 回执 + 红线自审 ──────────── │                              │
+       │                                  │                              │
+       │ ── 5 commits 已就绪 ──────────────────────────────────────────► │
+       │                                  │                              │
+       │ ◄── 接受/驳回 + 下发 646 scope ──────────────────────────────────│
+```
+
+- **架构师**：本终端（Claude Opus），负责 tasking + 审验裁定 + 红线守护
+- **执行端**：另开 CC 实例，负责落地 (commits / 双推 / pytest)（645 由豁免机制合并入本终端）
+- **用户**：人类裁决者，接受/驳回 scope，下发新刀
+- **交接队列**：`reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md` (当前 rev 75)
+- **轮询协议**：`reviews/stage0-gate0-rework-2026-08-23/00-DUAL-POLL-PROTOCOL.md`
+- **用户休息协议**（2026-08-29 立）：用户说"去休息"→ 架构师继续 ARCH-PULSE 30min cadence → 3 次心跳（≈90min）执行端无 ACK/DELIVERED 则暂停所有新刀签发
+
+### §0.3 关键里程碑文件（必读，按层级）
+
+| 层 | 文件 | 作用 |
+|---|---|---|
+| **总纲** | `docs/00-COMPASS.md` | 热记忆；架构师每轮必读 |
+| **策略** | `docs/33-stage2-s210-lite-lineage-sentinel-20260826.md` | §3.2 lineage JSONB sentinel 沿用链 |
+| **漂移** | `docs/52-stage2-s210-lite-source-doc-drift-policy-20260826.md` | SHA drift (a) update / (b) flag 策略 |
+| **Gate2 索引** | `docs/45-stage2-s210-lite-gate2-review-index-20260826.md` | §6.2 表末 645 互链 +1 行 |
+| **Gate2 packet** | `docs/50-stage2-gate2-review-packet-draft-20260826.md` | §4.4 第 48 项 645 互链 |
+| **运维手册** | `docs/53-stage2-public-ingest-ops-handbook-20260826.md` | §5 第 48 项 645 互链（7 子节 A-G）|
+| **M4.1 人物表** | `docs/58-m4-1-people-schema-gov-report-probe-20260901.md` | 638 DELIVERED |
+| **M4.2 任免 demo** | `docs/59-m4-2-renmian-demo-second-probe-20260901.md` | 639 DELIVERED |
+| **M4.3 政策 demo** | `docs/60-m4-3-policy-project-demo-20260901.md` | 640 DELIVERED |
+| **M4.4 hlj 真实化** | `docs/61-m4-4-heilongjiang-real-spike-20260901.md` | 641 DELIVERED |
+| **M5.1 WAF + M4.5** | `docs/62 + docs/63` | 642 DELIVERED |
+| **M5.2 + M4.6** | `docs/64 + docs/65` | 643 DELIVERED |
+| **M5.3 + M4.7** | `docs/66 + docs/67` | 644 DELIVERED |
+| **M6 master + M4.8** | `docs/68 + docs/69` | **645 DELIVERED (本次审验)** |
+
+### §0.4 现状（截至 2026-09-01）
+
+**已落地（8 刀）**:
+- 638-640: 3 spike demo 隔离 (`demo_639` / `demo_640` lineage.is_demo=true)
+- 641-645: 5 真实化 spike (`real_641_heilongjiang` / `real_642_m4_5_renmian` / `real_643_m4_6_govreport` / `real_644_m4_7_policy_detail` / `real_645_m4_8_policy_detail_v2`)
+- 638-645 共 8 chain_id 全部 distinct, UUID prefix 沿 demo→real→b→c→d 段严格递增
+- 22/22 pytest green（645 累计）；71 → 78 → 16 → 17 → 18 → 22 测试规模递增
+
+**未落地（红线守护）**:
+- **Gate / O1 / O2 / O3 / M2 / M4 / M4.5 / M4.6 / M4.7 / M4.8 / M5 / M5.1 / M5.2 / M5.3 / M6 — 15 个里程碑不宣布 PASS**
+- Gate 1 启动需要 M2 Gate 后才合法（当前 M2 仅 M2-a/M2-b/M2-c+d+e/M2-f AUDITED，未 M2 PASS）
+- dbt mart flip: 60 行 demo 中仅 1 行（nanjing + CONDITION）真实化 pilot，O1 全量未启动
+
+**646 待定**:
+- 当前 645 全部 DELIVERED，架构师（用户）接受/驳回 scope 后下发 646
+- scope A 推荐（M6 收口收口收口 + M4.9 政策详情 v3 试点省扩展）
+- 候选 scope: A / B / C / D / E（详见 §G）
+
+### §0.5 与 645 相关的关键背景
+
+**为何 645 选 d 段 UUID？** — 沿用 638-644 UUID prefix 严格递增（demo→real→b→c→d），保证未来 e/f/g 段仍可扩展。d 段（d1eebc99-d6eebc99）≠ 644 c 段（c1eebc99-c2eebc99）= 零碰撞保证。
+
+**为何 645 chain_id 末段加 `_v2`？** — 645 沿用 644 M4.7 模式（3 试点省 × 1 detail each × 6 政策表 = 18 INSERT），但额外纳入 henan zwgk root 第 4 样本 = 24 INSERT。`_v2` 标记这是 644 模式的 v2 扩展版本（不是 v1 重复）。
+
+**为何 hlj SHA drift？** — docs/52 (a) policy: 政府公开页面 SHA 每次抓取可能微变（CDN / 时间戳 / 广告脚本）。644 抓 `bad8be51`，645 重抓得 `6237cd48` = 漂移事件，不影响 `lineage.is_demo='false'` 真实化判定，仅标记需文档化。
+
+**为何 4 fixture 锁值永不动？** — `nbs / nbs_live / sz / hb` 是 4 个前端骨架的 fixture 锁值（4 SHA: e30ee811 / 9232efdb / 937255a5 / 9056001c），任何修改都会导致前端骨架渲染错位。spike 数据真实化与前端 fixture 完全解耦。
+
+---
+
 ## §A. 645 概览
 
 ### A.1 范围
