@@ -1,0 +1,382 @@
+{
+  "generated_at": "2026-09-01T03:47:55.451240+00:00",
+  "summary": {
+    "total_cells": 29,
+    "probed_cells": 29,
+    "sample_only": false,
+    "by_verdict": {
+      "PARTIAL": 8,
+      "BLOCKED": 15,
+      "REACHABLE": 6
+    },
+    "by_class": {
+      "central": 6,
+      "provincial": 23
+    },
+    "by_class_verdict": {
+      "central": {
+        "PARTIAL": 4,
+        "BLOCKED": 2
+      },
+      "provincial": {
+        "BLOCKED": 13,
+        "PARTIAL": 4,
+        "REACHABLE": 6
+      }
+    },
+    "by_entity": {
+      "中央纪委要闻": "PARTIAL",
+      "中央纪委审查调查": "PARTIAL",
+      "全国人大任免": "BLOCKED",
+      "全国人大要闻": "BLOCKED",
+      "国务院政策": "PARTIAL",
+      "国务院要闻": "PARTIAL",
+      "北京任免": "BLOCKED",
+      "上海任免": "PARTIAL",
+      "重庆任免": "PARTIAL",
+      "河北任免": "BLOCKED",
+      "山西任免": "BLOCKED",
+      "内蒙古任免": "BLOCKED",
+      "辽宁任免": "BLOCKED",
+      "吉林任免": "BLOCKED",
+      "黑龙江任免": "REACHABLE",
+      "江苏任免": "BLOCKED",
+      "浙江任免": "BLOCKED",
+      "安徽任免": "BLOCKED",
+      "福建任免": "REACHABLE",
+      "河南任免": "REACHABLE",
+      "湖南任免": "BLOCKED",
+      "广东任免": "REACHABLE",
+      "海南任免": "PARTIAL",
+      "四川任免": "BLOCKED",
+      "贵州任免": "REACHABLE",
+      "云南任免": "REACHABLE",
+      "陕西任免": "BLOCKED",
+      "宁夏任免": "PARTIAL",
+      "新疆任免": "BLOCKED"
+    }
+  },
+  "probed_count": 29,
+  "cells": [
+    {
+      "slug": "central-discipline-yaowen",
+      "entity": "中央纪委要闻",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.ccdi.gov.cn/yaowen/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:18.270484+00:00"
+    },
+    {
+      "slug": "central-discipline-shenji",
+      "entity": "中央纪委审查调查",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.ccdi.gov.cn/specialn/scjcf/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:19.160159+00:00"
+    },
+    {
+      "slug": "npc-renmian",
+      "entity": "全国人大任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://npc.gov.cn/npc/c2/",
+      "verdict": "BLOCKED",
+      "http_code": 0,
+      "reason": "tls_reset",
+      "probed_at": "2026-09-01T03:47:19.319780+00:00"
+    },
+    {
+      "slug": "npc-news",
+      "entity": "全国人大要闻",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://npc.gov.cn/npc/",
+      "verdict": "BLOCKED",
+      "http_code": 0,
+      "reason": "tls_reset",
+      "probed_at": "2026-09-01T03:47:24.349596+00:00"
+    },
+    {
+      "slug": "central-zhengce",
+      "entity": "国务院政策",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.gov.cn/zhengce/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:29.368341+00:00"
+    },
+    {
+      "slug": "central-yaowen",
+      "entity": "国务院要闻",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.gov.cn/yaowen/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:29.664912+00:00"
+    },
+    {
+      "slug": "beijing-renmian",
+      "entity": "北京任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.beijing.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:29.825368+00:00"
+    },
+    {
+      "slug": "shanghai-renmian",
+      "entity": "上海任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.shanghai.gov.cn/zwgk/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:30.045005+00:00"
+    },
+    {
+      "slug": "chongqing-renmian",
+      "entity": "重庆任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.cq.gov.cn/zwgk/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:30.457805+00:00"
+    },
+    {
+      "slug": "hebei-renmian",
+      "entity": "河北任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.hebei.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:30.943127+00:00"
+    },
+    {
+      "slug": "shanxi-renmian",
+      "entity": "山西任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.shanxi.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:31.324514+00:00"
+    },
+    {
+      "slug": "innermongolia-renmian",
+      "entity": "内蒙古任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.nmg.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 0,
+      "reason": "curl_err:curl: (28) Connection timed out after 15001 milliseconds\n",
+      "probed_at": "2026-09-01T03:47:31.752774+00:00"
+    },
+    {
+      "slug": "liaoning-renmian",
+      "entity": "辽宁任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.ln.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:46.772928+00:00"
+    },
+    {
+      "slug": "jilin-renmian",
+      "entity": "吉林任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.jl.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:47.048516+00:00"
+    },
+    {
+      "slug": "heilongjiang-renmian",
+      "entity": "黑龙江任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.hlj.gov.cn/zwgk/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:47.969864+00:00"
+    },
+    {
+      "slug": "jiangsu-renmian",
+      "entity": "江苏任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.jiangsu.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:48.500848+00:00"
+    },
+    {
+      "slug": "zhejiang-renmian",
+      "entity": "浙江任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.zj.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 403,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:48.669367+00:00"
+    },
+    {
+      "slug": "anhui-renmian",
+      "entity": "安徽任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.ah.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 403,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:48.929136+00:00"
+    },
+    {
+      "slug": "fujian-renmian",
+      "entity": "福建任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.fujian.gov.cn/zwgk/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:49.161946+00:00"
+    },
+    {
+      "slug": "henan-renmian",
+      "entity": "河南任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.henan.gov.cn/zwgk/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:51.079621+00:00"
+    },
+    {
+      "slug": "hunan-renmian",
+      "entity": "湖南任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.hunan.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:51.875662+00:00"
+    },
+    {
+      "slug": "guangdong-renmian",
+      "entity": "广东任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.gd.gov.cn/zwgk/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:52.068893+00:00"
+    },
+    {
+      "slug": "hainan-renmian",
+      "entity": "海南任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.hainan.gov.cn/zwgk/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:52.376015+00:00"
+    },
+    {
+      "slug": "sichuan-renmian",
+      "entity": "四川任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.sc.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 403,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:52.798281+00:00"
+    },
+    {
+      "slug": "guizhou-renmian",
+      "entity": "贵州任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.guizhou.gov.cn/zwgk/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:53.105102+00:00"
+    },
+    {
+      "slug": "yunnan-renmian",
+      "entity": "云南任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.yn.gov.cn/zwgk/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:53.486260+00:00"
+    },
+    {
+      "slug": "shaanxi-renmian",
+      "entity": "陕西任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.shaanxi.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:54.124501+00:00"
+    },
+    {
+      "slug": "ningxia-renmian",
+      "entity": "宁夏任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.nx.gov.cn/zwgk/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:54.339014+00:00"
+    },
+    {
+      "slug": "xinjiang-renmian",
+      "entity": "新疆任免",
+      "year": 2024,
+      "source": "RENMIAN_ANNOUNCEMENT_V2",
+      "url": "https://www.xinjiang.gov.cn/zwgk/",
+      "verdict": "BLOCKED",
+      "http_code": 403,
+      "reason": "ok",
+      "probed_at": "2026-09-01T03:47:54.634199+00:00"
+    }
+  ],
+  "probe_methodology": "REACHABLE: HTTP 200 + body contains 任免/任免名单 marker. PARTIAL: HTTP 200 + body loaded but no marker. BLOCKED: TLS reset / 403 WAF / 404 / connection error. Targets: 6 中央 (ccdi 2 + npc 2 + 国务院 2) + 23 REACHABLE 试点省 (继承 638 23 个 www.*.gov.cn/ REACHABLE) 任免栏目 /zwgk/. 二次探活理由: 638 PARTIAL 是首页非任免页; nbc/npc URL 是 HTTP 或错误路径; /zwgk/ 为任免公告栏目探针."
+}
