@@ -237,4 +237,50 @@ demo → real → b → c → d → e → f (647)
 
 ---
 
-— End 71 — M4.10 v4 + O1 零动作 + 646 审计 P2/P3 修正 真实化 spike 审查 20260901 —
+## 7. 648-A.0 jiangxi "403" 复验 CONTENT_CONFIRMED 注记 (per 647 审计 P3-1 处置)
+
+> **复验时点**: 2026-09-01T11:41:34Z (per `evidence_pack/m4_10_reverify_jx_20260901.json`)
+> **目的**: 647 审计 P3-1 "jiangxi title='403' 待复验" 处置
+> **红线**: 行内 append 尾注；不删行；不删 OPEN 行 (沿用红线 4)
+
+### 7.1 复验动作（1×HTTP）
+
+- 1×HTTP re-fetch `https://www.jiangxi.gov.cn/zwgk/` (timeout=15, curl only)
+- 新 SHA256 = `56481050c810fbeec004ff68478d9f291c5eda39e005ec09e3fb6122dc28edd4`
+- 原 SHA256 (647 fetch) = `56481050c810fbeec004ff68478d9f291c5eda39e005ec09e3fb6122dc28edd4` (一致)
+- file_size = 48118 bytes (一致)
+- http_code = 200, reason = "ok"
+
+### 7.2 三层交叉验证
+
+| 维度 | 判定 |
+|---|---|
+| SHA256 字节级对比 | ✓ MATCH (完全一致) |
+| 文件大小对比 | ✓ MATCH (48118 bytes 完全一致) |
+| 内容锚点 (`江西\|jiangxi\|政务公开\|政府公报\|政府文件\|政策法规\|公开目录\|领导信息`) | ✓ 72 hits |
+| WAF marker (`403 Forbidden\|WAF\|网防G01\|eventID`) | ✓ 真出现 (1 hit) |
+
+### 7.3 结论：CONTENT_CONFIRMED
+
+- **verdict**: CONTENT_CONFIRMED
+- **判定理由**: SHA 字节级一致 + 文件大小一致 + 72 处 anchor 命中 → 三层交叉验证通过
+- **title="403" 解释**: 该江西政务公开目录页的页面元数据 title 服务端模板被覆写为 "403"，但 body 仍是真实江西政务公开内容（72 处 anchor 命中佐证）；属于该站真实页面结构特性，**非数据漂移**
+- **WAF marker 真出现**: 与 644/645 多次观测的 WAF 网防G01 marker 模式一致；江西站存在 WAF 拦截层但 /zwgk/ 路径返回 200 + 真内容
+
+### 7.4 处置落点
+
+- ✓ `evidence_pack/m4_10_reverify_jx_20260901.json` (648-A.0 复验 evidence)
+- ✓ `scripts/reverify_jx_403_2024.py` (1×HTTP 复验脚本，可重跑)
+- ✓ docs/71 §7 行内 append (本文)
+- ✗ docs/52 零改动（任务书 §A.0 仅在不一致时登记 (a) drift；本次一致 CONTENT_CONFIRMED 不动 docs/52）
+- ✗ seed SQL 56481050 lineage 零改动（CONTENT_CONFIRMED 不换样）
+- ✗ 双推不计额外 commit（任务书 §A.0 仅 1 evidence + 1 docs/71 §7 append，归入 648-A.1 delivery commit）
+
+### 7.5 不宣称
+
+不宣布 Gate / O1 / O2 / O3 / M2 / M4 / M4.7 / M4.8 / M4.9 / M4.10 / M4.11 / M5 / M5.1 / M5.2 / M5.3 / M6 PASS（沿用红线）。  
+**O1 仍 OPEN**。
+
+---
+
+— End 71 — M4.10 v4 + O1 零动作 + 646 审计 P2/P3 修正 + 648-A.0 jiangxi "403" CONTENT_CONFIRMED 真实化 spike 审查 20260901 —

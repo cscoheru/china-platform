@@ -25,15 +25,18 @@ The crosscheck is therefore a *weak* sanity check:
 No silent fallback: the script reports the verdict per row and the
 overall verdict, but never modifies observation.value.
 
-Outputs `docs/reports/m2_2024_gdp_crosscheck_20260831.md`.
+Outputs `docs/reports/m2_2024_gdp_crosscheck_20260831.md` by default.
+Use --output PATH to redirect to a tmp file (test hygiene per knife 648-A.2).
 
 Usage:
-  python scripts/crosscheck_m2_2024_gdp.py
+  python scripts/crosscheck_m2_2024_gdp.py                    # default: docs/reports/
+  python scripts/crosscheck_m2_2024_gdp.py --output /tmp/x.md # test hygiene path
 
 DSN: ${CEGR_DSN:-postgresql://postgres:postgres@127.0.0.1:55440/cegr_test}
 """
 from __future__ import annotations
 
+import argparse
 import os
 import sys
 from pathlib import Path
@@ -176,8 +179,20 @@ def _verdict_coverage_implied(
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description="M2-d 2024 GDP crosscheck")
+    parser.add_argument(
+        "--output", "-o",
+        default=None,
+        help="Output markdown path (default: docs/reports/m2_2024_gdp_crosscheck_20260831.md)",
+    )
+    args = parser.parse_args()
+
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = REPORTS_DIR / "m2_2024_gdp_crosscheck_20260831.md"
+    if args.output:
+        out_path = Path(args.output)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+    else:
+        out_path = REPORTS_DIR / "m2_2024_gdp_crosscheck_20260831.md"
 
     with _connect() as conn:
         with conn.cursor() as cur:

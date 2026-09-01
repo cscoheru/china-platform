@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-09-01T11:41:34.145995+00:00",
+  "knife": "648-A.0",
+  "purpose": "jiangxi '403' 复验 per 647 审计 P3-1 处置",
+  "url": "https://www.jiangxi.gov.cn/zwgk/",
+  "original_sha256": "56481050c810fbeec004ff68478d9f291c5eda39e005ec09e3fb6122dc28edd4",
+  "fetch": {
+    "http_code": 200,
+    "reason": "ok",
+    "fetched_at": "2026-09-01T11:41:34.145995+00:00"
+  },
+  "new_sha256": "56481050c810fbeec004ff68478d9f291c5eda39e005ec09e3fb6122dc28edd4",
+  "sha_match": true,
+  "anchors": {
+    "title": "403",
+    "publication_date": "2025-07-16",
+    "file_size_bytes": 48118,
+    "anchor_hits_count": 72,
+    "anchor_hits_sample": [
+      "江西",
+      "jiangxi",
+      "江西",
+      "jiangxi",
+      "jiangxi"
+    ],
+    "waf_marker_present": true,
+    "body_char_count": 44306
+  },
+  "is_content_anchored": true,
+  "verdict": "CONTENT_CONFIRMED"
+}
