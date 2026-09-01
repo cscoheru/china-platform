@@ -1,19 +1,19 @@
 # 00-EXEC-QUEUE — 架构师 ↔ 执行端 交接队列
 
-> **rev 63 · 2026-09-01。**  
+> **rev 65 · 2026-09-01。**  
 > 热记忆：`docs/00-COMPASS.md`。轮询：`00-DUAL-POLL-PROTOCOL`。  
 > **禁止宣布 Gate / O1 / M2 PASS。**
 
 ## §META
 
-- rev: 65
+- rev: 66
 - updated: 2026-09-01
-- ruling: 639 DELIVERED → 640 M4.3 tasking **OPEN** → 等执行落地
+- ruling: 640 DELIVERED → 等用户接受 641 scope 推荐
 
 ## §CURRENT
 
-- status: **640 tasking OPEN · 等 CC 落地**
-- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt)
+- status: **640 DELIVERED · 等用户接受 641 scope 推荐**
+- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery)
 - last_audit: `634-stage0-cursor-s633-m2-b-audit-PASS-20260831.md`
 - tasking: `640-stage0-architect-m4-3-policy-demo-tasking-20260901.md`
 - last_delivery: `639-stage0-cc-m4-2-renmian-demo-receipt-20260901.md`
@@ -34,7 +34,7 @@ CC 落地 640-A (政策 probe + seed SQL + docs/60 + EXEC-QUEUE rev65) + 640-B (
 | 637 | **DELIVERED** | M3 启动审查：架构师推荐路径 C（维持现状 + 转向 M4-M5）；详见 docs/57 |
 | 638 | **DELIVERED** | M4.1 人物表 schema 收口 + 政府工作报告/任免公告可达性 probe (23/32 REACHABLE)；WAF 假设修正 |
 | 639 | **DELIVERED** | M4.2 任免数据 demo: 二次 probe (REACHABLE 6 试点省 + PARTIAL 8 + BLOCKED 15) + 5 demo is_demo=true 隔离 + docs/59 |
-| 640 | **tasking OPEN** | M4.3 政策项目 demo (6 表 × 3 demo each, lineage JSONB sentinel is_demo='true' 隔离, demo SHA 0…02 区分) + 二次 probe (6 REACHABLE 试点省政策承载路径 + ccdi/国务院 政策栏目) |
+| 640 | **DELIVERED** | M4.3 政策项目 demo (6 表 × 3 demo each, lineage JSONB sentinel is_demo='true' 隔离, demo SHA 0…02 区分) + 二次 probe (REACHABLE 2 = 黑龙江 zfwj/zfgb; 关键反发现: 6 任免源 ≠ 政策源; 仅 1 试点省政策 REACHABLE) + 71/71 pytest green |
 
 ## §ACK
 
