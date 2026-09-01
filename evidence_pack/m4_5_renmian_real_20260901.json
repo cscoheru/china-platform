@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-09-01T05:47:40.998160+00:00",
+  "summary": {
+    "fetched_count": 4,
+    "http_count": 10,
+    "fetch_limit_per_province": 1,
+    "fetch_status": "REAL_FETCHED",
+    "fetch_methodology": "M4.5 任免真实化; 6 试点省 × 1 detail each = 4 real samples; ≤12 HTTP total; curl only"
+  },
+  "fetch_log": [
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c108368/zwgk.shtml",
+      "province": "heilongjiang",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 1,
+      "fetched_at": "2026-09-01T05:47:32.567635+00:00"
+    },
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c108378/202608/c00_31971131.shtml",
+      "province": "heilongjiang",
+      "phase": "detail",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 2,
+      "fetched_at": "2026-09-01T05:47:32.852864+00:00"
+    },
+    {
+      "url": "https://www.fujian.gov.cn/zwgk/",
+      "province": "fujian",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 3,
+      "fetched_at": "2026-09-01T05:47:35.983839+00:00"
+    },
+    {
+      "url": "https://www.henan.gov.cn/zwgk/",
+      "province": "henan",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 4,
+      "fetched_at": "2026-09-01T05:47:36.347289+00:00"
+    },
+    {
+      "url": "https://www.henan.gov.cn/2026/08-21/3401380.html",
+      "province": "henan",
+      "phase": "detail",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 5,
+      "fetched_at": "2026-09-01T05:47:36.592420+00:00"
+    },
+    {
+      "url": "https://www.gd.gov.cn/zwgk/",
+      "province": "guangdong",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 6,
+      "fetched_at": "2026-09-01T05:47:37.001789+00:00"
+    },
+    {
+      "url": "https://www.gd.gov.cn/zwgk/rsxx/content/post_4917420.html",
+      "province": "guangdong",
+      "phase": "detail",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 7,
+      "fetched_at": "2026-09-01T05:47:37.398810+00:00"
+    },
+    {
+      "url": "https://www.guizhou.gov.cn/zwgk/",
+      "province": "guizhou",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 8,
+      "fetched_at": "2026-09-01T05:47:37.790027+00:00"
+    },
+    {
+      "url": "https://www.guizhou.gov.cn/zwgk/zcfg/szfwj/qfr/202608/t20260828_90796146.html",
+      "province": "guizhou",
+      "phase": "detail",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 9,
+      "fetched_at": "2026-09-01T05:47:39.767974+00:00"
+    },
+    {
+      "url": "https://www.yn.gov.cn/zwgk/",
+      "province": "yunnan",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 10,
+      "fetched_at": "2026-09-01T05:47:40.995660+00:00"
+    }
+  ],
+  "cells": [
+    {
+      "title": "黑龙江省人民政府关于王正军等任免职的通知_黑政干",
+      "publication_date": "2026-08-31",
+      "file_hash_sha256": "26e5379d86e6a5c6a596acfef41293821a07413e973e1481b2b373f2e00b87ab",
+      "file_size_bytes": 21348,
+      "province": "heilongjiang",
+      "url": "https://www.hlj.gov.cn/hlj/c108378/202608/c00_31971131.shtml",
+      "index_anchor_text": "黑龙江省人民政府关于王正军等任免职的通知"
+    },
+    {
+      "title": "河南省人民政府关于狄绯等3人职务任免的通知_豫政任",
+      "publication_date": "2026-08-21",
+      "file_hash_sha256": "cd6aff30260779ef84d2e83da724334387e3d6ae776633be3de772adbcc0f746",
+      "file_size_bytes": 6336,
+      "province": "henan",
+      "url": "https://www.henan.gov.cn/2026/08-21/3401380.html",
+      "index_anchor_text": "河南省人民政府关于狄绯等3人职务任免的通知"
+    },
+    {
+      "title": "省人大常委会2026年5月份人事任免&nbsp;&nbsp;广东省人民政府门户网站",
+      "publication_date": "2026-06-29",
+      "file_hash_sha256": "4349ee0ff814d38abb41ea397bd89a774b607763b88e3677312fdae8931e6894",
+      "file_size_bytes": 58322,
+      "province": "guangdong",
+      "url": "https://www.gd.gov.cn/zwgk/rsxx/content/post_4917420.html",
+      "index_anchor_text": "省人大常委会2026年5月份人事任免"
+    },
+    {
+      "title": "省人民政府关于刘锐等任免职的通知（黔府任〔2026〕44号）",
+      "publication_date": "2026-08-28",
+      "file_hash_sha256": "fede03baaeecd8f6c2d6f646904bb64662d74bd70d2f25c3588ef1f9569dcd39",
+      "file_size_bytes": 72863,
+      "province": "guizhou",
+      "url": "https://www.guizhou.gov.cn/zwgk/zcfg/szfwj/qfr/202608/t20260828_90796146.html",
+      "index_anchor_text": "省人民政府关于刘锐等任免职的通知（黔府任〔2026〕44号）"
+    }
+  ]
+}
