@@ -13,11 +13,11 @@
 ## §CURRENT
 
 - status: **644 DELIVERED · 等用户 ACK → 645 待定**
-- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking) + `5269364` (641 EXEC-QUEUE) + `a1c489a` (641 delivery) + `65ec238` (641 cc_head) + `da0e77a` (641 receipt) + `4c605d5` (642 tasking) + `f6c5668` (642 delivery) + `2d6f0da` (642 cc_head) + `ca5a4a0` (642 receipt) + `c7b8aa5` (643 tasking) + `834bc30` (643 delivery) + `ac2e8e6` (643 cc_head) + `57fa859` (643 receipt) + `cd6dffc` (644 tasking) + `aac8225` (644 delivery)
+- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking) + `5269364` (641 EXEC-QUEUE) + `a1c489a` (641 delivery) + `65ec238` (641 cc_head) + `da0e77a` (641 receipt) + `4c605d5` (642 tasking) + `f6c5668` (642 delivery) + `2d6f0da` (642 cc_head) + `ca5a4a0` (642 receipt) + `c7b8aa5` (643 tasking) + `834bc30` (643 delivery) + `ac2e8e6` (643 cc_head) + `57fa859` (643 receipt) + `cd6dffc` (644 tasking) + `aac8225` (644 delivery) + `a66215b` (644 cc_head) + `899bd41` (644 receipt)
 - last_audit: `634-stage0-cursor-s633-m2-b-audit-PASS-20260831.md`
 - tasking: `644-stage0-architect-m5-3-m4-7-parallel-tasking-20260901.md` (DELIVERED — 待 645)
 - last_delivery: `aac8225` (644 delivery)
-- next_receipt: `644-stage0-cc-m5-3-m4-7-parallel-receipt-20260901.md` (待 cc_head backfill 后写入 receipt 提交 SHA)
+- last_receipt: `899bd41` (644 receipt — `644-stage0-cc-m5-3-m4-7-parallel-receipt-20260901.md`)
 - m4_decision: 644 = M5 WAF spike 第三次收口 (国务院 /zhengce/zhengceku/ + /zhengce/content_xxx.htm 真实 ID + /zwgk/ retry 路径 ≤10 HTTP) + M4.7 政策详情真实化 (复用 643 hlj/henan/yunnan × 1 detail each × 6 政策表 = 18 INSERT planned, chain_id='real_644_m4_7_policy_detail') 并行 spike
 
 ## §NOW
