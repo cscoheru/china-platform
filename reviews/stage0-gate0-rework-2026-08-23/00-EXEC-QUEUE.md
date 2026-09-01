@@ -1,23 +1,23 @@
 # 00-EXEC-QUEUE — 架构师 ↔ 执行端 交接队列
 
-> **rev 68 · 2026-09-01。**  
+> **rev 69 · 2026-09-01。**  
 > 热记忆：`docs/00-COMPASS.md`。轮询：`00-DUAL-POLL-PROTOCOL`。  
 > **禁止宣布 Gate / O1 / M2 PASS。**
 
 ## §META
 
-- rev: 68
+- rev: 69
 - updated: 2026-09-01
-- ruling: 641 DELIVERED → 等用户接受 642 scope 推荐
+- ruling: 641 DELIVERED → 642 M5 + M4.5 并行 tasking **OPEN** → 等执行落地
 
 ## §CURRENT
 
-- status: **641 DELIVERED · 等用户接受 642 scope 推荐**
-- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking) + `5269364` (641 EXEC-QUEUE) + `a1c489a` (641 delivery)
+- status: **642 tasking OPEN · 等 CC 落地**
+- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking) + `5269364` (641 EXEC-QUEUE) + `a1c489a` (641 delivery) + `65ec238` (641 cc_head) + `da0e77a` (641 receipt) + `4c605d5` (642 tasking)
 - last_audit: `634-stage0-cursor-s633-m2-b-audit-PASS-20260831.md`
-- tasking: `641-stage0-architect-m4-4-heilongjiang-real-tasking-20260901.md`
-- last_delivery: `640-stage0-cc-m4-3-policy-demo-receipt-20260901.md`
-- m4_decision: 641 = M4.4 黑龙江政策真实化 spike (单 REACHABLE 试点省, lineage.is_demo='false' 真实化 sentinel, ≤4 次 HTTP, 不新写 016 migration); 642 推荐 = M5 WAF spike + M4.5 任免真实化并行 (架构师综合推荐; spike 不互斥)
+- tasking: `642-stage0-architect-m5-m4-5-parallel-tasking-20260901.md`
+- last_delivery: `641-stage0-cc-m4-4-heilongjiang-real-receipt-20260901.md`
+- m4_decision: 642 = M5 WAF spike + M4.5 任免真实化 并行 (架构师综合推荐; spike 不互斥; M5 ≤10 HTTP WAF 假设验证 / M4.5 ≤12 HTTP 6 REACHABLE 任免源真实化)
 
 ## §NOW
 
@@ -36,9 +36,11 @@ CC 落地 640-A (政策 probe + seed SQL + docs/60 + EXEC-QUEUE rev65) + 640-B (
 | 639 | **DELIVERED** | M4.2 任免数据 demo: 二次 probe (REACHABLE 6 试点省 + PARTIAL 8 + BLOCKED 15) + 5 demo is_demo=true 隔离 + docs/59 |
 | 640 | **DELIVERED** | M4.3 政策项目 demo (6 表 × 3 demo each, lineage JSONB sentinel is_demo='true' 隔离, demo SHA 0…02 区分) + 二次 probe (REACHABLE 2 = 黑龙江 zfwj/zfgb; 关键反发现: 6 任免源 ≠ 政策源; 仅 1 试点省政策 REACHABLE) + 71/71 pytest green |
 | 641 | **DELIVERED** | M4.4 黑龙江政策真实化 spike (hlj.gov.cn 政务公开 landing 真实抓取 4 HTTP / 3 cell SHA + 6 政策表 × 1 real each lineage.is_demo='false' 真实化 sentinel + 真实 SHA `26e5379d...b87ab` ≠ 640 demo SHA `0…02` + docs/61 架构师级审查 + 78/78 pytest green) |
+| 642 | **tasking OPEN** | M5 WAF 网防G01 spike (5 BLOCKED 省 + 国务院 /zhengce/zhengceku/ + 替代路径 ≤10 HTTP) + M4.5 任免真实化 (6 REACHABLE 试点省 × 6 政策表 spike ≤12 HTTP lineage.is_demo='false' chain_id='real_642_m4_5_renmian') 并行 spike
 
 ## §ACK
 
+- 2026-09-01 / 用户 / 接受 642 scope (M5 WAF spike + M4.5 任免真实化 并行)
 - 2026-09-01 / 用户 / 接收 640 → 进入 641 (M4.4 黑龙江政策真实化 spike)
 - 2026-09-01 / 用户 / 接收 640 = M4.3 政策项目 demo，签 640 tasking
 - 2026-09-01 / CC / 639 DELIVERED — `reviews/stage0-gate0-rework-2026-08-23/639-stage0-cc-m4-2-renmian-demo-receipt-20260901.md`；64/64 pytest green。
