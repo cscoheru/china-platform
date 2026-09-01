@@ -231,4 +231,50 @@ Per 648 tasking §A.1 显式 substitute 预授权池:
 
 ---
 
+## 7. 648 审计 PASS（有限通过）尾注 + 修正项登记（per 649-A.0 任务书）
+
+> **刀号**: 649-A.0  
+> **触发**: 648 审计 `648-stage0-cursor-s648-m4-11-v5-audit-PASS-20260901.md`（81 例独立复跑；4 commits 双推复核 origin=github=cf24840）  
+> **本节定位**: 行内 append 尾注登记（沿用红线 4：不删行不删 OPEN 行）
+
+### 7.1 648 审计核心裁定
+
+- **审计态**: PASS（有限通过）
+- **81 例 pytest 全 green**（验收 6 文件 68 例 + 交付内另 2 文件 13 例；回执"80/80"系口径差——含 M4.7 回归 9 不含 M6 10，双口径皆真）
+- **4 commits 双推铁证**: `69a8f91` → `033cbdc` → `7560b0f` → `cf24840`；origin = github = `cf24840`
+- **jiangxi "403" 复验 = CONTENT_CONFIRMED**: SHA 字节级一致 (`56481050...`) + 48118 bytes 一致 + 72 锚点命中；title="403" 判定为该江西政务公开目录页真实标题（页面元数据服务端模板覆写）
+- **A.2 卫生收口实证**: `--output` 参数最小改 + 跑完生成测试后 tracked 报告零 diff（647 P3-3 闭环）
+
+### 7.2 审计发现 × 5（2×P3 + 3×P4）
+
+| 级 | 发现 | 处置 |
+|---|---|---|
+| **P3-1** | reverify 产物拆独立文件 → 任务书 §2 验收命令 `grep reverify m4_11.json` 字面失败（=0）；实质完备（独立 json + docs/71 §7 + 8 测试） | 红线 13 固化指针条款（per 649 任务书 §0.13）：附属产物可独立文件，但主 evidence `summary.methodology` 必须含指针（文件名 + verdict） |
+| **P3-2** | EXEC-QUEUE 回填缺失三处（cc_head 链缺口 + last_receipt 无 SHA + §NOW 陈旧） | **rev82 已由审验端全面修复**；649-C 新增"backfill 三齐"验收（cc_head 入链 + last_receipt SHA + §NOW 刷新） |
+| P4-1 | docs/72 文件名短后缀 | 登记免修（沿用 docs/71/72 命名惯例） |
+| P4-2 | 80 vs 81 口径 | 双口径皆真，沿用不强制统一 |
+| P4-3 | End 行就地扩展 | 登记免修（沿用前例可溯） |
+
+### 7.3 P3-1 口径统一条款（固化进 649 红线 13）
+
+- **底线**: 附属复验/验证产物允许独立文件（per docs/71 §7 + evidence_pack/ 拆分惯例）
+- **硬要求**: 主 evidence JSON `summary.methodology` 字段必须含指向附属产物的指针（文件名 + verdict；如 `"reverify": "evidence_pack/m4_10_reverify_jx_20260901.json#verdict=CONTENT_CONFIRMED"`）
+- **例外**: 单一 evidence 已涵盖全部产物时，methodology 段允许直接列出全部 SHA + verdict，跳过指针
+
+### 7.4 P3-2 backfill 三齐验收（per 649-C）
+
+EXEC-QUEUE rev83 → rev84 时必须确保：
+
+1. **cc_head 入链**: §CURRENT `cc_head:` 行追加 `<649 delivery>` + `<649 cc_head rev83>` + `<649 receipt>` + `<649 receipt-backfill>` 四项 SHA
+2. **last_receipt SHA**: §CURRENT `last_receipt:` 字段补 `<649 receipt SHA>`（非仅文件名）
+3. **§NOW 刷新**: §NOW 段重写为 649 NOW 状态（不再写 648 NOW）
+
+### 7.5 不宣称 + 不删行
+
+- **不宣称** PASS（沿用红线 1）
+- **不删行不删 OPEN 行**（沿用红线 4：本节为行内 append 尾注，§1-§6 既有正文字节零触碰）
+- **O1 仍 OPEN** — B路 live-candidate 仅登记（per 649-A.2 零动作）
+
+---
+
 — End 72 — M4.11 v5 + jiangxi reverify CONTENT_CONFIRMED + hygiene 收口 真实化 spike 审查 20260901 —

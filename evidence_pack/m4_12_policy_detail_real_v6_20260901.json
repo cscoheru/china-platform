@@ -1,0 +1,193 @@
+{
+  "knife": "649-A.1",
+  "purpose": "M4.12 政策详情 v6 真实化 spike (hubei + jilin 第 11/12 样本, 预授权池激活)",
+  "chain_id": "real_649_m4_12_policy_detail_v6",
+  "uuid_prefix": "h",
+  "uuid_prefixes": {
+    "source_registry": "h0eebc99",
+    "source_document": "h0eebc99",
+    "policy_document": "h1eebc99",
+    "policy_target": "h2eebc99",
+    "policy_measure": "h3eebc99",
+    "government_commitment": "h4eebc99",
+    "commitment_progress": "h5eebc99",
+    "project_event": "h6eebc99"
+  },
+  "summary": {
+    "fetch_status": "REAL_FETCHED",
+    "fetched_count": 2,
+    "http_count": 6,
+    "http_limit": 12,
+    "substitute_used_count": 1,
+    "distinct_shas": [
+      "a1e49a91172927dfe7ac022587f039ea9a44414e0a900fefd1bd82a0884931c6",
+      "b22d1fb4d291e9e134166602757e5184c99f4a4d67c66abd2fdd20a5371d4f82"
+    ]
+  },
+  "cells": [
+    {
+      "province": "hubei",
+      "actual_province": "liaoning",
+      "fetched_url": "https://www.ln.gov.cn/",
+      "chain_index": -1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root",
+        "substitute[liaoning]/zwgk_root",
+        "substitute[liaoning]/province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.hubei.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 412,
+          "reason": "ok",
+          "body_size_bytes": 3157,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "hubei"
+        },
+        {
+          "url": "https://www.hubei.gov.cn/",
+          "label": "province_root",
+          "http_code": 412,
+          "reason": "ok",
+          "body_size_bytes": 3188,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "hubei"
+        },
+        {
+          "url": "https://www.ln.gov.cn/zwgk/",
+          "label": "substitute[liaoning]/zwgk_root",
+          "http_code": 404,
+          "reason": "ok",
+          "body_size_bytes": 393,
+          "anchor_hits_count": 4,
+          "waf_marker_present": false,
+          "attempt_province": "liaoning"
+        },
+        {
+          "url": "https://www.ln.gov.cn/",
+          "label": "substitute[liaoning]/province_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 148399,
+          "anchor_hits_count": 396,
+          "waf_marker_present": false,
+          "attempt_province": "liaoning"
+        }
+      ],
+      "file_hash_sha256": "b22d1fb4d291e9e134166602757e5184c99f4a4d67c66abd2fdd20a5371d4f82",
+      "file_size_bytes": 148399,
+      "http_code": 200,
+      "anchor_hits_count": 396,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE_VIA_SUBSTITUTE",
+      "substitute_used": true,
+      "substitute_reason": "原试点省 hubei 两级 fallback 均未 REACHABLE (412/404/timeout); 按 649 任务书 §0.13 递补池按序取 liaoning"
+    },
+    {
+      "province": "jilin",
+      "actual_province": "jilin",
+      "fetched_url": "https://www.jl.gov.cn/",
+      "chain_index": 1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.jl.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 0,
+          "reason": "Connection timed out after 15002 milliseconds",
+          "body_size_bytes": 148399,
+          "anchor_hits_count": 27,
+          "waf_marker_present": false,
+          "attempt_province": "jilin"
+        },
+        {
+          "url": "https://www.jl.gov.cn/",
+          "label": "province_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 69943,
+          "anchor_hits_count": 200,
+          "waf_marker_present": false,
+          "attempt_province": "jilin"
+        }
+      ],
+      "file_hash_sha256": "a1e49a91172927dfe7ac022587f039ea9a44414e0a900fefd1bd82a0884931c6",
+      "file_size_bytes": 69943,
+      "http_code": 200,
+      "anchor_hits_count": 200,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false
+    }
+  ],
+  "fetch_log": [
+    {
+      "url": "https://www.hubei.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 412,
+      "reason": "ok",
+      "body_size_bytes": 3157,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "hubei"
+    },
+    {
+      "url": "https://www.hubei.gov.cn/",
+      "label": "province_root",
+      "http_code": 412,
+      "reason": "ok",
+      "body_size_bytes": 3188,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "hubei"
+    },
+    {
+      "url": "https://www.ln.gov.cn/zwgk/",
+      "label": "substitute[liaoning]/zwgk_root",
+      "http_code": 404,
+      "reason": "ok",
+      "body_size_bytes": 393,
+      "anchor_hits_count": 4,
+      "waf_marker_present": false,
+      "attempt_province": "liaoning"
+    },
+    {
+      "url": "https://www.ln.gov.cn/",
+      "label": "substitute[liaoning]/province_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 148399,
+      "anchor_hits_count": 396,
+      "waf_marker_present": false,
+      "attempt_province": "liaoning"
+    },
+    {
+      "url": "https://www.jl.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 0,
+      "reason": "Connection timed out after 15002 milliseconds",
+      "body_size_bytes": 148399,
+      "anchor_hits_count": 27,
+      "waf_marker_present": false,
+      "attempt_province": "jilin"
+    },
+    {
+      "url": "https://www.jl.gov.cn/",
+      "label": "province_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 69943,
+      "anchor_hits_count": 200,
+      "waf_marker_present": false,
+      "attempt_province": "jilin"
+    }
+  ],
+  "methodology": "v6 spike fetch: 2 cells (hubei + jilin), each with primary /zwgk/ + fallback #1 (省府根 /) + 递补池 (liaoning→shaanxi→sichuan→guizhou→jiangsu). 每 cell ≤4 attempts, 总预算 ≤12 HTTP. Per 649 §0.13: 附属复验/验证产物允许独立文件, 但主 evidence methodology 必须含指针."
+}
