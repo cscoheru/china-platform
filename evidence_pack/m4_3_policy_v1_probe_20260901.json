@@ -1,0 +1,173 @@
+{
+  "generated_at": "2026-09-01T05:07:19.371660+00:00",
+  "summary": {
+    "total_cells": 12,
+    "probed_cells": 12,
+    "sample_only": false,
+    "by_verdict": {
+      "REACHABLE": 2,
+      "BLOCKED": 9,
+      "PARTIAL": 1
+    },
+    "by_class_verdict": {
+      "provincial": {
+        "REACHABLE": 2,
+        "BLOCKED": 8
+      },
+      "central": {
+        "PARTIAL": 1,
+        "BLOCKED": 1
+      }
+    },
+    "by_entity": {
+      "黑龙江政策文件": "REACHABLE",
+      "黑龙江政府公报": "REACHABLE",
+      "福建政策文件": "BLOCKED",
+      "福建政府公报": "BLOCKED",
+      "河南政策文件": "BLOCKED",
+      "河南规划计划": "BLOCKED",
+      "广东政策文件": "BLOCKED",
+      "广东政府公报": "BLOCKED",
+      "贵州政策文件": "BLOCKED",
+      "云南政策文件": "BLOCKED",
+      "中央纪委领导/制度": "PARTIAL",
+      "国务院政策库": "BLOCKED"
+    }
+  },
+  "probed_count": 12,
+  "cells": [
+    {
+      "slug": "heilongjiang-policy-zfwj",
+      "entity": "黑龙江政策文件",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.hlj.gov.cn/zwgk/zfwj/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:11.969775+00:00"
+    },
+    {
+      "slug": "heilongjiang-policy-zfgb",
+      "entity": "黑龙江政府公报",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.hlj.gov.cn/zwgk/zfgb/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:12.601507+00:00"
+    },
+    {
+      "slug": "fujian-policy-zfwj",
+      "entity": "福建政策文件",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.fujian.gov.cn/zwgk/zfwj/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:13.402391+00:00"
+    },
+    {
+      "slug": "fujian-policy-zfgb",
+      "entity": "福建政府公报",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.fujian.gov.cn/zwgk/zfgb/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:13.842026+00:00"
+    },
+    {
+      "slug": "henan-policy-zfwj",
+      "entity": "河南政策文件",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.henan.gov.cn/zwgk/zfwj/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:14.135445+00:00"
+    },
+    {
+      "slug": "henan-policy-ghjh",
+      "entity": "河南规划计划",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.henan.gov.cn/zwgk/ghjh/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:15.357453+00:00"
+    },
+    {
+      "slug": "guangdong-policy-zfwj",
+      "entity": "广东政策文件",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.gd.gov.cn/zwgk/zfwj/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:16.825422+00:00"
+    },
+    {
+      "slug": "guangdong-policy-zfgb",
+      "entity": "广东政府公报",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.gd.gov.cn/zwgk/zfgb/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:17.015556+00:00"
+    },
+    {
+      "slug": "guizhou-policy-zfwj",
+      "entity": "贵州政策文件",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.guizhou.gov.cn/zwgk/zfwj/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:17.242652+00:00"
+    },
+    {
+      "slug": "yunnan-policy-zfwj",
+      "entity": "云南政策文件",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.yn.gov.cn/zwgk/zfwj/",
+      "verdict": "BLOCKED",
+      "http_code": 404,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:17.448508+00:00"
+    },
+    {
+      "slug": "central-discipline-ldwd",
+      "entity": "中央纪委领导/制度",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.ccdi.gov.cn/ldwd/",
+      "verdict": "PARTIAL",
+      "http_code": 200,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:17.879904+00:00"
+    },
+    {
+      "slug": "central-zhengceku",
+      "entity": "国务院政策库",
+      "year": 2024,
+      "source": "POLICY_V1",
+      "url": "https://www.gov.cn/zhengce/zhengceku/",
+      "verdict": "BLOCKED",
+      "http_code": 403,
+      "reason": "ok",
+      "probed_at": "2026-09-01T05:07:18.139376+00:00"
+    }
+  ],
+  "probe_methodology": "REACHABLE: HTTP 200 + body contains 政策文件/政府公报/规划计划/政策库 marker. PARTIAL: HTTP 200 + body loaded but no marker. BLOCKED: TLS reset / 403 WAF / 404 / connection error. Targets: 10 试点省政策承载路径 (继承 639 6 REACHABLE 试点省) + ccdi /ldwd/ + 国务院 /zhengce/zhengceku/ (政策库). 二次探活理由: 639 6 REACHABLE 任免源 (/zwgk/) ≠ 政策源, 640 探政策承载路径 /zwgk/zfwj/ + /zwgk/zfgb/ + /zwgk/ghjh/. 沿用 638/639 WAF 假设修正: 子域/路径选择性阻断."
+}

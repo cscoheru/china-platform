@@ -88,6 +88,10 @@ RENMIAN_MARKER_RE = re.compile(
     r"任免|任免名单|appoint|removal|departure",
     re.IGNORECASE,
 )
+POLICY_MARKER_RE = re.compile(
+    r"政策文件|政府公报|规划计划|政府工作报告|五年规划|规范性文件|policy|regulation|five.year.plan",
+    re.IGNORECASE,
+)
 WAF_BLOCK_RE = re.compile(r"403 Forbidden|WAF|网防G01|eventID", re.IGNORECASE)
 
 
