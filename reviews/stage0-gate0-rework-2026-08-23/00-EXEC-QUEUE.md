@@ -12,7 +12,7 @@
 
 ## §CURRENT
 
-- status: **646 AUDITED (PASS·有限通过) · 647 tasking OPEN**
+- status: **646 AUDITED (PASS·有限通过) · 647 NOW tasking OPEN 待执行**
 - cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking) + `5269364` (641 EXEC-QUEUE) + `a1c489a` (641 delivery) + `65ec238` (641 cc_head) + `da0e77a` (641 receipt) + `4c605d5` (642 tasking) + `f6c5668` (642 delivery) + `2d6f0da` (642 cc_head) + `ca5a4a0` (642 receipt) + `c7b8aa5` (643 tasking) + `834bc30` (643 delivery) + `ac2e8e6` (643 cc_head) + `57fa859` (643 receipt) + `cd6dffc` (644 tasking) + `aac8225` (644 delivery) + `a66215b` (644 cc_head) + `899bd41` (644 receipt) + `51569d7` (645 tasking) + `a235f94` (645 delivery) + `0cc8952` (645 cc_head-reg) + `73c74bc` (645 cc_head) + `0677111` (645 receipt) + `dffdea5` (645 backfill) + `6383da6` (645 DELIVERED) + `4f05f55` (645 handoff) + `2b76850` (645 handoff §0) + `6795b89` (646 tasking + audit + COMPASS + rev76) + `d3e0db5` (646 tasking SHA backfill) + `d75563d` (646 delivery) + `200b389` (646 cc_head rev77) + `ee0d0b8` (646 receipt) + `9a770a3` (646 receipt-backfill) + `d71d583` (646 audit + 647 tasking + rev78)
 - last_audit: `646-stage0-cursor-s646-m4-9-o1-audit-PASS-20260901.md`
 - tasking: `647-stage0-architect-m4-10-v4-f7-p2-fixes-tasking-20260901.md` (OPEN — 架构师自签+自交付)
