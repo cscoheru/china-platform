@@ -12,12 +12,12 @@
 
 ## §CURRENT
 
-- status: **645 tasking DELIVERED · cc_head pending**
-- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking) + `5269364` (641 EXEC-QUEUE) + `a1c489a` (641 delivery) + `65ec238` (641 cc_head) + `da0e77a` (641 receipt) + `4c605d5` (642 tasking) + `f6c5668` (642 delivery) + `2d6f0da` (642 cc_head) + `ca5a4a0` (642 receipt) + `c7b8aa5` (643 tasking) + `834bc30` (643 delivery) + `ac2e8e6` (643 cc_head) + `57fa859` (643 receipt) + `cd6dffc` (644 tasking) + `aac8225` (644 delivery) + `a66215b` (644 cc_head) + `899bd41` (644 receipt) + `51569d7` (645 tasking) + `a235f94` (645 delivery)
+- status: **645 tasking DELIVERED · receipt-backfill pending**
+- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking) + `5269364` (641 EXEC-QUEUE) + `a1c489a` (641 delivery) + `65ec238` (641 cc_head) + `da0e77a` (641 receipt) + `4c605d5` (642 tasking) + `f6c5668` (642 delivery) + `2d6f0da` (642 cc_head) + `ca5a4a0` (642 receipt) + `c7b8aa5` (643 tasking) + `834bc30` (643 delivery) + `ac2e8e6` (643 cc_head) + `57fa859` (643 receipt) + `cd6dffc` (644 tasking) + `aac8225` (644 delivery) + `a66215b` (644 cc_head) + `899bd41` (644 receipt) + `51569d7` (645 tasking) + `a235f94` (645 delivery) + `73c74bc` (645 cc_head) + `0677111` (645 receipt)
 - last_audit: `634-stage0-cursor-s633-m2-b-audit-PASS-20260831.md`
 - tasking: `645-stage0-architect-m6-m4-8-policy-detail-v2-tasking-20260901.md` (OPEN — 架构师自签)
 - last_delivery: `a235f94` (645 delivery)
-- last_receipt: `899bd41` (644 receipt — `644-stage0-cc-m5-3-m4-7-parallel-receipt-20260901.md`)
+- last_receipt: `0677111` (645 receipt — `645-stage0-cc-m6-m4-8-parallel-receipt-20260901.md`)
 - m4_decision: 645 = M6 spike 文档收口 (docs/68 master + docs/45/50/53/66/67 互链) + M4.8 政策详情 v2 真实化 (沿用 644 3 试点省 × 1 detail each × 6 政策表 = 18 INSERT + 纳入 644 留作扩展的 henan `bd4c4c51...` (zwgk root) 作为第 4 样本 = 24 INSERT planned, chain_id='real_645_m4_8_policy_detail_v2'; UUID d 段 ≠ 644 c 段) 并行
 
 ## §NOW
