@@ -1,23 +1,23 @@
 # 00-EXEC-QUEUE — 架构师 ↔ 执行端 交接队列
 
-> **rev 65 · 2026-09-01。**  
+> **rev 66 · 2026-09-01。**  
 > 热记忆：`docs/00-COMPASS.md`。轮询：`00-DUAL-POLL-PROTOCOL`。  
 > **禁止宣布 Gate / O1 / M2 PASS。**
 
 ## §META
 
-- rev: 66
+- rev: 67
 - updated: 2026-09-01
-- ruling: 640 DELIVERED → 等用户接受 641 scope 推荐
+- ruling: 640 DELIVERED → 641 M4.4 tasking **OPEN** → 等执行落地
 
 ## §CURRENT
 
-- status: **640 DELIVERED · 等用户接受 641 scope 推荐**
-- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery)
+- status: **641 tasking OPEN · 等 CC 落地**
+- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking)
 - last_audit: `634-stage0-cursor-s633-m2-b-audit-PASS-20260831.md`
-- tasking: `640-stage0-architect-m4-3-policy-demo-tasking-20260901.md`
-- last_delivery: `639-stage0-cc-m4-2-renmian-demo-receipt-20260901.md`
-- m4_decision: 640 = M4.3 政策项目 demo (6 表 × 3 demo each, lineage JSONB sentinel is_demo='true' 隔离, demo SHA 0…02 与 639 SHA 0…01 区分;沿用 docs/33 §3.2 sentinel 不新写 016 migration)
+- tasking: `641-stage0-architect-m4-4-heilongjiang-real-tasking-20260901.md`
+- last_delivery: `640-stage0-cc-m4-3-policy-demo-receipt-20260901.md`
+- m4_decision: 641 = M4.4 黑龙江政策真实化 spike (单 REACHABLE 试点省, lineage.is_demo='false' 真实化 sentinel, ≤4 次 HTTP, 不新写 016 migration)
 
 ## §NOW
 
@@ -35,9 +35,11 @@ CC 落地 640-A (政策 probe + seed SQL + docs/60 + EXEC-QUEUE rev65) + 640-B (
 | 638 | **DELIVERED** | M4.1 人物表 schema 收口 + 政府工作报告/任免公告可达性 probe (23/32 REACHABLE)；WAF 假设修正 |
 | 639 | **DELIVERED** | M4.2 任免数据 demo: 二次 probe (REACHABLE 6 试点省 + PARTIAL 8 + BLOCKED 15) + 5 demo is_demo=true 隔离 + docs/59 |
 | 640 | **DELIVERED** | M4.3 政策项目 demo (6 表 × 3 demo each, lineage JSONB sentinel is_demo='true' 隔离, demo SHA 0…02 区分) + 二次 probe (REACHABLE 2 = 黑龙江 zfwj/zfgb; 关键反发现: 6 任免源 ≠ 政策源; 仅 1 试点省政策 REACHABLE) + 71/71 pytest green |
+| 641 | **tasking OPEN** | M4.4 黑龙江政策真实化 spike (单 REACHABLE 试点省, lineage.is_demo='false' 真实化 sentinel, ≤4 次 HTTP, 不新写 016 migration) |
 
 ## §ACK
 
+- 2026-09-01 / 用户 / 接收 640 → 进入 641 (M4.4 黑龙江政策真实化 spike)
 - 2026-09-01 / 用户 / 接收 640 = M4.3 政策项目 demo，签 640 tasking
 - 2026-09-01 / CC / 639 DELIVERED — `reviews/stage0-gate0-rework-2026-08-23/639-stage0-cc-m4-2-renmian-demo-receipt-20260901.md`；64/64 pytest green。
 - 2026-09-01 / 用户 / 接收 639 scope（ccdi 公告列表 + 23 试点省 + ≤5 条 demo）
