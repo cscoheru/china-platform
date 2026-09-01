@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-09-01T06:38:52.827878+00:00",
+  "summary": {
+    "fetched_count": 3,
+    "http_count": 9,
+    "fetch_limit_per_province": 1,
+    "fetch_status": "REAL_FETCHED",
+    "fetch_methodology": "M4.6 政府工作报告真实化; 6 试点省 × 1 detail each = 3 real samples; ≤12 HTTP total; curl only"
+  },
+  "fetch_log": [
+    {
+      "url": "https://www.hlj.gov.cn/zwgk/zfgb/",
+      "province": "heilongjiang",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 1,
+      "fetched_at": "2026-09-01T06:38:49.666178+00:00"
+    },
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c107882/redirect_firstChannel.shtml",
+      "province": "heilongjiang",
+      "phase": "detail",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 2,
+      "fetched_at": "2026-09-01T06:38:49.916064+00:00"
+    },
+    {
+      "url": "https://www.fujian.gov.cn/zwgk/zfgb/",
+      "province": "fujian",
+      "phase": "landing",
+      "http_code": 404,
+      "reason": "ok",
+      "http_attempt": 3,
+      "fetched_at": "2026-09-01T06:38:50.196032+00:00"
+    },
+    {
+      "url": "https://www.henan.gov.cn/zwgk/zfgb/",
+      "province": "henan",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 4,
+      "fetched_at": "2026-09-01T06:38:50.651709+00:00"
+    },
+    {
+      "url": "https://www.henan.gov.cn/2026/07-29/3380417.html",
+      "province": "henan",
+      "phase": "detail",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 5,
+      "fetched_at": "2026-09-01T06:38:50.890633+00:00"
+    },
+    {
+      "url": "https://www.gd.gov.cn/zwgk/zfgb/",
+      "province": "guangdong",
+      "phase": "landing",
+      "http_code": 404,
+      "reason": "ok",
+      "http_attempt": 6,
+      "fetched_at": "2026-09-01T06:38:51.047000+00:00"
+    },
+    {
+      "url": "https://www.guizhou.gov.cn/zwgk/zcfg/szfwj/",
+      "province": "guizhou",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 7,
+      "fetched_at": "2026-09-01T06:38:51.227449+00:00"
+    },
+    {
+      "url": "https://www.yn.gov.cn/zwgk/zfgb/",
+      "province": "yunnan",
+      "phase": "landing",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 8,
+      "fetched_at": "2026-09-01T06:38:52.465606+00:00"
+    },
+    {
+      "url": "https://www.yn.gov.cn/zwgk/zfgb/",
+      "province": "yunnan",
+      "phase": "detail",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 9,
+      "fetched_at": "2026-09-01T06:38:52.827259+00:00"
+    }
+  ],
+  "cells": [
+    {
+      "title": "省政府公报",
+      "publication_date": "2026-02-13",
+      "file_hash_sha256": "e68099df39fa09bad9c63201e5fab80af66302bce5c1deeea62fc2bda68ea1c3",
+      "file_size_bytes": 819,
+      "province": "heilongjiang",
+      "url": "https://www.hlj.gov.cn/hlj/c107882/redirect_firstChannel.shtml",
+      "index_anchor_text": "省政府公报"
+    },
+    {
+      "title": "河南省人民政府公报2026年第14号（总第554号）_公报首页",
+      "publication_date": "2026-07-29",
+      "file_hash_sha256": "631094910323dc63e59483af5048cd70b2fe9dfaedf1265f215ce159c5d80bf1",
+      "file_size_bytes": 13457,
+      "province": "henan",
+      "url": "https://www.henan.gov.cn/2026/07-29/3380417.html",
+      "index_anchor_text": "河南省人民政府公报2026年第14号（总第554号）"
+    },
+    {
+      "title": "云南省人民政府公报",
+      "publication_date": "2026-08-15",
+      "file_hash_sha256": "93fe23b32d083581456cc17be66361a36ca13caa28d25f63e9466d0c1cb8c6b0",
+      "file_size_bytes": 79137,
+      "province": "yunnan",
+      "url": "https://www.yn.gov.cn/zwgk/zfgb/",
+      "index_anchor_text": "云南省人民政府公报"
+    }
+  ]
+}
