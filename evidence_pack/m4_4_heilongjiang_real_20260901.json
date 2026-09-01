@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-09-01T05:27:25.933332+00:00",
+  "summary": {
+    "fetched_count": 3,
+    "http_count": 4,
+    "fetch_status": "REAL_FETCHED",
+    "by_status": {
+      "fetched": 3
+    },
+    "fetch_limit": 3,
+    "index_url": "https://www.hlj.gov.cn/hlj/c108368/zwgk.shtml"
+  },
+  "fetch_log": [
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c108368/zwgk.shtml",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 1,
+      "fetched_at": "2026-09-01T05:27:24.852491+00:00"
+    },
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c108378/202608/c00_31971131.shtml",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 2,
+      "fetched_at": "2026-09-01T05:27:25.075938+00:00"
+    },
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c108378/202608/c00_31968515.shtml",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 3,
+      "fetched_at": "2026-09-01T05:27:25.641996+00:00"
+    },
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c108378/202607/c00_31963474.shtml",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 4,
+      "fetched_at": "2026-09-01T05:27:25.932796+00:00"
+    }
+  ],
+  "cells": [
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c108378/202608/c00_31971131.shtml",
+      "title": "黑龙江省人民政府关于王正军等任免职的通知_黑政干",
+      "publication_date": "2026-08-31",
+      "publisher": "黑龙江省人民政府",
+      "doc_type": "通知",
+      "file_hash_sha256": "26e5379d86e6a5c6a596acfef41293821a07413e973e1481b2b373f2e00b87ab",
+      "file_size_bytes": 21348,
+      "index_anchor_text": "黑龙江省人民政府关于王正军等任免职的通知"
+    },
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c108378/202608/c00_31968515.shtml",
+      "title": "黑龙江省人民政府关于李水泉等任免职的通知_黑政干",
+      "publication_date": "2026-08-20",
+      "publisher": "黑龙江省人民政府",
+      "doc_type": "通知",
+      "file_hash_sha256": "844e36dce66f0f0c4b9bec88f7817633135da078469d2e12a2edf61f26dd5820",
+      "file_size_bytes": 19920,
+      "index_anchor_text": "黑龙江省人民政府关于李水泉等任免职的通知"
+    },
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c108378/202607/c00_31963474.shtml",
+      "title": "黑龙江省人民政府关于董妍等任免职的通知_黑政干",
+      "publication_date": "2026-07-31",
+      "publisher": "黑龙江省人民政府",
+      "doc_type": "通知",
+      "file_hash_sha256": "95b32a28e854fc463a8af97d7251a409e1e76ab722fb4fad476a7361e6861a4e",
+      "file_size_bytes": 20558,
+      "index_anchor_text": "黑龙江省人民政府关于董妍等任免职的通知"
+    }
+  ],
+  "fetch_methodology": "REAL_FETCHED: ≤3 detail pages fetched from https://www.hlj.gov.cn/hlj/c108368/zwgk.shtml; curl only; per-row title + publication_date + sha256 + file_size. 不爬网 (≤4 HTTP total: 1 index + ≤3 details); 不写 cegr.* 表; R3-E provenance: sha256 per detail page HTML."
+}
