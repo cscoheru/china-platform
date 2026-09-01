@@ -12,8 +12,8 @@
 
 ## §CURRENT
 
-- status: **638 tasking OPEN · 等 CC 落地**
-- cc_head: `7ceb61b` (637 tasking) + `27e4434` (637 delivery) + `5d957ef` (637 cc_head backfill)
+- status: **638 DELIVERED · 等用户接受 M4.2 scope 推荐**
+- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery)
 - last_audit: `634-stage0-cursor-s633-m2-b-audit-PASS-20260831.md`
 - tasking: `638-stage0-architect-m4-1-people-schema-gov-report-probe-tasking-20260901.md`
 - last_delivery: `637-stage0-cc-m3-launch-conditions-review-receipt-20260901.md`
@@ -32,7 +32,7 @@ CC 落地 638-A (probe × 2 + migration 015 + docs/58 + EXEC-QUEUE rev61) + 638-
 | 635 | **AUDITED** | M2-c+d+e：31/31 ≥ 20/31 + QUARANTINED-WEAK 跨源核对 + q1 研究页 |
 | 636 | **AUDITED** | M2-f：文档收口 + 2001-onwards probe（适用 cell 1541: REACHABLE 0 / PARTIAL 770 / BLOCKED 771） |
 | 637 | **DELIVERED** | M3 启动审查：架构师推荐路径 C（维持现状 + 转向 M4-M5）；详见 docs/57 |
-| 638 | **tasking OPEN** | M4.1 人物表 schema 收口 + 政府工作报告/任免公告可达性 probe |
+| 638 | **DELIVERED** | M4.1 人物表 schema 收口 + 政府工作报告/任免公告可达性 probe (23/32 REACHABLE)；WAF 假设修正 |
 
 ## §ACK
 
