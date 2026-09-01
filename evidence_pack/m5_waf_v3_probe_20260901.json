@@ -1,0 +1,197 @@
+{
+  "generated_at": "2026-09-01T07:53:08.676342+00:00",
+  "summary": {
+    "probed_count": 10,
+    "http_count": 10,
+    "by_verdict": {
+      "BLOCKED": 7,
+      "REACHABLE": 3
+    },
+    "top_verdict": "MIXED",
+    "probe_methodology": "M5 WAF 网防G01 假设验证三次;10 cells; ≤10 HTTP total;curl only"
+  },
+  "fetch_log": [
+    {
+      "url": "https://www.gov.cn/zhengce/zhengceku/",
+      "province": "gov",
+      "slot": "zhengceku_nested",
+      "http_code": 403,
+      "reason": "ok",
+      "http_attempt": 1,
+      "fetched_at": "2026-09-01T07:53:01.960399+00:00"
+    },
+    {
+      "url": "https://www.gov.cn/zhengce/content_2017-09/30/content_5189.htm",
+      "province": "gov",
+      "slot": "zhengce_real_content",
+      "http_code": 404,
+      "reason": "ok",
+      "http_attempt": 2,
+      "fetched_at": "2026-09-01T07:53:02.148461+00:00"
+    },
+    {
+      "url": "https://www.gov.cn/zhengce/content_2020-11/03/content_5556715.htm",
+      "province": "gov",
+      "slot": "zhengce_real_2020",
+      "http_code": 404,
+      "reason": "ok",
+      "http_attempt": 3,
+      "fetched_at": "2026-09-01T07:53:02.321755+00:00"
+    },
+    {
+      "url": "https://www.gov.cn/zwgk/zcwj/",
+      "province": "gov",
+      "slot": "zwgk_zcwj_retry",
+      "http_code": 404,
+      "reason": "ok",
+      "http_attempt": 4,
+      "fetched_at": "2026-09-01T07:53:02.616644+00:00"
+    },
+    {
+      "url": "https://www.gov.cn/zwgk/zcfg/",
+      "province": "gov",
+      "slot": "zwgk_zcfg_retry",
+      "http_code": 404,
+      "reason": "ok",
+      "http_attempt": 5,
+      "fetched_at": "2026-09-01T07:53:02.870721+00:00"
+    },
+    {
+      "url": "https://www.gov.cn/zwgk/2026-08/15/content_xxx.htm",
+      "province": "gov",
+      "slot": "zwgk_sub_2026",
+      "http_code": 404,
+      "reason": "ok",
+      "http_attempt": 6,
+      "fetched_at": "2026-09-01T07:53:03.331253+00:00"
+    },
+    {
+      "url": "https://www.gov.cn/zwgk/",
+      "province": "gov",
+      "slot": "zwgk_root_retry",
+      "http_code": 403,
+      "reason": "ok",
+      "http_attempt": 7,
+      "fetched_at": "2026-09-01T07:53:04.563513+00:00"
+    },
+    {
+      "url": "https://www.fujian.gov.cn/zwgk/",
+      "province": "fujian",
+      "slot": "fujian_zwgk_root",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 8,
+      "fetched_at": "2026-09-01T07:53:07.448224+00:00"
+    },
+    {
+      "url": "https://www.henan.gov.cn/zwgk/",
+      "province": "henan",
+      "slot": "henan_zwgk_root",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 9,
+      "fetched_at": "2026-09-01T07:53:07.882352+00:00"
+    },
+    {
+      "url": "https://www.yn.gov.cn/zwgk/",
+      "province": "yunnan",
+      "slot": "yunnan_zwgk_root",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 10,
+      "fetched_at": "2026-09-01T07:53:08.664487+00:00"
+    }
+  ],
+  "cells": [
+    {
+      "url": "https://www.gov.cn/zhengce/zhengceku/",
+      "province": "gov",
+      "slot": "zhengceku_nested",
+      "http_code": 403,
+      "reason": "ok",
+      "verdict": "BLOCKED",
+      "waf_g01_marker": true
+    },
+    {
+      "url": "https://www.gov.cn/zhengce/content_2017-09/30/content_5189.htm",
+      "province": "gov",
+      "slot": "zhengce_real_content",
+      "http_code": 404,
+      "reason": "ok",
+      "verdict": "BLOCKED",
+      "waf_g01_marker": false
+    },
+    {
+      "url": "https://www.gov.cn/zhengce/content_2020-11/03/content_5556715.htm",
+      "province": "gov",
+      "slot": "zhengce_real_2020",
+      "http_code": 404,
+      "reason": "ok",
+      "verdict": "BLOCKED",
+      "waf_g01_marker": false
+    },
+    {
+      "url": "https://www.gov.cn/zwgk/zcwj/",
+      "province": "gov",
+      "slot": "zwgk_zcwj_retry",
+      "http_code": 404,
+      "reason": "ok",
+      "verdict": "BLOCKED",
+      "waf_g01_marker": false
+    },
+    {
+      "url": "https://www.gov.cn/zwgk/zcfg/",
+      "province": "gov",
+      "slot": "zwgk_zcfg_retry",
+      "http_code": 404,
+      "reason": "ok",
+      "verdict": "BLOCKED",
+      "waf_g01_marker": false
+    },
+    {
+      "url": "https://www.gov.cn/zwgk/2026-08/15/content_xxx.htm",
+      "province": "gov",
+      "slot": "zwgk_sub_2026",
+      "http_code": 404,
+      "reason": "ok",
+      "verdict": "BLOCKED",
+      "waf_g01_marker": false
+    },
+    {
+      "url": "https://www.gov.cn/zwgk/",
+      "province": "gov",
+      "slot": "zwgk_root_retry",
+      "http_code": 403,
+      "reason": "ok",
+      "verdict": "BLOCKED",
+      "waf_g01_marker": true
+    },
+    {
+      "url": "https://www.fujian.gov.cn/zwgk/",
+      "province": "fujian",
+      "slot": "fujian_zwgk_root",
+      "http_code": 200,
+      "reason": "ok",
+      "verdict": "REACHABLE",
+      "waf_g01_marker": false
+    },
+    {
+      "url": "https://www.henan.gov.cn/zwgk/",
+      "province": "henan",
+      "slot": "henan_zwgk_root",
+      "http_code": 200,
+      "reason": "ok",
+      "verdict": "REACHABLE",
+      "waf_g01_marker": false
+    },
+    {
+      "url": "https://www.yn.gov.cn/zwgk/",
+      "province": "yunnan",
+      "slot": "yunnan_zwgk_root",
+      "http_code": 200,
+      "reason": "ok",
+      "verdict": "REACHABLE",
+      "waf_g01_marker": false
+    }
+  ]
+}
