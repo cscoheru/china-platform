@@ -203,10 +203,10 @@
 ## PHOTO-7: 4 commits + 双推铁证
 
 **commit 计划**:
-1. **delivery** — M4.11 v5 + jiangxi reverify + hygiene + tests + evidence + report
-2. **cc_head rev81** — EXEC-QUEUE rev80 → rev81
-3. **receipt** — `648-stage0-cc-m4-11-v5-quality-hygiene-receipt-20260901.md`
-4. **receipt-backfill** — receipt 末段 cc_head 引用补登
+1. **delivery** `69a8f91` — feat(spike-648): M4.11 v5 + jiangxi CONTENT_CONFIRMED reverify + m2 hygiene + docs/71 §7 + docs/72 + evidence ×2 + tests ×3
+2. **cc_head rev81** `033cbdc` — chore(cc_head): 648 status DELIVERED + last_delivery 69a8f91 + EXEC-QUEUE rev80 → rev81
+3. **receipt** `7560b0f` — docs(receipt-648): CC 回执 §PHOTO-1..7
+4. **receipt-backfill** (this commit) — receipt 末段 cc_head 引用补登
 
 **双推顺序** (per 00-DUAL-POLL-PROTOCOL §3):
 1. `git push origin HEAD`
