@@ -13,7 +13,7 @@
 ## §CURRENT
 
 - status: **636 DELIVERED · M2 全部收口**
-- cc_head: `466f93d` (tasking) + `TBD` (delivery)
+- cc_head: `cd09f2b` (delivery)
 - last_audit: `634-stage0-cursor-s633-m2-b-audit-PASS-20260831.md`
 - tasking: `636-stage0-architect-m2-f-docs-closure-backfill-feasibility-tasking-20260901.md`
 - last_delivery: `636-stage0-cc-m2-f-docs-closure-backfill-feasibility-receipt-20260901.md`
