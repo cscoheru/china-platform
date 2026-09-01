@@ -163,4 +163,6 @@
 - **不宣布** Gate / O1 / M2 / M4 / M5 PASS（沿用红线）
 - 644 完成：M5 第三次收口（10 cells MIXED = 7 BLOCKED + 3 REACHABLE；WAF selective 第三次验证）
 
+> → 645 `docs/68-m6-spike-docs-closure-20260901.md`（M6 spike 文档系列收口 master；8 刀全链表 + spike 边界统一表 + lineage sentinel 沿用 + chain_id 区分 + 真实 SHA 区分表 + 646 下一步；沿用 644 docs/66/67 §5 五 scope 候选）。
+
 — End 644 docs/66 —

@@ -1,0 +1,124 @@
+{
+  "generated_at": "2026-09-01T08:40:00.179049+00:00",
+  "summary": {
+    "fetched_count": 4,
+    "http_count": 4,
+    "fetch_status": "REAL_FETCHED",
+    "fetch_methodology": "M4.8 政策详情 v2 真实化; 4 样本 (heilongjiang/henan-zfgb/henan-zwgk/yunnan) × 1 HTTP each = 4 real samples; ≤12 HTTP total; curl only; 复用 644 3 URL + 纳入 henan zwgk root 作为第 4 样本"
+  },
+  "fetch_log": [
+    {
+      "url": "https://www.hlj.gov.cn/hlj/c107884/list.shtml",
+      "province": "heilongjiang",
+      "slot": "hlj_policy_list",
+      "phase": "main",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 1,
+      "fetched_at": "2026-09-01T08:39:59.101718+00:00"
+    },
+    {
+      "url": "https://www.henan.gov.cn/zwgk/zfgb/",
+      "province": "henan",
+      "slot": "henan_zfgb_list",
+      "phase": "main",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 2,
+      "fetched_at": "2026-09-01T08:39:59.387012+00:00"
+    },
+    {
+      "url": "https://www.henan.gov.cn/zwgk/",
+      "province": "henan",
+      "slot": "henan_zwgk_root",
+      "phase": "main",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 3,
+      "fetched_at": "2026-09-01T08:39:59.729967+00:00"
+    },
+    {
+      "url": "https://www.yn.gov.cn/zwgk/zfxxgk/zfgzbg/",
+      "province": "yunnan",
+      "slot": "yunnan_zfgzbg",
+      "phase": "main",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 4,
+      "fetched_at": "2026-09-01T08:40:00.178639+00:00"
+    }
+  ],
+  "cells": [
+    {
+      "title": "黑龙江省人民政府",
+      "publication_date": "2026-09-01",
+      "file_hash_sha256": "6237cd48afc60c0641bb7b558ecdbf5e04e36b6e06c0839947b925b50fe5200a",
+      "file_size_bytes": 148507,
+      "source_url": "https://www.hlj.gov.cn/hlj/c107884/list.shtml",
+      "province": "heilongjiang",
+      "slot": "hlj_policy_list"
+    },
+    {
+      "title": "政府公报",
+      "publication_date": "2026-07-29",
+      "file_hash_sha256": "dfa38998c3e7e8924612991eebe1366ab2485553767d3e1124b7ae8f144119ae",
+      "file_size_bytes": 8959,
+      "source_url": "https://www.henan.gov.cn/zwgk/zfgb/",
+      "province": "henan",
+      "slot": "henan_zfgb_list"
+    },
+    {
+      "title": "政务公开",
+      "publication_date": "2026-08-20",
+      "file_hash_sha256": "bd4c4c51b8f371e2f1b3fb8acb2b3bf3441a27213b4464e39fdb99b56270d0b9",
+      "file_size_bytes": 158029,
+      "source_url": "https://www.henan.gov.cn/zwgk/",
+      "province": "henan",
+      "slot": "henan_zwgk_root"
+    },
+    {
+      "title": "政府工作报告",
+      "publication_date": "2026-02-03",
+      "file_hash_sha256": "f33eba53a1e5e9614d50f3fb3e5e0fc646196585ad74a9b32feb3a9c8cc4e7ea",
+      "file_size_bytes": 94310,
+      "source_url": "https://www.yn.gov.cn/zwgk/zfxxgk/zfgzbg/",
+      "province": "yunnan",
+      "slot": "yunnan_zfgzbg",
+      "note": "reuse 644 SHA"
+    }
+  ],
+  "knife": 645,
+  "milestone": "M4.8",
+  "spike_boundary": {
+    "samples_planned": 4,
+    "samples_fetched": 4,
+    "http_per_sample": 1,
+    "http_total": 4,
+    "http_limit": 12,
+    "insert_policy_tables_per_sample": 6,
+    "insert_policy_tables_total": 24,
+    "insert_source_registry_per_sample": 1,
+    "insert_source_document_per_sample": 1,
+    "insert_source_total": 8,
+    "insert_grand_total": 32,
+    "uuid_prefix_policy": "d_segment",
+    "chain_id": "real_645_m4_8_policy_detail_v2",
+    "lineage_sentinel": "is_demo='false'"
+  },
+  "shas_distinct_from_638_644": true,
+  "shas_distinct_count": 4,
+  "red_lines_observed": [
+    "no Gate / O1 / O3 / M2 / M4 / M4.7 / M4.8 / M5 / M6 PASS",
+    "no value zero-padding",
+    "no silent SHA hardcoding (645 uses real-fetched SHA 6237cd48, not 644 stale bad8be51)",
+    "no web crawling beyond 4 landing pages",
+    "no recursion / no pagination follow",
+    "no JS / no headless browser (curl only)",
+    "no cegr.* mutation (read-only on production)",
+    "no user-action invocation (data sources only via gov self-fetch per 2026-08-29 governance)",
+    "no execution-end user-judgment request",
+    "complete = observation SUCCESS (no PARTIAL)"
+  ],
+  "not_pass_announcement": ["Gate", "O1", "O3", "M2", "M4", "M4.7", "M4.8", "M5", "M6"],
+  "next_knife": 646
+}

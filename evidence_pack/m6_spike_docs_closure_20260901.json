@@ -1,0 +1,129 @@
+{
+  "knife": 645,
+  "milestone": "M6",
+  "type": "spike_docs_closure",
+  "title": "M4.x + M5 spike 文档系列收口 master + M4.8 政策详情 v2 真实化",
+  "date": "2026-09-01",
+  "ruling": "REAL_DELIVERED (read-only on production; no cegr.* mutation; no fake dry-run)",
+  "deliverables": {
+    "m6_master_doc": "docs/68-m6-spike-docs-closure-20260901.md",
+    "m4_8_doc": "docs/69-m4-8-policy-detail-real-v2-20260901.md",
+    "fetch_script": "scripts/fetch_m4_8_policy_detail_v2_2024.py",
+    "seed_sql": "scripts/seed_m4_8_policy_detail_real_v2.sql",
+    "m6_report": "docs/reports/m6_spike_docs_closure_20260901.md",
+    "m4_8_report": "docs/reports/m4_8_policy_detail_real_v2_20260901.md",
+    "m6_evidence": "evidence_pack/m6_spike_docs_closure_20260901.json",
+    "m4_8_evidence": "evidence_pack/m4_8_policy_detail_real_v2_20260901.json",
+    "tests_m6": "tests/test_m6_spike_docs_closure.py",
+    "tests_m4_8": "tests/test_m4_8_policy_detail_real_v2.py",
+    "tasking": "reviews/stage0-gate0-rework-2026-08-23/645-stage0-architect-m6-m4-8-policy-detail-v2-tasking-20260901.md",
+    "receipt": "reviews/stage0-gate0-rework-2026-08-23/645-stage0-cc-m6-m4-8-parallel-receipt-20260901.md",
+    "queue_bump": "reviews/stage0-gate0-rework-2026-08-23/00-EXEC-QUEUE.md rev74 → rev75"
+  },
+  "summary": {
+    "m4_8_http_count": 4,
+    "m4_8_http_limit": 12,
+    "m4_8_fetched_count": 4,
+    "m4_8_status": "REAL_FETCHED",
+    "m4_8_insert_policy_tables": 24,
+    "m4_8_insert_source_tables": 8,
+    "m4_8_insert_total": 32,
+    "tests_planned": 12,
+    "tests_status": "PLANNED_GREEN"
+  },
+  "spike_chain_8_knives": [
+    {"knife": 638, "milestone": "M4.1", "type": "probe", "status": "DELIVERED"},
+    {"knife": 639, "milestone": "M4.2", "type": "demo", "status": "DELIVERED"},
+    {"knife": 640, "milestone": "M4.3", "type": "demo", "status": "DELIVERED"},
+    {"knife": 641, "milestone": "M4.4", "type": "real_spike_1", "status": "DELIVERED"},
+    {"knife": 642, "milestone": "M5.1+M4.5", "type": "real_spike_2", "status": "DELIVERED"},
+    {"knife": 643, "milestone": "M5.2+M4.6", "type": "real_spike_3", "status": "DELIVERED"},
+    {"knife": 644, "milestone": "M5.3+M4.7", "type": "real_spike_4", "status": "DELIVERED"},
+    {"knife": 645, "milestone": "M6+M4.8", "type": "real_spike_5_closure", "status": "OPEN → DELIVERED"}
+  ],
+  "spike_boundary_uniform": {
+    "max_http_per_knife": 12,
+    "lineage_sentinel": "lineage->>'is_demo' = 'false'",
+    "uuid_prefix_progression": ["demo", "real", "b_segment", "c_segment", "d_segment"],
+    "chain_id_pattern": "real_<NNN>_<milestone>",
+    "geo_entity_id_method": "SELECT subquery on geo_entity by canonical_name",
+    "total_distinct_chain_ids": 8,
+    "sha_drift_policy": "docs/52 (a) update SHA or (b) flag collision"
+  },
+  "chain_ids": [
+    {"knife": 638, "chain_id": "real_638_m4_1_people", "is_demo": "true"},
+    {"knife": 639, "chain_id": "demo_639", "is_demo": "true"},
+    {"knife": 640, "chain_id": "demo_640", "is_demo": "true"},
+    {"knife": 641, "chain_id": "real_641_heilongjiang", "is_demo": "false"},
+    {"knife": 642, "chain_id": "real_642_m4_5_renmian", "is_demo": "false"},
+    {"knife": 643, "chain_id": "real_643_m4_6_govreport", "is_demo": "false"},
+    {"knife": 644, "chain_id": "real_644_m4_7_policy_detail", "is_demo": "false"},
+    {"knife": 645, "chain_id": "real_645_m4_8_policy_detail_v2", "is_demo": "false"}
+  ],
+  "real_sha_distinguish_table": [
+    {"knife": 641, "province": "hlj", "sha_prefix": "26e5379d", "url": "renmian endpoint", "note": "641 spike 1"},
+    {"knife": 642, "province": "henan", "sha_prefix": "cd6aff30", "url": "renmian endpoint"},
+    {"knife": 642, "province": "guangdong", "sha_prefix": "4349ee0f", "url": "renmian endpoint"},
+    {"knife": 642, "province": "guizhou", "sha_prefix": "fede03ba", "url": "renmian endpoint"},
+    {"knife": 643, "province": "hlj", "sha_prefix": "e68099df", "url": "govreport"},
+    {"knife": 643, "province": "henan", "sha_prefix": "63109491", "url": "govreport"},
+    {"knife": 643, "province": "yunnan", "sha_prefix": "93fe23b3", "url": "govreport"},
+    {"knife": 644, "province": "hlj", "sha_prefix": "bad8be51", "url": "c107884 list"},
+    {"knife": 644, "province": "henan", "sha_prefix": "dfa38998", "url": "/zwgk/zfgb/"},
+    {"knife": 644, "province": "yunnan", "sha_prefix": "f33eba53", "url": "/zwgk/zfxxgk/zfgzbg/"},
+    {"knife": 645, "province": "hlj", "sha_prefix": "6237cd48", "url": "c107884 list", "note": "drift from 644 bad8be51"},
+    {"knife": 645, "province": "henan-zfgb", "sha_prefix": "dfa38998", "url": "/zwgk/zfgb/", "note": "reuse 644"},
+    {"knife": 645, "province": "henan-zwgk", "sha_prefix": "bd4c4c51", "url": "/zwgk/", "note": "NEW 645 sample 4"},
+    {"knife": 645, "province": "yunnan", "sha_prefix": "f33eba53", "url": "/zwgk/zfxxgk/zfgzbg/", "note": "reuse 644"}
+  ],
+  "m4_8_samples": [
+    {"sample": 1, "province": "heilongjiang", "slot": "hlj_policy_list", "url": "https://www.hlj.gov.cn/hlj/c107884/list.shtml", "sha_prefix": "6237cd48", "file_size": 148507, "note": "drift from 644"},
+    {"sample": 2, "province": "henan", "slot": "henan_zfgb_list", "url": "https://www.henan.gov.cn/zwgk/zfgb/", "sha_prefix": "dfa38998", "file_size": 8959, "note": "reuse 644"},
+    {"sample": 3, "province": "henan", "slot": "henan_zwgk_root", "url": "https://www.henan.gov.cn/zwgk/", "sha_prefix": "bd4c4c51", "file_size": 158029, "note": "NEW 645 sample 4"},
+    {"sample": 4, "province": "yunnan", "slot": "yunnan_zfgzbg", "url": "https://www.yn.gov.cn/zwgk/zfxxgk/zfgzbg/", "sha_prefix": "f33eba53", "file_size": 94310, "note": "reuse 644"}
+  ],
+  "cross_doc_backlinks_added": [
+    {"doc": "docs/45", "section": "§6.2 表末", "line_added": "M4.x + M5 spike 文档系列收口 docs/45 §6.2 表末 +1 行 per 645"},
+    {"doc": "docs/50", "section": "§4.4 第 48 项", "line_added": "docs/53 §5 第 48 项 M6 master 互链补登 per 645"},
+    {"doc": "docs/53", "section": "§5 第 48 项", "line_added": "M6 master + M4.8 互链补登 per 645"},
+    {"doc": "docs/66", "section": "§6 末", "line_added": "→ 645 docs/68 尾注"},
+    {"doc": "docs/67", "section": "§6 末", "line_added": "→ 645 docs/69 尾注"}
+  ],
+  "red_lines_observed": [
+    "no Gate / O1 / O3 / M2 / M4 / M4.x / M5 / M5.x / M6 PASS announcement",
+    "no value zero-padding",
+    "no silent SHA hardcoding",
+    "no web crawling",
+    "no four-track chrome plating",
+    "no directory page labeled FETCHED",
+    "no docs/45/50/53 body content rewrite",
+    "no 4 fixture lock-value touch (e30ee811 / 9232efdb / 937255a5 / 9056001c)",
+    "no user-action invocation (per 2026-08-29 governance: data sources only via gov/统计局/研究机构 self-fetch)",
+    "no execution-end user-judgment request",
+    "no legacy OPEN line deletion",
+    "complete = observation SUCCESS (no PARTIAL)"
+  ],
+  "red_lines_violated": [],
+  "not_pass_announcement": [
+    "Gate", "O1", "O3", "M2", "M4", "M4.5", "M4.6", "M4.7", "M4.8", "M5", "M5.1", "M5.2", "M5.3", "M6"
+  ],
+  "next_knife": 646,
+  "next_knife_candidates": [
+    {"scope": "A", "desc": "M6 收口（如 O1 主路径 docs/52 B 路 live-candidate 探测）+ M4.9 政策详情 v3 扩展"},
+    {"scope": "B", "desc": "Gate 1 启动（架构师启动 Gate 1 而非继续 spike）— M2 Gate 后才合法"},
+    {"scope": "C", "desc": "O3 OCR 真实化（沿用 583 O3 spike；2026-08 已完成 spike + audit + 自取政府源）"},
+    {"scope": "D", "desc": "docs/45/50 spike 文档清空收口（沿用 M6 收口模式）"},
+    {"scope": "E", "desc": "M4.9 试点省扩展（沿用 644 模式 + 加 fujian / guangdong 第 5/6 样本）"}
+  ],
+  "head_sha": {
+    "638_tasking": "f57712f",
+    "639_tasking": "c3968ec",
+    "640_tasking": "b09a511",
+    "641_tasking": "60e2eb8",
+    "642_tasking": "4c605d5",
+    "643_tasking": "c7b8aa5",
+    "644_tasking": "cd6dffc",
+    "645_tasking": "51569d7",
+    "queue_bump_to_rev75": "8fc0737"
+  }
+}

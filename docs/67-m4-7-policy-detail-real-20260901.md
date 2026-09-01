@@ -182,4 +182,6 @@ SELECT ... FROM geo_entity g WHERE canonical_name IN ('黑龙江省', '河南省
 - **不宣布** Gate / O1 / M2 / M4 / M4.7 PASS（沿用红线）
 - 644 完成：M4.7 政策详情真实化 spike 二次（18 INSERT；lineage JSONB `is_demo='false'` 真实化 sentinel；chain_id='real_644_m4_7_policy_detail'）
 
+> → 645 `docs/69-m4-8-policy-detail-real-v2-20260901.md`（M4.8 政策详情 v2 真实化 spike 三次；沿用 644 3 试点省 + 纳入 henan `bd4c4c51...` zwgk root 第 4 样本 = 24 INSERT；chain_id='real_645_m4_8_policy_detail_v2' ≠ 644；UUID d 段 ≠ 644 c 段；4 新真实 SHA 6237cd48 / dfa38998 / bd4c4c51 / f33eba53）。
+
 — End 644 docs/67 —
