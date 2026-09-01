@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-09-01T09:46:53.376722+00:00",
+  "summary": {
+    "fetched_count": 2,
+    "http_count": 2,
+    "fetch_status": "REAL_FETCHED",
+    "fetch_methodology": "M4.9 政策详情 v3 真实化; 2 样本 (fujian /zwgk/ + guangdong 首选 /zwgk/ + 625 fall-through chain) × 1 HTTP each = 2 real samples; ≤12 HTTP total; curl only; 全新 SHA 与 638-645 全 distinct"
+  },
+  "fetch_log": [
+    {
+      "url": "https://www.fujian.gov.cn/zwgk/",
+      "province": "fujian",
+      "slot": "fujian_zwgk_root",
+      "phase": "main",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 1,
+      "fetched_at": "2026-09-01T09:46:52.759503+00:00"
+    },
+    {
+      "url": "https://www.gd.gov.cn/zwgk/",
+      "province": "guangdong",
+      "slot": "guangdong_zwgk_chain",
+      "phase": "gd_chain_main_0",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 2,
+      "fetched_at": "2026-09-01T09:46:53.376448+00:00"
+    }
+  ],
+  "cells": [
+    {
+      "title": "政务公开",
+      "publication_date": "2025-4-24",
+      "file_hash_sha256": "fceb8c0ac80c5d3c55115a5716414fbc6ee000d7dbb325bf38585c8b88e01709",
+      "file_size_bytes": 682079,
+      "source_url": "https://www.fujian.gov.cn/zwgk/",
+      "province": "fujian",
+      "slot": "fujian_zwgk_root"
+    },
+    {
+      "title": "政务公开&nbsp;&nbsp;广东省人民政府门户网站",
+      "publication_date": "",
+      "file_hash_sha256": "49eed23efcb2954e54dbaf8bbf8f664b38dc187b604bf0f6f5a9a502a3f7d5db",
+      "file_size_bytes": 73836,
+      "source_url": "https://www.gd.gov.cn/zwgk/",
+      "province": "guangdong",
+      "slot": "guangdong_zwgk_chain",
+      "chain_index": 0,
+      "chain_total": 3
+    }
+  ]
+}

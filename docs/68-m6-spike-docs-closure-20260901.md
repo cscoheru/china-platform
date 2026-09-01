@@ -106,7 +106,7 @@
 | 644 | `real_644_m4_7_policy_detail` | `'false'` | real spike (政策详情) | 644 创 |
 | **645** | **`real_645_m4_8_policy_detail_v2`** | **`'false'`** | **real spike v2 (政策详情 + henan zwgk 第 4 样本)** | **645 创 (v2 标记)** |
 
-**7 个 distinct chain_id**（638-645 各唯一）— 不撞 ✓
+**8 个 distinct chain_id**（638-645 各唯一；638 probe 口径备注：638 = `real_638_m4_1_people` 不计入 639-645 真实化 chain_id 序列但 8 刀全链表包含之）— 不撞 ✓（per 645 审计 P3 F1/F2 修正，646 行内 append 不删行）
 
 ---
 

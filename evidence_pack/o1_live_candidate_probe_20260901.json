@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-09-01T09:50:00.966981+00:00",
+  "summary": {
+    "candidate_count": 1,
+    "http_count": 1,
+    "probe_status": "REAL_PROBED",
+    "o1_status": "OPEN",
+    "registration_scope": "markdown-only",
+    "registry_csv_mutation": "NONE",
+    "cegr_star_mutation": "NONE",
+    "connector_enabled": false,
+    "candidate_methodology": "O1 B路 live-candidate 探测登记; 1 candidate (data.stats.gov.cn) × 1 HTTP each = 1 real probe; ≤1 HTTP total; curl only; markdown-only registration; O1 仍 OPEN"
+  },
+  "fetch_log": [
+    {
+      "url": "https://data.stats.gov.cn/",
+      "domain": "data.stats.gov.cn",
+      "phase": "candidate_probe",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 1,
+      "fetched_at": "2026-09-01T09:50:00.965940+00:00"
+    }
+  ],
+  "cells": [
+    {
+      "domain": "data.stats.gov.cn",
+      "organization": "国家统计局 国家数据 (National Bureau of Statistics - National Data)",
+      "primary_url": "https://data.stats.gov.cn/",
+      "file_hash_sha256": "1397e5de18153735d1db7c2da75afb3eec8f20d3727223713be9bf1c94b63b89",
+      "file_size_bytes": 3198,
+      "registration_status": "PENDING_CANDIDATE_ONLY",
+      "enabled_in_registry": false,
+      "notes": "646 markdown-only registration; O1 仍 OPEN; no cegr.* mutation; no registry.csv mutation"
+    }
+  ],
+  "candidate_spec": {
+    "domain": "data.stats.gov.cn",
+    "organization": "国家统计局 国家数据 (National Bureau of Statistics - National Data)",
+    "category": "NATIONAL_DATA_API",
+    "primary_url": "https://data.stats.gov.cn/",
+    "purpose_note": "O1 B路 live-candidate 探测登记; 与现有 stats.gov.cn/sj/zxfb/ (NATIONAL_BULLETIN) + sj/ndsj/ (NATIONAL_YEARBOOK) 不同 sub-domain; data.stats.gov.cn 提供月度/季度/年度指标 API + HTML 视图; 646 仅登记不启用; O1 仍 OPEN 等用户/架构师裁定启用时机",
+    "auth_note": "公开;无需授权",
+    "access_method": "HTML + JSON API",
+    "historical_coverage": "国家数据库月度/季度/年度指标 (1949-至今)",
+    "stability_note": "URL 格式稳定; sub-domain 与现有 rows 不同, 不会冲突",
+    "failure_handling": "重试 3 次 → archive.org 备份 → 人工上传入口",
+    "update_frequency": "MONTHLY/QUARTERLY/YEARLY (按指标不同)"
+  }
+}
