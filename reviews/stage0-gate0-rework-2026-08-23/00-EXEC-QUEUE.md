@@ -1,28 +1,28 @@
 # 00-EXEC-QUEUE — 架构师 ↔ 执行端 交接队列
 
-> **rev 78 · 2026-09-01。**  
+> **rev 79 · 2026-09-01。**  
 > 热记忆：`docs/00-COMPASS.md`。轮询：`00-DUAL-POLL-PROTOCOL`。  
-> **禁止宣布 Gate / O1 / M2 / M4 / M4.8 / M4.9 / M5 / M6 PASS。**
+> **禁止宣布 Gate / O1 / M2 / M4 / M4.8 / M4.9 / M4.10 / M5 / M6 PASS。**
 
 ## §META
 
-- rev: 78
+- rev: 79
 - updated: 2026-09-01
-- ruling: 646 审计 **PASS（有限通过）**（Cursor `646-stage0-cursor-s646-m4-9-o1-audit-PASS-20260901.md`; 38/38 pytest 独立复跑; 4 commits 双推复核 origin=github=9a770a3; P2-1 F7 未登记 + P3-2 docs/70 §6 措辞 → 647 处置）→ 647 tasking OPEN (架构师本终端已签发: M4.10 v4 zhejiang+shandong 第 7/8 样本 + P2/P3 修正; O1 零动作; scope A per docs/70 §5.1)
+- ruling: 647 DELIVERED (CC `647-stage0-cc-m4-10-v4-f7-fixes-receipt-20260901.md`; 51/51 pytest green; 4 commits 双推复核 origin=github=2db29d7 起; M4.10 v4 zhejiang + shandong BLOCKED → jiangxi 625 substitute 第 7/8 样本 16 INSERT; chain_id='real_647_m4_10_policy_detail_v4'; UUID f 段; 2 NEW SHA 8016ef08/56481050; docs/70 行内 append P2-1 F7 补登记 + P3-2 措辞更正; O1 零动作; docs/52 零改动=合规)
 
 ## §CURRENT
 
-- status: **646 AUDITED (PASS·有限通过) · 647 NOW tasking OPEN 待执行**
-- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking) + `5269364` (641 EXEC-QUEUE) + `a1c489a` (641 delivery) + `65ec238` (641 cc_head) + `da0e77a` (641 receipt) + `4c605d5` (642 tasking) + `f6c5668` (642 delivery) + `2d6f0da` (642 cc_head) + `ca5a4a0` (642 receipt) + `c7b8aa5` (643 tasking) + `834bc30` (643 delivery) + `ac2e8e6` (643 cc_head) + `57fa859` (643 receipt) + `cd6dffc` (644 tasking) + `aac8225` (644 delivery) + `a66215b` (644 cc_head) + `899bd41` (644 receipt) + `51569d7` (645 tasking) + `a235f94` (645 delivery) + `0cc8952` (645 cc_head-reg) + `73c74bc` (645 cc_head) + `0677111` (645 receipt) + `dffdea5` (645 backfill) + `6383da6` (645 DELIVERED) + `4f05f55` (645 handoff) + `2b76850` (645 handoff §0) + `6795b89` (646 tasking + audit + COMPASS + rev76) + `d3e0db5` (646 tasking SHA backfill) + `d75563d` (646 delivery) + `200b389` (646 cc_head rev77) + `ee0d0b8` (646 receipt) + `9a770a3` (646 receipt-backfill) + `d71d583` (646 audit + 647 tasking + rev78)
+- status: **647 NOW DELIVERED · 648 tasking 待 架构师 签发**
+- cc_head: `f57712f` (638 tasking) + `f1fdad5` (638 delivery) + `4123fcb` (638 cc_head) + `ee86977` (638 receipt) + `c3968ec` (639 tasking) + `f70ac95` (639 EXEC-QUEUE) + `1fca08e` (639 delivery) + `37aa148` (639 cc_head) + `11778db` (639 receipt) + `b09a511` (640 tasking) + `51cf5ea` (640 delivery) + `96c6d89` (640 cc_head) + `a644e47` (640 receipt) + `60e2eb8` (641 tasking) + `5269364` (641 EXEC-QUEUE) + `a1c489a` (641 delivery) + `65ec238` (641 cc_head) + `da0e77a` (641 receipt) + `4c605d5` (642 tasking) + `f6c5668` (642 delivery) + `2d6f0da` (642 cc_head) + `ca5a4a0` (642 receipt) + `c7b8aa5` (643 tasking) + `834bc30` (643 delivery) + `ac2e8e6` (643 cc_head) + `57fa859` (643 receipt) + `cd6dffc` (644 tasking) + `aac8225` (644 delivery) + `a66215b` (644 cc_head) + `899bd41` (644 receipt) + `51569d7` (645 tasking) + `a235f94` (645 delivery) + `0cc8952` (645 cc_head-reg) + `73c74bc` (645 cc_head) + `0677111` (645 receipt) + `dffdea5` (645 backfill) + `6383da6` (645 DELIVERED) + `4f05f55` (645 handoff) + `2b76850` (645 handoff §0) + `6795b89` (646 tasking + audit + COMPASS + rev76) + `d3e0db5` (646 tasking SHA backfill) + `d75563d` (646 delivery) + `200b389` (646 cc_head rev77) + `ee0d0b8` (646 receipt) + `9a770a3` (646 receipt-backfill) + `d71d583` (646 audit + 647 tasking + rev78) + `2db29d7` (647 delivery)
 - last_audit: `646-stage0-cursor-s646-m4-9-o1-audit-PASS-20260901.md`
-- tasking: `647-stage0-architect-m4-10-v4-f7-p2-fixes-tasking-20260901.md` (OPEN — 架构师自签+自交付)
-- last_delivery: `d75563d` (646 delivery)
+- tasking: `647-stage0-architect-m4-10-v4-f7-p2-fixes-tasking-20260901.md` (DELIVERED)
+- last_delivery: `2db29d7` (647 delivery)
 - last_receipt: `ee0d0b8` (646 receipt — `646-stage0-cc-m4-9-v3-o1-live-candidate-receipt-20260901.md`)
 - m4_decision: 647 = M4.10 政策详情 v4 省扩展 (zhejiang + shandong 第 7/8 样本, 2 × 8 表 = 16 INSERT, chain_id='real_647_m4_10_policy_detail_v4', UUID f 段 ≠ 646 e 段) + 646 审计修正 (P2-1 F7 补登记 docs/70 §4 表尾 + P3-2 docs/70 §6 措辞尾注) + O1 零动作 (live-candidate 沿用 646 登记等用户/架构师裁定; O1 仍 OPEN); scope A per docs/70 §5.1 + 646 审计 §F
 
 ## §NOW
 
-CC 执行 647（任务书已签发 `647-stage0-architect-m4-10-v4-f7-p2-fixes-tasking-20260901.md`）。当前态: 646 审计 PASS（有限通过）`646-stage0-cursor-s646-m4-9-o1-audit-PASS-20260901.md`（38/38 独立复跑; 4 commits 双推 origin=github=9a770a3; P2-1 F7 未登记 + P3-2 措辞 → 647-A.0 处置）。647 scope: M4.10 v4 zhejiang+shandong 第 7/8 样本 16 INSERT（chain_id='real_647_m4_10_policy_detail_v4'; UUID f 段）+ P2/P3 修正 + O1 零动作; 回归 38 例须 green（总 ≥48）。不宣称任何 PASS; O1 仍 OPEN。
+（CC 已完成 647；648 tasking 待 架构师 签发。当前态: 647 DELIVERED `647-stage0-cc-m4-10-v4-f7-fixes-receipt-20260901.md`；51/51 pytest green（M4.10 新 14 + M4.9 回归 10 + O1 回归 6 + M4.8 回归 12 + M4.7 回归 9）；4 commits 双推 origin=github=2db29d7 起；M4.10 v4 zhejiang (chain_index=1 fallback) + shandong BLOCKED → jiangxi 625 substitute 第 7/8 样本 16 INSERT，chain_id='real_647_m4_10_policy_detail_v4'，UUID f 段，2 NEW SHA 8016ef08/56481050 全 distinct ≠ 638-646；docs/70 行内 append P2-1 F7 补登记 + P3-2 措辞更正不删行不删 OPEN 行；O1 零动作沿用 646 登记等用户/架构师裁定 O1 仍 OPEN；docs/52 零改动=合规。等 架构师 648 任务书签发。）
 
 ## §CHAIN_TAIL
 
@@ -42,7 +42,7 @@ CC 执行 647（任务书已签发 `647-stage0-architect-m4-10-v4-f7-p2-fixes-ta
 | 644 | **DELIVERED** | M5 WAF spike 第三次收口 (10 cells ≤10 HTTP, MIXED = 7 BLOCKED + 3 REACHABLE; 国务院 /zhengce/zhengceku/ 403 WAF 网防G01 marker 第三次确认; /zhengce/content_xxx.htm 404 (content_id 不存在 非 WAF marker); /zwgk/ 替代 retry 路径 (zcwj/zcfg/2026-08/...) 全部 404 (路径不存在 非 WAF marker); 3 BLOCKED 省 /zwgk/ root REACHABLE 第三次确认 (fujian/henan/yunnan)) + M4.7 政策详情真实化 (3 试点省 hlj/henan/yunnan × 1 detail each × 6 政策表 = 18 INSERT lineage.is_demo='false' chain_id='real_644_m4_7_policy_detail', 3 新真实 SHA bad8be51/dfa38998/f33eba53 全 distinct ≠ 643/642/641/640/639 demo/real SHA; UUID c 段 ≠ 643 b 段; hlj c107884 避开 643 c107882; docs/66 + docs/67 §1-§6 架构师级审查; 18/18 pytest green; 644-C 双推完成 delivery `aac8225`) |
 | 645 | **DELIVERED** | M6 spike 文档收口 (docs/68 master + docs/45/50/53/66/67 互链补登) + M4.8 政策详情 v2 真实化 (沿用 644 3 试点省 × 1 detail each × 6 政策表 = 18 INSERT + 纳入 644 留作扩展的 henan `bd4c4c51...` (zwgk root) 作为第 4 样本 = **24 INSERT planned**, chain_id='real_645_m4_8_policy_detail_v2' ≠ 644 chain_id; UUID d 段 ≠ 644 c 段; 4 新真实 SHA bad8be51/dfa38998/bd4c4c51/f33eba53 复用 644 SHA + 1 NEW henan zwgk root; docs/68 + docs/69 §1-§6 双文档架构师级审查; 架构师本终端自签 + 自交付) |
 | 646 | **DELIVERED** | M4.9 政策详情 v3 (fujian + guangdong 第 5/6 样本, 2 × 8 表 = **16 INSERT**, chain_id='real_646_m4_9_policy_detail_v3'; UUID e 段 ≠ 645 d 段 ≠ 644 c 段; 2 NEW SHA fceb8c0a/49eed23e 全 distinct ≠ 638-645) + docs/52 B路 live-candidate 探测登记 (data.stats.gov.cn PENDING_CANDIDATE_ONLY; O1 仍 OPEN; markdown-only; registry 零改动) + 645 审计 P3 修正 (docs/68/50/53 行内 append「8 个 distinct chain_id」+ 实交付 22/22 实际; 不删行不删 OPEN 行) + docs/70 §1-§6 架构师级审查 + 38/38 pytest green (M4.9 10 + O1 6 + M6 回归 10 + M4.8 回归 12); 前置 = 645 审计 PASS (`645-stage0-cursor-s645-m6-m4-8-audit-PASS-20260901.md`); 架构师本终端自签 + 自交付 per 2026-08-31 21:50 豁免; **646 审计 PASS（有限通过）** per `646-stage0-cursor-s646-m4-9-o1-audit-PASS-20260901.md`（38/38 独立复跑; P2-1 F7 未登记 + P3-2 docs/70 §6 措辞 → 647-A.0 处置） |
-| 647 | **OPEN** | M4.10 政策详情 v4 省扩展 (zhejiang + shandong 第 7/8 样本, 2 × 8 表 = **16 INSERT**, chain_id='real_647_m4_10_policy_detail_v4'; UUID f 段 ≠ 646 e 段) + 646 审计修正 (P2-1 F7 补登记 + P3-2 措辞尾注, docs/70 行内 append 不删行) + O1 零动作 (live-candidate 沿用 646 登记; O1 仍 OPEN); docs/71 §1-§6 + evidence ×2; ≥10 新测试 + 38 回归 = ≥48 green; 任务书 `647-stage0-architect-m4-10-v4-f7-p2-fixes-tasking-20260901.md` |
+| 647 | **DELIVERED** | M4.10 政策详情 v4 省扩展 (zhejiang + shandong BLOCKED → jiangxi 625 substitute 第 7/8 样本, 2 × 8 表 = **16 INSERT**, chain_id='real_647_m4_10_policy_detail_v4'; UUID f 段 ≠ 646 e 段; 2 NEW SHA 8016ef08/56481050 全 distinct ≠ 638-646; ≤12 HTTP total actual=7) + 646 审计修正 (P2-1 F7 补登记 docs/70 §4 表尾 + P3-2 docs/70 §6 措辞尾注, 行内 append 不删行不删 OPEN 行) + O1 零动作 (live-candidate 沿用 646 登记; O1 仍 OPEN) + docs/71 §1-§6 + evidence ×2 + 51/51 pytest green (M4.10 新 14 + M4.9 回归 10 + O1 回归 6 + M4.8 回归 12 + M4.7 回归 9); 任务书 `647-stage0-architect-m4-10-v4-f7-p2-fixes-tasking-20260901.md`; 架构师本终端自签 + 自交付 per 2026-08-31 21:50 豁免; docs/52 零改动=合规 |
 
 ## §ACK
 
