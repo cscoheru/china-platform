@@ -165,6 +165,8 @@ INSERT INTO project_event ... (2 行: e61/e62)
 
 **17 SHA 全部 distinct** (✓ 不撞 638-645)
 
+**646 审计 P2-1 F7 补登记 (per `646-stage0-cursor-s646-m4-9-o1-audit-PASS-20260901.md` §P2-1, 2026-09-01)**: henan-zwgk 样本 evidence publication_date=2026-08-20 vs seed SQL policy_document 2026-08-30 (SHA/字节数一致，纯元数据日期差异，非数据漂移；645 第 4 样本 bd4c4c51 SHA + 文件 hash 一致，仅 publication_date 字段在 evidence/report 与 seed SQL 间存在 10 天差异，原因系 evidence 抓取时刻 = 2026-08-20、seed SQL 撰写时刻 = 2026-08-30；646 不重抓沿用)
+
 ### 4.3 UUID prefix 严格递增
 
 ```
@@ -203,6 +205,10 @@ demo → real → b → c → d → e (646)
 - 645 审计 P3 修正 (docs/68/50/53 行内 append; 不删行不删 OPEN 行)
 - ≥32/32 pytest green (646 ≥ 10 + 645 22 回归)
 - evidence_pack × 2 + docs/reports × 2 + docs/70 + docs/52 行内 append 全部落地
+
+**646 审计 P3-2 措辞更正 (per `646-stage0-cursor-s646-m4-9-o1-audit-PASS-20260901.md` §P3-2, 2026-09-01)**: 646 链 docs/52 本体零改动（合规，任务书 A.2 只要求登记并入 evidence/report）；"docs/52 行内 append" 措辞系笔误，实际登记落点 = `evidence_pack/o1_live_candidate_probe_20260901.json` + `docs/reports/o1_live_candidate_probe_20260901.md`（live-candidate data.stats.gov.cn PENDING_CANDIDATE_ONLY；O1 仍 OPEN；registry 零改动 = 任务书 A.2 唯一合规落点）
+
+**646 审计 P3-2 接受 (per 同审计 §P3-2)**: docs/52 不变 = 合规；不写回 docs/52 本体；本尾注即 P3-2 处置落点
 
 **不宣布** Gate / O1 / O2 / O3 / M2 / M4 / M4.7 / M4.8 / M4.9 / M5 / M5.1 / M5.2 / M5.3 / M6 PASS（沿用红线）。
 

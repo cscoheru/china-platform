@@ -1,0 +1,117 @@
+{
+  "generated_at": "2026-09-01T11:09:51.084102+00:00",
+  "summary": {
+    "fetched_count": 2,
+    "http_count": 7,
+    "fetch_status": "REAL_FETCHED",
+    "fetch_methodology": "M4.10 政策详情 v4 真实化; 2 样本 (zhejiang /zwgk/ + shandong /zwgk/) × 1 HTTP each = 2 real samples; ≤12 HTTP total; curl only; 全新 SHA 与 638-646 全 distinct"
+  },
+  "fetch_log": [
+    {
+      "url": "https://www.zj.gov.cn/zwgk/",
+      "province": "zhejiang",
+      "slot": "zhejiang_zwgk_chain",
+      "phase": "zhejiang_zwgk_chain_main_0",
+      "http_code": 403,
+      "reason": "ok",
+      "http_attempt": 1,
+      "fetched_at": "2026-09-01T11:09:32.980217+00:00"
+    },
+    {
+      "url": "https://www.zj.gov.cn/",
+      "province": "zhejiang",
+      "slot": "zhejiang_zwgk_chain",
+      "phase": "zhejiang_zwgk_chain_fallback_1",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 2,
+      "fetched_at": "2026-09-01T11:09:34.475960+00:00"
+    },
+    {
+      "url": "https://www.shandong.gov.cn/zwgk/",
+      "province": "shandong",
+      "slot": "shandong_zwgk_chain",
+      "phase": "shandong_zwgk_chain_main_0",
+      "http_code": 0,
+      "reason": "curl_err:curl: (35) LibreSSL/3.3.6: error:1404B410:SSL routines:ST_CONNECT:sslv3 alert ha",
+      "http_attempt": 3,
+      "fetched_at": "2026-09-01T11:09:34.615575+00:00"
+    },
+    {
+      "url": "https://www.shandong.gov.cn/",
+      "province": "shandong",
+      "slot": "shandong_zwgk_chain",
+      "phase": "shandong_zwgk_chain_fallback_1",
+      "http_code": 0,
+      "reason": "curl_err:curl: (35) LibreSSL/3.3.6: error:1404B410:SSL routines:ST_CONNECT:sslv3 alert ha",
+      "http_attempt": 4,
+      "fetched_at": "2026-09-01T11:09:34.765041+00:00"
+    },
+    {
+      "url": "http://www.shandong.gov.cn/zwgk/",
+      "province": "shandong",
+      "slot": "shandong_zwgk_chain",
+      "phase": "shandong_zwgk_chain_fallback_2",
+      "http_code": 404,
+      "reason": "ok",
+      "http_attempt": 5,
+      "fetched_at": "2026-09-01T11:09:35.309606+00:00"
+    },
+    {
+      "url": "http://www.shandong.gov.cn/",
+      "province": "shandong",
+      "slot": "shandong_zwgk_chain",
+      "phase": "shandong_zwgk_chain_fallback_3",
+      "http_code": 0,
+      "reason": "timeout",
+      "http_attempt": 6,
+      "fetched_at": "2026-09-01T11:09:50.350044+00:00"
+    },
+    {
+      "url": "https://www.jiangxi.gov.cn/zwgk/",
+      "province": "jiangxi",
+      "slot": "shandong_zwgk_chain_substitute",
+      "phase": "fallthrough_substitute_jiangxi",
+      "http_code": 0,
+      "reason": "shandong_blocked_substitute",
+      "http_attempt": 6,
+      "fetched_at": "2026-09-01T11:09:50.350391+00:00"
+    },
+    {
+      "url": "https://www.jiangxi.gov.cn/zwgk/",
+      "province": "jiangxi",
+      "slot": "jiangxi_zwgk_chain_substitute",
+      "phase": "jiangxi_zwgk_chain_substitute_main_0",
+      "http_code": 200,
+      "reason": "ok",
+      "http_attempt": 7,
+      "fetched_at": "2026-09-01T11:09:51.083853+00:00"
+    }
+  ],
+  "cells": [
+    {
+      "title": "浙江省人民政府",
+      "publication_date": "2026-09-01",
+      "file_hash_sha256": "8016ef0874c49261d39fc83f79b7ba04b6ce109b2bf85444cca473f27c58f8a8",
+      "file_size_bytes": 159382,
+      "source_url": "https://www.zj.gov.cn/",
+      "province": "zhejiang",
+      "slot": "zhejiang_zwgk_chain",
+      "chain_index": 1,
+      "chain_total": 2
+    },
+    {
+      "title": "403",
+      "publication_date": "2025-07-16",
+      "file_hash_sha256": "56481050c810fbeec004ff68478d9f291c5eda39e005ec09e3fb6122dc28edd4",
+      "file_size_bytes": 48118,
+      "source_url": "https://www.jiangxi.gov.cn/zwgk/",
+      "province": "jiangxi",
+      "slot": "shandong_zwgk_chain_substitute",
+      "chain_index": 0,
+      "chain_total": 2,
+      "original_province": "shandong",
+      "substitute_reason": "shandong HTTPS TLS handshake_failure + HTTP 404/timeout (4 attempts BLOCKED); 625 fall-through substitute"
+    }
+  ]
+}
