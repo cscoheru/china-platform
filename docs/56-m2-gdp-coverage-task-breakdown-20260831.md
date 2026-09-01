@@ -49,4 +49,19 @@
 - **635-e 研究页 (M2-e)**：`frontend/app/research/q1-2024-gdp/page.tsx` DONE，USE_MOCK=false（读 on-disk crosscheck 报告，非 mock 非 API）；6 SHA 一跳锁定 + 6 源 .gov.cn 域名 + [M2-e smoke] 末行。`tests/test_m2_frontend_page.py` 10 用例 green。
 - **不宣布 Gate / O1 / M2 PASS**。M2-f（回补/文档收口）仍 OPEN。
 
+---
+
+## 5. 进度更新（636 落地后 · M2-f 收口）
+
+- **636-A 文档收口**：docs/56 §5（本段）+ docs/54 §M2.4 行收口 + EXEC-QUEUE rev59（636 DELIVERED 进入 §CHAIN_TAIL）三处指针闭环。
+- **636-B 2001-onwards 回补可行性 probe**：`scripts/probe_m2_2001_backfill.py` 对 **24 年 × 32 主体 × 3 源 = 2309 cell（含 5 镜像候选）** 实测 184 HTTP 探针 + 2125 推得 cell，**适用 cell 1541 实测 REACHABLE 0 / PARTIAL 770 / BLOCKED 771**：
+  - **NBS data.stats.gov.cn** —— 0/24 REACHABLE（24/24 BLOCKED，403 Forbidden WAF 网防G01 IP 阻断；M2-b 6 主体 COVERED 走的是各省本站抓取，非 NBS JSON API）
+  - **各省 tjj.*** —— 0/744 REACHABLE（31 省 × 5 样本年（2001/2006/2011/2016/2024）实测 155 cell 全 BLOCKED：TLS reset / 404 / 403 / 412 / SSL_ERROR_SYSCALL / no alternative certificate；WAF IP-level 阻断跨年稳定 ⇒ 19 个非样本年外推结论可信）
+  - **全国统计年鉴镜像** —— 2/5 PARTIAL + 3/5 BLOCKED：catalog 可达但无 entity×year×GDP 单元；真实 GDP 值需 deep-link 跳到具体年鉴页
+  - **总计 2309 cell**：REACHABLE **0** / PARTIAL **770** / BLOCKED **771** / NOT_APPLICABLE **768**
+- **636-C 测试 + 回执 + 双推**：`tests/test_m2_backfill_feasibility.py` ≥5 用例 + 636 回执 §PHOTO-1..6 + pytest ≥37/37 green + commit + origin→github 双推。
+- **M2 全部收口**：M2.1 ✅ / M2.3 ✅ / M2.5 ✅ / **M2.4 ✅（feasibility probed; 适用 cell 1541 实测 REACHABLE 0 / PARTIAL 770 / BLOCKED 771；不可得项已诚实列）**。
+- **不宣布 Gate / O1 / M2 PASS**。M2 PASS 维持 OPEN：M2.4 仅完成「可行性 probe」≠「实际回补入库」；真入库需要用户提供 NBS data.stats.gov.cn 镜像源 / 各省年鉴 PDF（用户绕过本机 IP-level WAF）/ 第三方合法授权年鉴库（U4 暂禁）。
+- **M3 启动条件**：M2.4 已可达 cell ≤3 ⇒ **不得自动进入 M3**；须用户先裁定是否购买商业年鉴库（U4 重审）或用户提供政府源直连镜像。
+
 — End 56 —

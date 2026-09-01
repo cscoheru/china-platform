@@ -154,7 +154,7 @@ PRD Gate 编号恢复为：
 > - **M2.1** ✅ — `scripts/fetch_m2_2024_gdp.py` 26 PENDING → 26 BLOCKED（honest missing_reason）；省级 5 COVERED + 26 BLOCKED = **31/31 ≥ 20/31**。
 > - **M2.3** ✅ — `scripts/crosscheck_m2_2024_gdp.py` ⇒ `docs/reports/m2_2024_gdp_crosscheck_20260831.md`；verdict = **QUARANTINED-WEAK**（5/31 覆盖率 ⇒ sum/national=24.24% 必然 > 0.5% 阈值；覆盖 100% 后升级 STRONG）。
 > - **M2.5** ✅ — `frontend/app/research/q1-2024-gdp/page.tsx` DONE（USE_MOCK=false 读 on-disk crosscheck 报告，非 mock 非 API）；10 用例 green in `tests/test_m2_frontend_page.py`。
-> - **M2.4** ❌ — 2001 起回补未做（保留 OPEN，M2-f/g 阶段）。
+> - **M2.4** ✅（feasibility probed 636）— 2001 起回补 **可行性 probe 完成**：`scripts/probe_m2_2001_backfill.py` 2309 cell 实测（184 HTTP 探针 + 2125 推得），**适用 cell 1541 实测 REACHABLE 0 / PARTIAL 770 / BLOCKED 771**。NBS data.stats.gov.cn 在本机 24/24 WAF 403 阻断；31 省 tjj.* 站 155/155 BLOCKED（TLS reset / 404 / 403 / 412 / SSL error）；统计年鉴镜像站 2/5 PARTIAL（catalog only）+ 3/5 BLOCKED。**不得自动宣称 M2.4 完成**（probe ≠ ingest）；真回补入库须用户提供政府源镜像 / 商业年鉴库授权（U4 重审）。
 > - **不宣布 Gate / O1 / M2 PASS**。
 
 退出候选：**PRD 14.1 数据切片** + 产品最小页。OCR 仍可 BLOCKED。这是「首个可用版本」的数据含义。
