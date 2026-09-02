@@ -1,0 +1,65 @@
+-- ----------------------------------------------------------------------------
+-- 654-A.1 — M4.17 政策详情 v11 西北双省 spike seed SQL (knife 654 M4.17 side, 2026-09-02)
+--
+-- *** 真网首试省首触发 BLOCKED_NO_POOL 双触发 (ALL_BLOCKED_NO_POOL) ***
+-- *** 0 INSERT ROWS — 双样本 (gansu + qinghai) 均两级 fallback 全失败 ***
+--
+-- 任务书 §1.654-A.1 明文三态合法: 双 REACHABLE → 16 INSERT + 2 NEW SHA;
+--   混合 → 按省实报; 双 BLOCKED → 0 INSERT + 三重留痕 (evidence/docs/receipt)
+-- 本次双首试省均 BLOCKED_NO_POOL → 该省 0 INSERT + 双省合计 0 INSERT ROWS
+-- INSERT 数按实报: 0 INSERT ROWS total (per 红线 14 + 654 §0.14 沿用 653 复试)
+--
+-- 双样本实测:
+--   GANSU:   /zwgk/ 412 + / 412 (412×2)
+--   QINGHAI: /zwgk/ Connection reset by peer + / Connection reset by peer (0/0 — 失败形式库第二例首见)
+-- 双样本均 retry_of=N/A (无前史首试省; per 654 §1.654-A.1):
+--   gansu   ← N/A (首试省; 西北五省区收官 GANSU 段)
+--   qinghai ← N/A (首试省; 西北五省区收官 QINGHAI 段)
+--
+-- 654 红线 14 沿用 (per 653 §0.14 增补沿用 652 §0.14):
+--   递补池 (SUBSTITUTE_POOL) 显式 [EXHAUSTED]; 两级 fallback 全失败 → BLOCKED_NO_POOL 留痕,
+--   不再跨省代换 (per 651 §0.14 增补; 649 激活 liaoning + 650 备而未触发 + 651 转正 shaanxi/sichuan + 652 xinjiang/nei_menggu + 653 池耗尽沿用 → 池耗尽)
+--   654 双样本均触发 verdict=BLOCKED_NO_POOL, substitute_used=false, blocked_reason 非空
+--
+-- 654 红线 13 沿用:
+--   不宣称 Gate / O1 / O2 / O3 / M2 / M4.x / M5.x / M6 PASS (沿用红线 1)
+--   代换行标注规范 (per 649 审计 P3-1): source_registry province/source_name 一律用 actual_province (URL 归属省), original_province 仅存 lineage JSONB
+--   已用省全集 (不得重复, 按 actual_province 口径, 18 省): HLJ / HENAN / YUNNAN / FUJIAN / GD / ZJ / JX / HUN / AH / LN / JL / GUIZHOU / JIANGSU / SHAANXI / SICHUAN / XINJIANG / NEI MENGGU; 654 双样本均 BLOCKED → 增量 0 省 (已用省 18 不变; gansu/qinghai 留 BLOCKED_NO_POOL 痕迹, actual_province=NULL)
+--   附属复验/验证产物允许独立文件, 但主 evidence summary.methodology 必须含指针
+--
+-- chain_id='real_654_m4_17_policy_detail_v11' (末段 `_v11` ≠ 653 `_v10` ≠ 652 `_v9` ≠ 651 `_v8`)
+-- UUID prefix m 段 (m02-m62) ≠ 653 l 段 (l02-l62) ≠ 652 k 段 (k02-k62) ≠ 651 j 段
+-- 不新写 016 migration (沿用 009+010+014+015 lineage JSONB)
+-- 不修改 source_registry 既有 638-653 行 / mart / 4 fixture
+-- substitute_used_count = 0 (双样本均 BLOCKED; 递补池已耗尽 per 红线 14 沿用 653)
+-- HTTP total = 4/12 (33% usage; gansu 2 + qinghai 2)
+-- blocked_no_pool_count = 2 (双首试省均触发 BLOCKED_NO_POOL; 真网首试省首触发双例)
+-- ----------------------------------------------------------------------------
+
+-- *** 0 INSERT ROWS - 双首试省均 BLOCKED_NO_POOL ***
+-- *** 所有 lineage 信息 (chain_id / retry_of / red_line_14_status) 保留在主 evidence JSON + docs/78 + receipt ***
+-- *** seed 表零 INSERT 是 BLOCKED 留痕的合法形式 (per 654 §1.654-A.1 + 沿用 653 §0.14 红线 14 沿用) ***
+
+-- 若需记录 BLOCKED cell 占位, 可在不写 INSERT 的前提下在 evidence 中落 cell (fetch_log + blocked_reason)
+--   - gansu cell:   verdict=BLOCKED_NO_POOL + blocked_reason 完整描述
+--   - qinghai cell: verdict=BLOCKED_NO_POOL + blocked_reason 完整描述 (含 Connection reset by peer 新失败形式)
+--   - 主 evidence fetch_log 含 4 条 attempt 记录 (gansu /zwgk/ + / + qinghai /zwgk/ + /)
+--   - docs/78 §2 BLOCKED 留痕登记表 含双样本实测 + blocked_reason 全量 + 失败形式库登记 (QINGHAI Connection reset by peer)
+
+-- ----------------------------------------------------------------------------
+-- End 654-A.1 seed SQL
+-- 0 INSERT total (双首试省均 BLOCKED_NO_POOL 真网首试省首触发双例)
+-- chain_id=real_654_m4_17_policy_detail_v11
+-- UUID m 段 (m02-m62) ≠ 653 l 段 ≠ 652 k 段 ≠ 651 j 段 ≠ 650 i 段
+-- 双首试省 BLOCKED: gansu (412×2) + qinghai (Connection reset by peer ×2 — 失败形式库第二例)
+-- substitute_used_count = 0 (双样本均 BLOCKED; 递补池 [EXHAUSTED] per 红线 14 沿用 653)
+-- blocked_no_pool_count = 2 (双首试省均触发; 真网首试省首触发双例 per 654 §0.14)
+-- HTTP total = 4/12 (33% usage; gansu 2 + qinghai 2)
+-- 已用省全集不变: 18 省 (HLJ/HENAN/YUNNAN/FUJIAN/GD/ZJ/JX/HUN/AH/LN/JL/GUIZHOU/JIANGSU/SHAANXI/SICHUAN/XINJIANG/NEI MENGGU)
+-- retry_of lineage: gansu ← N/A (首试); qinghai ← N/A (首试) — 全行 retry_of 字段, per 654 §1.654-A.1 + 沿用 653 §0.14 红线 14 沿用
+-- 654 §0.14 BLOCKED_NO_POOL 留痕 e2e 验证: 4 实现位置 (fetch 分支+blocked_reason / evidence BLOCKED cell / docs/78 §2 登记表 / 测试守门) + 8 守门 PASSED (沿用 653 §0.14 模板)
+-- 红线 14 增补落地 (沿用 653): lineage JSONB 字段保留 red_line_14_status='EXHAUSTED' + substitute_pool_note (在 evidence metadata 内)
+-- 西北五省区叙事收官: XINJIANG (652) + NEI MENGGU (652) + SHAANXI (651 邻接) + GANSU (654) + QINGHAI (654)
+-- 失败形式库新增: QINGHAI "Connection reset by peer" (curl recv failure, 0/0) — 全链第二例首见失败形式 (首例 653 shandong SSL handshake failure)
+-- 654-A.0 规范 v3 落地 (per 653 审计 P4×2 处置): §META 五字段原子更新 + status 行禁含任何具体 SHA
+-- ----------------------------------------------------------------------------

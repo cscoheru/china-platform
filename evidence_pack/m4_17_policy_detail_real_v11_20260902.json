@@ -1,0 +1,157 @@
+{
+  "knife": "654-A.1",
+  "purpose": "M4.17 政策详情 v11 西北双省 spike (gansu + qinghai 第 21/22 样本; 双首试省 per 654 §0.14 沿用 653 §0.14; 真网首试 BLOCKED_NO_POOL 留痕概率; lineage 全 retry_of=N/A)",
+  "chain_id": "real_654_m4_17_policy_detail_v11",
+  "uuid_prefix": "m",
+  "uuid_prefixes": {
+    "source_registry": "m0eebc99",
+    "source_document": "m0eebc99",
+    "policy_document": "m1eebc99",
+    "policy_target": "m2eebc99",
+    "policy_measure": "m3eebc99",
+    "government_commitment": "m4eebc99",
+    "commitment_progress": "m5eebc99",
+    "project_event": "m6eebc99"
+  },
+  "summary": {
+    "fetch_status": "ALL_BLOCKED_NO_POOL",
+    "fetched_count": 0,
+    "blocked_no_pool_count": 2,
+    "http_count": 4,
+    "http_limit": 12,
+    "substitute_used_count": 0,
+    "substitute_pool_status": "EXHAUSTED",
+    "distinct_shas": [],
+    "retry_of_annotation": {
+      "gansu": "retry_of=N/A (无前史首试; per 654 §0.14)",
+      "qinghai": "retry_of=N/A (无前史首试; per 654 §0.14)"
+    }
+  },
+  "cells": [
+    {
+      "province": "gansu",
+      "actual_province": null,
+      "fetched_url": null,
+      "chain_index": -1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.gansu.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 412,
+          "reason": "ok",
+          "body_size_bytes": 6314,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "gansu"
+        },
+        {
+          "url": "https://www.gansu.gov.cn/",
+          "label": "province_root",
+          "http_code": 412,
+          "reason": "ok",
+          "body_size_bytes": 6326,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "gansu"
+        }
+      ],
+      "file_hash_sha256": "",
+      "file_size_bytes": 0,
+      "http_code": 0,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "verdict": "BLOCKED_NO_POOL",
+      "substitute_used": false,
+      "blocked_reason": "首试省 gansu 两级 fallback 均未 REACHABLE (zwgk_root=412; province_root=412); per 654 §0.14 红线 14 增补 (沿用 653): 递补池正式耗尽 [EXHAUSTED], 无池可代换, 留痕不代换 (BLOCKED_NO_POOL 留痕首试省真网触发, per 654 §0.14). lineage retry_of=N/A (无前史首试省; per 654 §1.654-A.1).",
+      "retry_of": "retry_of=N/A (无前史首试; per 654 §0.14)"
+    },
+    {
+      "province": "qinghai",
+      "actual_province": null,
+      "fetched_url": null,
+      "chain_index": -1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.qinghai.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 0,
+          "reason": "Recv failure: Connection reset by peer",
+          "body_size_bytes": 6326,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "qinghai"
+        },
+        {
+          "url": "https://www.qinghai.gov.cn/",
+          "label": "province_root",
+          "http_code": 0,
+          "reason": "Recv failure: Connection reset by peer",
+          "body_size_bytes": 6326,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "qinghai"
+        }
+      ],
+      "file_hash_sha256": "",
+      "file_size_bytes": 0,
+      "http_code": 0,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "verdict": "BLOCKED_NO_POOL",
+      "substitute_used": false,
+      "blocked_reason": "首试省 qinghai 两级 fallback 均未 REACHABLE (zwgk_root=0; province_root=0); per 654 §0.14 红线 14 增补 (沿用 653): 递补池正式耗尽 [EXHAUSTED], 无池可代换, 留痕不代换 (BLOCKED_NO_POOL 留痕首试省真网触发, per 654 §0.14). lineage retry_of=N/A (无前史首试省; per 654 §1.654-A.1).",
+      "retry_of": "retry_of=N/A (无前史首试; per 654 §0.14)"
+    }
+  ],
+  "fetch_log": [
+    {
+      "url": "https://www.gansu.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 412,
+      "reason": "ok",
+      "body_size_bytes": 6314,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "gansu"
+    },
+    {
+      "url": "https://www.gansu.gov.cn/",
+      "label": "province_root",
+      "http_code": 412,
+      "reason": "ok",
+      "body_size_bytes": 6326,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "gansu"
+    },
+    {
+      "url": "https://www.qinghai.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 0,
+      "reason": "Recv failure: Connection reset by peer",
+      "body_size_bytes": 6326,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "qinghai"
+    },
+    {
+      "url": "https://www.qinghai.gov.cn/",
+      "label": "province_root",
+      "http_code": 0,
+      "reason": "Recv failure: Connection reset by peer",
+      "body_size_bytes": 6326,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "qinghai"
+    }
+  ],
+  "methodology": "v11 西北双省 spike fetch: 2 cells (gansu + qinghai 第 21/22 样本; 双首试省 per 654 §0.14 沿用 653 §0.14). GANSU 首选 https://www.gansu.gov.cn/zwgk/ + fallback #1 https://www.gansu.gov.cn/; QINGHAI 首选 https://www.qinghai.gov.cn/zwgk/ + fallback #1 https://www.qinghai.gov.cn/. 递补池 (SUBSTITUTE_POOL) 显式 [EXHAUSTED] (per 654 §0.14 红线 14 增补沿用 653 §0.14); 两级 fallback 全失败 → BLOCKED_NO_POOL 留痕, 不跨省代换. 每 cell ≤2 attempts, 总预算 ≤12 HTTP. lineage retry_of=N/A (双省无前史首试; per 654 §1.654-A.1). 三态均合法 (任务书明文): 双 REACHABLE → 16 INSERT ROWS 正常落 + 2 NEW SHA; 混合 → 按省实报; 双 BLOCKED → 0 INSERT + 三重留痕 (evidence/docs/receipt). Per 650 §0.13: 附属复验/验证产物允许独立文件, 但主 evidence methodology 必须含指针. 代换行 source_registry province/source_name 一律用 actual_province (per 649 P3-1). Per 654 §0.14: 首试省 BLOCKED_NO_POOL 留痕 e2e 验证 (沿用 653 §0.14 模板, docs/77 §5.2 + 654 §0.14 复试). 递补池 [EXHAUSTED] 沿用 653. 本次双样本结果: REACHABLE×0 / BLOCKED_NO_POOL×2."
+}
