@@ -37,14 +37,14 @@
 | 9 | HUN (湖南) | 649 | REACHABLE | 华中补位 |
 | 10 | HUBEI (湖北) | 649 | REACHABLE | 华中补位 〔658-A.2 P3-1 补行：原表缺行〕|
 | 11 | AH (安徽) | 650 | REACHABLE | 华东补位 |
-| 12 | LN (辽宁) | 651 | REACHABLE | 东北首省 |
-| 13 | JL (吉林) | 651 | REACHABLE | 东北补位 |
-| 14 | GUIZHOU (贵州) | 651 | REACHABLE | 西南补位 |
-| 15 | JIANGSU (江苏) | 652 | REACHABLE | 华东首省 |
-| 16 | SHAANXI (陕西) | 654 | REACHABLE | 西北首省 〔658-A.2 P3-1 核刀号：原表为 654 R, 审计基线同〕|
-| 17 | SICHUAN (四川) | 654 | REACHABLE | 西南补位 〔658-A.2 P3-1 核刀号：原表为 654 R, 审计基线同〕|
-| 18 | XINJIANG (新疆) | 655 | REACHABLE | 西北补位 〔658-A.2 P3-1 核刀号〕|
-| 19 | NEI MENGGU (内蒙古) | 655 | REACHABLE | 华北补位 〔658-A.2 P3-1 核刀号〕|
+| 12 | LN (辽宁) | 649 | REACHABLE | 东北首省 〔659-B P3-2 终修：原 651，链 SHA 实证 `936640d` "hubei/jilin + substitute 池首次激活(liaoning)" — LN 为 649 跨省 substitute〕|
+| 13 | JL (吉林) | 649 | REACHABLE | 东北补位 〔659-B P3-2 终修：原 651，链 SHA 实证 `936640d` "hubei/jilin + substitute 池首次激活(liaoning)" — JL 为 649 直接样本〕|
+| 14 | GUIZHOU (贵州) | 650 | REACHABLE | 西南补位 〔659-B P3-2 终修：原 651，链 SHA 实证 `fce3153` "guizhou/jiangsu 第 13/14 样本" — GUIZHOU 首试 REACHABLE 为 650〕|
+| 15 | JIANGSU (江苏) | 650 | REACHABLE | 华东首省 〔659-B P3-2 终修：原 652，链 SHA 实证 `fce3153` "guizhou/jiangsu 第 13/14 样本" — JIANGSU 首试 REACHABLE 为 650〕|
+| 16 | SHAANXI (陕西) | 651 | REACHABLE | 西北首省 〔659-B P3-2 终修：原 654，链 SHA 实证 `d13b3229` "M4.14 v8 shaanxi/sichuan 第 15/16 样本"〕|
+| 17 | SICHUAN (四川) | 651 | REACHABLE | 西南补位 〔659-B P3-2 终修：原 654，链 SHA 实证 `d13b3229` "M4.14 v8 shaanxi/sichuan 第 15/16 样本"〕|
+| 18 | XINJIANG (新疆) | 652 | REACHABLE | 西北补位 〔659-B P3-2 终修：原 655，链 SHA 实证 `04721b7` "M4.15 v9 xinjiang/nei_menggu 第 17/18 样本"〕|
+| 19 | NEI MENGGU (内蒙古) | 652 | REACHABLE | 华北补位 〔659-B P3-2 终修：原 655，链 SHA 实证 `04721b7` "M4.15 v9 xinjiang/nei_menggu 第 17/18 样本"〕|
 | 20 | XIZANG (西藏) | 655 | REACHABLE | 西部收官 〔658-A.2 P3-1 去重复：原 TIBET 行冗余〕|
 | 21 | HAINAN (海南) | 656 | REACHABLE | 华南收官 |
 | 22 | GUANGXI (广西) | 656 | BLOCKED_NO_POOL | SSL `error:1404B458` ×2 第四例首见; 留痕不代换 |
@@ -118,9 +118,9 @@ HEBEI / SHANXI 均无前史（per 657 §1.657）→ retry_of=N/A 全行；line J
 
 | # | 失败形式 | 首次落定刀 | 备注 |
 |---:|---|---|---|
-| 1 | SSL handshake failure (`error:1404B410:SSL routines`) | 653 | LIAONING/JILIN/GUIZHOU 第 1 步 `/zwgk/` |
-| 2 | Connection reset by peer | 654 | SHAANXI/SICHUAN 第 1 步 `/zwgk/` |
-| 3 | 405 Method Not Allowed + WAF marker | 655 | XINJIANG/NEI MENGGU 第 1 步 `/zwgk/` |
+| 1 | SSL handshake failure (`error:1404B410:SSL routines`) | 653 | **shandong** 第 1 步 `/zwgk/` 〔659-B P3-2 终修：原"LIAONING/JILIN/GUIZHOU"，链 SHA 实证 `52a1ad7` "M4.16 v10 shandong+hubei 双复试" — 653 首见样本为 shandong；align docs/80 §5.1〕 |
+| 2 | Connection reset by peer | 654 | **qinghai** 第 1 步 `/zwgk/` 〔659-B P3-2 终修：原"SHAANXI/SICHUAN"，链 SHA 实证 `c3387f0` "M4.17 v11 gansu+qinghai" — 654 首见样本为 qinghai；align docs/80 §5.1；删"654=SHAANXI/SICHUAN"矛盾〕 |
+| 3 | 405 Method Not Allowed + WAF marker | 655 | **ningxia** 第 1 步 `/zwgk/` 〔659-B P3-2 终修：原"XINJIANG/NEI MENGGU"，链 SHA 实证 `86314f9c` "M4.18 v12 ningxia+xizang" — 655 首见样本为 ningxia；align docs/80 §5.1〕 |
 | 4 | SSL `error:1404B458:ST_CONNECT:tlsv1 unrecognized name` | 656 | GUANGXI 第 1+2 步 全失败 |
 
 **657 主 spike 新增 = 0 例**（HEBEI /zwgk/ Connection reset 走 fallback 命中 / SHANXI /zwgk/ 404 走 fallback 命中；不计入失败形式库首见）。
