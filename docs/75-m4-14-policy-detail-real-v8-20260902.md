@@ -279,6 +279,12 @@ Per 649 §4.4 + 650 增量 + **651 收官 + 红线 14 增补** substitute 状态
 
 **O1 仍 OPEN** — B路 live-candidate 仅登记, 不切换/启用; 等用户/架构师裁定。
 
+> **[per 652-A.0 P4×2 规范固化 / 2026-09-02]:** 651 审计定案 PASS（有限通过）+ 2×P4 教训沉淀:
+> - **P4-1** — rev88 §CURRENT status 行 pin 中间 SHA `eb6b012`（vs 终态 HEAD=`8ae20de`），陈旧；**规范固化**: status/§CURRENT/§NOW 措辞**不 pin 中间 SHA**, 仅以"三 ref 全等 + 最终 HEAD"表述（commit 末尾 ref 即可; 中间 SHA 一律不入 status 文本）。同类: 649 P4 自指陈旧模式的轻量复发。
+> - **P4-2** — cc_head 链错录 amend 孤儿 SHA `ea64640`（`git log NOT_IN_HISTORY`; 与真实 `eb6b012` 同信息差 9 秒, 是 amend 前的占位 commit, 已 `git commit --amend` 替换）。**规范固化**: cc_head 链 SHA 一律 `git log --format=%H -n <n>` 实测, 严禁凭"应该会变成"推理; receipt-backfill 阶段的 amend 操作必须**先 amend 完成后再写链文本**（或先 `git log` 取 SHA 再 amend）。
+> - **O-1 预测命中**: 审验端复跑后 m2 crosscheck 报告 4+/4- churn → `git checkout HEAD -- docs/reports/m2_2024_gdp_crosscheck_20260831.md` 即还原（持续观察第 2 次命中）; 加固建议仍开放: crosscheck 测试 tmpdir isolation。
+> - **O-2 未复发**: 650 幽灵并发 flake 本刀未复发（任务书集合首跑 144 全绿），关闭观察。
+
 ---
 
 — End 75 — M4.14 v8 真实化 spike 审查 20260902 —

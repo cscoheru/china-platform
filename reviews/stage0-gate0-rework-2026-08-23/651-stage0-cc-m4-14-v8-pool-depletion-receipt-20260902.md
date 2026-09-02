@@ -165,6 +165,12 @@ CC 执行 651 完成 (per 任务书 §A.0/A.1/A.2/A.3/A.4 + §B)。当前态: **
 - ✓ 已用省全集 (按 actual_province 口径): HLJ / HENAN / YUNNAN / FUJIAN / GD / ZJ / JX / HUN / AH / HUBEI / JILIN / LIAONING / GUIZHOU / JIANGSU / **SHAANXI / SICHUAN** = 16 省 (per 红线 20)
 - ✓ **红线 14 增补 (递补池耗尽条款, 2026-09-02 立)**: SUBSTITUTE_POOL=[] + SUBSTITUTE_POOL_STATUS="EXHAUSTED" + BLOCKED_NO_POOL 留痕不代换 + 5 原始候选全部 consumed + 红线 14 生效 (per 任务书 §0.14 + docs/75 §2.2/§2.3/§5)
 
+> **[per 652-A.0 P4×2 规范固化 / 2026-09-02]:** 651 审计定案 PASS（有限通过）+ 2×P4 教训沉淀（详见 docs/75 §6 末尾补):
+> - **P4-1** — status/§CURRENT/§NOW **不 pin 中间 SHA**; 仅"三 ref 全等 + 最终 HEAD"表述
+> - **P4-2** — cc_head 链 SHA 一律 `git log` 实测; amend 操作必须**先 amend 完成再写链文本**（或先取 SHA 再 amend），禁止凭推理
+> - **O-1 预测命中**: m2 复跑污染第 2 次命中, `git checkout` 即还原 (加固开放)
+> - **O-2 未复发**: 关闭观察
+
 ---
 
 ## §CHAIN_MAPPING
