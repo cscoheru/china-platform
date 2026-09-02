@@ -284,4 +284,19 @@ Per 649 §4.4 + 650 增量 + 651 收官 + **652 沿用 [EXHAUSTED]** substitute 
 
 ---
 
+### §6.1 653-A.0 P4-A.0 规范 v2 落地 (per 652 审计 P4-1 处置; 2026-09-02 立; 653 沿用)
+
+**审计 P4 发现** (rev90 status 行第三型自指陈旧复发): 652 §CURRENT status 行 pin 中间 SHA `04721b7` 为"终态 HEAD"且"待 §C-5 双推复核"字样在 0a3d284 复核通过后未清除——与执行端本刀自己固化的 P4-1 规则（docs/75:283"中间 SHA 一律不入 status 文本"）直接冲突。
+
+**653-A.0 规范 v2**（本节落地）:
+- **status 收口与 §NOW 刷新同 commit 原子完成**：status 行任何"待复核 / 待 §C-x / 待 X"陈旧字样在复核通过后**必须立即清除**（与 §NOW 收口 commit 同一次提交，不允许 §NOW 收口后再留 status pin）。
+- **status 文本如需引 HEAD 一律 `git log -1` 实测终态**（或省略 SHA 仅写"三 ref 全等"）；严禁 pin 中间 SHA 为"终态"。
+- **沿用 652-A.0 P4-2 amend-first 规则**（先 amend 完成再写链文本；cc_head 链 SHA 一律 `git log --format=%H -n <n>` 实测）。
+
+**653-C 执行节奏**（per 653 tasking §1.653-C）: rev92 §NOW 刷新 commit 内**同时**完成 status 行收口 + §NOW 收口 + "待复核"字样清除（一次原子提交），不再分两 commit。
+
+— End §6.1 tailnote —
+
+---
+
 — End 76 — M4.15 v9 真实化 spike 审查 20260902 —
