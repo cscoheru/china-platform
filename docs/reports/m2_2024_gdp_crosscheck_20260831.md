@@ -7,7 +7,7 @@
 | source | scope | value (亿元) | caveat |
 | --- | --- | --- | --- |
 | A: 国家统计局 2024 公报 (NBS NATIONAL_BULLETIN) | COUNTRY | 1,349,084.0 | observation SUCCESS, missing_reason IS NULL |
-| B: Sum of 5 province observations (level=PROVINCE) | PROVINCE×5 | 327,045.6 | weak sum (only 13.5% of provinces covered) |
+| B: Sum of 5 province observations (level=PROVINCE) | PROVINCE×5 | 327,045.6 | weak sum (only 14.7% of provinces covered) |
 
 ## 2. Per-province breakdown
 
@@ -24,16 +24,16 @@
 | check | verdict | metric | threshold | reason |
 | --- | --- | --- | --- | --- |
 | absolute relative diff (sum vs national) | QUARANTINED | 75.7580% | <0.5% | sum=327,045.6; national=1,349,084.0 |
-| coverage-implied plausibility | PASS | sum_ratio=0.2424 | ≥ coverage_ratio×0.5 = 0.0676 | sum/national=0.2424 ≥ coverage_ratio×0.5=0.0676 (coverage=5/37) |
+| coverage-implied plausibility | PASS | sum_ratio=0.2424 | ≥ coverage_ratio×0.5 = 0.0735 | sum/national=0.2424 ≥ coverage_ratio×0.5=0.0735 (coverage=5/34) |
 
 ## 4. Top-level verdict: **QUARANTINED-WEAK**
 
-> relative diff 75.76% > ±0.5%; method limitation: only 5/37 provinces covered, sum_ratio=0.2424 (expected <1.0); see docs/54 §08b for weak-crosscheck protocol.
+> relative diff 75.76% > ±0.5%; method limitation: only 5/34 provinces covered, sum_ratio=0.2424 (expected <1.0); see docs/54 §08b for weak-crosscheck protocol.
 
 ## 5. Method limitations
 
 - Knife 635 §1.D: '无国家分省表时：用「31 省库内加总 vs 国家 GDP」作 弱核对'. 本 crosscheck is therefore WEAK by design.
-- 当前覆盖 5/37 省级 (13.5%); 覆盖率 < 100% 时 sum_ratio 期望 < 1.0 (差距 = 未覆盖省合计).
+- 当前覆盖 5/34 省级 (14.7%); 覆盖率 < 100% 时 sum_ratio 期望 < 1.0 (差距 = 未覆盖省合计).
 - 31 省全 COVERED 后, 此 crosscheck 自动升级为 STRONG (±0.5% 阈值).
 - 本脚本不修改 observation.value; verdict 是 read-only 报告.
 

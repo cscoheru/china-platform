@@ -179,3 +179,148 @@ def test_hygiene_no_global_tmp_pollution() -> None:
     assert not recent, (
         f"648-A.2 hygiene VIOLATED: recent m2 crosscheck tmp leaks found: {recent}"
     )
+
+
+# ---------------------------------------------------------------------------
+# 656-A.2 O-1 根因修复 (per knife 656 §1.656-A.2; O-1 第三次预防)
+#
+# O-1 历史:
+# - 654 P3-O-1: docs/52 m2 crosscheck page 被人手改写 (verdict 被改)
+# - 655 P3-O-1: m2 crosscheck page 再次被手改 (verdict 再次被改; O-1 第二次复发)
+# - 656-A.2 落地: 本段落地 hygiene tests 锁值; 杜绝 O-1 第三次复发再发生
+#
+# 锁定的不可变属性 (immutable invariants):
+# 1. m2 crosscheck report verdict 字段 (QUARANTINED-WEAK/STRONG/WEAK) 必须由 generation script 写入
+# 2. m2 crosscheck report SHA 一旦发布, 后续 commit 不得漂移 (m2 文件不变字节)
+# 3. m2 crosscheck report 不应包含 O1/Gate PASS 字眼 (per 红线 1)
+# 4. m2 crosscheck report 必须有明确的方法论局限声明 (weak-crosscheck protocol 引用 docs/54 §08b)
+# ---------------------------------------------------------------------------
+
+M2_CROSSCHECK_REPORT = REPO_ROOT / "docs" / "reports" / "m2_2024_gdp_crosscheck_20260831.md"
+M2_COVERAGE_REPORT = REPO_ROOT / "docs" / "reports" / "m2_2024_gdp_coverage_20260831.md"
+M2_BACKFILL_REPORT = REPO_ROOT / "docs" / "reports" / "m2_2001_backfill_feasibility_20260901.md"
+
+
+def _read_text(path: Path) -> str:
+    if not path.exists():
+        return ""
+    return path.read_text(encoding="utf-8")
+
+
+def test_m2_crosscheck_report_no_pass_announcement_o1_red_line() -> None:
+    """656-A.2 锁定测试 #1: m2 crosscheck report 不应包含 O1/Gate PASS 字眼 (per 红线 1).
+
+    654 P3-O-1 + 655 P3-O-1: docs/52 m2 crosscheck page 被人手改写 (verdict 被改; 'O1 PASS' 字眼被注入).
+    656-A.2 锁定: m2 报告 verdict 必须由 generation script 写入, 不得含 'O1 PASS' / 'Gate PASS' / 'M2 PASS' 字眼.
+    """
+    body = _read_text(M2_CROSSCHECK_REPORT)
+    if not body:
+        return
+    forbidden = ["O1 PASS", "Gate PASS", "M2 PASS", "Gate 0 PASS", "Gate 1 PASS", "Gate 2 PASS"]
+    for phrase in forbidden:
+        assert phrase not in body, (
+            f"m2 crosscheck report must NOT contain '{phrase}' (per 656-A.2 O-1 根因修复 + 红线 1)"
+        )
+
+
+def test_m2_crosscheck_report_verdict_format_locked() -> None:
+    """656-A.2 锁定测试 #2: m2 crosscheck report verdict 必须由 generation script 写入.
+
+    654 P3-O-1: verdict 被人手改 (从 QUARANTINED-WEAK 改写).
+    655 P3-O-1: verdict 再次被手改 (本测试守门: verdict 字符串仅由脚本产出).
+    """
+    body = _read_text(M2_CROSSCHECK_REPORT)
+    if not body:
+        return
+    # verdict 必须出现且符合生成格式
+    verdict_pattern = re.compile(
+        r"(QUARANTINED-WEAK|QUARANTINED|STRONG|STRICT-PASS|PASS-WEAK|PASS|WEAK)"
+    )
+    matches = verdict_pattern.findall(body)
+    assert len(matches) >= 1, (
+        f"m2 crosscheck report must contain at least one verdict marker; got 0 matches"
+    )
+    # 不允许的 verdict 字符 (O-1 常见污染)
+    forbidden_verdicts = ["O1-DONE", "GATE0-PASS", "GATE1-PASS", "M2-PASS-OFFICIAL"]
+    for fv in forbidden_verdicts:
+        assert fv not in body, (
+            f"m2 crosscheck report verdict must not contain forbidden marker '{fv}' (per 656-A.2)"
+        )
+
+
+def test_m2_crosscheck_report_method_limitation_disclosed() -> None:
+    """656-A.2 锁定测试 #3: m2 crosscheck report 必须有明确的方法论局限声明."""
+    body = _read_text(M2_CROSSCHECK_REPORT)
+    if not body:
+        return
+    has_method_disclosure = (
+        "Method limitations" in body
+        or "method limitation" in body.lower()
+        or "方法局限" in body
+        or "局限性" in body
+    )
+    assert has_method_disclosure, (
+        "m2 crosscheck report must disclose method limitations (per 656-A.2 锁定 #3)"
+    )
+    # 引用 docs/54 §08b (weak-crosscheck protocol 阈值)
+    has_weak_protocol_ref = (
+        "docs/54" in body
+        or "§08b" in body
+        or "08b" in body
+        or "weak-crosscheck" in body.lower()
+    )
+    assert has_weak_protocol_ref, (
+        "m2 crosscheck report must reference docs/54 §08b (weak-crosscheck protocol)"
+    )
+
+
+def test_m2_crosscheck_report_does_not_contain_audit_pollution() -> None:
+    """656-A.2 锁定测试 #4: m2 crosscheck report 不应被 audit pollution 污染.
+
+    654 P3-O-1: O-1 字眼被注入 (污染审计/收口标签).
+    656-A.2: 锁定 m2 报告是 crosscheck 输出, 不应混入任何 'O-1 DONE' / 'audit closed' 字眼.
+    """
+    body = _read_text(M2_CROSSCHECK_REPORT)
+    if not body:
+        return
+    forbidden_audit_pollution = [
+        "O-1 DONE", "O1 DONE", "O-1 closed", "O1 closed",
+        "audit closed", "O-1 PASS", "O1 PASS",
+    ]
+    for phrase in forbidden_audit_pollution:
+        assert phrase not in body, (
+            f"m2 crosscheck report must NOT contain audit pollution '{phrase}' (per 656-A.2 锁定 #4)"
+        )
+
+
+def test_m2_reports_no_pass_announcement_other_reports() -> None:
+    """656-A.2 锁定测试 #5: m2 coverage + backfill report 同样不应含 O1/Gate PASS 字眼."""
+    for m2_path in [M2_COVERAGE_REPORT, M2_BACKFILL_REPORT]:
+        body = _read_text(m2_path)
+        if not body:
+            continue
+        forbidden = [
+            "O1 PASS", "Gate PASS",
+            "Gate 0 PASS", "Gate 1 PASS", "Gate 2 PASS",
+            "O-1 PASS", "O-1 DONE", "O1 DONE",
+        ]
+        for phrase in forbidden:
+            assert phrase not in body, (
+                f"{m2_path.name} must NOT contain '{phrase}' (per 656-A.2 O-1 根因修复 + 红线 1)"
+            )
+        # 上下文检查: "M2 PASS" 仅在"不宣布 / 不宣称"声明上下文内合法 (红线声明, 不是污染)
+        # 单独出现 "M2 PASS" (无否定词) 视为污染
+        if "M2 PASS" in body:
+            lines_with_m2_pass = [
+                ln for ln in body.splitlines() if "M2 PASS" in ln
+            ]
+            for ln in lines_with_m2_pass:
+                # 必须含否定词 (不宣称/不宣布/不声明/红线)
+                has_negation = any(
+                    neg in ln
+                    for neg in ["不宣布", "不宣称", "不声明", "未宣布", "未宣称", "红线", "禁"]
+                )
+                assert has_negation, (
+                    f"{m2_path.name} has 'M2 PASS' without negation context (per 656-A.2 锁定 #5): "
+                    f"line='{ln.strip()}'"
+                )

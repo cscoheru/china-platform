@@ -1,0 +1,137 @@
+{
+  "knife": "656-A.1",
+  "purpose": "M4.19 政策详情 v13 华南双省对 spike (guangxi + hainan 第 25/26 样本; 双首试省 per 656 §0.14 沿用 655 §0.14; 真网首试 BLOCKED_NO_POOL 留痕概率; lineage 全 retry_of=N/A)",
+  "chain_id": "real_656_m4_19_policy_detail_v13",
+  "uuid_prefix": "o",
+  "uuid_prefixes": {
+    "source_registry": "o0eebc99",
+    "source_document": "o0eebc99",
+    "policy_document": "o1eebc99",
+    "policy_target": "o2eebc99",
+    "policy_measure": "o3eebc99",
+    "government_commitment": "o4eebc99",
+    "commitment_progress": "o5eebc99",
+    "project_event": "o6eebc99"
+  },
+  "summary": {
+    "fetch_status": "PARTIAL_BLOCKED",
+    "fetched_count": 1,
+    "blocked_no_pool_count": 1,
+    "http_count": 3,
+    "http_limit": 12,
+    "substitute_used_count": 0,
+    "substitute_pool_status": "EXHAUSTED",
+    "distinct_shas": [
+      "83a13d1810fab068dd84403684253e459f348e18147450374447e34190087938"
+    ],
+    "retry_of_annotation": {
+      "guangxi": "retry_of=N/A (无前史首试; per 656 §0.14)",
+      "hainan": "retry_of=N/A (无前史首试; per 656 §0.14)"
+    }
+  },
+  "cells": [
+    {
+      "province": "guangxi",
+      "actual_province": null,
+      "fetched_url": null,
+      "chain_index": -1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.gxzf.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 0,
+          "reason": "LibreSSL/3.3.6: error:1404B458:SSL routines:ST_CONNECT:tlsv1 unrecognized name",
+          "body_size_bytes": 0,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "guangxi"
+        },
+        {
+          "url": "https://www.gxzf.gov.cn/",
+          "label": "province_root",
+          "http_code": 0,
+          "reason": "LibreSSL/3.3.6: error:1404B458:SSL routines:ST_CONNECT:tlsv1 unrecognized name",
+          "body_size_bytes": 0,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "guangxi"
+        }
+      ],
+      "file_hash_sha256": "",
+      "file_size_bytes": 0,
+      "http_code": 0,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "verdict": "BLOCKED_NO_POOL",
+      "substitute_used": false,
+      "blocked_reason": "首试省 guangxi 两级 fallback 均未 REACHABLE (zwgk_root=0; province_root=0); per 656 §0.14 红线 14 增补 (沿用 655): 递补池正式耗尽 [EXHAUSTED], 无池可代换, 留痕不代换 (BLOCKED_NO_POOL 留痕首试省真网触发, per 656 §0.14). lineage retry_of=N/A (无前史首试省; per 656 §1.656-A.1).",
+      "retry_of": "retry_of=N/A (无前史首试; per 656 §0.14)"
+    },
+    {
+      "province": "hainan",
+      "actual_province": "hainan",
+      "fetched_url": "https://www.hainan.gov.cn/zwgk/",
+      "chain_index": 0,
+      "fallback_chain_used": [
+        "zwgk_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.hainan.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 30150,
+          "anchor_hits_count": 89,
+          "waf_marker_present": false,
+          "attempt_province": "hainan"
+        }
+      ],
+      "file_hash_sha256": "83a13d1810fab068dd84403684253e459f348e18147450374447e34190087938",
+      "file_size_bytes": 30150,
+      "http_code": 200,
+      "anchor_hits_count": 89,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false,
+      "retry_of": "retry_of=N/A (无前史首试; per 656 §0.14)"
+    }
+  ],
+  "fetch_log": [
+    {
+      "url": "https://www.gxzf.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 0,
+      "reason": "LibreSSL/3.3.6: error:1404B458:SSL routines:ST_CONNECT:tlsv1 unrecognized name",
+      "body_size_bytes": 0,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "guangxi"
+    },
+    {
+      "url": "https://www.gxzf.gov.cn/",
+      "label": "province_root",
+      "http_code": 0,
+      "reason": "LibreSSL/3.3.6: error:1404B458:SSL routines:ST_CONNECT:tlsv1 unrecognized name",
+      "body_size_bytes": 0,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "guangxi"
+    },
+    {
+      "url": "https://www.hainan.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 30150,
+      "anchor_hits_count": 89,
+      "waf_marker_present": false,
+      "attempt_province": "hainan"
+    }
+  ],
+  "methodology": "v13 华南双省对 spike fetch: 2 cells (guangxi + hainan 第 25/26 样本; 双首试省 per 656 §0.14 沿用 655 §0.14). GUANGXI 首选 https://www.gxzf.gov.cn/zwgk/ + fallback #1 https://www.gxzf.gov.cn/; HAINAN 首选 https://www.hainan.gov.cn/zwgk/ + fallback #1 https://www.hainan.gov.cn/. 递补池 (SUBSTITUTE_POOL) 显式 [EXHAUSTED] (per 656 §0.14 红线 14 增补沿用 655 §0.14); 两级 fallback 全失败 → BLOCKED_NO_POOL 留痕, 不跨省代换. 每 cell ≤2 attempts, 总预算 ≤12 HTTP. lineage retry_of=N/A (双省无前史首试; per 656 §1.656-A.1). 三态均合法 (任务书明文): 双 REACHABLE → 16 INSERT ROWS 正常落 + 2 NEW SHA; 混合 → 按省实报; 双 BLOCKED → 0 INSERT + 三重留痕 (evidence/docs/receipt). Per 650 §0.13: 附属复验/验证产物允许独立文件, 但主 evidence methodology 必须含指针. 代换行 source_registry province/source_name 一律用 actual_province (per 649 P3-1). Per 656 §0.14: 首试省 BLOCKED_NO_POOL 留痕 e2e 验证 (沿用 655 §0.14 模板, docs/79 §5.2 + 656 §0.14 复试). 递补池 [EXHAUSTED] 沿用 655. 华南双省对落定: GUANGXI + HAINAN (留 HEBEI/SHANXI 给 657 全国 31 省收官). 本次双样本结果: REACHABLE×1 / BLOCKED_NO_POOL×1."
+}
