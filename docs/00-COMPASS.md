@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | M4.x/M5/M6 spike 链（638-649 十二刀交付；**649 审计 PASS·有限通过**） |
-| NOW | **650** M4.13 v7（guizhou+jiangsu）+ P3-1 蓝图更正 |
+| 阶段 | M4.x/M5/M6 spike 链（638-650 十三刀交付；**650 审计 PASS·有限通过**） |
+| NOW | **651** M4.14 v8（shaanxi+sichuan）递补池收官 |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-650：M4.13 v7——**guizhou + jiangsu** 第 13/14 样本 16 INSERT（chain_id `real_650_m4_13_policy_detail_v7`；UUID **i 段**；已用省〔actual 口径〕HLJ/HENAN/YUNNAN/FUJIAN/GD/ZJ/JX/HUN/AH/LN/JL 不重复；递补池 shaanxi→sichuan）+ **P3-1 蓝图更正**（seed_m4_12 代换行 province/name → LIAONING/辽宁省…+尾注）+ 规范固化：代换行 registry 标注 = actual_province。O1 零动作；backfill 三齐 + rev header 同步。任务书 `650-stage0-architect-m4-13-v7-substitute-labeling-tasking-20260901.md`。
+651：M4.14 v8 递补池收官——**shaanxi + sichuan** 第 15/16 样本 16 INSERT（chain_id `real_651_m4_14_policy_detail_v8`；UUID **j 段**；已用省〔actual 口径〕16 省封顶；**本刀后递补池耗尽 → 红线 14：两级 BLOCKED 一律留痕不代换**）+ 650 审计 P4×2 更正（docs/74 typo + 口径尾注）。O1 零动作；≥126 green；单文件模式：任务书 = `650-audit-651-tasking-consolidated-20260902.md` PART 2。
 
 ## POINTERS
 
-- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/68`+`docs/73`（649 master）
-- 649 回执 / **649 审计 PASS** / 650 任务书
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev85
+- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/74`（650 master）
+- 650 合并件（审计 PART 1 + **651 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev87
 
 ## 压缩后自检
 
