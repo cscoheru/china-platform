@@ -8,19 +8,40 @@
 //   - USE_MOCK semantics flipped: NEXT_PUBLIC_USE_MOCK === "true" 才 mock
 //   - Default is false (real data from FastAPI / mart), env switch is fallback
 //   - mock 模块文件保留 (S1.18 历史资产 + 回退通道)
+//
+// Per knife 660 tasking §PART 2 (Track B 静态导出):
+//   - 当 NEXT_PUBLIC_MART_DATA_PATH 被设置,listIndicators() 不再 call FastAPI,
+//     改为从静态 JSON 文件构造 IndicatorListResponse (per mart data)。
+//   - 此时 API_BASE 仍然保留(供 indicatorSeries 等其他 endpoint 兜底),
+//     但 listIndicators 走静态路径,newvps 上不需要 FastAPI backend。
 
 import type { IndicatorListResponse, IndicatorSeriesResponse } from "./types";
 import { MOCK_INDICATOR_LIST, MOCK_JIANGSU_GDP_SERIES } from "./mock";
+import {
+  isStaticMartDataEnabled,
+  loadStaticMartData,
+  type MartProvinceGdp2024,
+} from "./mart-static";
 
 const USE_MOCK =
   process.env.NEXT_PUBLIC_USE_MOCK === "true"; // default false (real data); set to "true" for mock fallback
 // City mart-shape demo pipeline (S2.7-b-full-lite+). Independent of FastAPI mock.
 const USE_MART_FIXTURE = process.env.NEXT_PUBLIC_USE_MART_FIXTURE === "1";
+// Track B (knife 660): 静态导出模式. 当设置 NEXT_PUBLIC_MART_DATA_PATH 时,
+// listIndicators() 直接从 JSON 文件读取 mart 数据(28 省 + 3 缺失),不走 FastAPI。
+// newvps 上不需要 S1.10 FastAPI backend / dbt / DB。
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000";
 
 export async function listIndicators(): Promise<IndicatorListResponse> {
   if (USE_MOCK) {
     return MOCK_INDICATOR_LIST;
+  }
+  if (isStaticMartDataEnabled()) {
+    // Track B 静态导出:从 JSON 构造 synthetic IndicatorListResponse
+    const mart = loadStaticMartData();
+    if (mart) {
+      return indicatorsFromMart(mart);
+    }
   }
   const res = await fetch(`${API_BASE}/api/indicator?page=1&page_size=50`, {
     cache: "no-store",
@@ -59,7 +80,34 @@ export async function indicatorSeries(
   return (await res.json()) as IndicatorSeriesResponse;
 }
 
+/**
+ * Build a synthetic IndicatorListResponse from mart_province_gdp_2024 JSON.
+ * Track B (knife 660): one indicator CHINA-PROVINCE-GDP-2024 covering 28 real
+ * provinces; 3 DATA_MISSING provinces are NOT counted in geo_entity_count
+ * (per red line 1: 禁补零).
+ */
+function indicatorsFromMart(mart: MartProvinceGdp2024): IndicatorListResponse {
+  const realCount = mart.real_count;
+  return {
+    indicators: [
+      {
+        indicator_id: "CHINA-PROVINCE-GDP-2024",
+        geo_entity_count: realCount,
+        observation_count: realCount,
+        latest_period_start: "2024-12-31",
+      },
+    ],
+    pagination: {
+      page: 1,
+      page_size: 50,
+      total_count: 1,
+      has_next: false,
+    },
+  };
+}
+
 // Re-export so callers can introspect which mode is active.
 // Useful for the home page to render a banner.
 export const IS_MOCK_MODE = USE_MOCK;
 export const IS_MART_FIXTURE_MODE = USE_MART_FIXTURE;
+export const IS_STATIC_MART_DATA_MODE = isStaticMartDataEnabled();
