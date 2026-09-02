@@ -1,0 +1,62 @@
+-- ----------------------------------------------------------------------------
+-- 653-A.1 — M4.16 政策详情 v10 双复试 seed SQL (knife 653 M4.16 side, 2026-09-02)
+--
+-- *** 真网首次 BLOCKED_NO_POOL 双触发 (ALL_BLOCKED_NO_POOL) ***
+-- *** 0 INSERT ROWS — 双样本 (shandong + hubei) 均两级 fallback 全失败 ***
+--
+-- 任务书 §1.653-A.1 明文: "任一 BLOCKED → 该省 0 INSERT + evidence BLOCKED cell
+--   (verdict=BLOCKED_NO_POOL + blocked_reason) + 另一省正常落 (INSERT 数按实报并说明)"
+-- 本次双样本均 BLOCKED_NO_POOL → 该省 0 INSERT + 双省合计 0 INSERT ROWS
+-- INSERT 数按实报: 0 INSERT ROWS total (per 红线 14 + 653 §0.14 复试)
+--
+-- 双样本实测:
+--   SHANDONG: /zwgk/ SSL handshake failure + / SSL handshake failure (0/0)
+--   HUBEI:    /zwgk/ 412 + / 412 (412×2)
+-- 双样本均 retry_of 触发:
+--   shandong ← 647 BLOCKED×4 (域名错配+403)
+--   hubei    ← 649 substituted actual=LIAONING (412×2 史)
+--
+-- 653 红线 14 沿用 (per 652 §0.14 增补):
+--   递补池 (SUBSTITUTE_POOL) 显式 [EXHAUSTED]; 两级 fallback 全失败 → BLOCKED_NO_POOL 留痕,
+--   不再跨省代换 (per 651 §0.14 增补; 649 激活 liaoning + 650 备而未触发 + 651 转正 shaanxi/sichuan → 池耗尽)
+--   653 双样本均触发 verdict=BLOCKED_NO_POOL, substitute_used=false, blocked_reason 非空
+--
+-- 653 红线 13 沿用:
+--   不宣称 Gate / O1 / O2 / O3 / M2 / M4.x / M5.x / M6 PASS (沿用红线 1)
+--   代换行标注规范 (per 649 审计 P3-1): source_registry province/source_name 一律用 actual_province (URL 归属省), original_province 仅存 lineage JSONB
+--   已用省全集 (不得重复, 按 actual_province 口径, 18 省): HLJ / HENAN / YUNNAN / FUJIAN / GD / ZJ / JX / HUN / AH / LN / JL / GUIZHOU / JIANGSU / SHAANXI / SICHUAN / XINJIANG / NEI MENGGU; 653 双样本均 BLOCKED → 增量 0 省 (已用省 18 不变; shandong/hubei 留 BLOCKED_NO_POOL 痕迹, actual_province=NULL)
+--   附属复验/验证产物允许独立文件, 但主 evidence summary.methodology 必须含指针
+--
+-- chain_id='real_653_m4_16_policy_detail_v10' (末段 `_v10` ≠ 652 `_v9` ≠ 651 `_v8`)
+-- UUID prefix l 段 (l02-l62) ≠ 652 k 段 (k02-k62) ≠ 651 j 段
+-- 不新写 016 migration (沿用 009+010+014+015 lineage JSONB)
+-- 不修改 source_registry 既有 638-652 行 / mart / 4 fixture
+-- substitute_used_count = 0 (双样本均 BLOCKED; 递补池已耗尽 per 红线 14 沿用 652)
+-- HTTP total = 4/12 (33% usage; shandong 2 + hubei 2)
+-- blocked_no_pool_count = 2 (双样本均触发 BLOCKED_NO_POOL; 真网首次双触发)
+-- ----------------------------------------------------------------------------
+
+-- *** 0 INSERT ROWS - 双样本均 BLOCKED_NO_POOL ***
+-- *** 所有 lineage 信息 (chain_id / retry_of / red_line_14_status) 保留在主 evidence JSON + docs/77 + receipt ***
+-- *** seed 表零 INSERT 是 BLOCKED 留痕的合法形式 (per 653 §1.653-A.1 + 沿用 652 §0.14 红线 14 沿用) ***
+
+-- 若需记录 BLOCKED cell 占位, 可在不写 INSERT 的前提下在 evidence 中落 cell (fetch_log + blocked_reason)
+--   - shandong cell: verdict=BLOCKED_NO_POOL + blocked_reason 完整描述
+--   - hubei cell:    verdict=BLOCKED_NO_POOL + blocked_reason 完整描述
+--   - 主 evidence fetch_log 含 4 条 attempt 记录 (shandong /zwgk/ + / + hubei /zwgk/ + /)
+--   - docs/77 §2 BLOCKED 留痕登记表 含双样本实测 + blocked_reason 全量
+
+-- ----------------------------------------------------------------------------
+-- End 653-A.1 seed SQL
+-- 0 INSERT total (双样本均 BLOCKED_NO_POOL 真网首次双触发)
+-- chain_id=real_653_m4_16_policy_detail_v10
+-- UUID l 段 (l02-l62) ≠ 652 k 段 ≠ 651 j 段 ≠ 650 i 段
+-- 双样本 BLOCKED: shandong (SSL handshake failure 0/0) + hubei (412×2)
+-- substitute_used_count = 0 (双样本均 BLOCKED; 递补池 [EXHAUSTED] per 红线 14 沿用 652)
+-- blocked_no_pool_count = 2 (双样本均触发; 真网首次双触发 per 653 §0.14 复试)
+-- HTTP total = 4/12 (33% usage; shandong 2 + hubei 2)
+-- 已用省全集不变: 18 省 (HLJ/HENAN/YUNNAN/FUJIAN/GD/ZJ/JX/HUN/AH/LN/JL/GUIZHOU/JIANGSU/SHAANXI/SICHUAN/XINJIANG/NEI MENGGU)
+-- retry_of lineage: shandong ← 647; hubei ← 649 (全行 retry_of 字段, per 653 §1.653-A.1 + 沿用 652 §0.14 红线 14 沿用)
+-- 653 §0.14 BLOCKED_NO_POOL 留痕 e2e 验证: 4 实现位置 (fetch 分支+blocked_reason / evidence BLOCKED cell / docs/77 §2 登记表 / 测试守门) + 5 守门 PASSED (沿用 652 §0.14 模板)
+-- 红线 14 增补落地 (沿用 652): lineage JSONB 字段保留 red_line_14_status='EXHAUSTED' + substitute_pool_note (在 evidence metadata 内)
+-- ----------------------------------------------------------------------------

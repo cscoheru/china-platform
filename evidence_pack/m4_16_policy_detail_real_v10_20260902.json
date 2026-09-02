@@ -1,0 +1,157 @@
+{
+  "knife": "653-A.1",
+  "purpose": "M4.16 政策详情 v10 双复试 spike (shandong + hubei 第 19/20 样本; 双 BLOCKED 史省复试 per 653 §0.14 沿用 652 §0.14; 真网 BLOCKED_NO_POOL 首触发最佳概率; lineage 全 retry_of)",
+  "chain_id": "real_653_m4_16_policy_detail_v10",
+  "uuid_prefix": "l",
+  "uuid_prefixes": {
+    "source_registry": "l0eebc99",
+    "source_document": "l0eebc99",
+    "policy_document": "l1eebc99",
+    "policy_target": "l2eebc99",
+    "policy_measure": "l3eebc99",
+    "government_commitment": "l4eebc99",
+    "commitment_progress": "l5eebc99",
+    "project_event": "l6eebc99"
+  },
+  "summary": {
+    "fetch_status": "ALL_BLOCKED_NO_POOL",
+    "fetched_count": 0,
+    "blocked_no_pool_count": 2,
+    "http_count": 4,
+    "http_limit": 12,
+    "substitute_used_count": 0,
+    "substitute_pool_status": "EXHAUSTED",
+    "distinct_shas": [],
+    "retry_of_annotation": {
+      "shandong": "retry_of=647 (BLOCKED×4: 域名错配+403)",
+      "hubei": "retry_of=649 (412×2 史, 槽被代换 actual=LIAONING)"
+    }
+  },
+  "cells": [
+    {
+      "province": "shandong",
+      "actual_province": null,
+      "fetched_url": null,
+      "chain_index": -1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.shandong.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 0,
+          "reason": "LibreSSL/3.3.6: error:1404B410:SSL routines:ST_CONNECT:sslv3 alert handshake failure",
+          "body_size_bytes": 3142,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "shandong"
+        },
+        {
+          "url": "https://www.shandong.gov.cn/",
+          "label": "province_root",
+          "http_code": 0,
+          "reason": "LibreSSL/3.3.6: error:1404B410:SSL routines:ST_CONNECT:sslv3 alert handshake failure",
+          "body_size_bytes": 3142,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "shandong"
+        }
+      ],
+      "file_hash_sha256": "",
+      "file_size_bytes": 0,
+      "http_code": 0,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "verdict": "BLOCKED_NO_POOL",
+      "substitute_used": false,
+      "blocked_reason": "原试点省 shandong 两级 fallback 均未 REACHABLE (zwgk_root=0; province_root=0); per 653 §0.14 红线 14 增补 (沿用 652): 递补池正式耗尽 [EXHAUSTED], 无池可代换, 留痕不代换 (BLOCKED_NO_POOL 留痕真网首次触发, per 653 §0.14 复试)",
+      "retry_of": "retry_of=647 (BLOCKED×4: 域名错配+403)"
+    },
+    {
+      "province": "hubei",
+      "actual_province": null,
+      "fetched_url": null,
+      "chain_index": -1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.hubei.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 412,
+          "reason": "ok",
+          "body_size_bytes": 3142,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "hubei"
+        },
+        {
+          "url": "https://www.hubei.gov.cn/",
+          "label": "province_root",
+          "http_code": 412,
+          "reason": "ok",
+          "body_size_bytes": 3088,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "hubei"
+        }
+      ],
+      "file_hash_sha256": "",
+      "file_size_bytes": 0,
+      "http_code": 0,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "verdict": "BLOCKED_NO_POOL",
+      "substitute_used": false,
+      "blocked_reason": "原试点省 hubei 两级 fallback 均未 REACHABLE (zwgk_root=412; province_root=412); per 653 §0.14 红线 14 增补 (沿用 652): 递补池正式耗尽 [EXHAUSTED], 无池可代换, 留痕不代换 (BLOCKED_NO_POOL 留痕真网首次触发, per 653 §0.14 复试)",
+      "retry_of": "retry_of=649 (412×2 史, 槽被代换 actual=LIAONING)"
+    }
+  ],
+  "fetch_log": [
+    {
+      "url": "https://www.shandong.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 0,
+      "reason": "LibreSSL/3.3.6: error:1404B410:SSL routines:ST_CONNECT:sslv3 alert handshake failure",
+      "body_size_bytes": 3142,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "shandong"
+    },
+    {
+      "url": "https://www.shandong.gov.cn/",
+      "label": "province_root",
+      "http_code": 0,
+      "reason": "LibreSSL/3.3.6: error:1404B410:SSL routines:ST_CONNECT:sslv3 alert handshake failure",
+      "body_size_bytes": 3142,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "shandong"
+    },
+    {
+      "url": "https://www.hubei.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 412,
+      "reason": "ok",
+      "body_size_bytes": 3142,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "hubei"
+    },
+    {
+      "url": "https://www.hubei.gov.cn/",
+      "label": "province_root",
+      "http_code": 412,
+      "reason": "ok",
+      "body_size_bytes": 3088,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "hubei"
+    }
+  ],
+  "methodology": "v10 双复试 spike fetch: 2 cells (shandong + hubei 第 19/20 样本; 双 BLOCKED 史省复试). SHANDONG 首选 https://www.shandong.gov.cn/zwgk/ + fallback #1 https://www.shandong.gov.cn/ (复试 647 4 连 BLOCKED 史: 域名错配+403); HUBEI 首选 https://www.hubei.gov.cn/zwgk/ + fallback #1 https://www.hubei.gov.cn/ (复试 649 412×2 史: 槽被代换 actual=LIAONING). 递补池 (SUBSTITUTE_POOL) 显式 [EXHAUSTED] (per 653 §0.14 红线 14 增补沿用 652 §0.14); 两级 fallback 全失败 → BLOCKED_NO_POOL 留痕, 不跨省代换. 每 cell ≤2 attempts, 总预算 ≤12 HTTP. lineage 全 retry_of 字段: shandong ← 647 BLOCKED×4; hubei ← 649 substituted actual=LIAONING. 两态均合法 (任务书明文): 双 REACHABLE → 16 INSERT ROWS 正常落; 任一 BLOCKED → 该省 0 INSERT + cell 占位 + blocked_reason + 另一省正常落. Per 650 §0.13: 附属复验/验证产物允许独立文件, 但主 evidence methodology 必须含指针. 代换行 source_registry province/source_name 一律用 actual_province (per 649 P3-1). Per 653 §0.14: 复试 BLOCKED_NO_POOL 留痕 e2e 验证 (沿用 652 §0.14 模板, docs/76 §5.2). 递补池 [EXHAUSTED] 沿用 652. 本次双样本结果: REACHABLE×0 / BLOCKED_NO_POOL×2."
+}
