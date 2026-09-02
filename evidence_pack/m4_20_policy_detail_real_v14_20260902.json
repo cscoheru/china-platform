@@ -1,0 +1,158 @@
+{
+  "knife": "657",
+  "purpose": "M4.20 政策详情 v14 HEBEI+SHANXI 全国 31 省收官 spike (第 27/28 样本; 双首试省 per 657 §0.14 沿用 656 §0.14; 真网首试 BLOCKED_NO_POOL 留痕概率; lineage 全 retry_of=N/A)",
+  "chain_id": "real_657_m4_20_policy_detail_v14",
+  "uuid_prefix": "p",
+  "uuid_prefixes": {
+    "source_registry": "p0eebc99",
+    "source_document": "p0eebc99",
+    "policy_document": "p1eebc99",
+    "policy_target": "p2eebc99",
+    "policy_measure": "p3eebc99",
+    "government_commitment": "p4eebc99",
+    "commitment_progress": "p5eebc99",
+    "project_event": "p6eebc99"
+  },
+  "summary": {
+    "fetch_status": "REAL_FETCHED",
+    "fetched_count": 2,
+    "blocked_no_pool_count": 0,
+    "http_count": 4,
+    "http_limit": 12,
+    "substitute_used_count": 0,
+    "substitute_pool_status": "EXHAUSTED",
+    "distinct_shas": [
+      "29dbf293765405c9d7f3d79ce9a285dab2028a1b80b69c5b3dcd5e1ce2acabb2",
+      "508824f8831b20afb936a149d460b92adeace0219548101e1fd4b1c90e5bf5a7"
+    ],
+    "retry_of_annotation": {
+      "hebei": "retry_of=N/A (无前史首试; per 657 §0.14)",
+      "shanxi": "retry_of=N/A (无前史首试; per 657 §0.14)"
+    }
+  },
+  "cells": [
+    {
+      "province": "hebei",
+      "actual_province": "hebei",
+      "fetched_url": "https://www.hebei.gov.cn/",
+      "chain_index": 1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.hebei.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 0,
+          "reason": "Recv failure: Connection reset by peer",
+          "body_size_bytes": 0,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "hebei"
+        },
+        {
+          "url": "https://www.hebei.gov.cn/",
+          "label": "province_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 204976,
+          "anchor_hits_count": 233,
+          "waf_marker_present": false,
+          "attempt_province": "hebei"
+        }
+      ],
+      "file_hash_sha256": "508824f8831b20afb936a149d460b92adeace0219548101e1fd4b1c90e5bf5a7",
+      "file_size_bytes": 204976,
+      "http_code": 200,
+      "anchor_hits_count": 233,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false,
+      "retry_of": "retry_of=N/A (无前史首试; per 657 §0.14)"
+    },
+    {
+      "province": "shanxi",
+      "actual_province": "shanxi",
+      "fetched_url": "https://www.shanxi.gov.cn/",
+      "chain_index": 1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.shanxi.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 404,
+          "reason": "ok",
+          "body_size_bytes": 146,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "shanxi"
+        },
+        {
+          "url": "https://www.shanxi.gov.cn/",
+          "label": "province_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 229900,
+          "anchor_hits_count": 435,
+          "waf_marker_present": false,
+          "attempt_province": "shanxi"
+        }
+      ],
+      "file_hash_sha256": "29dbf293765405c9d7f3d79ce9a285dab2028a1b80b69c5b3dcd5e1ce2acabb2",
+      "file_size_bytes": 229900,
+      "http_code": 200,
+      "anchor_hits_count": 435,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false,
+      "retry_of": "retry_of=N/A (无前史首试; per 657 §0.14)"
+    }
+  ],
+  "fetch_log": [
+    {
+      "url": "https://www.hebei.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 0,
+      "reason": "Recv failure: Connection reset by peer",
+      "body_size_bytes": 0,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "hebei"
+    },
+    {
+      "url": "https://www.hebei.gov.cn/",
+      "label": "province_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 204976,
+      "anchor_hits_count": 233,
+      "waf_marker_present": false,
+      "attempt_province": "hebei"
+    },
+    {
+      "url": "https://www.shanxi.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 404,
+      "reason": "ok",
+      "body_size_bytes": 146,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "shanxi"
+    },
+    {
+      "url": "https://www.shanxi.gov.cn/",
+      "label": "province_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 229900,
+      "anchor_hits_count": 435,
+      "waf_marker_present": false,
+      "attempt_province": "shanxi"
+    }
+  ],
+  "methodology": "v14 HEBEI+SHANXI 全国 31 省收官 spike fetch: 2 cells (hebei + shanxi 第 27/28 样本; 双首试省 per 657 §0.14 沿用 656 §0.14). HEBEI 首选 https://www.hebei.gov.cn/zwgk/ + fallback #1 https://www.hebei.gov.cn/; SHANXI 首选 https://www.shanxi.gov.cn/zwgk/ + fallback #1 https://www.shanxi.gov.cn/. 递补池 (SUBSTITUTE_POOL) 显式 [EXHAUSTED] (per 657 §0.14 红线 14 增补沿用 656 §0.14); 两级 fallback 全失败 → BLOCKED_NO_POOL 留痕, 不跨省代换. 每 cell ≤2 attempts, 总预算 ≤12 HTTP. lineage retry_of=N/A (双省无前史首试; per 657 §1.657). 三态均合法 (任务书明文): 双 REACHABLE → 16 INSERT ROWS 正常落 + 2 NEW SHA; 混合 → 按省实报; 双 BLOCKED → 0 INSERT + 三重留痕 (evidence/docs/receipt). Per 650 §0.13: 附属复验/验证产物允许独立文件, 但主 evidence methodology 必须含指针. 代换行 source_registry province/source_name 一律用 actual_province (per 649 P3-1). Per 657 §0.14: 首试省 BLOCKED_NO_POOL 留痕 e2e 验证 (沿用 656 §0.14 模板). 递补池 [EXHAUSTED] 沿用 656. 全国 31 省收官刀: HEBEI + SHANXI (留 3 省 TBD 给 658+). 本次双样本结果: REACHABLE×2 / BLOCKED_NO_POOL×0."
+}

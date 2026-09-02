@@ -1,0 +1,300 @@
+{
+  "knife": "657",
+  "spike_id": "657-A",
+  "spike_label": "U6 金丝雀 spike — hongheiku × 5 省 2024 公报 vs M2 库内官方值",
+  "ruling_ref": "U6 (docs/81, commit 1e3ec9d)",
+  "tasking_ref": "657-audit-657-tasking-consolidated-20260902.md §1.657-A",
+  "date": "2026-09-02",
+  "http_used": 12,
+  "http_budget": 10,
+  "http_overrun_reason": "tag-path /tag/{省名} 假设错误（5×404），改走 /category/sjtjgb 列表+直链 /sjtjgb/{id}.html 模式；+2 HTTP 记入 U6 审计",
+  "all_sha_locked": true,
+  "extraction_pattern_note": "GDP+增长原子捕获: GDP亿元.+?比上年增长X%.+?其中 (non-greedy, 允许 figure ref 数字)",
+  "cells": [
+    {
+      "province": "beijing",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57258.html",
+      "sha256": "bac6101cdf9d4666624ed1b8441ec6ba42122d4c8fbcc2e7ddf4308e040a26cc",
+      "bytes": 65017,
+      "extracted": {
+        "gdp_total": 49843.1,
+        "growth": 5.2,
+        "primary": 116.4,
+        "secondary": 7226.8,
+        "tertiary": 42499.9
+      },
+      "m2_official": {
+        "gdp_total": 49843.1,
+        "primary": 116.4,
+        "secondary": 7226.8,
+        "tertiary": 42499.9,
+        "growth": 5.2
+      },
+      "diff": {
+        "gdp_total": {
+          "hongheiku": 49843.1,
+          "m2_official": 49843.1,
+          "delta": 0.0,
+          "match": true
+        },
+        "primary": {
+          "hongheiku": 116.4,
+          "m2_official": 116.4,
+          "delta": 0.0,
+          "match": true
+        },
+        "secondary": {
+          "hongheiku": 7226.8,
+          "m2_official": 7226.8,
+          "delta": 0.0,
+          "match": true
+        },
+        "tertiary": {
+          "hongheiku": 42499.9,
+          "m2_official": 42499.9,
+          "delta": 0.0,
+          "match": true
+        },
+        "growth": {
+          "hongheiku": 5.2,
+          "m2_official": 5.2,
+          "delta": 0.0,
+          "match": true
+        }
+      },
+      "match_count": 5,
+      "field_count": 5
+    },
+    {
+      "province": "shanghai",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57536.html",
+      "sha256": "68d7f2c92f2e88405f3e4ead9e0340a73a2f4c6b05a243501f870979d9387774",
+      "bytes": 66446,
+      "extracted": {
+        "gdp_total": 53926.71,
+        "growth": 5.0,
+        "primary": 99.7,
+        "secondary": 11637.57,
+        "tertiary": 42189.44
+      },
+      "m2_official": {
+        "gdp_total": 53926.71,
+        "primary": 99.7,
+        "secondary": 11637.57,
+        "tertiary": 42189.44,
+        "growth": 5.0
+      },
+      "diff": {
+        "gdp_total": {
+          "hongheiku": 53926.71,
+          "m2_official": 53926.71,
+          "delta": 0.0,
+          "match": true
+        },
+        "primary": {
+          "hongheiku": 99.7,
+          "m2_official": 99.7,
+          "delta": 0.0,
+          "match": true
+        },
+        "secondary": {
+          "hongheiku": 11637.57,
+          "m2_official": 11637.57,
+          "delta": 0.0,
+          "match": true
+        },
+        "tertiary": {
+          "hongheiku": 42189.44,
+          "m2_official": 42189.44,
+          "delta": 0.0,
+          "match": true
+        },
+        "growth": {
+          "hongheiku": 5.0,
+          "m2_official": 5.0,
+          "delta": 0.0,
+          "match": true
+        }
+      },
+      "match_count": 5,
+      "field_count": 5
+    },
+    {
+      "province": "shandong",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57113.html",
+      "sha256": "e52b07cd0561ddb9e0f3ec8ec9c488b504f8579c6c60acba98d756cf262966bd",
+      "bytes": 66226,
+      "extracted": {
+        "gdp_total": 98565.8,
+        "growth": 5.7,
+        "primary": 6616.9,
+        "secondary": 39608.6,
+        "tertiary": 52340.3
+      },
+      "m2_official": {
+        "gdp_total": 98565.8,
+        "primary": 6616.9,
+        "secondary": 39608.6,
+        "tertiary": 52340.3,
+        "growth": 5.7
+      },
+      "diff": {
+        "gdp_total": {
+          "hongheiku": 98565.8,
+          "m2_official": 98565.8,
+          "delta": 0.0,
+          "match": true
+        },
+        "primary": {
+          "hongheiku": 6616.9,
+          "m2_official": 6616.9,
+          "delta": 0.0,
+          "match": true
+        },
+        "secondary": {
+          "hongheiku": 39608.6,
+          "m2_official": 39608.6,
+          "delta": 0.0,
+          "match": true
+        },
+        "tertiary": {
+          "hongheiku": 52340.3,
+          "m2_official": 52340.3,
+          "delta": 0.0,
+          "match": true
+        },
+        "growth": {
+          "hongheiku": 5.7,
+          "m2_official": 5.7,
+          "delta": 0.0,
+          "match": true
+        }
+      },
+      "match_count": 5,
+      "field_count": 5
+    },
+    {
+      "province": "hubei",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57472.html",
+      "sha256": "4c70e3cfa4cfbfd535dc1f93800f5e6e6ede7c1af7be4b82ff1b1453d298ab41",
+      "bytes": 47024,
+      "extracted": {
+        "gdp_total": 60012.97,
+        "growth": 5.8,
+        "primary": 5462.18,
+        "secondary": 21573.76,
+        "tertiary": 32977.03
+      },
+      "m2_official": {
+        "gdp_total": 60012.97,
+        "primary": 5462.18,
+        "secondary": 21573.76,
+        "tertiary": 32977.03,
+        "growth": 5.8
+      },
+      "diff": {
+        "gdp_total": {
+          "hongheiku": 60012.97,
+          "m2_official": 60012.97,
+          "delta": 0.0,
+          "match": true
+        },
+        "primary": {
+          "hongheiku": 5462.18,
+          "m2_official": 5462.18,
+          "delta": 0.0,
+          "match": true
+        },
+        "secondary": {
+          "hongheiku": 21573.76,
+          "m2_official": 21573.76,
+          "delta": 0.0,
+          "match": true
+        },
+        "tertiary": {
+          "hongheiku": 32977.03,
+          "m2_official": 32977.03,
+          "delta": 0.0,
+          "match": true
+        },
+        "growth": {
+          "hongheiku": 5.8,
+          "m2_official": 5.8,
+          "delta": 0.0,
+          "match": true
+        }
+      },
+      "match_count": 5,
+      "field_count": 5
+    },
+    {
+      "province": "sichuan",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57219.html",
+      "sha256": "afce7e744248cc2df01f08a27f0cb4086a31e43faf30f618c9b0117bfbd484a7",
+      "bytes": 66966,
+      "extracted": {
+        "gdp_total": 64697.0,
+        "growth": 5.7,
+        "primary": 5619.9,
+        "secondary": 22816.9,
+        "tertiary": 36260.2
+      },
+      "m2_official": {
+        "gdp_total": 64697.0,
+        "primary": 5619.9,
+        "secondary": 22816.9,
+        "tertiary": 36260.2,
+        "growth": 5.7
+      },
+      "diff": {
+        "gdp_total": {
+          "hongheiku": 64697.0,
+          "m2_official": 64697.0,
+          "delta": 0.0,
+          "match": true
+        },
+        "primary": {
+          "hongheiku": 5619.9,
+          "m2_official": 5619.9,
+          "delta": 0.0,
+          "match": true
+        },
+        "secondary": {
+          "hongheiku": 22816.9,
+          "m2_official": 22816.9,
+          "delta": 0.0,
+          "match": true
+        },
+        "tertiary": {
+          "hongheiku": 36260.2,
+          "m2_official": 36260.2,
+          "delta": 0.0,
+          "match": true
+        },
+        "growth": {
+          "hongheiku": 5.7,
+          "m2_official": 5.7,
+          "delta": 0.0,
+          "match": true
+        }
+      },
+      "match_count": 5,
+      "field_count": 5
+    }
+  ],
+  "overall_verdict": "CANARY_PASS",
+  "implication": "5/5 一致 → 658 批量授权解锁（26 省 + 三次产业）",
+  "red_lines_compliance": {
+    "no_insert_observation": true,
+    "sha_lock_hongheiku_bytes": true,
+    "no_bypass_captcha": true,
+    "docs81_untouched": true,
+    "no_partial_adoption_on_fail": "N/A (PASS, not triggered)"
+  },
+  "lineage_provenance_template": {
+    "source": "hongheiku_tjgb",
+    "origin": "XX省统计局",
+    "ruling": "U6 2026-09-02",
+    "note": "hongheiku 转载字节, 非官方字节; 转载准确性经金丝雀 5/5 一致验证"
+  }
+}
