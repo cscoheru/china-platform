@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | M4.x/M5/M6 spike 链（638-650 十三刀交付；**650 审计 PASS·有限通过**） |
-| NOW | **651** M4.14 v8（shaanxi+sichuan）递补池收官 |
+| 阶段 | M4.x/M5/M6 spike 链（638-651 十四刀交付；**651 审计 PASS·有限通过**） |
+| NOW | **652** M4.15 v9（XINJIANG+NEIMENGGU）BLOCKED_NO_POOL e2e 验证 |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-651：M4.14 v8 递补池收官——**shaanxi + sichuan** 第 15/16 样本 16 INSERT（chain_id `real_651_m4_14_policy_detail_v8`；UUID **j 段**；已用省〔actual 口径〕16 省封顶；**本刀后递补池耗尽 → 红线 14：两级 BLOCKED 一律留痕不代换**）+ 650 审计 P4×2 更正（docs/74 typo + 口径尾注）。O1 零动作；≥126 green；单文件模式：任务书 = `650-audit-651-tasking-consolidated-20260902.md` PART 2。
+652：M4.15 v9 **XINJIANG + NEIMENGGU** 第 17/18 样本（edge-case 高 BLOCK 概率；**BLOCKED_NO_POOL 留痕 e2e 两态验证**——双 BLOCKED→留痕不代换 per 红线 14 / 任一 REACHABLE→正常落；chain_id `real_652_m4_15_policy_detail_v9`；UUID **k 段**；递补池 [EXHAUSTED] 沿用）+ 651 审计 P4×2 规范固化（status 不 pin 中间 SHA；入链 SHA 取 git log 实测）+ docs/76 §1-§6。O1 零动作；≥152 green（底限 ≥145）。单文件模式：任务书 = `651-audit-652-tasking-consolidated-20260902.md` PART 2。
 
 ## POINTERS
 
-- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/74`（650 master）
-- 650 合并件（审计 PART 1 + **651 任务书 PART 2**）
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev87
+- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/75`（651 master）
+- 651 合并件（审计 PART 1 + **652 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev89
 
 ## 压缩后自检
 
