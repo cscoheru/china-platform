@@ -1585,6 +1585,231 @@ def main() -> int:
     if "mart_province_gdp_2024" in home_code2 or "真数据 API" in home_src2:
         ok("app/page.tsx: references mart real data API path (per 659 §1.659-A)")
 
+    # §16 — knife 660 Track B 静态导出 4 守门 (per 660 tasking §PART 2 + docs/85 §6).
+    # Track B = dbt mart SQL → JSON → embedded at build time, 零运行时 FastAPI 依赖.
+    # 4 守门 (per 660 README §守门 + docs/85 §6):
+    #   (a) frontend/data/mart_province_gdp_2024.json 存在 + 31 行 (28 真实 + 3 缺失)
+    #   (b) frontend/lib/mart-static.ts 提供 isStaticMartDataEnabled + getMartProvinceGdp2024
+    #   (c) frontend/lib/api.ts 在 listIndicators 加 Track B 分支 (NEXT_PUBLIC_MART_DATA_PATH)
+    #   (d) frontend/app/page.tsx 渲染 mart section + 31 行 + 3 「数据暂缺」badge
+    #   (e) deploy 包文件齐 (export-mart-data.py + deploy.sh + precheck.sh + README.md)
+    #   (f) Lineage 三重标注 + 红线 1: 缺失省 5 指标列全 NULL (禁补零)
+    #   (g) Mock sentinel 禁词: JIANGSU-GDP-INDICATOR-UUID-MOCK 不在 mart JSON 出现
+    mart_json_path = ROOT / "data" / "mart_province_gdp_2024.json"
+    mart_static_path = ROOT.parent / "lib" / "mart-static.ts"
+    deploy_static_dir = ROOT.parent.parent / "deploy" / "static-export"
+
+    # §16a — mart JSON 存在 + 31 行
+    if not mart_json_path.exists():
+        errors.append(
+            "frontend/data/mart_province_gdp_2024.json missing "
+            "(per 660 tasking §PART 2: 生成 = python3 deploy/static-export/export-mart-data.py --strict)"
+        )
+    else:
+        try:
+            mart_data = json.loads(mart_json_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as e:
+            errors.append(f"mart JSON is not valid JSON: {e}")
+        else:
+            total = mart_data.get("total_count", 0)
+            real = mart_data.get("real_count", 0)
+            missing = mart_data.get("missing_count", 0)
+            if total == 31 and real == 28 and missing == 3:
+                ok(
+                    f"mart JSON: 31 行 (28 真实 + 3 缺失) "
+                    f"(per 660 tasking §PART 2 + README §守门.1)"
+                )
+            else:
+                errors.append(
+                    f"mart JSON counts: total={total} real={real} missing={missing} "
+                    "(expected 31/28/3 per 660 README §守门.1)"
+                )
+            if mart_data.get("lineage_ruling") != "U6 2026-09-02":
+                errors.append(
+                    f"mart JSON lineage_ruling={mart_data.get('lineage_ruling')} "
+                    "(expected 'U6 2026-09-02')"
+                )
+            else:
+                ok("mart JSON: lineage_ruling = 'U6 2026-09-02' (per 660 README §守门.1)")
+            if mart_data.get("lineage_is_demo") != "false":
+                errors.append(
+                    f"mart JSON lineage_is_demo={mart_data.get('lineage_is_demo')} "
+                    "(expected 'false')"
+                )
+            else:
+                ok("mart JSON: lineage_is_demo = 'false' (per 660 README §守门.1)")
+
+    # §16b — lib/mart-static.ts API 表面
+    if not mart_static_path.exists():
+        errors.append(
+            "frontend/lib/mart-static.ts missing (per 660 tasking §PART 2)"
+        )
+    else:
+        ms_src = mart_static_path.read_text(encoding="utf-8")
+        ms_code = re.sub(r"//[^\n]*", "", ms_src)
+        ms_code = re.sub(r"/\*.*?\*/", "", ms_code, flags=re.DOTALL)
+        for needle, label in [
+            ("isStaticMartDataEnabled", "isStaticMartDataEnabled()"),
+            ("getMartProvinceGdp2024", "getMartProvinceGdp2024()"),
+            ("NEXT_PUBLIC_MART_DATA_PATH", "NEXT_PUBLIC_MART_DATA_PATH 读取"),
+            ("MartProvinceGdp2024", "TS 接口 MartProvinceGdp2024"),
+        ]:
+            if needle not in ms_code:
+                errors.append(f"lib/mart-static.ts missing {label} (per 660 §PART 2)")
+        if all(
+            n in ms_code
+            for n in (
+                "isStaticMartDataEnabled",
+                "getMartProvinceGdp2024",
+                "NEXT_PUBLIC_MART_DATA_PATH",
+                "MartProvinceGdp2024",
+            )
+        ):
+            ok(
+                "lib/mart-static.ts: 4 个 API 表面齐 "
+                "(per 660 §PART 2 Track B 静态读取)"
+            )
+
+    # §16c — lib/api.ts 在 listIndicators 加 Track B 分支
+    api_src = (ROOT / "lib/api.ts").read_text(encoding="utf-8")
+    api_code = re.sub(r"//[^\n]*", "", api_src)
+    api_code = re.sub(r"/\*.*?\*/", "", api_code, flags=re.DOTALL)
+    for needle, label in [
+        ("isStaticMartDataEnabled", "import isStaticMartDataEnabled"),
+        ("loadStaticMartData", "Track B 静态 JSON 读取 (loadStaticMartData)"),
+        ("indicatorsFromMart", "synthetic IndicatorListResponse 构造"),
+        ("IS_STATIC_MART_DATA_MODE", "IS_STATIC_MART_DATA_MODE 导出"),
+    ]:
+        if needle not in api_code:
+            errors.append(f"lib/api.ts missing {label} (per 660 §PART 2)")
+    if all(
+        n in api_code
+        for n in (
+            "isStaticMartDataEnabled",
+            "loadStaticMartData",
+            "indicatorsFromMart",
+            "IS_STATIC_MART_DATA_MODE",
+        )
+    ):
+        ok(
+            "lib/api.ts: Track B 分支齐 (import + indicatorsFromMart + IS_STATIC_MART_DATA_MODE) "
+            "(per 660 §PART 2)"
+        )
+
+    # §16d — app/page.tsx mart section 渲染
+    home_src3 = (ROOT / "app/page.tsx").read_text(encoding="utf-8")
+    home_code3 = re.sub(r"//[^\n]*", "", home_src3)
+    home_code3 = re.sub(r"/\*.*?\*/", "", home_code3, flags=re.DOTALL)
+    for needle, label in [
+        ("getMartProvinceGdp2024", "import getMartProvinceGdp2024"),
+        ("province-gdp-2024-heading", "data-testid heading"),
+        ("province-gdp-2024-table", "data-testid table"),
+        ("mart-row-count", "data-testid mart-row-count"),
+        ('province-row-${', "data-testid province-row-{code} 模板"),
+        ('missing-badge-${', "data-testid missing-badge-{code} 模板"),
+        ("数据暂缺（公报源缺文）", "数据暂缺 badge 文案"),
+    ]:
+        if needle not in home_code3:
+            errors.append(f"app/page.tsx missing {label} (per 660 §PART 2 + README §守门.2)")
+    if all(
+        n in home_code3
+        for n in (
+            "getMartProvinceGdp2024",
+            "province-gdp-2024-heading",
+            "province-gdp-2024-table",
+            "mart-row-count",
+            'province-row-${',
+            'missing-badge-${',
+            "数据暂缺（公报源缺文）",
+        )
+    ):
+        ok(
+            "app/page.tsx: mart section 渲染齐 (heading/table/31 rows/3 missing badge) "
+            "(per 660 §PART 2 + README §守门.2)"
+        )
+
+    # §16e — deploy/static-export 包文件齐
+    deploy_files = [
+        ("export-mart-data.py", "架构师端: dbt mart SQL → JSON"),
+        ("deploy.sh", "ops 端: redeploy"),
+        ("precheck.sh", "ops 端: precheck env"),
+        ("README.md", "deploy 包 README"),
+    ]
+    if not deploy_static_dir.exists():
+        errors.append(
+            f"{deploy_static_dir} missing (per 660 tasking §PART 2 + README)"
+        )
+    else:
+        for fname, desc in deploy_files:
+            fpath = deploy_static_dir / fname
+            if not fpath.exists():
+                errors.append(f"deploy/static-export/{fname} missing ({desc})")
+        if all((deploy_static_dir / fname).exists() for fname, _ in deploy_files):
+            ok("deploy/static-export/: 4 文件齐 (per 660 README §这是什么)")
+
+    # §16f — Lineage 三重 + 红线 1: 缺失省 5 指标列全 NULL
+    if mart_json_path.exists():
+        try:
+            mart_data = json.loads(mart_json_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            mart_data = {}
+        missing_provinces = [
+            p
+            for p in mart_data.get("provinces", [])
+            if p.get("status") == "DATA_MISSING"
+        ]
+        if len(missing_provinces) != 3:
+            errors.append(
+                f"mart JSON DATA_MISSING count = {len(missing_provinces)} (expected 3 per 660)"
+            )
+        else:
+            null_cols = ["gdp_total", "gdp_growth", "primary_gdp", "secondary_gdp", "tertiary_gdp"]
+            for p in missing_provinces:
+                for col in null_cols:
+                    if p.get(col) is not None:
+                        errors.append(
+                            f"DATA_MISSING 省 {p.get('province_code')} {col} = "
+                            f"{p.get(col)} (红线 1: 必为 NULL, 禁补零)"
+                        )
+            if all(
+                p.get(col) is None
+                for p in missing_provinces
+                for col in null_cols
+            ):
+                ok(
+                    "DATA_MISSING 3 省: 5 指标列全 NULL (红线 1, 禁补零) "
+                    "(per 660 README §守门.1)"
+                )
+            for p in mart_data.get("provinces", []):
+                if not all(
+                    p.get(k)
+                    for k in ("lineage_source", "lineage_origin", "lineage_ruling")
+                ):
+                    errors.append(
+                        f"省 {p.get('province_code')} lineage 三重标注缺失"
+                    )
+            if all(
+                p.get("lineage_source")
+                and p.get("lineage_origin")
+                and p.get("lineage_ruling")
+                for p in mart_data.get("provinces", [])
+            ):
+                ok("mart JSON: lineage 三重标注全行 (source/origin/ruling) (per 660)")
+
+    # §16g — Mock sentinel 禁词 (JIANGSU-GDP-INDICATOR-UUID-MOCK 不在 mart JSON 出现)
+    if mart_json_path.exists():
+        mart_text = mart_json_path.read_text(encoding="utf-8")
+        if "JIANGSU-GDP-INDICATOR-UUID-MOCK" in mart_text:
+            errors.append(
+                "mart JSON contains JIANGSU-GDP-INDICATOR-UUID-MOCK "
+                "(mock sentinel 不应出现在 mart Track B 数据里)"
+            )
+        else:
+            ok(
+                "mart JSON: 无 JIANGSU mock sentinel "
+                "(per 660 README §守门.2.D)"
+            )
+
     if errors:
         for e in errors:
             fail(e)
@@ -1592,7 +1817,8 @@ def main() -> int:
 
     print(
         "\n=== S2.0.1 + S2.7-a + S2.7-a2 + S2.7-b-lite + S2.7-b-full-lite mart-shape "
-        "+ home nav + M1 验收面 (knife 629 §2 T6) smoke: PASS ==="
+        "+ home nav + M1 验收面 (knife 629 §2 T6) + knife 659 mart flip + "
+        "knife 660 Track B 静态导出 smoke: PASS ==="
     )
     return 0
 
