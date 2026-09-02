@@ -1,0 +1,131 @@
+{
+  "knife": "652-A.1",
+  "purpose": "M4.15 政策详情 v9 真实化 spike (xinjiang + nei_menggu 第 17/18 样本; 强制触发 BLOCKED_NO_POOL 留痕 e2e 验证 per 红线 14 增补沿用 651)",
+  "chain_id": "real_652_m4_15_policy_detail_v9",
+  "uuid_prefix": "k",
+  "uuid_prefixes": {
+    "source_registry": "k0eebc99",
+    "source_document": "k0eebc99",
+    "policy_document": "k1eebc99",
+    "policy_target": "k2eebc99",
+    "policy_measure": "k3eebc99",
+    "government_commitment": "k4eebc99",
+    "commitment_progress": "k5eebc99",
+    "project_event": "k6eebc99"
+  },
+  "summary": {
+    "fetch_status": "REAL_FETCHED",
+    "fetched_count": 2,
+    "blocked_no_pool_count": 0,
+    "http_count": 3,
+    "http_limit": 12,
+    "substitute_used_count": 0,
+    "substitute_pool_status": "EXHAUSTED",
+    "distinct_shas": [
+      "21c8211bf7bf8b41569174e5ae2ae127f8e11439a04a5501209a63506ddca472",
+      "da1d4104db87c47809ef40f12bd8847d98c432bf990b0d7056f0042e6fd0533b"
+    ]
+  },
+  "cells": [
+    {
+      "province": "xinjiang",
+      "actual_province": "xinjiang",
+      "fetched_url": "https://www.xinjiang.gov.cn/",
+      "chain_index": 1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.xinjiang.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 403,
+          "reason": "ok",
+          "body_size_bytes": 146,
+          "anchor_hits_count": 0,
+          "waf_marker_present": true,
+          "attempt_province": "xinjiang"
+        },
+        {
+          "url": "https://www.xinjiang.gov.cn/",
+          "label": "province_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 108841,
+          "anchor_hits_count": 462,
+          "waf_marker_present": false,
+          "attempt_province": "xinjiang"
+        }
+      ],
+      "file_hash_sha256": "21c8211bf7bf8b41569174e5ae2ae127f8e11439a04a5501209a63506ddca472",
+      "file_size_bytes": 108841,
+      "http_code": 200,
+      "anchor_hits_count": 462,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false
+    },
+    {
+      "province": "nei_menggu",
+      "actual_province": "nei_menggu",
+      "fetched_url": "https://www.nmg.gov.cn/zwgk/",
+      "chain_index": 0,
+      "fallback_chain_used": [
+        "zwgk_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.nmg.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 137602,
+          "anchor_hits_count": 279,
+          "waf_marker_present": false,
+          "attempt_province": "nei_menggu"
+        }
+      ],
+      "file_hash_sha256": "da1d4104db87c47809ef40f12bd8847d98c432bf990b0d7056f0042e6fd0533b",
+      "file_size_bytes": 137602,
+      "http_code": 200,
+      "anchor_hits_count": 279,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false
+    }
+  ],
+  "fetch_log": [
+    {
+      "url": "https://www.xinjiang.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 403,
+      "reason": "ok",
+      "body_size_bytes": 146,
+      "anchor_hits_count": 0,
+      "waf_marker_present": true,
+      "attempt_province": "xinjiang"
+    },
+    {
+      "url": "https://www.xinjiang.gov.cn/",
+      "label": "province_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 108841,
+      "anchor_hits_count": 462,
+      "waf_marker_present": false,
+      "attempt_province": "xinjiang"
+    },
+    {
+      "url": "https://www.nmg.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 137602,
+      "anchor_hits_count": 279,
+      "waf_marker_present": false,
+      "attempt_province": "nei_menggu"
+    }
+  ],
+  "methodology": "v9 spike fetch: 2 cells (xinjiang + nei_menggu), each with primary /zwgk/ + fallback #1 (省府根 /). 递补池 (SUBSTITUTE_POOL) 显式 [EXHAUSTED] (per 651 §0.14 红线 14 增补沿用, 652 §0.14 强制 BLOCKED_NO_POOL 留痕 e2e 验证); 两级 fallback 全失败 → BLOCKED_NO_POOL 留痕, 不跨省代换. 每 cell ≤2 attempts, 总预算 ≤12 HTTP. Per 650 §0.13: 附属复验/验证产物允许独立文件, 但主 evidence methodology 必须含指针. 代换行 source_registry province/source_name 一律用 actual_province (per 649 P3-1). Per 652 §0.14: BLOCKED_NO_POOL 留痕 e2e 验证. 递补池 [EXHAUSTED] 沿用 651. 本次双样本结果: REACHABLE×2 / BLOCKED_NO_POOL×0."
+}
