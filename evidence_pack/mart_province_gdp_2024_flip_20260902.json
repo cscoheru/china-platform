@@ -1,0 +1,86 @@
+{
+  "knife": "659",
+  "chain_id": "real_659_mart_flip_frontend_v1",
+  "mart_model": "dbt/models/marts/mart_province_gdp_2024.sql",
+  "frontend_files": [
+    "frontend/lib/api.ts",
+    "frontend/app/page.tsx",
+    "frontend/app/layout.tsx",
+    "frontend/smoke-check.py"
+  ],
+  "tests": [
+    "tests/test_mart_province_gdp_real.py",
+    "tests/test_frontend_mart_demo_parity_s296.py"
+  ],
+  "subagent_status": "RECOVERED_BY_ARCHITECT",
+  "subagent_failure": "context window exceeds limit (2013); pre-commit state preserved; 7 files modified by subagent + architect takeover for commits/push",
+  "subagent_files_modified": [
+    "dbt/models/marts/mart_province_gdp_2024.sql (created)",
+    "tests/test_mart_province_gdp_real.py (created)",
+    "tests/test_frontend_mart_demo_parity_s296.py (extended §8 knife 659)",
+    "frontend/lib/api.ts (USE_MOCK 语义翻转)",
+    "frontend/app/page.tsx (MOCK_PROVINCE_LIST 默认渲染移除)",
+    "frontend/app/layout.tsx (banner 文案更新)",
+    "frontend/smoke-check.py (§15 knife 659 mart flip 守门)"
+  ],
+  "subagent_temp_artifact_removed": "cegr.db (0-byte sqlite, deleted; was not in .gitignore)",
+  "row_count_total": 31,
+  "row_count_real_data": 28,
+  "row_count_data_missing": 3,
+  "official_provinces": ["BEIJING", "SHANGHAI", "SHANDONG", "HUBEI", "SICHUAN"],
+  "hongheiku_repost_provinces": [
+    "TIANJIN", "CHONGQING", "HEBEI", "SHANXI", "NEI_MENGGU", "JILIN",
+    "HEILONGJIANG", "JIANGSU", "ZHEJIANG", "ANHUI", "FUJIAN", "JIANGXI",
+    "HENAN", "HUNAN", "GUANGDONG", "GUANGXI", "YUNNAN", "XIZANG",
+    "SHAANXI", "GANSU", "QINGHAI", "NINGXIA", "XINJIANG"
+  ],
+  "data_missing_provinces": {
+    "LIAONING": "hongheiku 2024 索引缺文 NOT_FOUND_IN_2024_INDEX",
+    "HAINAN": "hongheiku 2024 索引缺文 NOT_FOUND_IN_2024_INDEX",
+    "GUIZHOU": "hongheiku 2024 索引缺文 NOT_FOUND_IN_2024_INDEX"
+  },
+  "lineage_columns": ["lineage_source", "lineage_origin", "lineage_ruling", "lineage_is_demo"],
+  "lineage_is_demo_value": "false",
+  "lineage_ruling_value": "U6 2026-09-02",
+  "missing_province_metrics_null": true,
+  "missing_province_zero_fill": false,
+  "use_mock_default": false,
+  "use_mock_env_value": "NEXT_PUBLIC_USE_MOCK === \"true\" (显式开启才 mock)",
+  "page_tsx_mock_province_list_default_removed": true,
+  "page_tsx_import_retained": "MOCK_PROVINCE_LIST 注释保留 (S1.18 历史资产 + 回退通道 per 659 §1.659-A; 默认渲染已移除)",
+  "layout_banner_text_added": [
+    "28 省 2024 真实数据",
+    "官方 5 + 转载锚定 23",
+    "3 省源缺文",
+    "lineage 可溯"
+  ],
+  "smoke_check_section_15": "knife 659 mart flip + 前端切源守门",
+  "red_line_compliance": {
+    "no_zero_fill_missing": true,
+    "no_silent_hardcoded": true,
+    "no_web_crawl": true,
+    "no_doc_existing_modified": true,
+    "no_sha_drift": true,
+    "data_source_valid": true,
+    "lineage_triple_annotation": true,
+    "local_only": true,
+    "triple_evidence": true,
+    "receipt_13_sections": true,
+    "spike_blueprint_not_intaked": true,
+    "m2_zero_diff_x2": true,
+    "no_auto_announce": true,
+    "blocked_documented": true
+  },
+  "test_results": {
+    "test_mart_province_gdp_real": "22/22 PASSED",
+    "test_frontend_mart_demo_parity_s296_659_extension": "11/11 PASSED (原 14 cases + §8 knife 659 新增 11)",
+    "test_u6_batch_26prov_regression": "19/19 PASSED (per 658 baseline)",
+    "test_u6_canary_regression": "PASSED (per 658 baseline)",
+    "test_target_total": "≥342 green 底限 ≥336 (20 文件集)",
+    "test_actual_subset": "83 passed in 0.91s (mart_real 22 + parity_s296 25 + u6_batch 19 + u6_canary 17)"
+  },
+  "ui_state_for_3_missing_provinces": "「数据暂缺（公报源缺文）」状态（per 659 §1.659-A; 禁补零）",
+  "policy": "mock 模块文件保留不删 (S1.18 历史资产 + 回退通道); MOCK_PROVINCE_LIST import 注释保留",
+  "milestone_disclaimer": "24 里程碑不宣布; O1 仍 OPEN; M2/M4/Gate PASS 不宣称",
+  "created_at": "2026-09-02T22:15:00+08:00"
+}

@@ -3,15 +3,17 @@
 // Per docs/34 §5:
 //   - Read-only consumer of S1.10 FastAPI.
 //   - No new write API; upload still goes through S1.13 admin.
-//   - Mock mode allows the skeleton to render without Postgres.
 //
-// Set NEXT_PUBLIC_USE_MOCK=true to skip FastAPI and return lib/mock.ts.
+// Per knife 659 tasking §1.659-A:
+//   - USE_MOCK semantics flipped: NEXT_PUBLIC_USE_MOCK === "true" 才 mock
+//   - Default is false (real data from FastAPI / mart), env switch is fallback
+//   - mock 模块文件保留 (S1.18 历史资产 + 回退通道)
 
 import type { IndicatorListResponse, IndicatorSeriesResponse } from "./types";
 import { MOCK_INDICATOR_LIST, MOCK_JIANGSU_GDP_SERIES } from "./mock";
 
 const USE_MOCK =
-  process.env.NEXT_PUBLIC_USE_MOCK !== "false"; // default true (skeleton mode)
+  process.env.NEXT_PUBLIC_USE_MOCK === "true"; // default false (real data); set to "true" for mock fallback
 // City mart-shape demo pipeline (S2.7-b-full-lite+). Independent of FastAPI mock.
 const USE_MART_FIXTURE = process.env.NEXT_PUBLIC_USE_MART_FIXTURE === "1";
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000";

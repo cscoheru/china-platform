@@ -5,6 +5,8 @@ import { IS_MOCK_MODE, IS_MART_FIXTURE_MODE } from "../lib/api";
 //
 // Per docs/34 §4.2: skeleton deliberately includes a top banner announcing
 // mock-mode vs real-FastAPI mode so reviewers can never confuse the two.
+// Per knife 659 tasking §1.659-A: banner 横幅文案更新
+// "S1.18 DEMO observations" → "28 省 2024 真实数据（官方 5 + 转载锚定 23; 3 省源缺文）+ lineage 可溯"
 // S2.7-b-full+: when NEXT_PUBLIC_USE_MART_FIXTURE=1, banner also names the
 // mart-shape demo pipeline (still is_demo; not O1 / not Gate PASS).
 
@@ -59,15 +61,17 @@ export default function RootLayout({
             </>
           ) : IS_MOCK_MODE ? (
             <>
-              ⚠️ <strong>SKELETON MODE</strong> — using mock data
+              ⚠️ <strong>MOCK MODE</strong> — using mock data
               (NEXT_PUBLIC_USE_MOCK=true). Observations shown are S1.18 DEMO
-              sentinels (placeholder SHA).
+              sentinels (placeholder SHA). 省 GDP 走 mock（S1.18 历史资产）。
             </>
           ) : (
             <>
-              ✅ <strong>LIVE MODE</strong> — FastAPI at{" "}
+              ✅ <strong>LIVE MODE</strong> — 28 省 2024 真实数据（官方 5 +
+              转载锚定 23; 3 省源缺文）+ lineage 可溯。
+              FastAPI at{" "}
               {process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000"}.
-              Real SHA-locked data (subject to Stage 1 OPEN gap).
+              Per knife 659 tasking §1.659-A（USE_MOCK 语义翻转，默认 false 真数据）。
             </>
           )}
         </header>

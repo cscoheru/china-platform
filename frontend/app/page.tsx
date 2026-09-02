@@ -1,6 +1,8 @@
 // Stage 2 / S2.0.1 + S2.7-a + S2.7-b + S2.8-lite + S2.9-lite — Home page.
 //
-// Lists indicators (mock by default). S2.7-a 增量：附 5 省列表入口
+// Lists indicators (real data by default, mock via NEXT_PUBLIC_USE_MOCK=true).
+// Per knife 659 tasking §1.659-A: USE_MOCK 默认 false 真数据。
+// S2.7-a 增量：附 5 省列表入口
 // （per tasking 168 §NOW-2 「≥1 省路由壳或列表入口」）。
 // S2.7-b-lite / S2.7-b-full-lite 增量：附 10 地市列表入口
 // （per tasking 274 §NOW「首页十城导航入口」+ docs/46 §2）。
@@ -9,8 +11,8 @@
 // 列表本身仅为导航入口；不评分、不对比、不排名。
 
 import { listIndicators, IS_MOCK_MODE, IS_MART_FIXTURE_MODE } from "../lib/api";
-import { MOCK_PROVINCE_LIST } from "../lib/mock_evidence_chain";
 import { CITY_SLUG_MAP, CITY_SLUG_LIST } from "../lib/city_slug_map";
+// MOCK_PROVINCE_LIST retained (S1.18 历史资产 + 回退通道 per 659 tasking §1.659-A; 默认渲染已移除)
 
 export const dynamic = "force-dynamic";
 
@@ -75,28 +77,17 @@ export default async function HomePage() {
       </table>
 
       <h2 style={{ marginTop: 32 }}>省级观察入口（S2.7-a 列表）</h2>
-      <table style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}>
-        <thead>
-          <tr style={{ background: "#eee" }}>
-            <th style={cellStyle}>省份</th>
-            <th style={cellStyle}>路由</th>
-            <th style={cellStyle}>六段数据</th>
-          </tr>
-        </thead>
-        <tbody>
-          {MOCK_PROVINCE_LIST.map((p) => (
-            <tr key={p.slug}>
-              <td style={cellStyle}>{p.name_zh}</td>
-              <td style={cellStyle}>
-                <a href={`/provinces/${p.slug}`}>/provinces/{p.slug}</a>
-              </td>
-              <td style={cellStyle}>
-                {p.has_full_chain ? "全段（mock）" : "空壳（演示未覆盖）"}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <p style={{ color: "#666", fontSize: 13 }}>
+        {IS_MOCK_MODE
+          ? "Mock 模式：省列表来自 S1.18 DEMO sentinel（设 NEXT_PUBLIC_USE_MOCK=true 触发）。"
+          : "真数据模式：省 GDP 数据来自 mart_province_gdp_2024（28 省 2024 真实数据 + 3 省数据暂缺）。"
+        }
+        {" "}省 GDP 区块走真数据 API + mart（per knife 659 tasking §1.659-A）。
+      </p>
+      <p style={{ fontSize: 13, color: "#555" }}>
+        {" "}省 GDP 数据走 <code>/api/indicator</code>（FastAPI mart视图），3 缺失省显示「数据暂缺（公报源缺文）」状态。
+        {" "}省详情页：<code>/provinces/[省代码]</code>。
+      </p>
 
       <h2 style={{ marginTop: 32 }}>地市观察入口（S2.7-b-lite / S2.7-b-full-lite 列表）</h2>
       <table style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}>

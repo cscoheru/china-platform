@@ -427,3 +427,122 @@ def test_no_forbidden_tokens_across_frontend_and_dbt() -> None:
                 f"FORBIDDEN: {path.name} 含禁词 '{tok}' "
                 f"(per docs/06 §6.6 + docs/42 §8)"
             )
+
+
+# ===== 8. knife 659 — mart_province_gdp_2024 real-parity (per 659 tasking §1.659-C) =====
+
+MART_GDP_2024 = DBT_MARTS / "mart_province_gdp_2024.sql"
+
+# 28 real data provinces (5 official + 23 hongheiku re-post)
+REAL_28_PROVINCES = {
+    'BEIJING', 'SHANGHAI', 'SHANDONG', 'HUBEI', 'SICHUAN',    # official
+    'TIANJIN', 'CHONGQING', 'HEBEI', 'SHANXI', 'NEI_MENGGU', 'JILIN',
+    'HEILONGJIANG', 'JIANGSU', 'ZHEJIANG', 'ANHUI', 'FUJIAN', 'JIANGXI',
+    'HENAN', 'HUNAN', 'GUANGDONG', 'GUANGXI', 'YUNNAN', 'XIZANG',
+    'SHAANXI', 'GANSU', 'QINGHAI', 'NINGXIA', 'XINJIANG',
+}
+MISSING_3 = {'LIAONING', 'HAINAN', 'GUIZHOU'}
+
+
+def test_mart_gdp_2024_exists() -> None:
+    """mart_province_gdp_2024.sql 在位."""
+    assert MART_GDP_2024.exists(), f"missing: {MART_GDP_2024}"
+
+
+def test_mart_gdp_2024_has_31_rows() -> None:
+    """Total rows = 31 (28 data + 3 missing)."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    # province_codes block has 31 provinces (incl LN/HAINAN/GUIZHOU)
+    idx = src.find("province_codes AS")
+    end = src.find("real_data AS", idx)
+    block = src[idx:end]
+    tuples = re.findall(r"\('([A-Z_]+)', *'[^']+', *'[^']+'", block)
+    assert len(tuples) == 31, f"Expected 31, got {len(tuples)}"
+
+def test_mart_gdp_2024_28_real_provinces() -> None:
+    """28 provinces in real data block."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    real_idx = src.find("real_data AS")
+    end = src.find("missing_provinces AS", real_idx)
+    block = src[real_idx:end]
+    tuples = re.findall(r"\('([A-Z_]+)', *'[^']+'", block)
+    assert len(tuples) == 28, f"Expected 28 real provinces, got {len(tuples)}"
+
+def test_mart_gdp_2024_3_missing_provinces() -> None:
+    """3 省 DATA_MISSING 行存在 (LN/HAINAN/GUIZHOU)."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    missing_match = re.search(
+        r"missing_provinces AS \(\s+SELECT \* FROM \(VALUES(.*?)\)\s+AS t",
+        src, re.DOTALL
+    )
+    assert missing_match, 'missing_provinces block not found'
+    vals_block = missing_match.group(1)
+    missing_codes = re.findall(r"\('([A-Z_]+)',\s*'[^']+'", vals_block)
+    assert set(missing_codes) == MISSING_3, \
+        f'Expected {MISSING_3}, got {set(missing_codes)}'
+    assert 'DATA_MISSING' in vals_block
+
+
+def test_mart_gdp_2024_missing_have_null_metrics() -> None:
+    """3 缺失省指标列 NULL (红线: 禁补零)."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    # Check: no "THEN 0" for missing provinces
+    assert not re.search(r"WHEN mp\.[a-z_]+ IS NOT NULL THEN 0\b", src), \
+        'Missing provinces have 0 —红线: must be NULL'
+
+
+def test_mart_gdp_2024_missing_reason_not_found() -> None:
+    """3 缺失省 missing_reason = NOT_FOUND_IN_2024_INDEX."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    assert 'NOT_FOUND_IN_2024_INDEX' in src
+
+
+def test_mart_gdp_2024_lineage_triple() -> None:
+    """lineage 三重列: source / origin / ruling 全行."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    for col in ('lineage_source', 'lineage_origin', 'lineage_ruling'):
+        assert col in src, f'{col} not in mart SQL'
+
+
+def test_mart_gdp_2024_is_demo_false() -> None:
+    """lineage_is_demo='false' 全行 (real sentinel)."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    code = re.sub(r"--[^\n]*", "", src)
+    assert "'false'" in code and 'lineage_is_demo' in code
+
+
+def test_mart_gdp_2024_official_plus_hongheiku() -> None:
+    """5 官方 + 23 hongheiku 双源标注."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    assert 'OFFICIAL_INTAKED' in src, 'Official source not found'
+    assert 'hongheiku_tjgb' in src, 'hongheiku source not found'
+
+
+def test_mart_gdp_2024_shaanxi_real_data() -> None:
+    """SHAANXI 在真数据行 (非 DATA_MISSING)."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    missing_match = re.search(
+        r"missing_provinces AS \(\s+SELECT \* FROM \(VALUES(.*?)\)\s+AS t",
+        src, re.DOTALL
+    )
+    assert missing_match
+    assert "'SHAANXI'" not in missing_match.group(1), \
+        'SHAANXI should NOT be missing'
+
+
+def test_mart_gdp_2024_guizhou_missing() -> None:
+    """GUIZHOU 在缺失行."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    missing_match = re.search(
+        r"missing_provinces AS \(\s+SELECT \* FROM \(VALUES(.*?)\)\s+AS t",
+        src, re.DOTALL
+    )
+    assert missing_match
+    assert "'GUIZHOU'" in missing_match.group(1), \
+        'GUIZHOU should be in missing_provinces'
+
+
+def test_mart_gdp_2024_has_ordering() -> None:
+    """mart 有 ORDER BY (规范 order)."""
+    src = MART_GDP_2024.read_text(encoding='utf-8')
+    assert 'ORDER BY' in src, 'mart should have ORDER BY clause'

@@ -173,13 +173,18 @@ def main() -> int:
         ok(f"lib/mock.ts has {n} is_demo=true sentinel rows")
 
     # 7. lib/api.ts honours NEXT_PUBLIC_USE_MOCK
+    #    Per knife 659 tasking §1.659-A: USE_MOCK 语义翻转
+    #    — 默认 false 真数据; NEXT_PUBLIC_USE_MOCK==="true" 才 mock; 注释同步更新
     api = (ROOT / "lib/api.ts").read_text(encoding="utf-8")
     if "NEXT_PUBLIC_USE_MOCK" not in api:
         errors.append("lib/api.ts does not reference NEXT_PUBLIC_USE_MOCK")
-    elif "USE_MOCK" not in api or "if (USE_MOCK)" not in api:
-        errors.append("lib/api.ts does not branch on USE_MOCK")
+    elif '=== "true"' not in api:
+        errors.append(
+            "lib/api.ts: USE_MOCK 默认值语义未翻转 "
+            "(应为 process.env.NEXT_PUBLIC_USE_MOCK === 'true' 才 mock, 默认 false)"
+        )
     else:
-        ok("lib/api.ts branches on NEXT_PUBLIC_USE_MOCK")
+        ok("lib/api.ts: USE_MOCK 语义翻转 — 默认 false 真数据 (per 659 §1.659-A)")
 
     # 8. S2.7-a — Six-segment evidence chain contract.
     #    Per docs/06 §2: 固定六段 CONDITION → COMMITMENT → INPUT → PROCESS
@@ -1483,6 +1488,102 @@ def main() -> int:
         )
     else:
         ok("app/page.tsx links /research/m1-series")
+
+    # §15 — knife 659 mart flip + 前端切源守门 (per 659 tasking §1.659-A)
+    # Per knife 659 tasking §1.659-A:
+    #   (a) dbt mart model mart_province_gdp_2024.sql 在位
+    #   (b) mart 含 lineage 三重列 (source / origin / ruling)
+    #   (c) mart 含 3 省 DATA_MISSING 行 (LN/HAINAN/GUIZHOU, missing_reason)
+    #   (d) layout.tsx banner 含 "28 省 2024 真实数据" 文案
+    #   (e) layout.tsx banner 含 "官方 5 + 转载锚定 23" 文案
+    #   (f) layout.tsx banner 含 "3 省源缺文" 文案
+    #   (g) layout.tsx banner 含 "lineage 可溯" 文案
+    #   (h) api.ts USE_MOCK 默认 false 真数据 (已在上方 §7 验证)
+    mart_sql_path = ROOT.parent / "dbt" / "models" / "marts" / "mart_province_gdp_2024.sql"
+    if not mart_sql_path.exists():
+        errors.append(
+            "dbt/models/marts/mart_province_gdp_2024.sql missing "
+            "(per 659 tasking §1.659)"
+        )
+    else:
+        mart_src = mart_sql_path.read_text(encoding="utf-8")
+        mart_code = re.sub(r"//[^\n]*", "", mart_src)
+        mart_code = re.sub(r"/\*.*?\*/", "", mart_code, flags=re.DOTALL)
+        for needle, label in [
+            ("lineage_source", "lineage_source 列"),
+            ("lineage_origin", "lineage_origin 列"),
+            ("lineage_ruling", "lineage_ruling 列"),
+            ("lineage_is_demo", "lineage_is_demo 列"),
+            ("DATA_MISSING", "DATA_MISSING 状态"),
+            ("NOT_FOUND_IN_2024_INDEX", "missing_reason 注记"),
+            ("LIAONING", "LIAONING 缺失省"),
+            ("HAINAN", "HAINAN 缺失省"),
+            ("GUIZHOU", "GUIZHOU 缺失省"),
+            ("'false'", "is_demo=false 真数据 sentinel"),
+        ]:
+            if needle not in mart_code:
+                errors.append(f"mart_province_gdp_2024.sql missing {label} (per 659 §1.659)")
+        if all(
+            n in mart_code
+            for n in (
+                "lineage_source",
+                "lineage_origin",
+                "lineage_ruling",
+                "lineage_is_demo",
+                "DATA_MISSING",
+                "NOT_FOUND_IN_2024_INDEX",
+                "LIAONING",
+                "HAINAN",
+                "GUIZHOU",
+                "'false'",
+            )
+        ):
+            ok(
+                "mart_province_gdp_2024.sql: lineage 三重 + DATA_MISSING 3 省 + "
+                "is_demo=false sentinel (per 659 §1.659)"
+            )
+        # Check no 0 filling for missing provinces (NULL only)
+        if re.search(r"WHEN mp\..+ THEN\s+0\b", mart_code):
+            errors.append(
+                "mart_province_gdp_2024.sql: missing provinces have 0 value "
+                "(红线: must be NULL)"
+            )
+        else:
+            ok("mart_province_gdp_2024.sql: missing provinces have NULL (no 0 fill)")
+
+    # layout.tsx banner text checks (per 659 §1.659-A)
+    for needle, label in [
+        ("28 省 2024 真实数据", "28 省 2024 真实数据 banner 文案"),
+        ("官方 5 + 转载锚定 23", "官方 5 + 转载锚定 23 文案"),
+        ("3 省源缺文", "3 省源缺文 文案"),
+        ("lineage 可溯", "lineage 可溯 文案"),
+    ]:
+        if needle not in layout:
+            errors.append(f"layout.tsx banner missing {label} (per 659 §1.659-A)")
+    if all(
+        n in layout for n in (
+            "28 省 2024 真实数据",
+            "官方 5 + 转载锚定 23",
+            "3 省源缺文",
+            "lineage 可溯",
+        )
+    ):
+        ok("layout.tsx banner: 28 省 2024 真实数据 + lineage 可溯 (per 659 §1.659-A)")
+
+    # page.tsx: province section updated (per 659 §1.659-A)
+    # MOCK_PROVINCE_LIST default rendering removed
+    home_src2 = (ROOT / "app/page.tsx").read_text(encoding="utf-8")
+    home_code2 = re.sub(r"//[^\n]*", "", home_src2)
+    home_code2 = re.sub(r"/\*.*?\*/", "", home_code2, flags=re.DOTALL)
+    if re.search(r"MOCK_PROVINCE_LIST\.map", home_code2):
+        errors.append(
+            "app/page.tsx: MOCK_PROVINCE_LIST still used as default rendering "
+            "(per 659 §1.659-A: removed from default)"
+        )
+    else:
+        ok("app/page.tsx: MOCK_PROVINCE_LIST not used as default rendering (per 659 §1.659-A)")
+    if "mart_province_gdp_2024" in home_code2 or "真数据 API" in home_src2:
+        ok("app/page.tsx: references mart real data API path (per 659 §1.659-A)")
 
     if errors:
         for e in errors:
