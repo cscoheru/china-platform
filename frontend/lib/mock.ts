@@ -56,6 +56,8 @@ const series = years.map((year, idx) => ({
   verification_status: "UNVERIFIED",
   extraction_method: "MANUAL",
   confidence: null,
+  caveat_text: null,        // S2.0.2 字段补齐: 659 mart flip 类型扩展对齐 (mock 数据形状,字节微调)
+  source_hash_prefix: null, // S2.0.2 字段补齐: 659 mart flip 类型扩展对齐
   extracted_at: "2026-08-25T00:00:00+08:00",
   // S1.18 DEMO sentinel — every row carries is_demo="true".
   // Real SHA-locked sample (S2.0.2) will drop this field.
