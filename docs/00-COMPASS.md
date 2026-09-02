@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | M4.x/M5/M6 spike 链（638-656 十九刀交付；**656 审计 PASS·有限通过〔O-1 机制修复实锤〕**） |
-| NOW | **657** M4.20 v14（HEBEI+SHANXI 全国 31 省收官）+ 657-A **U6 金丝雀 spike**（hongheiku ×5 省比对） |
+| 阶段 | M4 spike 链收官（638-657 二十刀；**657 审计 PASS·有限通过〔金丝雀 5/5 批量解锁〕**）→ M2 批量 |
+| NOW | **658** M2 批量（26 省 × 5 指标真实入库 via U6 + 国家锚 + P3-1 修正） |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-657：M4.20 v14 **HEBEI + SHANXI** 第 27/28 样本（全国 31 省收官刀；chain_id `real_657_m4_20_policy_detail_v14`；UUID **p 段**；docs/**82**〔81 已被 U6 占用〕；HTTP ≤12）+ **657-A U6 金丝雀 spike**（hongheiku × 京/沪/鲁/鄂/川 5 省 2024 公报 vs 库内官方值比对；HTTP ≤10；CANARY_PASS 5/5 → 658 批量 26 省+三次产业；FAIL → 停+复裁；不 INSERT observation）+ 规范 **v3.3**（§NOW 尾段完成清单终态化）首签。O1 零动作；≥303 green（底限 ≥298；连跑两遍 m2 零 diff×2；18 文件集）。单文件模式：任务书 = `656-audit-657-tasking-consolidated-20260902.md` PART 2。
+658：**M2 批量刀**——26 省 × 5 指标（GDP 总量+增速+三次产业）hongheiku 转载页**真实入库** observation + source_registry（lineage 三重：hongheiku_tjgb/XX省统计局/U6）；category-first 发现（禁 /tag/）；HTTP ≤32 限速；缺省整省 BLOCKED 禁补零；**国家锚**（31 省加总 vs NBS 1,349,084.0 亿）+ 省内自洽（三产和≈总量 0.5% 容差）；**P3-1 修正** docs/82 §1.2 重写 31 行对账（25R+4B+2M2）；M2.3 升级评估（只读 31/31）；规范 **v3.4**（§META 五字段对链自检）首签。O1 零动作；≥326 green（底限 ≥316；m2 零 diff×2；19 文件集）。任务书 = `657-audit-658-tasking-consolidated-20260902.md` PART 2。659 预告 = mart flip + 前端切源。
 
 ## POINTERS
 
 - `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/81`（**U6 ruling** hongheiku 源）
-- 656 合并件（审计 PART 1 + **657 任务书 PART 2**）
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev99
+- 657 合并件（审计 PART 1 + **658 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev101
 
 ## 压缩后自检
 
