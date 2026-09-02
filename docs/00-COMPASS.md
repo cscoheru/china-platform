@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | M4.x/M5/M6 spike 链（638-655 十八刀交付；**655 审计 PASS·有限通过**） |
-| NOW | **656** M4.19 v13（GUANGXI+HAINAN）华南双省 + O-1 根因修复 |
+| 阶段 | M4.x/M5/M6 spike 链（638-656 十九刀交付；**656 审计 PASS·有限通过〔O-1 机制修复实锤〕**） |
+| NOW | **657** M4.20 v14（HEBEI+SHANXI 全国 31 省收官）+ 657-A **U6 金丝雀 spike**（hongheiku ×5 省比对） |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-656：M4.19 v13 **GUANGXI + HAINAN** 第 25/26 样本（华南双省对；无前史首试 retry_of=N/A；三态合法〔651/652 双 R + 653/654 双 B + 655 混合 = 三态 e2e 完全体〕；chain_id `real_656_m4_19_policy_detail_v13`；UUID **o 段**）+ 656-A.0 规范 v3.2（**中间态文本零残留**）+ **656-A.2 O-1 根因修复**（hygiene 测试只读化，红线 12 机制保障）+ docs/80 §1-§6。O1 零动作；≥253 green（底限 ≥249；连跑两遍 m2 零 diff×2）。单文件模式：任务书 = `655-audit-656-tasking-consolidated-20260902.md` PART 2。
+657：M4.20 v14 **HEBEI + SHANXI** 第 27/28 样本（全国 31 省收官刀；chain_id `real_657_m4_20_policy_detail_v14`；UUID **p 段**；docs/**82**〔81 已被 U6 占用〕；HTTP ≤12）+ **657-A U6 金丝雀 spike**（hongheiku × 京/沪/鲁/鄂/川 5 省 2024 公报 vs 库内官方值比对；HTTP ≤10；CANARY_PASS 5/5 → 658 批量 26 省+三次产业；FAIL → 停+复裁；不 INSERT observation）+ 规范 **v3.3**（§NOW 尾段完成清单终态化）首签。O1 零动作；≥303 green（底限 ≥298；连跑两遍 m2 零 diff×2；18 文件集）。单文件模式：任务书 = `656-audit-657-tasking-consolidated-20260902.md` PART 2。
 
 ## POINTERS
 
-- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/79`（655 master）
-- 655 合并件（审计 PART 1 + **656 任务书 PART 2**）
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev97
+- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/81`（**U6 ruling** hongheiku 源）
+- 656 合并件（审计 PART 1 + **657 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev99
 
 ## 压缩后自检
 
