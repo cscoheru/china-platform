@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | M4.x/M5/M6 spike 链（638-653 十六刀交付；**653 审计 PASS·有限通过**） |
-| NOW | **654** M4.17 v11（GANSU+QINGHAI）西北四连收官 |
+| 阶段 | M4.x/M5/M6 spike 链（638-654 十七刀交付；**654 审计 PASS·有限通过**） |
+| NOW | **655** M4.18 v12（NINGXIA+XIZANG）西部七省区全覆盖终章 |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-654：M4.17 v11 **GANSU + QINGHAI** 第 21/22 样本（西北四连收官；无前史首试 retry_of 不适用；三态合法：双 REACHABLE→16 INSERT / 混合→按省实报 / 双 BLOCKED→0 INSERT+三重留痕 per 红线 14〔653 已真网双触发=e2e 完全体〕；chain_id `real_654_m4_17_policy_detail_v11`；UUID **m 段**）+ 653 审计 P4×2 处置规范 v3（§META 五字段原子更新 + **status 行禁含任何 SHA**）+ docs/78 §1-§6。O1 零动作；≥200 green（底限 ≥196）。单文件模式：任务书 = `653-audit-654-tasking-consolidated-20260902.md` PART 2。
+655：M4.18 v12 **NINGXIA + XIZANG** 第 23/24 样本（西部七省区全覆盖终章；无前史首试 retry_of=N/A；三态合法〔653/654 连续双 BLOCKED 双样本实证留痕机制〕；chain_id `real_655_m4_18_policy_detail_v12`；UUID **n 段**）+ 654 审计 P4×2 处置规范 v3.1（**status 零 SHA 绝对化** + **七字段原子**〔header/§META 五字段/CHAIN_TAIL〕）+ docs/79 §1-§6。O1 零动作；≥225 green（底限 ≥221）。单文件模式：任务书 = `654-audit-655-tasking-consolidated-20260902.md` PART 2。
 
 ## POINTERS
 
-- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/77`（653 master）
-- 653 合并件（审计 PART 1 + **654 任务书 PART 2**）
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev93
+- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/78`（654 master）
+- 654 合并件（审计 PART 1 + **655 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev95
 
 ## 压缩后自检
 
