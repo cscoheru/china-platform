@@ -39,7 +39,8 @@ Per 650 任务书 §0.13: **跨省 substitute 仅限递补池**（649 池成员 
 - guizhou: `/zwgk/` 200 (chain_index=0 直接 REACHABLE)
 - jiangsu: `/zwgk/` 404 → fallback `/` 200 (chain_index=1 fallback REACHABLE)
 
-递补池按序 sha anxi → sichuan 备而未触发。Guizhou 槽与 jiangsu 槽均无 substitute 落地。
+递补池按序 shaanxi → sichuan 备而未触发。Guizhou 槽与 jiangsu 槽均无 substitute 落地。  
+>  **[per 650 审计 P4-1 行内更正 / 2026-09-02]**: 行内 "递补池按序" 一行原写 shanxi 省名含意外空格 (650 编写笔误, 省名断字 typo); 行内更正为 shanxi 正确连写。docs/74 其他位置均无误。
 
 ### 2.2 递补池状态更新（per 649 §4.4 + 650 增量）
 
@@ -74,7 +75,8 @@ Per 650 任务书 §0.13: **跨省 substitute 仅限递补池**（649 池成员 
 | 类别 | 成员 |
 |---|---|
 | 已用省 (不得重复): | HLJ / HENAN / YUNNAN / FUJIAN / GD / ZJ / JX / HUN / AH |
-| 649 增量: | HUBEI (substitute) + JILIN (直接) → substitute 实际抓取 LIAONING |
+| 649 增量: | HUBEI (substitute) + JILIN (直接) → substitute 实际抓取 LIAONING |  
+>  **[per 650 审计 P4-2 口径尾注 / 2026-09-02]**: 649 增量行中 HUBEI 为**槽名** (consumed; 跨省 substitute 池消耗); 实际抓取省 (actual_province) = LIAONING, per 红线 13 增补规范 (代换行 source_registry province/source_name 一律用 actual_province, original_province 仅存 lineage JSONB)。本行措辞属槽名 vs actual_province 口径并置, 易读为歧义; 改读: "649 substitute 槽消耗 HUBEI → 实际抓取 LIAONING" 即 §2.4 与 §4.4 表均如此。 |
 | **新进入** 已用省全集 (per 650 后): | **GUIZHOU / JIANGSU** (650 直接 REACHABLE; substitute 池 shaanxi/sichuan 备而未触发) |
 
 ### 2.5 替代不宣告条款
@@ -209,6 +211,7 @@ Per 649 §4.4 + 650 增量 substitute 状态:
 
 **已用省全集** (不得重复, 按 actual_province 口径): HLJ / HENAN / YUNNAN / FUJIAN / GD / ZJ / JX / HUN / AH / LN / JL  
 **649 增量**: HUBEI / JILIN / LIAONING (跨省 substitute 实际抓取)  
+>  **[per 650 审计 P4-2 口径尾注 / 2026-09-02]**: 行内 HUBEI 项为**槽名** (consumed; 跨省 substitute 池消耗), actual_province=LIAONING per 红线 13 增补规范 (代换行 source_registry province/source_name 一律用 actual_province, original_province 仅存 lineage JSONB)。本表上行 "已用省全集 (actual_province 口径): HLJ / HENAN / YUNNAN / FUJIAN / GD / ZJ / JX / HUN / AH / LN / JL" 无 HUBEI (因 HUBEI 是 substitute 槽名, 非 actual 抓取省); JILIN + LIAONING 为 actual 口径。读法: "649 substitute 槽消耗 HUBEI → actual=LIAONING; JILIN 直接 REACHABLE"。  
 **650 增量**: GUIZHOU / JIANGSU (双直接 REACHABLE)  
 **650 首选**: guizhou + jiangsu → 双样本均原生 REACHABLE (无 substitute 触发); HTTP 3/12 (25% usage)
 

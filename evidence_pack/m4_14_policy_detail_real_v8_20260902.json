@@ -1,0 +1,152 @@
+{
+  "knife": "651-A.1",
+  "purpose": "M4.14 政策详情 v8 真实化 spike (shaanxi + sichuan 第 15/16 样本; 递补池收官转正 + 红线 14 增补耗尽条款)",
+  "chain_id": "real_651_m4_14_policy_detail_v8",
+  "uuid_prefix": "j",
+  "uuid_prefixes": {
+    "source_registry": "j0eebc99",
+    "source_document": "j0eebc99",
+    "policy_document": "j1eebc99",
+    "policy_target": "j2eebc99",
+    "policy_measure": "j3eebc99",
+    "government_commitment": "j4eebc99",
+    "commitment_progress": "j5eebc99",
+    "project_event": "j6eebc99"
+  },
+  "summary": {
+    "fetch_status": "REAL_FETCHED",
+    "fetched_count": 2,
+    "http_count": 4,
+    "http_limit": 12,
+    "substitute_used_count": 0,
+    "substitute_pool_status": "EXHAUSTED",
+    "blocked_no_pool_count": 0,
+    "distinct_shas": [
+      "9d0ad78a79317d5ec5224bf4fd56c4fa44dd658d2221e2921da1700e99e32ad5",
+      "f58a33842ab22afcb84a9f1156a6e1f05bae3f01432c8ea6b103c29387346ad5"
+    ]
+  },
+  "cells": [
+    {
+      "province": "shaanxi",
+      "actual_province": "shaanxi",
+      "fetched_url": "https://www.shaanxi.gov.cn/",
+      "chain_index": 1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.shaanxi.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 404,
+          "reason": "ok",
+          "body_size_bytes": 146,
+          "anchor_hits_count": 0,
+          "waf_marker_present": false,
+          "attempt_province": "shaanxi"
+        },
+        {
+          "url": "https://www.shaanxi.gov.cn/",
+          "label": "province_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 87956,
+          "anchor_hits_count": 186,
+          "waf_marker_present": false,
+          "attempt_province": "shaanxi"
+        }
+      ],
+      "file_hash_sha256": "9d0ad78a79317d5ec5224bf4fd56c4fa44dd658d2221e2921da1700e99e32ad5",
+      "file_size_bytes": 87956,
+      "http_code": 200,
+      "anchor_hits_count": 186,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false
+    },
+    {
+      "province": "sichuan",
+      "actual_province": "sichuan",
+      "fetched_url": "https://www.sc.gov.cn/",
+      "chain_index": 1,
+      "fallback_chain_used": [
+        "zwgk_root",
+        "province_root"
+      ],
+      "fetch_log": [
+        {
+          "url": "https://www.sc.gov.cn/zwgk/",
+          "label": "zwgk_root",
+          "http_code": 403,
+          "reason": "ok",
+          "body_size_bytes": 146,
+          "anchor_hits_count": 0,
+          "waf_marker_present": true,
+          "attempt_province": "sichuan"
+        },
+        {
+          "url": "https://www.sc.gov.cn/",
+          "label": "province_root",
+          "http_code": 200,
+          "reason": "ok",
+          "body_size_bytes": 100536,
+          "anchor_hits_count": 389,
+          "waf_marker_present": false,
+          "attempt_province": "sichuan"
+        }
+      ],
+      "file_hash_sha256": "f58a33842ab22afcb84a9f1156a6e1f05bae3f01432c8ea6b103c29387346ad5",
+      "file_size_bytes": 100536,
+      "http_code": 200,
+      "anchor_hits_count": 389,
+      "waf_marker_present": false,
+      "verdict": "REACHABLE",
+      "substitute_used": false
+    }
+  ],
+  "fetch_log": [
+    {
+      "url": "https://www.shaanxi.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 404,
+      "reason": "ok",
+      "body_size_bytes": 146,
+      "anchor_hits_count": 0,
+      "waf_marker_present": false,
+      "attempt_province": "shaanxi"
+    },
+    {
+      "url": "https://www.shaanxi.gov.cn/",
+      "label": "province_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 87956,
+      "anchor_hits_count": 186,
+      "waf_marker_present": false,
+      "attempt_province": "shaanxi"
+    },
+    {
+      "url": "https://www.sc.gov.cn/zwgk/",
+      "label": "zwgk_root",
+      "http_code": 403,
+      "reason": "ok",
+      "body_size_bytes": 146,
+      "anchor_hits_count": 0,
+      "waf_marker_present": true,
+      "attempt_province": "sichuan"
+    },
+    {
+      "url": "https://www.sc.gov.cn/",
+      "label": "province_root",
+      "http_code": 200,
+      "reason": "ok",
+      "body_size_bytes": 100536,
+      "anchor_hits_count": 389,
+      "waf_marker_present": false,
+      "attempt_province": "sichuan"
+    }
+  ],
+  "methodology": "v8 spike fetch: 2 cells (shaanxi + sichuan), each with primary /zwgk/ + fallback #1 (省府根 /). 递补池 (SUBSTITUTE_POOL) 显式标记 [EXHAUSTED] (per 651 §0.14 红线 14 增补); 两级 fallback 全失败 → BLOCKED_NO_POOL 留痕, 不跨省代换. 每 cell ≤2 attempts, 总预算 ≤12 HTTP. Per 650 §0.13: 附属复验/验证产物允许独立文件, 但主 evidence methodology 必须含指针. 代换行 source_registry province/source_name 一律用 actual_province (per 649 P3-1). Per 651 §0.14: BLOCKED_NO_POOL 留痕不代换."
+}
