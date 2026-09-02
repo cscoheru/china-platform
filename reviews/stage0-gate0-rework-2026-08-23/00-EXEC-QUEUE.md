@@ -54,6 +54,7 @@
 | 656 | **AUDITED** | M4.19 v13 华南双省对: 混合态第二例 + O-1 机制修复实锤（m2 零 diff×2）; 1×P4 → rev99+v3.3 |
 | 657 | **AUDITED** | M4.20 v14 双 REACHABLE 收官 + U6 金丝雀 CANARY_PASS 5/5（批量解锁）; 1×P3 + 2×P4 → 658 |
 | 658 | **OPEN** | M2 批量 26 省 × 5 指标真实入库 via U6 + 国家锚 + P3-1 修正（已签发） |
+| 658-入链 | — | b254472 (657 audit + 658 tasking + rev101 + 规范 v3.4 首签; 本 commit 入链) |
 
 ## §ACK
 - 2026-09-02 / Cursor / 653 审计 **PASS（有限通过）** — `reviews/stage0-gate0-rework-2026-08-23/653-audit-654-tasking-consolidated-20260902.md`（单文件模式 PART 1; 13 文件集 **192/192 独立复跑 green 2.25s**〔21 新 + 171 回归; ≥179 达成〕; 8 commits af7a95c/52a1ad7/14eb055/afd889b/f74af31/c5cdcaf/b287afe/17c08aa 双推三 ref 全等; **真网首次双 BLOCKED_NO_POOL = 红线 14 e2e 完全体**〔shandong SSL handshake failure 0/0 全链首见 + hubei 412×2 同史; 0 INSERT + 三重留痕 + retry_of 全行 shandong←647 / hubei←649〕; HTTP 4/12; docs/77 §1-§6 + 8 守门; amend-first 链闭环〔pre-amend 43bd3dd NOT_IN_HISTORY 实证〕; **2×P4**〔① §META last_delivery/last_receipt/tasking 未随 rev92 回填至 653〔仍 652 值〕 ② status 行 pin delivery SHA 52a1ad7 为"终态"且 "per git log -1" 标注不成立——第四型 SHA pin 陈旧; rev93 均已修正 + 规范 v3 签发：§META 五字段原子更新 + status 禁含 SHA〕; O-1 第三次复发即还原; 同单 PART 2 签发 654 任务书 M4.17 v11 GANSU+QINGHAI 西北四连; 不宣称任何 PASS; O1 仍 OPEN）
