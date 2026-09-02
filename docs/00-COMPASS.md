@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | M2 批量完成（**658 审计 PASS·有限通过〔23 省入库+国家锚/自洽 PASS〕**）→ 659 前端真实化 |
-| NOW | **659** mart flip + 前端切源（页面 GDP 真实化收官刀）+ P3-2 终修 |
+| 阶段 | 659 审计 **PASS·有限通过**〔代码层真实化完成〕→ **660 生产部署切源刀** |
+| NOW | **660** 生产部署: 让生产站显示 28 省真数据（§1.660-0 前置三问 BLOCKER） |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-659：**mart flip + 前端切源**（页面 GDP 真实化收官刀）——① `dbt/models/marts/mart_province_gdp_2024.sql`（28 省真数据 + 3 省 DATA_MISSING〔LN/HAINAN/GUIZHOU 源缺文〕禁补零；31 行守门）② 前端切源（`api.ts` USE_MOCK 默认 **false**；`page.tsx` 去 MOCK_PROVINCE_LIST 默认渲染〔mock 保留〕；3 省「数据暂缺」；`layout.tsx` 横幅 + `smoke-check.py` 更新）③ **P3-2 终修** docs/82 §1.2 rows 12-19 + §3 归属按链 SHA 实证（651=陕/川 d13b3229、652=新/蒙 04721b7、LN=649 substitute 936640d、653=SD/HB、654=GS/QH、655=NX/XZ；删循环自证）④ ≥342 green（底限 ≥336；m2 零 diff×2；20 文件集）；docs/84。O1 零动作。任务书 = `658-audit-659-tasking-consolidated-20260902.md` PART 2。
+660：**生产部署切源刀**——用户质询直答（659 切源=代码层〔仓库 frontend/ 应用〕; 生产站=旧构建产物, NEXT_PUBLIC_* 构建时内联, 仓库无部署管线, 本机 curl 双域名 000 不可达）→ ① **§1.660-0 用户前置三问**〔部署在哪/怎么部署/可否触达; 未答只产部署包不上线〕② 轨道 A（FastAPI+DB 后端部署）/ 轨道 B（`output:'export'` 静态导出内联 mart 数据）③ `deploy/` 四件〔build_static.sh|compose.yml + ENV.md + VERIFY.sh 三标记断言 + 回滚〕+ docs/85 runbook + N-1 layout title 去 demo ④ **v3.5 裁定权条款首签**〔裁定字样禁执行端写〕⑤ tests ≥8 → **≥359 底限 ≥355** + m2 零 diff×2〔21 文件集〕。红线: 生产 env 禁 USE_MOCK=true〔回滚除外〕; **24 里程碑不宣布**〔上线≠Gate PASS〕; O1 仍 OPEN。任务书 = `659-audit-660-tasking-consolidated-20260902.md` PART 2。
 
 ## POINTERS
 
 - `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/81`（**U6 ruling** hongheiku 源）
-- 658 合并件（审计 PART 1 + **659 任务书 PART 2**）
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev103
+- 659 合并件（审计 PART 1 + **660 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev106
 
 ## 压缩后自检
 
