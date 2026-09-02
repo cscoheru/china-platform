@@ -17,7 +17,7 @@
 - last_audit: `653-audit-654-tasking-consolidated-20260902.md` (PART 1; 653 审计 PASS·有限通过; 2×P4 已修正)
 - tasking: `653-audit-654-tasking-consolidated-20260902.md` (PART 2; 654 DONE — M4.17 v11 GANSU+QINGHAI 双首试省首触发 + 规范 v3 落地; 架构师自签+自交付)
 - last_delivery: `c3387f0` (654 delivery — M4.17 v11 gansu/qinghai 双首试省首触发 BLOCKED_NO_POOL 双例 + 0 INSERT 三重留痕 + retry_of=N/A 全行 + docs/78 §1-§6 + evidence ×2 + 25 新测试 + 217 green; rev94 五字段原子回填 per 654-A.0 规范 v3)
-- last_receipt: `afd889b` (653 receipt — `653-stage0-cc-m4-16-v10-retry-receipt-20260902.md`; 11 节架构师级回执; rev93 回填 per 653 审计 P4-1)
+- last_receipt: `d762ea5` (654 receipt — `654-stage0-cc-m4-17-v11-northwest-receipt-20260902.md`; 13 节架构师级回执; rev94 五字段原子回填 per 654-A.0 规范 v3)
 - m4_decision: 654 = M4.17 v11 (**GANSU + QINGHAI** 第 21/22 样本, 西北四连收官〔与 652 XINJIANG/NEIMENGGU + SHAANXI 邻接构成西北五省区叙事〕; 两省无前史首试 → retry_of 不适用; 三态合法: 双 REACHABLE→16 INSERT+2 NEW SHA / 混合→按省实报 / 双 BLOCKED→0 INSERT+三重留痕沿用 653 模板; chain_id='real_654_m4_17_policy_detail_v11'; UUID m 段; 递补池 [EXHAUSTED] 沿用) + 653 审计 P4×2 处置规范 v3 (654-A.0: §META 五字段〔rev/status/last_delivery/last_receipt/tasking〕与 cc_head 同 commit 原子更新 + **status 行禁含任何具体 SHA**——第四型 pin 陈旧终极杜绝) + docs/78 §1-§6 (西北收官表 + 失败形式库〔含 653 SSL handshake failure〕); O1 零动作; 已用省全集 (actual 口径) 18 省 + 654 增量 GANSU/QINGHAI (若 REACHABLE→20 省); 剩余未用省 8→6; scope A per docs/77 §5.1 + 653 审计 §F
 
 ## §NOW
