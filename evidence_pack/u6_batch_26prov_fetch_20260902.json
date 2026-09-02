@@ -1,0 +1,376 @@
+{
+  "knife": "658",
+  "chain_id": "real_658_m2_u6_batch_v1",
+  "substitute_pool_status": "EXHAUSTED",
+  "substitute_used_count": 0,
+  "fetched_count": 23,
+  "blocked_no_pool_count": 3,
+  "http_count": 23,
+  "http_limit": 32,
+  "category_index_url": "https://tjgb.hongheiku.com/category/sjtjgb",
+  "cells": [
+    {
+      "province": "tianjin",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57426.html",
+      "http_code": 200,
+      "bytes": 65462,
+      "sha256": "a7f8254ed5f4e42624f43775b80a749c32b1a3e1e1340fc736c24344c7cc8fcf",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 18024.32,
+        "growth": 5.1,
+        "primary": 284.28,
+        "secondary": 6214.27,
+        "tertiary": 11525.77
+      }
+    },
+    {
+      "province": "chongqing",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57604.html",
+      "http_code": 200,
+      "bytes": 76457,
+      "sha256": "00c674b09af35351590ddf976342ea6768245ce52380b9c629e3b88313d60ea3",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 32193.15,
+        "growth": 5.7,
+        "primary": 2135.82,
+        "secondary": 11690.68,
+        "tertiary": 18366.65
+      }
+    },
+    {
+      "province": "hebei",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/59037.html",
+      "http_code": 200,
+      "bytes": 70033,
+      "sha256": "3975966399dce6165ade6c66e56a43f7fc6fe8047b8c80cac95bcf5d87041ea4",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 47526.9,
+        "growth": 5.4,
+        "primary": 4522.3,
+        "secondary": 17470.5,
+        "tertiary": 25534.1
+      }
+    },
+    {
+      "province": "shanxi",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58259.html",
+      "http_code": 200,
+      "bytes": 52537,
+      "sha256": "e2cf59b413f19f7a0581d02ac65c924e91775a726334559bf29d7763ae013108",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 25494.69,
+        "growth": 2.3,
+        "primary": 1392.48,
+        "secondary": 11021.46,
+        "tertiary": 13080.74
+      }
+    },
+    {
+      "province": "neimenggu",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58092.html",
+      "http_code": 200,
+      "bytes": 77530,
+      "sha256": "247d186af392a6093e44f586b07ea2f002f3543fba0e60f342c8e06c41773d96",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 26314.6,
+        "growth": 5.8,
+        "primary": 2872.6,
+        "secondary": 11604.4,
+        "tertiary": 11837.6
+      }
+    },
+    {
+      "province": "jilin",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57522.html",
+      "http_code": 200,
+      "bytes": 74298,
+      "sha256": "b07493e2e6a409f32033289f0f6ea5274be34595042c51311fef9d046d80d205",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 14361.22,
+        "growth": 4.3,
+        "primary": 1589.8,
+        "secondary": 4577.64,
+        "tertiary": 8193.79
+      }
+    },
+    {
+      "province": "heilongjiang",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/59289.html",
+      "http_code": 200,
+      "bytes": 63010,
+      "sha256": "14cd553dbfa2d2fe2e59132e4e3ea4f0e2dfc40923888edb656256b0a7003b0f",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 16476.9,
+        "growth": 3.2,
+        "primary": 3203.3,
+        "secondary": 4147.3,
+        "tertiary": 9126.2
+      }
+    },
+    {
+      "province": "jiangsu",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57215.html",
+      "http_code": 200,
+      "bytes": 54990,
+      "sha256": "9cc5dc427701b650a9874ea5e1aa1af9367e527b788c791cd53eea336a4d9d48",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 137008.0,
+        "growth": 5.8,
+        "primary": 5245.2,
+        "secondary": 59180.1,
+        "tertiary": 72582.8
+      }
+    },
+    {
+      "province": "zhejiang",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57047.html",
+      "http_code": 200,
+      "bytes": 54771,
+      "sha256": "4c22d82a526aa3e1c7cc6e146b6376e62effa5ec6747c0e85717c951049952b8",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 90131.0,
+        "growth": 5.5,
+        "primary": 2586.0,
+        "secondary": 34783.0,
+        "tertiary": 52762.0
+      }
+    },
+    {
+      "province": "anhui",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57296.html",
+      "http_code": 200,
+      "bytes": 55063,
+      "sha256": "62299ace2df0ea80b0578d54c83e8f302cc6d326c54abdbbeff9149a0e47907f",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 50625.0,
+        "growth": 5.8,
+        "primary": 3566.0,
+        "secondary": 19607.0,
+        "tertiary": 27452.0
+      }
+    },
+    {
+      "province": "fujian",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57209.html",
+      "http_code": 200,
+      "bytes": 67267,
+      "sha256": "8f58be0f606af9f8d91237387ea27340763d4f9a25e896f3d708444cab0964b5",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 57761.02,
+        "growth": 5.5,
+        "primary": 3287.67,
+        "secondary": 24713.16,
+        "tertiary": 29760.19
+      }
+    },
+    {
+      "province": "jiangxi",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57884.html",
+      "http_code": 200,
+      "bytes": 71973,
+      "sha256": "52dfccded22918d3e97a3433288e76a3b89e3e16c1c82d22416b2b16dda7b869",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 34202.5,
+        "growth": 5.1,
+        "primary": 2605.1,
+        "secondary": 13688.6,
+        "tertiary": 17908.8
+      }
+    },
+    {
+      "province": "henan",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58132.html",
+      "http_code": 200,
+      "bytes": 52550,
+      "sha256": "b0388e69dee5ea342f57162ec2c7fb2c974308fddfc6211485ebd3a5e15bcf15",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 63589.99,
+        "growth": 5.1,
+        "primary": 5491.4,
+        "secondary": 24346.17,
+        "tertiary": 33752.42
+      }
+    },
+    {
+      "province": "hunan",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57486.html",
+      "http_code": 200,
+      "bytes": 58502,
+      "sha256": "73d93ec5493171a14cc822512e24036879d86947e9137dcc0e240d23800851fa",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 53231.0,
+        "growth": 4.8,
+        "primary": 4899.7,
+        "secondary": 19534.6,
+        "tertiary": 28796.7
+      }
+    },
+    {
+      "province": "guangdong",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57657.html",
+      "http_code": 200,
+      "bytes": 62776,
+      "sha256": "656aa9adf8cc14bacb08bf799892e6dc0d00ada03ab985229b8f36de11f3eb4f",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 141633.81,
+        "growth": 3.5,
+        "primary": 5837.03,
+        "secondary": 54365.47,
+        "tertiary": 81431.31
+      }
+    },
+    {
+      "province": "guangxi",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58355.html",
+      "http_code": 200,
+      "bytes": 102996,
+      "sha256": "8a56e74e971f213098dae71b6d9e12705326eca65de45faea3fb4e95c62fdbf3",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 28649.4,
+        "growth": 4.2,
+        "primary": 4751.54,
+        "secondary": 9300.99,
+        "tertiary": 14596.87
+      }
+    },
+    {
+      "province": "yunnan",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58560.html",
+      "http_code": 200,
+      "bytes": 67609,
+      "sha256": "c7617a63042d17aa3ccd8d2359e461628d09cd4ee13ae2065c138feedbccd8a8",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 31534.1,
+        "growth": 3.3,
+        "primary": 4193.0,
+        "secondary": 10330.0,
+        "tertiary": 17011.0
+      }
+    },
+    {
+      "province": "xizang",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58383.html",
+      "http_code": 200,
+      "bytes": 46448,
+      "sha256": "0025e560f3740e04af8be671ce82564617528d202b3dba1da19f987ffe2e1430",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 2764.94,
+        "growth": 6.3,
+        "primary": 247.52,
+        "secondary": 1016.07,
+        "tertiary": 1501.35
+      }
+    },
+    {
+      "province": "shaanxi",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57236.html",
+      "http_code": 200,
+      "bytes": 45463,
+      "sha256": "40a2f5600092c316cff527ab8d3596f34eaae73ef8fa643a9a9c9d80f11581c7",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 35538.77,
+        "growth": 5.3,
+        "primary": 2621.96,
+        "secondary": 14518.97,
+        "tertiary": 18397.84
+      }
+    },
+    {
+      "province": "gansu",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57196.html",
+      "http_code": 200,
+      "bytes": 50440,
+      "sha256": "e4e1187309e5c5c491a51f33d5ef06cc5c590abcfd08bae84cad07f2cd70889f",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 13002.9,
+        "growth": 5.8,
+        "primary": 1621.7,
+        "secondary": 4436.4,
+        "tertiary": 6944.8
+      }
+    },
+    {
+      "province": "qinghai",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57094.html",
+      "http_code": 200,
+      "bytes": 71365,
+      "sha256": "efa2694dc196ac2a7a4aff8c111da8b22fae58ce47e67882766a1b42050423d1",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 3950.79,
+        "growth": 2.7,
+        "primary": 359.07,
+        "secondary": 1662.39,
+        "tertiary": 1929.33
+      }
+    },
+    {
+      "province": "ningxia",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/60392.html",
+      "http_code": 200,
+      "bytes": 58273,
+      "sha256": "db558552db9878b9e182b4a84e613aada5fdb1afb7a359f3367b234d122101ab",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 5502.76,
+        "growth": 5.4,
+        "primary": 451.24,
+        "secondary": 2335.36,
+        "tertiary": 2716.16
+      }
+    },
+    {
+      "province": "xinjiang",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57625.html",
+      "http_code": 200,
+      "bytes": 65886,
+      "sha256": "0d5cbbcbae4fea8faed60af84c327a7f79b60bb5fd0b125d37063f50c498657c",
+      "verdict": "REACHABLE",
+      "extracted": {
+        "gdp_total": 20534.08,
+        "growth": 6.1,
+        "primary": 2571.98,
+        "secondary": 8135.87,
+        "tertiary": 9826.23
+      }
+    }
+  ],
+  "blocked_provinces": [
+    {
+      "province": "liaoning",
+      "reason": "NOT_FOUND_IN_2024_INDEX",
+      "note": "2024 公报索引页 /category/sjtjgb 无该省 2024 条目（liaoning/hainan/guizhou）"
+    },
+    {
+      "province": "hainan",
+      "reason": "NOT_FOUND_IN_2024_INDEX",
+      "note": "2024 公报索引页 /category/sjtjgb 无该省 2024 条目（liaoning/hainan/guizhou）"
+    },
+    {
+      "province": "guizhou",
+      "reason": "NOT_FOUND_IN_2024_INDEX",
+      "note": "2024 公报索引页 /category/sjtjgb 无该省 2024 条目（liaoning/hainan/guizhou）"
+    }
+  ],
+  "methodology": "v1 26 省 × 5 指标 hongheiku 转载页真实入库; category-first URL 发现; 缺省 BLOCKED 禁补零; SHA 锁转载字节; lineage 三重标注模板"
+}

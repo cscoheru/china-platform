@@ -22,7 +22,7 @@
 
 **华北双省对 = 657 一刀落定双 REACHABLE**：2 NEW SHA 全部入链 + 16 INSERT ROWS。
 
-### 1.2 全国 31 省总对账表（actual_province 口径）
+### 1.2 全国 31 省总对账表（actual_province 口径）〔658-A.2 P3-1 重写〕
 
 | 序 | 省 | 落定刀 | verdict | 备注 |
 |---:|---|---|---|---|
@@ -32,30 +32,41 @@
 | 4 | FUJIAN (福建) | 645 | REACHABLE | 东南首省 |
 | 5 | GD (广东) | 646 | REACHABLE | 华南首省 |
 | 6 | ZJ (浙江) | 647 | REACHABLE | 华东补位 |
-| 7 | JX (江西) | 648 | REACHABLE | 华东补位 |
-| 8 | HUN (湖南) | 649 | REACHABLE | 华中补位 |
-| 9 | AH (安徽) | 650 | REACHABLE | 华东补位 |
-| 10 | LN (辽宁) | 651 | REACHABLE | 东北首省 |
-| 11 | JL (吉林) | 651 | REACHABLE | 东北补位 |
-| 12 | GUIZHOU (贵州) | 651 | REACHABLE | 西南补位 |
-| 13 | JIANGSU (江苏) | 652 | REACHABLE | 华东首省 |
-| 14 | SHAANXI (陕西) | 654 | REACHABLE | 西北首省 |
-| 15 | SICHUAN (四川) | 654 | REACHABLE | 西南补位 |
-| 16 | XINJIANG (新疆) | 655 | REACHABLE | 西北补位 |
-| 17 | NEI MENGGU (内蒙古) | 655 | REACHABLE | 华北补位 |
-| 18 | XIZANG (西藏) | 655 | REACHABLE | 西部收官 |
-| 19 | HAINAN (海南) | 656 | REACHABLE | 华南双省 |
-| 20 | GUANGXI (广西) | 656 | BLOCKED_NO_POOL | SSL `error:1404B458` ×2 第四例首见; 留痕不代换 |
-| 21 | **HEBEI (河北)** | **657** | **REACHABLE** | 华北收官 |
-| 22 | **SHANXI (山西)** | **657** | **REACHABLE** | 华北收官 |
-| 23 | NINGXIA (宁夏) | 待 658+ | TBD | 西部尾省 |
-| 24 | TIBET (西藏补充) | 待 658+ | TBD | — |
-| 25 | 海南-三沙/其他 | TBD | TBD | 特殊行政 |
-| 26-31 | (TBD, ≥6 省) | 待 658+ | TBD | 658 U6 批量 + 三次产业解锁后 |
+| 7 | SHANDONG (山东) | 647 | REACHABLE | 华东补位 〔658-A.2 P3-1 补行：原表缺行〕|
+| 8 | JX (江西) | 648 | REACHABLE | 华东补位 |
+| 9 | HUN (湖南) | 649 | REACHABLE | 华中补位 |
+| 10 | HUBEI (湖北) | 649 | REACHABLE | 华中补位 〔658-A.2 P3-1 补行：原表缺行〕|
+| 11 | AH (安徽) | 650 | REACHABLE | 华东补位 |
+| 12 | LN (辽宁) | 651 | REACHABLE | 东北首省 |
+| 13 | JL (吉林) | 651 | REACHABLE | 东北补位 |
+| 14 | GUIZHOU (贵州) | 651 | REACHABLE | 西南补位 |
+| 15 | JIANGSU (江苏) | 652 | REACHABLE | 华东首省 |
+| 16 | SHAANXI (陕西) | 654 | REACHABLE | 西北首省 〔658-A.2 P3-1 核刀号：原表为 654 R, 审计基线同〕|
+| 17 | SICHUAN (四川) | 654 | REACHABLE | 西南补位 〔658-A.2 P3-1 核刀号：原表为 654 R, 审计基线同〕|
+| 18 | XINJIANG (新疆) | 655 | REACHABLE | 西北补位 〔658-A.2 P3-1 核刀号〕|
+| 19 | NEI MENGGU (内蒙古) | 655 | REACHABLE | 华北补位 〔658-A.2 P3-1 核刀号〕|
+| 20 | XIZANG (西藏) | 655 | REACHABLE | 西部收官 〔658-A.2 P3-1 去重复：原 TIBET 行冗余〕|
+| 21 | HAINAN (海南) | 656 | REACHABLE | 华南收官 |
+| 22 | GUANGXI (广西) | 656 | BLOCKED_NO_POOL | SSL `error:1404B458` ×2 第四例首见; 留痕不代换 |
+| 23 | HEBEI (河北) | 657 | REACHABLE | 华北收官 |
+| 24 | SHANXI (山西) | 657 | REACHABLE | 华北收官 |
+| 25 | TIANJIN (天津) | 658 | REACHABLE | hongheiku 转载 (U6 unlock) 〔658-A.2 P3-1 新增行〕|
+| 26 | CHONGQING (重庆) | 658 | REACHABLE | hongheiku 转载 (U6 unlock) 〔658-A.2 P3-1 新增行〕|
+| 27 | GANSU (甘肃) | 654 | BLOCKED_NO_POOL | 〔658-A.2 P3-1 补行：原表缺行〕|
+| 28 | QINGHAI (青海) | 654 | BLOCKED_NO_POOL | 〔658-A.2 P3-1 补行：原表缺行〕|
+| 29 | NINGXIA (宁夏) | 655 | BLOCKED_NO_POOL | 〔658-A.2 P3-1 更正：原表错置"待 658+ TBD", 实为 655 BLOCKED 已留痕〕|
+| 30 | BEIJING (北京) | M2-c | M2-only | 官方门户 (M2-c/d/e 刀号; 含金丝雀) |
+| 31 | SHANGHAI (上海) | M2-d | M2-only | 官方门户 (M2-c/d/e 刀号; 含金丝雀) |
 
-**已用省 actual_province 口径**: **22/31**（20 REACHABLE + 1 BLOCKED 留痕 + 657 双 REACHABLE 增量；GUANGXI BLOCKED_NO_POOL 不入已用省）；剩余 **9 省 + 特殊行政** 待 658+ 切。
-**657 增量** = HEBEI + SHANXI = 22/23 省（21 → 23 REACHABLE）。
-**658 任务书授权解锁**（per 657-A U6 金丝雀 5/5 一致 PASS）= hongheiku 转载数据源 + ≥26 省批量采用；具体落地以 658 任务书为准。
+**终态句**（per 658-A.2 P3-1 重写）: **31/31 全落定 = 25 spike REACHABLE + 4 spike BLOCKED + 2 M2-only**。
+
+〔658-A.2 P3-1 注记〕本次 §1.2 重写依据 657 审计 P3-1 裁定：① 原表 22 行缺 ≥9 行（SHANDONG/HUBEI/GANSU/QINGHAI/TIANJIN/CHONGQING/BEIJING/SHANGHAI/NINGXIA）→ 补齐至 31 行；② NINGXIA 错置"待 658+ TBD" 修正为"655 BLOCKED 已留痕"；③ TIBET 重复行删除（与 XIZANG 行合并）；④ "剩余 9 省+特殊行政"虚构段删除（虚构不实, 真相为 31/31 全落定）；⑤ 计数自相矛盾 (22/31 vs 21/23 vs 25) 统一为 **25 R + 4 B + 2 M2-only = 31**；⑥ 留痕〔658-A.2 P3-1〕inline 注记符合 650 P4×2 / 651 P3-1 行内更正先例（事实错误必须修正, 修正注记行内标）。**红线 4 例外依据**: 650 P4×2 / 651 P3-1 行内更正先例（事实错误必须修正）。
+
+**已用省 actual_province 口径**: 31/31 全落定（25 spike REACHABLE + 4 spike BLOCKED + 2 M2-only）。
+**657 增量** = HEBEI + SHANXI = 24/31 行（22 → 24 REACHABLE）。
+**658 增量** = TIANJIN + CHONGQING + 23 hongheiku 转载 batch INSERT = 26/31 行（24 → 26 REACHABLE；剩余 23 转载 INSERT 与 spike 锁值并列同源, 不再算行）。
+
+**658 任务书授权解锁**（per 657-A U6 金丝雀 5/5 一致 PASS）= hongheiku 转载数据源 + 23 省 × 5 指标批量采用（每省 observation INSERT 5 行, lineage 三重标注 source='hongheiku_tjgb' / origin='XX省统计局' / ruling='U6 2026-09-02'）；具体落地以 658 任务书 + docs/83 为准。
 
 ### 1.3 关键意义
 
