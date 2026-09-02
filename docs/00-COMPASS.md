@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | M4 spike 链收官（638-657 二十刀；**657 审计 PASS·有限通过〔金丝雀 5/5 批量解锁〕**）→ M2 批量 |
-| NOW | **658** M2 批量（26 省 × 5 指标真实入库 via U6 + 国家锚 + P3-1 修正） |
+| 阶段 | M2 批量完成（**658 审计 PASS·有限通过〔23 省入库+国家锚/自洽 PASS〕**）→ 659 前端真实化 |
+| NOW | **659** mart flip + 前端切源（页面 GDP 真实化收官刀）+ P3-2 终修 |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-658：**M2 批量刀**——26 省 × 5 指标（GDP 总量+增速+三次产业）hongheiku 转载页**真实入库** observation + source_registry（lineage 三重：hongheiku_tjgb/XX省统计局/U6）；category-first 发现（禁 /tag/）；HTTP ≤32 限速；缺省整省 BLOCKED 禁补零；**国家锚**（31 省加总 vs NBS 1,349,084.0 亿）+ 省内自洽（三产和≈总量 0.5% 容差）；**P3-1 修正** docs/82 §1.2 重写 31 行对账（25R+4B+2M2）；M2.3 升级评估（只读 31/31）；规范 **v3.4**（§META 五字段对链自检）首签。O1 零动作；≥326 green（底限 ≥316；m2 零 diff×2；19 文件集）。任务书 = `657-audit-658-tasking-consolidated-20260902.md` PART 2。659 预告 = mart flip + 前端切源。
+659：**mart flip + 前端切源**（页面 GDP 真实化收官刀）——① `dbt/models/marts/mart_province_gdp_2024.sql`（28 省真数据 + 3 省 DATA_MISSING〔LN/HAINAN/GUIZHOU 源缺文〕禁补零；31 行守门）② 前端切源（`api.ts` USE_MOCK 默认 **false**；`page.tsx` 去 MOCK_PROVINCE_LIST 默认渲染〔mock 保留〕；3 省「数据暂缺」；`layout.tsx` 横幅 + `smoke-check.py` 更新）③ **P3-2 终修** docs/82 §1.2 rows 12-19 + §3 归属按链 SHA 实证（651=陕/川 d13b3229、652=新/蒙 04721b7、LN=649 substitute 936640d、653=SD/HB、654=GS/QH、655=NX/XZ；删循环自证）④ ≥342 green（底限 ≥336；m2 零 diff×2；20 文件集）；docs/84。O1 零动作。任务书 = `658-audit-659-tasking-consolidated-20260902.md` PART 2。
 
 ## POINTERS
 
 - `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/81`（**U6 ruling** hongheiku 源）
-- 657 合并件（审计 PART 1 + **658 任务书 PART 2**）
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev101
+- 658 合并件（审计 PART 1 + **659 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev103
 
 ## 压缩后自检
 
