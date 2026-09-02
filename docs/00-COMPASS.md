@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | M4.x/M5/M6 spike 链（638-651 十四刀交付；**651 审计 PASS·有限通过**） |
-| NOW | **652** M4.15 v9（XINJIANG+NEIMENGGU）BLOCKED_NO_POOL e2e 验证 |
+| 阶段 | M4.x/M5/M6 spike 链（638-652 十五刀交付；**652 审计 PASS·有限通过**） |
+| NOW | **653** M4.16 v10（shandong+hubei 双复试）BLOCKED_NO_POOL 真网首触发 |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-652：M4.15 v9 **XINJIANG + NEIMENGGU** 第 17/18 样本（edge-case 高 BLOCK 概率；**BLOCKED_NO_POOL 留痕 e2e 两态验证**——双 BLOCKED→留痕不代换 per 红线 14 / 任一 REACHABLE→正常落；chain_id `real_652_m4_15_policy_detail_v9`；UUID **k 段**；递补池 [EXHAUSTED] 沿用）+ 651 审计 P4×2 规范固化（status 不 pin 中间 SHA；入链 SHA 取 git log 实测）+ docs/76 §1-§6。O1 零动作；≥152 green（底限 ≥145）。单文件模式：任务书 = `651-audit-652-tasking-consolidated-20260902.md` PART 2。
+653：M4.16 v10 **shandong + hubei 双复试**第 19/20 样本（647 shandong 4 连 BLOCKED 史 + 649 hubei 槽被代换史；**真网 BLOCKED_NO_POOL 首触发最佳概率**——两态合法：双 REACHABLE→16 INSERT / 任一 BLOCKED→0 INSERT+留痕不代换 per 红线 14；lineage 全行 `retry_of`；chain_id `real_653_m4_16_policy_detail_v10`；UUID **l 段**）+ 652 审计 P4 处置规范 v2（status 收口与 §NOW 同 commit 原子完成 + "待复核"复核后必清）+ docs/77 §1-§6。O1 零动作；≥179 green（底限 ≥175）。单文件模式：任务书 = `652-audit-653-tasking-consolidated-20260902.md` PART 2。
 
 ## POINTERS
 
-- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/75`（651 master）
-- 651 合并件（审计 PART 1 + **652 任务书 PART 2**）
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev89
+- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/76`（652 master）
+- 652 合并件（审计 PART 1 + **653 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev91
 
 ## 压缩后自检
 
