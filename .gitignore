@@ -35,6 +35,7 @@ out/
 build/
 dist/
 target/
+*.tsbuildinfo
 
 # ===== 数据层（按 PRD 9.2 原始资料不可变；处理产物不入库） =====
 # data/raw/ 原始资料按规范应该入对象存储；本仓库只保留样本 + 提取产物
