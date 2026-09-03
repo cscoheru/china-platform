@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-export-mart-data.py — knife 660 Track B (静态导出).
+export-mart-data.py — knife 660 Track B (静态导出) + knife 661 扩展.
 
 Reads `dbt/models/marts/mart_province_gdp_2024.sql` (152 行, knife 659 收口),
 parses the three VALUES blocks (province_codes / real_data / missing_provinces),
@@ -22,6 +22,13 @@ Track B contract (per 660 tasking §PART 2):
 - Missing provinces have all 5 metric columns = null (禁补零 per 红线 1).
 - lineage_ruling='U6 2026-09-02' for all rows.
 
+Knife 661 extensions (per 661 tasking §1.661 + docs/87 §3.1 P1 先行):
+- 32 rows total (28 real + 3 DATA_MISSING + 1 NATIONAL anchor).
+- NATIONAL anchor row = 全国 2024 GDP 锚值, marked OFFICIAL_ANCHOR.
+- Per-row source_url field (per lineage_source → public URL mapping).
+- Per-row source_hash_prefix field (null for 661; future 662+ via dbt
+  source_document JOIN).
+
 Exit codes:
 - 0  success
 - 1  SQL parse error / missing file / row-count mismatch
@@ -39,7 +46,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]  # deploy/static-export -> repo root
 MART_SQL = REPO_ROOT / "dbt" / "models" / "marts" / "mart_province_gdp_2024.sql"
 OUT_JSON = REPO_ROOT / "frontend" / "data" / "mart_province_gdp_2024.json"
-EXPECTED_ROWS = 31
+EXPECTED_ROWS = 32  # 661: 28 real + 3 missing + 1 NATIONAL anchor
 EXPECTED_REAL = 28
 EXPECTED_MISSING = 3
 EXPECTED_MISSING_CODES = ["LIAONING", "HAINAN", "GUIZHOU"]
@@ -51,6 +58,24 @@ GB_T_2260_ORDER = [
     "HAINAN", "CHONGQING", "SICHUAN", "GUIZHOU", "YUNNAN",
     "XIZANG", "SHAANXI", "GANSU", "QINGHAI", "NINGXIA", "XINJIANG",
 ]
+# 661: source_url mapping per lineage_source type (per docs/81 §2 + U6 ruling).
+# These are public government / hongheiku URLs, used as routing key for
+# 溯源 popover. Per 红线 8 「溯源 UI 只显示库中真实血缘字段」, source_hash_prefix
+# is left null for 661 (will be populated via dbt source_document JOIN in 662+).
+SOURCE_URL_BY_LINEAGE = {
+    # 5 OFFICIAL_INTAKED provinces: stats.gov.cn national bulletin homepage.
+    # Real URL pattern: stats.gov.cn annual GDP bulletin (全国 2024 国民经济
+    # 和社会发展统计公报); specific bulletin URL is rotated yearly. Root
+    # URL is stable and known public.
+    "OFFICIAL_INTAKED": "https://www.stats.gov.cn/sj/zxfb/",
+    # 23 hongheiku re-post provinces: tjgb.hongheiku.com per-province archive.
+    # Per docs/81 §2 实测: tag 路由 /tag/{省} 列出 2021-2025 各年公报.
+    "hongheiku_tjgb": "https://tjgb.hongheiku.com/",
+}
+# 661 NATIONAL anchor (per docs/81 §3 国家锚核对 1,349,084.0 亿元).
+NATIONAL_GDP_TOTAL = "1349084.0"
+NATIONAL_ROW_CODE = "NATIONAL"
+NATIONAL_ROW_NAME = "全国"
 
 
 def parse_values_block(sql: str, cte_name: str) -> list[tuple]:
@@ -113,6 +138,11 @@ def main() -> int:
     p = argparse.ArgumentParser(description="knife 660 Track B mart SQL -> JSON")
     p.add_argument("--out", type=Path, default=OUT_JSON, help="output JSON path")
     p.add_argument("--strict", action="store_true", help="exit non-zero on any red-line violation")
+    # 661 D3: --dry-run 模式只走解析+自检,不写盘,避免 s660 test_11 side-effect.
+    # 660-P1 教训: test_11 直接 --strict --out $MART_JSON 会破坏生产 JSON 文件
+    # 在并发 pytest 下产生竞态;改 dry-run 后 test_11 只断言 exit code + 数据形态.
+    p.add_argument("--dry-run", action="store_true",
+                   help="parse + self-audit only; do not write output JSON")
     args = p.parse_args()
 
     if not MART_SQL.exists():
@@ -187,7 +217,37 @@ def main() -> int:
             "lineage_origin": lineage_origin,
             "lineage_ruling": "U6 2026-09-02",
             "lineage_is_demo": "false",
+            # 661: 溯源 popover 三件套 (per 661 tasking §1.661 + 红线 8).
+            # 真实行: source_url = lineage_source → 公共 URL 路由映射(权威,非编造).
+            # DATA_MISSING 行: source_url 必须为 null(无 observation, 无 SHA 锁字节可溯,
+            #   禁编造 URL per 红线 8). source_hash_prefix 留 null (待 662+ dbt JOIN).
+            "source_url": SOURCE_URL_BY_LINEAGE.get(lineage_source) if status != "DATA_MISSING" else None,
+            "source_hash_prefix": None,
         })
+
+    # 661: prepend NATIONAL anchor row (全国 2024 GDP, per docs/81 §3 国家锚核对).
+    # 此行不来自 mart SQL CTE, 而是从 NBS 2024 国家公报摘录 (架构师端源已自取,
+    # per docs/81 §2 实测: 1,349,084.0 亿元); 单值且标 OFFICIAL_ANCHOR.
+    national_row = {
+        "province_code": NATIONAL_ROW_CODE,
+        "province_name": NATIONAL_ROW_NAME,
+        "gdp_total": NATIONAL_GDP_TOTAL,
+        "gdp_growth": None,            # NBS 全国增速未在本刀定位 (留 662+)
+        "primary_gdp": None,
+        "secondary_gdp": None,
+        "tertiary_gdp": None,
+        "growth_note": None,
+        "status": "OFFICIAL_ANCHOR",   # 区别于 real (status=null) / missing
+        "missing_reason": None,
+        "lineage_source": "OFFICIAL_INTAKED",
+        "lineage_origin": "国家统计局",
+        "lineage_ruling": "U6 2026-09-02",
+        "lineage_is_demo": "false",
+        "source_url": SOURCE_URL_BY_LINEAGE["OFFICIAL_INTAKED"],
+        "source_hash_prefix": None,
+    }
+    # NATIONAL 置首; 之后 28 真实 + 3 缺失按 GB/T 2260 顺序
+    rows = [national_row] + rows
 
     # Red-line self-audit.
     errors: list[str] = []
@@ -222,16 +282,23 @@ def main() -> int:
 
     out = {
         "as_of": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "ruling": "knife 660 Track B static export (per §PART 2)",
+        "ruling": "knife 660 Track B + 661 P1 切片 (per 661 tasking §1.661)",
+        "schema_version": "661",  # 661: bumped from 660 baseline
         "mart_source": str(MART_SQL.relative_to(REPO_ROOT)),
         "total_count": len(rows),
         "real_count": len(real_rows),
         "missing_count": len(missing_rows),
+        "national_count": 1,  # 661: NATIONAL anchor row
         "data_missing_provinces": missing_codes,
         "lineage_ruling": "U6 2026-09-02",
         "lineage_is_demo": "false",
         "provinces": rows,
     }
+
+    if args.dry_run:
+        # 661 D3: dry-run 模式不写盘,只把 JSON 摘要打到 stdout,供测试断言.
+        print(f"DRY-RUN OK: {len(rows)} rows (real={out['real_count']} missing={out['missing_count']} national={out['national_count']})")
+        return 0
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

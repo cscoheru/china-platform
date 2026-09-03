@@ -1,9 +1,9 @@
-// frontend/lib/mart-static.ts — knife 660 Track B (静态导出).
+// frontend/lib/mart-static.ts — knife 660 Track B (静态导出) + 661 扩展.
 //
 // Per 660 tasking §PART 2 + docs/53 §5 第 16 项 redeploy 运维行:
-// newvps 上不需要 FastAPI backend + dbt + DB。mart 数据 (28 真实 + 3 缺失)
-// 在架构师端从 dbt/models/marts/mart_province_gdp_2024.sql 导出为
-// frontend/data/mart_province_gdp_2024.json (per export-mart-data.py),
+// newvps 上不需要 FastAPI backend + dbt + DB。mart 数据 (28 真实 + 3 缺失 +
+// 1 NATIONAL 锚行 per 661) 在架构师端从 dbt/models/marts/mart_province_gdp_2024.sql
+// 导出为 frontend/data/mart_province_gdp_2024.json (per export-mart-data.py),
 // 提交进仓库,Next.js build 时通过 NEXT_PUBLIC_MART_DATA_PATH 读 JSON,
 // 运行时零外部依赖。
 //
@@ -13,9 +13,11 @@
 //
 // 守门:
 //   - module init 时 (server-side only) 读 JSON;失败 → throw with actionable msg
-//   - 31 行守门 (28 真实 + 3 缺失 NULL 禁补零) 在 export-mart-data.py 已做
+//   - 32 行守门 (28 真实 + 3 缺失 + 1 NATIONAL) 在 export-mart-data.py 已做
 //     --strict 验证;此处不重复
 //   - 数据缺失省指标列必须为 null(per 红线 1)
+//   - 661: source_url 是 lineage_source → 公共 URL 路由映射; source_hash_prefix
+//     为 null (待 662+ dbt source_document JOIN)
 
 import fs from "fs";
 import path from "path";
@@ -23,27 +25,32 @@ import path from "path";
 export interface MartProvinceGdp2024Row {
   province_code: string;
   province_name: string;
-  gdp_total: number | null;
-  gdp_growth: number | null;
-  primary_gdp: number | null;
-  secondary_gdp: number | null;
-  tertiary_gdp: number | null;
-  growth_note: number | null;
-  status: string | null;
+  gdp_total: number | string | null;
+  gdp_growth: number | string | null;
+  primary_gdp: number | string | null;
+  secondary_gdp: number | string | null;
+  tertiary_gdp: number | string | null;
+  growth_note: number | string | null;
+  status: string | null; // null=real; 'DATA_MISSING'; 'OFFICIAL_ANCHOR' (661)
   missing_reason: string | null;
   lineage_source: string;
   lineage_origin: string;
   lineage_ruling: string;
   lineage_is_demo: string;
+  // 661 扩展: 溯源 popover 三件套 (source_url + source_hash_prefix + lineage_ruling).
+  source_url: string | null; // 公共 URL (lineage_source 路由)
+  source_hash_prefix: string | null; // 8 字符 SHA 前缀 (661 留 null, 662+ 接入)
 }
 
 export interface MartProvinceGdp2024 {
   as_of: string;
   ruling: string;
+  schema_version?: string; // 661: optional, '660' baseline vs '661' extension
   mart_source: string;
   total_count: number;
   real_count: number;
   missing_count: number;
+  national_count?: number; // 661: optional, 1 if NATIONAL anchor row present
   data_missing_provinces: string[];
   lineage_ruling: string;
   lineage_is_demo: string;
@@ -99,4 +106,33 @@ export function loadStaticMartData(): MartProvinceGdp2024 | null {
 export function getMartProvinceGdp2024(): MartProvinceGdp2024 | null {
   if (!isStaticMartDataEnabled()) return null;
   return loadStaticMartData();
+}
+
+/**
+ * 661: return the NATIONAL anchor row (全国 2024 GDP, OFFICIAL_ANCHOR).
+ * Per docs/81 §3 国家锚核对 + 661 tasking §1.661. Returns null if mart data
+ * is not loaded or no NATIONAL row is present (660 baseline would return null).
+ *
+ * Use this on the home page to render the 国家锚 row at top of the GDP table.
+ */
+export function getNationalAnchor(): MartProvinceGdp2024Row | null {
+  const data = getMartProvinceGdp2024();
+  if (!data) return null;
+  return data.provinces.find((p) => p.province_code === "NATIONAL") ?? null;
+}
+
+/**
+ * 661: look up a province (or NATIONAL) by its GB/T 2260 code.
+ * Returns null if not found or mart data is not configured.
+ *
+ * Use this in dynamic province detail routes (C2) to fetch a single row by
+ * [province_code] slug. DATA_MISSING provinces are returned with all metric
+ * cols null — callers must check `status === "DATA_MISSING"` before display.
+ */
+export function getProvinceByCode(
+  code: string
+): MartProvinceGdp2024Row | null {
+  const data = getMartProvinceGdp2024();
+  if (!data) return null;
+  return data.provinces.find((p) => p.province_code === code) ?? null;
 }

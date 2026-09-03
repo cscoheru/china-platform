@@ -1,10 +1,12 @@
 {
-  "as_of": "2026-09-02T15:34:08Z",
-  "ruling": "knife 660 Track B static export (per §PART 2)",
+  "as_of": "2026-09-03T04:16:02Z",
+  "ruling": "knife 660 Track B + 661 P1 切片 (per 661 tasking §1.661)",
+  "schema_version": "661",
   "mart_source": "dbt/models/marts/mart_province_gdp_2024.sql",
-  "total_count": 31,
+  "total_count": 32,
   "real_count": 28,
   "missing_count": 3,
+  "national_count": 1,
   "data_missing_provinces": [
     "GUIZHOU",
     "HAINAN",
@@ -13,6 +15,24 @@
   "lineage_ruling": "U6 2026-09-02",
   "lineage_is_demo": "false",
   "provinces": [
+    {
+      "province_code": "NATIONAL",
+      "province_name": "全国",
+      "gdp_total": "1349084.0",
+      "gdp_growth": null,
+      "primary_gdp": null,
+      "secondary_gdp": null,
+      "tertiary_gdp": null,
+      "growth_note": null,
+      "status": "OFFICIAL_ANCHOR",
+      "missing_reason": null,
+      "lineage_source": "OFFICIAL_INTAKED",
+      "lineage_origin": "国家统计局",
+      "lineage_ruling": "U6 2026-09-02",
+      "lineage_is_demo": "false",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/",
+      "source_hash_prefix": null
+    },
     {
       "province_code": "BEIJING",
       "province_name": "北京",
@@ -27,7 +47,9 @@
       "lineage_source": "OFFICIAL_INTAKED",
       "lineage_origin": "北京市统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "TIANJIN",
@@ -43,7 +65,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "天津市统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "HEBEI",
@@ -59,7 +83,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "河北省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "SHANXI",
@@ -75,7 +101,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "山西省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "NEI_MENGGU",
@@ -91,7 +119,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "内蒙古自治区统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "LIAONING",
@@ -107,7 +137,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "hongheiku_tjgb",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": null,
+      "source_hash_prefix": null
     },
     {
       "province_code": "JILIN",
@@ -123,7 +155,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "吉林省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "HEILONGJIANG",
@@ -139,7 +173,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "黑龙江省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "SHANGHAI",
@@ -155,7 +191,9 @@
       "lineage_source": "OFFICIAL_INTAKED",
       "lineage_origin": "上海市统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "JIANGSU",
@@ -171,7 +209,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "江苏省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "ZHEJIANG",
@@ -187,7 +227,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "浙江省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "ANHUI",
@@ -203,7 +245,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "安徽省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "FUJIAN",
@@ -219,7 +263,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "福建省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "JIANGXI",
@@ -235,7 +281,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "江西省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "SHANDONG",
@@ -251,7 +299,9 @@
       "lineage_source": "OFFICIAL_INTAKED",
       "lineage_origin": "山东省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "HENAN",
@@ -267,7 +317,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "河南省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "HUBEI",
@@ -283,7 +335,9 @@
       "lineage_source": "OFFICIAL_INTAKED",
       "lineage_origin": "湖北省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "HUNAN",
@@ -299,7 +353,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "湖南省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "GUANGDONG",
@@ -315,7 +371,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "广东省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "GUANGXI",
@@ -331,7 +389,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "广西壮族自治区统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "HAINAN",
@@ -347,7 +407,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "hongheiku_tjgb",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": null,
+      "source_hash_prefix": null
     },
     {
       "province_code": "CHONGQING",
@@ -363,7 +425,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "重庆市统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "SICHUAN",
@@ -379,7 +443,9 @@
       "lineage_source": "OFFICIAL_INTAKED",
       "lineage_origin": "四川省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "GUIZHOU",
@@ -395,7 +461,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "hongheiku_tjgb",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": null,
+      "source_hash_prefix": null
     },
     {
       "province_code": "YUNNAN",
@@ -411,7 +479,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "云南省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "XIZANG",
@@ -427,7 +497,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "西藏自治区统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "SHAANXI",
@@ -443,7 +515,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "陕西省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "GANSU",
@@ -459,7 +533,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "甘肃省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "QINGHAI",
@@ -475,7 +551,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "青海省统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "NINGXIA",
@@ -491,7 +569,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "宁夏回族自治区统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     },
     {
       "province_code": "XINJIANG",
@@ -507,7 +587,9 @@
       "lineage_source": "hongheiku_tjgb",
       "lineage_origin": "新疆维吾尔自治区统计局",
       "lineage_ruling": "U6 2026-09-02",
-      "lineage_is_demo": "false"
+      "lineage_is_demo": "false",
+      "source_url": "https://tjgb.hongheiku.com/",
+      "source_hash_prefix": null
     }
   ]
 }
