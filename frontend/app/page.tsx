@@ -328,14 +328,23 @@ const cellStyle: React.CSSProperties = {
   textAlign: "left",
 };
 
-function fmtNum(v: number | null): string {
+function fmtNum(v: number | string | null): string {
   if (v === null || v === undefined) return "—";
-  if (typeof v !== "number") return "—";
-  return v.toLocaleString("zh-CN", { maximumFractionDigits: 2 });
+  // mart JSON 数值列经 export-mart-data.py 输出时常为字符串(政府源 TXT/HTML
+  // 给的数字通常是 str),需 coerce 成 number 才走 zh-CN locale 渲染.
+  // 空串当缺失处理 — Number("") === 0 会误显"0",必须 trim 后拒收.
+  const raw = typeof v === "string" ? v.trim() : v;
+  if (raw === "" || raw === undefined) return "—";
+  const n = typeof raw === "string" ? Number(raw) : raw;
+  if (!Number.isFinite(n)) return "—";
+  return n.toLocaleString("zh-CN", { maximumFractionDigits: 2 });
 }
 
-function fmtPct(v: number | null): string {
+function fmtPct(v: number | string | null): string {
   if (v === null || v === undefined) return "—";
-  if (typeof v !== "number") return "—";
-  return v.toFixed(1);
+  const raw = typeof v === "string" ? v.trim() : v;
+  if (raw === "" || raw === undefined) return "—";
+  const n = typeof raw === "string" ? Number(raw) : raw;
+  if (!Number.isFinite(n)) return "—";
+  return n.toFixed(1);
 }

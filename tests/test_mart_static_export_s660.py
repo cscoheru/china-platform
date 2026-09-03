@@ -161,6 +161,38 @@ def test_09_page_tsx_mart_section_render() -> None:
         assert needle in code, f"app/page.tsx missing {needle}"
 
 
+def test_13_fmtNum_fmtPct_accept_string_numbers() -> None:
+    """660-P1 回归 case 13: fmtNum/fmtPct 必须接受 string|number|null.
+
+    mart JSON 数值列经 export-mart-data.py 输出时常为字符串(政府源 TXT/HTML
+    给的数字通常是 str),fmtNum/fmtPct 必须 coerce 否则 28 真省数值全 fallback
+    "—"(回归: 660 deploy 后用户报"还是空白状态")。
+    """
+    import math as _math  # noqa: PLC0415
+    code = _strip_comments(PAGE_TSX.read_text(encoding="utf-8"))
+    # fmtNum 签名必须宽化到 string | number | null
+    assert "function fmtNum(v: number | string | null)" in code, \
+        "fmtNum 类型签名未宽化 (string 数字会全部 fallback '—')"
+    assert "function fmtPct(v: number | string | null)" in code, \
+        "fmtPct 类型签名未宽化"
+    # 必须有 coerce 逻辑 (Number(v) 或 Number(raw))
+    assert "Number(" in code, "fmtNum/fmtPct 缺少 Number() coerce 逻辑"
+    # 必须有 Number.isFinite 守门 (防 Number('') === 0 误显)
+    assert "Number.isFinite" in code, "fmtNum/fmtPct 缺 Number.isFinite 守门"
+    # 验收: 28 真省的 JSON 源数据,数值字段必须能 coerce 到 finite number
+    data = _load_mart()
+    real_count = 0
+    for p in data["provinces"]:
+        if p.get("gdp_total") is not None:
+            real_count += 1
+            # 模拟 fmtNum 内部 coerce: string → float
+            val = p["gdp_total"]
+            n = float(val) if isinstance(val, str) else val
+            assert _math.isfinite(n), \
+                f"省 {p['province_code']} gdp_total={val!r} 不可 coerce 到 finite number"
+    assert real_count >= 28, f"实省 gdp_total 字段应有 ≥28 行,实际 {real_count}"
+
+
 def test_10_deploy_package_files() -> None:
     """§4.2 case 10: deploy/static-export/ 4 文件齐."""
     assert DEPLOY_DIR.exists(), f"deploy/static-export/ missing: {DEPLOY_DIR}"
