@@ -16,6 +16,7 @@ import { listIndicators, IS_MOCK_MODE, IS_MART_FIXTURE_MODE, IS_STATIC_MART_DATA
 import { CITY_SLUG_MAP, CITY_SLUG_LIST } from "../lib/city_slug_map";
 import { getMartProvinceGdp2024 } from "../lib/mart-static";
 import { ProvinceGdpTable } from "./components/ProvinceGdpTable";
+import { DataCompletenessPanel } from "./components/DataCompletenessPanel";
 // MOCK_PROVINCE_LIST retained (S1.18 历史资产 + 回退通道 per 659 tasking §1.659-A; 默认渲染已移除)
 
 export const dynamic = "force-dynamic";
@@ -77,6 +78,20 @@ export default async function HomePage() {
             数据来源: <code>{mart.mart_source}</code> · 导出于 {mart.as_of}。
             红线: 3 缺失省 5 个 metric 列全为 NULL(禁补零);溯源字段 source_hash_prefix
             留 null (待 662+ dbt source_document JOIN 接入,per 红线 8 「禁编造 source」)。
+          </p>
+
+          {/* 662 D3: 数据完整度面板 (31 省 × 5 指标覆盖矩阵 + 3 省缺失公示). */}
+          <DataCompletenessPanel mart={mart} />
+
+          {/* 662 D5: LIVE 导航 — 完整度相关入口. */}
+          <p style={{ marginTop: 16, fontSize: 12 }}>
+            完整度相关:
+            <a href="/indicators" style={{ marginLeft: 6 }}>/indicators</a>
+            {" "}(5 指标定义页, per 662 D2)
+            {" · "}
+            <a href="#data-completeness-panel" style={{ marginLeft: 6 }}>
+              锚点直达
+            </a>
           </p>
         </>
       )}
