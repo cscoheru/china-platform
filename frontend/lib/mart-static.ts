@@ -27,6 +27,11 @@
 import fs from "fs";
 import path from "path";
 
+import type {
+  ProvinceTimeSeriesResponse,
+  ProvinceTimeSeriesYearRange,
+} from "./types";
+
 export interface MartProvinceGdp2024Row {
   province_code: string;
   province_name: string;
@@ -253,4 +258,153 @@ export function getIndicatorDefinitions(): MartIndicatorDefinitionsFile | null {
 export function getIndicatorDefinitionList(): MartIndicatorDefinition[] | null {
   const data = getIndicatorDefinitions();
   return data?.indicators ?? null;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// P2 / knife 664: Province time-series mart loader (mart_province_timeseries.json)
+//
+// Schema: 31 provinces × 10 indicators × 26 years (2001-2026) = 8060 rows.
+// 2001-2019 + 2026 → status='DATA_MISSING' (新增红线-1/2).
+// 3 缺失省 (辽/琼/黔) → 全 DATA_MISSING (660 红线).
+//
+// 路径派生: 与 NEXT_PUBLIC_MART_DATA_PATH 同目录, 文件名
+// mart_province_timeseries.json (assumes export-mart-data.py 一次导出多份).
+//
+// 三态返回 (镜像 indicator definitions loader):
+//   - 成功: 返回 MartProvinceTimeSeriesFile
+//   - 文件不存在: 返回 null (graceful degradation, /timeseries 页显示空态)
+//   - JSON 解析失败: throw with actionable msg
+// ────────────────────────────────────────────────────────────────────────────
+
+export interface MartProvinceTimeSeriesFile {
+  as_of: string;
+  ruling: string;
+  schema_version?: string;        // '664' baseline
+  mart_source: string;            // 'cegr_mart.mart_province_timeseries'
+  lineage_ruling: string;
+  lineage_is_demo: string;
+  total_rows: number;             // 8060 = 31 × 10 × 26
+  unique_provinces: number;       // 31
+  unique_indicators: number;      // 10
+  year_range: readonly [number, number];  // [2001, 2026]
+  indicators: string[];           // 10 indicator_keys
+  provinces: MartProvinceTimeSeriesRow[];
+}
+
+export interface MartProvinceTimeSeriesRow {
+  province_code: string;
+  province_name: string;
+  indicator_key: string;
+  indicator_label: string;
+  unit: string | null;
+  year: number;
+  value: number | null;
+  status: string | null;
+  missing_reason: string | null;
+  lineage_source_type: string;
+  lineage_origin: string | null;
+  lineage_ruling: string;
+  lineage_is_demo: string;
+}
+
+let cachedTimeSeries: MartProvinceTimeSeriesFile | null = null;
+let timeSeriesLoadError: Error | null = null;
+let timeSeriesLoadAttempted = false;
+let timeSeriesFileMissing = false;  // graceful-degradation 标志
+
+/**
+ * P2 / knife 664: 派生 province-time-series JSON 的绝对路径.
+ * 默认与 NEXT_PUBLIC_MART_DATA_PATH 同目录, 文件名 mart_province_timeseries.json.
+ */
+function deriveProvinceTimeSeriesPath(martPath: string): string {
+  const dir = path.dirname(martPath);
+  return path.isAbsolute(martPath)
+    ? path.join(dir, "mart_province_timeseries.json")
+    : path.join(process.cwd(), dir, "mart_province_timeseries.json");
+}
+
+/**
+ * P2 / knife 664: 读取 province-time-series JSON (build-time fs read + cache).
+ *
+ * 三态返回 (镜像 loadStaticIndicatorDefinitions):
+ *   - 成功: 返回 MartProvinceTimeSeriesFile
+ *   - 文件不存在: 返回 null (graceful degradation, newvps 上 664g export 未跑也能跑)
+ *   - JSON 解析失败: throw with actionable msg
+ */
+export function loadStaticProvinceTimeSeries(): MartProvinceTimeSeriesFile | null {
+  if (cachedTimeSeries) return cachedTimeSeries;
+  if (timeSeriesLoadError) throw timeSeriesLoadError;
+  if (timeSeriesFileMissing) return null;
+
+  const martPath = process.env.NEXT_PUBLIC_MART_DATA_PATH;
+  if (!martPath) {
+    timeSeriesFileMissing = true;
+    return null;
+  }
+
+  const resolved = deriveProvinceTimeSeriesPath(martPath);
+  if (!fs.existsSync(resolved)) {
+    timeSeriesFileMissing = true;
+    return null;
+  }
+
+  try {
+    const raw = fs.readFileSync(resolved, "utf-8");
+    cachedTimeSeries = JSON.parse(raw) as MartProvinceTimeSeriesFile;
+    timeSeriesLoadAttempted = true;
+    return cachedTimeSeries;
+  } catch (e) {
+    timeSeriesLoadError = new Error(
+      `Failed to load province time-series from ${resolved}: ${(e as Error).message}`
+    );
+    throw timeSeriesLoadError;
+  }
+}
+
+/**
+ * P2 / knife 664: 便捷函数. 读取 province time-series JSON, 文件不存在返回 null.
+ */
+export function getProvinceTimeSeriesStatic(): MartProvinceTimeSeriesFile | null {
+  return loadStaticProvinceTimeSeries();
+}
+
+/**
+ * P2 / knife 664: 便捷函数. 按 province_code + year_range 过滤 mart 行.
+ *
+ * Returns null if mart JSON is not configured (graceful degradation).
+ * Returns empty array if province_code not in mart.
+ *
+ * 性能: 8060 rows in-memory filter is fine for the data scale; if scale grows,
+ * build a province_code index (Map<province_code, rows[]>) on cache load.
+ */
+export function getProvinceTimeSeriesByCode(
+  provinceCode: string,
+  yearRange?: readonly [number, number]
+): ProvinceTimeSeriesResponse | null {
+  const data = getProvinceTimeSeriesStatic();
+  if (!data) return null;
+
+  const filtered = data.provinces.filter((r) => {
+    if (r.province_code !== provinceCode) return false;
+    if (yearRange && (r.year < yearRange[0] || r.year > yearRange[1])) return false;
+    return true;
+  });
+
+  const provinceName = filtered.length > 0 ? filtered[0].province_name : null;
+  const [yearStart, yearEnd] = yearRange ?? data.year_range;
+
+  return {
+    province_code: provinceCode,
+    province_name: provinceName,
+    indicator_count: data.unique_indicators,
+    year_range: [yearStart, yearEnd] as ProvinceTimeSeriesYearRange,
+    points_count: filtered.length,
+    points: filtered,
+    pagination: {
+      page: 1,
+      page_size: filtered.length,
+      total_count: filtered.length,
+      has_next: false,
+    },
+  };
 }

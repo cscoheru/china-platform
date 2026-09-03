@@ -15,9 +15,15 @@
 //   - 此时 API_BASE 仍然保留(供 indicatorSeries 等其他 endpoint 兜底),
 //     但 listIndicators 走静态路径,newvps 上不需要 FastAPI backend。
 
-import type { IndicatorListResponse, IndicatorSeriesResponse } from "./types";
+import type {
+  IndicatorListResponse,
+  IndicatorSeriesResponse,
+  ProvinceTimeSeriesResponse,
+  ProvinceTimeSeriesYearRange,
+} from "./types";
 import { MOCK_INDICATOR_LIST, MOCK_JIANGSU_GDP_SERIES } from "./mock";
 import {
+  getProvinceTimeSeriesByCode,
   isStaticMartDataEnabled,
   loadStaticMartData,
   type MartProvinceGdp2024,
@@ -111,3 +117,58 @@ function indicatorsFromMart(mart: MartProvinceGdp2024): IndicatorListResponse {
 export const IS_MOCK_MODE = USE_MOCK;
 export const IS_MART_FIXTURE_MODE = USE_MART_FIXTURE;
 export const IS_STATIC_MART_DATA_MODE = isStaticMartDataEnabled();
+
+// ────────────────────────────────────────────────────────────────────────────
+// P2 / knife 664 — Province time-series fetcher.
+//
+// Mode precedence (mirrors listIndicators):
+//   1. static mart JSON (when NEXT_PUBLIC_MART_DATA_PATH set + file present)
+//   2. real FastAPI /api/province-timeseries/{code}?year_start=&year_end=
+//
+// No mock for this endpoint yet (per docs/34 §5 + knife 659 USE_MOCK semantics).
+// Real API is the canonical path; static JSON is the no-FastAPI fallback (per 660
+// Track B + newvps deploy without S1.10 backend).
+//
+// Year range defaults to [2020, 2025] to match mart coverage (663 spec); 2001-2019
+// + 2026 explicitly DATA_MISSING (新增红线-1/2) and still return rows but with
+// status='DATA_MISSING' + value=null. Frontend surfaces those via dashed lines
+// per 667 Recharts plan.
+// ────────────────────────────────────────────────────────────────────────────
+
+export async function getProvinceTimeSeries(
+  provinceCode: string,
+  yearRange?: ProvinceTimeSeriesYearRange
+): Promise<ProvinceTimeSeriesResponse> {
+  if (isStaticMartDataEnabled()) {
+    const fromStatic = getProvinceTimeSeriesByCode(provinceCode, yearRange);
+    if (fromStatic) return fromStatic;
+  }
+  const [yearStart, yearEnd] = yearRange ?? [2020, 2025];
+  const url =
+    `${API_BASE}/api/province-timeseries/${encodeURIComponent(provinceCode)}` +
+    `?year_start=${yearStart}&year_end=${yearEnd}`;
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`getProvinceTimeSeries: ${res.status}`);
+  return (await res.json()) as ProvinceTimeSeriesResponse;
+}
+
+/**
+ * List 31 provinces (summary only — no full points).
+ * Returns empty array if mart is empty or API fails.
+ *
+ * Mirrors the /api/province-timeseries list endpoint shape (one row per province_code
+ * with indicator_count + points_count metadata).
+ */
+export async function listProvinceTimeSeries(
+  yearRange?: ProvinceTimeSeriesYearRange
+): Promise<Array<Pick<ProvinceTimeSeriesResponse, "province_code" | "province_name" | "indicator_count" | "year_range" | "points_count">>> {
+  const [yearStart, yearEnd] = yearRange ?? [2020, 2025];
+  const url =
+    `${API_BASE}/api/province-timeseries` +
+    `?year_start=${yearStart}&year_end=${yearEnd}`;
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`listProvinceTimeSeries: ${res.status}`);
+  return (await res.json()) as Array<
+    Pick<ProvinceTimeSeriesResponse, "province_code" | "province_name" | "indicator_count" | "year_range" | "points_count">
+  >;
+}
