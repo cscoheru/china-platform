@@ -157,6 +157,24 @@ PRD Gate 编号恢复为：
 > - **M2.4** ✅（feasibility probed 636）— 2001 起回补 **可行性 probe 完成**：`scripts/probe_m2_2001_backfill.py` 2309 cell 实测（184 HTTP 探针 + 2125 推得），**适用 cell 1541 实测 REACHABLE 0 / PARTIAL 770 / BLOCKED 771**。NBS data.stats.gov.cn 在本机 24/24 WAF 403 阻断；31 省 tjj.* 站 155/155 BLOCKED（TLS reset / 404 / 403 / 412 / SSL error）；统计年鉴镜像站 2/5 PARTIAL（catalog only）+ 3/5 BLOCKED。**不得自动宣称 M2.4 完成**（probe ≠ ingest）；真回补入库须用户提供政府源镜像 / 商业年鉴库授权（U4 重审）。
 > - **不宣布 Gate / O1 / M2 PASS**。
 
+### M2.6 — 呈现层切片 · 库中已有数据全部露出（1 刀，2026-09-03 knife 661 落定）
+
+> **路线图详见**：`docs/87-stage2-prd-feature-debt-roadmap-20260903.md` §3.1 P1 先行；本行仅登记里程碑，路线优先级由用户裁定（per 661 tasking §1.661-D 红线「执行端不得自行开 P3 深水区刀」）。
+> **任务拆分**：`reviews/stage0-gate0-rework-2026-08-23/660-audit-661-tasking-consolidated-20260903.md` PART 2 §1.661。
+> **执行回执**：`reviews/stage0-gate0-rework-2026-08-23/661-stage0-prd-replan-p1-real-receipt-20260903.md`（本刀签发）。
+
+| ID | 任务 | 完成条件 |
+|---|---|---|
+| M2.6.1 | **首页** 5 指标 tab 切换（总量/增速/一产/二产/三产）| `frontend/app/page.tsx` tab active 状态可见；切换时列高亮（不重排，仅高亮） |
+| M2.6.2 | **国家锚行** 置顶（全国 2024 GDP, OFFICIAL_ANCHOR）| mart JSON NATIONAL 行 + 首页置顶 rendered + OFFICIAL 标签 |
+| M2.6.3 | **每行溯源 popover**（source_url + source_hash_prefix + lineage_ruling）| 点击单元格展开三件套，库中真实字段（禁编造） |
+| M2.6.4 | **31 省详情动态路由** 真数据化 | 5 静态页 → `provinces/[province_code]` 动态段 + `generateStaticParams` 32 slug（31 省 + NATIONAL）；DATA_MISSING 3 省显式「数据暂缺」 |
+| M2.6.5 | **peer-compare 真数据化** | `frontend/app/peer-compare/page.tsx` mock → 真（江苏 focal + 浙江/广东/山东 peer，4 维度对比纯展示，不评分不排名 per 红线 6） |
+
+**退出条件**：公网 `china.3strategy.cc` 12 项验收 PASS（含 5 指标 tab + 溯源 popover + 31 省详情抽样 5 省 + peer-compare 真数据）+ 治理集 23 文件 ≥374 green + smoke §17 12/12 PASS + 三 ref 全等（661 HEAD = origin = github）+ docs/81 零改动。
+
+**不涉及**：时序回填 / 多指标新数据刀 / 人物政策项目 / 治理效能观察 / Agent 工作台 —— 全部归 P2/P3（per docs/87 §3.2/§3.3，**用户另行裁定后方可开刀**）。
+
 退出候选：**PRD 14.1 数据切片** + 产品最小页。OCR 仍可 BLOCKED。这是「首个可用版本」的数据含义。
 
 ### M3 — 试点监测（4 周）≈ PRD 阶段 2 / docs/02 Stage 2（调度+试点地市）
