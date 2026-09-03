@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | 660 审计 **PASS·有限通过**〔生产站已显真数据, 用户回执〕→ **661 PRD 对齐重排刀** |
-| NOW | **661** PRD 产品差距重排（docs/87）+ 首个产品化切片（多指标+国家锚+溯源 UI） |
+| 阶段 | 661 审计 **PASS·有限通过**〔P1 上线, 用户回执〕→ **662 P1 收尾刀** |
+| NOW | **662** P1 收尾: 血缘全露+指标定义+覆盖矩阵+demo 横幅+F2 脚本验收 |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-661：**PRD 对齐重排刀**（回应用户「与设计初衷差十万八千里」）——① `docs/87-prd-product-gap-replan-20260903.md`: PRD §7.1-7.7 逐项 ×现状×数据就绪度×依赖×建议刀次 + 在库未上页盘点（115 observation 5 指标/国家锚/5 省静态页/3 demo 壳）+ 三期路线〔P1 产品化纯前端 / P2 数据扩展〔多年度+M3 城市〕/ P3 深水区〔人物任期/政策承诺/治理效能观察, 9-18 月级〕〕**交用户裁定优先级** + docs/54 补呈现层里程碑 ② 首个产品化切片: 首页多指标切换（5 指标）+ 国家锚行 + 溯源 UI（source_url+SHA 前缀+lineage_ruling）③ tests ≥10 → **≥374 底限 ≥370** + smoke §17 + m2 零 diff×2。红线: 多指标只准库/mart 导出; 溯源禁编造; **P3 深水区不得自行开刀**; 24 里程碑不宣布; O1 仍 OPEN。任务书 = `660-audit-661-tasking-consolidated-20260903.md` PART 2。
+662：**P1 收尾刀**（用户指令「尽快按 PRD 呈现现有数据」）——① 血缘 popover 补 lineage_source/origin（PRD §3.3）② /indicators 定义页（5 指标+来源等级三分布, mart 导出禁手写）③ 31×5 覆盖矩阵+3 缺公示（PRD §7.2）④ 排序口径提示（禁榜单化 docs/05 §8.3）⑤ four demo 页横幅+导航 LIVE/DEMO 分组 ⑥ verify-live.sh F2 公网 12 项断言（#832 SSH 或用户代跑）⑦ tests ≥14 → ≥391 底限 ≥385 + smoke §18 + m2 零 diff×2。红线: 全数据库/mart 导出; **P2/P3 禁开**（需 user_ruling）; O1 OPEN。任务书 = `661-audit-662-tasking-consolidated-20260903.md` PART 2。
 
 ## POINTERS
 
 - `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/81`（U6 ruling）· **`docs/china-economy-...-prd-v0.1.md`（PRD 原文）**
-- 660 合并件（审计 PART 1 + **661 任务书 PART 2**）
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev108
+- 661 合并件（审计 PART 1 + **662 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev110
 
 ## 压缩后自检
 
