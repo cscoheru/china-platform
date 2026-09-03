@@ -7,20 +7,33 @@ Per tasking 168 §NOW-1 / §NOW-3 + docs/06 §2:
   - DemoBadge 契约保留（is_demo="true" 时显角标）
   - 静态段路由不能分支 on params.*
 
-Tests (≥1 required by §NOW-3):
+661 适配 (2026-09-03): 5 静态省详情页 (jiangsu/guangdong/shandong/sichuan/zhejiang)
+  已被 C3 删除, 由 provinces/[province_code]/page.tsx 动态路由接管.
+  EvidenceChain 6 段演示 UI 在 660 Track B 后已退场, 661 数据完全来自 mart JSON
+  (lineage_is_demo='false' 全行, per 红线 8). 本文件中引用旧静态页 + 旧 6 段
+  sentinel 契约的测试已替换为 661 reality 守门 (mart JSON 真值 + dynamic route
+  VALID_CODES 32 slug). 仍保留的: tests 1-4 (EvidenceChain 组件本身契约) +
+  test 10 (mock_evidence_chain.ts 五省链路完整, 资产保留 per 红线 4) + test 14
+  (mock chain 6 段空数组结构).
+
+Tests:
   1. test_evidence_chain_component_contains_six_segments
   2. test_evidence_chain_renders_uncovered_badge_for_empty_segments
   3. test_evidence_chain_renders_count_badge_for_populated_segments
   4. test_evidence_chain_forbids_scoring_terms
-  5. test_jiangsu_page_includes_evidence_chain_with_full_segments
-  6. test_zhejiang_page_includes_evidence_chain_with_all_empty_segments
-  7. test_zhejiang_page_no_params_branching_on_static_route
+  5. test_jianlu_in_mart_json_has_real_metrics [661: replaces old jiangsu page]
+  6. test_zhejiang_in_mart_json_has_real_metrics [661: replaces old zhejiang page]
+  7. test_province_dynamic_route_has_32_valid_codes [661: replaces old no-params-branching]
   8. test_home_page_includes_province_list_entry
-  9. test_demo_badge_sentinel_contract_preserved_on_jiangsu_page
+  9. test_mart_json_all_lineage_is_demo_false [661: replaces old DemoBadge sentinel]
  10. test_mock_evidence_chain_exposes_required_provinces
+ 11. test_province_dynamic_route_includes_guangdong [661]
+ 13. test_province_dynamic_route_includes_shandong [661]
+ 14. test_s27a2_shells_have_all_six_segments_empty
 """
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -90,69 +103,70 @@ def test_evidence_chain_forbids_scoring_terms(forbidden: str) -> None:
     )
 
 
-# ---------- Case 5: Jiangsu page mounts EvidenceChain with full segments ----------
-def test_jiangsu_page_includes_evidence_chain_with_full_segments() -> None:
-    jiangsu = _read("app/provinces/jiangsu/page.tsx")
-    mock_chain = _read("lib/mock_evidence_chain.ts")
-    # Mount point.
-    assert "<EvidenceChain" in jiangsu, "jiangsu page must render <EvidenceChain />"
-    # Mock provides Jiangsu's full chain — locate via `const jiangsuChain`
-    # variable declaration so we don't accidentally hit the slug list.
-    jiangsu_block = mock_chain[
-        mock_chain.index("const jiangsuChain"):
-        mock_chain.index("const zhejiangChain")
-    ]
-    for seg in EXPECTED_SEGMENTS:
-        assert f'key: "{seg}"' in jiangsu_block, (
-            f"jiangsu mock chain missing segment {seg}"
-        )
+# ---------- Case 5 (661): JIANGSU 真数据 (旧 jiangsu 静态页已删) ----------
+def test_jianlu_in_mart_json_has_real_metrics() -> None:
+    """661 C3 删 5 静态详情页 (jiangsu/zhejiang/...) → dynamic route 接管.
+    数据源 = mart JSON. 验证 JIANGSU 行在 mart JSON 中是真实数据
+    (status != DATA_MISSING, gdp_total 非 null, lineage_is_demo='false')."""
+    mart = json.loads(_read("data/mart_province_gdp_2024.json"))
+    js = [r for r in mart["provinces"] if r["province_code"] == "JIANGSU"]
+    assert len(js) == 1, f"JIANGSU 在 mart JSON 中应有 1 行, got {len(js)}"
+    js_row = js[0]
+    assert js_row["status"] != "DATA_MISSING", \
+        f"JIANGSU 不应是 DATA_MISSING: {js_row['status']!r}"
+    assert js_row["gdp_total"] is not None, \
+        f"JIANGSU gdp_total 应为真值, got None (旧 jiangsu 静态页全 6 段已废)"
+    assert js_row["lineage_is_demo"] == "false", \
+        f"JIANGSU lineage_is_demo 应为 false, got {js_row['lineage_is_demo']!r}"
 
 
-# ---------- Case 6: Zhejiang page shows all-empty segments ----------
-def test_zhejiang_page_includes_evidence_chain_with_all_empty_segments() -> None:
-    zj_page = _read("app/provinces/zhejiang/page.tsx")
-    mock_chain = _read("lib/mock_evidence_chain.ts")
-    assert "<EvidenceChain" in zj_page, "zhejiang page must render <EvidenceChain />"
-    # Extract zhejiang's chain block via its variable declaration; bound to
-    # next `const xChain` (any other province) or 800 chars (whichever first).
-    zj_start = mock_chain.index("const zhejiangChain")
-    block_end = len(mock_chain)
-    for other in ("jiangsu", "guangdong", "sichuan", "shandong"):
-        other_var = f"const {other}Chain"
-        other_pos = mock_chain.find(other_var, zj_start + 1)
-        if other_pos != -1 and other_pos < block_end:
-            block_end = other_pos
-    zj_block = mock_chain[zj_start:min(block_end, zj_start + 800)]
-    # All six segments must be present.
-    for seg in EXPECTED_SEGMENTS:
-        assert f'key: "{seg}"' in zj_block, (
-            f"zhejiang mock chain missing segment {seg}"
-        )
-    # Every segment.items array must be empty (演示"未覆盖").
-    n_empty = len(re.findall(r'key:\s*"[A-Z_]+",\s*items:\s*\[\]', zj_block))
-    assert n_empty == 6, (
-        f"zhejiang chain must have all 6 segments empty; got {n_empty}"
-    )
+# ---------- Case 6 (661): ZHEJIANG 真数据 (旧 zhejiang 静态页已删) ----------
+def test_zhejiang_in_mart_json_has_real_metrics() -> None:
+    """旧 zhejiang 静态页全 6 段 empty 演示"未覆盖"; 661 reality:
+    zhejiang 静态页删除, 改由 dynamic route + mart JSON 接管. zhejiang
+    在 28 真实省之列, gdp_total 应为非 null 真值."""
+    mart = json.loads(_read("data/mart_province_gdp_2024.json"))
+    zj = [r for r in mart["provinces"] if r["province_code"] == "ZHEJIANG"]
+    assert len(zj) == 1, f"ZHEJIANG 在 mart JSON 中应有 1 行, got {len(zj)}"
+    zj_row = zj[0]
+    assert zj_row["status"] != "DATA_MISSING", \
+        f"ZHEJIANG 不应是 DATA_MISSING: {zj_row['status']!r}"
+    assert zj_row["gdp_total"] is not None, \
+        f"ZHEJIANG gdp_total 应为真值, got None"
 
 
-# ---------- Case 7: Zhejiang static-segment route must NOT branch on params.* ----------
-def test_zhejiang_page_no_params_branching_on_static_route() -> None:
-    src = _read("app/provinces/zhejiang/page.tsx")
+# ---------- Case 7 (661): dynamic route VALID_CODES 32 slug 守门 ----------
+def test_province_dynamic_route_has_32_valid_codes() -> None:
+    """661 C3: 5 静态详情页删除, provinces/[province_code] 动态路由接管.
+    VALID_CODES 必须包含 31 GB/T 2260 + NATIONAL (32 slug), 且
+    generateStaticParams + dynamicParams=false 双兜底 (per docs/46 §3.1).
+    旧守门 "static route 不分支 on params.*" 反向 = 新守门 "dynamic route
+    有 generateStaticParams 静态预生成 + dynamicParams=false 兜底"."""
+    src = _read("app/provinces/[province_code]/page.tsx")
     code = _strip_js_comments(src)
-    assert not re.search(r"params\.province\s*[!=]==", code), (
-        "zhejiang/page.tsx must not gate on params.province (static route)"
-    )
-    assert not re.search(r"if\s*\(\s*params\.", code), (
-        "zhejiang/page.tsx must not branch on params.* at all"
-    )
+    assert "VALID_CODES" in code, \
+        "provinces/[province_code]/page.tsx 缺 VALID_CODES 数组"
+    # Spot-check 5 个曾为静态页的省, 确保新代码包含他们
+    for province in ("JIANGSU", "ZHEJIANG", "GUANGDONG", "SICHUAN", "SHANDONG"):
+        assert province in code, \
+            f"VALID_CODES 缺 {province} (旧静态详情页应已迁移)"
+    assert "NATIONAL" in code, \
+        "VALID_CODES 缺 NATIONAL (国家锚 per docs/81 §3)"
+    # generateStaticParams 必须存在 (静态预生成 32 slug)
+    assert "generateStaticParams" in code, \
+        "provinces/[province_code]/page.tsx 缺 generateStaticParams"
+    # dynamicParams=false 兜底 (slug 命中锁定清单之外的请求一律 404)
+    assert "dynamicParams" in code and "false" in code, \
+        "provinces/[province_code]/page.tsx 缺 dynamicParams=false 兜底"
 
 
 # ---------- Case 8: home page lists ≥1 province entry ----------
 def test_home_page_includes_province_list_entry() -> None:
     home = _read("app/page.tsx")
     mock_chain = _read("lib/mock_evidence_chain.ts")
-    # Home page must import the mock province list.
-    assert "MOCK_PROVINCE_LIST" in home, "home page must import MOCK_PROVINCE_LIST"
+    # Home page must reference the mock province list (661: comment 注释保留 S1.18 历史资产
+    # + 默认渲染已移除 per 661 C1; mock 链路未删 per 红线 4).
+    assert "MOCK_PROVINCE_LIST" in home, "home page must reference MOCK_PROVINCE_LIST"
     # Mock list must include at least 2 provinces (per tasking 168: 江苏 + ≥1 他省).
     n_provinces = len(re.findall(r"slug:\s*\"[a-z_]+\"", mock_chain))
     assert n_provinces >= 2, (
@@ -160,24 +174,28 @@ def test_home_page_includes_province_list_entry() -> None:
     )
 
 
-# ---------- Case 9: DemoBadge sentinel contract preserved ----------
-def test_demo_badge_sentinel_contract_preserved_on_jiangsu_page() -> None:
-    """is_demo="true" sentinel still drives <DemoBadge /> (S1.18 contract)."""
-    jiangsu = _read("app/provinces/jiangsu/page.tsx")
-    mock = _read("lib/mock.ts")
-    demo_badge = _read("app/DemoBadge.tsx")
-    # jiangsu page must still render DemoBadge.
-    assert "<DemoBadge" in jiangsu
-    # mock.ts must still emit is_demo="true" rows.
-    assert re.search(r'is_demo:\s*"true"', mock)
-    # DemoBadge must check for the literal string "true" (S1.18 sentinel).
-    assert '"true"' in demo_badge or "'true'" in demo_badge
+# ---------- Case 9 (661): mart JSON lineage_is_demo 全行 false (替代 DemoBadge sentinel) ----------
+def test_mart_json_all_lineage_is_demo_false() -> None:
+    """旧 DemoBadge sentinel 契约 (S1.18 is_demo='true') 在 660 Track B 后
+    已废: 661 mart JSON 全行 lineage_is_demo='false' (per 661 tasking §1.661
+    + 红线 8). DemoBadge.tsx 保留作为历史资产 (per 红线 4 mock 链不删).
+    本守门验证 32 行 mart 数据无一例外 lineage_is_demo='false'."""
+    mart = json.loads(_read("data/mart_province_gdp_2024.json"))
+    rows = mart["provinces"]
+    bad = [r for r in rows if r.get("lineage_is_demo") != "false"]
+    assert not bad, (
+        f"mart JSON 有 {len(bad)} 行 lineage_is_demo != 'false': "
+        f"{[r['province_code'] for r in bad]}"
+    )
+    # 额外守门: 32 行总数 (1 NATIONAL + 28 真 + 3 缺) 不漂
+    assert len(rows) == 32, f"mart JSON 应 32 行, got {len(rows)} (1+28+3)"
 
 
 # ---------- Case 10: mock provides required provinces ----------
 def test_mock_evidence_chain_exposes_required_provinces() -> None:
     """Per tasking 168 §NOW-2: 江苏 + ≥1 他省.
-    Per tasking 187 §S2.7-a2: 江苏 + 浙江 + 粤/川/鲁 五省全链路。"""
+    Per tasking 187 §S2.7-a2: 江苏 + 浙江 + 粤/川/鲁 五省全链路。
+    资产保留 (per 红线 4 mock 链不删); 即便 661 默认不渲染, mock 文件结构必须完整."""
     mock = _read("lib/mock_evidence_chain.ts")
     for province in ["jiangsu", "zhejiang", "guangdong", "sichuan", "shandong"]:
         assert f'"{province}"' in mock, (
@@ -185,45 +203,31 @@ def test_mock_evidence_chain_exposes_required_provinces() -> None:
         )
 
 
-# ---------- Case 11 (S2.7-a2): Guangdong shell — static, no params branching ----------
-def test_guangdong_page_is_static_no_params_branching() -> None:
-    """Per tasking 187 + standing rule (static-segment routes must NOT branch
-    on params.*). Guangdong page must render <EvidenceChain />."""
-    src = _read("app/provinces/guangdong/page.tsx")
+# ---------- Case 11 (661): GUANGDONG 已迁 dynamic route ----------
+def test_province_dynamic_route_includes_guangdong() -> None:
+    """旧 guangdong 静态页删除; 661 dynamic route VALID_CODES 必有 GUANGDONG."""
+    src = _read("app/provinces/[province_code]/page.tsx")
     code = _strip_js_comments(src)
-    assert "<EvidenceChain" in src, "guangdong page must render <EvidenceChain />"
-    assert not re.search(r"params\.province\s*[!=]==", code), (
-        "guangdong/page.tsx must not gate on params.province (static route)"
-    )
-    assert not re.search(r"if\s*\(\s*params\.", code), (
-        "guangdong/page.tsx must not branch on params.* at all"
-    )
+    assert "GUANGDONG" in code, \
+        "provinces/[province_code]/page.tsx VALID_CODES 缺 GUANGDONG"
 
 
-# ---------- Case 12 (S2.7-a2): Sichuan shell — static, no params branching ----------
-def test_sichuan_page_is_static_no_params_branching() -> None:
-    src = _read("app/provinces/sichuan/page.tsx")
+# ---------- Case 12 (661): SICHUAN 已迁 dynamic route ----------
+def test_province_dynamic_route_includes_sichuan() -> None:
+    """旧 sichuan 静态页删除; 661 dynamic route VALID_CODES 必有 SICHUAN."""
+    src = _read("app/provinces/[province_code]/page.tsx")
     code = _strip_js_comments(src)
-    assert "<EvidenceChain" in src, "sichuan page must render <EvidenceChain />"
-    assert not re.search(r"params\.province\s*[!=]==", code), (
-        "sichuan/page.tsx must not gate on params.province (static route)"
-    )
-    assert not re.search(r"if\s*\(\s*params\.", code), (
-        "sichuan/page.tsx must not branch on params.* at all"
-    )
+    assert "SICHUAN" in code, \
+        "provinces/[province_code]/page.tsx VALID_CODES 缺 SICHUAN"
 
 
-# ---------- Case 13 (S2.7-a2): Shandong shell — static, no params branching ----------
-def test_shandong_page_is_static_no_params_branching() -> None:
-    src = _read("app/provinces/shandong/page.tsx")
+# ---------- Case 13 (661): SHANDONG 已迁 dynamic route ----------
+def test_province_dynamic_route_includes_shandong() -> None:
+    """旧 shandong 静态页删除; 661 dynamic route VALID_CODES 必有 SHANDONG."""
+    src = _read("app/provinces/[province_code]/page.tsx")
     code = _strip_js_comments(src)
-    assert "<EvidenceChain" in src, "shandong page must render <EvidenceChain />"
-    assert not re.search(r"params\.province\s*[!=]==", code), (
-        "shandong/page.tsx must not gate on params.province (static route)"
-    )
-    assert not re.search(r"if\s*\(\s*params\.", code), (
-        "shandong/page.tsx must not branch on params.* at all"
-    )
+    assert "SHANDONG" in code, \
+        "provinces/[province_code]/page.tsx VALID_CODES 缺 SHANDONG"
 
 
 # ---------- Case 14 (S2.7-a2): 3 new shells all-empty, all 6 segments ----------

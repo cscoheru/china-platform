@@ -8,6 +8,10 @@ spawning `next build` (which would require node_modules in the test env).
 S2.0.1 is a *skeleton*, not a deployed app; pytest is the smallest acceptable
 verification that satisfies tasking 146. Subsequent Stage 2 刀 (S2.7-b etc.)
 will add real Playwright/Next.js e2e.
+
+661 C2/C3: 5 静态省详情页 (jiangsu/guangdong/shandong/sichuan/zhejiang) 已删除,
+统一由 provinces/[province_code]/page.tsx 动态路由 + generateStaticParams 接管.
+本文件对应 needle 同步到动态路由形态,旧 jiangsu 专属测试替换为 province 动态路由守门.
 """
 from __future__ import annotations
 
@@ -36,7 +40,11 @@ def _run_smoke() -> subprocess.CompletedProcess:
 
 
 def test_frontend_skeleton_files_present() -> None:
-    """Required skeleton files exist under frontend/."""
+    """Required skeleton files exist under frontend/.
+
+    661 C3: app/provinces/jiangsu/page.tsx (静态页) 已删除,改测
+    app/provinces/[province_code]/page.tsx (动态路由) + components/ProvinceGdpTable.tsx (C1 组件).
+    """
     required = [
         "package.json",
         "tsconfig.json",
@@ -45,7 +53,8 @@ def test_frontend_skeleton_files_present() -> None:
         "app/layout.tsx",
         "app/page.tsx",
         "app/DemoBadge.tsx",
-        "app/provinces/jiangsu/page.tsx",
+        "app/provinces/[province_code]/page.tsx",  # 661 C2 dynamic route
+        "app/components/ProvinceGdpTable.tsx",  # 661 C1 mart table component
         "lib/api.ts",
         "lib/types.ts",
         "lib/mock.ts",
@@ -98,44 +107,48 @@ def test_frontend_readme_documents_mock_toggle() -> None:
     assert "is_demo" in readme, "README does not document is_demo badge contract"
 
 
-def test_frontend_jiangsu_no_static_segment_params_gate() -> None:
-    """FIX per tasking 150 / Cursor 149 FAIL: jiangsu page (static segment)
-    must NOT compare `params.province` — the route does not pass params, so
-    such a gate is always true and prevents the series table + DemoBadge
-    from rendering.
+def test_frontend_province_dynamic_route_has_no_params_branch() -> None:
+    """661 C3: 静态 jiangsu 页删除后, 旧 "params.province 不应作为 gate" 守门
+    转移到 provinces/[province_code]/page.tsx 动态路由. 动态路由才有 params,但必须
+    generateStaticParams 静态预生成所有合法 slug,不依赖运行时 params 守门.
 
-    Strip JS comments before scanning — explanatory comments may legitimately
-    mention the bad pattern name. We only want to scan executable code.
+    Strip JS comments before scanning.
     """
     import re
 
-    jiangsu = (FRONTEND_DIR / "app/provinces/jiangsu/page.tsx").read_text(
-        encoding="utf-8"
+    province_route = (FRONTEND_DIR / "app/provinces/[province_code]/page.tsx")
+    assert province_route.is_file(), (
+        f"provinces/[province_code]/page.tsx 缺失 (661 C2 必须存在)"
     )
-    code = re.sub(r"//[^\n]*", "", jiangsu)
+    code = province_route.read_text(encoding="utf-8")
+    code = re.sub(r"//[^\n]*", "", code)
     code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
-    assert not re.search(r"params\.province\s*[!=]==", code), (
-        "jiangsu/page.tsx references params.province in executable code on a "
-        "static segment — this gate is always false. Drop it or move to "
-        "[province]/ dynamic route."
+    # 动态路由必须 generateStaticParams + dynamicParams=false (404 兜底 per docs/46 §3.1)
+    assert "generateStaticParams" in code, (
+        "provinces/[province_code]/page.tsx 缺 generateStaticParams"
     )
-    assert not re.search(r"if\s*\(\s*params\.", code), (
-        "jiangsu/page.tsx still branches on params.* in executable code on a "
-        "static segment."
+    assert "dynamicParams" in code and "false" in code, (
+        "provinces/[province_code]/page.tsx 缺 dynamicParams=false 兜底"
+    )
+    # 32 个合法代码 (31 GB/T + NATIONAL) 必须齐全,uppercase 在源中
+    assert "NATIONAL" in code and "BEIJING" in code and "XINJIANG" in code, (
+        "provinces/[province_code]/page.tsx 缺 32 合法代码枚举"
     )
 
 
-def test_frontend_jiangsu_renders_series_branch() -> None:
-    """FIX per tasking 150: jiangsu page must reach the series-rendering
-    branch (i.e. `series.series.map(...)` and `<DemoBadge />` must be
-    reachable from the default export).
-    """
-    jiangsu = (FRONTEND_DIR / "app/provinces/jiangsu/page.tsx").read_text(
-        encoding="utf-8"
+def test_frontend_province_route_renders_data_or_missing_branch() -> None:
+    """661 C2: 动态路由必须既支持真实数据分支 (28 真省渲染 5 指标) 又支持
+    DATA_MISSING 分支 (3 缺失省显式「数据暂缺」)."""
+    province_route = (FRONTEND_DIR / "app/provinces/[province_code]/page.tsx")
+    code = province_route.read_text(encoding="utf-8")
+    # DATA_MISSING 分支
+    assert "DATA_MISSING" in code, (
+        "provinces/[province_code]/page.tsx 缺 DATA_MISSING 分支"
     )
-    assert "series.series.map" in jiangsu, (
-        "jiangsu/page.tsx must call series.series.map(...) to render rows"
+    assert "数据暂缺" in code or "missing_reason" in code, (
+        "provinces/[province_code]/page.tsx DATA_MISSING 分支未显示明示文案"
     )
-    assert "<DemoBadge" in jiangsu, (
-        "jiangsu/page.tsx must render <DemoBadge /> for the is_demo sentinel"
+    # 真实数据分支必须有 fmtNum/fmtPct 或等价数值格式化
+    assert "fmtNum" in code or "toLocaleString" in code, (
+        "provinces/[province_code]/page.tsx 缺数值格式化 (fmtNum/toLocaleString)"
     )

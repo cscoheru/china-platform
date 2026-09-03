@@ -7,18 +7,24 @@ Invoked via `npm run smoke` (package.json script) or `python3 smoke-check.py`.
 Validates:
   1. All required skeleton files exist (package.json, tsconfig.json,
      next.config.js, .gitignore, README.md, app/layout.tsx, app/page.tsx,
-     app/DemoBadge.tsx, app/provinces/jiangsu/page.tsx,
-     lib/api.ts, lib/types.ts, lib/mock.ts).
+     app/DemoBadge.tsx, app/provinces/[province_code]/page.tsx (661 C2),
+     app/components/ProvinceGdpTable.tsx (661 C1), lib/api.ts, lib/types.ts,
+     lib/mock.ts).
   2. package.json declares next + react.
   3. tsconfig.json enables App Router conventions ("jsx": "preserve").
   4. app/layout.tsx renders a top banner keyed off IS_MOCK_MODE
      and reads NEXT_PUBLIC_USE_MOCK / NEXT_PUBLIC_API_BASE env vars.
-  5. app/provinces/jiangsu/page.tsx imports DemoBadge from "../../DemoBadge".
-  6. lib/mock.ts includes at least one observation row with
+  5. lib/mock.ts includes at least one observation row with
      lineage.is_demo === "true" (S1.18 sentinel pattern).
-  7. lib/api.ts honours NEXT_PUBLIC_USE_MOCK switch (default true).
+  6. lib/api.ts honours NEXT_PUBLIC_USE_MOCK switch (default true).
 
 Exits 0 on full pass; non-zero on any missing/wrong file.
+
+661 修订: 5 静态省详情页 (jiangsu/zhejiang/guangdong/sichuan/shandong) 已
+按 C3 全部删除,统一由 app/provinces/[province_code]/page.tsx 动态路由 +
+generateStaticParams 32 slug 静态预生成接管. 配套新增 app/components/ProvinceGdpTable.tsx
+作为 C1 首页 mart table 组件. 旧 §5 jiangsu DemoBadge / §8c zhejiang / §8e 3 省静态守门
+本轮删除;动态路由守门见 tests/test_prd_gap_replan_s661.py test_11.
 """
 from __future__ import annotations
 
@@ -53,11 +59,8 @@ REQUIRED_FILES = [
     "app/page.tsx",
     "app/DemoBadge.tsx",
     "app/components/EvidenceChain.tsx",        # S2.7-a
-    "app/provinces/jiangsu/page.tsx",
-    "app/provinces/zhejiang/page.tsx",          # S2.7-a 路由壳
-    "app/provinces/guangdong/page.tsx",         # S2.7-a2 路由壳
-    "app/provinces/sichuan/page.tsx",           # S2.7-a2 路由壳
-    "app/provinces/shandong/page.tsx",          # S2.7-a2 路由壳
+    "app/provinces/[province_code]/page.tsx",  # 661 C2 dynamic route (32 slug)
+    "app/components/ProvinceGdpTable.tsx",     # 661 C1 mart table component
     "app/cities/[slug]/page.tsx",               # S2.7-b-lite dynamic route
     "app/components/CityPage.tsx",              # S2.7-b-lite 组件
     "app/research/m1-series/page.tsx",         # M1 验收面 (knife 629 §2 T6)
@@ -121,48 +124,8 @@ def main() -> int:
     else:
         ok("app/layout.tsx renders IS_MOCK_MODE banner")
 
-    # 5. jiangsu page imports DemoBadge
-    jiangsu = (ROOT / "app/provinces/jiangsu/page.tsx").read_text(encoding="utf-8")
-    if 'from "../../DemoBadge"' not in jiangsu:
-        errors.append("jiangsu/page.tsx does not import DemoBadge from '../../DemoBadge'")
-    else:
-        ok("jiangsu/page.tsx imports DemoBadge from '../../DemoBadge'")
-    if "DemoBadge" not in jiangsu or "<DemoBadge" not in jiangsu:
-        errors.append("jiangsu/page.tsx does not render <DemoBadge />")
-    else:
-        ok("jiangsu/page.tsx renders <DemoBadge />")
-
-    # 5b. FIX per tasking 150 (Cursor 149 FAIL): reject any source-level
-    # constant-failure gate that prevents the series table from rendering.
-    # Specifically: static-segment pages must NOT compare `params.province`
-    # (always undefined on a static route → always-false gate).
-    #
-    # Strip JS comments first — explanatory comments may legitimately mention
-    # the bad pattern name. We only want to scan executable code.
-    code = re.sub(r"//[^\n]*", "", jiangsu)
-    code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
-    if re.search(r"params\.province\s*[!=]==", code):
-        errors.append(
-            "jiangsu/page.tsx references params.province in executable code — "
-            "static-segment route does not receive params; this gate is "
-            "always false. Per tasking 150, drop it or move to [province]/ "
-            "dynamic route."
-        )
-    else:
-        ok("jiangsu/page.tsx has no params.province gate (FIX per 149/150)")
-    if re.search(r"if\s*\(\s*params\.", code):
-        errors.append(
-            "jiangsu/page.tsx still branches on params.* in executable code — "
-            "static-segment params are always undefined."
-        )
-    # 5c. Static-segment page must not declare PageProps with `params`.
-    if re.search(r"interface\s+\w*PageProps\b", code):
-        errors.append(
-            "jiangsu/page.tsx declares a PageProps interface in executable "
-            "code — remove if it still types params (static segment)."
-        )
-    else:
-        ok("jiangsu/page.tsx has no PageProps interface (no stale params typing)")
+    # 5. 661 C3 删 5 静态省详情页 → 跳过旧 jiangsu DemoBadge 检查;
+    #    动态路由 + ProvinceGdpTable 组件存在性在 REQUIRED_FILES + §16d 守门.
 
     # 6. lib/mock.ts has at least one row with lineage.is_demo === "true"
     mock = (ROOT / "lib/mock.ts").read_text(encoding="utf-8")
@@ -218,26 +181,11 @@ def main() -> int:
         else:
             ok(f"EvidenceChain.tsx has no forbidden {label!r} term")
 
-    # 8c. Zhejiang route shell — verify it's a static-segment route with no
-    # params.* branching (mirror of jiangsu check 5b).
-    zhejiang = (ROOT / "app/provinces/zhejiang/page.tsx").read_text(encoding="utf-8")
-    zj_code = re.sub(r"//[^\n]*", "", zhejiang)
-    zj_code = re.sub(r"/\*.*?\*/", "", zj_code, flags=re.DOTALL)
-    if re.search(r"params\.province\s*[!=]==", zj_code):
-        errors.append(
-            "zhejiang/page.tsx references params.province in executable code — "
-            "static-segment route does not receive params."
-        )
-    else:
-        ok("zhejiang/page.tsx has no params.province gate")
-    if "EvidenceChain" not in zhejiang:
-        errors.append("zhejiang/page.tsx does not render <EvidenceChain />")
-    else:
-        ok("zhejiang/page.tsx renders <EvidenceChain />")
+    # 8c. 661 C3 删除 zhejiang 静态路由 → 跳过旧 zhejiang 守门.
 
-    # 8d. Mock chain — all 5 provinces (jiangsu + zhejiang + guangdong +
-    # sichuan + shandong per tasking 187 §S2.7-a2) must each provide all 6
-    # segments; this guards against future "we only show N segments" regressions.
+    # 8d. Mock chain — 661 后 mock_evidence_chain.ts 仍保留 5 省 (jiangsu + zhejiang +
+    # guangdong + sichuan + shandong) chain mock 作为 S2.7-a 历史资产 + 回回通道
+    # (per 红线 4 mock 不删); 此 处继续验证 5 省 chain 数据完整以防后续回归.
     mock_chain = (ROOT / "lib/mock_evidence_chain.ts").read_text(encoding="utf-8")
     expected_provinces = ["jiangsu", "zhejiang", "guangdong", "sichuan", "shandong"]
     for province in expected_provinces:
@@ -275,34 +223,7 @@ def main() -> int:
     if all(seg_key_count[s] >= min_per_seg for s in expected_segments):
         ok(f"mock_evidence_chain.ts has ≥{min_per_seg} of each of 6 segment keys")
 
-    # 8e. S2.7-a2 — Guangdong / Sichuan / Shandong route shells must:
-    #   (a) exist as static-segment pages with no params.* branching
-    #   (b) render <EvidenceChain />
-    # Per tasking 187 §NOW-1 + standing rule (static-segment routes must
-    # NOT branch on params.*).
-    for slug in ("guangdong", "sichuan", "shandong"):
-        path = ROOT / "app" / "provinces" / slug / "page.tsx"
-        if not path.is_file():
-            errors.append(f"{slug}/page.tsx missing (S2.7-a2 route shell)")
-            continue
-        src = path.read_text(encoding="utf-8")
-        code = re.sub(r"//[^\n]*", "", src)
-        code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
-        if re.search(r"params\.province\s*[!=]==", code):
-            errors.append(
-                f"{slug}/page.tsx references params.province in executable code — "
-                f"static-segment route does not receive params."
-            )
-        else:
-            ok(f"{slug}/page.tsx has no params.province gate")
-        if re.search(r"if\s*\(\s*params\.", code):
-            errors.append(
-                f"{slug}/page.tsx still branches on params.* in executable code"
-            )
-        if "EvidenceChain" not in src:
-            errors.append(f"{slug}/page.tsx does not render <EvidenceChain />")
-        else:
-            ok(f"{slug}/page.tsx renders <EvidenceChain />")
+    # 8e. 661 C3 删除 guangdong / sichuan / shandong 静态路由 → 跳过旧 3 省静态守门.
 
     if errors:
         for e in errors:
@@ -594,8 +515,10 @@ def main() -> int:
         ("/seven-dim", "/seven-dim"),
         ("/peer-compare", "/peer-compare"),
         ("CITY_SLUG_LIST", "CITY_SLUG_LIST import"),
-        ("MOCK_PROVINCE_LIST", "MOCK_PROVINCE_LIST import"),
     ]
+    # 661 C1: page.tsx 不再 import MOCK_PROVINCE_LIST (ProvinceGdpTable 组件接管
+    # mart section 渲染, 真实数据走 getMartProvinceGdp2024, 旧 mock fallback 移除).
+    # MOCK_PROVINCE_LIST 在 lib/mock.ts 内仍存在 (S1.18 sentinel), 但 page.tsx 不再直接引用.
     for needle, label in required_home_anchors:
         if needle not in home_code:
             errors.append(f"app/page.tsx missing {label} (per tasking 280 §NOW-1)")
@@ -1596,10 +1519,10 @@ def main() -> int:
     #   (f) Lineage 三重标注 + 红线 1: 缺失省 5 指标列全 NULL (禁补零)
     #   (g) Mock sentinel 禁词: JIANGSU-GDP-INDICATOR-UUID-MOCK 不在 mart JSON 出现
     mart_json_path = ROOT / "data" / "mart_province_gdp_2024.json"
-    mart_static_path = ROOT.parent / "lib" / "mart-static.ts"
-    deploy_static_dir = ROOT.parent.parent / "deploy" / "static-export"
+    mart_static_path = ROOT / "lib" / "mart-static.ts"
+    deploy_static_dir = ROOT.parent / "deploy" / "static-export"
 
-    # §16a — mart JSON 存在 + 31 行
+    # §16a — mart JSON 存在 + 32 行 (1 NATIONAL 锚 + 28 真实 + 3 缺失; 661 bump from 31)
     if not mart_json_path.exists():
         errors.append(
             "frontend/data/mart_province_gdp_2024.json missing "
@@ -1614,15 +1537,17 @@ def main() -> int:
             total = mart_data.get("total_count", 0)
             real = mart_data.get("real_count", 0)
             missing = mart_data.get("missing_count", 0)
-            if total == 31 and real == 28 and missing == 3:
+            national = mart_data.get("national_count", 0)
+            if total == 32 and real == 28 and missing == 3 and national == 1:
                 ok(
-                    f"mart JSON: 31 行 (28 真实 + 3 缺失) "
-                    f"(per 660 tasking §PART 2 + README §守门.1)"
+                    f"mart JSON: 32 行 (1 NATIONAL + 28 真实 + 3 缺失) "
+                    f"(per 661 §3.1 P1 切片 + 660 README §守门.1)"
                 )
             else:
                 errors.append(
                     f"mart JSON counts: total={total} real={real} missing={missing} "
-                    "(expected 31/28/3 per 660 README §守门.1)"
+                    f"national={national} "
+                    "(expected 32/28/3/1 per 661 §3.1 + 660 README §守门.1)"
                 )
             if mart_data.get("lineage_ruling") != "U6 2026-09-02":
                 errors.append(
@@ -1696,36 +1621,55 @@ def main() -> int:
             "(per 660 §PART 2)"
         )
 
-    # §16d — app/page.tsx mart section 渲染
+    # §16d — app/page.tsx mart section 委托给 <ProvinceGdpTable> (661 C1 抽组件)
+    #     page.tsx 必须 import ProvinceGdpTable + 透传 mart;实际渲染在 ProvinceGdpTable.tsx
+    #     内完成 (5 指标 tab + 31 省行 + 3 missing badge + 数据暂缺 文案 + SourcePopover 溯源).
     home_src3 = (ROOT / "app/page.tsx").read_text(encoding="utf-8")
     home_code3 = re.sub(r"//[^\n]*", "", home_src3)
     home_code3 = re.sub(r"/\*.*?\*/", "", home_code3, flags=re.DOTALL)
     for needle, label in [
         ("getMartProvinceGdp2024", "import getMartProvinceGdp2024"),
-        ("province-gdp-2024-heading", "data-testid heading"),
-        ("province-gdp-2024-table", "data-testid table"),
-        ("mart-row-count", "data-testid mart-row-count"),
-        ('province-row-${', "data-testid province-row-{code} 模板"),
-        ('missing-badge-${', "data-testid missing-badge-{code} 模板"),
-        ("数据暂缺（公报源缺文）", "数据暂缺 badge 文案"),
+        ("ProvinceGdpTable", "委派给 ProvinceGdpTable 组件 (661 C1)"),
     ]:
         if needle not in home_code3:
-            errors.append(f"app/page.tsx missing {label} (per 660 §PART 2 + README §守门.2)")
+            errors.append(f"app/page.tsx missing {label} (per 661 C1 + 660 §PART 2)")
+    province_table_path = ROOT / "app" / "components" / "ProvinceGdpTable.tsx"
+    if province_table_path.is_file():
+        pt_src = province_table_path.read_text(encoding="utf-8")
+        pt_code = re.sub(r"//[^\n]*", "", pt_src)
+        pt_code = re.sub(r"/\*.*?\*/", "", pt_code, flags=re.DOTALL)
+        for needle, label in [
+            ("province-gdp-2024-table", "data-testid table"),
+            ("province-row-${", "data-testid province-row-{code} 模板"),
+            ("missing-badge-${", "data-testid missing-badge-{code} 模板"),
+            ("数据暂缺", "数据暂缺 badge 文案"),
+        ]:
+            if needle not in pt_code:
+                errors.append(
+                    f"ProvinceGdpTable.tsx missing {label} (per 661 C1)"
+                )
+        if all(
+            n in pt_code
+            for n in (
+                "province-gdp-2024-table",
+                'province-row-${',
+                'missing-badge-${',
+                "数据暂缺",
+            )
+        ):
+            ok(
+                "ProvinceGdpTable.tsx: mart section 渲染齐 (table/31 rows/3 missing badge) "
+                "(per 661 C1)"
+            )
     if all(
         n in home_code3
         for n in (
             "getMartProvinceGdp2024",
-            "province-gdp-2024-heading",
-            "province-gdp-2024-table",
-            "mart-row-count",
-            'province-row-${',
-            'missing-badge-${',
-            "数据暂缺（公报源缺文）",
+            "ProvinceGdpTable",
         )
     ):
         ok(
-            "app/page.tsx: mart section 渲染齐 (heading/table/31 rows/3 missing badge) "
-            "(per 660 §PART 2 + README §守门.2)"
+            "app/page.tsx: mart section 委派 ProvinceGdpTable (per 661 C1 + 660 §PART 2)"
         )
 
     # §16e — deploy/static-export 包文件齐
