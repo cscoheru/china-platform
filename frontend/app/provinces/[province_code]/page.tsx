@@ -90,9 +90,18 @@ export default function ProvinceRoutePage({
           <SourcePopover
             sourceUrl={row.source_url}
             hashPrefix={row.source_hash_prefix}
+            lineageSource={row.lineage_source}
+            lineageOrigin={row.missing_reason ?? "(未填)"}
             ruling={row.lineage_ruling}
             sourceLabel="查看溯源"
+            isDataMissing
           />
+        </p>
+        <p style={{ marginTop: 16, fontSize: 12, color: "#666" }}>
+          完整度相关:{" "}
+          <a href="/#data-completeness-panel">首页完整度面板</a>
+          {" · "}
+          <a href="/indicators">5 指标定义</a> (per 662 D2/D3)
         </p>
         <p style={{ marginTop: 24 }}>
           <a href="/">← 返回首页</a>
@@ -187,9 +196,18 @@ export default function ProvinceRoutePage({
         <SourcePopover
           sourceUrl={row.source_url}
           hashPrefix={row.source_hash_prefix}
+          lineageSource={row.lineage_source}
+          lineageOrigin={row.lineage_origin}
           ruling={row.lineage_ruling}
           sourceLabel={row.lineage_source}
         />
+      </p>
+
+      <p style={{ marginTop: 16, fontSize: 12, color: "#666" }}>
+        完整度相关:{" "}
+        <a href="/#data-completeness-panel">首页完整度面板</a>
+        {" · "}
+        <a href="/indicators">5 指标定义</a> (per 662 D2/D3)
       </p>
 
       <p style={{ marginTop: 24 }}>

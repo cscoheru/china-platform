@@ -141,6 +141,8 @@ function RealPeerCompareView({
                 <SourcePopover
                   sourceUrl={m.source_url}
                   hashPrefix={m.source_hash_prefix}
+                  lineageSource={m.lineage_source}
+                  lineageOrigin={m.lineage_origin}
                   ruling="U6 2026-09-02"
                   sourceLabel={m.lineage_source}
                 />
