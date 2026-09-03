@@ -1,0 +1,27 @@
+cegr:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: 127.0.0.1
+      port: 55440
+      user: postgres
+      pass: "{{ env_var('DBT_DEV_PASS', 'postgres') }}"
+      dbname: cegr_test
+      schema: cegr_staging
+      threads: 4
+    # P2 / knife 664 — newvps prod target (per user_ruling_666 SSH ops 授权).
+    # 仅架构师端验证可达 (tested via SSH + psql on newvps before public deploy).
+    # newvps postgres 容器 (china-platform-pg) 暴露 5432 在 puer-net 网络内;
+    # 此处用宿主 loopback (127.0.0.1) 仅供同机 dbt CLI 跑;公网部署走 Docker network.
+    # 密码走 env var DBT_PROD_PASS (per docs/05 红线 禁硬编码密钥);默认占位
+    # 'postgres' 仅供架构师端本地 dev 试;prod deploy 由 ops 注入真实 secret。
+    prod:
+      type: postgres
+      host: 127.0.0.1
+      port: 5432
+      user: postgres
+      pass: "{{ env_var('DBT_PROD_PASS', 'postgres') }}"
+      dbname: cegr_test
+      schema: cegr_mart
+      threads: 4
