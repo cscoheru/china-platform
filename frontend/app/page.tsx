@@ -15,6 +15,7 @@
 import { listIndicators, IS_MOCK_MODE, IS_MART_FIXTURE_MODE, IS_STATIC_MART_DATA_MODE } from "../lib/api";
 import { CITY_SLUG_MAP, CITY_SLUG_LIST } from "../lib/city_slug_map";
 import { getMartProvinceGdp2024 } from "../lib/mart-static";
+import { ProvinceGdpTable } from "./components/ProvinceGdpTable";
 // MOCK_PROVINCE_LIST retained (S1.18 历史资产 + 回退通道 per 659 tasking §1.659-A; 默认渲染已移除)
 
 export const dynamic = "force-dynamic";
@@ -56,84 +57,26 @@ export default async function HomePage() {
       {mart && (
         <>
           <h2 style={{ marginTop: 32 }} data-testid="province-gdp-2024-heading">
-            省 GDP 2024 真实数据（knife 659 mart + 660 静态导出）
+            省 GDP 2024 真实数据（knife 659 mart + 660 静态导出 + 661 P1 切片）
           </h2>
           <p style={{ color: "#1a7f37", fontSize: 13 }}>
-            ✅ 28 省 2024 真实数据（5 官方 + 23 转载锚定，per mart
-            lineage_source）；3 省「数据暂缺（公报源缺文）」显式标记；
+            ✅ 32 行（1 国家锚 OFFICIAL_ANCHOR + 28 省 2024 真实数据 + 3 省「数据暂缺（公报源缺文）」）;
+            5 指标可切换（总量/增速/一产/二产/三产）;
+            每行点「查看溯源」展开 source_url + SHA 前缀 + 裁定 三件套（库中真实字段）;
             lineage_ruling=<code>U6 2026-09-02</code>，lineage_is_demo=<code>false</code>。
             数据走 <code>NEXT_PUBLIC_MART_DATA_PATH</code>
             静态嵌入（newvps 上不需要 FastAPI backend）。
             {" "}
             <span data-testid="mart-row-count">
-              渲染 {mart.total_count} 行（{mart.real_count} 真实 + {mart.missing_count} 缺失）
+              渲染 {mart.total_count} 行（{mart.real_count} 真实 + {mart.missing_count} 缺失 + {mart.national_count ?? 1} 国家锚）
             </span>
             。
           </p>
-          <table
-            data-testid="province-gdp-2024-table"
-            style={{
-              borderCollapse: "collapse",
-              width: "100%",
-              fontSize: 13,
-            }}
-          >
-            <thead>
-              <tr style={{ background: "#eee" }}>
-                <th style={cellStyle}>省份</th>
-                <th style={cellStyle}>代码</th>
-                <th style={cellStyle}>GDP（亿元）</th>
-                <th style={cellStyle}>同比 (%)</th>
-                <th style={cellStyle}>一产</th>
-                <th style={cellStyle}>二产</th>
-                <th style={cellStyle}>三产</th>
-                <th style={cellStyle}>状态</th>
-                <th style={cellStyle}>lineage source</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mart.provinces.map((p) => {
-                const isMissing = p.status === "DATA_MISSING";
-                return (
-                  <tr
-                    key={p.province_code}
-                    data-testid={`province-row-${p.province_code}`}
-                    data-missing={isMissing ? "1" : "0"}
-                    style={isMissing ? { background: "#fff8e1" } : undefined}
-                  >
-                    <td style={cellStyle}>{p.province_name}</td>
-                    <td style={cellStyle}>
-                      <code>{p.province_code}</code>
-                    </td>
-                    <td style={cellStyle}>{fmtNum(p.gdp_total)}</td>
-                    <td style={cellStyle}>{fmtPct(p.gdp_growth)}</td>
-                    <td style={cellStyle}>{fmtNum(p.primary_gdp)}</td>
-                    <td style={cellStyle}>{fmtNum(p.secondary_gdp)}</td>
-                    <td style={cellStyle}>{fmtNum(p.tertiary_gdp)}</td>
-                    <td style={cellStyle}>
-                      {isMissing ? (
-                        <span
-                          data-testid={`missing-badge-${p.province_code}`}
-                          style={{ color: "#b45309", fontWeight: 600 }}
-                          title={p.missing_reason ?? "数据暂缺"}
-                        >
-                          数据暂缺（公报源缺文）
-                        </span>
-                      ) : (
-                        <span style={{ color: "#666" }}>正常</span>
-                      )}
-                    </td>
-                    <td style={cellStyle}>
-                      <code style={{ fontSize: 11 }}>{p.lineage_source}</code>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <ProvinceGdpTable mart={mart} />
           <p style={{ marginTop: 8, fontSize: 12, color: "#666" }}>
             数据来源: <code>{mart.mart_source}</code> · 导出于 {mart.as_of}。
-            红线: 3 缺失省 5 个 metric 列全为 NULL(禁补零)。
+            红线: 3 缺失省 5 个 metric 列全为 NULL(禁补零);溯源字段 source_hash_prefix
+            留 null (待 662+ dbt source_document JOIN 接入,per 红线 8 「禁编造 source」)。
           </p>
         </>
       )}
@@ -327,24 +270,3 @@ const cellStyle: React.CSSProperties = {
   padding: "6px 10px",
   textAlign: "left",
 };
-
-function fmtNum(v: number | string | null): string {
-  if (v === null || v === undefined) return "—";
-  // mart JSON 数值列经 export-mart-data.py 输出时常为字符串(政府源 TXT/HTML
-  // 给的数字通常是 str),需 coerce 成 number 才走 zh-CN locale 渲染.
-  // 空串当缺失处理 — Number("") === 0 会误显"0",必须 trim 后拒收.
-  const raw = typeof v === "string" ? v.trim() : v;
-  if (raw === "" || raw === undefined) return "—";
-  const n = typeof raw === "string" ? Number(raw) : raw;
-  if (!Number.isFinite(n)) return "—";
-  return n.toLocaleString("zh-CN", { maximumFractionDigits: 2 });
-}
-
-function fmtPct(v: number | string | null): string {
-  if (v === null || v === undefined) return "—";
-  const raw = typeof v === "string" ? v.trim() : v;
-  if (raw === "" || raw === undefined) return "—";
-  const n = typeof raw === "string" ? Number(raw) : raw;
-  if (!Number.isFinite(n)) return "—";
-  return n.toFixed(1);
-}
