@@ -23,3 +23,9 @@ models:
     intermediate:
       +materialized: view
       +schema: staging
+    marts:
+      # P1 mart (mart_province_gdp_2024) 仍 materialized='view' 在文件内联声明,
+      # 沿用 knife 659 原始契约; 新增的 P2 mart (mart_province_timeseries) 用 table
+      # (见文件内 config block, 2026-09-03 引入).
+      +materialized: view
+      +schema: mart
