@@ -24,6 +24,7 @@ venv/
 env/
 .venv-dbt/
 .venv-paddle/
+.venv-api/
 
 # ===== Node =====
 node_modules/
