@@ -1,7 +1,7 @@
 {{
     config(
         materialized='view',
-        tags=['mart', 'province', 'gdp', '2024', 'real']
+        tags=['mart', 'province', 'gdp', '2024', 'real', 'deprecated_p1']
     )
 }}
 
@@ -11,6 +11,11 @@
 --   (5 official [BEIJING/SHANGHAI/SHANDONG/HUBEI/SICHUAN] + 23 hongheiku re-posts [658 batch])
 --   + 3 provinces with DATA_MISSING status (LN/HAINAN/GUIZHOU = NOT_FOUND_IN_2024_INDEX, 禁补零)
 -- lineage_is_demo = 'false' for all real data rows (real sentinel per mart_city_evidence_chain.sql pattern).
+--
+-- [knife 663 2026-09-03] Marked 'deprecated_p1' tag. P2 successor: mart_province_timeseries
+--   (per docs/87 §3.2 P2 数据扩展, 2020-2026 × 10 指标 × 31 省 时序架构).
+--   This P1 mart is retained for backward compat with 661/662 frontend; will be removed in 668
+--   after verify-live.sh v2 confirms P2 mart 全面覆盖 P1 视图.
 --
 -- Red lines:
 --   - 3 missing provinces: status='DATA_MISSING', missing_reason set, ALL metric columns NULL
