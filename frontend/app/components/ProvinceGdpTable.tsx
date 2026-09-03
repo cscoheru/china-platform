@@ -16,11 +16,7 @@
 
 import type React from "react";
 import { useState } from "react";
-import {
-  getNationalAnchor,
-  getProvinceByCode,
-  type MartProvinceGdp2024,
-} from "../../lib/mart-static";
+import type { MartProvinceGdp2024 } from "../../lib/mart-static";
 import { SourcePopover } from "./SourcePopover";
 
 type MetricKey =
@@ -57,11 +53,6 @@ export function ProvinceGdpTable({
   // 因为 mart 数组顺序就是权威顺序 (per docs/87 §3.1 + export-mart-data.py 行 244).
   const national = mart.provinces.find((p) => p.province_code === "NATIONAL");
   const otherRows = mart.provinces.filter((p) => p.province_code !== "NATIONAL");
-
-  // 用于 body 渲染时校验, 实际不用 (数组顺序是权威的).
-  // 保留 getNationalAnchor/getProvinceByCode 导出,供 C2 详情页用 (per mart-static.ts).
-  void getNationalAnchor;
-  void getProvinceByCode;
 
   return (
     <div>
