@@ -1,0 +1,114 @@
+version: 2
+
+models:
+  - name: mart_province_timeseries
+    description: |
+      P2 mart — China platform 31 provinces × 10 indicators × 26 years (2001-2026) 时序表.
+      Per knife 663 tasking + docs/87 §3.2 P2 数据扩展路线.
+      Cross product: 8060 rows = 31 × 10 × 26.
+
+      Status enforcement (新增红线 1+2):
+        - 'DATA_MISSING' for years < 2020 (新增红线-1: 禁编造历史数据)
+        - 'DATA_MISSING' for year = 2026 (新增红线-2: 待 2027 官方发布)
+        - 'DATA_MISSING' for missing provinces (辽/琼/黔) — 沿用 P1 660 红线
+        - NULL status = real data cell
+
+      663 initial state: 140 real cells (5 现 × 28 real provinces × 2024 only).
+      665 harvest target: ~1500 real cells (5 现 2020-2023+2025 + 5 增量 2020-2025 from hongheiku).
+      666 harvest target: ~1590 real cells (+ 粤苏浙 OFFICIAL 5 现 2020-2025).
+      668 verify-live.sh v2 expects ≥186 real cells per indicator (= 31 × 6).
+
+    columns:
+      - name: province_code
+        description: 31 省份代码 (BEIJING/SHANGHAI/...) + NATIONAL (post-666)
+        tests:
+          - not_null
+      - name: province_name
+        description: 31 省份中文名
+        tests:
+          - not_null
+      - name: indicator_key
+        description: |
+          指标 key. 10 个: gdp_total/gdp_growth/primary_gdp/secondary_gdp/tertiary_gdp
+          (5 现, knife 660) + gdp_percapita/fiscal_rev/fixed_asset/retail/trade (5 增量, knife 665)
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - gdp_total
+                - gdp_growth
+                - primary_gdp
+                - secondary_gdp
+                - tertiary_gdp
+                - gdp_percapita
+                - fiscal_rev
+                - fixed_asset
+                - retail
+                - trade
+      - name: indicator_label
+        description: 指标中文标签
+        tests:
+          - not_null
+      - name: unit
+        description: 单位 (亿元/%/元)
+        tests:
+          - not_null
+      - name: year
+        description: 年份 (2001-2026)
+        tests:
+          - not_null
+          - accepted_values:
+              values: [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
+                       2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020,
+                       2021, 2022, 2023, 2024, 2025, 2026]
+      - name: value
+        description: |
+          指标值. NULL when status='DATA_MISSING' (禁补零).
+          真实 cell 用 NUMERIC 类型, 增量指标 (人均 GDP 等) 可能含 NULL during 663 初始.
+      - name: status
+        description: |
+          'DATA_MISSING' for cells per red lines 1+2 + missing provinces + pending harvest;
+          NULL for real cells.
+        tests:
+          - accepted_values:
+              values: ['DATA_MISSING', null]
+      - name: missing_reason
+        description: |
+          '新增红线-1' / '新增红线-2' / 'pending harvest' / '省历史年缺文' (具体原因, 不编).
+          NULL for real cells.
+      - name: lineage_source_type
+        description: |
+          数据源类型: 'OFFICIAL_INTAKED' (省统计局官方) / 'HONGHEIKU_TRANSLOAD' (hongheiku 转载)
+          / 'DATA_MISSING' / 'unknown'. 三件套 (source_type/origin/ruling) 必填.
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - OFFICIAL_INTAKED
+                - HONGHEIKU_TRANSLOAD
+                - DATA_MISSING
+                - unknown
+      - name: lineage_origin
+        description: 原始来源 domain/portal (beijing_tjj / tjgb.hongheiku / none / unknown)
+        tests:
+          - not_null
+      - name: lineage_ruling
+        description: 裁定版本 (K663-2026-09-03 起始; 后续刀升级为 K665-/K666-/K668-)
+        tests:
+          - not_null
+      - name: lineage_is_demo
+        description: |
+          是否演示数据: 'false' for all real cells (per mart_city_evidence_chain 模式).
+          demo 数据禁入 mart, 此列恒为 'false'.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['false']
+
+  - name: mart_province_gdp_2024
+    description: |
+      [DEPRECATED P1] — Knife 659 mart flip 2024 单年 5 指标 × 31 省 view.
+      Replaced by mart_province_timeseries (P2, knife 663).
+      Retained for backward compat with 661/662 frontend; will be removed in 668
+      after verify-live.sh v2 confirms P2 mart covers P1 view.
+    tags: ['deprecated_p1']
