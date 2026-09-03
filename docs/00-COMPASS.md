@@ -11,8 +11,8 @@
 | 项 | 值 |
 |---|---|
 | 计划 | `docs/54` 主计划 · `docs/68` spike 链 master |
-| 阶段 | 659 审计 **PASS·有限通过**〔代码层真实化完成〕→ **660 生产部署切源刀** |
-| NOW | **660** 生产部署: 让生产站显示 28 省真数据（§1.660-0 前置三问 BLOCKER） |
+| 阶段 | 660 审计 **PASS·有限通过**〔生产站已显真数据, 用户回执〕→ **661 PRD 对齐重排刀** |
+| NOW | **661** PRD 产品差距重排（docs/87）+ 首个产品化切片（多指标+国家锚+溯源 UI） |
 | KPI 现状 | 省级 COVERED **31/31**（M2-c+d+e per 635 AUDITED） |
 | Gate | **未 PASS**（M2 各子刀 AUDITED，未宣布 M2 PASS） |
 
@@ -22,13 +22,13 @@
 
 ## NOW
 
-660：**生产部署切源刀**——用户质询直答（659 切源=代码层〔仓库 frontend/ 应用〕; 生产站=旧构建产物, NEXT_PUBLIC_* 构建时内联, 仓库无部署管线, 本机 curl 双域名 000 不可达）→ ① **§1.660-0 用户前置三问**〔部署在哪/怎么部署/可否触达; 未答只产部署包不上线〕② 轨道 A（FastAPI+DB 后端部署）/ 轨道 B（`output:'export'` 静态导出内联 mart 数据）③ `deploy/` 四件〔build_static.sh|compose.yml + ENV.md + VERIFY.sh 三标记断言 + 回滚〕+ docs/85 runbook + N-1 layout title 去 demo ④ **v3.5 裁定权条款首签**〔裁定字样禁执行端写〕⑤ tests ≥8 → **≥359 底限 ≥355** + m2 零 diff×2〔21 文件集〕。红线: 生产 env 禁 USE_MOCK=true〔回滚除外〕; **24 里程碑不宣布**〔上线≠Gate PASS〕; O1 仍 OPEN。任务书 = `659-audit-660-tasking-consolidated-20260902.md` PART 2。
+661：**PRD 对齐重排刀**（回应用户「与设计初衷差十万八千里」）——① `docs/87-prd-product-gap-replan-20260903.md`: PRD §7.1-7.7 逐项 ×现状×数据就绪度×依赖×建议刀次 + 在库未上页盘点（115 observation 5 指标/国家锚/5 省静态页/3 demo 壳）+ 三期路线〔P1 产品化纯前端 / P2 数据扩展〔多年度+M3 城市〕/ P3 深水区〔人物任期/政策承诺/治理效能观察, 9-18 月级〕〕**交用户裁定优先级** + docs/54 补呈现层里程碑 ② 首个产品化切片: 首页多指标切换（5 指标）+ 国家锚行 + 溯源 UI（source_url+SHA 前缀+lineage_ruling）③ tests ≥10 → **≥374 底限 ≥370** + smoke §17 + m2 零 diff×2。红线: 多指标只准库/mart 导出; 溯源禁编造; **P3 深水区不得自行开刀**; 24 里程碑不宣布; O1 仍 OPEN。任务书 = `660-audit-661-tasking-consolidated-20260903.md` PART 2。
 
 ## POINTERS
 
-- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/81`（**U6 ruling** hongheiku 源）
-- 659 合并件（审计 PART 1 + **660 任务书 PART 2**）
-- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev106
+- `docs/33` §3.2 sentinel · `docs/52` drift/B路 · `docs/81`（U6 ruling）· **`docs/china-economy-...-prd-v0.1.md`（PRD 原文）**
+- 660 合并件（审计 PART 1 + **661 任务书 PART 2**）
+- `00-DUAL-POLL-PROTOCOL` · `dual_poll_status.sh` · `00-EXEC-QUEUE.md` rev108
 
 ## 压缩后自检
 
