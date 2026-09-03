@@ -23,6 +23,10 @@ from china_platform.api.models.indicator import (
 
 router = APIRouter(prefix="/api/indicator", tags=["indicator"])
 
+# P2 / knife 664 — year range filter (Pydantic validated, ge/le=2001-2026)
+DEFAULT_YEAR_START = 2001
+DEFAULT_YEAR_END = 2026
+
 
 @router.get("", response_model=IndicatorListResponse)
 def list_indicators(
@@ -74,6 +78,14 @@ def list_indicators(
 def indicator_series(
     db: DatabaseDep,
     indicator_id: UUID = Path(...),
+    year_start: int = Query(
+        default=DEFAULT_YEAR_START, ge=DEFAULT_YEAR_START, le=DEFAULT_YEAR_END,
+        description="Lower bound year (inclusive). Filters by period_start year.",
+    ),
+    year_end: int = Query(
+        default=DEFAULT_YEAR_END, ge=DEFAULT_YEAR_START, le=DEFAULT_YEAR_END,
+        description="Upper bound year (inclusive). Filters by period_start year.",
+    ),
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=500, ge=1, le=5000),
 ) -> IndicatorSeriesResponse:
@@ -82,6 +94,13 @@ def indicator_series(
     Returns 200 + (possibly empty) series even when indicator_id has no data,
     per docs/24 §6.2 acceptance. Does NOT raise INDICATOR_NOT_FOUND.
     """
+    if year_start > year_end:
+        from fastapi import HTTPException
+        raise HTTPException(
+            status_code=422,
+            detail=f"year_start ({year_start}) must be <= year_end ({year_end})",
+        )
+
     with db.session() as conn:
         with conn.cursor() as cur:
             cur.execute(
@@ -94,10 +113,11 @@ def indicator_series(
                     caveat_text, source_hash_prefix, extracted_at
                 FROM cegr_staging.int_indicator_timeseries
                 WHERE indicator_id = %s
+                  AND EXTRACT(YEAR FROM period_start) BETWEEN %s AND %s
                 ORDER BY period_start DESC, geo_entity_id
                 LIMIT %s OFFSET %s
                 """,
-                (str(indicator_id), page_size, (page - 1) * page_size),
+                (str(indicator_id), year_start, year_end, page_size, (page - 1) * page_size),
             )
             rows = cur.fetchall()
     points = [_row_to_series_point(r) for r in rows]
@@ -121,10 +141,25 @@ def indicator_series_for_geo(
     db: DatabaseDep,
     indicator_id: UUID = Path(...),
     geo_entity_id: UUID = Path(...),
+    year_start: int = Query(
+        default=DEFAULT_YEAR_START, ge=DEFAULT_YEAR_START, le=DEFAULT_YEAR_END,
+        description="Lower bound year (inclusive). Filters by period_start year.",
+    ),
+    year_end: int = Query(
+        default=DEFAULT_YEAR_END, ge=DEFAULT_YEAR_START, le=DEFAULT_YEAR_END,
+        description="Upper bound year (inclusive). Filters by period_start year.",
+    ),
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=500, ge=1, le=5000),
 ) -> IndicatorSeriesResponse:
-    """Series filtered by (indicator, geo)."""
+    """Series filtered by (indicator, geo) and year range."""
+    if year_start > year_end:
+        from fastapi import HTTPException
+        raise HTTPException(
+            status_code=422,
+            detail=f"year_start ({year_start}) must be <= year_end ({year_end})",
+        )
+
     with db.session() as conn:
         with conn.cursor() as cur:
             cur.execute(
@@ -137,10 +172,12 @@ def indicator_series_for_geo(
                     caveat_text, source_hash_prefix, extracted_at
                 FROM cegr_staging.int_indicator_timeseries
                 WHERE indicator_id = %s AND geo_entity_id = %s
+                  AND EXTRACT(YEAR FROM period_start) BETWEEN %s AND %s
                 ORDER BY period_start DESC
                 LIMIT %s OFFSET %s
                 """,
-                (str(indicator_id), str(geo_entity_id), page_size, (page - 1) * page_size),
+                (str(indicator_id), str(geo_entity_id), year_start, year_end,
+                 page_size, (page - 1) * page_size),
             )
             rows = cur.fetchall()
     points = [_row_to_series_point(r) for r in rows]

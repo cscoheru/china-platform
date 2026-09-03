@@ -17,6 +17,7 @@ from china_platform.api.routes.admin_upload import router as admin_upload_router
 from china_platform.api.routes.health import router as health_router
 from china_platform.api.routes.indicators import router as indicators_router
 from china_platform.api.routes.observations import router as observations_router
+from china_platform.api.routes.province_timeseries import router as province_timeseries_router
 from china_platform.api.routes.sources import router as sources_router
 
 log = logging.getLogger(__name__)
@@ -46,10 +47,11 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title="CEGR Read-only API",
         description=(
-            "Stage 1 / S1.10 — Read-only query layer over cegr_staging dbt views. "
+            "Stage 1 / S1.10 — Read-only query layer over cegr_staging dbt views + "
+            "P2 / knife 664 province time-series over cegr_mart.mart_province_timeseries. "
             "All endpoints enforce read-only at the database session level."
         ),
-        version="0.1.0",
+        version="0.2.0",
         lifespan=lifespan,
     )
     install_error_handlers(app)
@@ -58,6 +60,8 @@ def create_app() -> FastAPI:
     app.include_router(sources_router)
     app.include_router(observations_router)
     app.include_router(admin_upload_router)
+    # P2 / knife 664 — province time-series (mart query)
+    app.include_router(province_timeseries_router)
     return app
 
 
