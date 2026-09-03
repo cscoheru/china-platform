@@ -120,23 +120,35 @@ else
 fi
 
 echo
-echo "--- 4. 31 省详情抽样 (BEIJING/SHANGHAI/LIAONING 三档) ---"
+echo "--- 4. 31 省详情抽样 (BEIJING/SHANGHAI 真实 + LIAONING DATA_MISSING 三档) ---"
+# 真实省 (BEIJING/SHANGHAI) 必须含 province-metrics-table; DATA_MISSING (LIAONING) 必须含 data-missing-banner.
+# per docs/87 §3.1 缺失省禁补零, 显式标记; metrics table 仅真实省渲染.
 ALL_PROVINCE_OK=1
-for slug in beijing shanghai liaoning; do
+for slug in beijing shanghai; do
   PROV_PAGE="$TMPDIR/province-$slug.html"
   fetch_body "$BASE_URL/provinces/$slug" "$PROV_PAGE" >/dev/null
   if [ ! -s "$PROV_PAGE" ]; then
     fail "/provinces/$slug 拉取失败"
     ALL_PROVINCE_OK=0
   else
-    if ! grep -q "data-testid=\"province-metrics-table\"" "$PROV_PAGE"; then
+    if ! grep -q 'data-testid="province-metrics-table"' "$PROV_PAGE"; then
       fail "/provinces/$slug 缺 metrics table"
       ALL_PROVINCE_OK=0
     fi
   fi
 done
+# DATA_MISSING 省 (LIAONING) 走单独分支 — 无 metrics table 但有 data-missing-banner.
+PROV_DM="$TMPDIR/province-liaoning.html"
+fetch_body "$BASE_URL/provinces/liaoning" "$PROV_DM" >/dev/null
+if [ ! -s "$PROV_DM" ]; then
+  fail "/provinces/liaoning 拉取失败"
+  ALL_PROVINCE_OK=0
+elif ! grep -q 'data-testid="data-missing-banner"' "$PROV_DM"; then
+  fail "/provinces/liaoning (DATA_MISSING) 缺 data-missing-banner"
+  ALL_PROVINCE_OK=0
+fi
 if [ $ALL_PROVINCE_OK -eq 1 ]; then
-  ok "3 抽样省详情页 (真/真/缺) HTTP 200 + 含 metrics table"
+  ok "3 抽样省 (真 BEIJING/SHANGHAI metrics table + 缺 LIAONING data-missing-banner) 全部就位"
 fi
 
 echo
@@ -241,22 +253,24 @@ if ! grep -q "data-testid=\"data-missing-publicity\"" "$HOMEPAGE"; then
   fail "data-missing-publicity 缺失"
   COVERAGE_OK=0
 fi
-# DATA_MISSING 单元格 (e.g. liaoning-gdp_total) 存在
-for prov in liaoning hainan guizhou; do
+# DATA_MISSING 单元格 (e.g. LIAONING-gdp_total) 存在 — CoverageMatrix 用 uppercase province_code.
+for prov in LIAONING HAINAN GUIZHOU; do
   if ! grep -q "data-testid=\"coverage-cell-$prov-gdp_total\"" "$HOMEPAGE"; then
     fail "coverage-cell-$prov-gdp_total 缺失"
     COVERAGE_OK=0
   fi
 done
 if [ $COVERAGE_OK -eq 1 ]; then
-  ok "CoverageMatrix 31×5 + DATA_MISSING 三色 + footer 全部就位"
+  ok "CoverageMatrix 31×5 (含 DATA_MISSING 三色) + footer + 公示 全部就位"
 fi
 
 echo
 echo "--- 11. 4 demo 页 200 + DemoBanner ---"
+# 注: 路径含 "/" 时直接做 tmpfile 名会写失败, 需把 "/" 替成 "_" 让文件落在 $TMPDIR 根.
 DEMO_OK=1
 for path in seven-dim research/m1-series research/q1-2024-gdp public-extracts; do
-  D="$TMPDIR/demo-$path.html"
+  safe=$(printf '%s' "$path" | tr '/' '_')
+  D="$TMPDIR/demo-$safe.html"
   fetch_body "$BASE_URL/$path" "$D" >/dev/null
   if [ ! -s "$D" ]; then
     fail "/$path 拉取失败"
