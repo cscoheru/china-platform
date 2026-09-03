@@ -1754,6 +1754,324 @@ def main() -> int:
                 "(per 660 README §守门.2.D)"
             )
 
+    # §18 — knife 662 P1 收尾刀静态守门 (per 662 tasking §1.662-F3 + docs/87 §3.1 P1).
+    # 12 子守门覆盖库中已有数据全量呈现 + 公网验收脚本化:
+    #   (a) SourcePopover 扩字段 lineageSource/origin + isDataMissing flag
+    #   (b) mart_indicator_definitions JSON 存在 + 5 指标 + 三档分布
+    #   (c) export-mart-data.py 含 indicator_definitions 导出 + status 字段判断
+    #   (d) lib/mart-static.ts 含 MartIndicatorDefinition + loadStaticIndicatorDefinitions
+    #   (e) /indicators 页存在 + 5 指标卡 + 三档分布模板字面量
+    #   (f) CoverageMatrix 31×5 组件存在 + testid
+    #   (g) DataCompletenessPanel 含 CoverageMatrix + DATA_MISSING 3 省公示
+    #   (h) DemoBanner 组件 + 4 demo 页 (seven-dim/m1-series/q1-2024-gdp/public-extracts) 都引
+    #   (i) layout.tsx LIVE/DEMO 导航分组 testid
+    #   (j) ProvinceGdpTable 含 sort-bar + 5 排序按钮 + 口径提示 (禁榜单化)
+    #   (k) verify-live.sh 存在 + bash -n 语法过 + 含 12 断言标识
+    #   (l) mart_indicator_definitions JSON 三档分布 = {OFFICIAL:6, TRANSLOAD:23, MISSING:3}
+    indicator_defs_path = ROOT / "data" / "mart_indicator_definitions_2024.json"
+    coverage_matrix_path = ROOT / "app" / "components" / "CoverageMatrix.tsx"
+    completeness_panel_path = ROOT / "app" / "components" / "DataCompletenessPanel.tsx"
+    demo_banner_path = ROOT / "app" / "DemoBanner.tsx"
+    indicators_page_path = ROOT / "app" / "indicators" / "page.tsx"
+    export_script_path = deploy_static_dir / "export-mart-data.py"
+    verify_live_sh_path = deploy_static_dir / "verify-live.sh"
+
+    # §18a — SourcePopover 扩字段 + 五件套渲染
+    src_popover = (ROOT / "app" / "components" / "SourcePopover.tsx").read_text(encoding="utf-8")
+    popover_required = [
+        "lineageSource", "lineageOrigin", "isDataMissing",
+        "data-testid=\"lineage-source-value\"",
+        "data-testid=\"lineage-origin-value\"",
+        "data-testid=\"lineage-origin-missing-reason\"",
+    ]
+    popover_missing = [n for n in popover_required if n not in src_popover]
+    if popover_missing:
+        errors.append(
+            f"SourcePopover 缺字段/testid (per 662 §1.662-D1): {popover_missing}"
+        )
+    else:
+        ok(
+            "SourcePopover: 扩 lineageSource/origin + isDataMissing flag "
+            "+ 五件套 testid 完整 (per 662 §1.662-D1)"
+        )
+
+    # §18b — mart_indicator_definitions JSON 存在 + schema
+    if not indicator_defs_path.exists():
+        errors.append(
+            f"{indicator_defs_path.name} missing "
+            "(per 662 §1.662-D2: export-mart-data.py --include-indicator-defs)"
+        )
+    else:
+        try:
+            ind_defs_data = json.loads(indicator_defs_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as e:
+            errors.append(f"mart_indicator_definitions JSON 无效: {e}")
+        else:
+            expected_keys = [
+                "gdp_total", "gdp_growth", "primary_gdp", "secondary_gdp", "tertiary_gdp",
+            ]
+            actual_keys = [ind["key"] for ind in ind_defs_data.get("indicators", [])]
+            if actual_keys == expected_keys:
+                ok(
+                    f"{indicator_defs_path.name}: 5 指标 keys 全 "
+                    f"(per 662 §1.662-D2 B1)"
+                )
+            else:
+                errors.append(
+                    f"mart_indicator_definitions keys 不匹配: "
+                    f"expected={expected_keys} actual={actual_keys}"
+                )
+
+    # §18c — export-mart-data.py 含 indicator_definitions + status 字段判断
+    if not export_script_path.exists():
+        errors.append("export-mart-data.py missing (per 660 tasking)")
+    else:
+        es_src = export_script_path.read_text(encoding="utf-8")
+        es_required = [
+            "build_indicator_definitions_payload",
+            "compute_source_grade_distribution",
+            "OUT_INDICATOR_DEFS_JSON",
+            "--include-indicator-defs",
+        ]
+        es_missing = [n for n in es_required if n not in es_src]
+        if es_missing:
+            errors.append(
+                f"export-mart-data.py 缺 indicator_definitions 导出要素: {es_missing}"
+            )
+        else:
+            ok(
+                "export-mart-data.py: build_indicator_definitions_payload + "
+                "compute_source_grade_distribution + CLI flag 全"
+            )
+        # 关键 bug fix: 等级分布按 status 字段判断 (不靠 lineageSource 字符串)
+        if not re.search(
+            r'(r\.get\(["\']status["\']\)\s*==\s*["\']DATA_MISSING["\']'
+            r'|r\[["\']status["\']\]\s*==\s*["\']DATA_MISSING["\'])',
+            es_src,
+        ):
+            errors.append(
+                "compute_source_grade_distribution 没用 status 字段判断 DATA_MISSING "
+                "(per 662 bug fix: DATA_MISSING 行 lineage_source='hongheiku_tjgb', "
+                "必须按 status 字段)"
+            )
+        else:
+            ok(
+                "export-mart-data.py: compute_source_grade_distribution 用 status "
+                "字段判断 DATA_MISSING (662 bug fix 守门)"
+            )
+
+    # §18d — lib/mart-static.ts 含 MartIndicatorDefinition + loader
+    if not mart_static_path.exists():
+        errors.append("lib/mart-static.ts missing")
+    else:
+        ms_src2 = mart_static_path.read_text(encoding="utf-8")
+        ms_required = [
+            "MartIndicatorDefinition", "MartIndicatorDefinitionsFile",
+            "loadStaticIndicatorDefinitions", "getIndicatorDefinitions",
+            "getIndicatorDefinitionList", "deriveIndicatorDefsPath",
+        ]
+        ms_missing = [n for n in ms_required if n not in ms_src2]
+        if ms_missing:
+            errors.append(f"lib/mart-static.ts 缺 indicator defs loader: {ms_missing}")
+        else:
+            ok(
+                "lib/mart-static.ts: MartIndicatorDefinition + loader + "
+                "deriveIndicatorDefsPath 全 (per 662 §1.662-D2 B3)"
+            )
+
+    # §18e — /indicators 页存在 + 5 指标卡模板字面量 + 三档分布
+    if not indicators_page_path.exists():
+        errors.append("app/indicators/page.tsx missing (per 662 §1.662-D2 B4)")
+    else:
+        ind_src = indicators_page_path.read_text(encoding="utf-8")
+        ind_required = [
+            "indicator-card-${ind.key}",
+            "grade-bar-official-${ind.key}",
+            "grade-bar-transload-${ind.key}",
+            "grade-bar-missing-${ind.key}",
+        ]
+        ind_missing = [n for n in ind_required if n not in ind_src]
+        if ind_missing:
+            errors.append(f"/indicators 页缺模板字面量: {ind_missing}")
+        else:
+            ok(
+                "/indicators: 5 指标卡 + 三档分布条形 模板字面量完整 "
+                "(per 662 §1.662-D2 B4)"
+            )
+
+    # §18f — CoverageMatrix 31×5
+    if not coverage_matrix_path.exists():
+        errors.append(
+            "app/components/CoverageMatrix.tsx missing (per 662 §1.662-D3 C1)"
+        )
+    else:
+        cm_src = coverage_matrix_path.read_text(encoding="utf-8")
+        cm_required = [
+            "data-testid=\"coverage-matrix\"",
+            "data-testid=\"coverage-footer\"",
+            "coverage-th-${mk}",
+        ]
+        cm_missing = [n for n in cm_required if n not in cm_src]
+        if cm_missing:
+            errors.append(f"CoverageMatrix 缺 testid/模板: {cm_missing}")
+        else:
+            ok(
+                "CoverageMatrix: 31×5 + footer + coverage-th 模板字面量完整 "
+                "(per 662 §1.662-D3 C1)"
+            )
+
+    # §18g — DataCompletenessPanel 含 CoverageMatrix + DATA_MISSING 3 省公示
+    if not completeness_panel_path.exists():
+        errors.append(
+            "app/components/DataCompletenessPanel.tsx missing (per 662 §1.662-D3 C2)"
+        )
+    else:
+        cp_src = completeness_panel_path.read_text(encoding="utf-8")
+        cp_required = [
+            "data-completeness-panel", "data-completeness-stats",
+            "data-missing-publicity", "<CoverageMatrix",
+            "LIAONING", "HAINAN", "GUIZHOU",
+        ]
+        cp_missing = [n for n in cp_required if n not in cp_src]
+        if cp_missing:
+            errors.append(f"DataCompletenessPanel 缺字段: {cp_missing}")
+        else:
+            ok(
+                "DataCompletenessPanel: 含 CoverageMatrix 嵌入 + 3 省 DATA_MISSING "
+                "公示 + stats testid (per 662 §1.662-D3 C2)"
+            )
+
+    # §18h — DemoBanner + 4 demo 页插入
+    if not demo_banner_path.exists():
+        errors.append("app/DemoBanner.tsx missing (per 662 §1.662-D5 E1)")
+    else:
+        db_src = demo_banner_path.read_text(encoding="utf-8")
+        db_required = ["data-testid=\"demo-banner\"", "reason"]
+        db_missing = [n for n in db_required if n not in db_src]
+        if db_missing:
+            errors.append(f"DemoBanner 缺字段: {db_missing}")
+        else:
+            ok("DemoBanner: data-testid=\"demo-banner\" + reason prop (per 662 §1.662-D5 E1)")
+        demo_pages = [
+            ROOT / "app" / "seven-dim" / "page.tsx",
+            ROOT / "app" / "research" / "m1-series" / "page.tsx",
+            ROOT / "app" / "research" / "q1-2024-gdp" / "page.tsx",
+            ROOT / "app" / "public-extracts" / "page.tsx",
+        ]
+        pages_missing_banner = []
+        for dp in demo_pages:
+            dp_src = dp.read_text(encoding="utf-8") if dp.exists() else ""
+            if "<DemoBanner" not in dp_src:
+                pages_missing_banner.append(str(dp.relative_to(ROOT)))
+        if pages_missing_banner:
+            errors.append(
+                f"4 demo 页未插 DemoBanner: {pages_missing_banner} "
+                "(per 662 §1.662-D5 E2-E5)"
+            )
+        else:
+            ok(
+                "4 demo 页 (seven-dim/m1-series/q1-2024-gdp/public-extracts) "
+                "全含 DemoBanner (per 662 §1.662-D5 E2-E5)"
+            )
+
+    # §18i — layout LIVE/DEMO 导航分组
+    layout_src2 = (ROOT / "app" / "layout.tsx").read_text(encoding="utf-8")
+    nav_required = [
+        "data-testid=\"site-nav-live-group\"",
+        "data-testid=\"site-nav-demo-group\"",
+    ]
+    nav_missing = [n for n in nav_required if n not in layout_src2]
+    if nav_missing:
+        errors.append(
+            f"layout.tsx 缺 LIVE/DEMO 导航分组: {nav_missing} "
+            "(per 662 §1.662-D5 E6)"
+        )
+    else:
+        ok(
+            "layout.tsx: site-nav-live-group + site-nav-demo-group 分组完整 "
+            "(per 662 §1.662-D5 E6)"
+        )
+
+    # §18j — ProvinceGdpTable sort-bar + 5 排序按钮 + 禁榜单化口径提示
+    pgt_src = (ROOT / "app" / "components" / "ProvinceGdpTable.tsx").read_text(encoding="utf-8")
+    sort_required = [
+        "data-testid=\"sort-bar\"",
+        "data-testid={`sort-btn-${tab.key}`}",
+    ]
+    sort_missing = [n for n in sort_required if n not in pgt_src]
+    if sort_missing:
+        errors.append(f"ProvinceGdpTable 缺 sort-bar: {sort_missing}")
+    else:
+        ok("ProvinceGdpTable: sort-bar + 排序按钮模板字面量 完整 (per 662 §1.662-D4 D1)")
+    if "docs/05 §8.3" not in pgt_src and "不构成排名" not in pgt_src:
+        errors.append(
+            "ProvinceGdpTable sortCaveat 未引用 docs/05 §8.3 / '不构成排名' "
+            "(per 662 §1.662-D4 D2 红线: 禁榜单化)"
+        )
+    else:
+        ok(
+            "ProvinceGdpTable sortCaveat: 引用 docs/05 §8.3 禁榜单化红线 "
+            "(per 662 §1.662-D4 D2)"
+        )
+
+    # §18k — verify-live.sh 存在 + bash 语法过 + 12 断言标识
+    if not verify_live_sh_path.exists():
+        errors.append(
+            "deploy/static-export/verify-live.sh missing (per 662 §1.662-D6 F1)"
+        )
+    else:
+        import subprocess as _sp
+        bash_check = _sp.run(
+            ["bash", "-n", str(verify_live_sh_path)],
+            capture_output=True, text=True, timeout=10,
+        )
+        if bash_check.returncode != 0:
+            errors.append(f"verify-live.sh bash -n 失败: {bash_check.stderr}")
+        else:
+            ok("verify-live.sh: bash -n 语法 exit 0 (per 662 §1.662-D6 F1)")
+        vl_src = verify_live_sh_path.read_text(encoding="utf-8")
+        vl_required = [
+            "LIVE MODE", "metric-tab-gdp_total", "national-badge",
+            "peer-compare-real-table", "source-popover", "data-missing-banner",
+            "indicator-card", "coverage-matrix", "demo-banner", "sort-bar",
+            "site-nav-live-group", "site-nav-demo-group",
+        ]
+        vl_missing = [n for n in vl_required if n not in vl_src]
+        if vl_missing:
+            errors.append(
+                f"verify-live.sh 缺断言标识 ({len(vl_missing)}/12): {vl_missing}"
+            )
+        else:
+            ok(
+                "verify-live.sh: 12 项断言标识完整 (per 662 §1.662-D6 F1 + "
+                "verify-live.sh §1-12)"
+            )
+
+    # §18l — mart_indicator_definitions 三档分布 = {OFFICIAL:6, TRANSLOAD:23, MISSING:3}
+    if indicator_defs_path.exists():
+        try:
+            ind_defs = json.loads(indicator_defs_path.read_text(encoding="utf-8"))
+            grade_ok = True
+            for ind in ind_defs.get("indicators", []):
+                g = ind.get("source_grade_distribution", {})
+                if (g.get("OFFICIAL_INTAKED") != 6
+                        or g.get("HONGHEIKU_TRANSLOAD") != 23
+                        or g.get("DATA_MISSING") != 3):
+                    grade_ok = False
+                    errors.append(
+                        f"指标 {ind.get('key')} 三档分布错误: {g} "
+                        "(expected OFFICIAL:6, TRANSLOAD:23, MISSING:3)"
+                    )
+                    break
+            if grade_ok and ind_defs.get("indicators"):
+                ok(
+                    "mart_indicator_definitions: 5 指标三档分布全 = "
+                    "{OFFICIAL_INTAKED:6, HONGHEIKU_TRANSLOAD:23, DATA_MISSING:3} "
+                    "(per 662 §1.662-D2 B1)"
+                )
+        except (json.JSONDecodeError, KeyError):
+            pass  # §18b 已记录 JSON 错误
+
     if errors:
         for e in errors:
             fail(e)
@@ -1762,7 +2080,7 @@ def main() -> int:
     print(
         "\n=== S2.0.1 + S2.7-a + S2.7-a2 + S2.7-b-lite + S2.7-b-full-lite mart-shape "
         "+ home nav + M1 验收面 (knife 629 §2 T6) + knife 659 mart flip + "
-        "knife 660 Track B 静态导出 smoke: PASS ==="
+        "knife 660 Track B 静态导出 + knife 662 P1 收尾刀 (六件套) smoke: PASS ==="
     )
     return 0
 
