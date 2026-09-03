@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-export-mart-data.py — knife 660 Track B (静态导出) + knife 661 扩展.
+export-mart-data.py — knife 660 Track B (静态导出) + knife 661 扩展 + knife 662 D2.
 
 Reads `dbt/models/marts/mart_province_gdp_2024.sql` (152 行, knife 659 收口),
 parses the three VALUES blocks (province_codes / real_data / missing_provinces),
@@ -29,6 +29,15 @@ Knife 661 extensions (per 661 tasking §1.661 + docs/87 §3.1 P1 先行):
 - Per-row source_hash_prefix field (null for 661; future 662+ via dbt
   source_document JOIN).
 
+Knife 662 D2 extensions (per 662 tasking §1.662-D2):
+- 另输出 `frontend/data/mart_indicator_definitions_2024.json`: 5 指标定义
+  (key/label/unit/caliber/period + source_grade_distribution 三档计数).
+- caliber/period 来自下方 INDICATOR_METADATA 字典 (代码即元数据,与 mart
+  5 指标列对齐);缺省时显式 "(口径待补, 见 lineage_ruling)" 不编 (per 红线 8).
+- source_grade_distribution 由 28 真省 + 1 NATIONAL + 3 DATA_MISSING 的
+  lineage_source 字段实际计数 (OFFICIAL_INTAKED / HONGHEIKU_TRANSLOAD /
+  DATA_MISSING 三档);禁手填.
+
 Exit codes:
 - 0  success
 - 1  SQL parse error / missing file / row-count mismatch
@@ -46,6 +55,11 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]  # deploy/static-export -> repo root
 MART_SQL = REPO_ROOT / "dbt" / "models" / "marts" / "mart_province_gdp_2024.sql"
 OUT_JSON = REPO_ROOT / "frontend" / "data" / "mart_province_gdp_2024.json"
+# 662 D2: 指标定义页 JSON 输出. 同 661 schema_version (不 bump, 因 mart 主
+# JSON schema 未变, 仅为派生 JSON).
+OUT_INDICATOR_DEFS_JSON = (
+    REPO_ROOT / "frontend" / "data" / "mart_indicator_definitions_2024.json"
+)
 EXPECTED_ROWS = 32  # 661: 28 real + 3 missing + 1 NATIONAL anchor
 EXPECTED_REAL = 28
 EXPECTED_MISSING = 3
@@ -58,6 +72,42 @@ GB_T_2260_ORDER = [
     "HAINAN", "CHONGQING", "SICHUAN", "GUIZHOU", "YUNNAN",
     "XIZANG", "SHAANXI", "GANSU", "QINGHAI", "NINGXIA", "XINJIANG",
 ]
+# 662 D2: 5 指标元数据 (代码即元数据, 与 mart 5 指标列对齐).
+# caliber/period 用 NBS 标准口径描述 (与 stats.gov.cn 国民经济和社会发展
+# 统计公报一致), 非编造数据, 仅描述"指标含义". 若元数据缺失则用
+# "(口径待补, 见 lineage_ruling)" 占位 (per 红线 8 禁编造).
+INDICATOR_METADATA: dict[str, dict[str, str]] = {
+    "gdp_total": {
+        "label": "GDP 总量",
+        "unit": "亿元",
+        "caliber": "地区生产总值（当年价格，亿元）。NBS / 各省统计局国民经济和社会发展统计公报口径。",
+        "period": "2024 年（全年）",
+    },
+    "gdp_growth": {
+        "label": "GDP 增速",
+        "unit": "%",
+        "caliber": "地区生产总值同比增速（不变价，%）。NBS / 各省统计局公报口径。",
+        "period": "2024 年（全年）",
+    },
+    "primary_gdp": {
+        "label": "一产增加值",
+        "unit": "亿元",
+        "caliber": "第一产业增加值（当年价格，亿元）。NBS / 各省统计局口径。",
+        "period": "2024 年（全年）",
+    },
+    "secondary_gdp": {
+        "label": "二产增加值",
+        "unit": "亿元",
+        "caliber": "第二产业增加值（当年价格，亿元）。NBS / 各省统计局口径。",
+        "period": "2024 年（全年）",
+    },
+    "tertiary_gdp": {
+        "label": "三产增加值",
+        "unit": "亿元",
+        "caliber": "第三产业增加值（当年价格，亿元）。NBS / 各省统计局口径。",
+        "period": "2024 年（全年）",
+    },
+}
 # 661: source_url mapping per lineage_source type (per docs/81 §2 + U6 ruling).
 # These are public government / hongheiku URLs, used as routing key for
 # 溯源 popover. Per 红线 8 「溯源 UI 只显示库中真实血缘字段」, source_hash_prefix
@@ -76,6 +126,8 @@ SOURCE_URL_BY_LINEAGE = {
 NATIONAL_GDP_TOTAL = "1349084.0"
 NATIONAL_ROW_CODE = "NATIONAL"
 NATIONAL_ROW_NAME = "全国"
+# 662 D2: 口径缺失占位符 (per 红线 8 「溯源 UI 只显示库中真实血缘字段」禁编造).
+CALIBER_PLACEHOLDER = "(口径待补, 见 lineage_ruling)"
 
 
 def parse_values_block(sql: str, cte_name: str) -> list[tuple]:
@@ -143,6 +195,13 @@ def main() -> int:
     # 在并发 pytest 下产生竞态;改 dry-run 后 test_11 只断言 exit code + 数据形态.
     p.add_argument("--dry-run", action="store_true",
                    help="parse + self-audit only; do not write output JSON")
+    # 662 D2: 指标定义 JSON 输出开关. 默认 true (per tasking), --no-include-indicator-defs
+    # 可跳过指标定义导出 (用于 partial CI / 数据扩展时).
+    p.add_argument("--include-indicator-defs", action=argparse.BooleanOptionalAction,
+                   default=True,
+                   help="662 D2: also export mart_indicator_definitions_2024.json (default true)")
+    p.add_argument("--out-indicator-defs", type=Path, default=OUT_INDICATOR_DEFS_JSON,
+                   help="662 D2: indicator definitions output JSON path")
     args = p.parse_args()
 
     if not MART_SQL.exists():
@@ -297,14 +356,107 @@ def main() -> int:
 
     if args.dry_run:
         # 661 D3: dry-run 模式不写盘,只把 JSON 摘要打到 stdout,供测试断言.
-        print(f"DRY-RUN OK: {len(rows)} rows (real={out['real_count']} missing={out['missing_count']} national={out['national_count']})")
+        # 662 D2: 同步报告 indicator_defs 计数 (若开启).
+        msg = (f"DRY-RUN OK: {len(rows)} rows "
+               f"(real={out['real_count']} missing={out['missing_count']} "
+               f"national={out['national_count']})")
+        if args.include_indicator_defs:
+            # 指标定义数 = metric_cols (5). 来源等级分布从 28 真省 + 1 NATIONAL
+            # + 3 DATA_MISSING 实际 lineage_source 字段统计.
+            grade = compute_source_grade_distribution(real_rows, missing_rows, [national_row])
+            msg += f" + 5 indicator defs (grade={grade})"
+        print(msg)
         return 0
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"OK: {len(rows)} rows -> {args.out.relative_to(REPO_ROOT)}")
     print(f"  real={out['real_count']} missing={out['missing_count']} missing_codes={missing_codes}")
+
+    # 662 D2: 指标定义 JSON 写出.
+    if args.include_indicator_defs:
+        grade = compute_source_grade_distribution(real_rows, missing_rows, [national_row])
+        ind_out = build_indicator_definitions_payload(grade)
+        args.out_indicator_defs.parent.mkdir(parents=True, exist_ok=True)
+        args.out_indicator_defs.write_text(
+            json.dumps(ind_out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+        print(f"OK: 5 indicator defs -> {args.out_indicator_defs.relative_to(REPO_ROOT)}")
+        print(f"  grade distribution = {grade}")
+
     return 0
+
+
+def compute_source_grade_distribution(
+    real_rows: list[dict],
+    missing_rows: list[dict],
+    national_rows: list[dict],
+) -> dict[str, int]:
+    """
+    662 D2: 统计 lineage_source 三档分布.
+
+    - 28 真省 + 1 NATIONAL 锚行 → lineage_source 字段为 "OFFICIAL_INTAKED"
+      (6 行: NATIONAL + 北京/上海/山东/湖北/四川) 或 "hongheiku_tjgb"
+      (23 行, 计为 HONGHEIKU_TRANSLOAD).
+    - 3 DATA_MISSING 行 → 按 row["status"] == "DATA_MISSING" 计为 DATA_MISSING
+      档 (mart JSON 中 lineage_source 字段是 "hongheiku_tjgb", 不能靠字符串
+      字段判断, 必须用 status).
+
+    缺省值 (None) 不计入 OFFICIAL/TRANSLOAD 档, 但 missing_rows 一律计入
+    DATA_MISSING 档 (因 status 字段保证非 None when in missing_rows).
+    """
+    official = 0
+    transload = 0
+    missing = 0
+    for r in real_rows + national_rows:
+        ls = r.get("lineage_source")
+        if ls == "OFFICIAL_INTAKED":
+            official += 1
+        elif ls == "HONGHEIKU_TRANSLOAD" or ls == "hongheiku_tjgb":
+            transload += 1
+        # 其他 (None / DATA_MISSING / 未知) 不计.
+    # 3 DATA_MISSING 行按 status 字段精确判断, 不靠 lineage_source 字符串.
+    for r in missing_rows:
+        if r.get("status") == "DATA_MISSING":
+            missing += 1
+    return {
+        "OFFICIAL_INTAKED": official,
+        "HONGHEIKU_TRANSLOAD": transload,
+        "DATA_MISSING": missing,
+    }
+
+
+def build_indicator_definitions_payload(
+    grade: dict[str, int],
+) -> dict:
+    """
+    662 D2: 生成 5 指标定义 JSON. schema 与 mart 主 JSON 对齐 (as_of /
+    ruling / schema_version / lineage_ruling / lineage_is_demo). 指标
+    元数据来自 INDICATOR_METADATA; 缺省字段用 CALIBER_PLACEHOLDER 占位
+    (per 红线 8 禁编造 caliber).
+    """
+    metric_cols = ["gdp_total", "gdp_growth", "primary_gdp", "secondary_gdp", "tertiary_gdp"]
+    definitions: list[dict] = []
+    for key in metric_cols:
+        meta = INDICATOR_METADATA.get(key, {})
+        definitions.append({
+            "key": key,
+            "label": meta.get("label", key),
+            "unit": meta.get("unit", CALIBER_PLACEHOLDER),
+            "caliber": meta.get("caliber", CALIBER_PLACEHOLDER),
+            "period": meta.get("period", CALIBER_PLACEHOLDER),
+            "source_grade_distribution": grade,
+        })
+    return {
+        "as_of": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "ruling": "knife 662 D2 指标定义导出 (per 662 tasking §1.662-D2)",
+        "schema_version": "661",  # 不 bump; mart 主 JSON schema 未变, 仅为派生
+        "mart_source": str(MART_SQL.relative_to(REPO_ROOT)),
+        "lineage_ruling": "U6 2026-09-02",
+        "lineage_is_demo": "false",
+        "indicator_count": len(definitions),
+        "indicators": definitions,
+    }
 
 
 if __name__ == "__main__":

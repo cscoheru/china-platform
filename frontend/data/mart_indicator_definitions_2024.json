@@ -1,0 +1,71 @@
+{
+  "as_of": "2026-09-03T07:52:20Z",
+  "ruling": "knife 662 D2 指标定义导出 (per 662 tasking §1.662-D2)",
+  "schema_version": "661",
+  "mart_source": "dbt/models/marts/mart_province_gdp_2024.sql",
+  "lineage_ruling": "U6 2026-09-02",
+  "lineage_is_demo": "false",
+  "indicator_count": 5,
+  "indicators": [
+    {
+      "key": "gdp_total",
+      "label": "GDP 总量",
+      "unit": "亿元",
+      "caliber": "地区生产总值（当年价格，亿元）。NBS / 各省统计局国民经济和社会发展统计公报口径。",
+      "period": "2024 年（全年）",
+      "source_grade_distribution": {
+        "OFFICIAL_INTAKED": 6,
+        "HONGHEIKU_TRANSLOAD": 23,
+        "DATA_MISSING": 3
+      }
+    },
+    {
+      "key": "gdp_growth",
+      "label": "GDP 增速",
+      "unit": "%",
+      "caliber": "地区生产总值同比增速（不变价，%）。NBS / 各省统计局公报口径。",
+      "period": "2024 年（全年）",
+      "source_grade_distribution": {
+        "OFFICIAL_INTAKED": 6,
+        "HONGHEIKU_TRANSLOAD": 23,
+        "DATA_MISSING": 3
+      }
+    },
+    {
+      "key": "primary_gdp",
+      "label": "一产增加值",
+      "unit": "亿元",
+      "caliber": "第一产业增加值（当年价格，亿元）。NBS / 各省统计局口径。",
+      "period": "2024 年（全年）",
+      "source_grade_distribution": {
+        "OFFICIAL_INTAKED": 6,
+        "HONGHEIKU_TRANSLOAD": 23,
+        "DATA_MISSING": 3
+      }
+    },
+    {
+      "key": "secondary_gdp",
+      "label": "二产增加值",
+      "unit": "亿元",
+      "caliber": "第二产业增加值（当年价格，亿元）。NBS / 各省统计局口径。",
+      "period": "2024 年（全年）",
+      "source_grade_distribution": {
+        "OFFICIAL_INTAKED": 6,
+        "HONGHEIKU_TRANSLOAD": 23,
+        "DATA_MISSING": 3
+      }
+    },
+    {
+      "key": "tertiary_gdp",
+      "label": "三产增加值",
+      "unit": "亿元",
+      "caliber": "第三产业增加值（当年价格，亿元）。NBS / 各省统计局口径。",
+      "period": "2024 年（全年）",
+      "source_grade_distribution": {
+        "OFFICIAL_INTAKED": 6,
+        "HONGHEIKU_TRANSLOAD": 23,
+        "DATA_MISSING": 3
+      }
+    }
+  ]
+}

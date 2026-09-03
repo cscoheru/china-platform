@@ -1,4 +1,4 @@
-// frontend/lib/mart-static.ts — knife 660 Track B (静态导出) + 661 扩展.
+// frontend/lib/mart-static.ts — knife 660 Track B (静态导出) + 661 扩展 + 662 D2.
 //
 // Per 660 tasking §PART 2 + docs/53 §5 第 16 项 redeploy 运维行:
 // newvps 上不需要 FastAPI backend + dbt + DB。mart 数据 (28 真实 + 3 缺失 +
@@ -6,6 +6,11 @@
 // 导出为 frontend/data/mart_province_gdp_2024.json (per export-mart-data.py),
 // 提交进仓库,Next.js build 时通过 NEXT_PUBLIC_MART_DATA_PATH 读 JSON,
 // 运行时零外部依赖。
+//
+// 662 D2: 同目录再读一份 mart_indicator_definitions_2024.json (5 指标定义 +
+// 来源等级三档分布), 路径派生自 NEXT_PUBLIC_MART_DATA_PATH 的目录 (假设
+// mart_province_gdp_2024.json 与 mart_indicator_definitions_2024.json 同目录);
+// 不引入第二个 env var 减运维负担。
 //
 // Build 流程:
 //   cd /opt/china-platform/frontend
@@ -135,4 +140,117 @@ export function getProvinceByCode(
   const data = getMartProvinceGdp2024();
   if (!data) return null;
   return data.provinces.find((p) => p.province_code === code) ?? null;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 662 D2: 指标定义 loader (mart_indicator_definitions_2024.json)
+//
+// 路径派生: 与主 mart JSON 同目录 (假设 export-mart-data.py 一次导出两份).
+// 若派生路径不存在 → 返回 null (graceful degradation, /indicators 页显示
+// "指标定义未配置").
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * 662 D2: 单指标定义. caliber/period 默认填充 "(口径待补, 见 lineage_ruling)"
+ * (per 红线 8 禁编造), 缺字段不会 throw.
+ */
+export interface MartIndicatorDefinition {
+  key: string;                          // e.g. "gdp_total"
+  label: string;                        // e.g. "GDP 总量"
+  unit: string;                         // e.g. "亿元"
+  caliber: string;                      // NBS 口径描述
+  period: string;                       // e.g. "2024 年（全年）"
+  source_grade_distribution: {
+    OFFICIAL_INTAKED: number;
+    HONGHEIKU_TRANSLOAD: number;
+    DATA_MISSING: number;
+  };
+}
+
+/**
+ * 662 D2: 指标定义文件 schema. 与 mart 主 JSON 顶层字段对齐 (as_of /
+ * ruling / schema_version / lineage_ruling / lineage_is_demo).
+ */
+export interface MartIndicatorDefinitionsFile {
+  as_of: string;
+  ruling: string;
+  schema_version?: string;
+  mart_source: string;
+  lineage_ruling: string;
+  lineage_is_demo: string;
+  indicator_count: number;
+  indicators: MartIndicatorDefinition[];
+}
+
+let cachedIndicatorDefs: MartIndicatorDefinitionsFile | null = null;
+let indicatorDefsLoadError: Error | null = null;
+let indicatorDefsLoadAttempted = false;
+let indicatorDefsFileMissing = false; // graceful-degradation 标志
+
+/**
+ * 662 D2: 派生指标定义 JSON 的绝对路径.
+ * 默认与 NEXT_PUBLIC_MART_DATA_PATH 同目录, 文件名 mart_indicator_definitions_2024.json.
+ */
+function deriveIndicatorDefsPath(martPath: string): string {
+  const dir = path.dirname(martPath);
+  return path.isAbsolute(martPath)
+    ? path.join(dir, "mart_indicator_definitions_2024.json")
+    : path.join(process.cwd(), dir, "mart_indicator_definitions_2024.json");
+}
+
+/**
+ * 662 D2: 读取指标定义 JSON (build-time fs read + cache).
+ *
+ * 三态返回:
+ *   - 成功: 返回 MartIndicatorDefinitionsFile
+ *   - 文件不存在: 返回 null (graceful degradation, /indicators 页可显示空态)
+ *   - JSON 解析失败: throw with actionable msg
+ *
+ * 与 loadStaticMartData() 不同: 指标定义文件缺失不算错误 (因为 662 之前
+ * 的部署只有 mart 主 JSON), 所以需要三态语义.
+ */
+export function loadStaticIndicatorDefinitions(): MartIndicatorDefinitionsFile | null {
+  if (cachedIndicatorDefs) return cachedIndicatorDefs;
+  if (indicatorDefsLoadError) throw indicatorDefsLoadError;
+  if (indicatorDefsFileMissing) return null;
+
+  const martPath = process.env.NEXT_PUBLIC_MART_DATA_PATH;
+  if (!martPath) {
+    indicatorDefsFileMissing = true;
+    return null;
+  }
+
+  const resolved = deriveIndicatorDefsPath(martPath);
+  if (!fs.existsSync(resolved)) {
+    // Graceful degradation: 缺文件不算错误, /indicators 页显示 "未配置" 提示.
+    indicatorDefsFileMissing = true;
+    return null;
+  }
+
+  try {
+    const raw = fs.readFileSync(resolved, "utf-8");
+    cachedIndicatorDefs = JSON.parse(raw) as MartIndicatorDefinitionsFile;
+    indicatorDefsLoadAttempted = true;
+    return cachedIndicatorDefs;
+  } catch (e) {
+    indicatorDefsLoadError = new Error(
+      `Failed to load indicator definitions from ${resolved}: ${(e as Error).message}`
+    );
+    throw indicatorDefsLoadError;
+  }
+}
+
+/**
+ * 662 D2: 便捷函数. 若指标定义文件不存在 (含未配 env) 返回 null.
+ */
+export function getIndicatorDefinitions(): MartIndicatorDefinitionsFile | null {
+  return loadStaticIndicatorDefinitions();
+}
+
+/**
+ * 662 D2: 便捷函数. 返回指标定义数组 (5 个); 文件缺失返回 null.
+ */
+export function getIndicatorDefinitionList(): MartIndicatorDefinition[] | null {
+  const data = getIndicatorDefinitions();
+  return data?.indicators ?? null;
 }
