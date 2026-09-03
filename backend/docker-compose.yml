@@ -1,0 +1,75 @@
+# backend/docker-compose.yml — China Platform FastAPI prod (knife 664h)
+#
+# Per knife 664 plan §newvps 部署 (Option B dev+newvps 双轨).
+# 部署到 newvps (ssh newvps) 时使用此文件.
+#
+# 关键约束 (per memory china-platform-fastapi-missing-on-newvps):
+#   - port 8000 = portainer (NOT China-platform FastAPI)
+#   - FastAPI 容器内 8000 → 宿主机 8001 (避让 portainer)
+#   - nginx 反代 :443 → :8001
+#   - puer-net docker network 必须先 docker network create puer-net
+#
+# Run:   cd backend && docker compose -f docker-compose.yml up -d
+# Stop:  cd backend && docker compose -f docker-compose.yml down
+# Logs:  cd backend && docker compose -f docker-compose.yml logs -f api
+#
+# 验证 (after nginx reload):
+#   curl "https://china.3strategy.cc/api/province-timeseries/BEIJING?year_start=2024&year_end=2024"
+
+name: china-platform-prod
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: china-platform-pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/pg_password   # secret mount (docker secret)
+      POSTGRES_DB: cegr_test
+    volumes:
+      - china-platform-pg-data:/var/lib/postgresql/data
+      - ./docker/init-mart-schema.sql:/docker-entrypoint-initdb.d/00-init-mart-schema.sql:ro
+    networks:
+      - puer-net
+    # NO host port mapping: postgres 仅 puer-net 内部可达, 公网经 nginx → api → postgres.
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d cegr_test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    image: china-platform-backend:0.2.0
+    container_name: china-platform-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      CEGR_API_DSN: postgresql://postgres:postgres@postgres:5432/cegr_test
+      CEGR_API_MART_SCHEMA: cegr_mart
+      CEGR_API_POOL_MIN: "2"
+      CEGR_API_POOL_MAX: "10"
+      CEGR_API_LOG_LEVEL: INFO
+      CEGR_API_CORS_ORIGINS: '["https://china.3strategy.cc"]'
+    networks:
+      - puer-net
+    ports:
+      # 宿主 8001 → 容器 8000 (避让 portainer 占的 8000).
+      - "127.0.0.1:8001:8000"
+    # 架构师端不主动 commit, 以下为参考生产 secrets 挂载示例:
+    # secrets:
+    #   - pg_password
+
+networks:
+  puer-net:
+    external: true   # 必须先 docker network create puer-net (架构师端提供命令)
+
+volumes:
+  china-platform-pg-data:
+    driver: local
+
+# secrets:    # 需 docker secret create pg_password <file>
+#   pg_password:
+#     external: true

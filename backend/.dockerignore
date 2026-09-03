@@ -1,0 +1,48 @@
+# backend/.dockerignore — China Platform FastAPI (knife 664h)
+#
+# Keep image small + cache-friendly. Source code copied separately from
+# requirements.txt so deps layer doesn't re-build on every code change.
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtualenvs (local dev: backend/.venv-api/)
+.venv-api/
+.venv/
+venv/
+env/
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Logs / runtime
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Secrets (defense in depth — env vars passed at run time)
+.env
+.env.local
+.env.*.local
+secrets/
+*.pem
+
+# dbt / frontend (separate images)
+../dbt/
+../frontend/
+../deploy/
+../docs/

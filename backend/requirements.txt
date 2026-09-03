@@ -1,0 +1,27 @@
+# China Platform API requirements (knife 664, P2)
+#
+# Python 3.11+ required (3.12 OK; 3.14 NOT OK — dbt-core-experimental-parser incompatibility).
+# Install: python3.11 -m venv backend/.venv-api && backend/.venv-api/bin/pip install -r backend/requirements.txt
+#
+# Versions pinned to avoid surprises; update via Dependabot/manual review.
+
+# --- Core web framework ---
+fastapi==0.115.6           # FastAPI 0.115.x stable; Pydantic 2.x compat
+uvicorn[standard]==0.32.1  # ASGI server with [standard] extras (httptools, uvloop, websockets)
+python-multipart==0.0.20   # Required for form / file upload endpoints (admin_upload)
+
+# --- Pydantic ecosystem ---
+pydantic==2.10.4           # Pydantic v2 (ConfigDict / json_schema_extra)
+pydantic-settings==2.7.0   # Env-var driven settings (ApiSettings)
+
+# --- Database driver ---
+psycopg2-binary==2.9.10    # psycopg2 with binary wheel (no PostgreSQL dev headers needed)
+
+# --- HTTP client (for outbound requests in admin_upload, future connectors) ---
+httpx==0.28.1              # Async HTTP client (used by /admin/upload if fetching upstream)
+
+# --- Observability (basic logging only) ---
+# structlog / loguru not needed — stdlib logging suffices per docs/24 §11
+
+# --- Test (dev only) ---
+# pytest / pytest-asyncio NOT in main requirements; use requirements-test.txt if added

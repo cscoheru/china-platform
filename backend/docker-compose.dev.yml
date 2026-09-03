@@ -1,0 +1,66 @@
+# backend/docker-compose.dev.yml — China Platform FastAPI local dev (knife 664h)
+#
+# Per knife 664 plan §dev 验证 (Option B dev+newvps 双轨).
+# 架构师端使用 127.0.0.1:8000 (api) + 127.0.0.1:55440 (postgres).
+# postgres 容器独立于 rana-pg / china-platform-pg (隔离红线).
+#
+# Run:   cd backend && docker compose -f docker-compose.dev.yml up -d
+# Stop:  cd backend && docker compose -f docker-compose.dev.yml down
+# Logs:  cd backend && docker compose -f docker-compose.dev.yml logs -f api
+#
+# 验证:
+#   curl "http://localhost:8000/health"  # 200
+#   curl "http://localhost:8000/api/province-timeseries/BEIJING?year_start=2024&year_end=2024"
+#
+# 注意: 此 compose 仅本地 dev,不部署到 newvps (newvps 用 docker-compose.yml).
+
+name: china-platform-dev
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: china-platform-pg-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cegr_test
+    ports:
+      - "55440:5432"   # dev only — host 55440 (避让 rana-pg 5432)
+    volumes:
+      - china-platform-pg-dev-data:/var/lib/postgresql/data
+      # Init: 建 mart schema (dbt 默认不会建 schema,仅建表). dev 初始化一次.
+      - ./docker/init-mart-schema.sql:/docker-entrypoint-initdb.d/00-init-mart-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d cegr_test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: china-platform-backend:0.2.0
+    container_name: china-platform-api-dev
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      # 容器内 postgres DNS = 服务名 "postgres" (compose network).
+      CEGR_API_DSN: postgresql://postgres:postgres@postgres:5432/cegr_test
+      CEGR_API_MART_SCHEMA: cegr_mart
+      CEGR_API_POOL_MIN: "2"
+      CEGR_API_POOL_MAX: "10"
+      CEGR_API_LOG_LEVEL: INFO
+      CEGR_API_CORS_ORIGINS: '["http://localhost:3000","http://127.0.0.1:3000"]'
+    ports:
+      - "8000:8000"
+    # mounts: 源码可选 bind-mount, dev 热重载. prod 用 image-baked 源码.
+    # volumes:
+    #   - ./src:/app/src  # only for --reload dev
+
+volumes:
+  china-platform-pg-dev-data:
+    driver: local
