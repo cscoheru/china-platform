@@ -43,6 +43,7 @@
 
 import { useState, type ReactElement } from "react";
 import DemoBadge from "../DemoBadge";
+import { DemoBanner } from "../DemoBanner";
 import fixture from "../../lib/public_extract_nbs.json";
 import liveCandidateFixture from "../../lib/public_extract_nbs_live_candidate.json";
 import szFixture from "../../lib/public_extract_sz.json";
@@ -177,6 +178,12 @@ export default function PublicExtractsPage(): ReactElement {
           (spike),经 --from-local-sample 结构化提取;**非** live O1 收口数据。
         </p>
       </header>
+
+      {/* 662 D5: demo 壳显式横幅. */}
+      <DemoBanner
+        reason="Stage 2 / 公开提取呈现 · 四轨 REGISTRY_SAMPLE / LIVE_CANDIDATE / demo · 非 O1"
+        source="frontend/lib/public_extract_*.json (4 fixture)"
+      />
 
       <section
         className="public-extracts-page__overview-strip"

@@ -84,16 +84,70 @@ export default function RootLayout({
           }}
           data-testid="site-nav"
         >
-          <a href="/" data-testid="site-nav-home">首页</a>
-          {" · "}
-          <a
-            href="/public-extracts"
-            data-testid="site-nav-public-extracts"
+          {/* 662 D5: LIVE/DEMO 导航分组 (per docs/87 §3.1 P1 先行). */}
+          <span
+            data-testid="site-nav-live-group"
+            style={{ marginRight: 12 }}
           >
-            公开提取样本（四轨 demo）
-          </a>
-          <span style={{ marginLeft: 12, color: "#777", fontSize: 12 }}>
-            全站顶栏常驻链；四轨 demo / 非 O1 / 不宣布 Gate PASS（per tasking 409）
+            <strong style={{ color: "#1a7f37" }}>● LIVE 数据:</strong>{" "}
+            <a href="/" data-testid="site-nav-home">首页</a>
+            {" · "}
+            <a href="/indicators" data-testid="site-nav-indicators">
+              5 指标定义
+            </a>
+            {" · "}
+            <a href="/provinces/beijing" data-testid="site-nav-province-sample">
+              省详情样例
+            </a>
+            {" · "}
+            <a href="/peer-compare" data-testid="site-nav-peer-compare">
+              同类对比
+            </a>
+          </span>
+          <span
+            data-testid="site-nav-demo-group"
+            style={{
+              marginLeft: 12,
+              paddingLeft: 12,
+              borderLeft: "1px solid #ccc",
+            }}
+          >
+            <strong style={{ color: "#b45309" }}>🎭 DEMO 壳:</strong>{" "}
+            <a
+              href="/public-extracts"
+              data-testid="site-nav-public-extracts"
+            >
+              公开提取样本（四轨）
+            </a>
+            {" · "}
+            <a
+              href="/research/m1-series"
+              data-testid="site-nav-m1-series"
+            >
+              M1 验收面
+            </a>
+            {" · "}
+            <a
+              href="/research/q1-2024-gdp"
+              data-testid="site-nav-q1-2024-gdp"
+            >
+              M2-e 验收面
+            </a>
+            {" · "}
+            <a href="/seven-dim" data-testid="site-nav-seven-dim">
+              七维观察卡
+            </a>
+          </span>
+          <span
+            style={{
+              marginLeft: 12,
+              paddingLeft: 12,
+              borderLeft: "1px solid #ccc",
+              color: "#777",
+              fontSize: 12,
+            }}
+          >
+            四轨 demo / 非 O1 / 不宣布 Gate PASS（per tasking 409 · 662 D5）
           </span>
         </nav>
         <main style={{ padding: 24 }}>{children}</main>

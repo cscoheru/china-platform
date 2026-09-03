@@ -11,6 +11,7 @@
 // It is **not** O1 / not Gate PASS.
 
 import { indicatorSeries } from "../../../lib/api";
+import { DemoBanner } from "../../DemoBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -27,6 +28,12 @@ export default async function M1SeriesPage() {
       <h1 style={{ fontSize: 22 }}>
         M1 验收面 · 湖北 2026 上半年 GDP（公报样本）· 非 31 省 · 非 Gate PASS
       </h1>
+
+      {/* 662 D5: demo 壳显式横幅. */}
+      <DemoBanner
+        reason="M1 验收面 · 1 行真 observation · 非 31 省 · 非 Gate PASS"
+        source="spikes/02-provincial-yearbook/hubei_2026_06.xlsx"
+      />
 
       <p style={{ color: "#444", lineHeight: 1.6 }}>
         本页只展示一条 <strong>真 observation</strong>（来自

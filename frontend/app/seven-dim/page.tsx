@@ -11,6 +11,7 @@
 import type { ReactElement } from "react";
 import SevenDimGrid from "../components/SevenDimGrid";
 import { MOCK_SEVEN_DIM_REGION } from "../../lib/mock_seven_dim";
+import { DemoBanner } from "../DemoBanner";
 
 export default function SevenDimPage(): ReactElement {
   return (
@@ -22,6 +23,11 @@ export default function SevenDimPage(): ReactElement {
           数据来自 <code>frontend/lib/mock_seven_dim.ts</code>，不接后端。
         </p>
       </header>
+      {/* 662 D5: demo 壳显式横幅. */}
+      <DemoBanner
+        reason="S2.8-lite mock 七维度观察卡 · 仅 1 区域 × 7 cell, 非 31 省 · 非 Gate PASS"
+        source="frontend/lib/mock_seven_dim.ts"
+      />
       <SevenDimGrid region={MOCK_SEVEN_DIM_REGION} />
     </main>
   );

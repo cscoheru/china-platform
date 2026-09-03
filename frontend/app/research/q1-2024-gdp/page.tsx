@@ -14,6 +14,7 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { DemoBanner } from "../../DemoBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -120,6 +121,12 @@ export default async function Q12024GdpPage() {
         M2-e 验收面 · 2024 年全年 GDP（5/31 + 1 全国）· 弱核对 QUARANTINED-WEAK
         · 非 Gate/O1/M2 PASS
       </h1>
+
+      {/* 662 D5: demo 壳显式横幅. */}
+      <DemoBanner
+        reason="M2-e 验收面 · 5/31 + 1 全国 · 弱核对 QUARANTINED-WEAK · 非 Gate/O1/M2 PASS"
+        source="docs/reports/m2_2024_gdp_crosscheck_20260831.md"
+      />
 
       <p style={{ color: "#444", lineHeight: 1.6 }}>
         本页只展示 <strong>真 observation</strong>（来自 6 个 .gov.cn
