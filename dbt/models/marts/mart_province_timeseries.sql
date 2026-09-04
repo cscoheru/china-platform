@@ -148,6 +148,30 @@ real_data_2024 AS (
     SELECT province_code, 'tertiary_gdp'  AS indicator_key, tertiary_gdp  AS value,
            lineage_source_type, lineage_origin FROM real_2024_provinces WHERE tertiary_gdp  IS NOT NULL
 ),
+real_data_2021 AS (
+    -- knife 665 (year 2021): 29 省 × 10 指标 from seed_hongheiku_timeseries_2021
+    -- Real cells ~251; missing ~39 (parse couldn't extract). All 5 OFFICIAL_INTAKED provinces
+    -- (京/沪/鲁/鄂/川) 2021 gdp_growth is hongheiku (no OFFICIAL patch yet — 666 program).
+    -- HUNAN page is a stub on hongheiku → 10/10 DATA_MISSING for 2021.
+    -- GUANGDONG + JIANGXI: not in hongheiku cat index → 10/10 DATA_MISSING for 2021.
+    SELECT province_code, year, indicator_key, value,
+           lineage_source_type, lineage_origin,
+           lineage_ruling, lineage_is_demo
+    FROM {{ ref('seed_hongheiku_timeseries_2021') }}
+    WHERE value IS NOT NULL
+),
+real_data AS (
+    -- Combined harvest data across years (663 baseline 2024 + 665 2021 + future 665b-665e)
+    -- UNION 2 CTEs of identical column shape: (province_code, indicator_key, value, lineage_source_type, lineage_origin, year)
+    -- real_data_2024 has implicit year=2024 (constant added below)
+    SELECT province_code, indicator_key, value,
+           lineage_source_type, lineage_origin, 2024 AS year
+    FROM real_data_2024
+    UNION ALL
+    SELECT province_code, indicator_key, value,
+           lineage_source_type, lineage_origin, year
+    FROM real_data_2021
+),
 missing_provinces AS (
     -- 3 省份历史年缺文 (沿用 P1 660 红线, 跨 26 年 × 10 指标 = 780 DATA_MISSING rows)
     -- knife 665 试 hongheiku 长历史覆盖, 失败则永久 DATA_MISSING.
@@ -200,9 +224,10 @@ SELECT
     'K663-2026-09-03' AS lineage_ruling,
     'false'           AS lineage_is_demo
 FROM cross_product cp
-LEFT JOIN real_data_2024 rd
+LEFT JOIN real_data rd
     ON rd.province_code = cp.province_code
     AND rd.indicator_key = cp.indicator_key
-    AND cp.year = 2024
+    AND rd.year = cp.year
+    AND cp.year IN (2024, 2021)
 LEFT JOIN missing_provinces mp
     ON mp.province_code = cp.province_code
