@@ -320,9 +320,44 @@ if [ $LAYOUT_OK -eq 1 ]; then
 fi
 
 echo
-echo "=== knife 662 公网 12 项验收 summary ==="
+echo "--- 13. /timeseries 总览页 + 26 年时序折线 nav link (knife 667) ---"
+TIMESERIES_PAGE="$TMPDIR/timeseries.html"
+fetch_body "$BASE_URL/timeseries" "$TIMESERIES_PAGE" >/dev/null
+TIMESERIES_OK=1
+if [ ! -s "$TIMESERIES_PAGE" ]; then
+  fail "/timeseries 拉取失败"
+  TIMESERIES_OK=0
+else
+  if ! grep -q 'data-testid="timeseries-overview-page"' "$TIMESERIES_PAGE"; then
+    fail "timeseries-overview-page testid 缺失"
+    TIMESERIES_OK=0
+  fi
+  if ! grep -q 'data-testid="timeseries-h1"' "$TIMESERIES_PAGE"; then
+    fail "timeseries-h1 testid 缺失"
+    TIMESERIES_OK=0
+  fi
+  if ! grep -q 'data-testid="time-series-explorer"' "$TIMESERIES_PAGE"; then
+    fail "time-series-explorer testid 缺失 (TimeSeriesExplorer 整合组件未挂载)"
+    TIMESERIES_OK=0
+  fi
+  if ! grep -q "31 省 + NATIONAL 锚" "$TIMESERIES_PAGE"; then
+    fail "/timeseries intro 文案缺失 (31 省 + NATIONAL 锚)"
+    TIMESERIES_OK=0
+  fi
+fi
+# nav link 在首页 (per 667 layout.tsx)
+if ! grep -q 'data-testid="site-nav-timeseries"' "$HOMEPAGE"; then
+  fail "site-nav-timeseries nav link 缺失 (首页导航)"
+  TIMESERIES_OK=0
+fi
+if [ $TIMESERIES_OK -eq 1 ]; then
+  ok "/timeseries 总览页 + 26 年时序折线 nav link 全部就位"
+fi
+
+echo
+echo "=== knife 668 公网 17 项验收 summary ==="
 if [ $FAIL -eq 0 ] && [ $WARN -eq 0 ]; then
-  echo -e "${GREEN}VERIFY PASS: $PASS/12${NC}"
+  echo -e "${GREEN}VERIFY PASS: $PASS/17${NC}"
   exit 0
 elif [ $FAIL -eq 0 ]; then
   echo -e "${YELLOW}VERIFY PASS WITH WARNINGS: $PASS PASS / $WARN WARN${NC}"
