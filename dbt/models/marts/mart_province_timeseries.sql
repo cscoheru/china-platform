@@ -34,6 +34,11 @@
 --   GUANGDONG 2023 仍是 PDF 目录页 (PARSE_EMPTY) → DATA_MISSING 守红线-1
 --   7 之前 missing 省 (gansu/guizhou/heilongjiang/hunan/jiangxi/liaoning/ningxia/shanghai)
 --     2023 全入库; 累计 real cells 突破 ~861 = 590 + 271 (ZHEJIANG 2021/2022/2023 都得 gdp_total+growth)
+-- After 665d (year 2024 增量 harvest, 28 entries): +122 real cells (5 增量 only)
+--   2024 cat index 28 entries (vs 2023 31); 缺 3 省 GUIZHOU/HAINAN/LIAONING 沿用 660 红线
+--   5 现 2024 已在 663 baseline hardcoded (real_2024_provinces), 665d 仅补 5 增量
+--   GUANGDONG 2024 cat URL id 57657 是真公报 (5/5 增量) vs 2022/2023 PDF 目录页 → 新增 5 cells
+--   累计 real cells 突破 ~983 = 861 + 122
 -- 668 verify-live.sh v2 expects ≥186 real cells per indicator (= 31 × 6 = 186 total rows).
 --
 -- Red lines:
@@ -193,6 +198,19 @@ real_data_2023 AS (
     FROM {{ ref('seed_hongheiku_timeseries_2023') }}
     WHERE value IS NOT NULL
 ),
+real_data_2024_extra AS (
+    -- knife 665d (year 2024 增量): 28 省 × 5 增量 from seed_hongheiku_timeseries_2024
+    -- 2024 cat index 28 entries (vs 2023 31); 缺 3 省 GUIZHOU/HAINAN/LIAONING (沿用 660 红线
+    -- 永久 DATA_MISSING). 28/28 PARSED; ~122 real cells (5 增量 only; 5 现已在 663 baseline
+    -- hardcoded in real_2024_provinces, 不需 harvest).
+    -- 5 增量 coverage: fixed_asset 27 / gdp_percapita 24 / fiscal_rev 25 / retail 23 / trade 23.
+    -- GUANGDONG 2024 cat URL id 57657 是真公报 (5/5 增量); 不同于 2022 目录页 + 2023 PDF id 46971.
+    SELECT province_code, year, indicator_key, value,
+           lineage_source_type, lineage_origin,
+           lineage_ruling, lineage_is_demo
+    FROM {{ ref('seed_hongheiku_timeseries_2024') }}
+    WHERE value IS NOT NULL
+),
 real_data AS (
     -- Combined harvest data across years (663 baseline 2024 + 665 2021 + 665b 2022 + future 665c-665e)
     -- UNION 3 CTEs of identical column shape: (province_code, indicator_key, value, lineage_source_type, lineage_origin, year)
@@ -212,6 +230,10 @@ real_data AS (
     SELECT province_code, indicator_key, value,
            lineage_source_type, lineage_origin, year
     FROM real_data_2023
+    UNION ALL
+    SELECT province_code, indicator_key, value,
+           lineage_source_type, lineage_origin, year
+    FROM real_data_2024_extra
 ),
 missing_provinces AS (
     -- 3 省份历史年缺文 (沿用 P1 660 红线, 跨 26 年 × 10 指标 = 780 DATA_MISSING rows)
@@ -276,7 +298,7 @@ SELECT
             ELSE 'unknown'
         END
     ) AS lineage_origin,
-    'K665c-2026-09-04' AS lineage_ruling,
+    'K665d-2026-09-04' AS lineage_ruling,
     'false'           AS lineage_is_demo
 FROM cross_product cp
 LEFT JOIN real_data rd
