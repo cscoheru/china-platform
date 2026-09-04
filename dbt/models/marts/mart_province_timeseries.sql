@@ -24,8 +24,12 @@
 --
 -- 663 initial state: 140 real cells
 --   = 28 real provinces × 5 现指标 × year 2024 (from knife 660 batch)
--- After 665: ~1500 real cells (+ 5 现 2020-2023+2025 + 5 增量 2020-2025 from hongheiku)
--- After 666: ~1590 real cells (+ 粤苏浙 OFFICIAL 5 现 2020-2025)
+-- After 665a: 251 real cells (+ 5 现 2021 from hongheiku seed_hongheiku_timeseries_2021)
+-- After 665b: 455 real cells (+ 204 2022 from hongheiku seed_hongheiku_timeseries_2022)
+-- After 666 Option B (hongheiku reclassify, 0 HTTP):
+--   3 省 (GUANGDONG/JIANGSU/ZHEJIANG) × 5 现 × {2021, 2022, 2024} reclassify
+--   = 35 cells upgraded HONGHEIKU_TRANSLOAD → OFFICIAL_INTAKED
+--   mart row count unchanged (8060); lineage_source_type CASE override only.
 -- 668 verify-live.sh v2 expects ≥186 real cells per indicator (= 31 × 6 = 186 total rows).
 --
 -- Red lines:
@@ -220,7 +224,21 @@ SELECT
         ELSE NULL
     END AS missing_reason,
     COALESCE(
-        rd.lineage_source_type,
+        CASE
+            -- K666 Option B (2026-09-04): user_ruling_666 Option B chosen.
+            -- Reclassify 3 省 (GUANGDONG/JIANGSU/ZHEJIANG) × 5 现指标 from
+            -- HONGHEIKU_TRANSLOAD to OFFICIAL_INTAKED, 因为本机网络无法访问
+            -- stats.*.gov.cn (probe 9/9 HTTP BLOCKED, Errno 54 Connection reset by peer).
+            -- hongheiku 转载自省统计局, 数值等同于 OFFICIAL; lineage_origin URL 不变
+            -- 保留 audit trail; lineage_ruling 标记 K666b-2026-09-04.
+            WHEN rd.lineage_source_type = 'hongheiku_tjgb'
+                 AND cp.province_code IN ('GUANGDONG', 'JIANGSU', 'ZHEJIANG')
+                 AND cp.indicator_key IN ('gdp_total', 'gdp_growth', 'primary_gdp',
+                                          'secondary_gdp', 'tertiary_gdp')
+                 AND rd.value IS NOT NULL
+            THEN 'OFFICIAL_INTAKED'
+            ELSE rd.lineage_source_type
+        END,
         CASE
             WHEN cp.year < 2020 OR cp.year = 2026      THEN 'DATA_MISSING'
             WHEN mp.province_code IS NOT NULL           THEN 'hongheiku_tjgb'
@@ -237,7 +255,7 @@ SELECT
             ELSE 'unknown'
         END
     ) AS lineage_origin,
-    'K665b-2026-09-04' AS lineage_ruling,
+    'K666b-2026-09-04' AS lineage_ruling,
     'false'           AS lineage_is_demo
 FROM cross_product cp
 LEFT JOIN real_data rd
