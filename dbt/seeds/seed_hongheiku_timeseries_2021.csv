@@ -1,0 +1,291 @@
+province_code,province_name_cn,year,value,unit,indicator_key,indicator_label_cn,status,missing_reason,lineage_source_type,lineage_origin,lineage_ruling,lineage_is_demo
+ANHUI,安徽,2021,42959.2,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+ANHUI,安徽,2021,8.3,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+ANHUI,安徽,2021,3360.6,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+ANHUI,安徽,2021,17613.2,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+ANHUI,安徽,2021,21985.4,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+ANHUI,安徽,2021,70321,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+ANHUI,安徽,2021,3498.2,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+ANHUI,安徽,2021,27305.5,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+ANHUI,安徽,2021,21471.2,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+ANHUI,安徽,2021,6920.2,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24411.html,knife_665_y2021,false
+BEIJING,北京,2021,40269.6,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+BEIJING,北京,2021,8.5,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+BEIJING,北京,2021,111.3,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+BEIJING,北京,2021,7268.6,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+BEIJING,北京,2021,32889.6,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+BEIJING,北京,2021,184000,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+BEIJING,北京,2021,5932.3,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+BEIJING,北京,2021,5392.7,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+BEIJING,北京,2021,14867.7,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+BEIJING,北京,2021,30438.4,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24106.html,knife_665_y2021,false
+CHONGQING,重庆,2021,27894,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+CHONGQING,重庆,2021,8.3,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+CHONGQING,重庆,2021,1922.03,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+CHONGQING,重庆,2021,11184.9,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+CHONGQING,重庆,2021,14787,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+CHONGQING,重庆,2021,86879,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+CHONGQING,重庆,2021,2285.4,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+CHONGQING,重庆,2021,300,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+CHONGQING,重庆,2021,,亿元,retail,社会消费品零售总额,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+CHONGQING,重庆,2021,8000.59,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24421.html,knife_665_y2021,false
+FUJIAN,福建,2021,48810.4,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+FUJIAN,福建,2021,8,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+FUJIAN,福建,2021,2897.74,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+FUJIAN,福建,2021,22866.3,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+FUJIAN,福建,2021,23046.3,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+FUJIAN,福建,2021,116939,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+FUJIAN,福建,2021,3383.38,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+FUJIAN,福建,2021,19083.3,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+FUJIAN,福建,2021,20373.1,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+FUJIAN,福建,2021,18449.6,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24409.html,knife_665_y2021,false
+GANSU,甘肃,2021,10243.3,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GANSU,甘肃,2021,6.9,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GANSU,甘肃,2021,1364.7,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GANSU,甘肃,2021,3466.6,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GANSU,甘肃,2021,5412,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GANSU,甘肃,2021,41046,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GANSU,甘肃,2021,1001.8,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GANSU,甘肃,2021,1001.8,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GANSU,甘肃,2021,4037.1,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GANSU,甘肃,2021,490.9,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25126.html,knife_665_y2021,false
+GUANGXI,广西,2021,24740.9,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUANGXI,广西,2021,7.5,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUANGXI,广西,2021,4015.51,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUANGXI,广西,2021,8187.9,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUANGXI,广西,2021,12537.5,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUANGXI,广西,2021,49206,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUANGXI,广西,2021,1800.12,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUANGXI,广西,2021,3733.93,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUANGXI,广西,2021,8538.5,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUANGXI,广西,2021,5930.63,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25371.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,19586.4,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,8.1,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,2730.92,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,6984.7,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,9870.8,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,50808,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,1969.51,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,,亿元,fixed_asset,固定资产投资,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,,亿元,retail,社会消费品零售总额,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+GUIZHOU,贵州,2021,654.16,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24718.html,knife_665_y2021,false
+HAINAN,海南,2021,6475.2,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HAINAN,海南,2021,11.2,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HAINAN,海南,2021,1254.44,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HAINAN,海南,2021,1238.8,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HAINAN,海南,2021,3981.96,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HAINAN,海南,2021,63707,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HAINAN,海南,2021,921.16,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HAINAN,海南,2021,1379.62,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HAINAN,海南,2021,2497.62,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HAINAN,海南,2021,1476.78,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/23920.html,knife_665_y2021,false
+HEBEI,河北,2021,,亿元,gdp_total,地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEBEI,河北,2021,6.5,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEBEI,河北,2021,4030.3,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEBEI,河北,2021,16364.2,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEBEI,河北,2021,19996.7,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEBEI,河北,2021,54172,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEBEI,河北,2021,4167.6,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEBEI,河北,2021,,亿元,fixed_asset,固定资产投资,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEBEI,河北,2021,,亿元,retail,社会消费品零售总额,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEBEI,河北,2021,1612.3,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24077.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,14879.2,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,6.1,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,3463,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,3975.3,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,7440.9,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,,元,gdp_percapita,人均地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,1300.5,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,442.1,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,5542.9,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HEILONGJIANG,黑龙江,2021,1995,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27480.html,knife_665_y2021,false
+HENAN,河南,2021,58887.4,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HENAN,河南,2021,6.3,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HENAN,河南,2021,5620.82,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HENAN,河南,2021,24331.7,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HENAN,河南,2021,28934.9,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HENAN,河南,2021,59410,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HENAN,河南,2021,4347.38,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HENAN,河南,2021,7874.35,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HENAN,河南,2021,24381.7,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HENAN,河南,2021,8208.07,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24374.html,knife_665_y2021,false
+HUBEI,湖北,2021,50012.9,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUBEI,湖北,2021,12.9,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUBEI,湖北,2021,4661.67,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUBEI,湖北,2021,18952.9,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUBEI,湖北,2021,26398.4,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUBEI,湖北,2021,86416,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUBEI,湖北,2021,3283.3,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUBEI,湖北,2021,21561.4,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUBEI,湖北,2021,21561.4,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUBEI,湖北,2021,5374.4,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24237.html,knife_665_y2021,false
+HUNAN,湖南,2021,,亿元,gdp_total,地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+HUNAN,湖南,2021,,%,gdp_growth,GDP增速,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+HUNAN,湖南,2021,,亿元,primary_gdp,第一产业增加值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+HUNAN,湖南,2021,,亿元,secondary_gdp,第二产业增加值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+HUNAN,湖南,2021,,亿元,tertiary_gdp,第三产业增加值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+HUNAN,湖南,2021,,元,gdp_percapita,人均地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+HUNAN,湖南,2021,,亿元,fiscal_rev,一般公共预算收入,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+HUNAN,湖南,2021,,亿元,fixed_asset,固定资产投资,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+HUNAN,湖南,2021,,亿元,retail,社会消费品零售总额,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+HUNAN,湖南,2021,,亿元,trade,进出口总额,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25100.html,knife_665_y2021,false
+JIANGSU,江苏,2021,116364,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JIANGSU,江苏,2021,8.6,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JIANGSU,江苏,2021,4722.4,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JIANGSU,江苏,2021,51775.4,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JIANGSU,江苏,2021,59866.4,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JIANGSU,江苏,2021,137039,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JIANGSU,江苏,2021,10015.2,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JIANGSU,江苏,2021,42702.6,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JIANGSU,江苏,2021,42702.6,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JIANGSU,江苏,2021,52130.6,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24199.html,knife_665_y2021,false
+JILIN,吉林,2021,13235.5,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+JILIN,吉林,2021,6.6,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+JILIN,吉林,2021,1553.84,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+JILIN,吉林,2021,4768.28,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+JILIN,吉林,2021,6913.4,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+JILIN,吉林,2021,,元,gdp_percapita,人均地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+JILIN,吉林,2021,1143.97,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+JILIN,吉林,2021,,亿元,fixed_asset,固定资产投资,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+JILIN,吉林,2021,4216.63,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+JILIN,吉林,2021,1503.77,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/30339.html,knife_665_y2021,false
+LIAONING,辽宁,2021,27584.1,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+LIAONING,辽宁,2021,5.8,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+LIAONING,辽宁,2021,2461.8,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+LIAONING,辽宁,2021,10875.2,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+LIAONING,辽宁,2021,14247.1,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+LIAONING,辽宁,2021,65026,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+LIAONING,辽宁,2021,2764.7,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+LIAONING,辽宁,2021,3066.4,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+LIAONING,辽宁,2021,9783.9,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+LIAONING,辽宁,2021,7724,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27517.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,,亿元,gdp_total,地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,6.3,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,2225.2,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,9374.2,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,8914.8,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,85422,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,2349.9,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,1234.1,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,5060.3,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NEI_MENGGU,内蒙古,2021,1235.6,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24061.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,4522.31,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,6.7,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,364.48,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,2021.55,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,2136.28,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,62549,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,460.01,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,466.95,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,1335.12,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+NINGXIA,宁夏,2021,214.04,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/27494.html,knife_665_y2021,false
+QINGHAI,青海,2021,3346.63,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+QINGHAI,青海,2021,5.7,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+QINGHAI,青海,2021,352.65,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+QINGHAI,青海,2021,1332.61,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+QINGHAI,青海,2021,1661.37,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+QINGHAI,青海,2021,,元,gdp_percapita,人均地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+QINGHAI,青海,2021,328.76,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+QINGHAI,青海,2021,947.84,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+QINGHAI,青海,2021,947.84,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+QINGHAI,青海,2021,31.3,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24130.html,knife_665_y2021,false
+SHAANXI,陕西,2021,29801,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHAANXI,陕西,2021,6.5,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHAANXI,陕西,2021,2409.39,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHAANXI,陕西,2021,,亿元,secondary_gdp,第二产业增加值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHAANXI,陕西,2021,,亿元,tertiary_gdp,第三产业增加值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHAANXI,陕西,2021,,元,gdp_percapita,人均地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHAANXI,陕西,2021,,亿元,fiscal_rev,一般公共预算收入,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHAANXI,陕西,2021,4441,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHAANXI,陕西,2021,10250.5,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHAANXI,陕西,2021,4757.75,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25693.html,knife_665_y2021,false
+SHANDONG,山东,2021,83095.9,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANDONG,山东,2021,8.3,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANDONG,山东,2021,6029,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANDONG,山东,2021,33187.2,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANDONG,山东,2021,43879.7,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANDONG,山东,2021,,元,gdp_percapita,人均地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANDONG,山东,2021,7284.5,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANDONG,山东,2021,9819.7,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANDONG,山东,2021,33714.5,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANDONG,山东,2021,29304.1,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24134.html,knife_665_y2021,false
+SHANGHAI,上海,2021,43214.8,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANGHAI,上海,2021,8.1,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANGHAI,上海,2021,99.97,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANGHAI,上海,2021,11449.3,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANGHAI,上海,2021,31665.6,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANGHAI,上海,2021,,元,gdp_percapita,人均地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANGHAI,上海,2021,7771.8,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANGHAI,上海,2021,257.21,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANGHAI,上海,2021,18079.2,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANGHAI,上海,2021,75742.7,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25158.html,knife_665_y2021,false
+SHANXI,山西,2021,22590.2,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SHANXI,山西,2021,9.1,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SHANXI,山西,2021,1286.87,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SHANXI,山西,2021,11213.1,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SHANXI,山西,2021,10090.2,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SHANXI,山西,2021,64821,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SHANXI,山西,2021,,亿元,fiscal_rev,一般公共预算收入,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SHANXI,山西,2021,1945.2,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SHANXI,山西,2021,7747.3,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SHANXI,山西,2021,2230.3,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25002.html,knife_665_y2021,false
+SICHUAN,四川,2021,,亿元,gdp_total,地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+SICHUAN,四川,2021,8.2,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+SICHUAN,四川,2021,5661.9,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+SICHUAN,四川,2021,19901.4,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+SICHUAN,四川,2021,28287.5,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+SICHUAN,四川,2021,,元,gdp_percapita,人均地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+SICHUAN,四川,2021,4773.3,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+SICHUAN,四川,2021,24133.2,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+SICHUAN,四川,2021,24133.2,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+SICHUAN,四川,2021,9513.6,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24394.html,knife_665_y2021,false
+TIANJIN,天津,2021,15695,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+TIANJIN,天津,2021,6.6,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+TIANJIN,天津,2021,225.41,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+TIANJIN,天津,2021,5854.27,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+TIANJIN,天津,2021,9615.37,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+TIANJIN,天津,2021,,元,gdp_percapita,人均地区生产总值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+TIANJIN,天津,2021,2141.04,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+TIANJIN,天津,2021,3184,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+TIANJIN,天津,2021,,亿元,retail,社会消费品零售总额,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+TIANJIN,天津,2021,8567.42,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25108.html,knife_665_y2021,false
+XINJIANG,新疆,2021,15983.6,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XINJIANG,新疆,2021,7,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XINJIANG,新疆,2021,2356.06,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XINJIANG,新疆,2021,5967.36,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XINJIANG,新疆,2021,7660.23,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XINJIANG,新疆,2021,61725,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XINJIANG,新疆,2021,1618.6,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XINJIANG,新疆,2021,15983.6,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XINJIANG,新疆,2021,3584.62,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XINJIANG,新疆,2021,,亿元,trade,进出口总额,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24838.html,knife_665_y2021,false
+XIZANG,西藏,2021,2080.17,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+XIZANG,西藏,2021,6.7,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+XIZANG,西藏,2021,164.12,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+XIZANG,西藏,2021,757.28,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+XIZANG,西藏,2021,1158.77,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+XIZANG,西藏,2021,56831,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+XIZANG,西藏,2021,215.62,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+XIZANG,西藏,2021,141.97,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+XIZANG,西藏,2021,810.34,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+XIZANG,西藏,2021,40.16,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/26310.html,knife_665_y2021,false
+YUNNAN,云南,2021,27146.8,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+YUNNAN,云南,2021,7.3,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+YUNNAN,云南,2021,3870.17,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+YUNNAN,云南,2021,9589.37,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+YUNNAN,云南,2021,13687.2,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+YUNNAN,云南,2021,57686,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+YUNNAN,云南,2021,,亿元,fiscal_rev,一般公共预算收入,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+YUNNAN,云南,2021,4309.93,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+YUNNAN,云南,2021,10731.8,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+YUNNAN,云南,2021,,亿元,trade,进出口总额,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/25260.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,73516,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,8.5,%,gdp_growth,GDP增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,,亿元,primary_gdp,第一产业增加值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,,亿元,secondary_gdp,第二产业增加值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,,亿元,tertiary_gdp,第三产业增加值,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,113032,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,8263,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,6814,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,29211,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
+ZHEJIANG,浙江,2021,,亿元,trade,进出口总额,DATA_MISSING,新增红线-1: 2021 公报 parse 未捕获 (沿用禁补零),DATA_MISSING,https://tjgb.hongheiku.com/sjtjgb/24010.html,knife_665_y2021,false
