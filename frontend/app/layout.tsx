@@ -103,6 +103,10 @@ export default function RootLayout({
             <a href="/peer-compare" data-testid="site-nav-peer-compare">
               同类对比
             </a>
+            {" · "}
+            <a href="/timeseries" data-testid="site-nav-timeseries">
+              26 年时序折线
+            </a>
           </span>
           <span
             data-testid="site-nav-demo-group"
