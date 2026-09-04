@@ -160,9 +160,21 @@ real_data_2021 AS (
     FROM {{ ref('seed_hongheiku_timeseries_2021') }}
     WHERE value IS NOT NULL
 ),
+real_data_2022 AS (
+    -- knife 665b (year 2022): 24 省 × 10 指标 from seed_hongheiku_timeseries_2022
+    -- Real cells ~204; missing 9 provinces: 7 missing (年鉴发布滞后) + GUANGDONG/JIANGXI
+    -- (cat index 是目录页, 公报为 PDF 内嵌, 665b 不启用 PDF parser → DATA_MISSING 守红线-1).
+    -- 9 缺省 × 10 指标 = 90 DATA_MISSING cells for 2022.
+    -- 666 OFFICIAL 升级将补 GUANGDONG/JIANGXI; 665c/665d/665e 后续刀补齐其他 missing 省.
+    SELECT province_code, year, indicator_key, value,
+           lineage_source_type, lineage_origin,
+           lineage_ruling, lineage_is_demo
+    FROM {{ ref('seed_hongheiku_timeseries_2022') }}
+    WHERE value IS NOT NULL
+),
 real_data AS (
-    -- Combined harvest data across years (663 baseline 2024 + 665 2021 + future 665b-665e)
-    -- UNION 2 CTEs of identical column shape: (province_code, indicator_key, value, lineage_source_type, lineage_origin, year)
+    -- Combined harvest data across years (663 baseline 2024 + 665 2021 + 665b 2022 + future 665c-665e)
+    -- UNION 3 CTEs of identical column shape: (province_code, indicator_key, value, lineage_source_type, lineage_origin, year)
     -- real_data_2024 has implicit year=2024 (constant added below)
     SELECT province_code, indicator_key, value,
            lineage_source_type, lineage_origin, 2024 AS year
@@ -171,6 +183,10 @@ real_data AS (
     SELECT province_code, indicator_key, value,
            lineage_source_type, lineage_origin, year
     FROM real_data_2021
+    UNION ALL
+    SELECT province_code, indicator_key, value,
+           lineage_source_type, lineage_origin, year
+    FROM real_data_2022
 ),
 missing_provinces AS (
     -- 3 省份历史年缺文 (沿用 P1 660 红线, 跨 26 年 × 10 指标 = 780 DATA_MISSING rows)
@@ -221,13 +237,13 @@ SELECT
             ELSE 'unknown'
         END
     ) AS lineage_origin,
-    'K663-2026-09-03' AS lineage_ruling,
+    'K665b-2026-09-04' AS lineage_ruling,
     'false'           AS lineage_is_demo
 FROM cross_product cp
 LEFT JOIN real_data rd
     ON rd.province_code = cp.province_code
     AND rd.indicator_key = cp.indicator_key
     AND rd.year = cp.year
-    AND cp.year IN (2024, 2021)
+    AND cp.year IN (2024, 2021, 2022)
 LEFT JOIN missing_provinces mp
     ON mp.province_code = cp.province_code
