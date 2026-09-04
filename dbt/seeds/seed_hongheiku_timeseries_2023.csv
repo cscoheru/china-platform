@@ -1,0 +1,272 @@
+province_code,province_name_cn,year,value,unit,indicator_key,indicator_label_cn,status,missing_reason,lineage_source_type,lineage_origin,lineage_ruling,lineage_is_demo
+ANHUI,安徽,2023,47050.6,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45810.html,knife_665_y2023,false
+ANHUI,安徽,2023,5.8,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45810.html,knife_665_y2023,false
+ANHUI,安徽,2023,3496.6,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45810.html,knife_665_y2023,false
+ANHUI,安徽,2023,18871.8,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45810.html,knife_665_y2023,false
+ANHUI,安徽,2023,76830.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45810.html,knife_665_y2023,false
+ANHUI,安徽,2023,2418.4,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45810.html,knife_665_y2023,false
+ANHUI,安徽,2023,23008.3,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45810.html,knife_665_y2023,false
+ANHUI,安徽,2023,8052.2,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45810.html,knife_665_y2023,false
+BEIJING,北京,2023,43760.7,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45828.html,knife_665_y2023,false
+BEIJING,北京,2023,5.2,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45828.html,knife_665_y2023,false
+BEIJING,北京,2023,6525.6,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45828.html,knife_665_y2023,false
+BEIJING,北京,2023,37129.6,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45828.html,knife_665_y2023,false
+BEIJING,北京,2023,200000.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45828.html,knife_665_y2023,false
+BEIJING,北京,2023,6181.1,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45828.html,knife_665_y2023,false
+BEIJING,北京,2023,14462.7,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45828.html,knife_665_y2023,false
+BEIJING,北京,2023,14462.7,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45828.html,knife_665_y2023,false
+BEIJING,北京,2023,36466.3,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45828.html,knife_665_y2023,false
+CHONGQING,重庆,2023,30145.79,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+CHONGQING,重庆,2023,6.1,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+CHONGQING,重庆,2023,2074.68,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+CHONGQING,重庆,2023,11699.14,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+CHONGQING,重庆,2023,16371.97,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+CHONGQING,重庆,2023,94135.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+CHONGQING,重庆,2023,2440.8,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+CHONGQING,重庆,2023,23120.05,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+CHONGQING,重庆,2023,15130.25,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+CHONGQING,重庆,2023,7137.39,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46420.html,knife_665_y2023,false
+FUJIAN,福建,2023,54355.1,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51411.html,knife_665_y2023,false
+FUJIAN,福建,2023,4.5,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51411.html,knife_665_y2023,false
+FUJIAN,福建,2023,3217.66,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51411.html,knife_665_y2023,false
+FUJIAN,福建,2023,23966.43,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51411.html,knife_665_y2023,false
+FUJIAN,福建,2023,27171.01,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51411.html,knife_665_y2023,false
+FUJIAN,福建,2023,129865.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51411.html,knife_665_y2023,false
+FUJIAN,福建,2023,3591.87,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51411.html,knife_665_y2023,false
+FUJIAN,福建,2023,22109.57,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51411.html,knife_665_y2023,false
+FUJIAN,福建,2023,19743.5,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51411.html,knife_665_y2023,false
+GANSU,甘肃,2023,11863.8,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GANSU,甘肃,2023,6.4,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GANSU,甘肃,2023,1641.3,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GANSU,甘肃,2023,4080.8,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GANSU,甘肃,2023,6141.8,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GANSU,甘肃,2023,47867.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GANSU,甘肃,2023,1003.5,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GANSU,甘肃,2023,1003.5,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GANSU,甘肃,2023,4329.7,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GANSU,甘肃,2023,491.7,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45809.html,knife_665_y2023,false
+GUANGXI,广西,2023,27202.39,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUANGXI,广西,2023,4.1,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUANGXI,广西,2023,4468.18,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUANGXI,广西,2023,8924.13,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUANGXI,广西,2023,13810.08,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUANGXI,广西,2023,54005.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUANGXI,广西,2023,1783.8,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUANGXI,广西,2023,1337.02,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUANGXI,广西,2023,8651.57,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUANGXI,广西,2023,6936.49,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46473.html,knife_665_y2023,false
+GUIZHOU,贵州,2023,20913.25,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49705.html,knife_665_y2023,false
+GUIZHOU,贵州,2023,4.9,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49705.html,knife_665_y2023,false
+GUIZHOU,贵州,2023,2894.28,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49705.html,knife_665_y2023,false
+GUIZHOU,贵州,2023,7311.44,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49705.html,knife_665_y2023,false
+GUIZHOU,贵州,2023,10707.53,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49705.html,knife_665_y2023,false
+GUIZHOU,贵州,2023,54172.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49705.html,knife_665_y2023,false
+GUIZHOU,贵州,2023,759.7,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49705.html,knife_665_y2023,false
+GUIZHOU,贵州,2023,759.7,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49705.html,knife_665_y2023,false
+HAINAN,海南,2023,7551.18,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45465.html,knife_665_y2023,false
+HAINAN,海南,2023,9.2,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45465.html,knife_665_y2023,false
+HAINAN,海南,2023,1507.4,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45465.html,knife_665_y2023,false
+HAINAN,海南,2023,1448.45,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45465.html,knife_665_y2023,false
+HAINAN,海南,2023,4595.33,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45465.html,knife_665_y2023,false
+HAINAN,海南,2023,72958.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45465.html,knife_665_y2023,false
+HAINAN,海南,2023,900.69,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45465.html,knife_665_y2023,false
+HAINAN,海南,2023,2511.32,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45465.html,knife_665_y2023,false
+HAINAN,海南,2023,2312.77,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45465.html,knife_665_y2023,false
+HEBEI,河北,2023,5.5,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45476.html,knife_665_y2023,false
+HEBEI,河北,2023,4466.2,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45476.html,knife_665_y2023,false
+HEBEI,河北,2023,16435.3,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45476.html,knife_665_y2023,false
+HEBEI,河北,2023,23042.6,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45476.html,knife_665_y2023,false
+HEBEI,河北,2023,59332.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45476.html,knife_665_y2023,false
+HEBEI,河北,2023,5818.4,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45476.html,knife_665_y2023,false
+HEBEI,河北,2023,2127.2,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45476.html,knife_665_y2023,false
+HEILONGJIANG,黑龙江,2023,15883.9,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/52555.html,knife_665_y2023,false
+HEILONGJIANG,黑龙江,2023,2.6,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/52555.html,knife_665_y2023,false
+HEILONGJIANG,黑龙江,2023,51563.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/52555.html,knife_665_y2023,false
+HEILONGJIANG,黑龙江,2023,1396.0,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/52555.html,knife_665_y2023,false
+HEILONGJIANG,黑龙江,2023,438.0,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/52555.html,knife_665_y2023,false
+HEILONGJIANG,黑龙江,2023,5634.2,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/52555.html,knife_665_y2023,false
+HEILONGJIANG,黑龙江,2023,2978.3,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/52555.html,knife_665_y2023,false
+HENAN,河南,2023,59132.39,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HENAN,河南,2023,4.1,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HENAN,河南,2023,5360.15,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HENAN,河南,2023,22175.27,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HENAN,河南,2023,31596.98,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HENAN,河南,2023,60073.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HENAN,河南,2023,4512.05,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HENAN,河南,2023,10.0,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HENAN,河南,2023,26004.45,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HENAN,河南,2023,8107.88,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46449.html,knife_665_y2023,false
+HUBEI,湖北,2023,55803.63,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUBEI,湖北,2023,6.0,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUBEI,湖北,2023,5073.38,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUBEI,湖北,2023,20215.5,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUBEI,湖北,2023,30514.74,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUBEI,湖北,2023,95538.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUBEI,湖北,2023,3692.26,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUBEI,湖北,2023,55803.63,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUBEI,湖北,2023,24041.89,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUBEI,湖北,2023,6449.7,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46035.html,knife_665_y2023,false
+HUNAN,湖南,2023,50012.9,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46282.html,knife_665_y2023,false
+HUNAN,湖南,2023,4.6,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46282.html,knife_665_y2023,false
+HUNAN,湖南,2023,4621.3,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46282.html,knife_665_y2023,false
+HUNAN,湖南,2023,18822.8,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46282.html,knife_665_y2023,false
+HUNAN,湖南,2023,26568.8,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46282.html,knife_665_y2023,false
+HUNAN,湖南,2023,75938.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46282.html,knife_665_y2023,false
+HUNAN,湖南,2023,3360.5,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46282.html,knife_665_y2023,false
+HUNAN,湖南,2023,3833.1,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46282.html,knife_665_y2023,false
+HUNAN,湖南,2023,20203.3,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46282.html,knife_665_y2023,false
+JIANGSU,江苏,2023,128222.2,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45572.html,knife_665_y2023,false
+JIANGSU,江苏,2023,5.8,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45572.html,knife_665_y2023,false
+JIANGSU,江苏,2023,5075.8,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45572.html,knife_665_y2023,false
+JIANGSU,江苏,2023,56909.7,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45572.html,knife_665_y2023,false
+JIANGSU,江苏,2023,66236.7,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45572.html,knife_665_y2023,false
+JIANGSU,江苏,2023,150487.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45572.html,knife_665_y2023,false
+JIANGSU,江苏,2023,9930.2,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45572.html,knife_665_y2023,false
+JIANGSU,江苏,2023,10.0,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45572.html,knife_665_y2023,false
+JIANGSU,江苏,2023,45547.5,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45572.html,knife_665_y2023,false
+JIANGXI,江西,2023,32200.1,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JIANGXI,江西,2023,4.1,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JIANGXI,江西,2023,2450.4,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JIANGXI,江西,2023,13706.5,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JIANGXI,江西,2023,16043.2,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JIANGXI,江西,2023,71216.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JIANGXI,江西,2023,3059.6,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JIANGXI,江西,2023,2482.4,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JIANGXI,江西,2023,13659.8,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JIANGXI,江西,2023,5697.7,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46698.html,knife_665_y2023,false
+JILIN,吉林,2023,13531.19,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51412.html,knife_665_y2023,false
+JILIN,吉林,2023,6.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51412.html,knife_665_y2023,false
+JILIN,吉林,2023,1644.75,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51412.html,knife_665_y2023,false
+JILIN,吉林,2023,4585.03,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51412.html,knife_665_y2023,false
+JILIN,吉林,2023,7301.4,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51412.html,knife_665_y2023,false
+JILIN,吉林,2023,1074.84,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51412.html,knife_665_y2023,false
+JILIN,吉林,2023,823.82,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51412.html,knife_665_y2023,false
+JILIN,吉林,2023,4150.43,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51412.html,knife_665_y2023,false
+JILIN,吉林,2023,1679.09,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51412.html,knife_665_y2023,false
+LIAONING,辽宁,2023,30209.4,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+LIAONING,辽宁,2023,5.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+LIAONING,辽宁,2023,2651.0,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+LIAONING,辽宁,2023,11734.5,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+LIAONING,辽宁,2023,15823.9,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+LIAONING,辽宁,2023,72107.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+LIAONING,辽宁,2023,2754.0,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+LIAONING,辽宁,2023,10.0,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+LIAONING,辽宁,2023,10362.1,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+LIAONING,辽宁,2023,7659.6,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49311.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,24627.0,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,7.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,2737.0,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,11704.0,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,10186.0,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,102677.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,3083.4,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,963.4,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,5374.3,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NEI_MENGGU,内蒙古,2023,1965.3,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45765.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,5314.95,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,6.6,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,428.1,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,2487.24,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,2399.61,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,72957.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,502.26,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,174.9,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,1354.95,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+NINGXIA,NINGXIA,2023,205.41,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49543.html,knife_665_y2023,false
+QINGHAI,青海,2023,3799.06,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+QINGHAI,青海,2023,5.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+QINGHAI,青海,2023,387.0,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+QINGHAI,青海,2023,1612.83,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+QINGHAI,青海,2023,1799.23,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+QINGHAI,青海,2023,63903.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+QINGHAI,青海,2023,381.31,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+QINGHAI,青海,2023,48.7,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+QINGHAI,青海,2023,987.73,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+QINGHAI,青海,2023,48.7,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/51410.html,knife_665_y2023,false
+SHAANXI,陕西,2023,33786.07,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46448.html,knife_665_y2023,false
+SHAANXI,陕西,2023,4.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46448.html,knife_665_y2023,false
+SHAANXI,陕西,2023,2649.75,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46448.html,knife_665_y2023,false
+SHAANXI,陕西,2023,16068.9,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46448.html,knife_665_y2023,false
+SHAANXI,陕西,2023,15067.42,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46448.html,knife_665_y2023,false
+SHAANXI,陕西,2023,85447.82,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46448.html,knife_665_y2023,false
+SHAANXI,陕西,2023,2190.48,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46448.html,knife_665_y2023,false
+SHAANXI,陕西,2023,10759.01,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46448.html,knife_665_y2023,false
+SHAANXI,陕西,2023,4042.06,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46448.html,knife_665_y2023,false
+SHANDONG,山东,2023,92068.7,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45559.html,knife_665_y2023,false
+SHANDONG,山东,2023,6.0,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45559.html,knife_665_y2023,false
+SHANDONG,山东,2023,6506.2,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45559.html,knife_665_y2023,false
+SHANDONG,山东,2023,35987.9,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45559.html,knife_665_y2023,false
+SHANDONG,山东,2023,49574.6,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45559.html,knife_665_y2023,false
+SHANDONG,山东,2023,7464.7,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45559.html,knife_665_y2023,false
+SHANDONG,山东,2023,8168.9,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45559.html,knife_665_y2023,false
+SHANDONG,山东,2023,36141.8,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45559.html,knife_665_y2023,false
+SHANGHAI,上海,2023,47218.66,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46363.html,knife_665_y2023,false
+SHANGHAI,上海,2023,5.0,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46363.html,knife_665_y2023,false
+SHANGHAI,上海,2023,96.09,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46363.html,knife_665_y2023,false
+SHANGHAI,上海,2023,11612.97,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46363.html,knife_665_y2023,false
+SHANGHAI,上海,2023,35509.6,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46363.html,knife_665_y2023,false
+SHANGHAI,上海,2023,8312.5,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46363.html,knife_665_y2023,false
+SHANGHAI,上海,2023,261.82,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46363.html,knife_665_y2023,false
+SHANGHAI,上海,2023,18515.5,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46363.html,knife_665_y2023,false
+SHANGHAI,上海,2023,106576.6,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46363.html,knife_665_y2023,false
+SHANXI,山西,2023,25698.18,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45785.html,knife_665_y2023,false
+SHANXI,山西,2023,5.0,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45785.html,knife_665_y2023,false
+SHANXI,山西,2023,1388.86,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45785.html,knife_665_y2023,false
+SHANXI,山西,2023,13329.69,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45785.html,knife_665_y2023,false
+SHANXI,山西,2023,10979.64,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45785.html,knife_665_y2023,false
+SHANXI,山西,2023,73984.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45785.html,knife_665_y2023,false
+SHANXI,山西,2023,1751.5,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45785.html,knife_665_y2023,false
+SHANXI,山西,2023,7981.8,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45785.html,knife_665_y2023,false
+SHANXI,山西,2023,1693.7,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45785.html,knife_665_y2023,false
+SICHUAN,四川,2023,60132.9,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+SICHUAN,四川,2023,6.0,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+SICHUAN,四川,2023,6056.6,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+SICHUAN,四川,2023,21306.7,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+SICHUAN,四川,2023,32769.5,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+SICHUAN,四川,2023,71835.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+SICHUAN,四川,2023,5529.1,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+SICHUAN,四川,2023,26313.4,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+SICHUAN,四川,2023,26313.4,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+SICHUAN,四川,2023,9574.9,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45628.html,knife_665_y2023,false
+TIANJIN,天津,2023,16737.3,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45872.html,knife_665_y2023,false
+TIANJIN,天津,2023,4.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45872.html,knife_665_y2023,false
+TIANJIN,天津,2023,268.53,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45872.html,knife_665_y2023,false
+TIANJIN,天津,2023,5982.62,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45872.html,knife_665_y2023,false
+TIANJIN,天津,2023,10486.15,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45872.html,knife_665_y2023,false
+TIANJIN,天津,2023,122752.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45872.html,knife_665_y2023,false
+TIANJIN,天津,2023,2027.34,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45872.html,knife_665_y2023,false
+TIANJIN,天津,2023,5417.0,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45872.html,knife_665_y2023,false
+TIANJIN,天津,2023,8004.74,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45872.html,knife_665_y2023,false
+XINJIANG,新疆,2023,19125.91,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46388.html,knife_665_y2023,false
+XINJIANG,新疆,2023,6.8,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46388.html,knife_665_y2023,false
+XINJIANG,新疆,2023,2742.24,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46388.html,knife_665_y2023,false
+XINJIANG,新疆,2023,7710.27,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46388.html,knife_665_y2023,false
+XINJIANG,新疆,2023,8673.4,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46388.html,knife_665_y2023,false
+XINJIANG,新疆,2023,73774.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46388.html,knife_665_y2023,false
+XINJIANG,新疆,2023,2179.7,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46388.html,knife_665_y2023,false
+XINJIANG,新疆,2023,1168.53,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46388.html,knife_665_y2023,false
+XINJIANG,新疆,2023,3849.68,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46388.html,knife_665_y2023,false
+XIZANG,西藏,2023,2392.67,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+XIZANG,西藏,2023,9.5,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+XIZANG,西藏,2023,215.01,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+XIZANG,西藏,2023,882.97,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+XIZANG,西藏,2023,1294.69,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+XIZANG,西藏,2023,65642.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+XIZANG,西藏,2023,236.62,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+XIZANG,西藏,2023,79.16,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+XIZANG,西藏,2023,879.8,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+XIZANG,西藏,2023,109.78,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/49950.html,knife_665_y2023,false
+YUNNAN,云南,2023,30021.12,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46336.html,knife_665_y2023,false
+YUNNAN,云南,2023,4.4,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46336.html,knife_665_y2023,false
+YUNNAN,云南,2023,4206.63,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46336.html,knife_665_y2023,false
+YUNNAN,云南,2023,10256.34,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46336.html,knife_665_y2023,false
+YUNNAN,云南,2023,15558.15,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46336.html,knife_665_y2023,false
+YUNNAN,云南,2023,64107.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46336.html,knife_665_y2023,false
+YUNNAN,云南,2023,2066.55,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46336.html,knife_665_y2023,false
+YUNNAN,云南,2023,11560.68,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/46336.html,knife_665_y2023,false
+ZHEJIANG,浙江,2023,82553.0,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45544.html,knife_665_y2023,false
+ZHEJIANG,浙江,2023,6.0,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45544.html,knife_665_y2023,false
+ZHEJIANG,浙江,2023,125043.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45544.html,knife_665_y2023,false
+ZHEJIANG,浙江,2023,8600.0,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45544.html,knife_665_y2023,false
+ZHEJIANG,浙江,2023,13198.0,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45544.html,knife_665_y2023,false
+ZHEJIANG,浙江,2023,32550.0,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/45544.html,knife_665_y2023,false
