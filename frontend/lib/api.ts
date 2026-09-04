@@ -24,6 +24,7 @@ import type {
 import { MOCK_INDICATOR_LIST, MOCK_JIANGSU_GDP_SERIES } from "./mock";
 import {
   getProvinceTimeSeriesByCode,
+  getProvinceTimeSeriesStatic,
   isStaticMartDataEnabled,
   loadStaticMartData,
   type MartProvinceGdp2024,
@@ -171,4 +172,180 @@ export async function listProvinceTimeSeries(
   return (await res.json()) as Array<
     Pick<ProvinceTimeSeriesResponse, "province_code" | "province_name" | "indicator_count" | "year_range" | "points_count">
   >;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// P2 / knife 667 — Static-mart helpers (UI dropdowns + chip metadata).
+//
+// listProvincesWithTimeSeries(): distinct (province_code, province_name) sorted
+//   alphabetically by province_code (Chinese pinyin sort via locale-aware Intl.Collator).
+//   Used by ProvinceSelector dropdown on /timeseries.
+// listIndicatorsWithTimeSeries(): distinct (indicator_key, indicator_label, unit)
+//   in canonical order matching mart indicator_dimension CTE.
+//   Used by indicator selector + SourceGradeChip legend.
+// listSourceGradesByProvince(): per-province counts of OFFICIAL_INTAKED /
+//   HONGHEIKU_TRANSLOAD / DATA_MISSING (real vs missing) for a year range.
+//   Used by SourceGradeChip to render 7-dim grid provenance badges.
+// listSourceGradesNational(): aggregate national counts across all 31 provinces.
+//   Used by /timeseries overview page header chip.
+// ────────────────────────────────────────────────────────────────────────────
+
+export interface ProvinceOption {
+  province_code: string;
+  province_name: string;
+}
+
+export interface IndicatorOption {
+  indicator_key: string;
+  indicator_label: string;
+  unit: string | null;
+}
+
+export interface SourceGradeSummary {
+  OFFICIAL_INTAKED: number;
+  HONGHEIKU_TRANSLOAD: number;
+  DATA_MISSING: number;
+  total: number;
+}
+
+const EMPTY_GRADE: SourceGradeSummary = {
+  OFFICIAL_INTAKED: 0,
+  HONGHEIKU_TRANSLOAD: 0,
+  DATA_MISSING: 0,
+  total: 0,
+};
+
+/**
+ * Distinct provinces in mart (sorted by Chinese locale pinyin order).
+ * Returns empty array if mart JSON is not configured.
+ *
+ * Implementation note: Intl.Collator with locale='zh-Hans-CN' gives stable
+ * pinyin order (BEIJING before FUJIAN). Falls back to ASCII sort if Collator
+ * unavailable (e.g., older Node).
+ */
+export function listProvincesWithTimeSeries(): ProvinceOption[] {
+  const data = getProvinceTimeSeriesStatic();
+  if (!data) return [];
+
+  const seen = new Map<string, string>();
+  for (const r of data.provinces) {
+    if (!seen.has(r.province_code)) {
+      seen.set(r.province_code, r.province_name);
+    }
+  }
+
+  const out = Array.from(seen.entries()).map(([code, name]) => ({
+    province_code: code,
+    province_name: name,
+  }));
+
+  // Sort by Chinese pinyin for human-friendly dropdown (matches mart canonical order).
+  try {
+    const collator = new Intl.Collator("zh-Hans-CN");
+    out.sort((a, b) => collator.compare(a.province_name, b.province_name));
+  } catch {
+    out.sort((a, b) => a.province_code.localeCompare(b.province_code));
+  }
+
+  return out;
+}
+
+/**
+ * Distinct indicators in mart, in canonical mart order (5 现 first, 5 增量 after).
+ * Returns empty array if mart JSON is not configured.
+ *
+ * Canonical order is preserved by encountering them in mart row order (mart CTE
+ * uses VALUES list which preserves tuple order).
+ */
+export function listIndicatorsWithTimeSeries(): IndicatorOption[] {
+  const data = getProvinceTimeSeriesStatic();
+  if (!data) return [];
+
+  const seen = new Map<string, { label: string; unit: string | null }>();
+  for (const r of data.provinces) {
+    if (!seen.has(r.indicator_key)) {
+      seen.set(r.indicator_key, { label: r.indicator_label, unit: r.unit });
+    }
+  }
+
+  return Array.from(seen.entries()).map(([key, v]) => ({
+    indicator_key: key,
+    indicator_label: v.label,
+    unit: v.unit,
+  }));
+}
+
+/**
+ * Per-province lineage_source_type counts for a year range.
+ * Used by /timeseries/[province_code] page to render SourceGradeChip
+ * (7-dim grid badge showing OFFICIAL / HONGHEIKU / DATA_MISSING distribution).
+ *
+ * DATA_MISSING includes both value=NULL rows AND rows where status='DATA_MISSING'
+ * (per mart schema: 2001-2019, 2026, missing provinces).
+ *
+ * Real cells are classified by lineage_source_type: 'OFFICIAL_INTAKED' or
+ * 'HONGHEIKU_TRANSLOAD' (per mart column semantics in docs/05 + 666).
+ */
+export function listSourceGradesByProvince(
+  provinceCode: string,
+  yearRange?: ProvinceTimeSeriesYearRange
+): SourceGradeSummary {
+  const data = getProvinceTimeSeriesStatic();
+  if (!data) return EMPTY_GRADE;
+
+  const [yStart, yEnd] = yearRange ?? data.year_range;
+  const summary: SourceGradeSummary = {
+    OFFICIAL_INTAKED: 0,
+    HONGHEIKU_TRANSLOAD: 0,
+    DATA_MISSING: 0,
+    total: 0,
+  };
+
+  for (const r of data.provinces) {
+    if (r.province_code !== provinceCode) continue;
+    if (r.year < yStart || r.year > yEnd) continue;
+    summary.total += 1;
+    if (r.value === null || r.status === "DATA_MISSING") {
+      summary.DATA_MISSING += 1;
+    } else if (r.lineage_source_type === "OFFICIAL_INTAKED") {
+      summary.OFFICIAL_INTAKED += 1;
+    } else if (r.lineage_source_type === "HONGHEIKU_TRANSLOAD") {
+      summary.HONGHEIKU_TRANSLOAD += 1;
+    }
+  }
+
+  return summary;
+}
+
+/**
+ * Aggregate lineage_source_type counts across all 31 provinces (national overview).
+ * Used by /timeseries page header to show overall data coverage.
+ */
+export function listSourceGradesNational(
+  yearRange?: ProvinceTimeSeriesYearRange
+): SourceGradeSummary {
+  const data = getProvinceTimeSeriesStatic();
+  if (!data) return EMPTY_GRADE;
+
+  const [yStart, yEnd] = yearRange ?? data.year_range;
+  const summary: SourceGradeSummary = {
+    OFFICIAL_INTAKED: 0,
+    HONGHEIKU_TRANSLOAD: 0,
+    DATA_MISSING: 0,
+    total: 0,
+  };
+
+  for (const r of data.provinces) {
+    if (r.year < yStart || r.year > yEnd) continue;
+    summary.total += 1;
+    if (r.value === null || r.status === "DATA_MISSING") {
+      summary.DATA_MISSING += 1;
+    } else if (r.lineage_source_type === "OFFICIAL_INTAKED") {
+      summary.OFFICIAL_INTAKED += 1;
+    } else if (r.lineage_source_type === "HONGHEIKU_TRANSLOAD") {
+      summary.HONGHEIKU_TRANSLOAD += 1;
+    }
+  }
+
+  return summary;
 }
