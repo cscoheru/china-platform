@@ -1,0 +1,521 @@
+{
+  "knife": "665",
+  "sub_knife": "665e",
+  "chain_id": "parse_665e_m2_u10_batch_v1_y2025_10indicators",
+  "year": 2025,
+  "summary": {
+    "total_provinces": 30,
+    "parsed_count": 30,
+    "parse_empty_count": 0,
+    "cache_miss_count": 0,
+    "by_indicator": {
+      "gdp_total": 29,
+      "gdp_growth": 30,
+      "primary_gdp": 30,
+      "secondary_gdp": 30,
+      "tertiary_gdp": 29,
+      "gdp_percapita": 26,
+      "fiscal_rev": 27,
+      "fixed_asset": 29,
+      "retail": 26,
+      "trade": 27
+    }
+  },
+  "parse_failures": [],
+  "cells": [
+    {
+      "province_en": "ningxia",
+      "province_code": "NINGXIA",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 5696.49,
+        "gdp_growth": 5.3,
+        "primary_gdp": 469.86,
+        "secondary_gdp": 2360.38,
+        "tertiary_gdp": 2866.25,
+        "gdp_percapita": 77981.0,
+        "fiscal_rev": 540.57,
+        "fixed_asset": 172.87,
+        "retail": 1449.1,
+        "trade": 209.93
+      }
+    },
+    {
+      "province_en": "guizhou",
+      "province_code": "GUIZHOU",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 23562.17,
+        "gdp_growth": 4.9,
+        "primary_gdp": 3023.35,
+        "secondary_gdp": 7298.24,
+        "tertiary_gdp": 13240.58,
+        "gdp_percapita": 61066.0,
+        "fiscal_rev": 2223.3,
+        "fixed_asset": 848.36,
+        "trade": 848.36
+      }
+    },
+    {
+      "province_en": "guangdong",
+      "province_code": "GUANGDONG",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 145846.76,
+        "gdp_growth": 3.9,
+        "primary_gdp": 5891.8,
+        "secondary_gdp": 54993.5,
+        "tertiary_gdp": 84961.46,
+        "gdp_percapita": 113769.0,
+        "fiscal_rev": 13938.94,
+        "fixed_asset": 8598.22,
+        "retail": 46296.74,
+        "trade": 94941.6
+      }
+    },
+    {
+      "province_en": "shaanxi",
+      "province_code": "SHAANXI",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 36551.1,
+        "gdp_growth": 5.1,
+        "primary_gdp": 2746.5,
+        "secondary_gdp": 14521.16,
+        "tertiary_gdp": 19283.44,
+        "gdp_percapita": 92663.0,
+        "fiscal_rev": 3289.44,
+        "fixed_asset": 5379.75,
+        "retail": 11587.99,
+        "trade": 5379.75
+      }
+    },
+    {
+      "province_en": "jilin",
+      "province_code": "JILIN",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_growth": 5.0,
+        "primary_gdp": 1670.68,
+        "secondary_gdp": 4716.33,
+        "tertiary_gdp": 8586.87,
+        "fiscal_rev": 1349.97,
+        "fixed_asset": 476.27,
+        "retail": 4396.67,
+        "trade": 1638.63
+      }
+    },
+    {
+      "province_en": "henan",
+      "province_code": "HENAN",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 66632.79,
+        "gdp_growth": 5.6,
+        "primary_gdp": 5538.08,
+        "secondary_gdp": 24926.8,
+        "tertiary_gdp": 36167.92,
+        "gdp_percapita": 68240.0,
+        "fiscal_rev": 4501.66,
+        "fixed_asset": 50821.96,
+        "retail": 29090.5,
+        "trade": 9356.73
+      }
+    },
+    {
+      "province_en": "hebei",
+      "province_code": "HEBEI",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 49305.2,
+        "gdp_growth": 5.6,
+        "primary_gdp": 4514.5,
+        "secondary_gdp": 17622.4,
+        "tertiary_gdp": 27168.3,
+        "gdp_percapita": 66936.0,
+        "fiscal_rev": 4398.6,
+        "fixed_asset": 6761.9,
+        "retail": 15483.2,
+        "trade": 6761.9
+      }
+    },
+    {
+      "province_en": "guangxi",
+      "province_code": "GUANGXI",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 29727.45,
+        "gdp_growth": 5.1,
+        "primary_gdp": 4631.71,
+        "secondary_gdp": 9577.24,
+        "tertiary_gdp": 15518.5,
+        "gdp_percapita": 59443.0,
+        "fiscal_rev": 1922.05,
+        "fixed_asset": 8123.58,
+        "retail": 8396.3,
+        "trade": 8192.62
+      }
+    },
+    {
+      "province_en": "neimenggu",
+      "province_code": "NEI_MENGGU",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 26710.3,
+        "gdp_growth": 4.7,
+        "primary_gdp": 3036.8,
+        "secondary_gdp": 11292.7,
+        "tertiary_gdp": 12380.8,
+        "gdp_percapita": 112181.0,
+        "fiscal_rev": 3005.2,
+        "fixed_asset": 868.6,
+        "trade": 2209.6
+      }
+    },
+    {
+      "province_en": "xizang",
+      "province_code": "XIZANG",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 3031.89,
+        "gdp_growth": 7.0,
+        "primary_gdp": 283.51,
+        "secondary_gdp": 1156.24,
+        "tertiary_gdp": 1592.14,
+        "gdp_percapita": 81502.0,
+        "fiscal_rev": 317.9,
+        "fixed_asset": 40.32,
+        "retail": 1078.54,
+        "trade": 84.79
+      }
+    },
+    {
+      "province_en": "yunnan",
+      "province_code": "YUNNAN",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 32765.78,
+        "gdp_growth": 4.1,
+        "primary_gdp": 4320.77,
+        "secondary_gdp": 10500.61,
+        "tertiary_gdp": 17944.4,
+        "gdp_percapita": 70472.0,
+        "fixed_asset": 1192.77,
+        "retail": 12786.21,
+        "trade": 2737.36
+      }
+    },
+    {
+      "province_en": "shanghai",
+      "province_code": "SHANGHAI",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 56708.71,
+        "gdp_growth": 5.4,
+        "primary_gdp": 99.39,
+        "secondary_gdp": 11650.62,
+        "tertiary_gdp": 44958.7,
+        "fiscal_rev": 8500.91,
+        "fixed_asset": 270.66,
+        "retail": 16600.93,
+        "trade": 113089.82
+      }
+    },
+    {
+      "province_en": "heilongjiang",
+      "province_code": "HEILONGJIANG",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 16878.0,
+        "gdp_growth": 4.2,
+        "primary_gdp": 3352.6,
+        "secondary_gdp": 4008.8,
+        "tertiary_gdp": 9516.6,
+        "fiscal_rev": 1535.0,
+        "fixed_asset": 474.9,
+        "retail": 5622.1,
+        "trade": 3125.9
+      }
+    },
+    {
+      "province_en": "chongqing",
+      "province_code": "CHONGQING",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 33757.93,
+        "gdp_growth": 5.3,
+        "primary_gdp": 2124.14,
+        "secondary_gdp": 11787.74,
+        "tertiary_gdp": 19846.05,
+        "gdp_percapita": 105874.0,
+        "fiscal_rev": 2735.8,
+        "fixed_asset": 8006.78,
+        "retail": 16688.5,
+        "trade": 8006.78
+      }
+    },
+    {
+      "province_en": "jiangxi",
+      "province_code": "JIANGXI",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 36020.0,
+        "gdp_growth": 5.2,
+        "primary_gdp": 2649.9,
+        "secondary_gdp": 14274.5,
+        "tertiary_gdp": 19095.6,
+        "gdp_percapita": 80259.0,
+        "fiscal_rev": 3079.2,
+        "fixed_asset": 1814.2,
+        "retail": 13422.7,
+        "trade": 4823.0
+      }
+    },
+    {
+      "province_en": "beijing",
+      "province_code": "BEIJING",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 52073.4,
+        "gdp_growth": 5.4,
+        "primary_gdp": 109.2,
+        "secondary_gdp": 7187.4,
+        "tertiary_gdp": 44776.9,
+        "gdp_percapita": 239000.0,
+        "fiscal_rev": 6680.6,
+        "fixed_asset": 13677.0,
+        "retail": 13677.0,
+        "trade": 31929.7
+      }
+    },
+    {
+      "province_en": "hunan",
+      "province_code": "HUNAN",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 55308.7,
+        "gdp_growth": 4.8,
+        "primary_gdp": 4951.8,
+        "secondary_gdp": 19915.5,
+        "tertiary_gdp": 30441.4,
+        "gdp_percapita": 84888.0,
+        "fiscal_rev": 3507.6,
+        "fixed_asset": 2398.6,
+        "retail": 21204.6,
+        "trade": 5414.1
+      }
+    },
+    {
+      "province_en": "shanxi",
+      "province_code": "SHANXI",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 25495.68,
+        "gdp_growth": 4.0,
+        "primary_gdp": 1410.52,
+        "secondary_gdp": 10305.0,
+        "tertiary_gdp": 13780.15,
+        "gdp_percapita": 74223.0,
+        "fixed_asset": 1455.1,
+        "retail": 8030.9,
+        "trade": 1372.4
+      }
+    },
+    {
+      "province_en": "gansu",
+      "province_code": "GANSU",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 13697.5,
+        "gdp_growth": 5.8,
+        "primary_gdp": 1773.0,
+        "secondary_gdp": 4558.2,
+        "tertiary_gdp": 7366.3,
+        "gdp_percapita": 55897.0,
+        "fiscal_rev": 1112.4,
+        "fixed_asset": 711.7,
+        "retail": 4237.6,
+        "trade": 711.7
+      }
+    },
+    {
+      "province_en": "tianjin",
+      "province_code": "TIANJIN",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 18539.82,
+        "gdp_growth": 4.8,
+        "primary_gdp": 293.55,
+        "secondary_gdp": 6154.46,
+        "tertiary_gdp": 12091.81,
+        "gdp_percapita": 135972.0,
+        "fiscal_rev": 2221.73,
+        "fixed_asset": 5384.0,
+        "trade": 8358.7
+      }
+    },
+    {
+      "province_en": "xinjiang",
+      "province_code": "XINJIANG",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 21462.14,
+        "gdp_growth": 5.5,
+        "primary_gdp": 2816.27,
+        "secondary_gdp": 8189.91,
+        "tertiary_gdp": 10455.95,
+        "gdp_percapita": 81574.0,
+        "fiscal_rev": 2662.8,
+        "fixed_asset": 1095.95,
+        "retail": 4107.82
+      }
+    },
+    {
+      "province_en": "fujian",
+      "province_code": "FUJIAN",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 60199.45,
+        "gdp_growth": 5.0,
+        "primary_gdp": 3354.37,
+        "secondary_gdp": 25497.34,
+        "tertiary_gdp": 31347.74,
+        "gdp_percapita": 143623.0,
+        "fiscal_rev": 3723.35,
+        "retail": 25433.59,
+        "trade": 18826.99
+      }
+    },
+    {
+      "province_en": "anhui",
+      "province_code": "ANHUI",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 52989.0,
+        "gdp_growth": 5.5,
+        "primary_gdp": 3552.0,
+        "secondary_gdp": 20055.0,
+        "gdp_percapita": 86832.0,
+        "fixed_asset": 3031.4,
+        "trade": 10135.6
+      }
+    },
+    {
+      "province_en": "jiangsu",
+      "province_code": "JIANGSU",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 142351.5,
+        "gdp_growth": 5.3,
+        "primary_gdp": 5369.7,
+        "secondary_gdp": 60038.2,
+        "tertiary_gdp": 76943.7,
+        "gdp_percapita": 167040.0,
+        "fiscal_rev": 10245.7,
+        "fixed_asset": 46394.2,
+        "retail": 46394.2
+      }
+    },
+    {
+      "province_en": "hubei",
+      "province_code": "HUBEI",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 62660.9,
+        "gdp_growth": 5.5,
+        "primary_gdp": 5380.66,
+        "secondary_gdp": 21865.9,
+        "tertiary_gdp": 35414.34,
+        "gdp_percapita": 107619.0,
+        "fiscal_rev": 4210.55,
+        "fixed_asset": 4121.25,
+        "retail": 27938.62,
+        "trade": 8340.1
+      }
+    },
+    {
+      "province_en": "sichuan",
+      "province_code": "SICHUAN",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 67665.3,
+        "gdp_growth": 5.5,
+        "primary_gdp": 5751.4,
+        "secondary_gdp": 23260.2,
+        "tertiary_gdp": 38653.8,
+        "gdp_percapita": 81124.0,
+        "fiscal_rev": 5853.9,
+        "fixed_asset": 29135.4,
+        "retail": 29135.4,
+        "trade": 10318.1
+      }
+    },
+    {
+      "province_en": "shandong",
+      "province_code": "SHANDONG",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 103197.5,
+        "gdp_growth": 5.5,
+        "primary_gdp": 6774.9,
+        "secondary_gdp": 40541.4,
+        "tertiary_gdp": 55881.1,
+        "fiscal_rev": 7864.3,
+        "fixed_asset": 6451.4,
+        "retail": 42082.9
+      }
+    },
+    {
+      "province_en": "zhejiang",
+      "province_code": "ZHEJIANG",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 94545.0,
+        "gdp_growth": 5.5,
+        "primary_gdp": 2657.0,
+        "secondary_gdp": 35682.0,
+        "tertiary_gdp": 56206.0,
+        "gdp_percapita": 141418.0,
+        "fiscal_rev": 8865.0,
+        "fixed_asset": 8280.0,
+        "retail": 39216.0,
+        "trade": 55461.0
+      }
+    },
+    {
+      "province_en": "qinghai",
+      "province_code": "QINGHAI",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 4121.84,
+        "gdp_growth": 4.1,
+        "primary_gdp": 398.51,
+        "secondary_gdp": 1719.86,
+        "tertiary_gdp": 2003.48,
+        "gdp_percapita": 69567.0,
+        "fiscal_rev": 354.95,
+        "fixed_asset": 1048.99,
+        "retail": 1048.99,
+        "trade": 70.7
+      }
+    },
+    {
+      "province_en": "hainan",
+      "province_code": "HAINAN",
+      "verdict": "PARSED",
+      "extracted": {
+        "gdp_total": 8108.85,
+        "gdp_growth": 4.0,
+        "primary_gdp": 1642.55,
+        "secondary_gdp": 1463.86,
+        "tertiary_gdp": 5002.44,
+        "gdp_percapita": 77117.0,
+        "fiscal_rev": 903.74,
+        "fixed_asset": 929.45,
+        "retail": 2673.58,
+        "trade": 2760.03
+      }
+    }
+  ],
+  "methodology": "v1 10 指标 parse: 665e scope = 10 指标 ALL (5 现 + 5 增量). 2025 无 663 baseline → harvest 必须含 5 现 (vs 665d 仅 5 增量). reuses _extract_all from parse_hongheiku_10_indicators.py; missing values stay None → DATA_MISSING (新增红线-1 沿用, 禁补零)."
+}
