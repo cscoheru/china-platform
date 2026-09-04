@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-09-04",
+  "knife": "666",
+  "probe_methodology": "urllib + certifi SSL + Mozilla UA, timeout 15s",
+  "probes": [
+    {
+      "url": "https://tjj.gd.gov.cn/tjgb/",
+      "verdict": "ERR",
+      "http_code": 0,
+      "reason": "URLError: <urlopen error [Errno 54] Connection reset by peer>",
+      "label": "GUANGDONG_tjj"
+    },
+    {
+      "url": "https://stats.gd.gov.cn/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "content_length": 67737,
+      "content_type": "text/html; charset=utf-8",
+      "label": "GUANGDONG_stats"
+    },
+    {
+      "url": "https://tjj.jiangsu.gov.cn/tjgb/",
+      "verdict": "ERR",
+      "http_code": 0,
+      "reason": "URLError: <urlopen error [Errno 54] Connection reset by peer>",
+      "label": "JIANGSU_tjj"
+    },
+    {
+      "url": "https://stats.js.gov.cn/",
+      "verdict": "ERR",
+      "http_code": 0,
+      "reason": "URLError: <urlopen error [Errno 54] Connection reset by peer>",
+      "label": "JIANGSU_stats"
+    },
+    {
+      "url": "https://tjj.zj.gov.cn/tjgb/",
+      "verdict": "HTTP_404",
+      "http_code": 404,
+      "reason": "HTTP Error 404: Not Found",
+      "label": "ZHEJIANG_tjj"
+    },
+    {
+      "url": "https://stats.zj.gov.cn/",
+      "verdict": "ERR",
+      "http_code": 0,
+      "reason": "URLError: <urlopen error [Errno 54] Connection reset by peer>",
+      "label": "ZHEJIANG_stats"
+    }
+  ]
+}

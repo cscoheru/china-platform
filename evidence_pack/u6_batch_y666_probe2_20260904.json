@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-09-04",
+  "knife": "666",
+  "probe_methodology": "urllib + certifi SSL, 3 HTTP budget remaining",
+  "probes": [
+    {
+      "url": "https://stats.gd.gov.cn/tjgb/",
+      "verdict": "REACHABLE",
+      "http_code": 200,
+      "content_length": 24248,
+      "content_type": "text/html; charset=utf-8",
+      "label": "GUANGDONG_stats_tjgb"
+    },
+    {
+      "url": "https://www.tjj.gd.gov.cn/",
+      "verdict": "ERR",
+      "http_code": 0,
+      "reason": "URLError: <urlopen error [Errno 54] Connection reset by peer>",
+      "label": "GUANGDONG_www_tjj"
+    },
+    {
+      "url": "https://tjj.zj.gov.cn/col/col1229316002/",
+      "verdict": "HTTP_404",
+      "http_code": 404,
+      "reason": "HTTP Error 404: Not Found",
+      "label": "ZHEJIANG_stats_root"
+    }
+  ],
+  "total_http_used_so_far": 9
+}
