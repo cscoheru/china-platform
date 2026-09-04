@@ -1,0 +1,306 @@
+{
+  "summary": {
+    "knife": "665",
+    "sub_knife": "665d",
+    "year": 2024,
+    "total_in_cat_index": 28,
+    "exclusions": 0,
+    "missing_3_provinces": [
+      "GUIZHOU",
+      "HAINAN",
+      "LIAONING"
+    ],
+    "fetched_count": 27,
+    "cache_hit_count": 0,
+    "err_count": 1,
+    "http_404_count": 0,
+    "http_used": 28,
+    "fetched_at": "2026-09-04"
+  },
+  "cells": [
+    {
+      "province_en": "anhui",
+      "province_code": "ANHUI",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57296.html",
+      "numeric_id": "57296",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 55188,
+      "sha256": "1e6279c8a1a02b951345e79ea783b13ea6a7d74121c86992d0828bda9cb752a8"
+    },
+    {
+      "province_en": "beijing",
+      "province_code": "BEIJING",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57258.html",
+      "numeric_id": "57258",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 65017,
+      "sha256": "bac6101cdf9d4666624ed1b8441ec6ba42122d4c8fbcc2e7ddf4308e040a26cc"
+    },
+    {
+      "province_en": "chongqing",
+      "province_code": "CHONGQING",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57604.html",
+      "numeric_id": "57604",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 76582,
+      "sha256": "749a35ec3ee6ba28de0d083ff96e659c0ca316547491a0401bc6af30f86ede97"
+    },
+    {
+      "province_en": "fujian",
+      "province_code": "FUJIAN",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57209.html",
+      "numeric_id": "57209",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 67392,
+      "sha256": "1054d74179a0b366f4adbfbbc8b220eacdd7898bc4690ff566ef0c6795a6dcae"
+    },
+    {
+      "province_en": "gansu",
+      "province_code": "GANSU",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57196.html",
+      "numeric_id": "57196",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 50562,
+      "sha256": "7659a2e72d2aec0c461bfd9a346c37d22d6285c9bc9dc2333e7c93a01e2859d3"
+    },
+    {
+      "province_en": "guangdong",
+      "province_code": "GUANGDONG",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57657.html",
+      "numeric_id": "57657",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 62901,
+      "sha256": "edcede9e97e495711ebbe127d675cfcab1c8dade5d9f213e8bd43b49fdca6717"
+    },
+    {
+      "province_en": "guangxi",
+      "province_code": "GUANGXI",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58355.html",
+      "numeric_id": "58355",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 103121,
+      "sha256": "5c875526b7e5e61f52d68aafa4fc138ba9057eaf079bf04e0c2f00bdc70c6117"
+    },
+    {
+      "province_en": "hebei",
+      "province_code": "HEBEI",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/59037.html",
+      "numeric_id": "59037",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 70158,
+      "sha256": "ad85d070a4a8927858ebc5770853fb74154cd7dd8b6270c9c222e0abbdfbffda"
+    },
+    {
+      "province_en": "heilongjiang",
+      "province_code": "HEILONGJIANG",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/59289.html",
+      "numeric_id": "59289",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 63132,
+      "sha256": "1eca619db65e7d27344fa873d5ef0b2c1cebc471d7769c02b2d900936c8f9e5a"
+    },
+    {
+      "province_en": "henan",
+      "province_code": "HENAN",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58132.html",
+      "numeric_id": "58132",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 52675,
+      "sha256": "618da099b56a86436575d0f785719c748a06681bd99fdff82de9b52ec24872e0"
+    },
+    {
+      "province_en": "hubei",
+      "province_code": "HUBEI",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57472.html",
+      "numeric_id": "57472",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 47024,
+      "sha256": "4c70e3cfa4cfbfd535dc1f93800f5e6e6ede7c1af7be4b82ff1b1453d298ab41"
+    },
+    {
+      "province_en": "hunan",
+      "province_code": "HUNAN",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57486.html",
+      "numeric_id": "57486",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 58624,
+      "sha256": "96837acea866e1216a210376c84431e33493f726e74407f6b93fc02e893fcefe"
+    },
+    {
+      "province_en": "jiangsu",
+      "province_code": "JIANGSU",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57215.html",
+      "numeric_id": "57215",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 55115,
+      "sha256": "40dfe52dba06d33a8a5257e037faf06df78763f6e46e57fbcb972c697c9fb8da"
+    },
+    {
+      "province_en": "jiangxi",
+      "province_code": "JIANGXI",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57884.html",
+      "numeric_id": "57884",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 72098,
+      "sha256": "2cd5efa3c1d78aa485e5dc5ecf99e87d9e95d20ffda0769e2c62107c5eb74010"
+    },
+    {
+      "province_en": "jilin",
+      "province_code": "JILIN",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57522.html",
+      "numeric_id": "57522",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 74423,
+      "sha256": "b22fe278e54d132917f5f2e6ffa51cdbeaf26861e004f42432780ae797717dd9"
+    },
+    {
+      "province_en": "neimenggu",
+      "province_code": "NEI_MENGGU",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58092.html",
+      "numeric_id": "58092",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 77655,
+      "sha256": "86e4cea378816d239405b2d4120e35736a8bcaf13b6ee3e9cc379d2718646f61"
+    },
+    {
+      "province_en": "ningxia",
+      "province_code": "NINGXIA",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/60392.html",
+      "numeric_id": "60392",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 58398,
+      "sha256": "8e4dffa31892167bf7b758d399548d2478f55a3f42684f170ca609e7a8477cf8"
+    },
+    {
+      "province_en": "qinghai",
+      "province_code": "QINGHAI",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57094.html",
+      "numeric_id": "57094",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 71490,
+      "sha256": "4c3169fee488f19b32590c5795df55a997d4c96457bdbdcfb40fe91e90e03a1a"
+    },
+    {
+      "province_en": "shaanxi",
+      "province_code": "SHAANXI",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57236.html",
+      "numeric_id": "57236",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 45588,
+      "sha256": "68c3956eae4904c5ffb623b134ccd4381759bfee288a238b0acd67d7fffe5ac3"
+    },
+    {
+      "province_en": "shandong",
+      "province_code": "SHANDONG",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57113.html",
+      "numeric_id": "57113",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 66226,
+      "sha256": "e52b07cd0561ddb9e0f3ec8ec9c488b504f8579c6c60acba98d756cf262966bd"
+    },
+    {
+      "province_en": "shanghai",
+      "province_code": "SHANGHAI",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57536.html",
+      "numeric_id": "57536",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 66446,
+      "sha256": "68d7f2c92f2e88405f3e4ead9e0340a73a2f4c6b05a243501f870979d9387774"
+    },
+    {
+      "province_en": "shanxi",
+      "province_code": "SHANXI",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58259.html",
+      "numeric_id": "58259",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 52662,
+      "sha256": "2b1981cdf0a98def75b01502d34fc646117b1687ac9fa92cfb467e620429450d"
+    },
+    {
+      "province_en": "sichuan",
+      "province_code": "SICHUAN",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57219.html",
+      "numeric_id": "57219",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 66966,
+      "sha256": "afce7e744248cc2df01f08a27f0cb4086a31e43faf30f618c9b0117bfbd484a7"
+    },
+    {
+      "province_en": "tianjin",
+      "province_code": "TIANJIN",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57426.html",
+      "numeric_id": "57426",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 65587,
+      "sha256": "16e308fe885f98a93676391044c5c485a04006171ca6bc41a416779fb33656c6"
+    },
+    {
+      "province_en": "xinjiang",
+      "province_code": "XINJIANG",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57625.html",
+      "numeric_id": "57625",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 66011,
+      "sha256": "90e9f2e4e5596eeb7b9442350f18c75a3b36f245d6bdb8bc07dffb0b511adfe7"
+    },
+    {
+      "province_en": "xizang",
+      "province_code": "XIZANG",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58383.html",
+      "numeric_id": "58383",
+      "http_code": 0,
+      "verdict": "ERR",
+      "content_length": 0,
+      "sha256": ""
+    },
+    {
+      "province_en": "yunnan",
+      "province_code": "YUNNAN",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/58560.html",
+      "numeric_id": "58560",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 67734,
+      "sha256": "48fd3efb24a85e9ed316ed6bd5eaa94d2290d16d904ccacaf84344ee72aa4634"
+    },
+    {
+      "province_en": "zhejiang",
+      "province_code": "ZHEJIANG",
+      "url": "https://tjgb.hongheiku.com/sjtjgb/57047.html",
+      "numeric_id": "57047",
+      "http_code": 200,
+      "verdict": "FETCHED",
+      "content_length": 54896,
+      "sha256": "268bf616f01f127c320d2aab6c1fa4c5ca5913976552be8d2bc0b0400eb154fb"
+    }
+  ],
+  "cat_index_url": "https://tjgb.hongheiku.com/category/sjtjgb",
+  "cat_index_2024_filter": 28,
+  "note_2024_scope": "665d 范围: 5 增量 only (gdp_percapita/fiscal_rev/fixed_asset/retail/trade). 663 baseline 已有 5 现 2024 hardcoded in real_2024_provinces. GUANGDONG 2024 cat URL id 57657 不同于 2023 (46971 PDF) / 2022 目录页; 需 fetch 后 parse 验证是否真公报 vs PDF 目录页.",
+  "note_missing_3_provinces": "GUIZHOU/HAINAN/LIAONING 2024 cat index 无 (沿用 660 红线, 永久 DATA_MISSING). 不在 665d fetch 范围, mart mart_province_timeseries 中这 3 省 × 2024 status=DATA_MISSING."
+}
