@@ -1,0 +1,205 @@
+province_code,province_name_cn,year,value,unit,indicator_key,indicator_label_cn,status,missing_reason,lineage_source_type,lineage_origin,lineage_ruling,lineage_is_demo
+ANHUI,安徽,2022,45045.0,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+ANHUI,安徽,2022,3.5,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+ANHUI,安徽,2022,3513.7,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+ANHUI,安徽,2022,18588.0,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+ANHUI,安徽,2022,22943.3,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+ANHUI,安徽,2022,73603.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+ANHUI,安徽,2022,3589.1,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+ANHUI,安徽,2022,6811.7,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+ANHUI,安徽,2022,21518.4,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+ANHUI,安徽,2022,7530.6,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35433.html,knife_665_y2022,false
+BEIJING,北京,2022,41610.9,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+BEIJING,北京,2022,0.7,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+BEIJING,北京,2022,111.5,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+BEIJING,北京,2022,6605.1,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+BEIJING,北京,2022,34894.3,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+BEIJING,北京,2022,190000.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+BEIJING,北京,2022,5714.4,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+BEIJING,北京,2022,13794.2,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+BEIJING,北京,2022,13794.2,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+BEIJING,北京,2022,36445.5,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35301.html,knife_665_y2022,false
+CHONGQING,重庆,2022,29129.03,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+CHONGQING,重庆,2022,2.6,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+CHONGQING,重庆,2022,2012.05,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+CHONGQING,重庆,2022,11693.86,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+CHONGQING,重庆,2022,15423.12,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+CHONGQING,重庆,2022,90663.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+CHONGQING,重庆,2022,2103.4,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+CHONGQING,重庆,2022,22352.42,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+CHONGQING,重庆,2022,13926.08,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+CHONGQING,重庆,2022,8158.35,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35269.html,knife_665_y2022,false
+FUJIAN,福建,2022,53109.85,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+FUJIAN,福建,2022,4.7,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+FUJIAN,福建,2022,3076.2,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+FUJIAN,福建,2022,25078.2,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+FUJIAN,福建,2022,24955.45,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+FUJIAN,福建,2022,126829.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+FUJIAN,福建,2022,3339.06,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+FUJIAN,福建,2022,20513.89,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+FUJIAN,福建,2022,21050.12,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+FUJIAN,福建,2022,19828.55,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35073.html,knife_665_y2022,false
+GUANGXI,广西,2022,26300.87,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+GUANGXI,广西,2022,2.9,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+GUANGXI,广西,2022,4269.81,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+GUANGXI,广西,2022,8938.57,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+GUANGXI,广西,2022,13092.49,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+GUANGXI,广西,2022,52164.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+GUANGXI,广西,2022,1687.72,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+GUANGXI,广西,2022,2307.38,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+GUANGXI,广西,2022,8539.09,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+GUANGXI,广西,2022,6603.53,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35377.html,knife_665_y2022,false
+HAINAN,海南,2022,6818.22,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HAINAN,海南,2022,0.2,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HAINAN,海南,2022,1417.79,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HAINAN,海南,2022,1310.94,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HAINAN,海南,2022,4089.49,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HAINAN,海南,2022,66602.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HAINAN,海南,2022,832.42,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HAINAN,海南,2022,1158.37,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HAINAN,海南,2022,2268.35,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HAINAN,海南,2022,2009.47,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34829.html,knife_665_y2022,false
+HEBEI,河北,2022,3.8,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34861.html,knife_665_y2022,false
+HEBEI,河北,2022,4410.3,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34861.html,knife_665_y2022,false
+HEBEI,河北,2022,17050.1,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34861.html,knife_665_y2022,false
+HEBEI,河北,2022,20910.0,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34861.html,knife_665_y2022,false
+HEBEI,河北,2022,56995.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34861.html,knife_665_y2022,false
+HEBEI,河北,2022,4084.0,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34861.html,knife_665_y2022,false
+HEBEI,河北,2022,1968.3,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34861.html,knife_665_y2022,false
+HENAN,河南,2022,61345.05,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HENAN,河南,2022,3.1,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HENAN,河南,2022,5817.78,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HENAN,河南,2022,25465.04,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HENAN,河南,2022,30062.23,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HENAN,河南,2022,62106.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HENAN,河南,2022,4261.64,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HENAN,河南,2022,6793.36,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HENAN,河南,2022,24407.41,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HENAN,河南,2022,8524.1,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35348.html,knife_665_y2022,false
+HUBEI,湖北,2022,53734.92,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+HUBEI,湖北,2022,4.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+HUBEI,湖北,2022,4986.72,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+HUBEI,湖北,2022,21240.61,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+HUBEI,湖北,2022,27507.59,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+HUBEI,湖北,2022,92059.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+HUBEI,湖北,2022,3280.73,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+HUBEI,湖北,2022,5413.25,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+HUBEI,湖北,2022,22164.8,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+HUBEI,湖北,2022,6170.8,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35242.html,knife_665_y2022,false
+JIANGSU,江苏,2022,122875.6,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JIANGSU,江苏,2022,2.8,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JIANGSU,江苏,2022,4959.4,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JIANGSU,江苏,2022,55888.7,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JIANGSU,江苏,2022,62027.5,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JIANGSU,江苏,2022,144390.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JIANGSU,江苏,2022,9258.9,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JIANGSU,江苏,2022,42752.1,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JIANGSU,江苏,2022,42752.1,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JIANGSU,江苏,2022,54454.9,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35036.html,knife_665_y2022,false
+JILIN,吉林,2022,13070.24,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35559.html,knife_665_y2022,false
+JILIN,吉林,2022,4.0,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35559.html,knife_665_y2022,false
+JILIN,吉林,2022,1689.1,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35559.html,knife_665_y2022,false
+JILIN,吉林,2022,4628.3,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35559.html,knife_665_y2022,false
+JILIN,吉林,2022,6752.84,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35559.html,knife_665_y2022,false
+JILIN,吉林,2022,851.0,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35559.html,knife_665_y2022,false
+JILIN,吉林,2022,3807.72,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35559.html,knife_665_y2022,false
+JILIN,吉林,2022,1558.54,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35559.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,23159.0,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,4.2,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,2654.0,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,11242.0,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,9263.0,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,96474.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,2824.4,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,978.3,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,4971.4,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+NEI_MENGGU,内蒙古,2022,1523.6,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35106.html,knife_665_y2022,false
+QINGHAI,青海,2022,3610.07,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+QINGHAI,青海,2022,2.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+QINGHAI,青海,2022,380.18,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+QINGHAI,青海,2022,1585.69,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+QINGHAI,青海,2022,1644.2,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+QINGHAI,青海,2022,60724.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+QINGHAI,青海,2022,329.1,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+QINGHAI,青海,2022,842.08,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+QINGHAI,青海,2022,842.08,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+QINGHAI,青海,2022,43.0,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34947.html,knife_665_y2022,false
+SHAANXI,陕西,2022,32772.68,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35911.html,knife_665_y2022,false
+SHAANXI,陕西,2022,4.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35911.html,knife_665_y2022,false
+SHAANXI,陕西,2022,2575.34,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35911.html,knife_665_y2022,false
+SHAANXI,陕西,2022,15933.11,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35911.html,knife_665_y2022,false
+SHAANXI,陕西,2022,14264.23,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35911.html,knife_665_y2022,false
+SHAANXI,陕西,2022,82864.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35911.html,knife_665_y2022,false
+SHAANXI,陕西,2022,4254.79,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35911.html,knife_665_y2022,false
+SHAANXI,陕西,2022,10401.61,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35911.html,knife_665_y2022,false
+SHAANXI,陕西,2022,4835.34,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35911.html,knife_665_y2022,false
+SHANDONG,山东,2022,87435.1,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34971.html,knife_665_y2022,false
+SHANDONG,山东,2022,3.9,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34971.html,knife_665_y2022,false
+SHANDONG,山东,2022,6298.6,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34971.html,knife_665_y2022,false
+SHANDONG,山东,2022,35014.2,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34971.html,knife_665_y2022,false
+SHANDONG,山东,2022,46122.3,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34971.html,knife_665_y2022,false
+SHANDONG,山东,2022,7104.0,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34971.html,knife_665_y2022,false
+SHANDONG,山东,2022,9225.9,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34971.html,knife_665_y2022,false
+SHANDONG,山东,2022,33236.2,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34971.html,knife_665_y2022,false
+SHANDONG,山东,2022,5936.9,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/34971.html,knife_665_y2022,false
+SHANXI,山西,2022,25642.59,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35324.html,knife_665_y2022,false
+SHANXI,山西,2022,4.4,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35324.html,knife_665_y2022,false
+SHANXI,山西,2022,1340.4,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35324.html,knife_665_y2022,false
+SHANXI,山西,2022,13840.85,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35324.html,knife_665_y2022,false
+SHANXI,山西,2022,10461.34,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35324.html,knife_665_y2022,false
+SHANXI,山西,2022,73675.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35324.html,knife_665_y2022,false
+SHANXI,山西,2022,1764.2,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35324.html,knife_665_y2022,false
+SHANXI,山西,2022,7562.7,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35324.html,knife_665_y2022,false
+SHANXI,山西,2022,1845.6,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35324.html,knife_665_y2022,false
+SICHUAN,四川,2022,56749.8,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+SICHUAN,四川,2022,2.9,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+SICHUAN,四川,2022,5964.3,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+SICHUAN,四川,2022,21157.1,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+SICHUAN,四川,2022,29628.4,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+SICHUAN,四川,2022,67777.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+SICHUAN,四川,2022,4882.2,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+SICHUAN,四川,2022,24104.6,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+SICHUAN,四川,2022,24104.6,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+SICHUAN,四川,2022,10076.7,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35297.html,knife_665_y2022,false
+TIANJIN,天津,2022,16311.34,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35254.html,knife_665_y2022,false
+TIANJIN,天津,2022,1.0,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35254.html,knife_665_y2022,false
+TIANJIN,天津,2022,273.15,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35254.html,knife_665_y2022,false
+TIANJIN,天津,2022,6038.93,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35254.html,knife_665_y2022,false
+TIANJIN,天津,2022,9999.26,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35254.html,knife_665_y2022,false
+TIANJIN,天津,2022,119235.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35254.html,knife_665_y2022,false
+TIANJIN,天津,2022,1846.55,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35254.html,knife_665_y2022,false
+TIANJIN,天津,2022,10.0,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35254.html,knife_665_y2022,false
+TIANJIN,天津,2022,8448.52,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35254.html,knife_665_y2022,false
+XINJIANG,新疆,2022,17741.34,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35463.html,knife_665_y2022,false
+XINJIANG,新疆,2022,3.2,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35463.html,knife_665_y2022,false
+XINJIANG,新疆,2022,2509.27,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35463.html,knife_665_y2022,false
+XINJIANG,新疆,2022,7271.08,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35463.html,knife_665_y2022,false
+XINJIANG,新疆,2022,7960.99,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35463.html,knife_665_y2022,false
+XINJIANG,新疆,2022,68552.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35463.html,knife_665_y2022,false
+XINJIANG,新疆,2022,1889.17,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35463.html,knife_665_y2022,false
+XINJIANG,新疆,2022,1158.86,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35463.html,knife_665_y2022,false
+XINJIANG,新疆,2022,3240.48,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35463.html,knife_665_y2022,false
+XIZANG,西藏,2022,2132.64,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+XIZANG,西藏,2022,1.1,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+XIZANG,西藏,2022,180.16,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+XIZANG,西藏,2022,804.67,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+XIZANG,西藏,2022,1147.81,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+XIZANG,西藏,2022,58438.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+XIZANG,西藏,2022,179.63,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+XIZANG,西藏,2022,60.68,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+XIZANG,西藏,2022,726.52,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+XIZANG,西藏,2022,46.01,亿元,trade,进出口总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/36952.html,knife_665_y2022,false
+YUNNAN,云南,2022,28954.2,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35442.html,knife_665_y2022,false
+YUNNAN,云南,2022,4.3,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35442.html,knife_665_y2022,false
+YUNNAN,云南,2022,4012.18,亿元,primary_gdp,第一产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35442.html,knife_665_y2022,false
+YUNNAN,云南,2022,10471.2,亿元,secondary_gdp,第二产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35442.html,knife_665_y2022,false
+YUNNAN,云南,2022,14470.82,亿元,tertiary_gdp,第三产业增加值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35442.html,knife_665_y2022,false
+YUNNAN,云南,2022,61716.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35442.html,knife_665_y2022,false
+YUNNAN,云南,2022,3152.02,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35442.html,knife_665_y2022,false
+YUNNAN,云南,2022,10838.84,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35442.html,knife_665_y2022,false
+ZHEJIANG,浙江,2022,77715.0,亿元,gdp_total,地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35126.html,knife_665_y2022,false
+ZHEJIANG,浙江,2022,3.1,%,gdp_growth,GDP 增速,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35126.html,knife_665_y2022,false
+ZHEJIANG,浙江,2022,118496.0,元,gdp_percapita,人均地区生产总值,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35126.html,knife_665_y2022,false
+ZHEJIANG,浙江,2022,8039.0,亿元,fiscal_rev,一般公共预算收入,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35126.html,knife_665_y2022,false
+ZHEJIANG,浙江,2022,21900.0,亿元,fixed_asset,固定资产投资,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35126.html,knife_665_y2022,false
+ZHEJIANG,浙江,2022,30467.0,亿元,retail,社会消费品零售总额,,,hongheiku_tjgb,https://tjgb.hongheiku.com/sjtjgb/35126.html,knife_665_y2022,false
