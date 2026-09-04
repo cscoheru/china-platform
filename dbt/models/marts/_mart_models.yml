@@ -105,6 +105,129 @@ models:
           - accepted_values:
               values: ['false']
 
+  - name: mart_city_timeseries
+    description: |
+      P2 mart — China platform city timeseries (knife 669 program).
+      Per docs/87 §3.2 + 新增红线-7: mart schema 保持 province/city 分离 (不合并),
+      4 直辖市 (北京/上海/天津/重庆) 禁在 city 维度重复 (已在 province mart)。
+
+      669a-2020 初始 state (zero-harvest knife):
+        - 4 priority city (深圳市/广州市/杭州市/南京市)
+        - 7 year × 10 indicator × 4 city = 280 rows
+        - 实证 hongheiku 城市维度 2020 缺文 (cat index 仅 2021-2025)
+        - 所有 280 cells = DATA_MISSING, 验证 zero-handling 路径 (不补零/不手填)
+        - lineage_ruling = 'K669a-2020-2026-09-04'
+
+      669a 后续 sub-knives (5 把: 2021-2025):
+        - 每刀 ADD 4 city × 10 indicator × 1 year = 40 real cells (from hongheiku 城市 cat)
+        - 累计到 669a-2025 完成: 4 city × 10 indicator × 7 year = 280 cells
+          (含 4 × 10 × 2 = 80 DATA_MISSING for 2020 + 2026)
+
+      后续 669b-j 批次 (60 sub-knives total per Option A restructure):
+        - 8 batches × 6 years × ~32 city = 48 sub-knives
+        - last batch 33 city × 6 years = 6 sub-knives
+        - 每 sub-knife 独立 user_ruling (per docs/87 §6)
+        - 每 sub-knife ≤ 32 HTTP budget
+
+    columns:
+      - name: city_code
+        description: |
+          城市代码. 命名规范: {PROVINCE_CODE}_{CITY_SLUG} (大写英文 + 下划线).
+          e.g. GUANGDONG_SHENZHEN / GUANGDONG_GUANGZHOU / ZHEJIANG_HANGZHOU / JIANGSU_NANJING
+          (4 直辖市 BEIJING/SHANGHAI/TIANJIN/CHONGQING 禁重复, 已在 province mart)
+        tests:
+          - not_null
+      - name: city_name
+        description: 城市中文名 (e.g. 深圳市)
+        tests:
+          - not_null
+      - name: province_code
+        description: 所属省代码 (e.g. GUANGDONG, ZHEJIANG, JIANGSU) — link to mart_province_timeseries.province_code
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - GUANGDONG
+                - ZHEJIANG
+                - JIANGSU
+                # 后续 sub-knives (669b+) 将扩展更多省
+      - name: indicator_key
+        description: |
+          指标 key (mirror mart_province_timeseries). 10 个: 5 现 + 5 增量
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - gdp_total
+                - gdp_growth
+                - primary_gdp
+                - secondary_gdp
+                - tertiary_gdp
+                - gdp_percapita
+                - fiscal_rev
+                - fixed_asset
+                - retail
+                - trade
+      - name: indicator_label
+        description: 指标中文标签
+        tests:
+          - not_null
+      - name: unit
+        description: 单位 (亿元/%/元)
+        tests:
+          - not_null
+      - name: year
+        description: 年份 (城市维度 2020-2026)
+        tests:
+          - not_null
+          - accepted_values:
+              values: [2020, 2021, 2022, 2023, 2024, 2025, 2026]
+      - name: value
+        description: |
+          指标值. NULL when status='DATA_MISSING' (禁补零 per 新增红线-1/3).
+          669a-2020 全部 NULL (zero-harvest knife).
+      - name: status
+        description: |
+          'DATA_MISSING' for cells per 新增红线-1 (2001-2019) + 新增红线-2 (2026)
+          + 新增红线-3 (hongheiku 城市 2020 缺文) + pending harvest;
+          NULL for real cells (669a-2020 全部 DATA_MISSING, 后续 sub-knives 才有 real cells).
+        tests:
+          - accepted_values:
+              values: ['DATA_MISSING', null]
+      - name: missing_reason
+        description: |
+          '新增红线-1' / '新增红线-2' / 'hongheiku 城市维度 2020 缺文' /
+          'knife 669a-2021+ 待 harvest' / 具体原因 (不编).
+          NULL for real cells.
+      - name: lineage_source_type
+        description: |
+          数据源类型. OFFICIAL_INTAKED (city 统计局; 未启用), HONGHEIKU_TRANSLOAD (城市 cat),
+          DATA_MISSING (永久缺/未采集).
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - OFFICIAL_INTAKED
+                - HONGHEIKU_TRANSLOAD
+                - DATA_MISSING
+                - unknown
+      - name: lineage_origin
+        description: 原始来源 domain/portal (tjgb.hongheiku / none / unknown)
+        tests:
+          - not_null
+      - name: lineage_ruling
+        description: 刀号 ruling (per docs/87 §6 user_ruling_X 单独签署)
+        tests:
+          - not_null
+      - name: lineage_is_demo
+        description: |
+          是否演示数据: 'false' for all real cells (per mart_city_evidence_chain 模式).
+          demo 数据禁入 mart, 此列恒为 'false'.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['false']
+
   - name: mart_province_gdp_2024
     description: |
       [DEPRECATED P1] — Knife 659 mart flip 2024 单年 5 指标 × 31 省 view.
