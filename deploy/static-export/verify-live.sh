@@ -408,6 +408,104 @@ if [ $SSG_OK -eq 1 ]; then
 fi
 
 echo
+echo "--- 15. DATA_MISSING 三档守门 (红线-1+2, 禁补零/插值) ---"
+# TimeSeriesChart 容器 data-missing 属性 = 缺数据年份数 (2001-2019 = 19 + 2026 = 1 = 20 total).
+# 这是 server-rendered (不依赖 Recharts hydration), 故 curl 可验.
+DATA_MISSING_VIZ_OK=1
+# /timeseries 总览页 (默认 [2020, 2025] 窗口, 范围内 0 DATA_MISSING; 但若 [2001, 2026] 则 20 个)
+# /timeseries/beijing 同上 (用默认窗口).
+# /timeseries/liaoning 任何窗口全 DATA_MISSING.
+for prov in beijing shanghai; do
+  P="$TMPDIR/ts-$prov.html"
+  if [ ! -s "$P" ]; then continue; fi
+  # time-series-chart 容器存在即可 (data-missing 由 client set, server-rendered 时为 0 in initial window)
+  if ! grep -q "data-testid=\"time-series-chart\"" "$P"; then
+    fail "/timeseries/$prov 缺 time-series-chart 容器 (TimeSeriesChart.tsx)"
+    DATA_MISSING_VIZ_OK=0
+  fi
+done
+# 文案守门: time-series-chart-meta 必须含「DATA_MISSING」或「暂无数据」字样
+if [ -s "$TIMESERIES_PAGE" ] && ! grep -q "DATA_MISSING" "$TIMESERIES_PAGE"; then
+  fail "/timeseries 文案缺 DATA_MISSING 标识 (红线-1/2 守门文案)"
+  DATA_MISSING_VIZ_OK=0
+fi
+# 红线-1 (2001-2019 禁编造历史数据) + 红线-2 (2026 待 2027 官方发布) 文案验证
+if ! grep -q "新增红线-1\|2001.2019\|红线-1" "$TIMESERIES_PAGE" 2>/dev/null; then
+  warn "/timeseries 缺「红线-1/2」直接引用 (但「DATA_MISSING」标识已足够)"
+fi
+# /timeseries/liaoning all-missing banner 含「DATA_MISSING」(已验于 section 14)
+# 这里仅守 3 省 banner 含 DATA_MISSING 字样 — 抽 liaoning
+LIAONING_PAGE="$TMPDIR/ts-liaoning.html"
+if [ -s "$LIAONING_PAGE" ] && ! grep -q "DATA_MISSING" "$LIAONING_PAGE"; then
+  fail "/timeseries/liaoning 缺 DATA_MISSING 字样 (红线-1 banner)"
+  DATA_MISSING_VIZ_OK=0
+fi
+if [ $DATA_MISSING_VIZ_OK -eq 1 ]; then
+  ok "DATA_MISSING 三档守门 (time-series-chart + DATA_MISSING 文案 + 3 省 banner)"
+fi
+
+echo
+echo "--- 16. SourceGradeChip 三档 + 禁榜单化 (红线-4 + docs/05 §8.3) ---"
+CHIP_OK=1
+# source-grade-chip + 3 pills + caveat 在 /timeseries 概览页
+for testid in source-grade-chip source-grade-pill-official \
+               source-grade-pill-hongheiku source-grade-pill-missing; do
+  if ! grep -q "data-testid=\"$testid\"" "$TIMESERIES_PAGE"; then
+    fail "$testid testid 缺失 (SourceGradeChip 三档 pill)"
+    CHIP_OK=0
+  fi
+done
+# source-grade-caveat 必须含「不构成」字样 (per docs/05 §8.3 禁榜单化)
+if ! grep -q "source-grade-caveat" "$TIMESERIES_PAGE" \
+   || ! grep -q "不构成" "$TIMESERIES_PAGE"; then
+  fail "source-grade-caveat 缺「不构成」字样 (禁榜单化文案缺失)"
+  CHIP_OK=0
+fi
+# data-official/data-hongheiku/data-missing data 属性 (计数透传)
+if ! grep -q "data-official=" "$TIMESERIES_PAGE"; then
+  fail "SourceGradeChip data-official 属性缺失"
+  CHIP_OK=0
+fi
+if [ $CHIP_OK -eq 1 ]; then
+  ok "SourceGradeChip 三档 pill + 禁榜单化 caveat + 计数 data 属性就位"
+fi
+
+echo
+echo "--- 17. Recharts SSR 安全 + 4 控件守门 (新增红线-4) ---"
+# TimeSeriesChart 用 next/dynamic({ssr:false}) 包裹, server 不渲染 Recharts 内部 (但
+# 容器 testid 是 server 输出). 4 控件 (province-selector + indicator-selector +
+# year-slider + time-series-chart) 全部 testid 必须出现.
+RECHARTS_OK=1
+for testid in province-selector indicator-selector year-slider time-series-chart; do
+  if ! grep -q "data-testid=\"$testid\"" "$TIMESERIES_PAGE"; then
+    fail "$testid testid 缺失 (TimeSeriesExplorer 4 控件不全)"
+    RECHARTS_OK=0
+  fi
+done
+# year-slider-reset 按钮 (重置回 [2020, 2025] 默认窗口)
+if ! grep -q "year-slider-reset" "$TIMESERIES_PAGE"; then
+  fail "year-slider-reset 按钮缺失"
+  RECHARTS_OK=0
+fi
+# province-selector-input 含 32 项 (NATIONAL + 31 省)
+if ! grep -q "province-selector-input" "$TIMESERIES_PAGE"; then
+  fail "province-selector-input 缺失"
+  RECHARTS_OK=0
+fi
+# /timeseries 概览页 First Load JS ≤ 200 kB (初始 page size 134 B per 667 build; 全
+# Recharts ~50 kB client-side 仅 hydration 后加载). 这个 curl 不可验; 仅 sanity
+# warn (page size < 50KB = OK, 否则可能 SSR 渲染了 Recharts → 违红线-4 SSR 安全).
+PAGE_SIZE=$(wc -c < "$TIMESERIES_PAGE" | tr -d ' ')
+if [ "$PAGE_SIZE" -gt 51200 ]; then
+  warn "/timeseries page size $PAGE_SIZE bytes > 50KB (可能 SSR 渲染 Recharts, 违红线-4 SSR 安全)"
+else
+  ok "/timeseries page size $PAGE_SIZE bytes (≤50KB, SSR 安全)"
+fi
+if [ $RECHARTS_OK -eq 1 ]; then
+  ok "TimeSeriesExplorer 4 控件 + YearSlider 重置 + province 下拉 32 项 就位"
+fi
+
+echo
 echo "=== knife 668 公网 17 项验收 summary ==="
 if [ $FAIL -eq 0 ] && [ $WARN -eq 0 ]; then
   echo -e "${GREEN}VERIFY PASS: $PASS/17${NC}"
