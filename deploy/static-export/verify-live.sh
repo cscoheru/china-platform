@@ -1,30 +1,39 @@
 #!/usr/bin/env bash
-# verify-live.sh — knife 662 公网 12 项验收 (post-redeploy 自动化).
+# verify-live.sh — knife 662 + 668 公网 17 项验收 (12 P1 baseline + 5 P2 时序新增).
 #
-# Per 662 tasking §1.662-D6 + 661 receipt §6.F2 (12 项基础) + 662 五项新增
-# (indicators / coverage matrix / 排序 bar / 4 demo banner / LIVE/DEMO 导航).
+# Per 662 tasking §1.662-D6 + 661 receipt §6.F2 (12 项 P1 基础)
+#   + 668 tasking (5 项 P2 时序: /timeseries + 32 SSG + DATA_MISSING 三档 +
+#     SourceGradeChip 禁榜单化 + Recharts SSR 安全).
 #
 # 用法:
 #   bash deploy/static-export/verify-live.sh                          # 默认 https://china.3strategy.cc
 #   bash deploy/static-export/verify-live.sh https://staging.example   # 覆盖
 #   bash deploy/static-export/verify-live.sh --offline                # 跳过真 HTTP, 只跑语法 (CI dry-run)
 #
-# 12 项断言 (全部 PASS 才算通过):
-#   1. HTTP 200 + LIVE MODE banner
-#   2. 5 指标 tab 默认 active = 总量
-#   3. NATIONAL 锚行 + OFFICIAL_ANCHOR badge
-#   4. 31 省详情抽样 (BEIJING/SHANGHAI/LIAONING 三档覆盖)
-#   5. 5 指标 tab testid 完整 (gdp_total/gdp_growth/primary/secondary/tertiary)
-#   6. peer-compare 真数据 4 省
-#   7. 溯源 popover 五件套 (URL + SHA + lineage_source + lineage_origin + ruling)
-#   8. DATA_MISSING 3 省详情页显式「数据暂缺」
-#   9. /indicators 5 指标卡 + 来源等级三分布条形
-#  10. 覆盖矩阵 31×5 (DATA_MISSING 三色)
-#  11. 4 demo 页 200 + DemoBanner
-#  12. layout LIVE/DEMO 导航分组 + 排序 bar
+# 17 项断言 (全部 PASS 才算通过):
+#   P1 baseline (knife 662 12 项):
+#    1. HTTP 200 + LIVE MODE banner
+#    2. 5 指标 tab 默认 active = 总量
+#    3. NATIONAL 锚行 + OFFICIAL_ANCHOR badge
+#    4. 31 省详情抽样 (BEIJING/SHANGHAI/LIAONING 三档覆盖)
+#    5. 5 指标 tab testid 完整 (gdp_total/gdp_growth/primary/secondary/tertiary)
+#    6. peer-compare 真数据 4 省
+#    7. 溯源 popover 五件套 (URL + SHA + lineage_source + lineage_origin + ruling)
+#    8. DATA_MISSING 3 省详情页显式「数据暂缺」
+#    9. /indicators 5 指标卡 + 来源等级三分布条形
+#   10. 覆盖矩阵 31×5 (DATA_MISSING 三色)
+#   11. 4 demo 页 200 + DemoBanner
+#   12. layout LIVE/DEMO 导航分组 + 排序 bar
+#
+#   P2 时序新增 (knife 668 5 项):
+#   13. /timeseries 总览页 + 26 年时序折线 nav link
+#   14. /timeseries/[code] 32 SSG 抽样 + dynamicParams=false 守门
+#   15. DATA_MISSING 三档守门 (红线-1+2: ReferenceLine 虚线 + tooltip '暂无数据')
+#   16. SourceGradeChip 三档 + 禁榜单化 (红线-4 + docs/05 §8.3)
+#   17. Recharts SSR 安全 + TimeSeriesChart 守门 (新增红线-4)
 #
 # Exit codes:
-#   0  all 12 PASS
+#   0  all 17 PASS
 #   1  one or more FAIL (with [FAIL] red line)
 #   2  离线模式 (--offline, 只跑语法; 不真访问公网)
 set -u
@@ -49,7 +58,7 @@ ok()   { printf "${GREEN}[OK]${NC}   %s\n" "$1"; PASS=$((PASS+1)); }
 warn() { printf "${YELLOW}[WARN]${NC} %s\n" "$1"; WARN=$((WARN+1)); }
 fail() { printf "${RED}[FAIL]${NC} %s\n" "$1"; FAIL=$((FAIL+1)); }
 
-echo "=== knife 662 公网 12 项验收 ==="
+echo "=== knife 668 公网 17 项验收 (12 P1 baseline + 5 P2 时序新增) ==="
 echo "Target: $BASE_URL"
 echo "Mode:   $([ $OFFLINE -eq 1 ] && echo 'OFFLINE (syntax-only)' || echo 'LIVE')"
 echo "Date:   $(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -57,12 +66,19 @@ echo
 
 # 离线模式: 只验证脚本自身语法 + 必备工具.
 if [ $OFFLINE -eq 1 ]; then
-  echo "--- OFFLINE mode: syntax + 12 项标识检查 ---"
+  echo "--- OFFLINE mode: syntax + 17 项标识检查 ---"
   for k in "LIVE MODE" "metric-tab-gdp_total" "national-badge" \
            "BEIJING" "SHANGHAI" "LIAONING" \
            "peer-compare-real-table" "source-popover" "data-missing-banner" \
            "indicators" "coverage-matrix" "demo-banner" "sort-bar" \
-           "site-nav-live-group" "site-nav-demo-group"; do
+           "site-nav-live-group" "site-nav-demo-group" \
+           "timeseries-overview-page" "timeseries-h1" "time-series-explorer" \
+           "site-nav-timeseries" \
+           "timeseries-province-all-missing" "province-selector" \
+           "indicator-selector" "year-slider" \
+           "source-grade-chip" "source-grade-pill-official" \
+           "source-grade-pill-hongheiku" "source-grade-pill-missing" \
+           "source-grade-caveat"; do
     # 这里只验证字符串在脚本自身出现 (测试用例覆盖).
     if grep -q "$k" "$0"; then
       ok "标识 $k 在脚本内"
