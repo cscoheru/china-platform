@@ -39,6 +39,13 @@
 --   5 现 2024 已在 663 baseline hardcoded (real_2024_provinces), 665d 仅补 5 增量
 --   GUANGDONG 2024 cat URL id 57657 是真公报 (5/5 增量) vs 2022/2023 PDF 目录页 → 新增 5 cells
 --   累计 real cells 突破 ~983 = 861 + 122
+-- After 665e (year 2025 全量 harvest, 30 entries): +283 real cells (10 指标 ALL)
+--   2025 cat index 30 entries (vs 2024 28, vs 2023 31); 缺 1 省 LIAONING 沿用 660 红线
+--   GUIZHOU/HAINAN 2025 已发布 (2024 cat 缺文); GUANGDONG/SHAANXI/GUIZHOU 2025 走
+--   /xjtjgb/xj2020/{id}.html URL 格式 (不同于标准 /sjtjgb/,需双 URL 支持)
+--   30/30 PARSED; 5 现 2025 (gdp_total/gdp_growth/primary/secondary/tertiary) + 5 增量
+--   (gdp_percapita/fiscal_rev/fixed_asset/retail/trade) 全部 harvest 入库
+--   累计 real cells 突破 ~1266 = 983 + 283
 -- 668 verify-live.sh v2 expects ≥186 real cells per indicator (= 31 × 6 = 186 total rows).
 --
 -- Red lines:
@@ -211,10 +218,27 @@ real_data_2024_extra AS (
     FROM {{ ref('seed_hongheiku_timeseries_2024') }}
     WHERE value IS NOT NULL
 ),
+real_data_2025 AS (
+    -- knife 665e (year 2025 全量): 30 省 × 10 指标 ALL from seed_hongheiku_timeseries_2025
+    -- 2025 cat index 30 entries (vs 2024 28, +GUIZHOU/HAINAN 新发布; 缺 LIAONING 沿用 660 红线).
+    -- 30/30 PARSED; 5 现 + 5 增量 = 10 指标 ALL (2025 无 663 baseline, 需全 harvest vs 665d
+    -- 仅 5 增量). 3 个 2025 cat entries 走 /xjtjgb/xj2020/ URL path (GUIZHOU/GUANGDONG/SHAANXI),
+    -- fetch script _url_for() 双模式支持.
+    -- 10 指标 coverage: gdp_total 29 / gdp_growth 30 / primary_gdp 30 / secondary_gdp 30 /
+    -- tertiary_gdp 29 / gdp_percapita 26 / fiscal_rev 27 / fixed_asset 29 / retail 26 / trade 27
+    -- = 283 real cells (29+30+30+30+29+26+27+29+26+27).
+    -- GUANGDONG 2025 cat URL id 72064 (xjtjgb path) 是真公报; 与 2024 cat id 57657 (sjtjgb) 等价.
+    SELECT province_code, year, indicator_key, value,
+           lineage_source_type, lineage_origin,
+           lineage_ruling, lineage_is_demo
+    FROM {{ ref('seed_hongheiku_timeseries_2025') }}
+    WHERE value IS NOT NULL
+),
 real_data AS (
-    -- Combined harvest data across years (663 baseline 2024 + 665 2021 + 665b 2022 + future 665c-665e)
-    -- UNION 3 CTEs of identical column shape: (province_code, indicator_key, value, lineage_source_type, lineage_origin, year)
-    -- real_data_2024 has implicit year=2024 (constant added below)
+    -- Combined harvest data across years (663 baseline 2024 5 现 + 665 2021 + 665b 2022 + 665c 2023 + 665d 2024 5 增量 + 665e 2025 10 指标)
+    -- UNION 6 CTEs of identical column shape: (province_code, indicator_key, value, lineage_source_type, lineage_origin, year)
+    -- real_data_2024 (5 现) + real_data_2024_extra (5 增量) → 完整 10 指标 × 28 省 × 2024.
+    -- real_data_2025 (10 指标 ALL) → 完整 10 指标 × 30 省 × 2025 (vs 663 baseline hardcoded 2024 only).
     SELECT province_code, indicator_key, value,
            lineage_source_type, lineage_origin, 2024 AS year
     FROM real_data_2024
@@ -234,6 +258,10 @@ real_data AS (
     SELECT province_code, indicator_key, value,
            lineage_source_type, lineage_origin, year
     FROM real_data_2024_extra
+    UNION ALL
+    SELECT province_code, indicator_key, value,
+           lineage_source_type, lineage_origin, year
+    FROM real_data_2025
 ),
 missing_provinces AS (
     -- 3 省份历史年缺文 (沿用 P1 660 红线, 跨 26 年 × 10 指标 = 780 DATA_MISSING rows)
@@ -298,13 +326,13 @@ SELECT
             ELSE 'unknown'
         END
     ) AS lineage_origin,
-    'K665d-2026-09-04' AS lineage_ruling,
+    'K665e-2026-09-04' AS lineage_ruling,
     'false'           AS lineage_is_demo
 FROM cross_product cp
 LEFT JOIN real_data rd
     ON rd.province_code = cp.province_code
     AND rd.indicator_key = cp.indicator_key
     AND rd.year = cp.year
-    AND cp.year IN (2024, 2021, 2022, 2023)
+    AND cp.year IN (2024, 2021, 2022, 2023, 2025)
 LEFT JOIN missing_provinces mp
     ON mp.province_code = cp.province_code
