@@ -24,8 +24,11 @@ services:
     container_name: china-platform-pg
     restart: unless-stopped
     environment:
+      # newvps not on docker swarm — POSTGRES_PASSWORD_FILE (secrets) not viable.
+      # Use direct env var. Per docs/05 红线 8 禁硬编码密钥 — production must inject via
+      # `docker compose --env-file` or `ops runbook` outside this committed file.
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD_FILE: /run/secrets/pg_password   # secret mount (docker secret)
+      POSTGRES_PASSWORD: ${CHINA_PLATFORM_PG_PASSWORD:-postgres}
       POSTGRES_DB: cegr_test
     volumes:
       - china-platform-pg-data:/var/lib/postgresql/data
