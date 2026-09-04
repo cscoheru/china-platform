@@ -355,6 +355,59 @@ if [ $TIMESERIES_OK -eq 1 ]; then
 fi
 
 echo
+echo "--- 14. /timeseries/[code] 32 SSG 抽样 + dynamicParams=false 守门 (knife 667) ---"
+# 抽样 5: BEIJING/SHANGHAI 真实 + LIAONING/HAINAN/GUIZHOU all-missing banner.
+# 同时验证 dynamicParams=false → /timeseries/INVALID → 404.
+SSG_OK=1
+for slug in beijing shanghai; do
+  CODE=$(printf '%s' "$slug" | tr '[:lower:]' '[:upper:]')
+  P="$TMPDIR/ts-$slug.html"
+  fetch_body "$BASE_URL/timeseries/$slug" "$P" >/dev/null
+  if [ ! -s "$P" ]; then
+    fail "/timeseries/$slug 拉取失败"
+    SSG_OK=0
+  elif ! grep -q "data-testid=\"timeseries-province-page-$CODE\"" "$P"; then
+    fail "/timeseries/$slug 缺 timeseries-province-page-$CODE"
+    SSG_OK=0
+  elif ! grep -q "data-testid=\"timeseries-province-h1-$CODE\"" "$P"; then
+    fail "/timeseries/$slug 缺 timeseries-province-h1-$CODE"
+    SSG_OK=0
+  fi
+done
+# DATA_MISSING 3 省 → 必须含 all-missing banner (per 红线-1)
+for slug in liaoning hainan guizhou; do
+  CODE=$(printf '%s' "$slug" | tr '[:lower:]' '[:upper:]')
+  P="$TMPDIR/ts-$slug.html"
+  fetch_body "$BASE_URL/timeseries/$slug" "$P" >/dev/null
+  if [ ! -s "$P" ]; then
+    fail "/timeseries/$slug 拉取失败"
+    SSG_OK=0
+  elif ! grep -q "data-testid=\"timeseries-province-all-missing-$CODE\"" "$P"; then
+    fail "/timeseries/$slug (DATA_MISSING) 缺 all-missing banner (红线-1)"
+    SSG_OK=0
+  fi
+done
+# dynamicParams=false 守门: /timeseries/INVALID (不在 32 锁定清单) → HTTP 404
+INV_CODE=$(fetch "$BASE_URL/timeseries/invalid")
+if [ "$INV_CODE" = "404" ]; then
+  ok "/timeseries/invalid 守门 404 (dynamicParams=false 生效)"
+else
+  fail "/timeseries/invalid HTTP $INV_CODE (期望 404, dynamicParams=false 守门失败)"
+  SSG_OK=0
+fi
+# /timeseries/NATIONAL 必须 200 (锁定清单内)
+NATIONAL_CODE=$(fetch "$BASE_URL/timeseries/national")
+if [ "$NATIONAL_CODE" = "200" ]; then
+  ok "/timeseries/national 守门 200 (NATIONAL 锚行在锁定清单)"
+else
+  fail "/timeseries/national HTTP $NATIONAL_CODE (期望 200)"
+  SSG_OK=0
+fi
+if [ $SSG_OK -eq 1 ]; then
+  ok "32 SSG 抽样 5 省 (BEIJING/SHANGHAI real + 3 DATA_MISSING banner) + INVALID 404 守门"
+fi
+
+echo
 echo "=== knife 668 公网 17 项验收 summary ==="
 if [ $FAIL -eq 0 ] && [ $WARN -eq 0 ]; then
   echo -e "${GREEN}VERIFY PASS: $PASS/17${NC}"
