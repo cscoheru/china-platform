@@ -1,0 +1,41 @@
+city_code,indicator_key,year,value,unit,status,missing_reason,lineage_source_type,lineage_origin,lineage_ruling,lineage_is_demo
+GUANGDONG_SHENZHEN,gdp_total,2025,,亿元,DATA_MISSING,"knife 669a-2025 深圳市 gdp_total 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_SHENZHEN,gdp_growth,2025,,%,DATA_MISSING,"knife 669a-2025 深圳市 gdp_growth 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_SHENZHEN,primary_gdp,2025,,亿元,DATA_MISSING,"knife 669a-2025 深圳市 primary_gdp 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_SHENZHEN,secondary_gdp,2025,,亿元,DATA_MISSING,"knife 669a-2025 深圳市 secondary_gdp 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_SHENZHEN,tertiary_gdp,2025,,亿元,DATA_MISSING,"knife 669a-2025 深圳市 tertiary_gdp 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_SHENZHEN,gdp_percapita,2025,,元,DATA_MISSING,"knife 669a-2025 深圳市 gdp_percapita 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_SHENZHEN,fiscal_rev,2025,,亿元,DATA_MISSING,"knife 669a-2025 深圳市 fiscal_rev 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_SHENZHEN,fixed_asset,2025,,亿元,DATA_MISSING,"knife 669a-2025 深圳市 fixed_asset 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_SHENZHEN,retail,2025,,亿元,DATA_MISSING,"knife 669a-2025 深圳市 retail 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_SHENZHEN,trade,2025,,亿元,DATA_MISSING,"knife 669a-2025 深圳市 trade 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/深圳市 (no 2025 entry),K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,gdp_total,2025,32039.46,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,gdp_growth,2025,4.0,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,primary_gdp,2025,317.02,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,secondary_gdp,2025,7710.27,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,tertiary_gdp,2025,24012.17,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,gdp_percapita,2025,168279,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,fiscal_rev,2025,2184.82,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,fixed_asset,2025,,亿元,DATA_MISSING,knife 669a-2025 广州市 fixed_asset 公报仅发增速无绝对值 (守红线-3 不手填),DATA_MISSING,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,retail,2025,11032.38,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+GUANGDONG_GUANGZHOU,trade,2025,12407.24,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,gdp_total,2025,23011,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,gdp_growth,2025,5.2,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,primary_gdp,2025,383,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,secondary_gdp,2025,5631,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,tertiary_gdp,2025,16997,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,gdp_percapita,2025,181732,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,fiscal_rev,2025,2693,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,fixed_asset,2025,,亿元,DATA_MISSING,knife 669a-2025 杭州市 fixed_asset 公报仅发增速无绝对值 (守红线-3 不手填),DATA_MISSING,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,retail,2025,9499,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+ZHEJIANG_HANGZHOU,trade,2025,9072,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2025-2026-09-07,false
+JIANGSU_NANJING,gdp_total,2025,,亿元,DATA_MISSING,"knife 669a-2025 南京市 gdp_total 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
+JIANGSU_NANJING,gdp_growth,2025,,%,DATA_MISSING,"knife 669a-2025 南京市 gdp_growth 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
+JIANGSU_NANJING,primary_gdp,2025,,亿元,DATA_MISSING,"knife 669a-2025 南京市 primary_gdp 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
+JIANGSU_NANJING,secondary_gdp,2025,,亿元,DATA_MISSING,"knife 669a-2025 南京市 secondary_gdp 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
+JIANGSU_NANJING,tertiary_gdp,2025,,亿元,DATA_MISSING,"knife 669a-2025 南京市 tertiary_gdp 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
+JIANGSU_NANJING,gdp_percapita,2025,,元,DATA_MISSING,"knife 669a-2025 南京市 gdp_percapita 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
+JIANGSU_NANJING,fiscal_rev,2025,,亿元,DATA_MISSING,"knife 669a-2025 南京市 fiscal_rev 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
+JIANGSU_NANJING,fixed_asset,2025,,亿元,DATA_MISSING,"knife 669a-2025 南京市 fixed_asset 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
+JIANGSU_NANJING,retail,2025,,亿元,DATA_MISSING,"knife 669a-2025 南京市 retail 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
+JIANGSU_NANJING,trade,2025,,亿元,DATA_MISSING,"knife 669a-2025 南京市 trade 公报未发布/未收录 (hongheiku tag 页 + 站内搜索均无 2025 entry, 守红线-3 不手填)",DATA_MISSING,tjgb.hongheiku.com/djs/南京市 (no 2025 entry),K669a-2025-2026-09-07,false
