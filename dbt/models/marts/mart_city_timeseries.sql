@@ -1,4 +1,4 @@
--- Mart model: mart_city_timeseries (P2 / knife 669a-2020/2021/2022/2023/2024)
+-- Mart model: mart_city_timeseries (P2 / knife 669a-2020/2021/2022/2023/2024/2025)
 -- ============================================================================
 -- Cross product: 4 cities × 10 indicators × 7 years (2020-2026) = 280 rows.
 --
@@ -311,6 +311,45 @@ real_data_2024 AS (
         ('JIANGSU_NANJING', 'trade',         5459.2::numeric)
     ) AS t(city_code, indicator_key, value)
 ),
+-- 669a-2025 real_data (4 city × 10 indicator = 40 cells, 18 real + 22 DATA_MISSING)
+-- 来源: hongheiku /djs/{id}.html (广州 69954, 发布 2026-05-12 / 杭州 69708, 发布 2026-04-30)
+-- URL discovery: 6 HTTP total (2 tag fetches sz/nj + 2 bulletins gz/hz + 1 cat index + 1 search sz + 1 search nj)
+-- 2025 harvest 实测 (probe 实证):
+--   hongheiku 2025 entry AVAILABLE for GUANGZHOU + HANGZHOU
+--   hongheiku 2025 entry ABSENT for SHENZHEN + NANJING (tag 页只列 2021-2024, 站内搜索无结果)
+--   → SZ/NJ 2025 全部 10 cells DATA_MISSING (守红线-3 不手填, 公报未发布/未收录)
+-- 2025 公报表述变体 (empirical probe):
+--   GDP: 广州括号注「(初步核算数)」 → 沿用 2024 括号容错; 杭州脚注 [2] 23011亿元 → 沿用 s* 脚注容错
+--   人均: 全称「人均地区生产总值」+ 无缩写 (2025 公报口径规范化)
+--   固投: 仅发增速 (穗-6.7% / 杭占比) → DATA_MISSING (守红线-3 增速≠绝对值)
+real_data_2025 AS (
+    SELECT * FROM (VALUES
+        -- GUANGDONG_SHENZHEN (深圳 2025, 0/10 — hongheiku 无 2025 entry)
+        -- GUANGDONG_GUANGZHOU (广州 2025, 9/10 real cells — fixed_asset 仅发增速 -6.7%)
+        ('GUANGDONG_GUANGZHOU', 'gdp_total',     32039.46::numeric),
+        ('GUANGDONG_GUANGZHOU', 'gdp_growth',    4.0::numeric),
+        ('GUANGDONG_GUANGZHOU', 'primary_gdp',   317.02::numeric),
+        ('GUANGDONG_GUANGZHOU', 'secondary_gdp', 7710.27::numeric),
+        ('GUANGDONG_GUANGZHOU', 'tertiary_gdp',  24012.17::numeric),
+        ('GUANGDONG_GUANGZHOU', 'gdp_percapita', 168279::numeric),
+        ('GUANGDONG_GUANGZHOU', 'fiscal_rev',    2184.82::numeric),
+        -- ('GUANGDONG_GUANGZHOU', 'fixed_asset', NULL)  -- 公报仅发增速 -6.7% 无绝对值
+        ('GUANGDONG_GUANGZHOU', 'retail',        11032.38::numeric),
+        ('GUANGDONG_GUANGZHOU', 'trade',         12407.24::numeric),
+        -- ZHEJIANG_HANGZHOU (杭州 2025, 9/10 real cells — fixed_asset 仅发占比)
+        ('ZHEJIANG_HANGZHOU', 'gdp_total',     23011::numeric),  -- 脚注[2]容错采集
+        ('ZHEJIANG_HANGZHOU', 'gdp_growth',    5.2::numeric),
+        ('ZHEJIANG_HANGZHOU', 'primary_gdp',   383::numeric),
+        ('ZHEJIANG_HANGZHOU', 'secondary_gdp', 5631::numeric),
+        ('ZHEJIANG_HANGZHOU', 'tertiary_gdp',  16997::numeric),
+        ('ZHEJIANG_HANGZHOU', 'gdp_percapita', 181732::numeric),
+        ('ZHEJIANG_HANGZHOU', 'fiscal_rev',    2693::numeric),
+        -- ('ZHEJIANG_HANGZHOU', 'fixed_asset', NULL)  -- 公报仅发占比「民间投资占46.0%」, 无绝对值
+        ('ZHEJIANG_HANGZHOU', 'retail',        9499::numeric),
+        ('ZHEJIANG_HANGZHOU', 'trade',         9072::numeric)
+        -- JIANGSU_NANJING (南京 2025, 0/10 — hongheiku 无 2025 entry)
+    ) AS t(city_code, indicator_key, value)
+),
 -- 669a-2020 zero-harvest: 无 real_data CTE (hongheiku 城市 2020 缺文)
 -- 669a-2021+ sub-knives 将添加 real_data_2021/2022/2023/2024/2025 CTE
 missing_city_year AS (
@@ -326,7 +365,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -339,7 +378,9 @@ SELECT
         WHEN cp.year = 2023  AND rd3.value IS NULL     THEN 'DATA_MISSING'
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN NULL  -- real cell, status=NULL
         WHEN cp.year = 2024  AND rd4.value IS NULL     THEN 'DATA_MISSING'
-        ELSE 'DATA_MISSING'  -- 2025 待 669a-2025 sub-knife harvest
+        WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN NULL  -- real cell, status=NULL
+        WHEN cp.year = 2025  AND rd5.value IS NULL     THEN 'DATA_MISSING'
+        ELSE 'DATA_MISSING'  -- 2026 待 2027 官方发布
     END AS status,
     CASE
         WHEN cp.year < 2020  THEN '新增红线-1: 2001-2019 禁编造历史数据 (hongheiku 城市 probe 待补; 红线通用)'
@@ -353,13 +394,16 @@ SELECT
         WHEN cp.year = 2023  AND rd3.value IS NULL     THEN 'knife 669a-2023 公报仅发增速无绝对值 (守新增红线-3 不手填; 后续 sub-knife 可补采)'
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
         WHEN cp.year = 2024  AND rd4.value IS NULL     THEN 'knife 669a-2024 公报仅发增速无绝对值 (守新增红线-3 不手填; 后续 sub-knife 可补采)'
-        ELSE 'knife 669a-2025 待 harvest (本刀 669a-2020/2021/2022/2023/2024 已 DELIVERED)'
+        WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
+        WHEN cp.year = 2025  AND rd5.value IS NULL     THEN 'knife 669a-2025 hongheiku 无 2025 entry / 公报仅发增速 (守红线-3 不手填; 后续 sub-knife 可补采)'
+        ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
     CASE
         WHEN cp.year = 2021  AND rd.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
+        WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
@@ -367,6 +411,7 @@ SELECT
         WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
+        WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         ELSE 'none'
     END AS lineage_origin,
     CASE
@@ -375,6 +420,7 @@ SELECT
         WHEN cp.year = 2022  THEN 'K669a-2022-2026-09-07'
         WHEN cp.year = 2023  THEN 'K669a-2023-2026-09-07'
         WHEN cp.year = 2024  THEN 'K669a-2024-2026-09-07'
+        WHEN cp.year = 2025  THEN 'K669a-2025-2026-09-07'
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -394,4 +440,8 @@ LEFT JOIN real_data_2023 rd3
 LEFT JOIN real_data_2024 rd4
     ON cp.city_code = rd4.city_code
     AND cp.indicator_key = rd4.indicator_key
-    AND cp.year = 2024;
+    AND cp.year = 2024
+LEFT JOIN real_data_2025 rd5
+    ON cp.city_code = rd5.city_code
+    AND cp.indicator_key = rd5.indicator_key
+    AND cp.year = 2025;
