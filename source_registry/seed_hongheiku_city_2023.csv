@@ -1,0 +1,41 @@
+city_code,indicator_key,year,value,unit,status,missing_reason,lineage_source_type,lineage_origin,lineage_ruling,lineage_is_demo
+GUANGDONG_SHENZHEN,gdp_total,2023,34606.40,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_SHENZHEN,gdp_growth,2023,6.0,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_SHENZHEN,primary_gdp,2023,24.71,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_SHENZHEN,secondary_gdp,2023,13015.32,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_SHENZHEN,tertiary_gdp,2023,21566.38,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_SHENZHEN,gdp_percapita,2023,195230.17,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_SHENZHEN,fiscal_rev,2023,4112.78,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_SHENZHEN,fixed_asset,2023,,亿元,DATA_MISSING,knife 669a-2023 深圳市 fixed_asset 待 harvest/补采 (regex miss or 不在该公报),DATA_MISSING,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_SHENZHEN,retail,2023,10486.19,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_SHENZHEN,trade,2023,38710.70,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,gdp_total,2023,30355.73,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,gdp_growth,2023,4.6,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,primary_gdp,2023,317.78,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,secondary_gdp,2023,7775.71,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,tertiary_gdp,2023,22262.24,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,gdp_percapita,2023,161634,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,fiscal_rev,2023,1944.15,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,fixed_asset,2023,,亿元,DATA_MISSING,knife 669a-2023 广州市 fixed_asset 待 harvest/补采 (regex miss or 不在该公报),DATA_MISSING,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,retail,2023,11012.62,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+GUANGDONG_GUANGZHOU,trade,2023,10914.28,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,gdp_total,2023,20059,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,gdp_growth,2023,5.6,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,primary_gdp,2023,347,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,secondary_gdp,2023,5667,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,tertiary_gdp,2023,14045,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,gdp_percapita,2023,161129,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,fiscal_rev,2023,2617,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,fixed_asset,2023,,亿元,DATA_MISSING,knife 669a-2023 杭州市 fixed_asset 待 harvest/补采 (regex miss or 不在该公报),DATA_MISSING,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,retail,2023,7671,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+ZHEJIANG_HANGZHOU,trade,2023,8030,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,gdp_total,2023,17421.40,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,gdp_growth,2023,4.6,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,primary_gdp,2023,317.75,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,secondary_gdp,2023,5929.00,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,tertiary_gdp,2023,11174.65,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,gdp_percapita,2023,183015,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,fiscal_rev,2023,1620,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,fixed_asset,2023,5763.64,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,retail,2023,8201.07,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
+JIANGSU_NANJING,trade,2023,5659.9,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2023-2026-09-07,false
