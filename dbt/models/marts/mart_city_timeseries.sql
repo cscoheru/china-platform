@@ -138,6 +138,65 @@ real_data_2021 AS (
         ('JIANGSU_NANJING', 'trade',         6366.83::numeric)
     ) AS t(city_code, indicator_key, value)
 ),
+-- 669a-2022 real_data (4 city × 10 indicator = 40 cells, 37 real + 3 DATA_MISSING)
+-- 来源: hongheiku /djs/{id}.html (深圳 38197 / 广州 38118 / 杭州 37237 / 南京 38005)
+-- URL discovery: 4 city tag pages cached from 669a-2021 (0 HTTP)
+-- 2022 公报表述变体 (实证):
+--   gdp_total: 「2022年深圳地区生产总值32387.68亿元」(城名前缀) /
+--              「实现地区生产总值（初步核算数）28839.00亿元」(穗括号注) /
+--              「实现地区生产总值[2]18753亿元」(杭/宁脚注标记)
+--   gdp_percapita: 加「达到/为」修饰 (穗/杭)
+--   trade: 穗用「商品进出口总值」(同一商品/货物口径, 合法采集非手填)
+-- 3 DATA_MISSING: 深圳/广州/杭州 fixed_asset (2022 公报仅发增速 8.4%/-2.1%/6.0% 无绝对值,
+--   守新增红线-3 不手填不换算); 南京 10/10 全齐
+real_data_2022 AS (
+    SELECT * FROM (VALUES
+        -- GUANGDONG_SHENZHEN (深圳 2022, 9/10 real cells)
+        ('GUANGDONG_SHENZHEN', 'gdp_total',     32387.68::numeric),
+        ('GUANGDONG_SHENZHEN', 'gdp_growth',    3.3::numeric),
+        ('GUANGDONG_SHENZHEN', 'primary_gdp',   25.64::numeric),
+        ('GUANGDONG_SHENZHEN', 'secondary_gdp', 12405.88::numeric),
+        ('GUANGDONG_SHENZHEN', 'tertiary_gdp',  19956.16::numeric),
+        ('GUANGDONG_SHENZHEN', 'gdp_percapita', 183274::numeric),
+        ('GUANGDONG_SHENZHEN', 'fiscal_rev',    4012.27::numeric),
+        -- ('GUANGDONG_SHENZHEN', 'fixed_asset', NULL)  -- 公报仅发增速 8.4% 无绝对值
+        ('GUANGDONG_SHENZHEN', 'retail',        9708.28::numeric),
+        ('GUANGDONG_SHENZHEN', 'trade',         36737.52::numeric),
+        -- GUANGDONG_GUANGZHOU (广州 2022, 9/10 real cells)
+        ('GUANGDONG_GUANGZHOU', 'gdp_total',     28839.00::numeric),
+        ('GUANGDONG_GUANGZHOU', 'gdp_growth',    1.0::numeric),
+        ('GUANGDONG_GUANGZHOU', 'primary_gdp',   318.31::numeric),
+        ('GUANGDONG_GUANGZHOU', 'secondary_gdp', 7909.29::numeric),
+        ('GUANGDONG_GUANGZHOU', 'tertiary_gdp',  20611.40::numeric),
+        ('GUANGDONG_GUANGZHOU', 'gdp_percapita', 153625::numeric),
+        ('GUANGDONG_GUANGZHOU', 'fiscal_rev',    1854.73::numeric),
+        -- ('GUANGDONG_GUANGZHOU', 'fixed_asset', NULL)  -- 公报仅发增速 -2.1% 无绝对值
+        ('GUANGDONG_GUANGZHOU', 'retail',        10298.15::numeric),
+        ('GUANGDONG_GUANGZHOU', 'trade',         10948.40::numeric),  -- 商品进出口总值口径
+        -- ZHEJIANG_HANGZHOU (杭州 2022, 9/10 real cells)
+        ('ZHEJIANG_HANGZHOU', 'gdp_total',     18753::numeric),
+        ('ZHEJIANG_HANGZHOU', 'gdp_growth',    1.5::numeric),
+        ('ZHEJIANG_HANGZHOU', 'primary_gdp',   346::numeric),
+        ('ZHEJIANG_HANGZHOU', 'secondary_gdp', 5620::numeric),
+        ('ZHEJIANG_HANGZHOU', 'tertiary_gdp',  12787::numeric),
+        ('ZHEJIANG_HANGZHOU', 'gdp_percapita', 152588::numeric),
+        ('ZHEJIANG_HANGZHOU', 'fiscal_rev',    2451::numeric),
+        -- ('ZHEJIANG_HANGZHOU', 'fixed_asset', NULL)  -- 公报仅发增速 6.0% 无绝对值
+        ('ZHEJIANG_HANGZHOU', 'retail',        7294::numeric),
+        ('ZHEJIANG_HANGZHOU', 'trade',         7565::numeric),
+        -- JIANGSU_NANJING (南京 2022, 10/10 real cells — 本批唯一全齐)
+        ('JIANGSU_NANJING', 'gdp_total',     16907.85::numeric),
+        ('JIANGSU_NANJING', 'gdp_growth',    2.1::numeric),
+        ('JIANGSU_NANJING', 'primary_gdp',   315.56::numeric),
+        ('JIANGSU_NANJING', 'secondary_gdp', 6069.64::numeric),
+        ('JIANGSU_NANJING', 'tertiary_gdp',  10522.65::numeric),
+        ('JIANGSU_NANJING', 'gdp_percapita', 178781::numeric),
+        ('JIANGSU_NANJING', 'fiscal_rev',    1558.2::numeric),
+        ('JIANGSU_NANJING', 'fixed_asset',   5874.92::numeric),
+        ('JIANGSU_NANJING', 'retail',        7832.41::numeric),
+        ('JIANGSU_NANJING', 'trade',         6292.13::numeric)
+    ) AS t(city_code, indicator_key, value)
+),
 -- 669a-2020 zero-harvest: 无 real_data CTE (hongheiku 城市 2020 缺文)
 -- 669a-2021+ sub-knives 将添加 real_data_2021/2022/2023/2024/2025 CTE
 missing_city_year AS (
@@ -153,14 +212,16 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    rd.value,
+    COALESCE(rd.value, rd2.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
         WHEN cp.year = 2020  THEN 'DATA_MISSING'  -- hongheiku 城市 2020 缺文
         WHEN cp.year = 2021  AND rd.value IS NOT NULL THEN NULL  -- real cell, status=NULL
         WHEN cp.year = 2021  AND rd.value IS NULL     THEN 'DATA_MISSING'
-        ELSE 'DATA_MISSING'  -- 2022-2025 待 669a-2022+ sub-knives harvest
+        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN NULL  -- real cell, status=NULL
+        WHEN cp.year = 2022  AND rd2.value IS NULL     THEN 'DATA_MISSING'
+        ELSE 'DATA_MISSING'  -- 2023-2025 待 669a-2023+ sub-knives harvest
     END AS status,
     CASE
         WHEN cp.year < 2020  THEN '新增红线-1: 2001-2019 禁编造历史数据 (hongheiku 城市 probe 待补; 红线通用)'
@@ -168,19 +229,24 @@ SELECT
         WHEN cp.year = 2020  THEN 'hongheiku 城市维度 2020 缺文 (cat index 仅 2021-2025; knife 669 待拓展其他来源)'
         WHEN cp.year = 2021  AND rd.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
         WHEN cp.year = 2021  AND rd.value IS NULL     THEN 'knife 669a-2021 公报未列/正则 miss (守新增红线-3 不手填; 后续 sub-knife 可补采)'
-        ELSE 'knife 669a-2022/2023/2024/2025 待 harvest (本刀 669a-2020+2021 已 DELIVERED)'
+        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
+        WHEN cp.year = 2022  AND rd2.value IS NULL     THEN 'knife 669a-2022 公报仅发增速无绝对值 (守新增红线-3 不手填; 后续 sub-knife 可补采)'
+        ELSE 'knife 669a-2023/2024/2025 待 harvest (本刀 669a-2020/2021/2022 已 DELIVERED)'
     END AS missing_reason,
     CASE
         WHEN cp.year = 2021  AND rd.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
+        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
         WHEN cp.year = 2021  AND rd.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
+        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         ELSE 'none'
     END AS lineage_origin,
     CASE
         WHEN cp.year = 2020  THEN 'K669a-2020-2026-09-04'
         WHEN cp.year = 2021  THEN 'K669a-2021-2026-09-04'
+        WHEN cp.year = 2022  THEN 'K669a-2022-2026-09-07'
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -188,4 +254,8 @@ FROM cross_product cp
 LEFT JOIN real_data_2021 rd
     ON cp.city_code = rd.city_code
     AND cp.indicator_key = rd.indicator_key
-    AND cp.year = 2021;
+    AND cp.year = 2021
+LEFT JOIN real_data_2022 rd2
+    ON cp.city_code = rd2.city_code
+    AND cp.indicator_key = rd2.indicator_key
+    AND cp.year = 2022;
