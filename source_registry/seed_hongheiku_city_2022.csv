@@ -1,0 +1,41 @@
+city_code,indicator_key,year,value,unit,status,missing_reason,lineage_source_type,lineage_origin,lineage_ruling,lineage_is_demo
+GUANGDONG_SHENZHEN,gdp_total,2022,32387.68,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_SHENZHEN,gdp_growth,2022,3.3,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_SHENZHEN,primary_gdp,2022,25.64,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_SHENZHEN,secondary_gdp,2022,12405.88,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_SHENZHEN,tertiary_gdp,2022,19956.16,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_SHENZHEN,gdp_percapita,2022,183274,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_SHENZHEN,fiscal_rev,2022,4012.27,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_SHENZHEN,fixed_asset,2022,,亿元,DATA_MISSING,knife 669a-2022 深圳市 fixed_asset 待 harvest/补采 (regex miss or 不在该公报),DATA_MISSING,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_SHENZHEN,retail,2022,9708.28,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_SHENZHEN,trade,2022,36737.52,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/深圳市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,gdp_total,2022,28839.00,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,gdp_growth,2022,1.0,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,primary_gdp,2022,318.31,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,secondary_gdp,2022,7909.29,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,tertiary_gdp,2022,20611.40,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,gdp_percapita,2022,153625,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,fiscal_rev,2022,1854.73,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,fixed_asset,2022,,亿元,DATA_MISSING,knife 669a-2022 广州市 fixed_asset 待 harvest/补采 (regex miss or 不在该公报),DATA_MISSING,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,retail,2022,10298.15,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+GUANGDONG_GUANGZHOU,trade,2022,10948.40,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/广州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,gdp_total,2022,18753,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,gdp_growth,2022,1.5,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,primary_gdp,2022,346,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,secondary_gdp,2022,5620,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,tertiary_gdp,2022,12787,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,gdp_percapita,2022,152588,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,fiscal_rev,2022,2451,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,fixed_asset,2022,,亿元,DATA_MISSING,knife 669a-2022 杭州市 fixed_asset 待 harvest/补采 (regex miss or 不在该公报),DATA_MISSING,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,retail,2022,7294,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+ZHEJIANG_HANGZHOU,trade,2022,7565,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/杭州市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,gdp_total,2022,16907.85,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,gdp_growth,2022,2.1,%,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,primary_gdp,2022,315.56,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,secondary_gdp,2022,6069.64,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,tertiary_gdp,2022,10522.65,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,gdp_percapita,2022,178781,元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,fiscal_rev,2022,1558.2,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,fixed_asset,2022,5874.92,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,retail,2022,7832.41,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
+JIANGSU_NANJING,trade,2022,6292.13,亿元,,,HONGHEIKU_TRANSLOAD,tjgb.hongheiku.com/djs/南京市,K669a-2022-2026-09-07,false
