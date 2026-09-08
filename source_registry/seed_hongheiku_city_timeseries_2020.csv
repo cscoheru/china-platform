@@ -1,0 +1,251 @@
+city_code,indicator_key,year,value,unit,status,missing_reason,source_url,bulletic_eid
+HEBEI_SHIJIAZHUANG,gdp_total,2020,5935.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1816.html,1816
+HEBEI_SHIJIAZHUANG,gdp_growth,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/1816.html,1816
+HEBEI_SHIJIAZHUANG,primary_gdp,2020,498.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1816.html,1816
+HEBEI_SHIJIAZHUANG,secondary_gdp,2020,1745.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1816.html,1816
+HEBEI_SHIJIAZHUANG,tertiary_gdp,2020,3691.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1816.html,1816
+HEBEI_SHIJIAZHUANG,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/1816.html,1816
+HEBEI_SHIJIAZHUANG,fiscal_rev,2020,605.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1816.html,1816
+HEBEI_SHIJIAZHUANG,fixed_asset,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/1816.html,1816
+HEBEI_SHIJIAZHUANG,retail,2020,2279.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1816.html,1816
+HEBEI_SHIJIAZHUANG,trade,2020,1341.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1816.html,1816
+SHANXI_TAIYUAN,gdp_total,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+SHANXI_TAIYUAN,gdp_growth,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+SHANXI_TAIYUAN,primary_gdp,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+SHANXI_TAIYUAN,secondary_gdp,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+SHANXI_TAIYUAN,tertiary_gdp,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+SHANXI_TAIYUAN,gdp_percapita,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+SHANXI_TAIYUAN,fiscal_rev,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+SHANXI_TAIYUAN,fixed_asset,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+SHANXI_TAIYUAN,retail,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+SHANXI_TAIYUAN,trade,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/1260.html,1260
+NEIMENGGU_HUHEHAOTE,gdp_total,2020,2800.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/75.html,75
+NEIMENGGU_HUHEHAOTE,gdp_growth,2020,0.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/75.html,75
+NEIMENGGU_HUHEHAOTE,primary_gdp,2020,126.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/75.html,75
+NEIMENGGU_HUHEHAOTE,secondary_gdp,2020,815.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/75.html,75
+NEIMENGGU_HUHEHAOTE,tertiary_gdp,2020,1858.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/75.html,75
+NEIMENGGU_HUHEHAOTE,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/75.html,75
+NEIMENGGU_HUHEHAOTE,fiscal_rev,2020,217.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/75.html,75
+NEIMENGGU_HUHEHAOTE,fixed_asset,2020,46.8%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/75.html,75
+NEIMENGGU_HUHEHAOTE,retail,2020,1032.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/75.html,75
+NEIMENGGU_HUHEHAOTE,trade,2020,147.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/75.html,75
+LIAONING_SHENYANG,gdp_total,2020,6571.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/347.html,347
+LIAONING_SHENYANG,gdp_growth,2020,0.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/347.html,347
+LIAONING_SHENYANG,primary_gdp,2020,303.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/347.html,347
+LIAONING_SHENYANG,secondary_gdp,2020,2160.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/347.html,347
+LIAONING_SHENYANG,tertiary_gdp,2020,4107.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/347.html,347
+LIAONING_SHENYANG,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/347.html,347
+LIAONING_SHENYANG,fiscal_rev,2020,736.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/347.html,347
+LIAONING_SHENYANG,fixed_asset,2020,4.1%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/347.html,347
+LIAONING_SHENYANG,retail,2020,3637.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/347.html,347
+LIAONING_SHENYANG,trade,2020,1028.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/347.html,347
+HEILONGJIANG_HARBIN,gdp_total,2020,1174.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/9267.html,9267
+HEILONGJIANG_HARBIN,gdp_growth,2020,0.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/9267.html,9267
+HEILONGJIANG_HARBIN,primary_gdp,2020,615.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/9267.html,9267
+HEILONGJIANG_HARBIN,secondary_gdp,2020,1144.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/9267.html,9267
+HEILONGJIANG_HARBIN,tertiary_gdp,2020,3423.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/9267.html,9267
+HEILONGJIANG_HARBIN,gdp_percapita,2020,54570,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/9267.html,9267
+HEILONGJIANG_HARBIN,fiscal_rev,2020,339.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/9267.html,9267
+HEILONGJIANG_HARBIN,fixed_asset,2020,19.4%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/9267.html,9267
+HEILONGJIANG_HARBIN,retail,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/9267.html,9267
+HEILONGJIANG_HARBIN,trade,2020,255.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/9267.html,9267
+JILIN_CHANGCHUN,gdp_total,2020,6638.03,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/13562.html,13562
+JILIN_CHANGCHUN,gdp_growth,2020,3.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/13562.html,13562
+JILIN_CHANGCHUN,primary_gdp,2020,533.82,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/13562.html,13562
+JILIN_CHANGCHUN,secondary_gdp,2020,2758.12,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/13562.html,13562
+JILIN_CHANGCHUN,tertiary_gdp,2020,3346.09,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/13562.html,13562
+JILIN_CHANGCHUN,gdp_percapita,2020,77634,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/13562.html,13562
+JILIN_CHANGCHUN,fiscal_rev,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/13562.html,13562
+JILIN_CHANGCHUN,fixed_asset,2020,8.8%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/13562.html,13562
+JILIN_CHANGCHUN,retail,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/13562.html,13562
+JILIN_CHANGCHUN,trade,2020,1027.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/13562.html,13562
+ANHUI_HEFEI,gdp_total,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/719.html,719
+ANHUI_HEFEI,gdp_growth,2020,4.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/719.html,719
+ANHUI_HEFEI,primary_gdp,2020,332.32,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/719.html,719
+ANHUI_HEFEI,secondary_gdp,2020,3579.51,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/719.html,719
+ANHUI_HEFEI,tertiary_gdp,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/719.html,719
+ANHUI_HEFEI,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/719.html,719
+ANHUI_HEFEI,fiscal_rev,2020,762.90,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/719.html,719
+ANHUI_HEFEI,fixed_asset,2020,4.7%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/719.html,719
+ANHUI_HEFEI,retail,2020,4513.76,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/719.html,719
+ANHUI_HEFEI,trade,2020,374.87,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/719.html,719
+FUJIAN_FUZHOU,gdp_total,2020,10020.02,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3413.html,3413
+FUJIAN_FUZHOU,gdp_growth,2020,5.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3413.html,3413
+FUJIAN_FUZHOU,primary_gdp,2020,560.70,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3413.html,3413
+FUJIAN_FUZHOU,secondary_gdp,2020,3840.77,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3413.html,3413
+FUJIAN_FUZHOU,tertiary_gdp,2020,5618.55,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3413.html,3413
+FUJIAN_FUZHOU,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/3413.html,3413
+FUJIAN_FUZHOU,fiscal_rev,2020,675.61,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3413.html,3413
+FUJIAN_FUZHOU,fixed_asset,2020,9.6%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3413.html,3413
+FUJIAN_FUZHOU,retail,2020,4225.61,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3413.html,3413
+FUJIAN_FUZHOU,trade,2020,2504.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3413.html,3413
+JIANGXI_NANCHANG,gdp_total,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+JIANGXI_NANCHANG,gdp_growth,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+JIANGXI_NANCHANG,primary_gdp,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+JIANGXI_NANCHANG,secondary_gdp,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+JIANGXI_NANCHANG,tertiary_gdp,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+JIANGXI_NANCHANG,gdp_percapita,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+JIANGXI_NANCHANG,fiscal_rev,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+JIANGXI_NANCHANG,fixed_asset,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+JIANGXI_NANCHANG,retail,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+JIANGXI_NANCHANG,trade,2020,,,DATA_MISSING,"669fix-b-2020: bulletin 内容为 image 扫描件,无 OCR 范围 (守红线-3)",https://tjgb.hongheiku.com/630.html,630
+SHANDONG_JINAN,gdp_total,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/7978.html,7978
+SHANDONG_JINAN,gdp_growth,2020,4.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7978.html,7978
+SHANDONG_JINAN,primary_gdp,2020,361.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7978.html,7978
+SHANDONG_JINAN,secondary_gdp,2020,3530.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7978.html,7978
+SHANDONG_JINAN,tertiary_gdp,2020,6248.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7978.html,7978
+SHANDONG_JINAN,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/7978.html,7978
+SHANDONG_JINAN,fiscal_rev,2020,906.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7978.html,7978
+SHANDONG_JINAN,fixed_asset,2020,4.0%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7978.html,7978
+SHANDONG_JINAN,retail,2020,4469.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7978.html,7978
+SHANDONG_JINAN,trade,2020,1382.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7978.html,7978
+HENAN_ZHENGZHOU,gdp_total,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/1804.html,1804
+HENAN_ZHENGZHOU,gdp_growth,2020,3.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1804.html,1804
+HENAN_ZHENGZHOU,primary_gdp,2020,156.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1804.html,1804
+HENAN_ZHENGZHOU,secondary_gdp,2020,4759.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1804.html,1804
+HENAN_ZHENGZHOU,tertiary_gdp,2020,7086.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1804.html,1804
+HENAN_ZHENGZHOU,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/1804.html,1804
+HENAN_ZHENGZHOU,fiscal_rev,2020,1259.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1804.html,1804
+HENAN_ZHENGZHOU,fixed_asset,2020,3.6%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1804.html,1804
+HENAN_ZHENGZHOU,retail,2020,5076.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1804.html,1804
+HENAN_ZHENGZHOU,trade,2020,4946.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1804.html,1804
+HUBEI_WUHAN,gdp_total,2020,15616.06,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/4553.html,4553
+HUBEI_WUHAN,gdp_growth,2020,21.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/4553.html,4553
+HUBEI_WUHAN,primary_gdp,2020,402.18,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/4553.html,4553
+HUBEI_WUHAN,secondary_gdp,2020,5557.47,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/4553.html,4553
+HUBEI_WUHAN,tertiary_gdp,2020,9656.41,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/4553.html,4553
+HUBEI_WUHAN,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/4553.html,4553
+HUBEI_WUHAN,fiscal_rev,2020,1230.29,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/4553.html,4553
+HUBEI_WUHAN,fixed_asset,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/4553.html,4553
+HUBEI_WUHAN,retail,2020,6149.84,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/4553.html,4553
+HUBEI_WUHAN,trade,2020,2704.30,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/4553.html,4553
+HUNAN_CHANGSHA,gdp_total,2020,12142.52,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/327.html,327
+HUNAN_CHANGSHA,gdp_growth,2020,4.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/327.html,327
+HUNAN_CHANGSHA,primary_gdp,2020,423.46,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/327.html,327
+HUNAN_CHANGSHA,secondary_gdp,2020,4739.27,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/327.html,327
+HUNAN_CHANGSHA,tertiary_gdp,2020,6979.79,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/327.html,327
+HUNAN_CHANGSHA,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/327.html,327
+HUNAN_CHANGSHA,fiscal_rev,2020,1642.96,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/327.html,327
+HUNAN_CHANGSHA,fixed_asset,2020,6.2%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/327.html,327
+HUNAN_CHANGSHA,retail,2020,4469.76,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/327.html,327
+HUNAN_CHANGSHA,trade,2020,2350.46,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/327.html,327
+GUANGXI_NANNING,gdp_total,2020,4726.34,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7734.html,7734
+GUANGXI_NANNING,gdp_growth,2020,3.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7734.html,7734
+GUANGXI_NANNING,primary_gdp,2020,534.36,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7734.html,7734
+GUANGXI_NANNING,secondary_gdp,2020,1084.32,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7734.html,7734
+GUANGXI_NANNING,tertiary_gdp,2020,3107.67,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7734.html,7734
+GUANGXI_NANNING,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/7734.html,7734
+GUANGXI_NANNING,fiscal_rev,2020,372.25,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7734.html,7734
+GUANGXI_NANNING,fixed_asset,2020,13%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7734.html,7734
+GUANGXI_NANNING,retail,2020,2180.36,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7734.html,7734
+GUANGXI_NANNING,trade,2020,986,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7734.html,7734
+HAINAN_HAIKOU,gdp_total,2020,1791.58,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1226.html,1226
+HAINAN_HAIKOU,gdp_growth,2020,5.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1226.html,1226
+HAINAN_HAIKOU,primary_gdp,2020,79.88,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1226.html,1226
+HAINAN_HAIKOU,secondary_gdp,2020,269.56,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1226.html,1226
+HAINAN_HAIKOU,tertiary_gdp,2020,1442.14,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1226.html,1226
+HAINAN_HAIKOU,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/1226.html,1226
+HAINAN_HAIKOU,fiscal_rev,2020,460,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1226.html,1226
+HAINAN_HAIKOU,fixed_asset,2020,23.4%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1226.html,1226
+HAINAN_HAIKOU,retail,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/1226.html,1226
+HAINAN_HAIKOU,trade,2020,368.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1226.html,1226
+SICHUAN_CHENGDU,gdp_total,2020,17716.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1460.html,1460
+SICHUAN_CHENGDU,gdp_growth,2020,4.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1460.html,1460
+SICHUAN_CHENGDU,primary_gdp,2020,655.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1460.html,1460
+SICHUAN_CHENGDU,secondary_gdp,2020,5418.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1460.html,1460
+SICHUAN_CHENGDU,tertiary_gdp,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/1460.html,1460
+SICHUAN_CHENGDU,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/1460.html,1460
+SICHUAN_CHENGDU,fiscal_rev,2020,1520.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1460.html,1460
+SICHUAN_CHENGDU,fixed_asset,2020,9.9%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1460.html,1460
+SICHUAN_CHENGDU,retail,2020,8118.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1460.html,1460
+SICHUAN_CHENGDU,trade,2020,7154.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1460.html,1460
+GUIZHOU_GUIYANG,gdp_total,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/3174.html,3174
+GUIZHOU_GUIYANG,gdp_growth,2020,5.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3174.html,3174
+GUIZHOU_GUIYANG,primary_gdp,2020,178.31,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3174.html,3174
+GUIZHOU_GUIYANG,secondary_gdp,2020,1552.59,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3174.html,3174
+GUIZHOU_GUIYANG,tertiary_gdp,2020,2580.75,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3174.html,3174
+GUIZHOU_GUIYANG,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/3174.html,3174
+GUIZHOU_GUIYANG,fiscal_rev,2020,398.13,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3174.html,3174
+GUIZHOU_GUIYANG,fixed_asset,2020,2.7%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3174.html,3174
+GUIZHOU_GUIYANG,retail,2020,2188.26,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3174.html,3174
+GUIZHOU_GUIYANG,trade,2020,60.00,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/3174.html,3174
+YUNNAN_KUNMING,gdp_total,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/14086.html,14086
+YUNNAN_KUNMING,gdp_growth,2020,2.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14086.html,14086
+YUNNAN_KUNMING,primary_gdp,2020,312.35,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14086.html,14086
+YUNNAN_KUNMING,secondary_gdp,2020,2102.93,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14086.html,14086
+YUNNAN_KUNMING,tertiary_gdp,2020,4318.51,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14086.html,14086
+YUNNAN_KUNMING,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/14086.html,14086
+YUNNAN_KUNMING,fiscal_rev,2020,650.47,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14086.html,14086
+YUNNAN_KUNMING,fixed_asset,2020,8.1%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14086.html,14086
+YUNNAN_KUNMING,retail,2020,3070.44,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14086.html,14086
+YUNNAN_KUNMING,trade,2020,160.59,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14086.html,14086
+XIZANG_LASA,gdp_total,2020,678.16,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14174.html,14174
+XIZANG_LASA,gdp_growth,2020,7.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14174.html,14174
+XIZANG_LASA,primary_gdp,2020,22.45,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14174.html,14174
+XIZANG_LASA,secondary_gdp,2020,290.44,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14174.html,14174
+XIZANG_LASA,tertiary_gdp,2020,365.27,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14174.html,14174
+XIZANG_LASA,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/14174.html,14174
+XIZANG_LASA,fiscal_rev,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/14174.html,14174
+XIZANG_LASA,fixed_asset,2020,5.3%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14174.html,14174
+XIZANG_LASA,retail,2020,369.35,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/14174.html,14174
+XIZANG_LASA,trade,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/14174.html,14174
+SHAANXI_XIAN,gdp_total,2020,10020.39,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1229.html,1229
+SHAANXI_XIAN,gdp_growth,2020,5.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1229.html,1229
+SHAANXI_XIAN,primary_gdp,2020,312.75,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1229.html,1229
+SHAANXI_XIAN,secondary_gdp,2020,3328.27,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1229.html,1229
+SHAANXI_XIAN,tertiary_gdp,2020,6379.37,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1229.html,1229
+SHAANXI_XIAN,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/1229.html,1229
+SHAANXI_XIAN,fiscal_rev,2020,724.13,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1229.html,1229
+SHAANXI_XIAN,fixed_asset,2020,12.3%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1229.html,1229
+SHAANXI_XIAN,retail,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/1229.html,1229
+SHAANXI_XIAN,trade,2020,3473.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/1229.html,1229
+GANSU_LANZHOU,gdp_total,2020,2886.74,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/949.html,949
+GANSU_LANZHOU,gdp_growth,2020,2.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/949.html,949
+GANSU_LANZHOU,primary_gdp,2020,57.43,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/949.html,949
+GANSU_LANZHOU,secondary_gdp,2020,933.42,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/949.html,949
+GANSU_LANZHOU,tertiary_gdp,2020,1895.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/949.html,949
+GANSU_LANZHOU,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/949.html,949
+GANSU_LANZHOU,fiscal_rev,2020,247.13,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/949.html,949
+GANSU_LANZHOU,fixed_asset,2020,3.4%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/949.html,949
+GANSU_LANZHOU,retail,2020,1641.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/949.html,949
+GANSU_LANZHOU,trade,2020,102.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/949.html,949
+QINGHAI_XINING,gdp_total,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/11065.html,11065
+QINGHAI_XINING,gdp_growth,2020,1.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/11065.html,11065
+QINGHAI_XINING,primary_gdp,2020,57.17,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/11065.html,11065
+QINGHAI_XINING,secondary_gdp,2020,418.72,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/11065.html,11065
+QINGHAI_XINING,tertiary_gdp,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/11065.html,11065
+QINGHAI_XINING,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/11065.html,11065
+QINGHAI_XINING,fiscal_rev,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/11065.html,11065
+QINGHAI_XINING,fixed_asset,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/11065.html,11065
+QINGHAI_XINING,retail,2020,573.57,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/11065.html,11065
+QINGHAI_XINING,trade,2020,16.81,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/11065.html,11065
+NINGXIA_YINCHUAN,gdp_total,2020,1964.37,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7796.html,7796
+NINGXIA_YINCHUAN,gdp_growth,2020,3.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7796.html,7796
+NINGXIA_YINCHUAN,primary_gdp,2020,75.72,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7796.html,7796
+NINGXIA_YINCHUAN,secondary_gdp,2020,832.62,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7796.html,7796
+NINGXIA_YINCHUAN,tertiary_gdp,2020,1056.03,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7796.html,7796
+NINGXIA_YINCHUAN,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/7796.html,7796
+NINGXIA_YINCHUAN,fiscal_rev,2020,157.25,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7796.html,7796
+NINGXIA_YINCHUAN,fixed_asset,2020,1.1%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7796.html,7796
+NINGXIA_YINCHUAN,retail,2020,770.87,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7796.html,7796
+NINGXIA_YINCHUAN,trade,2020,62.96,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/7796.html,7796
+XINJIANG_WULUMUQI,gdp_total,2020,3337.32,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+XINJIANG_WULUMUQI,gdp_growth,2020,0.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+XINJIANG_WULUMUQI,primary_gdp,2020,27.05,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+XINJIANG_WULUMUQI,secondary_gdp,2020,907.89,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+XINJIANG_WULUMUQI,tertiary_gdp,2020,2402.38,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+XINJIANG_WULUMUQI,gdp_percapita,2020,93030,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+XINJIANG_WULUMUQI,fiscal_rev,2020,392.64,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+XINJIANG_WULUMUQI,fixed_asset,2020,0.3%,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+XINJIANG_WULUMUQI,retail,2020,1043.51,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+XINJIANG_WULUMUQI,trade,2020,455.87,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/428.html,428
+TAIWAN_TAIPEI,gdp_total,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
+TAIWAN_TAIPEI,gdp_growth,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
+TAIWAN_TAIPEI,primary_gdp,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
+TAIWAN_TAIPEI,secondary_gdp,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
+TAIWAN_TAIPEI,tertiary_gdp,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
+TAIWAN_TAIPEI,gdp_percapita,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
+TAIWAN_TAIPEI,fiscal_rev,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
+TAIWAN_TAIPEI,fixed_asset,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
+TAIWAN_TAIPEI,retail,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
+TAIWAN_TAIPEI,trade,2020,,,DATA_MISSING,669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN),,
