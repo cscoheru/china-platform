@@ -791,6 +791,18 @@ real_data_669fix_2021 AS (
         -- HUBEI_WUHAN (28733) / SHANXI_TAIYUAN (24774) → hongheiku URL 实为 tag listing, 无内容 → DATA_MISSING
     ) AS t(city_code, indicator_key, value)
 ),
+-- 669fix-b-2022 full re-harvest (2026-09-08): 25 省会 × 2022 × 10 指标 = 250 cells
+--   - 136 absolute-value real cells (17 city 公告 + XINJIANG 10/10 + 16 city partial)
+--   - 114 DATA_MISSING:
+--     - 80 QINGHAI/GUANGXI/TAIWAN (hongheiku 缺/无内容: QINGHAI=984 chars tag listing; GUANGXI/TAIWAN 无 2022 entry)
+--     - 10 fixed_asset 增长% (无绝对值, per 669a-2021 §2 红线-3)
+--     - 24 城市级公报未列指标 (守新增红线-3 不手填)
+--   - 8 all-missing cities: ANHUI/FUJIAN/GUANGXI/HEILONGJIANG/JIANGXI/QINGHAI/SHANXI/TAIWAN
+real_data_669fix_2022 AS (
+    SELECT * FROM (VALUES
+$(cat /tmp/669b/cte_2022_body.txt)
+    ) AS t(city_code, indicator_key, value)
+),
 missing_city_year AS (
     -- 永久缺 city (4 直辖市禁重复; 港/澳/台 不在 city mart)
     -- 669a-2021 范围内无永久缺 city (4 直辖市之外的 4 priority city 都有 cat tag)
@@ -804,7 +816,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -814,8 +826,10 @@ SELECT
         WHEN cp.year = 2021  AND rd8.value IS NOT NULL THEN NULL  -- 25 省会 real cell from 669fix-b-2021 harvest
         WHEN cp.year = 2021  AND rd.value IS NULL      THEN 'DATA_MISSING'
         WHEN cp.year = 2021  AND rd8.value IS NULL     THEN 'DATA_MISSING'
-        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN NULL  -- real cell, status=NULL
-        WHEN cp.year = 2022  AND rd2.value IS NULL     THEN 'DATA_MISSING'
+        WHEN cp.year = 2022  AND rd9.value IS NOT NULL THEN NULL  -- 25 省会 real cell from 669fix-b-2022 harvest
+        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN NULL  -- 4 669a cities real cell
+        WHEN cp.year = 2022  AND rd9.value IS NULL     THEN 'DATA_MISSING'  -- 25 省会 missing cell
+        WHEN cp.year = 2022  AND rd2.value IS NULL     THEN 'DATA_MISSING'  -- 4 669a cities missing cell
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN NULL  -- real cell, status=NULL
         WHEN cp.year = 2023  AND rd3.value IS NULL     THEN 'DATA_MISSING'
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN NULL  -- real cell, status=NULL
@@ -847,7 +861,15 @@ SELECT
         WHEN cp.year = 2021  AND rd8.value IS NULL     AND cp.indicator_key = 'fixed_asset'
             THEN 'knife 669fix-b-2021: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2)'
         WHEN cp.year = 2021  AND rd8.value IS NULL     THEN 'knife 669fix-b-2021: 25 省会 2021 bulletin 未列此 indicator (守新增红线-3 不手填; 后续 sub-knife 可补采)'
-        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
+        WHEN cp.year = 2022  AND rd9.value IS NOT NULL THEN NULL  -- 25 省会 real cell, no missing_reason
+        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN NULL  -- 4 669a cities real cell, no missing_reason
+        WHEN cp.year = 2022  AND rd9.value IS NULL     AND cp.city_code IN ('GUANGXI_NANNING','TAIWAN_TAIPEI')
+            THEN 'knife 669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)'
+        WHEN cp.year = 2022  AND rd9.value IS NULL     AND cp.city_code = 'QINGHAI_XINING'
+            THEN 'knife 669fix-b-2022: bulletin 内容为 tag listing 无具体数值 (984 chars, 守新增红线-3 不手填)'
+        WHEN cp.year = 2022  AND rd9.value IS NULL     AND cp.indicator_key = 'fixed_asset'
+            THEN 'knife 669fix-b-2022: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2)'
+        WHEN cp.year = 2022  AND rd9.value IS NULL     THEN 'knife 669fix-b-2022: 25 省会 2022 bulletin 未列此 indicator (守新增红线-3 不手填; 后续 sub-knife 可补采)'
         WHEN cp.year = 2022  AND rd2.value IS NULL     THEN 'knife 669a-2022 公报仅发增速无绝对值 (守新增红线-3 不手填; 后续 sub-knife 可补采)'
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
         WHEN cp.year = 2023  AND rd3.value IS NULL     THEN 'knife 669a-2023 公报仅发增速无绝对值 (守新增红线-3 不手填; 后续 sub-knife 可补采)'
@@ -871,7 +893,8 @@ SELECT
         WHEN cp.year = 2020  AND rd7.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2021  AND rd.value IS NOT NULL  THEN 'HONGHEIKU_TRANSLOAD'  -- 4 669a
         WHEN cp.year = 2021  AND rd8.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- 25 省会 from 669fix-b-2021
-        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
+        WHEN cp.year = 2022  AND rd9.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- 25 省会 from 669fix-b-2022
+        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- 4 669a cities
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
@@ -882,7 +905,8 @@ SELECT
         WHEN cp.year = 2020  AND rd7.value IS NOT NULL THEN 'tjgb.hongheiku.com/' || cp.city_code  -- e.g. /1816.html, /djs/...
         WHEN cp.year = 2021  AND rd.value IS NOT NULL  THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         WHEN cp.year = 2021  AND rd8.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_code  -- 25 省会 2021 eid encoded in city_code
-        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
+        WHEN cp.year = 2022  AND rd9.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_code  -- 25 省会 2022 eid encoded in city_code (669fix-b-2022)
+        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name  -- 4 669a cities
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
@@ -909,7 +933,12 @@ SELECT
         ) THEN 'K669a-2021-2026-09-04'  -- 4 669a cities
         WHEN cp.year = 2021  AND rd8.value IS NOT NULL THEN 'K669fix-b-2021-2026-09-08'  -- 25 省会 real cells
         WHEN cp.year = 2021  THEN 'K669fix-b-2021-2026-09-08'  -- 25 省会 missing cells
-        WHEN cp.year = 2022  THEN 'K669a-2022-2026-09-07'
+        WHEN cp.year = 2022  AND rd9.value IS NOT NULL THEN 'K669fix-b-2022-2026-09-08'  -- 25 省会 real cells from 669fix-b-2022 harvest
+        WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'K669a-2022-2026-09-07'  -- 4 669a cities real cells
+        WHEN cp.year = 2022  AND cp.city_code IN (
+            'GUANGDONG_SHENZHEN','GUANGDONG_GUANGZHOU','ZHEJIANG_HANGZHOU','JIANGSU_NANJING'
+        ) THEN 'K669a-2022-2026-09-07'  -- 4 669a cities missing cells
+        WHEN cp.year = 2022  THEN 'K669fix-b-2022-2026-09-08'  -- 25 省会 missing cells
         WHEN cp.year = 2023  THEN 'K669a-2023-2026-09-07'
         WHEN cp.year = 2024  THEN 'K669a-2024-2026-09-07'
         WHEN cp.year = 2025  AND cp.city_code IN (
@@ -951,4 +980,8 @@ LEFT JOIN real_data_669fix_2020 rd7
 LEFT JOIN real_data_669fix_2021 rd8
     ON cp.city_code = rd8.city_code
     AND cp.indicator_key = rd8.indicator_key
-    AND cp.year = 2021;
+    AND cp.year = 2021
+LEFT JOIN real_data_669fix_2022 rd9
+    ON cp.city_code = rd9.city_code
+    AND cp.indicator_key = rd9.indicator_key
+    AND cp.year = 2022;

@@ -1,0 +1,251 @@
+city_code,indicator_key,year,value,unit,status,missing_reason,source_url,bulletic_eid
+HEBEI_SHIJIAZHUANG,gdp_total,2022,7100.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/34963.html,34963
+HEBEI_SHIJIAZHUANG,gdp_growth,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/34963.html,34963
+HEBEI_SHIJIAZHUANG,primary_gdp,2022,558.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/34963.html,34963
+HEBEI_SHIJIAZHUANG,secondary_gdp,2022,2334.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/34963.html,34963
+HEBEI_SHIJIAZHUANG,tertiary_gdp,2022,4208.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/34963.html,34963
+HEBEI_SHIJIAZHUANG,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/34963.html,34963
+HEBEI_SHIJIAZHUANG,fiscal_rev,2022,689.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/34963.html,34963
+HEBEI_SHIJIAZHUANG,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/34963.html,34963
+HEBEI_SHIJIAZHUANG,retail,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/34963.html,34963
+HEBEI_SHIJIAZHUANG,trade,2022,1235.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/34963.html,34963
+SHANXI_TAIYUAN,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+SHANXI_TAIYUAN,gdp_growth,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+SHANXI_TAIYUAN,primary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+SHANXI_TAIYUAN,secondary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+SHANXI_TAIYUAN,tertiary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+SHANXI_TAIYUAN,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+SHANXI_TAIYUAN,fiscal_rev,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+SHANXI_TAIYUAN,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+SHANXI_TAIYUAN,retail,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+SHANXI_TAIYUAN,trade,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36740.html,36740
+NEIMENGGU_HUHEHAOTE,gdp_total,2022,3329.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35499.html,35499
+NEIMENGGU_HUHEHAOTE,gdp_growth,2022,2.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35499.html,35499
+NEIMENGGU_HUHEHAOTE,primary_gdp,2022,160.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35499.html,35499
+NEIMENGGU_HUHEHAOTE,secondary_gdp,2022,1155.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35499.html,35499
+NEIMENGGU_HUHEHAOTE,tertiary_gdp,2022,2012.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35499.html,35499
+NEIMENGGU_HUHEHAOTE,gdp_percapita,2022,94443,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35499.html,35499
+NEIMENGGU_HUHEHAOTE,fiscal_rev,2022,230.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35499.html,35499
+NEIMENGGU_HUHEHAOTE,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35499.html,35499
+NEIMENGGU_HUHEHAOTE,retail,2022,1059.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35499.html,35499
+NEIMENGGU_HUHEHAOTE,trade,2022,182.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35499.html,35499
+LIAONING_SHENYANG,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35417.html,35417
+LIAONING_SHENYANG,gdp_growth,2022,3.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35417.html,35417
+LIAONING_SHENYANG,primary_gdp,2022,335.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35417.html,35417
+LIAONING_SHENYANG,secondary_gdp,2022,2885.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35417.html,35417
+LIAONING_SHENYANG,tertiary_gdp,2022,4475.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35417.html,35417
+LIAONING_SHENYANG,gdp_percapita,2022,84268,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35417.html,35417
+LIAONING_SHENYANG,fiscal_rev,2022,713.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35417.html,35417
+LIAONING_SHENYANG,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35417.html,35417
+LIAONING_SHENYANG,retail,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35417.html,35417
+LIAONING_SHENYANG,trade,2022,1406.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35417.html,35417
+JILIN_CHANGCHUN,gdp_total,2022,6744.56,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39538.html,39538
+JILIN_CHANGCHUN,gdp_growth,2022,6.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39538.html,39538
+JILIN_CHANGCHUN,primary_gdp,2022,551.32,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39538.html,39538
+JILIN_CHANGCHUN,secondary_gdp,2022,2694.97,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39538.html,39538
+JILIN_CHANGCHUN,tertiary_gdp,2022,3498.27,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39538.html,39538
+JILIN_CHANGCHUN,gdp_percapita,2022,74310,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39538.html,39538
+JILIN_CHANGCHUN,fiscal_rev,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/39538.html,39538
+JILIN_CHANGCHUN,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/39538.html,39538
+JILIN_CHANGCHUN,retail,2022,1907.84,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39538.html,39538
+JILIN_CHANGCHUN,trade,2022,1107.58,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39538.html,39538
+HEILONGJIANG_HARBIN,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+HEILONGJIANG_HARBIN,gdp_growth,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+HEILONGJIANG_HARBIN,primary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+HEILONGJIANG_HARBIN,secondary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+HEILONGJIANG_HARBIN,tertiary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+HEILONGJIANG_HARBIN,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+HEILONGJIANG_HARBIN,fiscal_rev,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+HEILONGJIANG_HARBIN,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+HEILONGJIANG_HARBIN,retail,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+HEILONGJIANG_HARBIN,trade,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37008.html,37008
+ANHUI_HEFEI,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+ANHUI_HEFEI,gdp_growth,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+ANHUI_HEFEI,primary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+ANHUI_HEFEI,secondary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+ANHUI_HEFEI,tertiary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+ANHUI_HEFEI,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+ANHUI_HEFEI,fiscal_rev,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+ANHUI_HEFEI,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+ANHUI_HEFEI,retail,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+ANHUI_HEFEI,trade,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/38447.html,38447
+FUJIAN_FUZHOU,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+FUJIAN_FUZHOU,gdp_growth,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+FUJIAN_FUZHOU,primary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+FUJIAN_FUZHOU,secondary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+FUJIAN_FUZHOU,tertiary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+FUJIAN_FUZHOU,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+FUJIAN_FUZHOU,fiscal_rev,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+FUJIAN_FUZHOU,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+FUJIAN_FUZHOU,retail,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+FUJIAN_FUZHOU,trade,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36254.html,36254
+JIANGXI_NANCHANG,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+JIANGXI_NANCHANG,gdp_growth,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+JIANGXI_NANCHANG,primary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+JIANGXI_NANCHANG,secondary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+JIANGXI_NANCHANG,tertiary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+JIANGXI_NANCHANG,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+JIANGXI_NANCHANG,fiscal_rev,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+JIANGXI_NANCHANG,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+JIANGXI_NANCHANG,retail,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+JIANGXI_NANCHANG,trade,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35659.html,35659
+SHANDONG_JINAN,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36186.html,36186
+SHANDONG_JINAN,gdp_growth,2022,3.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36186.html,36186
+SHANDONG_JINAN,primary_gdp,2022,420.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36186.html,36186
+SHANDONG_JINAN,secondary_gdp,2022,4180.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36186.html,36186
+SHANDONG_JINAN,tertiary_gdp,2022,7426.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36186.html,36186
+SHANDONG_JINAN,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36186.html,36186
+SHANDONG_JINAN,fiscal_rev,2022,1001.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36186.html,36186
+SHANDONG_JINAN,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/36186.html,36186
+SHANDONG_JINAN,retail,2022,4878.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36186.html,36186
+SHANDONG_JINAN,trade,2022,2208.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36186.html,36186
+HENAN_ZHENGZHOU,gdp_total,2022,1528.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36348.html,36348
+HENAN_ZHENGZHOU,gdp_growth,2022,1.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36348.html,36348
+HENAN_ZHENGZHOU,primary_gdp,2022,185.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36348.html,36348
+HENAN_ZHENGZHOU,secondary_gdp,2022,5174.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36348.html,36348
+HENAN_ZHENGZHOU,tertiary_gdp,2022,7574.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36348.html,36348
+HENAN_ZHENGZHOU,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36348.html,36348
+HENAN_ZHENGZHOU,fiscal_rev,2022,1130.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36348.html,36348
+HENAN_ZHENGZHOU,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/36348.html,36348
+HENAN_ZHENGZHOU,retail,2022,5223.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36348.html,36348
+HENAN_ZHENGZHOU,trade,2022,6069.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36348.html,36348
+HUBEI_WUHAN,gdp_total,2022,18866.43,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35546.html,35546
+HUBEI_WUHAN,gdp_growth,2022,4.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35546.html,35546
+HUBEI_WUHAN,primary_gdp,2022,475.79,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35546.html,35546
+HUBEI_WUHAN,secondary_gdp,2022,6716.65,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35546.html,35546
+HUBEI_WUHAN,tertiary_gdp,2022,11673.99,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35546.html,35546
+HUBEI_WUHAN,gdp_percapita,2022,137772,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35546.html,35546
+HUBEI_WUHAN,fiscal_rev,2022,1504.74,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35546.html,35546
+HUBEI_WUHAN,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35546.html,35546
+HUBEI_WUHAN,retail,2022,6936.20,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35546.html,35546
+HUBEI_WUHAN,trade,2022,3532.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35546.html,35546
+HUNAN_CHANGSHA,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35823.html,35823
+HUNAN_CHANGSHA,gdp_growth,2022,9.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35823.html,35823
+HUNAN_CHANGSHA,primary_gdp,2022,451.30,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35823.html,35823
+HUNAN_CHANGSHA,secondary_gdp,2022,5589.58,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35823.html,35823
+HUNAN_CHANGSHA,tertiary_gdp,2022,7925.24,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35823.html,35823
+HUNAN_CHANGSHA,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35823.html,35823
+HUNAN_CHANGSHA,fiscal_rev,2022,1788.46,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35823.html,35823
+HUNAN_CHANGSHA,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35823.html,35823
+HUNAN_CHANGSHA,retail,2022,5235.56,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35823.html,35823
+HUNAN_CHANGSHA,trade,2022,30.99,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35823.html,35823
+GUANGXI_NANNING,gdp_total,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+GUANGXI_NANNING,gdp_growth,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+GUANGXI_NANNING,primary_gdp,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+GUANGXI_NANNING,secondary_gdp,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+GUANGXI_NANNING,tertiary_gdp,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+GUANGXI_NANNING,gdp_percapita,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+GUANGXI_NANNING,fiscal_rev,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+GUANGXI_NANNING,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+GUANGXI_NANNING,retail,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+GUANGXI_NANNING,trade,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+HAINAN_HAIKOU,gdp_total,2022,2134.77,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35096.html,35096
+HAINAN_HAIKOU,gdp_growth,2022,1.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35096.html,35096
+HAINAN_HAIKOU,primary_gdp,2022,99.19,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35096.html,35096
+HAINAN_HAIKOU,secondary_gdp,2022,406.30,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35096.html,35096
+HAINAN_HAIKOU,tertiary_gdp,2022,1629.28,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35096.html,35096
+HAINAN_HAIKOU,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35096.html,35096
+HAINAN_HAIKOU,fiscal_rev,2022,553.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35096.html,35096
+HAINAN_HAIKOU,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35096.html,35096
+HAINAN_HAIKOU,retail,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35096.html,35096
+HAINAN_HAIKOU,trade,2022,605.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35096.html,35096
+SICHUAN_CHENGDU,gdp_total,2022,20817.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35562.html,35562
+SICHUAN_CHENGDU,gdp_growth,2022,2.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35562.html,35562
+SICHUAN_CHENGDU,primary_gdp,2022,588.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35562.html,35562
+SICHUAN_CHENGDU,secondary_gdp,2022,6404.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35562.html,35562
+SICHUAN_CHENGDU,tertiary_gdp,2022,13825.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35562.html,35562
+SICHUAN_CHENGDU,gdp_percapita,2022,98149,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35562.html,35562
+SICHUAN_CHENGDU,fiscal_rev,2022,1722.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35562.html,35562
+SICHUAN_CHENGDU,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35562.html,35562
+SICHUAN_CHENGDU,retail,2022,9096.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35562.html,35562
+SICHUAN_CHENGDU,trade,2022,8346.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35562.html,35562
+GUIZHOU_GUIYANG,gdp_total,2022,4921.17,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/37610.html,37610
+GUIZHOU_GUIYANG,gdp_growth,2022,2.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/37610.html,37610
+GUIZHOU_GUIYANG,primary_gdp,2022,203.60,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/37610.html,37610
+GUIZHOU_GUIYANG,secondary_gdp,2022,1739.57,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/37610.html,37610
+GUIZHOU_GUIYANG,tertiary_gdp,2022,2977.99,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/37610.html,37610
+GUIZHOU_GUIYANG,gdp_percapita,2022,79872,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/37610.html,37610
+GUIZHOU_GUIYANG,fiscal_rev,2022,402.16,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/37610.html,37610
+GUIZHOU_GUIYANG,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/37610.html,37610
+GUIZHOU_GUIYANG,retail,2022,2402.11,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/37610.html,37610
+GUIZHOU_GUIYANG,trade,2022,88.33,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/37610.html,37610
+YUNNAN_KUNMING,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/39200.html,39200
+YUNNAN_KUNMING,gdp_growth,2022,3.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39200.html,39200
+YUNNAN_KUNMING,primary_gdp,2022,326.96,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39200.html,39200
+YUNNAN_KUNMING,secondary_gdp,2022,2413.39,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39200.html,39200
+YUNNAN_KUNMING,tertiary_gdp,2022,4801.02,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39200.html,39200
+YUNNAN_KUNMING,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/39200.html,39200
+YUNNAN_KUNMING,fiscal_rev,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/39200.html,39200
+YUNNAN_KUNMING,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/39200.html,39200
+YUNNAN_KUNMING,retail,2022,3385.26,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39200.html,39200
+YUNNAN_KUNMING,trade,2022,300.56,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39200.html,39200
+XIZANG_LASA,gdp_total,2022,747.57,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39048.html,39048
+XIZANG_LASA,gdp_growth,2022,0.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39048.html,39048
+XIZANG_LASA,primary_gdp,2022,26.74,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39048.html,39048
+XIZANG_LASA,secondary_gdp,2022,291.25,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39048.html,39048
+XIZANG_LASA,tertiary_gdp,2022,429.58,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39048.html,39048
+XIZANG_LASA,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/39048.html,39048
+XIZANG_LASA,fiscal_rev,2022,72.47,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39048.html,39048
+XIZANG_LASA,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/39048.html,39048
+XIZANG_LASA,retail,2022,353.31,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/39048.html,39048
+XIZANG_LASA,trade,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/39048.html,39048
+SHAANXI_XIAN,gdp_total,2022,11486.51,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35633.html,35633
+SHAANXI_XIAN,gdp_growth,2022,4.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35633.html,35633
+SHAANXI_XIAN,primary_gdp,2022,323.58,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35633.html,35633
+SHAANXI_XIAN,secondary_gdp,2022,4071.56,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35633.html,35633
+SHAANXI_XIAN,tertiary_gdp,2022,7091.37,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35633.html,35633
+SHAANXI_XIAN,gdp_percapita,2022,88806,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35633.html,35633
+SHAANXI_XIAN,fiscal_rev,2022,834.09,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35633.html,35633
+SHAANXI_XIAN,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35633.html,35633
+SHAANXI_XIAN,retail,2022,4642.11,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35633.html,35633
+SHAANXI_XIAN,trade,2022,4474.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35633.html,35633
+GANSU_LANZHOU,gdp_total,2022,3343.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42090.html,42090
+GANSU_LANZHOU,gdp_growth,2022,0.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42090.html,42090
+GANSU_LANZHOU,primary_gdp,2022,65.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42090.html,42090
+GANSU_LANZHOU,secondary_gdp,2022,1150.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42090.html,42090
+GANSU_LANZHOU,tertiary_gdp,2022,2127.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42090.html,42090
+GANSU_LANZHOU,gdp_percapita,2022,75992,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42090.html,42090
+GANSU_LANZHOU,fiscal_rev,2022,221.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42090.html,42090
+GANSU_LANZHOU,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42090.html,42090
+GANSU_LANZHOU,retail,2022,1598.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42090.html,42090
+GANSU_LANZHOU,trade,2022,168.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42090.html,42090
+QINGHAI_XINING,gdp_total,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+QINGHAI_XINING,gdp_growth,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+QINGHAI_XINING,primary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+QINGHAI_XINING,secondary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+QINGHAI_XINING,tertiary_gdp,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+QINGHAI_XINING,gdp_percapita,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+QINGHAI_XINING,fiscal_rev,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+QINGHAI_XINING,fixed_asset,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+QINGHAI_XINING,retail,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+QINGHAI_XINING,trade,2022,,,DATA_MISSING,669fix-b-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42507.html,42507
+NINGXIA_YINCHUAN,gdp_total,2022,2535.63,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36119.html,36119
+NINGXIA_YINCHUAN,gdp_growth,2022,4.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36119.html,36119
+NINGXIA_YINCHUAN,primary_gdp,2022,91.80,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36119.html,36119
+NINGXIA_YINCHUAN,secondary_gdp,2022,1261.70,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36119.html,36119
+NINGXIA_YINCHUAN,tertiary_gdp,2022,1182.13,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36119.html,36119
+NINGXIA_YINCHUAN,gdp_percapita,2022,87756,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36119.html,36119
+NINGXIA_YINCHUAN,fiscal_rev,2022,168.86,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36119.html,36119
+NINGXIA_YINCHUAN,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/36119.html,36119
+NINGXIA_YINCHUAN,retail,2022,791.62,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36119.html,36119
+NINGXIA_YINCHUAN,trade,2022,156.60,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36119.html,36119
+XINJIANG_WULUMUQI,gdp_total,2022,3893.22,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+XINJIANG_WULUMUQI,gdp_growth,2022,0.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+XINJIANG_WULUMUQI,primary_gdp,2022,30.98,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+XINJIANG_WULUMUQI,secondary_gdp,2022,1133.43,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+XINJIANG_WULUMUQI,tertiary_gdp,2022,2728.81,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+XINJIANG_WULUMUQI,gdp_percapita,2022,95511,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+XINJIANG_WULUMUQI,fiscal_rev,2022,314.82,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+XINJIANG_WULUMUQI,fixed_asset,2022,313.65,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+XINJIANG_WULUMUQI,retail,2022,1033.00,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+XINJIANG_WULUMUQI,trade,2022,513.57,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35583.html,35583
+TAIWAN_TAIPEI,gdp_total,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,gdp_growth,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,primary_gdp,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,secondary_gdp,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,tertiary_gdp,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,gdp_percapita,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,fiscal_rev,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,fixed_asset,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,retail,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,trade,2022,,,DATA_MISSING,"669fix-b-2022: hongheiku tag 页无 2022 bulletin (GUANGXI_NANNING/TAIWAN_TAIPEI, 守新增红线-3 不手填)",,
