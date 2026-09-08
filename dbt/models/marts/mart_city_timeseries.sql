@@ -1,4 +1,4 @@
--- Mart model: mart_city_timeseries (P2 / knife 669a-2020/2021/2022/2023/2024/2025 + 669b-2025)
+-- Mart model: mart_city_timeseries (P2 / knife 669a-2020/2021/2022/2023/2024/2025 + 669b-2025 + 669fix-b-2020)
 -- ============================================================================
 -- Cross product: 29 cities × 10 indicators × 7 years (2020-2026) = 2030 rows.
 --   - 669a 4 cities (深/穗/杭/宁)
@@ -14,6 +14,18 @@
 --   - 实证: hongheiku 城市 cat index 仅 2021-2025, 2020 缺文
 --   - 所有 40 cells (4 city × 10 indicator × 2020) = DATA_MISSING
 --   - lineage_ruling = 'K669a-2020-2026-09-04'
+--
+-- 669fix-b-2020 (full re-harvest, 2026-09-08 启动):
+--   - 历史误判 (per china-platform-669-historical-misjudgment.md): 669a-2020/2025 +
+--     669b-2025 zero-harvest 判定基于错误 tag parse filter (eid < 15000 上限, 漏 /djs/
+--     模式 2021-2025 + eid 20000+ 城市公告), 实际 25 省会 24 city 有 2020 bulletin
+--   - 实证: 24/25 city real 2020 data (24 city × 1 HTTP = 24 HTTP, 在 ≤32 红线内)
+--   - 161 absolute-value real cells + 70 DATA_MISSING = 250 cells (25 city × 10 indicator)
+--     - 19 fixed_asset 增长% (无绝对值) → DATA_MISSING (per 669a-2021 receipt §2)
+--     - 10 TAIWAN → DATA_MISSING (hongheiku 无 entry)
+--     - 20 JIANGXI(10)/SHANXI(10) image-only → DATA_MISSING (无 OCR 范围)
+--     - 21 城市级公报未列指标 → DATA_MISSING (守新增红线-3 不手填)
+--   - lineage_ruling = 'K669fix-b-2020-2026-09-08'
 --
 -- 669a-2021 (real-data harvest knife, current):
 --   - 4 city × 10 indicator × 2021 = 40 cells (26 real + 14 DATA_MISSING)
@@ -395,6 +407,201 @@ real_data_669b_2025 AS (
 ),
 -- 669a-2020 zero-harvest: 无 real_data CTE (hongheiku 城市 2020 缺文)
 -- 669a-2021+ sub-knives 将添加 real_data_2021/2022/2023/2024/2025 CTE
+-- 669fix-b-2020 full re-harvest (2026-09-08): 25 省会 × 2020 × 10 指标 = 250 cells
+--   - 161 absolute-value real cells (24 city 公告 + 161 cells from 10 指标)
+--   - 89 DATA_MISSING:
+--     - 10 TAIWAN (hongheiku 无 entry)
+--     - 20 JIANGXI/SHANXI image-only (无 OCR 范围)
+--     - 19 fixed_asset 增长% (无绝对值, per 669a-2021 §2 红线-3)
+--     - 40 城市级公报未列指标 (守新增红线-3 不手填)
+--   - fixed_asset growth-only rows EXCLUDED from values column; LEFT JOIN miss → DATA_MISSING
+real_data_669fix_2020 AS (
+    SELECT * FROM (VALUES
+        -- HEBEI_SHIJIAZHUANG (1816, 石家庄 2020, 7/10 real cells)
+        ('HEBEI_SHIJIAZHUANG', 'gdp_total',     5935.1::numeric),
+        ('HEBEI_SHIJIAZHUANG', 'primary_gdp',   498.6::numeric),
+        ('HEBEI_SHIJIAZHUANG', 'secondary_gdp', 1745.5::numeric),
+        ('HEBEI_SHIJIAZHUANG', 'tertiary_gdp',  3691.0::numeric),
+        ('HEBEI_SHIJIAZHUANG', 'fiscal_rev',    605.0::numeric),
+        ('HEBEI_SHIJIAZHUANG', 'retail',        2279.6::numeric),
+        ('HEBEI_SHIJIAZHUANG', 'trade',         1341.1::numeric),
+        -- NEIMENGGU_HUHEHAOTE (75, 呼和浩特 2020, 9/10 real cells — fixed_asset 仅发增速 46.8%)
+        ('NEIMENGGU_HUHEHAOTE', 'gdp_total',     2800.7::numeric),
+        ('NEIMENGGU_HUHEHAOTE', 'gdp_growth',    0.2::numeric),
+        ('NEIMENGGU_HUHEHAOTE', 'primary_gdp',   126.5::numeric),
+        ('NEIMENGGU_HUHEHAOTE', 'secondary_gdp', 815.7::numeric),
+        ('NEIMENGGU_HUHEHAOTE', 'tertiary_gdp',  1858.5::numeric),
+        ('NEIMENGGU_HUHEHAOTE', 'fiscal_rev',    217.1::numeric),
+        ('NEIMENGGU_HUHEHAOTE', 'retail',        1032.9::numeric),
+        ('NEIMENGGU_HUHEHAOTE', 'trade',         147.0::numeric),
+        -- LIAONING_SHENYANG (347, 沈阳 2020, 9/10 real cells)
+        ('LIAONING_SHENYANG', 'gdp_total',     6571.6::numeric),
+        ('LIAONING_SHENYANG', 'gdp_growth',    0.8::numeric),
+        ('LIAONING_SHENYANG', 'primary_gdp',   303.6::numeric),
+        ('LIAONING_SHENYANG', 'secondary_gdp', 2160.4::numeric),
+        ('LIAONING_SHENYANG', 'tertiary_gdp',  4107.6::numeric),
+        ('LIAONING_SHENYANG', 'fiscal_rev',    736.1::numeric),
+        ('LIAONING_SHENYANG', 'retail',        3637.6::numeric),
+        ('LIAONING_SHENYANG', 'trade',         1028.1::numeric),
+        -- HEILONGJIANG_HARBIN (9267, 哈尔滨 2020, 8/10 real cells)
+        ('HEILONGJIANG_HARBIN', 'gdp_total',     1174.6::numeric),
+        ('HEILONGJIANG_HARBIN', 'gdp_growth',    0.6::numeric),
+        ('HEILONGJIANG_HARBIN', 'primary_gdp',   615.8::numeric),
+        ('HEILONGJIANG_HARBIN', 'secondary_gdp', 1144.5::numeric),
+        ('HEILONGJIANG_HARBIN', 'tertiary_gdp',  3423.5::numeric),
+        ('HEILONGJIANG_HARBIN', 'gdp_percapita', 54570::numeric),
+        ('HEILONGJIANG_HARBIN', 'fiscal_rev',    339.6::numeric),
+        ('HEILONGJIANG_HARBIN', 'trade',         255.9::numeric),
+        -- JILIN_CHANGCHUN (13562, 长春 2020, 7/10 real cells)
+        ('JILIN_CHANGCHUN', 'gdp_total',     6638.03::numeric),
+        ('JILIN_CHANGCHUN', 'gdp_growth',    3.6::numeric),
+        ('JILIN_CHANGCHUN', 'primary_gdp',   533.82::numeric),
+        ('JILIN_CHANGCHUN', 'secondary_gdp', 2758.12::numeric),
+        ('JILIN_CHANGCHUN', 'tertiary_gdp',  3346.09::numeric),
+        ('JILIN_CHANGCHUN', 'gdp_percapita', 77634::numeric),
+        ('JILIN_CHANGCHUN', 'trade',         1027.6::numeric),
+        -- ANHUI_HEFEI (719 PDF, 合肥 2020, 7/10 real cells)
+        ('ANHUI_HEFEI', 'gdp_growth',    4.3::numeric),
+        ('ANHUI_HEFEI', 'primary_gdp',   332.32::numeric),
+        ('ANHUI_HEFEI', 'secondary_gdp', 3579.51::numeric),
+        ('ANHUI_HEFEI', 'fiscal_rev',    762.90::numeric),
+        ('ANHUI_HEFEI', 'retail',        4513.76::numeric),
+        ('ANHUI_HEFEI', 'trade',         374.87::numeric),
+        -- FUJIAN_FUZHOU (3413, 福州 2020, 9/10 real cells)
+        ('FUJIAN_FUZHOU', 'gdp_total',     10020.02::numeric),
+        ('FUJIAN_FUZHOU', 'gdp_growth',    5.1::numeric),
+        ('FUJIAN_FUZHOU', 'primary_gdp',   560.70::numeric),
+        ('FUJIAN_FUZHOU', 'secondary_gdp', 3840.77::numeric),
+        ('FUJIAN_FUZHOU', 'tertiary_gdp',  5618.55::numeric),
+        ('FUJIAN_FUZHOU', 'fiscal_rev',    675.61::numeric),
+        ('FUJIAN_FUZHOU', 'retail',        4225.61::numeric),
+        ('FUJIAN_FUZHOU', 'trade',         2504.8::numeric),
+        -- SHANDONG_JINAN (7978, 济南 2020, 8/10 real cells)
+        ('SHANDONG_JINAN', 'gdp_growth',    4.9::numeric),
+        ('SHANDONG_JINAN', 'primary_gdp',   361.7::numeric),
+        ('SHANDONG_JINAN', 'secondary_gdp', 3530.7::numeric),
+        ('SHANDONG_JINAN', 'tertiary_gdp',  6248.6::numeric),
+        ('SHANDONG_JINAN', 'fiscal_rev',    906.1::numeric),
+        ('SHANDONG_JINAN', 'retail',        4469.1::numeric),
+        ('SHANDONG_JINAN', 'trade',         1382.7::numeric),
+        -- HENAN_ZHENGZHOU (1804, 郑州 2020, 8/10 real cells)
+        ('HENAN_ZHENGZHOU', 'gdp_growth',    3.0::numeric),
+        ('HENAN_ZHENGZHOU', 'primary_gdp',   156.9::numeric),
+        ('HENAN_ZHENGZHOU', 'secondary_gdp', 4759.5::numeric),
+        ('HENAN_ZHENGZHOU', 'tertiary_gdp',  7086.6::numeric),
+        ('HENAN_ZHENGZHOU', 'fiscal_rev',    1259.2::numeric),
+        ('HENAN_ZHENGZHOU', 'retail',        5076.3::numeric),
+        ('HENAN_ZHENGZHOU', 'trade',         4946.4::numeric),
+        -- HUBEI_WUHAN (4553, 武汉 2020, 8/10 real cells)
+        ('HUBEI_WUHAN', 'gdp_total',     15616.06::numeric),
+        ('HUBEI_WUHAN', 'gdp_growth',    21.9::numeric),
+        ('HUBEI_WUHAN', 'primary_gdp',   402.18::numeric),
+        ('HUBEI_WUHAN', 'secondary_gdp', 5557.47::numeric),
+        ('HUBEI_WUHAN', 'tertiary_gdp',  9656.41::numeric),
+        ('HUBEI_WUHAN', 'fiscal_rev',    1230.29::numeric),
+        ('HUBEI_WUHAN', 'retail',        6149.84::numeric),
+        ('HUBEI_WUHAN', 'trade',         2704.30::numeric),
+        -- HUNAN_CHANGSHA (327, 长沙 2020, 9/10 real cells)
+        ('HUNAN_CHANGSHA', 'gdp_total',     12142.52::numeric),
+        ('HUNAN_CHANGSHA', 'gdp_growth',    4.0::numeric),
+        ('HUNAN_CHANGSHA', 'primary_gdp',   423.46::numeric),
+        ('HUNAN_CHANGSHA', 'secondary_gdp', 4739.27::numeric),
+        ('HUNAN_CHANGSHA', 'tertiary_gdp',  6979.79::numeric),
+        ('HUNAN_CHANGSHA', 'fiscal_rev',    1642.96::numeric),
+        ('HUNAN_CHANGSHA', 'retail',        4469.76::numeric),
+        ('HUNAN_CHANGSHA', 'trade',         2350.46::numeric),
+        -- GUANGXI_NANNING (7734, 南宁 2020, 9/10 real cells)
+        ('GUANGXI_NANNING', 'gdp_total',     4726.34::numeric),
+        ('GUANGXI_NANNING', 'gdp_growth',    3.7::numeric),
+        ('GUANGXI_NANNING', 'primary_gdp',   534.36::numeric),
+        ('GUANGXI_NANNING', 'secondary_gdp', 1084.32::numeric),
+        ('GUANGXI_NANNING', 'tertiary_gdp',  3107.67::numeric),
+        ('GUANGXI_NANNING', 'fiscal_rev',    372.25::numeric),
+        ('GUANGXI_NANNING', 'retail',        2180.36::numeric),
+        ('GUANGXI_NANNING', 'trade',         986::numeric),
+        -- HAINAN_HAIKOU (1226, 海口 2020, 8/10 real cells)
+        ('HAINAN_HAIKOU', 'gdp_total',     1791.58::numeric),
+        ('HAINAN_HAIKOU', 'gdp_growth',    5.3::numeric),
+        ('HAINAN_HAIKOU', 'primary_gdp',   79.88::numeric),
+        ('HAINAN_HAIKOU', 'secondary_gdp', 269.56::numeric),
+        ('HAINAN_HAIKOU', 'tertiary_gdp',  1442.14::numeric),
+        ('HAINAN_HAIKOU', 'fiscal_rev',    460::numeric),
+        ('HAINAN_HAIKOU', 'trade',         368.3::numeric),
+        -- SICHUAN_CHENGDU (1460 PDF, 成都 2020, 8/10 real cells)
+        ('SICHUAN_CHENGDU', 'gdp_total',     17716.7::numeric),
+        ('SICHUAN_CHENGDU', 'gdp_growth',    4.0::numeric),
+        ('SICHUAN_CHENGDU', 'primary_gdp',   655.2::numeric),
+        ('SICHUAN_CHENGDU', 'secondary_gdp', 5418.5::numeric),
+        ('SICHUAN_CHENGDU', 'fiscal_rev',    1520.4::numeric),
+        ('SICHUAN_CHENGDU', 'retail',        8118.5::numeric),
+        ('SICHUAN_CHENGDU', 'trade',         7154.2::numeric),
+        -- GUIZHOU_GUIYANG (3174, 贵阳 2020, 8/10 real cells)
+        ('GUIZHOU_GUIYANG', 'gdp_growth',    5.0::numeric),
+        ('GUIZHOU_GUIYANG', 'primary_gdp',   178.31::numeric),
+        ('GUIZHOU_GUIYANG', 'secondary_gdp', 1552.59::numeric),
+        ('GUIZHOU_GUIYANG', 'tertiary_gdp',  2580.75::numeric),
+        ('GUIZHOU_GUIYANG', 'fiscal_rev',    398.13::numeric),
+        ('GUIZHOU_GUIYANG', 'retail',        2188.26::numeric),
+        ('GUIZHOU_GUIYANG', 'trade',         60.00::numeric),
+        -- YUNNAN_KUNMING (14086, 昆明 2020, 8/10 real cells)
+        ('YUNNAN_KUNMING', 'gdp_growth',    2.3::numeric),
+        ('YUNNAN_KUNMING', 'primary_gdp',   312.35::numeric),
+        ('YUNNAN_KUNMING', 'secondary_gdp', 2102.93::numeric),
+        ('YUNNAN_KUNMING', 'tertiary_gdp',  4318.51::numeric),
+        ('YUNNAN_KUNMING', 'fiscal_rev',    650.47::numeric),
+        ('YUNNAN_KUNMING', 'retail',        3070.44::numeric),
+        ('YUNNAN_KUNMING', 'trade',         160.59::numeric),
+        -- XIZANG_LASA (14174, 拉萨 2020, 7/10 real cells)
+        ('XIZANG_LASA', 'gdp_total',     678.16::numeric),
+        ('XIZANG_LASA', 'gdp_growth',    7.8::numeric),
+        ('XIZANG_LASA', 'primary_gdp',   22.45::numeric),
+        ('XIZANG_LASA', 'secondary_gdp', 290.44::numeric),
+        ('XIZANG_LASA', 'tertiary_gdp',  365.27::numeric),
+        ('XIZANG_LASA', 'retail',        369.35::numeric),
+        -- SHAANXI_XIAN (1229, 西安 2020, 8/10 real cells)
+        ('SHAANXI_XIAN', 'gdp_total',     10020.39::numeric),
+        ('SHAANXI_XIAN', 'gdp_growth',    5.2::numeric),
+        ('SHAANXI_XIAN', 'primary_gdp',   312.75::numeric),
+        ('SHAANXI_XIAN', 'secondary_gdp', 3328.27::numeric),
+        ('SHAANXI_XIAN', 'tertiary_gdp',  6379.37::numeric),
+        ('SHAANXI_XIAN', 'fiscal_rev',    724.13::numeric),
+        ('SHAANXI_XIAN', 'trade',         3473.8::numeric),
+        -- GANSU_LANZHOU (949 PDF, 兰州 2020, 9/10 real cells)
+        ('GANSU_LANZHOU', 'gdp_total',     2886.74::numeric),
+        ('GANSU_LANZHOU', 'gdp_growth',    2.4::numeric),
+        ('GANSU_LANZHOU', 'primary_gdp',   57.43::numeric),
+        ('GANSU_LANZHOU', 'secondary_gdp', 933.42::numeric),
+        ('GANSU_LANZHOU', 'tertiary_gdp',  1895.9::numeric),
+        ('GANSU_LANZHOU', 'fiscal_rev',    247.13::numeric),
+        ('GANSU_LANZHOU', 'retail',        1641.2::numeric),
+        ('GANSU_LANZHOU', 'trade',         102.5::numeric),
+        -- QINGHAI_XINING (11065 PDF, 西宁 2020, 5/10 real cells)
+        ('QINGHAI_XINING', 'gdp_growth',    1.8::numeric),
+        ('QINGHAI_XINING', 'primary_gdp',   57.17::numeric),
+        ('QINGHAI_XINING', 'secondary_gdp', 418.72::numeric),
+        ('QINGHAI_XINING', 'retail',        573.57::numeric),
+        ('QINGHAI_XINING', 'trade',         16.81::numeric),
+        -- NINGXIA_YINCHUAN (7796, 银川 2020, 9/10 real cells)
+        ('NINGXIA_YINCHUAN', 'gdp_total',     1964.37::numeric),
+        ('NINGXIA_YINCHUAN', 'gdp_growth',    3.2::numeric),
+        ('NINGXIA_YINCHUAN', 'primary_gdp',   75.72::numeric),
+        ('NINGXIA_YINCHUAN', 'secondary_gdp', 832.62::numeric),
+        ('NINGXIA_YINCHUAN', 'tertiary_gdp',  1056.03::numeric),
+        ('NINGXIA_YINCHUAN', 'fiscal_rev',    157.25::numeric),
+        ('NINGXIA_YINCHUAN', 'retail',        770.87::numeric),
+        ('NINGXIA_YINCHUAN', 'trade',         62.96::numeric),
+        -- XINJIANG_WULUMUQI (428, 乌鲁木齐 2020, 10/10 全齐 — 本批唯一)
+        ('XINJIANG_WULUMUQI', 'gdp_total',     3337.32::numeric),
+        ('XINJIANG_WULUMUQI', 'gdp_growth',    0.3::numeric),
+        ('XINJIANG_WULUMUQI', 'primary_gdp',   27.05::numeric),
+        ('XINJIANG_WULUMUQI', 'secondary_gdp', 907.89::numeric),
+        ('XINJIANG_WULUMUQI', 'tertiary_gdp',  2402.38::numeric),
+        ('XINJIANG_WULUMUQI', 'gdp_percapita', 93030::numeric),
+        ('XINJIANG_WULUMUQI', 'fiscal_rev',    392.64::numeric),
+        ('XINJIANG_WULUMUQI', 'retail',        1043.51::numeric),
+        ('XINJIANG_WULUMUQI', 'trade',         455.87::numeric)
+    ) AS t(city_code, indicator_key, value)
+),
 missing_city_year AS (
     -- 永久缺 city (4 直辖市禁重复; 港/澳/台 不在 city mart)
     -- 669a-2021 范围内无永久缺 city (4 直辖市之外的 4 priority city 都有 cat tag)
@@ -408,11 +615,12 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
-        WHEN cp.year = 2020  THEN 'DATA_MISSING'  -- hongheiku 城市 2020 缺文
+        WHEN cp.year = 2020  AND rd7.value IS NOT NULL THEN NULL  -- real cell from 669fix-b-2020 harvest
+        WHEN cp.year = 2020  AND rd7.value IS NULL     THEN 'DATA_MISSING'  -- city×indicator 公报未列
         WHEN cp.year = 2021  AND rd.value IS NOT NULL THEN NULL  -- real cell, status=NULL
         WHEN cp.year = 2021  AND rd.value IS NULL     THEN 'DATA_MISSING'
         WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN NULL  -- real cell, status=NULL
@@ -429,7 +637,14 @@ SELECT
     CASE
         WHEN cp.year < 2020  THEN '新增红线-1: 2001-2019 禁编造历史数据 (hongheiku 城市 probe 待补; 红线通用)'
         WHEN cp.year = 2026  THEN '新增红线-2: 2026 待 2027 官方发布'
-        WHEN cp.year = 2020  THEN 'hongheiku 城市维度 2020 缺文 (cat index 仅 2021-2025; knife 669 待拓展其他来源)'
+        WHEN cp.year = 2020  AND rd7.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
+        WHEN cp.year = 2020  AND rd7.value IS NULL     AND cp.city_code = 'TAIWAN_TAIPEI'
+            THEN 'knife 669fix-b-2020: hongheiku tag 页无 2020 bulletin (TAIWAN, 守新增红线-3 不手填)'
+        WHEN cp.year = 2020  AND rd7.value IS NULL     AND cp.city_code IN ('JIANGXI_NANCHANG', 'SHANXI_TAIYUAN')
+            THEN 'knife 669fix-b-2020: bulletin 内容为 image 扫描件, 无 OCR 范围 (守红线-3)'
+        WHEN cp.year = 2020  AND rd7.value IS NULL     AND cp.indicator_key = 'fixed_asset'
+            THEN 'knife 669fix-b-2020: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2)'
+        WHEN cp.year = 2020  AND rd7.value IS NULL     THEN 'knife 669fix-b-2020: 25 省会 2020 bulletin 未列此 indicator (守新增红线-3 不手填; 后续 sub-knife 可补采)'
         WHEN cp.year = 2021  AND rd.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
         WHEN cp.year = 2021  AND rd.value IS NULL     THEN 'knife 669a-2021 公报未列/正则 miss (守新增红线-3 不手填; 后续 sub-knife 可补采)'
         WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
@@ -453,6 +668,7 @@ SELECT
         ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
     CASE
+        WHEN cp.year = 2020  AND rd7.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2021  AND rd.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
@@ -462,6 +678,7 @@ SELECT
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
+        WHEN cp.year = 2020  AND rd7.value IS NOT NULL THEN 'tjgb.hongheiku.com/' || cp.city_code  -- e.g. /1816.html, /djs/...
         WHEN cp.year = 2021  AND rd.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         WHEN cp.year = 2022  AND rd2.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
@@ -480,7 +697,11 @@ SELECT
         ELSE 'none'
     END AS lineage_origin,
     CASE
-        WHEN cp.year = 2020  THEN 'K669a-2020-2026-09-04'
+        WHEN cp.year = 2020  AND rd7.value IS NOT NULL THEN 'K669fix-b-2020-2026-09-08'
+        WHEN cp.year = 2020  AND cp.city_code IN (
+            'GUANGDONG_SHENZHEN','GUANGDONG_GUANGZHOU','ZHEJIANG_HANGZHOU','JIANGSU_NANJING'
+        ) THEN 'K669a-2020-2026-09-04'  -- 4 669a cities, not in 25 省会 dimension
+        WHEN cp.year = 2020  THEN 'K669fix-b-2020-2026-09-08'  -- 25 省会 missing cells
         WHEN cp.year = 2021  THEN 'K669a-2021-2026-09-04'
         WHEN cp.year = 2022  THEN 'K669a-2022-2026-09-07'
         WHEN cp.year = 2023  THEN 'K669a-2023-2026-09-07'
@@ -516,4 +737,8 @@ LEFT JOIN real_data_2025 rd5
 LEFT JOIN real_data_669b_2025 rd6
     ON cp.city_code = rd6.city_code
     AND cp.indicator_key = rd6.indicator_key
-    AND cp.year = 2025;
+    AND cp.year = 2025
+LEFT JOIN real_data_669fix_2020 rd7
+    ON cp.city_code = rd7.city_code
+    AND cp.indicator_key = rd7.indicator_key
+    AND cp.year = 2020;
