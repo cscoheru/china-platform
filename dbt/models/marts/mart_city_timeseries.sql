@@ -1,6 +1,8 @@
--- Mart model: mart_city_timeseries (P2 / knife 669a-2020/2021/2022/2023/2024/2025)
+-- Mart model: mart_city_timeseries (P2 / knife 669a-2020/2021/2022/2023/2024/2025 + 669b-2025)
 -- ============================================================================
--- Cross product: 4 cities × 10 indicators × 7 years (2020-2026) = 280 rows.
+-- Cross product: 29 cities × 10 indicators × 7 years (2020-2026) = 2030 rows.
+--   - 669a 4 cities (深/穗/杭/宁)
+--   - 669b 25 cities (28 省会 - 3 已在 669a - 4 直辖市禁)
 --
 -- Per 新增红线-7 (docs/87 §3.2 P2 数据扩展): mart schema 保持 province/city 分离
 -- (不合并), 4 直辖市 (北京/上海/天津/重庆) 禁在 city 维度重复 (已在 province mart)。
@@ -48,12 +50,39 @@
 
 WITH city_dimension AS (
     -- 669a 批次: 4 优先 city (深/穗/杭/宁)
+    -- 669b 批次: 25 省会 city (除 4 直辖市禁 city dim + 3 已在 669a: 穗/杭/宁)
     -- city_code 命名规范: {PROVINCE_CODE}_{CITY_SLUG} (大写英文)
     SELECT * FROM (VALUES
         ('GUANGDONG_SHENZHEN',  '深圳市', 'GUANGDONG'),
         ('GUANGDONG_GUANGZHOU', '广州市', 'GUANGDONG'),
         ('ZHEJIANG_HANGZHOU',   '杭州市', 'ZHEJIANG'),
-        ('JIANGSU_NANJING',     '南京市', 'JIANGSU')
+        ('JIANGSU_NANJING',     '南京市', 'JIANGSU'),
+        -- 669b 25 省会 (新增)
+        ('HEBEI_SHIJIAZHUANG',     '石家庄市',     'HEBEI'),
+        ('SHANXI_TAIYUAN',         '太原市',       'SHANXI'),
+        ('NEIMENGGU_HUHEHAOTE',    '呼和浩特市',   'NEIMENGGU'),
+        ('LIAONING_SHENYANG',      '沈阳市',       'LIAONING'),
+        ('JILIN_CHANGCHUN',        '长春市',       'JILIN'),
+        ('HEILONGJIANG_HARBIN',    '哈尔滨市',     'HEILONGJIANG'),
+        ('ANHUI_HEFEI',            '合肥市',       'ANHUI'),
+        ('FUJIAN_FUZHOU',          '福州市',       'FUJIAN'),
+        ('JIANGXI_NANCHANG',       '南昌市',       'JIANGXI'),
+        ('SHANDONG_JINAN',         '济南市',       'SHANDONG'),
+        ('HENAN_ZHENGZHOU',        '郑州市',       'HENAN'),
+        ('HUBEI_WUHAN',            '武汉市',       'HUBEI'),
+        ('HUNAN_CHANGSHA',         '长沙市',       'HUNAN'),
+        ('GUANGXI_NANNING',        '南宁市',       'GUANGXI'),
+        ('HAINAN_HAIKOU',          '海口市',       'HAINAN'),
+        ('SICHUAN_CHENGDU',        '成都市',       'SICHUAN'),
+        ('GUIZHOU_GUIYANG',        '贵阳市',       'GUIZHOU'),
+        ('YUNNAN_KUNMING',         '昆明市',       'YUNNAN'),
+        ('XIZANG_LASA',            '拉萨市',       'XIZANG'),
+        ('SHAANXI_XIAN',           '西安市',       'SHAANXI'),
+        ('GANSU_LANZHOU',          '兰州市',       'GANSU'),
+        ('QINGHAI_XINING',         '西宁市',       'QINGHAI'),
+        ('NINGXIA_YINCHUAN',       '银川市',       'NINGXIA'),
+        ('XINJIANG_WULUMUQI',      '乌鲁木齐市',   'XINJIANG'),
+        ('TAIWAN_TAIPEI',          '台北市',       'TAIWAN')
     ) AS t(city_code, city_name, province_code)
 ),
 indicator_dimension AS (
@@ -350,6 +379,20 @@ real_data_2025 AS (
         -- JIANGSU_NANJING (南京 2025, 0/10 — hongheiku 无 2025 entry)
     ) AS t(city_code, indicator_key, value)
 ),
+-- 669b-2025 real_data (25 city × 10 indicator = 250 cells, 0 real + 250 DATA_MISSING)
+-- 来源: hongheiku /tag/{city_name} (无 2025 city bulletin)
+-- URL discovery: 25 tag pages × 1 = 25 HTTP (per knife 669b-2025 budget, ≤32 红线)
+-- 实证 (3 probe methods, 全部 0 命中):
+--   1. tag 页 × 25 city — 全部仅含 2020 年公报 + 人口普查公报 (无 2021-2025)
+--   2. cat index /category/sjtjgb 2025 — 1 entry (national 68085), 0 city
+--   3. 站搜 ?s={city}2025 × 5 代表性 city (武汉/成都/长沙/杭州/广州) — 全部 '未找到', 0 results
+-- 决策: 25 city × 2025 = 全 DATA_MISSING (守新增红线-3 不手填, 公报未发布/未收录)
+-- lineage_ruling = 'K669b-2025-2026-09-08'
+real_data_669b_2025 AS (
+    -- Empty CTE: 25 省会 × 2025 = all DATA_MISSING (hongheiku 无 2025 city bulletin)
+    SELECT NULL::text AS city_code, NULL::text AS indicator_key, NULL::numeric AS value
+    WHERE FALSE
+),
 -- 669a-2020 zero-harvest: 无 real_data CTE (hongheiku 城市 2020 缺文)
 -- 669a-2021+ sub-knives 将添加 real_data_2021/2022/2023/2024/2025 CTE
 missing_city_year AS (
@@ -365,7 +408,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -379,7 +422,8 @@ SELECT
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN NULL  -- real cell, status=NULL
         WHEN cp.year = 2024  AND rd4.value IS NULL     THEN 'DATA_MISSING'
         WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN NULL  -- real cell, status=NULL
-        WHEN cp.year = 2025  AND rd5.value IS NULL     THEN 'DATA_MISSING'
+        WHEN cp.year = 2025  AND rd6.value IS NOT NULL THEN NULL  -- real cell (future-proofing for 669b)
+        WHEN cp.year = 2025  AND rd5.value IS NULL     THEN 'DATA_MISSING'  -- covers 4 669a + 25 669b cities
         ELSE 'DATA_MISSING'  -- 2026 待 2027 官方发布
     END AS status,
     CASE
@@ -395,6 +439,16 @@ SELECT
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
         WHEN cp.year = 2024  AND rd4.value IS NULL     THEN 'knife 669a-2024 公报仅发增速无绝对值 (守新增红线-3 不手填; 后续 sub-knife 可补采)'
         WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN NULL  -- real cell, no missing_reason
+        WHEN cp.year = 2025  AND rd6.value IS NOT NULL THEN NULL  -- real cell, no missing_reason (future-proofing for 669b)
+        WHEN cp.year = 2025  AND cp.city_code IN (
+            'HEBEI_SHIJIAZHUANG','SHANXI_TAIYUAN','NEIMENGGU_HUHEHAOTE','LIAONING_SHENYANG',
+            'JILIN_CHANGCHUN','HEILONGJIANG_HARBIN','ANHUI_HEFEI','FUJIAN_FUZHOU',
+            'JIANGXI_NANCHANG','SHANDONG_JINAN','HENAN_ZHENGZHOU','HUBEI_WUHAN',
+            'HUNAN_CHANGSHA','GUANGXI_NANNING','HAINAN_HAIKOU','SICHUAN_CHENGDU',
+            'GUIZHOU_GUIYANG','YUNNAN_KUNMING','XIZANG_LASA','SHAANXI_XIAN',
+            'GANSU_LANZHOU','QINGHAI_XINING','NINGXIA_YINCHUAN','XINJIANG_WULUMUQI',
+            'TAIWAN_TAIPEI'
+        ) THEN 'knife 669b-2025 hongheiku 无 2025 city bulletin (3 probe methods 全部 0 命中, tag 页仅含 2020 年公报 + 人口普查公报; 守新增红线-3 不手填)'
         WHEN cp.year = 2025  AND rd5.value IS NULL     THEN 'knife 669a-2025 hongheiku 无 2025 entry / 公报仅发增速 (守红线-3 不手填; 后续 sub-knife 可补采)'
         ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
@@ -404,6 +458,7 @@ SELECT
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
+        WHEN cp.year = 2025  AND rd6.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- future-proofing for 669b
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
@@ -412,6 +467,16 @@ SELECT
         WHEN cp.year = 2023  AND rd3.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
         WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
+        WHEN cp.year = 2025  AND rd6.value IS NOT NULL THEN 'tjgb.hongheiku.com/djs/' || cp.city_name
+        WHEN cp.year = 2025  AND cp.city_code IN (
+            'HEBEI_SHIJIAZHUANG','SHANXI_TAIYUAN','NEIMENGGU_HUHEHAOTE','LIAONING_SHENYANG',
+            'JILIN_CHANGCHUN','HEILONGJIANG_HARBIN','ANHUI_HEFEI','FUJIAN_FUZHOU',
+            'JIANGXI_NANCHANG','SHANDONG_JINAN','HENAN_ZHENGZHOU','HUBEI_WUHAN',
+            'HUNAN_CHANGSHA','GUANGXI_NANNING','HAINAN_HAIKOU','SICHUAN_CHENGDU',
+            'GUIZHOU_GUIYANG','YUNNAN_KUNMING','XIZANG_LASA','SHAANXI_XIAN',
+            'GANSU_LANZHOU','QINGHAI_XINING','NINGXIA_YINCHUAN','XINJIANG_WULUMUQI',
+            'TAIWAN_TAIPEI'
+        ) THEN 'tjgb.hongheiku.com/tag/' || cp.city_name || ' (no 2025 entry, 3 probes 0 命中)'
         ELSE 'none'
     END AS lineage_origin,
     CASE
@@ -420,7 +485,10 @@ SELECT
         WHEN cp.year = 2022  THEN 'K669a-2022-2026-09-07'
         WHEN cp.year = 2023  THEN 'K669a-2023-2026-09-07'
         WHEN cp.year = 2024  THEN 'K669a-2024-2026-09-07'
-        WHEN cp.year = 2025  THEN 'K669a-2025-2026-09-07'
+        WHEN cp.year = 2025  AND cp.city_code IN (
+            'GUANGDONG_SHENZHEN','GUANGDONG_GUANGZHOU','ZHEJIANG_HANGZHOU','JIANGSU_NANJING'
+        ) THEN 'K669a-2025-2026-09-07'
+        WHEN cp.year = 2025  THEN 'K669b-2025-2026-09-08'  -- 25 省会 (深/穗/杭/宁 之外的)
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -444,4 +512,8 @@ LEFT JOIN real_data_2024 rd4
 LEFT JOIN real_data_2025 rd5
     ON cp.city_code = rd5.city_code
     AND cp.indicator_key = rd5.indicator_key
+    AND cp.year = 2025
+LEFT JOIN real_data_669b_2025 rd6
+    ON cp.city_code = rd6.city_code
+    AND cp.indicator_key = rd6.indicator_key
     AND cp.year = 2025;
