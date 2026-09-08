@@ -1,0 +1,251 @@
+city_code,indicator_key,year,value,unit,status,missing_reason,source_url,bulletic_eid
+HEBEI_SHIJIAZHUANG,gdp_total,2023,7534.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45623.html,45623
+HEBEI_SHIJIAZHUANG,gdp_growth,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45623.html,45623
+HEBEI_SHIJIAZHUANG,primary_gdp,2023,576.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45623.html,45623
+HEBEI_SHIJIAZHUANG,secondary_gdp,2023,2309.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45623.html,45623
+HEBEI_SHIJIAZHUANG,tertiary_gdp,2023,4648.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45623.html,45623
+HEBEI_SHIJIAZHUANG,gdp_percapita,2023,67099,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45623.html,45623
+HEBEI_SHIJIAZHUANG,fiscal_rev,2023,737.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45623.html,45623
+HEBEI_SHIJIAZHUANG,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/45623.html,45623
+HEBEI_SHIJIAZHUANG,retail,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45623.html,45623
+HEBEI_SHIJIAZHUANG,trade,2023,1237.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45623.html,45623
+SHANXI_TAIYUAN,gdp_total,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+SHANXI_TAIYUAN,gdp_growth,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+SHANXI_TAIYUAN,primary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+SHANXI_TAIYUAN,secondary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+SHANXI_TAIYUAN,tertiary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+SHANXI_TAIYUAN,gdp_percapita,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+SHANXI_TAIYUAN,fiscal_rev,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+SHANXI_TAIYUAN,fixed_asset,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+SHANXI_TAIYUAN,retail,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+SHANXI_TAIYUAN,trade,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/55537.html,55537
+NEIMENGGU_HUHEHAOTE,gdp_total,2023,3801.55,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47464.html,47464
+NEIMENGGU_HUHEHAOTE,gdp_growth,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47464.html,47464
+NEIMENGGU_HUHEHAOTE,primary_gdp,2023,167.53,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47464.html,47464
+NEIMENGGU_HUHEHAOTE,secondary_gdp,2023,1337.70,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47464.html,47464
+NEIMENGGU_HUHEHAOTE,tertiary_gdp,2023,2296.32,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47464.html,47464
+NEIMENGGU_HUHEHAOTE,gdp_percapita,2023,106337,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47464.html,47464
+NEIMENGGU_HUHEHAOTE,fiscal_rev,2023,238.06,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47464.html,47464
+NEIMENGGU_HUHEHAOTE,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/47464.html,47464
+NEIMENGGU_HUHEHAOTE,retail,2023,1202.59,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47464.html,47464
+NEIMENGGU_HUHEHAOTE,trade,2023,194.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47464.html,47464
+LIAONING_SHENYANG,gdp_total,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+LIAONING_SHENYANG,gdp_growth,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+LIAONING_SHENYANG,primary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+LIAONING_SHENYANG,secondary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+LIAONING_SHENYANG,tertiary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+LIAONING_SHENYANG,gdp_percapita,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+LIAONING_SHENYANG,fiscal_rev,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+LIAONING_SHENYANG,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+LIAONING_SHENYANG,retail,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+LIAONING_SHENYANG,trade,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JILIN_CHANGCHUN,gdp_total,2023,7002.06,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53459.html,53459
+JILIN_CHANGCHUN,gdp_growth,2023,6.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53459.html,53459
+JILIN_CHANGCHUN,primary_gdp,2023,530.97,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53459.html,53459
+JILIN_CHANGCHUN,secondary_gdp,2023,2616.51,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53459.html,53459
+JILIN_CHANGCHUN,tertiary_gdp,2023,3854.57,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53459.html,53459
+JILIN_CHANGCHUN,gdp_percapita,2023,77084,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53459.html,53459
+JILIN_CHANGCHUN,fiscal_rev,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/53459.html,53459
+JILIN_CHANGCHUN,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/53459.html,53459
+JILIN_CHANGCHUN,retail,2023,2109.85,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53459.html,53459
+JILIN_CHANGCHUN,trade,2023,1225.92,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53459.html,53459
+HEILONGJIANG_HARBIN,gdp_total,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+HEILONGJIANG_HARBIN,gdp_growth,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+HEILONGJIANG_HARBIN,primary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+HEILONGJIANG_HARBIN,secondary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+HEILONGJIANG_HARBIN,tertiary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+HEILONGJIANG_HARBIN,gdp_percapita,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+HEILONGJIANG_HARBIN,fiscal_rev,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+HEILONGJIANG_HARBIN,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+HEILONGJIANG_HARBIN,retail,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+HEILONGJIANG_HARBIN,trade,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+ANHUI_HEFEI,gdp_total,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+ANHUI_HEFEI,gdp_growth,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+ANHUI_HEFEI,primary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+ANHUI_HEFEI,secondary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+ANHUI_HEFEI,tertiary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+ANHUI_HEFEI,gdp_percapita,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+ANHUI_HEFEI,fiscal_rev,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+ANHUI_HEFEI,fixed_asset,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+ANHUI_HEFEI,retail,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+ANHUI_HEFEI,trade,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46594.html,46594
+FUJIAN_FUZHOU,gdp_total,2023,12928.47,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47449.html,47449
+FUJIAN_FUZHOU,gdp_growth,2023,5.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47449.html,47449
+FUJIAN_FUZHOU,primary_gdp,2023,721.59,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47449.html,47449
+FUJIAN_FUZHOU,secondary_gdp,2023,4675.12,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47449.html,47449
+FUJIAN_FUZHOU,tertiary_gdp,2023,7531.77,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47449.html,47449
+FUJIAN_FUZHOU,gdp_percapita,2023,152846,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47449.html,47449
+FUJIAN_FUZHOU,fiscal_rev,2023,754.08,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47449.html,47449
+FUJIAN_FUZHOU,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/47449.html,47449
+FUJIAN_FUZHOU,retail,2023,4963.76,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47449.html,47449
+FUJIAN_FUZHOU,trade,2023,3435.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47449.html,47449
+JIANGXI_NANCHANG,gdp_total,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JIANGXI_NANCHANG,gdp_growth,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JIANGXI_NANCHANG,primary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JIANGXI_NANCHANG,secondary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JIANGXI_NANCHANG,tertiary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JIANGXI_NANCHANG,gdp_percapita,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JIANGXI_NANCHANG,fiscal_rev,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JIANGXI_NANCHANG,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JIANGXI_NANCHANG,retail,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+JIANGXI_NANCHANG,trade,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+SHANDONG_JINAN,gdp_total,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/53597.html,53597
+SHANDONG_JINAN,gdp_growth,2023,4.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53597.html,53597
+SHANDONG_JINAN,primary_gdp,2023,429.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53597.html,53597
+SHANDONG_JINAN,secondary_gdp,2023,4312.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53597.html,53597
+SHANDONG_JINAN,tertiary_gdp,2023,8015.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53597.html,53597
+SHANDONG_JINAN,gdp_percapita,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/53597.html,53597
+SHANDONG_JINAN,fiscal_rev,2023,1060.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53597.html,53597
+SHANDONG_JINAN,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/53597.html,53597
+SHANDONG_JINAN,retail,2023,5199.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53597.html,53597
+SHANDONG_JINAN,trade,2023,2161.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53597.html,53597
+HENAN_ZHENGZHOU,gdp_total,2023,13617.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47058.html,47058
+HENAN_ZHENGZHOU,gdp_growth,2023,7.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47058.html,47058
+HENAN_ZHENGZHOU,primary_gdp,2023,172.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47058.html,47058
+HENAN_ZHENGZHOU,secondary_gdp,2023,5373.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47058.html,47058
+HENAN_ZHENGZHOU,tertiary_gdp,2023,8072.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47058.html,47058
+HENAN_ZHENGZHOU,gdp_percapita,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47058.html,47058
+HENAN_ZHENGZHOU,fiscal_rev,2023,1165.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47058.html,47058
+HENAN_ZHENGZHOU,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/47058.html,47058
+HENAN_ZHENGZHOU,retail,2023,5623.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47058.html,47058
+HENAN_ZHENGZHOU,trade,2023,5522.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47058.html,47058
+HUBEI_WUHAN,gdp_total,2023,20011.65,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46943.html,46943
+HUBEI_WUHAN,gdp_growth,2023,5.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46943.html,46943
+HUBEI_WUHAN,primary_gdp,2023,474.38,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46943.html,46943
+HUBEI_WUHAN,secondary_gdp,2023,6800.91,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46943.html,46943
+HUBEI_WUHAN,tertiary_gdp,2023,12736.36,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46943.html,46943
+HUBEI_WUHAN,gdp_percapita,2023,145471,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46943.html,46943
+HUBEI_WUHAN,fiscal_rev,2023,1601.20,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46943.html,46943
+HUBEI_WUHAN,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/46943.html,46943
+HUBEI_WUHAN,retail,2023,7531.90,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46943.html,46943
+HUBEI_WUHAN,trade,2023,1460.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46943.html,46943
+HUNAN_CHANGSHA,gdp_total,2023,13587.56,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/49118.html,49118
+HUNAN_CHANGSHA,gdp_growth,2023,0.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/49118.html,49118
+HUNAN_CHANGSHA,primary_gdp,2023,451.89,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/49118.html,49118
+HUNAN_CHANGSHA,secondary_gdp,2023,5365.53,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/49118.html,49118
+HUNAN_CHANGSHA,tertiary_gdp,2023,8514.55,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/49118.html,49118
+HUNAN_CHANGSHA,gdp_percapita,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/49118.html,49118
+HUNAN_CHANGSHA,fiscal_rev,2023,1846.11,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/49118.html,49118
+HUNAN_CHANGSHA,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/49118.html,49118
+HUNAN_CHANGSHA,retail,2023,5561.67,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/49118.html,49118
+HUNAN_CHANGSHA,trade,2023,2811.51,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/49118.html,49118
+GUANGXI_NANNING,gdp_total,2023,5469.06,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48505.html,48505
+GUANGXI_NANNING,gdp_growth,2023,4.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48505.html,48505
+GUANGXI_NANNING,primary_gdp,2023,636.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48505.html,48505
+GUANGXI_NANNING,secondary_gdp,2023,1194.58,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48505.html,48505
+GUANGXI_NANNING,tertiary_gdp,2023,3638.08,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48505.html,48505
+GUANGXI_NANNING,gdp_percapita,2023,61338,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48505.html,48505
+GUANGXI_NANNING,fiscal_rev,2023,400.88,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48505.html,48505
+GUANGXI_NANNING,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/48505.html,48505
+GUANGXI_NANNING,retail,2023,2424.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48505.html,48505
+GUANGXI_NANNING,trade,2023,1259.06,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48505.html,48505
+HAINAN_HAIKOU,gdp_total,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+HAINAN_HAIKOU,gdp_growth,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+HAINAN_HAIKOU,primary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+HAINAN_HAIKOU,secondary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+HAINAN_HAIKOU,tertiary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+HAINAN_HAIKOU,gdp_percapita,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+HAINAN_HAIKOU,fiscal_rev,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+HAINAN_HAIKOU,fixed_asset,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+HAINAN_HAIKOU,retail,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+HAINAN_HAIKOU,trade,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45493.html,45493
+SICHUAN_CHENGDU,gdp_total,2023,22074.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46512.html,46512
+SICHUAN_CHENGDU,gdp_growth,2023,6.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46512.html,46512
+SICHUAN_CHENGDU,primary_gdp,2023,594.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46512.html,46512
+SICHUAN_CHENGDU,secondary_gdp,2023,6370.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46512.html,46512
+SICHUAN_CHENGDU,tertiary_gdp,2023,15109.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46512.html,46512
+SICHUAN_CHENGDU,gdp_percapita,2023,103465,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46512.html,46512
+SICHUAN_CHENGDU,fiscal_rev,2023,1929.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46512.html,46512
+SICHUAN_CHENGDU,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/46512.html,46512
+SICHUAN_CHENGDU,retail,2023,10001.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46512.html,46512
+SICHUAN_CHENGDU,trade,2023,7489.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46512.html,46512
+GUIZHOU_GUIYANG,gdp_total,2023,5154.75,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51284.html,51284
+GUIZHOU_GUIYANG,gdp_growth,2023,6.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51284.html,51284
+GUIZHOU_GUIYANG,primary_gdp,2023,207.48,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51284.html,51284
+GUIZHOU_GUIYANG,secondary_gdp,2023,1805.28,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51284.html,51284
+GUIZHOU_GUIYANG,tertiary_gdp,2023,3142.00,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51284.html,51284
+GUIZHOU_GUIYANG,gdp_percapita,2023,81670,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51284.html,51284
+GUIZHOU_GUIYANG,fiscal_rev,2023,446.20,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51284.html,51284
+GUIZHOU_GUIYANG,fixed_asset,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/51284.html,51284
+GUIZHOU_GUIYANG,retail,2023,2526.77,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51284.html,51284
+GUIZHOU_GUIYANG,trade,2023,82.29,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51284.html,51284
+YUNNAN_KUNMING,gdp_total,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+YUNNAN_KUNMING,gdp_growth,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+YUNNAN_KUNMING,primary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+YUNNAN_KUNMING,secondary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+YUNNAN_KUNMING,tertiary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+YUNNAN_KUNMING,gdp_percapita,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+YUNNAN_KUNMING,fiscal_rev,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+YUNNAN_KUNMING,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+YUNNAN_KUNMING,retail,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+YUNNAN_KUNMING,trade,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+XIZANG_LASA,gdp_total,2023,834.79,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48605.html,48605
+XIZANG_LASA,gdp_growth,2023,9.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48605.html,48605
+XIZANG_LASA,primary_gdp,2023,29.92,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48605.html,48605
+XIZANG_LASA,secondary_gdp,2023,328.81,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48605.html,48605
+XIZANG_LASA,tertiary_gdp,2023,476.06,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48605.html,48605
+XIZANG_LASA,gdp_percapita,2023,96329,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48605.html,48605
+XIZANG_LASA,fiscal_rev,2023,109.14,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48605.html,48605
+XIZANG_LASA,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/48605.html,48605
+XIZANG_LASA,retail,2023,427.74,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/48605.html,48605
+XIZANG_LASA,trade,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/48605.html,48605
+SHAANXI_XIAN,gdp_total,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+SHAANXI_XIAN,gdp_growth,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+SHAANXI_XIAN,primary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+SHAANXI_XIAN,secondary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+SHAANXI_XIAN,tertiary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+SHAANXI_XIAN,gdp_percapita,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+SHAANXI_XIAN,fiscal_rev,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+SHAANXI_XIAN,fixed_asset,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+SHAANXI_XIAN,retail,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+SHAANXI_XIAN,trade,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46977.html,46977
+GANSU_LANZHOU,gdp_total,2023,3487.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46073.html,46073
+GANSU_LANZHOU,gdp_growth,2023,4.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46073.html,46073
+GANSU_LANZHOU,primary_gdp,2023,73.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46073.html,46073
+GANSU_LANZHOU,secondary_gdp,2023,1120.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46073.html,46073
+GANSU_LANZHOU,tertiary_gdp,2023,2293.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46073.html,46073
+GANSU_LANZHOU,gdp_percapita,2023,78894,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46073.html,46073
+GANSU_LANZHOU,fiscal_rev,2023,255.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46073.html,46073
+GANSU_LANZHOU,fixed_asset,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46073.html,46073
+GANSU_LANZHOU,retail,2023,1796.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46073.html,46073
+GANSU_LANZHOU,trade,2023,117.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46073.html,46073
+QINGHAI_XINING,gdp_total,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+QINGHAI_XINING,gdp_growth,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+QINGHAI_XINING,primary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+QINGHAI_XINING,secondary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+QINGHAI_XINING,tertiary_gdp,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+QINGHAI_XINING,gdp_percapita,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+QINGHAI_XINING,fiscal_rev,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+QINGHAI_XINING,fixed_asset,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+QINGHAI_XINING,retail,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+QINGHAI_XINING,trade,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47585.html,47585
+NINGXIA_YINCHUAN,gdp_total,2023,2685.63,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47605.html,47605
+NINGXIA_YINCHUAN,gdp_growth,2023,7.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47605.html,47605
+NINGXIA_YINCHUAN,primary_gdp,2023,99.47,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47605.html,47605
+NINGXIA_YINCHUAN,secondary_gdp,2023,1302.90,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47605.html,47605
+NINGXIA_YINCHUAN,tertiary_gdp,2023,1283.26,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47605.html,47605
+NINGXIA_YINCHUAN,gdp_percapita,2023,92530,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47605.html,47605
+NINGXIA_YINCHUAN,fiscal_rev,2023,197.76,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47605.html,47605
+NINGXIA_YINCHUAN,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/47605.html,47605
+NINGXIA_YINCHUAN,retail,2023,,,DATA_MISSING,669fix-b-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/47605.html,47605
+NINGXIA_YINCHUAN,trade,2023,130.20,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/47605.html,47605
+XINJIANG_WULUMUQI,gdp_total,2023,4168.46,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46740.html,46740
+XINJIANG_WULUMUQI,gdp_growth,2023,6.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46740.html,46740
+XINJIANG_WULUMUQI,primary_gdp,2023,33.12,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46740.html,46740
+XINJIANG_WULUMUQI,secondary_gdp,2023,1146.74,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46740.html,46740
+XINJIANG_WULUMUQI,tertiary_gdp,2023,2988.60,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46740.html,46740
+XINJIANG_WULUMUQI,gdp_percapita,2023,102078,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46740.html,46740
+XINJIANG_WULUMUQI,fiscal_rev,2023,369.79,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46740.html,46740
+XINJIANG_WULUMUQI,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/46740.html,46740
+XINJIANG_WULUMUQI,retail,2023,1231.34,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46740.html,46740
+XINJIANG_WULUMUQI,trade,2023,700.12,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46740.html,46740
+TAIWAN_TAIPEI,gdp_total,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,gdp_growth,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,primary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,secondary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,tertiary_gdp,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,gdp_percapita,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,fiscal_rev,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,fixed_asset,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,retail,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
+TAIWAN_TAIPEI,trade,2023,,,DATA_MISSING,"669fix-b-2023: hongheiku tag 页无 2023 bulletin (LIAONING/HEILONGJIANG/JIANGXI/YUNNAN/TAIWAN, 守新增红线-3 不手填)",,
