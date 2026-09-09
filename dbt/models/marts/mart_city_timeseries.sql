@@ -830,6 +830,76 @@ real_data_669fix_2025 AS (
     -- empty CTE via WHERE FALSE (postgres VALUES 不能 0 tuples)
     SELECT NULL::text AS city_code, NULL::text AS indicator_key, NULL::numeric AS value WHERE FALSE
 ),
+real_data_669b_i_batch1_2024 AS (
+    -- knife F first sub-knife (2026-09-09): 验证 969+970 通用脚本规模
+    -- 8 cities × 2024 (4 计划单列市 + 4 高 GDP 地级市, NOT 25 省会)
+    -- hongheiku /tag/{城市市} URL discovery (1 HTTP/city = 8 total ≤32 红线)
+    -- 7/8 cities found (宁波 2024 不存在, hongheiku /tag/宁波市 只有 2021/2022/2023/2025)
+    -- 1 PDF (Foshan) + 6 HTML = 8 HTTP for fetch phase
+    -- parse: 57/80 real cells (71% coverage, 23 DATA_MISSING)
+    --   - 10 缺 cells: 宁波 (eid=None, hongheiku 缺 2024)
+    --   - 13 缺 cells: parser 未匹配 (gdp_percapita 5 个 + retail 4 个 + fixed_asset 5 个 + tertiary/secondary 4 个 mixed)
+    -- 守新增红线-3: 不手填/不补零/仅从 hongheiku 采集
+    SELECT * FROM (VALUES
+        ('LIAONING_DALIAN',        'gdp_total',     9516.9::numeric),
+        ('LIAONING_DALIAN',        'gdp_growth',    5.2::numeric),
+        ('LIAONING_DALIAN',        'primary_gdp',   585.7::numeric),
+        ('LIAONING_DALIAN',        'secondary_gdp', 3349.0::numeric),
+        ('LIAONING_DALIAN',        'tertiary_gdp',  5582.2::numeric),
+        ('LIAONING_DALIAN',        'gdp_percapita', 126185::numeric),
+        ('LIAONING_DALIAN',        'fiscal_rev',    774.8::numeric),
+        ('LIAONING_DALIAN',        'retail',        2085.9::numeric),
+        ('LIAONING_DALIAN',        'trade',         4496.7::numeric),
+        ('SHANDONG_QINGDAO',       'gdp_total',     15973.16::numeric),
+        ('SHANDONG_QINGDAO',       'gdp_growth',    5.7::numeric),
+        ('SHANDONG_QINGDAO',       'primary_gdp',   500.82::numeric),
+        ('SHANDONG_QINGDAO',       'secondary_gdp', 5723.10::numeric),
+        ('SHANDONG_QINGDAO',       'tertiary_gdp',  10495.54::numeric),
+        ('SHANDONG_QINGDAO',       'fiscal_rev',    1339.3::numeric),
+        ('SHANDONG_QINGDAO',       'trade',         9076.7::numeric),
+        ('FUJIAN_XIAMEN',          'gdp_total',     2913.67::numeric),
+        ('FUJIAN_XIAMEN',          'gdp_growth',    5.5::numeric),
+        ('FUJIAN_XIAMEN',          'primary_gdp',   26.34::numeric),
+        ('FUJIAN_XIAMEN',          'secondary_gdp', 3147.40::numeric),
+        ('FUJIAN_XIAMEN',          'tertiary_gdp',  5415.28::numeric),
+        ('FUJIAN_XIAMEN',          'fiscal_rev',    933.19::numeric),
+        ('FUJIAN_XIAMEN',          'trade',         9326.12::numeric),
+        ('JIANGSU_SUZHOU',         'gdp_total',     26727.0::numeric),
+        ('JIANGSU_SUZHOU',         'gdp_growth',    6.0::numeric),
+        ('JIANGSU_SUZHOU',         'primary_gdp',   202.0::numeric),
+        ('JIANGSU_SUZHOU',         'secondary_gdp', 12516.7::numeric),
+        ('JIANGSU_SUZHOU',         'tertiary_gdp',  14008.3::numeric),
+        ('JIANGSU_SUZHOU',         'fiscal_rev',    2459.1::numeric),
+        ('JIANGSU_SUZHOU',         'fixed_asset',   6135.7::numeric),
+        ('JIANGSU_SUZHOU',         'trade',         26193.1::numeric),
+        ('JIANGSU_WUXI',           'gdp_total',     16263.29::numeric),
+        ('JIANGSU_WUXI',           'gdp_growth',    5.8::numeric),
+        ('JIANGSU_WUXI',           'primary_gdp',   140.45::numeric),
+        ('JIANGSU_WUXI',           'secondary_gdp', 7716.02::numeric),
+        ('JIANGSU_WUXI',           'tertiary_gdp',  8406.82::numeric),
+        ('JIANGSU_WUXI',           'fiscal_rev',    1201.56::numeric),
+        ('JIANGSU_WUXI',           'fixed_asset',   4587.36::numeric),
+        ('JIANGSU_WUXI',           'retail',        4284.06::numeric),
+        ('JIANGSU_WUXI',           'trade',         7709.46::numeric),
+        ('GUANGDONG_FOSHAN',       'gdp_total',     13361.90::numeric),
+        ('GUANGDONG_FOSHAN',       'gdp_growth',    1.3::numeric),
+        ('GUANGDONG_FOSHAN',       'primary_gdp',   243.54::numeric),
+        ('GUANGDONG_FOSHAN',       'tertiary_gdp',  6397.16::numeric),
+        ('GUANGDONG_FOSHAN',       'fiscal_rev',    767.08::numeric),
+        ('GUANGDONG_FOSHAN',       'retail',        3943.91::numeric),
+        ('GUANGDONG_FOSHAN',       'trade',         4996.5::numeric),
+        ('GUANGDONG_DONGGUAN',     'gdp_total',     12282.15::numeric),
+        ('GUANGDONG_DONGGUAN',     'gdp_growth',    4.6::numeric),
+        ('GUANGDONG_DONGGUAN',     'primary_gdp',   38.54::numeric),
+        ('GUANGDONG_DONGGUAN',     'secondary_gdp', 6800.80::numeric),
+        ('GUANGDONG_DONGGUAN',     'tertiary_gdp',  5442.81::numeric),
+        ('GUANGDONG_DONGGUAN',     'gdp_percapita', 116661::numeric),
+        ('GUANGDONG_DONGGUAN',     'fiscal_rev',    789.43::numeric),
+        ('GUANGDONG_DONGGUAN',     'fixed_asset',   694.44::numeric),
+        ('GUANGDONG_DONGGUAN',     'retail',        4446.26::numeric),
+        ('GUANGDONG_DONGGUAN',     'trade',         13880.4::numeric)
+    ) AS t(city_code, indicator_key, value)
+),
 missing_city_year AS (
     -- 永久缺 city (4 直辖市禁重复; 港/澳/台 不在 city mart)
     -- 669a-2021 范围内无永久缺 city (4 直辖市之外的 4 priority city 都有 cat tag)
@@ -843,7 +913,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -1053,4 +1123,8 @@ LEFT JOIN real_data_669fix_2024 rd11
 LEFT JOIN real_data_669fix_2025 rd12
     ON cp.city_code = rd12.city_code
     AND cp.indicator_key = rd12.indicator_key
-    AND cp.year = 2025;
+    AND cp.year = 2025
+LEFT JOIN real_data_669b_i_batch1_2024 rd13
+    ON cp.city_code = rd13.city_code
+    AND cp.indicator_key = rd13.indicator_key
+    AND cp.year = 2024;
