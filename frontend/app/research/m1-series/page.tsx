@@ -19,9 +19,19 @@ const HUBEI_GDP_INDICATOR_ID = "a1000000-0000-0000-0000-000000000010";
 const HUBEI_PROVINCE_ID = "a1000000-0000-0000-0000-000000000001";
 const SOURCE_URL = "https://tjj.hubei.gov.cn/tjsj/sjkscx/tjyb/";
 
+// NOTE: try/catch wraps the FastAPI fetch so the demo banner + caveats
+//   still render when the backend is unreachable (e.g. newvps-only deploy
+//   without FastAPI container). Per 662 D5: demo shell MUST stay labelled
+//   regardless of backend availability — silent failure violates demo 守门.
 export default async function M1SeriesPage() {
-  const data = await indicatorSeries(HUBEI_GDP_INDICATOR_ID, HUBEI_PROVINCE_ID);
-  const points = data.series;
+  let points: Awaited<ReturnType<typeof indicatorSeries>>["series"] = [];
+  let fetchError: string | null = null;
+  try {
+    const data = await indicatorSeries(HUBEI_GDP_INDICATOR_ID, HUBEI_PROVINCE_ID);
+    points = data.series;
+  } catch (err) {
+    fetchError = err instanceof Error ? err.message : String(err);
+  }
 
   return (
     <section style={{ fontFamily: "sans-serif", maxWidth: 960, margin: "0 auto", padding: 24 }}>
@@ -34,6 +44,23 @@ export default async function M1SeriesPage() {
         reason="M1 验收面 · 1 行真 observation · 非 31 省 · 非 Gate PASS"
         source="spikes/02-provincial-yearbook/hubei_2026_06.xlsx"
       />
+
+      {fetchError && (
+        <p
+          style={{
+            color: "#a00",
+            background: "#fef2f2",
+            border: "1px solid #fecaca",
+            padding: "8px 12px",
+            borderRadius: 3,
+            fontSize: 13,
+          }}
+          data-testid="m1-fetch-error"
+        >
+          ⚠ FastAPI 暂不可达 ({fetchError}). 本页为 demo 壳, 不依赖后端.
+          按 662 D5 demo 守门: 横幅仍展示, 数据点表格降级为空 (points=[]).
+        </p>
+      )}
 
       <p style={{ color: "#444", lineHeight: 1.6 }}>
         本页只展示一条 <strong>真 observation</strong>（来自
