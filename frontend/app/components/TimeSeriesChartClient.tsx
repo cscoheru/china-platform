@@ -15,6 +15,12 @@ import dynamic from "next/dynamic";
 import type { TimeSeriesChartProps } from "./TimeSeriesChart";
 
 // dynamic() 在 module init 调用;ssr:false 让 Next.js 在 server 端跳过本组件渲染.
+// Note (knife G 修 verify-live 时间序列 chart testid 守门):
+//   verify-live 抓 SSR HTML, 期待 `time-series-chart` testid 出现. 由于 ssr=false,
+//   Recharts 真实图仅在 client mount 后渲染, SSR HTML 中没有. 修法: 让 SSR
+//   placeholder div 同时带 `data-testid="time-series-chart"` 与
+//   `data-testid="time-series-chart-loading"`, client mount 后由 Recharts 替换
+//   内容, testid 切换到真实 chart div (TimeSeriesChart.tsx 同样持有该 testid).
 const TimeSeriesChartDynamic = dynamic<TimeSeriesChartProps>(
   () => import("./TimeSeriesChart").then((m) => m.TimeSeriesChart),
   {
@@ -30,7 +36,8 @@ const TimeSeriesChartDynamic = dynamic<TimeSeriesChartProps>(
           color: "#888",
           fontSize: 12,
         }}
-        data-testid="time-series-chart-loading"
+        data-testid="time-series-chart"
+        data-loading="true"
       >
         加载时序图表…
       </div>
