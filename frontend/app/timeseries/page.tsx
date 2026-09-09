@@ -68,7 +68,10 @@ export default function TimeSeriesOverviewPage(): React.ReactElement {
 
       <section style={{ marginTop: 24 }} data-testid="timeseries-coverage">
         <h2 style={{ fontSize: 16 }}>数据覆盖摘要</h2>
-        <p style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>
+        <p
+          style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}
+          data-testid="source-grade-caveat"
+        >
           完整 mart 含 {data.total_rows} 行 (31 省 × 10 指标 × 26 年);
           实际采集数据来自 hongheiku 公报 (per 665 program 1435+ cells) +
           5 OFFICIAL_INTAKED 省 (京/沪/鲁/鄂/川 per 660 baseline) + 3 省升级
