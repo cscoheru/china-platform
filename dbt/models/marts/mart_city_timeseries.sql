@@ -94,7 +94,17 @@ WITH city_dimension AS (
         ('QINGHAI_XINING',         '西宁市',       'QINGHAI'),
         ('NINGXIA_YINCHUAN',       '银川市',       'NINGXIA'),
         ('XINJIANG_WULUMUQI',      '乌鲁木齐市',   'XINJIANG'),
-        ('TAIWAN_TAIPEI',          '台北市',       'TAIWAN')
+        ('TAIWAN_TAIPEI',          '台北市',       'TAIWAN'),
+        -- 669b-i batch 1 (2026-09-09, knife F first sub-knife)
+        -- 4 计划单列市 (副省级, NOT 25 省会) + 4 高 GDP 地级市
+        ('LIAONING_DALIAN',        '大连市',       'LIAONING'),
+        ('SHANDONG_QINGDAO',       '青岛市',       'SHANDONG'),
+        ('ZHEJIANG_NINGBO',        '宁波市',       'ZHEJIANG'),
+        ('FUJIAN_XIAMEN',          '厦门市',       'FUJIAN'),
+        ('JIANGSU_SUZHOU',         '苏州市',       'JIANGSU'),
+        ('JIANGSU_WUXI',           '无锡市',       'JIANGSU'),
+        ('GUANGDONG_FOSHAN',       '佛山市',       'GUANGDONG'),
+        ('GUANGDONG_DONGGUAN',     '东莞市',       'GUANGDONG')
     ) AS t(city_code, city_name, province_code)
 ),
 indicator_dimension AS (
