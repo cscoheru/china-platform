@@ -813,6 +813,13 @@ real_data_669fix_2024 AS (
 $(cat /tmp/669b/cte_2024_body.txt)
     ) AS t(city_code, indicator_key, value)
 ),
+real_data_669fix_2025 AS (
+    -- knife 669fix-b-2025 (Path A 续刀 5/5): zero-harvest 路径
+    -- 25 省会 × 2025 市级公报 hongheiku 暂未收录 (cat index 2025 14 entry 全为省级公报非市级, 5 city tag/search probe 0 命中)
+    -- 守红线-3 不手填; 0 tuples 是预期行为 (与 669b-2025 一致)
+    -- empty CTE via WHERE FALSE (postgres VALUES 不能 0 tuples)
+    SELECT NULL::text AS city_code, NULL::text AS indicator_key, NULL::numeric AS value WHERE FALSE
+),
 missing_city_year AS (
     -- 永久缺 city (4 直辖市禁重复; 港/澳/台 不在 city mart)
     -- 669a-2021 范围内无永久缺 city (4 直辖市之外的 4 priority city 都有 cat tag)
@@ -984,7 +991,7 @@ SELECT
         WHEN cp.year = 2025  AND cp.city_code IN (
             'GUANGDONG_SHENZHEN','GUANGDONG_GUANGZHOU','ZHEJIANG_HANGZHOU','JIANGSU_NANJING'
         ) THEN 'K669a-2025-2026-09-07'
-        WHEN cp.year = 2025  THEN 'K669b-2025-2026-09-08'  -- 25 省会 (深/穗/杭/宁 之外的)
+        WHEN cp.year = 2025  THEN 'K669fix-b-2025-2026-09-09'  -- 25 省会 (深/穗/杭/宁 之外的, zero-harvest 路径; 替代 K669b-2025 attribution)
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -1032,4 +1039,8 @@ LEFT JOIN real_data_669fix_2023 rd10
 LEFT JOIN real_data_669fix_2024 rd11
     ON cp.city_code = rd11.city_code
     AND cp.indicator_key = rd11.indicator_key
-    AND cp.year = 2024;
+    AND cp.year = 2024
+LEFT JOIN real_data_669fix_2025 rd12
+    ON cp.city_code = rd12.city_code
+    AND cp.indicator_key = rd12.indicator_key
+    AND cp.year = 2025;
