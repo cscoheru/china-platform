@@ -900,6 +900,52 @@ real_data_669b_i_batch1_2024 AS (
         ('GUANGDONG_DONGGUAN',     'trade',         13880.4::numeric)
     ) AS t(city_code, indicator_key, value)
 ),
+real_data_669b_i_dongguan AS (
+    -- knife 669b-i DONGGUAN sub-knife 1/4 (2026-09-10): 续刀 batch 1 single-city 6-year harvest
+    -- hongheiku /tag/东莞市 → eid_map discovery (1 HTTP, ≤32 红线) → /djs/{eid}.html × 4 new (2021/2022/2023/2025; 2024 已 rd13)
+    -- parse: 37/40 real cells (92.5% coverage; 3 DATA_MISSING = fixed_asset 2021/2022/2023 仅发增长%)
+    -- 2020 10 DATA_MISSING (hongheiku tag 页无 2020 bulletin, 守红线-3 禁编造)
+    -- 2024 stays in rd13 (K669b-i-batch1-parse-2024-2026-09-09, Knife F first sub-knife attribution)
+    SELECT * FROM (VALUES
+        ('GUANGDONG_DONGGUAN', 'gdp_total',     10855.35::numeric),  -- 2021 eid=25333
+        ('GUANGDONG_DONGGUAN', 'gdp_growth',    8.2::numeric),
+        ('GUANGDONG_DONGGUAN', 'primary_gdp',   34.66::numeric),
+        ('GUANGDONG_DONGGUAN', 'secondary_gdp', 6319.41::numeric),
+        ('GUANGDONG_DONGGUAN', 'tertiary_gdp',  4501.28::numeric),
+        ('GUANGDONG_DONGGUAN', 'gdp_percapita', 103284::numeric),
+        ('GUANGDONG_DONGGUAN', 'fiscal_rev',    769.46::numeric),
+        ('GUANGDONG_DONGGUAN', 'retail',        4239.24::numeric),
+        ('GUANGDONG_DONGGUAN', 'trade',         15247.03::numeric),
+        ('GUANGDONG_DONGGUAN', 'gdp_total',     11200.32::numeric),  -- 2022 eid=42065
+        ('GUANGDONG_DONGGUAN', 'gdp_growth',    0.6::numeric),
+        ('GUANGDONG_DONGGUAN', 'primary_gdp',   36.50::numeric),
+        ('GUANGDONG_DONGGUAN', 'secondary_gdp', 6513.64::numeric),
+        ('GUANGDONG_DONGGUAN', 'tertiary_gdp',  4650.18::numeric),
+        ('GUANGDONG_DONGGUAN', 'gdp_percapita', 106803::numeric),
+        ('GUANGDONG_DONGGUAN', 'fiscal_rev',    766.04::numeric),
+        ('GUANGDONG_DONGGUAN', 'retail',        4254.87::numeric),
+        ('GUANGDONG_DONGGUAN', 'trade',         13926.63::numeric),
+        ('GUANGDONG_DONGGUAN', 'gdp_total',     11438.13::numeric),  -- 2023 eid=47430
+        ('GUANGDONG_DONGGUAN', 'gdp_growth',    2.6::numeric),
+        ('GUANGDONG_DONGGUAN', 'primary_gdp',   36.25::numeric),
+        ('GUANGDONG_DONGGUAN', 'secondary_gdp', 6478.18::numeric),
+        ('GUANGDONG_DONGGUAN', 'tertiary_gdp',  4923.71::numeric),
+        ('GUANGDONG_DONGGUAN', 'gdp_percapita', 109339::numeric),
+        ('GUANGDONG_DONGGUAN', 'fiscal_rev',    804.84::numeric),
+        ('GUANGDONG_DONGGUAN', 'retail',        4408.12::numeric),
+        ('GUANGDONG_DONGGUAN', 'trade',         12823.56::numeric),
+        ('GUANGDONG_DONGGUAN', 'gdp_total',     12760.20::numeric),  -- 2025 eid=69935
+        ('GUANGDONG_DONGGUAN', 'gdp_growth',    4.0::numeric),
+        ('GUANGDONG_DONGGUAN', 'primary_gdp',   36.90::numeric),
+        ('GUANGDONG_DONGGUAN', 'secondary_gdp', 7165.44::numeric),
+        ('GUANGDONG_DONGGUAN', 'tertiary_gdp',  5557.87::numeric),
+        ('GUANGDONG_DONGGUAN', 'gdp_percapita', 119415::numeric),
+        ('GUANGDONG_DONGGUAN', 'fiscal_rev',    891.82::numeric),
+        ('GUANGDONG_DONGGUAN', 'fixed_asset',   362.30::numeric),
+        ('GUANGDONG_DONGGUAN', 'retail',        4446.00::numeric),
+        ('GUANGDONG_DONGGUAN', 'trade',         15794.3::numeric)
+    ) AS t(city_code, indicator_key, value)
+),
 missing_city_year AS (
     -- 永久缺 city (4 直辖市禁重复; 港/澳/台 不在 city mart)
     -- 669a-2021 范围内无永久缺 city (4 直辖市之外的 4 priority city 都有 cat tag)
@@ -913,7 +959,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -938,6 +984,8 @@ SELECT
         WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN NULL  -- real cell, status=NULL
         WHEN cp.year = 2025  AND rd6.value IS NOT NULL THEN NULL  -- real cell (future-proofing for 669b)
         WHEN cp.year = 2025  AND rd5.value IS NULL     THEN 'DATA_MISSING'  -- covers 4 669a + 25 669b cities
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL THEN NULL  -- knife 669b-i-dongguan real cell (2021/2022/2023/2025, 37 cells)
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-dongguan explicit 2020 exclusion (hongheiku tag 无 2020 bulletin)
         ELSE 'DATA_MISSING'  -- 2026 待 2027 官方发布
     END AS status,
     CASE
@@ -1009,6 +1057,10 @@ SELECT
             'TAIWAN_TAIPEI'
         ) THEN 'knife 669b-2025 hongheiku 无 2025 city bulletin (3 probe methods 全部 0 命中, tag 页仅含 2020 年公报 + 人口普查公报; 守新增红线-3 不手填)'
         WHEN cp.year = 2025  AND rd5.value IS NULL     THEN 'knife 669a-2025 hongheiku 无 2025 entry / 公报仅发增速 (守红线-3 不手填; 后续 sub-knife 可补采)'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL THEN NULL  -- knife 669b-i-dongguan real cell, no missing_reason
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND cp.year = 2020 THEN 'knife 669b-i-dongguan: hongheiku 无 2020 DONGGUAN 公告 (tag 页仅 2021-2025, 守红线-3 禁编造)'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NULL AND cp.indicator_key = 'fixed_asset'
+            THEN 'knife 669b-i-dongguan: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2)'  -- 2021/2022/2023 fixed_asset 3 cells
         ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
     CASE
@@ -1024,6 +1076,7 @@ SELECT
         WHEN cp.year = 2024  AND rd4.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2025  AND rd6.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- future-proofing for 669b
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-dongguan real cell
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
@@ -1053,6 +1106,13 @@ SELECT
             'GANSU_LANZHOU','QINGHAI_XINING','NINGXIA_YINCHUAN','XINJIANG_WULUMUQI',
             'TAIWAN_TAIPEI'
         ) THEN 'tjgb.hongheiku.com/tag/' || cp.city_name || ' (no 2025 entry, 3 probes 0 命中)'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/25333.html'  -- knife 669b-i-dongguan
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/42065.html'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/47430.html'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/djs/69935.html'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NULL AND cp.indicator_key = 'fixed_asset'
+            THEN 'tjgb.hongheiku.com/djs/{25333,42065,47430}.html (bulletin 仅发增长%)'  -- 2021/2022/2023 fixed_asset 3 cells
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/tag/东莞市 (no 2020 entry, 守新增红线-3 不手填)'
         ELSE 'none'
     END AS lineage_origin,
     CASE
@@ -1092,6 +1152,13 @@ SELECT
             'GUANGDONG_SHENZHEN','GUANGDONG_GUANGZHOU','ZHEJIANG_HANGZHOU','JIANGSU_NANJING'
         ) THEN 'K669a-2025-2026-09-07'
         WHEN cp.year = 2025  THEN 'K669fix-b-2025-2026-09-09'  -- 25 省会 (深/穗/杭/宁 之外的, zero-harvest 路径; 替代 K669b-2025 attribution)
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL AND cp.year = 2021 THEN 'K669b-i-dongguan-parse-2021-2026-09-10'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL AND cp.year = 2022 THEN 'K669b-i-dongguan-parse-2022-2026-09-10'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL AND cp.year = 2023 THEN 'K669b-i-dongguan-parse-2023-2026-09-10'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-dongguan-parse-2025-2026-09-10'
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NULL AND cp.indicator_key = 'fixed_asset'
+            THEN 'K669b-i-dongguan-parse-fixed_asset_growth_pct-2026-09-10'  -- 2021/2022/2023 fixed_asset 3 cells
+        WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND cp.year = 2020 THEN 'K669b-i-dongguan-no-bulletin-2020-2026-09-10'
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -1147,4 +1214,8 @@ LEFT JOIN real_data_669fix_2025 rd12
 LEFT JOIN real_data_669b_i_batch1_2024 rd13
     ON cp.city_code = rd13.city_code
     AND cp.indicator_key = rd13.indicator_key
-    AND cp.year = 2024;
+    AND cp.year = 2024
+LEFT JOIN real_data_669b_i_dongguan rd14
+    ON cp.city_code = rd14.city_code
+    AND cp.indicator_key = rd14.indicator_key
+    AND cp.year IN (2021, 2022, 2023, 2025);  -- 2024 stays in rd13 (Knife F attribution)
