@@ -4,13 +4,17 @@
 // Per docs/87 §3.2 P2 路线 + user_ruling_667: Recharts 仅用于时序折线 (新增红线-4).
 // Per docs/05 §8.3 + 红线-1/2: 不排名/榜单化;DATA_MISSING 年份虚线 + tooltip.
 //
+// Knife H (O2 修复):
+//   * SSR HTML 体积守门 — 不再把 8060 points 全传给 client.
+//   * defaultPoints = defaultProvince × defaultIndicator × full year_range (26 points)
+//     服务端预切片; client 端用 useEffect lazy-fetch 完整 mart 当用户切换省/指标.
+//   * martJsonUrl 指向 /data/mart_province_timeseries.json (build prebuild 复制).
+//   * 守门: SSR HTML 体积从 3.7MB 降至 < 50KB; verify-live WARN 消失.
+//
 // 设计:
 //   - Server component 读 mart JSON (Track B 静态导出, no FastAPI 依赖).
-//   - 将数据透传给 client component <TimeSeriesExplorer />;SSR 阶段不渲染 Recharts
+//   - defaultPoints 透传给 client component <TimeSeriesExplorer />;SSR 阶段不渲染 Recharts
 //     (per Recharts SSR warning; 客户端 dynamic import 解决).
-//   - generateStaticParams 预生成 (empty array = all clients use single route since
-//     selected province is client-side state;但为了 ISR cache hint, 我们仍然静态化
-//     /timeseries).
 //
 // 守门:
 //   - mart 未配置 → 渲染 "数据未配置" placeholder (graceful degradation).
@@ -23,6 +27,13 @@ import {
 } from "../../lib/api";
 import { getProvinceTimeSeriesStatic } from "../../lib/mart-static";
 import { TimeSeriesExplorer } from "../components/TimeSeriesExplorer";
+
+const DEFAULT_PROVINCE_CODE = "NATIONAL";
+const DEFAULT_INDICATOR_KEY = "gdp_total";
+const DEFAULT_YEAR_RANGE: readonly [number, number] = [2001, 2026];
+// 客户端 lazy-fetch 的 mart JSON URL (build prebuild 复制 mart_province_timeseries.json
+// 到 public/data/). Knife H 服务端预切片方案 (Approach A).
+const MART_JSON_URL = "/data/mart_province_timeseries.json";
 
 export default function TimeSeriesOverviewPage(): React.ReactElement {
   const data = getProvinceTimeSeriesStatic();
@@ -42,7 +53,15 @@ export default function TimeSeriesOverviewPage(): React.ReactElement {
   const provinces = listProvincesWithTimeSeries();
   const indicators = listIndicatorsWithTimeSeries();
   const nationalSummary = listSourceGradesNational();
-  const points = data.provinces;
+
+  // Knife H: 服务端预切片 default 选省 + 选指标 的全年序列 (~26 points).
+  // 不再把 8060 points 全传给 client → SSR HTML 体积从 3.7MB 降至 < 50KB.
+  // 用户切换省/指标时 client 端用 useEffect lazy-fetch 完整 mart (来自 martJsonUrl).
+  const defaultPoints = data.provinces.filter(
+    (p) =>
+      p.province_code === DEFAULT_PROVINCE_CODE &&
+      p.indicator_key === DEFAULT_INDICATOR_KEY
+  );
 
   return (
     <section data-testid="timeseries-overview-page">
@@ -53,17 +72,20 @@ export default function TimeSeriesOverviewPage(): React.ReactElement {
         5 现 + 5 增量指标 × 26 年 (2001–2026) × 31 省 + NATIONAL = 8060 cells mart 数据。
         DATA_MISSING 年份 (2001–2019 / 2026 / 缺失省) 在图表中显示为虚线 + tooltip
         提示, 不补零 (per docs/87 §3.2 + 红线-1/2).
+        {" "}<strong>首屏仅传默认选省 (NATIONAL) + 默认指标 (GDP 总量) 子集, 切换省/指标时
+        自动从客户端 fetch 全 mart。</strong>
       </p>
 
       <TimeSeriesExplorer
         provinces={provinces}
         indicators={indicators}
-        points={points}
+        defaultPoints={defaultPoints}
+        martJsonUrl={MART_JSON_URL}
+        defaultProvinceCode={DEFAULT_PROVINCE_CODE}
+        defaultIndicatorKey={DEFAULT_INDICATOR_KEY}
+        defaultYearRange={DEFAULT_YEAR_RANGE}
         perProvinceSummary={nationalSummary}
         nationalSummary={nationalSummary}
-        defaultProvinceCode="NATIONAL"
-        defaultIndicatorKey="gdp_total"
-        defaultYearRange={[2020, 2025]}
       />
 
       <section style={{ marginTop: 24 }} data-testid="timeseries-coverage">
