@@ -9,6 +9,11 @@
 //   - 32 个合法 slug (per docs/46 §3.1 守门);generateStaticParams 预生成.
 //   - DATA_MISSING 3 省 (辽/琼/黔) 仍渲染页面但 explorer 显示全 DATA_MISSING (per 红线-1).
 //   - dynamicParams = false (未在清单内一律 404).
+//
+// Knife H (O2 修复):
+//   * defaultPoints = 当前 province × 10 indicator × 26 年 (~260 points) 服务端预切片.
+//   * martJsonUrl 透传 client, 用户切换省时 useEffect lazy-fetch 全 mart.
+//   * SSR HTML 体积从原 3.7MB 降至 < 60KB (260 points JSON vs 8060 points).
 
 import { notFound } from "next/navigation";
 
@@ -31,6 +36,9 @@ const VALID_CODES = [
   "XIZANG", "SHAANXI", "GANSU", "QINGHAI", "NINGXIA", "XINJIANG",
   "NATIONAL",
 ];
+
+// Knife H client lazy-fetch mart JSON URL (build prebuild 复制 frontend/data/ → public/data/).
+const MART_JSON_URL = "/data/mart_province_timeseries.json";
 
 export function generateStaticParams(): Array<{ province_code: string }> {
   return VALID_CODES.map((code) => ({ province_code: code.toLowerCase() }));
@@ -65,11 +73,12 @@ export default function ProvinceTimeSeriesPage({
     );
   }
 
-  // 预切片: 仅传当前省 rows 给 client (避免 client filter 8060 rows).
-  const provincePoints = data.provinces.filter((p) => p.province_code === code);
+  // Knife H 预切片: 仅传当前省 全部 10 指标 × 26 年 (~260 points) 给 client.
+  // 不再传 8060 全 mart → SSR HTML 体积 < 60KB (260 points JSON).
+  const defaultPoints = data.provinces.filter((p) => p.province_code === code);
 
   // Data Missing banner: 若所有 cells 都 missing → 显式提示 (per 红线-1).
-  const anyReal = provincePoints.some(
+  const anyReal = defaultPoints.some(
     (p) => p.value !== null && p.status !== "DATA_MISSING"
   );
 
@@ -115,12 +124,13 @@ export default function ProvinceTimeSeriesPage({
       <TimeSeriesExplorer
         provinces={provinces}
         indicators={indicators}
-        points={provincePoints}
+        defaultPoints={defaultPoints}
+        martJsonUrl={MART_JSON_URL}
         perProvinceSummary={perProvinceSummary}
         nationalSummary={nationalSummary}
         defaultProvinceCode={code}
         defaultIndicatorKey="gdp_total"
-        defaultYearRange={[2020, 2025]}
+        defaultYearRange={[2001, 2026]}
       />
 
       <section style={{ marginTop: 24 }} data-testid="timeseries-province-meta">
