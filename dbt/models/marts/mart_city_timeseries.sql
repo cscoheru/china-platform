@@ -987,6 +987,39 @@ real_data_669b_i_dalian AS (
         ('LIAONING_DALIAN', 'fiscal_rev',    749.5::numeric,  2025),
         ('LIAONING_DALIAN', 'retail',        2180.8::numeric, 2025),
         ('LIAONING_DALIAN', 'trade',         4492.6::numeric, 2025)
+),
+real_data_669b_i_wuxi AS (
+    -- knife 669b-i-wuxi sub-knife 3/4 (2026-09-10): WUXI 6-year harvest
+    -- 26 real cells = 8+9+9 for 2021/2023/2025 (2020/2022/2024/2026 stay DATA_MISSING or Knife F)
+    -- eid map: {2021: 23931, 2023: 45593, 2024: 60801 (Knife F), 2025: 70051}
+    -- 4 missing cells (gdp_percapita ×3 + 2021 fiscal_rev) → DATA_MISSING in mart SQL CASE clauses
+    VALUES
+        ('JIANGSU_WUXI', 'gdp_total',      14003.24::numeric, 2021),  -- eid=23931
+        ('JIANGSU_WUXI', 'gdp_growth',     8.8::numeric,      2021),
+        ('JIANGSU_WUXI', 'primary_gdp',    130.33::numeric,   2021),
+        ('JIANGSU_WUXI', 'secondary_gdp',  6710.50::numeric,  2021),
+        ('JIANGSU_WUXI', 'tertiary_gdp',   7162.41::numeric,  2021),
+        ('JIANGSU_WUXI', 'fixed_asset',    3985.20::numeric,  2021),
+        ('JIANGSU_WUXI', 'retail',         3306.09::numeric,  2021),
+        ('JIANGSU_WUXI', 'trade',          1057.01::numeric,  2021),
+        ('JIANGSU_WUXI', 'gdp_total',      15456.19::numeric, 2023),  -- eid=45593
+        ('JIANGSU_WUXI', 'gdp_growth',     6.0::numeric,      2023),
+        ('JIANGSU_WUXI', 'primary_gdp',    136.50::numeric,   2023),
+        ('JIANGSU_WUXI', 'secondary_gdp',  7376.85::numeric,  2023),
+        ('JIANGSU_WUXI', 'tertiary_gdp',   7942.84::numeric,  2023),
+        ('JIANGSU_WUXI', 'fiscal_rev',     1195.42::numeric,  2023),
+        ('JIANGSU_WUXI', 'fixed_asset',    4412.10::numeric,  2023),
+        ('JIANGSU_WUXI', 'retail',         3567.55::numeric,  2023),
+        ('JIANGSU_WUXI', 'trade',          7065.32::numeric,  2023),
+        ('JIANGSU_WUXI', 'gdp_total',      16773.94::numeric, 2025),  -- eid=70051
+        ('JIANGSU_WUXI', 'gdp_growth',     5.1::numeric,      2025),
+        ('JIANGSU_WUXI', 'primary_gdp',    142.48::numeric,   2025),
+        ('JIANGSU_WUXI', 'secondary_gdp',  7870.47::numeric,  2025),
+        ('JIANGSU_WUXI', 'tertiary_gdp',   8760.99::numeric,  2025),
+        ('JIANGSU_WUXI', 'fiscal_rev',     1225.39::numeric,  2025),
+        ('JIANGSU_WUXI', 'fixed_asset',    3979.11::numeric,  2025),
+        ('JIANGSU_WUXI', 'retail',         4418.47::numeric,  2025),
+        ('JIANGSU_WUXI', 'trade',          8292.76::numeric,  2025)
 )
 SELECT
     cp.city_code,
@@ -996,7 +1029,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -1025,6 +1058,9 @@ SELECT
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-dongguan explicit 2020 exclusion (hongheiku tag 无 2020 bulletin)
         WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL THEN NULL  -- knife 669b-i-dalian real cell (2021/2022/2023/2025, 30 cells; 2024 stays in rd13 Knife F)
         WHEN cp.city_code = 'LIAONING_DALIAN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-dalian: hongheiku tag 页无 2020 DALIAN 公告
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL THEN NULL  -- knife 669b-i-wuxi real cell (2021/2023/2025, 26 cells; 2024 stays in rd13 Knife F)
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-wuxi: hongheiku 2020 WUXI 公告走 /1707.html 老 ID, 非 /djs/ 标准 pattern (Knife E 不支持)
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2022 THEN 'DATA_MISSING'  -- knife 669b-i-wuxi: hongheiku tag 页无 2022 /djs/{eid}.html (仅 /xjtjgb/xj2020/34940.html 非标准 path)
         ELSE 'DATA_MISSING'  -- 2026 待 2027 官方发布
     END AS status,
     CASE
@@ -1104,6 +1140,11 @@ SELECT
         WHEN cp.city_code = 'LIAONING_DALIAN' AND cp.year = 2020 THEN 'knife 669b-i-dalian: hongheiku 无 2020 年 DALIAN 公告 (tag 页仅 2021-2025, 守红线-3 禁编造)'
         WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NULL AND cp.indicator_key IN ('gdp_total', 'gdp_percapita', 'fixed_asset')
             THEN 'knife 669b-i-dalian: bulletin 仅发增长%/parser 未匹配 (守红线-3, per 669a-2021 §2)'  -- 12 cells = 3 (2021 gdp_total/gdp_percapita/fixed_asset) + 2 (2022 gdp_total/fixed_asset) + 2 (2023 gdp_total/fixed_asset) + 3 (2025 gdp_total/gdp_percapita/fixed_asset) + 2 (2024 from Knife F)
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL THEN NULL  -- knife 669b-i-wuxi real cell (2021/2023/2025, 26 cells), no missing_reason
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2020 THEN 'knife 669b-i-wuxi: hongheiku 2020 WUXI 公告走 /1707.html 老 ID, 非 /djs/ 标准 pattern (Knife E 不支持, 守红线-3 禁编造)'
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2022 THEN 'knife 669b-i-wuxi: hongheiku tag 页无 2022 年 WUXI 公告 /djs/{eid}.html (仅 /xjtjgb/xj2020/34940.html 非标准 path, 守红线-3 禁编造)'
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NULL AND cp.indicator_key IN ('gdp_percapita', 'fiscal_rev')
+            THEN 'knife 669b-i-wuxi: bulletin 无 gdp_percapita 数据 / 2021 fiscal_rev parser 未匹配 (守红线-3, per 669a-2021 §2)'  -- 4 cells (gdp_percapita ×3 + 2021 fiscal_rev)
         ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
     CASE
@@ -1121,6 +1162,7 @@ SELECT
         WHEN cp.year = 2025  AND rd6.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- future-proofing for 669b
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-dongguan real cell
         WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-dalian real cell
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-wuxi real cell
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
@@ -1164,6 +1206,13 @@ SELECT
         WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NULL AND cp.indicator_key IN ('gdp_total', 'gdp_percapita', 'fixed_asset')
             THEN 'tjgb.hongheiku.com/djs/{30342,36951,48502,69004}.html (bulletin 仅发增长%/parser 未匹配)'  -- 12 cells
         WHEN cp.city_code = 'LIAONING_DALIAN' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/tag/大连市 (no 2020 entry, 守新增红线-3 不手填)'
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/23931.html'  -- knife 669b-i-wuxi
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/45593.html'
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/djs/70051.html'
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NULL AND cp.indicator_key IN ('gdp_percapita', 'fiscal_rev')
+            THEN 'tjgb.hongheiku.com/djs/{23931,45593,70051}.html (bulletin 无 gdp_percapita 数据 / 2021 fiscal_rev parser 未匹配)'  -- 4 cells
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/1707.html (老 ID 非 djs pattern, Knife E 不支持, 守新增红线-3 不手填)'
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2022 THEN 'tjgb.hongheiku.com/xjtjgb/xj2020/34940.html (非标准 path, Knife E 不支持, 守新增红线-3 不手填)'
         ELSE 'none'
     END AS lineage_origin,
     CASE
@@ -1217,6 +1266,13 @@ SELECT
         WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NULL AND cp.indicator_key IN ('gdp_total', 'gdp_percapita', 'fixed_asset')
             THEN 'K669b-i-dalian-parse-fixed_asset_growth_pct-2026-09-10'  -- 12 cells (3+2+2+3+2 Knife F 2024 = 12)
         WHEN cp.city_code = 'LIAONING_DALIAN' AND cp.year = 2020 THEN 'K669b-i-dalian-no-bulletin-2020-2026-09-10'
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL AND cp.year = 2021 THEN 'K669b-i-wuxi-parse-2021-2026-09-10'  -- knife 669b-i-wuxi
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL AND cp.year = 2023 THEN 'K669b-i-wuxi-parse-2023-2026-09-10'
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-wuxi-parse-2025-2026-09-10'
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NULL AND cp.indicator_key IN ('gdp_percapita', 'fiscal_rev')
+            THEN 'K669b-i-wuxi-parse-fixed_asset_growth_pct-2026-09-10'  -- 4 cells (gdp_percapita ×3 + 2021 fiscal_rev)
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2020 THEN 'K669b-i-wuxi-no-bulletin-djs-2020-2026-09-10'  -- 老 ID /1707.html 非 djs pattern
+        WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2022 THEN 'K669b-i-wuxi-no-bulletin-2022-2026-09-10'  -- tag 页无 /djs/{eid}.html
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -1281,3 +1337,7 @@ LEFT JOIN real_data_669b_i_dalian rd15
     ON cp.city_code = rd15.city_code
     AND cp.indicator_key = rd15.indicator_key
     AND cp.year IN (2021, 2022, 2023, 2025);  -- 2024 stays in rd13 (Knife F attribution)
+LEFT JOIN real_data_669b_i_wuxi rd16
+    ON cp.city_code = rd16.city_code
+    AND cp.indicator_key = rd16.indicator_key
+    AND cp.year IN (2021, 2023, 2025);  -- 2020/2022/2024/2026 stay DATA_MISSING or Knife F attribution
