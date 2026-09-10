@@ -218,8 +218,11 @@ def load_eid_map(path: str) -> tuple[dict[str, dict[int, int | None]], list[str]
             eid_by_city_year.setdefault(city, {})[year_int] = eid
         return eid_by_city_year, all_cities
     else:
-        # Format A: nested year-keyed
-        eid_by_city_year = {city: years for city, years in data.items()}
+        # Format A: nested year-keyed (accept both int and str year keys)
+        eid_by_city_year = {}
+        for city, years in data.items():
+            years_int = {int(y): eid for y, eid in years.items()}
+            eid_by_city_year[city] = years_int
         all_cities = list(data.keys())
         return eid_by_city_year, all_cities
 

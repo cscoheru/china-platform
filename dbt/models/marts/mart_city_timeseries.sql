@@ -1020,6 +1020,48 @@ real_data_669b_i_wuxi AS (
         ('JIANGSU_WUXI', 'fixed_asset',    3979.11::numeric,  2025),
         ('JIANGSU_WUXI', 'retail',         4418.47::numeric,  2025),
         ('JIANGSU_WUXI', 'trade',          8292.76::numeric,  2025)
+),
+real_data_669b_i_suzhou AS (
+    -- knife 669b-i-suzhou sub-knife 4/4 (2026-09-10): SUZHOU 6-year harvest
+    -- 35 real cells = 9+9+0+8+9 for 2021/2022/2023/2024/2025 (2023 全 DATA_MISSING, 数字含空格 parser regex 失配; 2024 stays K669b-i-batch1 Knife F attribution; 2020/2026 stay DATA_MISSING)
+    -- eid map: {2020: 3008 (老 ID), 2021: 25410, 2022: 35155, 2023: 45627, 2024: 61278 (Knife F), 2025: 69636}
+    -- 5 missing cells (gdp_percapita ×4 + 2024 retail) → DATA_MISSING in mart SQL CASE clauses
+    VALUES
+        ('JIANGSU_SUZHOU', 'gdp_total',      22718.3::numeric,  2021),  -- eid=25410
+        ('JIANGSU_SUZHOU', 'gdp_growth',     8.7::numeric,      2021),
+        ('JIANGSU_SUZHOU', 'primary_gdp',    189.7::numeric,    2021),
+        ('JIANGSU_SUZHOU', 'secondary_gdp',  10872.8::numeric,  2021),
+        ('JIANGSU_SUZHOU', 'tertiary_gdp',   11655.8::numeric,  2021),
+        ('JIANGSU_SUZHOU', 'fiscal_rev',     2510.0::numeric,   2021),
+        ('JIANGSU_SUZHOU', 'fixed_asset',    5660.6::numeric,   2021),
+        ('JIANGSU_SUZHOU', 'retail',         9031.3::numeric,   2021),
+        ('JIANGSU_SUZHOU', 'trade',          25332.0::numeric,  2021),
+        ('JIANGSU_SUZHOU', 'gdp_total',      23958.34::numeric, 2022),  -- eid=35155
+        ('JIANGSU_SUZHOU', 'gdp_growth',     2.0::numeric,      2022),
+        ('JIANGSU_SUZHOU', 'primary_gdp',    192.98::numeric,   2022),
+        ('JIANGSU_SUZHOU', 'secondary_gdp',  11521.41::numeric, 2022),
+        ('JIANGSU_SUZHOU', 'tertiary_gdp',   12243.95::numeric, 2022),
+        ('JIANGSU_SUZHOU', 'fiscal_rev',     2329.2::numeric,   2022),
+        ('JIANGSU_SUZHOU', 'fixed_asset',    5744.2::numeric,   2022),
+        ('JIANGSU_SUZHOU', 'retail',         9010.7::numeric,   2022),
+        ('JIANGSU_SUZHOU', 'trade',          25721.1::numeric,  2022),
+        ('JIANGSU_SUZHOU', 'gdp_total',      26727.0::numeric,  2024),  -- eid=61278 (Knife F 收录; 2024 stays K669b-i-batch1)
+        ('JIANGSU_SUZHOU', 'gdp_growth',     6.0::numeric,      2024),
+        ('JIANGSU_SUZHOU', 'primary_gdp',    202.0::numeric,    2024),
+        ('JIANGSU_SUZHOU', 'secondary_gdp',  12516.7::numeric,  2024),
+        ('JIANGSU_SUZHOU', 'tertiary_gdp',   14008.3::numeric,  2024),
+        ('JIANGSU_SUZHOU', 'fiscal_rev',     2459.1::numeric,   2024),
+        ('JIANGSU_SUZHOU', 'fixed_asset',    6135.7::numeric,   2024),
+        ('JIANGSU_SUZHOU', 'trade',          26193.1::numeric,  2024),
+        ('JIANGSU_SUZHOU', 'gdp_total',      27695.1::numeric,  2025),  -- eid=69636
+        ('JIANGSU_SUZHOU', 'gdp_growth',     5.4::numeric,      2025),
+        ('JIANGSU_SUZHOU', 'primary_gdp',    208.9::numeric,    2025),
+        ('JIANGSU_SUZHOU', 'secondary_gdp',  12844.4::numeric,  2025),
+        ('JIANGSU_SUZHOU', 'tertiary_gdp',   14641.8::numeric,  2025),
+        ('JIANGSU_SUZHOU', 'fiscal_rev',     2490.2::numeric,   2025),
+        ('JIANGSU_SUZHOU', 'fixed_asset',    5713.7::numeric,   2025),
+        ('JIANGSU_SUZHOU', 'retail',         9092.2::numeric,   2025),
+        ('JIANGSU_SUZHOU', 'trade',          28119.3::numeric,  2025)
 )
 SELECT
     cp.city_code,
@@ -1029,7 +1071,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value, rd17.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -1061,6 +1103,9 @@ SELECT
         WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL THEN NULL  -- knife 669b-i-wuxi real cell (2021/2023/2025, 26 cells; 2024 stays in rd13 Knife F)
         WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-wuxi: hongheiku 2020 WUXI 公告走 /1707.html 老 ID, 非 /djs/ 标准 pattern (Knife E 不支持)
         WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2022 THEN 'DATA_MISSING'  -- knife 669b-i-wuxi: hongheiku tag 页无 2022 /djs/{eid}.html (仅 /xjtjgb/xj2020/34940.html 非标准 path)
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL THEN NULL  -- knife 669b-i-suzhou real cell (2021/2022/2024/2025, 35 cells; 2024 stays in rd13 Knife F attribution)
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-suzhou: hongheiku 2020 SUZHOU 公告走 /3008.html 老 ID, 非 /djs/ 标准 pattern (Knife E 不支持)
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2023 THEN 'DATA_MISSING'  -- knife 669b-i-suzhou: parser regex 数字含空格失配 (e.g. "24653 . 4 亿元" 不能匹配 "(\d+\.?\d*)\s*亿", 守红线-3 禁编造)
         ELSE 'DATA_MISSING'  -- 2026 待 2027 官方发布
     END AS status,
     CASE
@@ -1145,6 +1190,14 @@ SELECT
         WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2022 THEN 'knife 669b-i-wuxi: hongheiku tag 页无 2022 年 WUXI 公告 /djs/{eid}.html (仅 /xjtjgb/xj2020/34940.html 非标准 path, 守红线-3 禁编造)'
         WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NULL AND cp.indicator_key IN ('gdp_percapita', 'fiscal_rev')
             THEN 'knife 669b-i-wuxi: bulletin 无 gdp_percapita 数据 / 2021 fiscal_rev parser 未匹配 (守红线-3, per 669a-2021 §2)'  -- 4 cells (gdp_percapita ×3 + 2021 fiscal_rev)
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL THEN NULL  -- knife 669b-i-suzhou real cell, no missing_reason
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2020 THEN 'knife 669b-i-suzhou: hongheiku 2020 SUZHOU 公告走 /3008.html 老 ID, 非 /djs/ 标准 pattern (Knife E 不支持, 守红线-3 禁编造)'
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.indicator_key = 'gdp_percapita'
+            THEN 'knife 669b-i-suzhou: bulletin 无 gdp_percapita 数据 (守红线-3, per 669a-2021 §2)'  -- 4 cells (gdp_percapita ×4 for 2021/2022/2024/2025)
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.year = 2024 AND cp.indicator_key = 'retail'
+            THEN 'knife 669b-i-suzhou: 2024 retail bulletin parser 未匹配 (守红线-3)'  -- 1 cell
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.year = 2023
+            THEN 'knife 669b-i-suzhou: parser regex 数字含空格失配 "24653 . 4 亿元" 不能匹配 (守红线-3, hongheiku 苏州 2023 eid 45627 bulletin 排版异常)'
         ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
     CASE
@@ -1163,6 +1216,7 @@ SELECT
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-dongguan real cell
         WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-dalian real cell
         WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-wuxi real cell
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-suzhou real cell
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
@@ -1213,6 +1267,17 @@ SELECT
             THEN 'tjgb.hongheiku.com/djs/{23931,45593,70051}.html (bulletin 无 gdp_percapita 数据 / 2021 fiscal_rev parser 未匹配)'  -- 4 cells
         WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/1707.html (老 ID 非 djs pattern, Knife E 不支持, 守新增红线-3 不手填)'
         WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2022 THEN 'tjgb.hongheiku.com/xjtjgb/xj2020/34940.html (非标准 path, Knife E 不支持, 守新增红线-3 不手填)'
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/25410.html'  -- knife 669b-i-suzhou
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/35155.html'
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/61278.html'  -- Knife F attribution (2024 stays K669b-i-batch1)
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/djs/69636.html'
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.indicator_key = 'gdp_percapita'
+            THEN 'tjgb.hongheiku.com/djs/{25410,35155,61278,69636}.html (bulletin 无 gdp_percapita 数据)'  -- 4 cells
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.year = 2024 AND cp.indicator_key = 'retail'
+            THEN 'tjgb.hongheiku.com/djs/61278.html (2024 retail parser 未匹配, 守红线-3)'  -- 1 cell
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.year = 2023
+            THEN 'tjgb.hongheiku.com/djs/45627.html (2023 bulletin parser 数字含空格 regex 失配, 守红线-3 禁编造)'  -- 10 cells
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/3008.html (老 ID 非 djs pattern, Knife E 不支持, 守新增红线-3 不手填)'
         ELSE 'none'
     END AS lineage_origin,
     CASE
@@ -1273,6 +1338,17 @@ SELECT
             THEN 'K669b-i-wuxi-parse-fixed_asset_growth_pct-2026-09-10'  -- 4 cells (gdp_percapita ×3 + 2021 fiscal_rev)
         WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2020 THEN 'K669b-i-wuxi-no-bulletin-djs-2020-2026-09-10'  -- 老 ID /1707.html 非 djs pattern
         WHEN cp.city_code = 'JIANGSU_WUXI' AND cp.year = 2022 THEN 'K669b-i-wuxi-no-bulletin-2022-2026-09-10'  -- tag 页无 /djs/{eid}.html
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL AND cp.year = 2021 THEN 'K669b-i-suzhou-parse-2021-2026-09-10'  -- knife 669b-i-suzhou
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL AND cp.year = 2022 THEN 'K669b-i-suzhou-parse-2022-2026-09-10'
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL AND cp.year = 2024 THEN 'K669b-i-batch1-parse-2024-2026-09-09'  -- Knife F attribution
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-suzhou-parse-2025-2026-09-10'
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.indicator_key = 'gdp_percapita'
+            THEN 'K669b-i-suzhou-parse-fixed_asset_growth_pct-2026-09-10'  -- 4 cells (gdp_percapita ×4 for 2021/2022/2024/2025)
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.year = 2024 AND cp.indicator_key = 'retail'
+            THEN 'K669b-i-suzhou-parse-fixed_asset_growth_pct-2026-09-10'  -- 1 cell (2024 retail parser 未匹配)
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.year = 2023
+            THEN 'K669b-i-suzhou-no-bulletin-2023-2026-09-10'  -- parser 数字含空格 regex 失配 (苏州 2023 bulletin 排版异常, hongheiku eid 45627)
+        WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2020 THEN 'K669b-i-suzhou-no-bulletin-djs-2020-2026-09-10'  -- 老 ID /3008.html 非 djs pattern
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -1341,3 +1417,7 @@ LEFT JOIN real_data_669b_i_wuxi rd16
     ON cp.city_code = rd16.city_code
     AND cp.indicator_key = rd16.indicator_key
     AND cp.year IN (2021, 2023, 2025);  -- 2020/2022/2024/2026 stay DATA_MISSING or Knife F attribution
+LEFT JOIN real_data_669b_i_suzhou rd17
+    ON cp.city_code = rd17.city_code
+    AND cp.indicator_key = rd17.indicator_key
+    AND cp.year IN (2021, 2022, 2024, 2025);  -- 2020 老 ID /3008.html, 2023 parser 数字含空格失配, 2026 守新增红线-2
