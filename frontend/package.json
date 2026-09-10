@@ -5,6 +5,8 @@
   "description": "Stage 2 / S2.0.1 — Next.js App Router skeleton. Consumes S1.10 FastAPI; mock-switchable for S1.18 DEMO demonstration.",
   "scripts": {
     "dev": "next dev -p 3000",
+    "predev": "node scripts/copy-mart-to-public.js",
+    "prebuild": "node scripts/copy-mart-to-public.js",
     "build": "next build",
     "start": "next start -p 3000",
     "smoke": "python3 smoke-check.py"
