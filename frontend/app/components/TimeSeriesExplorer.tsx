@@ -3,7 +3,12 @@
 // TimeSeriesExplorer.tsx — knife 667 时序可视化交互组件.
 //
 // 客户端组件: 持有年份窗口 + 当前选省 + 当前选指标 三个 useState.
-// 数据来自父 server component (page.tsx) 一次性传入,避免 SSR 拉取.
+// 数据策略 (Knife H server pre-slice, 修 O2 3.7MB SSR HTML WARN):
+//   * 初始数据 = defaultPoints (server pre-slice, ~26 points = default 省 × default 指标 × 26 年).
+//   * 用户切换省/指标时 → useEffect 触发 lazy fetch martJsonUrl → 全 mart 缓存到 allPoints state.
+//   * filteredPoints: 当 allPoints 已加载用 allPoints; 否则用 defaultPoints (覆盖 default 选择).
+//   * 若 lazy fetch 失败 → 仍用 defaultPoints (覆盖 default 选择; 用户切到非默认会看到 DATA_MISSING).
+//
 // 子组件:
 //   - ProvinceSelector (省级下拉)
 //   - YearSlider (年份窗口)
@@ -14,14 +19,16 @@
 //   - yearStart / yearEnd:  受控窗口
 //   - selectedProvinceCode: 受控选省
 //   - selectedIndicatorKey: 受控选指标
-//   - 数据切片: useMemo 算 filteredPoints (按 province + indicator + year_range)
+//   - allPoints: lazy-fetched 全 mart (null = 未加载, 用 defaultPoints 兜底)
+//   - dataLoading: lazy fetch 进行中
+//   - dataError: lazy fetch 失败 (回退 defaultPoints)
 //
 // Per 红线-4 (禁榜单化): 不实现"省份对比"或"指标排名"功能.
 // Per 红线-1/2 (DATA_MISSING 守门): 不修改 mart rows; null value 直接喂 chart 让
 //   connectNulls={false} 自然断线.
 
 import type React from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   type IndicatorOption,
@@ -40,8 +47,17 @@ export interface TimeSeriesExplorerProps {
   provinces: ProvinceOption[];
   /** 所有指标选项 (mart canonical order). */
   indicators: IndicatorOption[];
-  /** 完整时序点 (8060 row subset, 已按 province filter). */
-  points: ProvinceTimeSeriesPoint[];
+  /**
+   * Server pre-slice 的 default 选省 + 选指标 全年序列 (~26 points).
+   * Per Knife H (O2 修): 不再传全 mart (8060 points) 触发 3.7MB SSR HTML.
+   */
+  defaultPoints: ProvinceTimeSeriesPoint[];
+  /**
+   * 完整 mart JSON 的 client-side URL (e.g. "/data/mart_province_timeseries.json").
+   * 当用户切换省/指标超出 defaultPoints 覆盖时, 客户端 lazy-fetch 此 URL.
+   * 若未提供, 用户切换省/指标会看到 DATA_MISSING (不回退报错).
+   */
+  martJsonUrl?: string;
   /** 当前选省对应 source-grade summary (server 预计算). */
   perProvinceSummary: SourceGradeSummary;
   /** NATIONAL 聚合 source-grade (server 预计算). */
@@ -58,10 +74,16 @@ const DEFAULT_PROVINCE = "NATIONAL";
 const DEFAULT_INDICATOR = "gdp_total";
 const DEFAULT_RANGE: readonly [number, number] = [2020, 2025];
 
+// 全 mart JSON 文件顶层 schema (Knife H lazy-fetch 解析). 仅取我们用到的字段.
+interface MartTimeSeriesJson {
+  provinces: ProvinceTimeSeriesPoint[];
+}
+
 export function TimeSeriesExplorer({
   provinces,
   indicators,
-  points,
+  defaultPoints,
+  martJsonUrl,
   perProvinceSummary,
   nationalSummary,
   defaultProvinceCode = DEFAULT_PROVINCE,
@@ -72,6 +94,45 @@ export function TimeSeriesExplorer({
   const [yearEnd, setYearEnd] = useState<number>(defaultYearRange[1]);
   const [selectedProvinceCode, setSelectedProvinceCode] = useState<string>(defaultProvinceCode);
   const [selectedIndicatorKey, setSelectedIndicatorKey] = useState<string>(defaultIndicatorKey);
+
+  // Knife H lazy-fetch state. allPoints = null 表示还未加载, 用 defaultPoints.
+  const [allPoints, setAllPoints] = useState<ProvinceTimeSeriesPoint[] | null>(null);
+  const [dataLoading, setDataLoading] = useState(false);
+  const [dataError, setDataError] = useState<string | null>(null);
+
+  // 用户切换省/指标时若 allPoints 未加载且切到非 default, 触发 lazy fetch.
+  const needsLazyFetch =
+    allPoints === null &&
+    martJsonUrl !== undefined &&
+    (selectedProvinceCode !== defaultProvinceCode ||
+      selectedIndicatorKey !== defaultIndicatorKey);
+
+  useEffect(() => {
+    if (!needsLazyFetch) return;
+    if (dataLoading) return;
+    setDataLoading(true);
+    setDataError(null);
+    fetch(martJsonUrl!)
+      .then((r) => {
+        if (!r.ok) {
+          throw new Error(`HTTP ${r.status} fetching ${martJsonUrl}`);
+        }
+        return r.json() as Promise<MartTimeSeriesJson>;
+      })
+      .then((json) => {
+        if (Array.isArray(json.provinces)) {
+          setAllPoints(json.provinces);
+        } else {
+          throw new Error("mart JSON missing 'provinces' array");
+        }
+        setDataLoading(false);
+      })
+      .catch((err) => {
+        setDataError(err instanceof Error ? err.message : String(err));
+        setDataLoading(false);
+        // allPoints 仍为 null → filteredPoints 回退 defaultPoints (用户切到非默认会显示 DATA_MISSING).
+      });
+  }, [needsLazyFetch, martJsonUrl, dataLoading]);
 
   // 当前选指标元数据 (用于图表轴 label).
   const selectedIndicator = useMemo(
@@ -85,16 +146,17 @@ export function TimeSeriesExplorer({
     [provinces, selectedProvinceCode]
   );
 
-  // 切片: province + indicator + year range.
+  // 切片: province + indicator + year range. 数据源: allPoints 优先, 否则 defaultPoints.
+  const activePoints = allPoints ?? defaultPoints;
   const filteredPoints = useMemo(() => {
-    return points.filter(
+    return activePoints.filter(
       (p) =>
         p.province_code === selectedProvinceCode &&
         p.indicator_key === selectedIndicatorKey &&
         p.year >= yearStart &&
         p.year <= yearEnd
     );
-  }, [points, selectedProvinceCode, selectedIndicatorKey, yearStart, yearEnd]);
+  }, [activePoints, selectedProvinceCode, selectedIndicatorKey, yearStart, yearEnd]);
 
   // 选 NATIONAL 时切到 nationalSummary;其他省切 perProvinceSummary (单选).
   const activeSummary: SourceGradeSummary = useMemo(() => {
@@ -175,12 +237,23 @@ export function TimeSeriesExplorer({
         points={filteredPoints}
       />
 
-      {/* 底部说明: 当前窗口 + 缺失提示. */}
+      {/* 底部说明: 当前窗口 + 缺失提示 + Knife H lazy fetch 状态. */}
       <p style={caveatStyle} data-testid="time-series-caveat">
         当前窗口 {yearStart}–{yearEnd} ({yearEnd - yearStart + 1} 年) ·
         · 指标 {selectedIndicator?.indicator_label} ({selectedIndicatorKey}) ·
         · {filteredPoints.length} 数据点 ({activeSummary.DATA_MISSING} 个 DATA_MISSING 显示为虚线,
         per 红线-1/2 禁补零)
+        {dataLoading && (
+          <> · <span data-testid="time-series-loading">正在加载全 mart (Knife H lazy-fetch)…</span></>
+        )}
+        {dataError && !dataLoading && (
+          <> · <span data-testid="time-series-fetch-error" style={{ color: "#a00" }}>
+            全 mart 加载失败 ({dataError}); 仅显示默认切片.
+          </span></>
+        )}
+        {allPoints && !dataLoading && (
+          <> · 全 mart 已缓存 ({allPoints.length} 点)</>
+        )}
       </p>
     </div>
   );
