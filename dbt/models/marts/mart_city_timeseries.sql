@@ -950,6 +950,43 @@ missing_city_year AS (
     -- 永久缺 city (4 直辖市禁重复; 港/澳/台 不在 city mart)
     -- 669a-2021 范围内无永久缺 city (4 直辖市之外的 4 priority city 都有 cat tag)
     SELECT NULL::text AS city_code WHERE FALSE
+),
+real_data_669b_i_dalian AS (
+    -- knife 669b-i-dalian sub-knife 2/4 (2026-09-10): DALIAN 6-year harvest
+    -- 30 real cells = 7+8+8+7 for 2021/2022/2023/2025 (2024 stays in rd13 Knife F attribution)
+    -- eid map: {2021: 30342, 2022: 36951, 2023: 48502, 2024: 60425, 2025: 69004}
+    -- 12 missing cells (gdp_total/gdp_percapita/fixed_asset) → DATA_MISSING in mart SQL CASE clauses
+    VALUES
+        ('LIAONING_DALIAN', 'gdp_growth',    8.2::numeric,    2021),  -- eid=30342
+        ('LIAONING_DALIAN', 'primary_gdp',   513.3::numeric,  2021),
+        ('LIAONING_DALIAN', 'secondary_gdp', 3301.6::numeric, 2021),
+        ('LIAONING_DALIAN', 'tertiary_gdp',  4011.0::numeric, 2021),
+        ('LIAONING_DALIAN', 'fiscal_rev',    737.6::numeric,  2021),
+        ('LIAONING_DALIAN', 'retail',        1909.7::numeric, 2021),
+        ('LIAONING_DALIAN', 'trade',         4248.5::numeric, 2021),
+        ('LIAONING_DALIAN', 'gdp_growth',    4.0::numeric,    2022),  -- eid=36951
+        ('LIAONING_DALIAN', 'primary_gdp',   563.0::numeric,  2022),
+        ('LIAONING_DALIAN', 'secondary_gdp', 3712.5::numeric, 2022),
+        ('LIAONING_DALIAN', 'tertiary_gdp',  4155.4::numeric, 2022),
+        ('LIAONING_DALIAN', 'gdp_percapita', 112270::numeric, 2022),
+        ('LIAONING_DALIAN', 'fiscal_rev',    669.7::numeric,  2022),
+        ('LIAONING_DALIAN', 'retail',        1846.9::numeric, 2022),
+        ('LIAONING_DALIAN', 'trade',         4792.1::numeric, 2022),
+        ('LIAONING_DALIAN', 'gdp_growth',    6.0::numeric,    2023),  -- eid=48502
+        ('LIAONING_DALIAN', 'primary_gdp',   595.9::numeric,  2023),
+        ('LIAONING_DALIAN', 'secondary_gdp', 3715.3::numeric, 2023),
+        ('LIAONING_DALIAN', 'tertiary_gdp',  4441.7::numeric, 2023),
+        ('LIAONING_DALIAN', 'gdp_percapita', 116557::numeric, 2023),
+        ('LIAONING_DALIAN', 'fiscal_rev',    750.2::numeric,  2023),
+        ('LIAONING_DALIAN', 'retail',        2008.6::numeric, 2023),
+        ('LIAONING_DALIAN', 'trade',         4552.8::numeric, 2023),
+        ('LIAONING_DALIAN', 'gdp_growth',    5.7::numeric,    2025),  -- eid=69004
+        ('LIAONING_DALIAN', 'primary_gdp',   665.4::numeric,  2025),
+        ('LIAONING_DALIAN', 'secondary_gdp', 3532.5::numeric, 2025),
+        ('LIAONING_DALIAN', 'tertiary_gdp',  5804.2::numeric, 2025),
+        ('LIAONING_DALIAN', 'fiscal_rev',    749.5::numeric,  2025),
+        ('LIAONING_DALIAN', 'retail',        2180.8::numeric, 2025),
+        ('LIAONING_DALIAN', 'trade',         4492.6::numeric, 2025)
 )
 SELECT
     cp.city_code,
@@ -959,7 +996,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -986,6 +1023,8 @@ SELECT
         WHEN cp.year = 2025  AND rd5.value IS NULL     THEN 'DATA_MISSING'  -- covers 4 669a + 25 669b cities
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL THEN NULL  -- knife 669b-i-dongguan real cell (2021/2022/2023/2025, 37 cells)
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-dongguan explicit 2020 exclusion (hongheiku tag 无 2020 bulletin)
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL THEN NULL  -- knife 669b-i-dalian real cell (2021/2022/2023/2025, 30 cells; 2024 stays in rd13 Knife F)
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-dalian: hongheiku tag 页无 2020 DALIAN 公告
         ELSE 'DATA_MISSING'  -- 2026 待 2027 官方发布
     END AS status,
     CASE
@@ -1061,6 +1100,10 @@ SELECT
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND cp.year = 2020 THEN 'knife 669b-i-dongguan: hongheiku 无 2020 DONGGUAN 公告 (tag 页仅 2021-2025, 守红线-3 禁编造)'
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NULL AND cp.indicator_key = 'fixed_asset'
             THEN 'knife 669b-i-dongguan: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2)'  -- 2021/2022/2023 fixed_asset 3 cells
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL THEN NULL  -- knife 669b-i-dalian real cell (2021/2022/2023/2025, 30 cells)
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND cp.year = 2020 THEN 'knife 669b-i-dalian: hongheiku 无 2020 年 DALIAN 公告 (tag 页仅 2021-2025, 守红线-3 禁编造)'
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NULL AND cp.indicator_key IN ('gdp_total', 'gdp_percapita', 'fixed_asset')
+            THEN 'knife 669b-i-dalian: bulletin 仅发增长%/parser 未匹配 (守红线-3, per 669a-2021 §2)'  -- 12 cells = 3 (2021 gdp_total/gdp_percapita/fixed_asset) + 2 (2022 gdp_total/fixed_asset) + 2 (2023 gdp_total/fixed_asset) + 3 (2025 gdp_total/gdp_percapita/fixed_asset) + 2 (2024 from Knife F)
         ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
     CASE
@@ -1077,6 +1120,7 @@ SELECT
         WHEN cp.year = 2025  AND rd5.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'
         WHEN cp.year = 2025  AND rd6.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- future-proofing for 669b
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-dongguan real cell
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-dalian real cell
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
@@ -1113,6 +1157,13 @@ SELECT
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NULL AND cp.indicator_key = 'fixed_asset'
             THEN 'tjgb.hongheiku.com/djs/{25333,42065,47430}.html (bulletin 仅发增长%)'  -- 2021/2022/2023 fixed_asset 3 cells
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/tag/东莞市 (no 2020 entry, 守新增红线-3 不手填)'
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/30342.html'  -- knife 669b-i-dalian
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/36951.html'
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/48502.html'
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/djs/69004.html'
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NULL AND cp.indicator_key IN ('gdp_total', 'gdp_percapita', 'fixed_asset')
+            THEN 'tjgb.hongheiku.com/djs/{30342,36951,48502,69004}.html (bulletin 仅发增长%/parser 未匹配)'  -- 12 cells
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/tag/大连市 (no 2020 entry, 守新增红线-3 不手填)'
         ELSE 'none'
     END AS lineage_origin,
     CASE
@@ -1159,6 +1210,13 @@ SELECT
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND rd14.value IS NULL AND cp.indicator_key = 'fixed_asset'
             THEN 'K669b-i-dongguan-parse-fixed_asset_growth_pct-2026-09-10'  -- 2021/2022/2023 fixed_asset 3 cells
         WHEN cp.city_code = 'GUANGDONG_DONGGUAN' AND cp.year = 2020 THEN 'K669b-i-dongguan-no-bulletin-2020-2026-09-10'
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL AND cp.year = 2021 THEN 'K669b-i-dalian-parse-2021-2026-09-10'  -- knife 669b-i-dalian
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL AND cp.year = 2022 THEN 'K669b-i-dalian-parse-2022-2026-09-10'
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL AND cp.year = 2023 THEN 'K669b-i-dalian-parse-2023-2026-09-10'
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-dalian-parse-2025-2026-09-10'
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NULL AND cp.indicator_key IN ('gdp_total', 'gdp_percapita', 'fixed_asset')
+            THEN 'K669b-i-dalian-parse-fixed_asset_growth_pct-2026-09-10'  -- 12 cells (3+2+2+3+2 Knife F 2024 = 12)
+        WHEN cp.city_code = 'LIAONING_DALIAN' AND cp.year = 2020 THEN 'K669b-i-dalian-no-bulletin-2020-2026-09-10'
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -1218,4 +1276,8 @@ LEFT JOIN real_data_669b_i_batch1_2024 rd13
 LEFT JOIN real_data_669b_i_dongguan rd14
     ON cp.city_code = rd14.city_code
     AND cp.indicator_key = rd14.indicator_key
+    AND cp.year IN (2021, 2022, 2023, 2025);  -- 2024 stays in rd13 (Knife F attribution)
+LEFT JOIN real_data_669b_i_dalian rd15
+    ON cp.city_code = rd15.city_code
+    AND cp.indicator_key = rd15.indicator_key
     AND cp.year IN (2021, 2022, 2023, 2025);  -- 2024 stays in rd13 (Knife F attribution)
