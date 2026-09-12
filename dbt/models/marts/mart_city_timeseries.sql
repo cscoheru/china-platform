@@ -104,7 +104,15 @@ WITH city_dimension AS (
         ('JIANGSU_SUZHOU',         '苏州市',       'JIANGSU'),
         ('JIANGSU_WUXI',           '无锡市',       'JIANGSU'),
         ('GUANGDONG_FOSHAN',       '佛山市',       'GUANGDONG'),
-        ('GUANGDONG_DONGGUAN',     '东莞市',       'GUANGDONG')
+        ('GUANGDONG_DONGGUAN',     '东莞市',       'GUANGDONG'),
+        -- 669j-1 (2026-09-12, knife 669j batch 1/6): 5 粤卫星城 (NO-OP, hongheiku 0 entry)
+        -- ZHUHAI/ZHANJIANG/SHANTOU/JIANGMEN/ZHAOQING tag page 404 + cat index 0 ref (15 HTTP 验证)
+        -- 300 cells (5 city × 6 year × 10 indicator) 全 DATA_MISSING, 守新增红线-3 禁手填/补零
+        ('GUANGDONG_ZHUHAI',       '珠海市',       'GUANGDONG'),
+        ('GUANGDONG_ZHANJIANG',    '湛江市',       'GUANGDONG'),
+        ('GUANGDONG_SHANTOU',      '汕头市',       'GUANGDONG'),
+        ('GUANGDONG_JIANGMEN',     '江门市',       'GUANGDONG'),
+        ('GUANGDONG_ZHAOQING',     '肇庆市',       'GUANGDONG')
     ) AS t(city_code, city_name, province_code)
 ),
 indicator_dimension AS (
@@ -1148,6 +1156,12 @@ real_data_669b_i_qingdao AS (
         ('SHANDONG_QINGDAO', 'secondary_gdp',  5873.83::numeric,  2025),
         ('SHANDONG_QINGDAO', 'tertiary_gdp',   11170.63::numeric, 2025),
         ('SHANDONG_QINGDAO', 'trade',          9128.9::numeric,   2025)
+),
+real_data_669j_1 AS (
+    -- knife 669j-1 (2026-09-12, knife 669j batch 1/6): 5 粤卫星城 (NO-OP, hongheiku 0 entry)
+    -- ZHUHAI/ZHANJIANG/SHANTOU/JIANGMEN/ZHAOQING tag page 404 + cat index 0 ref (15 HTTP 验证, over budget)
+    -- 0 real cells; 300 cells (5 city × 6 year × 10 indicator) 全 DATA_MISSING 路径 (守新增红线-3 禁手填/补零)
+    SELECT NULL::text AS city_code, NULL::text AS indicator_key, NULL::numeric AS value, NULL::int AS year WHERE FALSE
 )
 SELECT
     cp.city_code,
@@ -1157,7 +1171,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value, rd17.value, rd18.value, rd19.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value, rd17.value, rd18.value, rd19.value, rd20.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -1196,6 +1210,10 @@ SELECT
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-xiamen: hongheiku tag 页无 2020 XIAMEN 公告 (5 entries 全是 2021-2025, 守新增红线-3 不手填)
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL THEN NULL  -- knife 669b-i-qingdao real cell (2020/2022/2023/2024/2025, 35 cells; QINGDO NOT in Knife F batch1, 2024 fresh this knife)
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND cp.year = 2021 THEN 'DATA_MISSING'  -- knife 669b-i-qingdao: 2021 bulletin 极简 (23823 chars), parser 全部未匹配
+        WHEN cp.city_code IN ('GUANGDONG_ZHUHAI', 'GUANGDONG_ZHANJIANG', 'GUANGDONG_SHANTOU', 'GUANGDONG_JIANGMEN', 'GUANGDONG_ZHAOQING')
+            AND rd20.value IS NOT NULL THEN NULL  -- knife 669j-1 real cell (NO-OP path: real_data_669j_1 returns 0 rows)
+        WHEN cp.city_code IN ('GUANGDONG_ZHUHAI', 'GUANGDONG_ZHANJIANG', 'GUANGDONG_SHANTOU', 'GUANGDONG_JIANGMEN', 'GUANGDONG_ZHAOQING')
+            THEN 'DATA_MISSING'  -- knife 669j-1 NO-OP: 5 粤卫星城 hongheiku 0 entry (15 HTTP 验证, tag 404 + cat index 0 ref)
         ELSE 'DATA_MISSING'  -- 2026 待 2027 官方发布
     END AS status,
     CASE
@@ -1307,6 +1325,10 @@ SELECT
             THEN 'knife 669b-i-qingdao: bulletin 仅发增长% 或无绝对值 (守红线-3, per 669a-2021 §2)'
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2022 AND cp.indicator_key = 'gdp_growth'
             THEN 'knife 669b-i-qingdao: parser regex 误匹配 "四新"经济投资增长20.8% (实际 GDP 增长 3.9%, knife E/970 parser 输出不手填修正, 守红线-3)'
+        WHEN cp.city_code IN ('GUANGDONG_ZHUHAI', 'GUANGDONG_ZHANJIANG', 'GUANGDONG_SHANTOU', 'GUANGDONG_JIANGMEN', 'GUANGDONG_ZHAOQING')
+            AND rd20.value IS NOT NULL THEN NULL  -- knife 669j-1 real cell, no missing_reason
+        WHEN cp.city_code IN ('GUANGDONG_ZHUHAI', 'GUANGDONG_ZHANJIANG', 'GUANGDONG_SHANTOU', 'GUANGDONG_JIANGMEN', 'GUANGDONG_ZHAOQING')
+            THEN 'knife 669j-1: 5 粤卫星城 hongheiku 0 entry (tag /tag/{pinyin,中文} 5/5 404, /cat_djs.html + /cat_sjtjgb.html 0 ref, 15 HTTP 验证, 守新增红线-3 不手填)'
         ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
     CASE
@@ -1567,24 +1589,28 @@ LEFT JOIN real_data_669b_i_batch1_2024 rd13
 LEFT JOIN real_data_669b_i_dongguan rd14
     ON cp.city_code = rd14.city_code
     AND cp.indicator_key = rd14.indicator_key
-    AND cp.year IN (2021, 2022, 2023, 2025);  -- 2024 stays in rd13 (Knife F attribution)
+    AND cp.year IN (2021, 2022, 2023, 2025)  -- 2024 stays in rd13 (Knife F attribution)
 LEFT JOIN real_data_669b_i_dalian rd15
     ON cp.city_code = rd15.city_code
     AND cp.indicator_key = rd15.indicator_key
-    AND cp.year IN (2021, 2022, 2023, 2025);  -- 2024 stays in rd13 (Knife F attribution)
+    AND cp.year IN (2021, 2022, 2023, 2025)  -- 2024 stays in rd13 (Knife F attribution)
 LEFT JOIN real_data_669b_i_wuxi rd16
     ON cp.city_code = rd16.city_code
     AND cp.indicator_key = rd16.indicator_key
-    AND cp.year IN (2021, 2023, 2025);  -- 2020/2022/2024/2026 stay DATA_MISSING or Knife F attribution
+    AND cp.year IN (2021, 2023, 2025)  -- 2020/2022/2024/2026 stay DATA_MISSING or Knife F attribution
 LEFT JOIN real_data_669b_i_suzhou rd17
     ON cp.city_code = rd17.city_code
     AND cp.indicator_key = rd17.indicator_key
-    AND cp.year IN (2021, 2022, 2024, 2025);  -- 2020 老 ID /3008.html, 2023 parser 数字含空格失配, 2026 守新增红线-2
+    AND cp.year IN (2021, 2022, 2024, 2025)  -- 2020 老 ID /3008.html, 2023 parser 数字含空格失配, 2026 守新增红线-2
 LEFT JOIN real_data_669b_i_xiamen rd18
     ON cp.city_code = rd18.city_code
     AND cp.indicator_key = rd18.indicator_key
-    AND cp.year IN (2021, 2022, 2023, 2025);  -- 2020 hongheiku tag 无 entry, 2024 stays rd13 (Knife F), 2026 守新增红线-2
+    AND cp.year IN (2021, 2022, 2023, 2025)  -- 2020 hongheiku tag 无 entry, 2024 stays rd13 (Knife F), 2026 守新增红线-2
 LEFT JOIN real_data_669b_i_qingdao rd19
     ON cp.city_code = rd19.city_code
     AND cp.indicator_key = rd19.indicator_key
-    AND cp.year IN (2020, 2022, 2023, 2024, 2025);  -- 2021 bulletin 极简 parser all miss (10 cells stay MISSING), 2026 守新增红线-2
+    AND cp.year IN (2020, 2022, 2023, 2024, 2025)  -- 2021 bulletin 极简 parser all miss (10 cells stay MISSING), 2026 守新增红线-2
+LEFT JOIN real_data_669j_1 rd20
+    ON cp.city_code = rd20.city_code
+    AND cp.indicator_key = rd20.indicator_key
+    AND cp.year BETWEEN 2020 AND 2025;  -- NO-OP: real_data_669j_1 returns 0 rows (WHERE FALSE), all 5 粤 city cells stay DATA_MISSING (守新增红线-3)
