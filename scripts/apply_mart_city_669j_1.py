@@ -82,7 +82,11 @@ def main():
             cur.execute("""
                 SELECT DISTINCT ON (indicator_key) indicator_key, indicator_label, unit
                 FROM {TARGET_SCHEMA}.{MART_NAME}
+<<<<<<< HEAD
                 WHERE year = 2024 AND value IS NOT NULL AND indicator_label IS NOT NULL
+=======
+                WHERE city_code = 'GUANGDONG_DONGGUAN' AND year = 2024
+>>>>>>> 52c2f32 (feat(669j-1): apply_mart_city_669j_1.py INSERT-only psycopg2 直 psql)
                 ORDER BY indicator_key
             """.format(**{"TARGET_SCHEMA": TARGET_SCHEMA, "MART_NAME": MART_NAME}))
             indicators = cur.fetchall()  # [(key, label, unit), ...] × 10
