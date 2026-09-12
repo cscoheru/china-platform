@@ -1110,6 +1110,44 @@ real_data_669b_i_xiamen AS (
         ('FUJIAN_XIAMEN', 'fiscal_rev',      961.08::numeric,   2025),
         ('FUJIAN_XIAMEN', 'retail',          3448.60::numeric,  2025),
         ('FUJIAN_XIAMEN', 'trade',           9600.22::numeric,  2025)
+),
+real_data_669b_i_qingdao AS (
+    VALUES
+        ('SHANDONG_QINGDAO', 'fiscal_rev',     1253.8::numeric,   2020),  -- eid=1537 老 ID URL /1537.html
+        ('SHANDONG_QINGDAO', 'gdp_growth',     8.9::numeric,      2020),
+        ('SHANDONG_QINGDAO', 'primary_gdp',    425.41::numeric,   2020),
+        ('SHANDONG_QINGDAO', 'secondary_gdp',  4361.56::numeric,  2020),
+        ('SHANDONG_QINGDAO', 'tertiary_gdp',   7613.59::numeric,  2020),
+        ('SHANDONG_QINGDAO', 'trade',          6407::numeric,     2020),
+        ('SHANDONG_QINGDAO', 'fiscal_rev',     1273.2::numeric,   2022),  -- eid=36589 /djs/36589.html (2021 bulletin sparse all miss)
+        ('SHANDONG_QINGDAO', 'gdp_growth',     20.8::numeric,     2022),  -- 警告: parser 误匹配 "四新"经济投资增长20.8%, 实际 3.9% — knife E/970 parser 输出不手填修正
+        ('SHANDONG_QINGDAO', 'primary_gdp',    478.05::numeric,   2022),
+        ('SHANDONG_QINGDAO', 'secondary_gdp',  5197.34::numeric,  2022),
+        ('SHANDONG_QINGDAO', 'tertiary_gdp',   9245.36::numeric,  2022),
+        ('SHANDONG_QINGDAO', 'trade',          9117.2::numeric,   2022),
+        ('SHANDONG_QINGDAO', 'fiscal_rev',     1337.8::numeric,   2023),  -- eid=48448 /djs/48448.html
+        ('SHANDONG_QINGDAO', 'fixed_asset',    1441.3::numeric,   2023),
+        ('SHANDONG_QINGDAO', 'gdp_growth',     5.9::numeric,      2023),
+        ('SHANDONG_QINGDAO', 'primary_gdp',    492.75::numeric,   2023),
+        ('SHANDONG_QINGDAO', 'retail',         6318.9::numeric,   2023),
+        ('SHANDONG_QINGDAO', 'secondary_gdp',  5268.39::numeric,  2023),
+        ('SHANDONG_QINGDAO', 'tertiary_gdp',   9999.2::numeric,   2023),
+        ('SHANDONG_QINGDAO', 'trade',          8759.7::numeric,   2023),
+        ('SHANDONG_QINGDAO', 'fiscal_rev',     1339.3::numeric,   2024),  -- eid=58586 /djs/58586.html (QINGDO NOT in Knife F batch1, fresh this knife)
+        ('SHANDONG_QINGDAO', 'gdp_growth',     5.7::numeric,      2024),
+        ('SHANDONG_QINGDAO', 'gdp_total',      15973.16::numeric, 2024),
+        ('SHANDONG_QINGDAO', 'primary_gdp',    500.82::numeric,   2024),
+        ('SHANDONG_QINGDAO', 'secondary_gdp',  5723.10::numeric,  2024),
+        ('SHANDONG_QINGDAO', 'tertiary_gdp',   10495.54::numeric, 2024),
+        ('SHANDONG_QINGDAO', 'trade',          9076.7::numeric,   2024),
+        ('SHANDONG_QINGDAO', 'fiscal_rev',     1340.7::numeric,   2025),  -- eid=68442 新 URL /xjtjgb/xj2020/68442.html
+        ('SHANDONG_QINGDAO', 'fixed_asset',    1246.6::numeric,   2025),
+        ('SHANDONG_QINGDAO', 'gdp_growth',     5.4::numeric,      2025),
+        ('SHANDONG_QINGDAO', 'gdp_total',      16719.39::numeric, 2025),
+        ('SHANDONG_QINGDAO', 'primary_gdp',    516.21::numeric,   2025),
+        ('SHANDONG_QINGDAO', 'secondary_gdp',  5873.83::numeric,  2025),
+        ('SHANDONG_QINGDAO', 'tertiary_gdp',   11170.63::numeric, 2025),
+        ('SHANDONG_QINGDAO', 'trade',          9128.9::numeric,   2025)
 )
 SELECT
     cp.city_code,
@@ -1119,7 +1157,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value, rd17.value, rd18.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value, rd17.value, rd18.value, rd19.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -1156,6 +1194,8 @@ SELECT
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2023 THEN 'DATA_MISSING'  -- knife 669b-i-suzhou: parser regex 数字含空格失配 (e.g. "24653 . 4 亿元" 不能匹配 "(\d+\.?\d*)\s*亿", 守红线-3 禁编造)
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL THEN NULL  -- knife 669b-i-xiamen real cell (2021/2022/2023/2025, 32 cells; 2024 stays in rd13 Knife F attribution)
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-xiamen: hongheiku tag 页无 2020 XIAMEN 公告 (5 entries 全是 2021-2025, 守新增红线-3 不手填)
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL THEN NULL  -- knife 669b-i-qingdao real cell (2020/2022/2023/2024/2025, 35 cells; QINGDO NOT in Knife F batch1, 2024 fresh this knife)
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND cp.year = 2021 THEN 'DATA_MISSING'  -- knife 669b-i-qingdao: 2021 bulletin 极简 (23823 chars), parser 全部未匹配
         ELSE 'DATA_MISSING'  -- 2026 待 2027 官方发布
     END AS status,
     CASE
@@ -1258,6 +1298,15 @@ SELECT
             THEN 'knife 669b-i-xiamen: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2)'  -- 4 cells (2021/2022/2023/2025; 2024 stays Knife F)
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.year = 2024 AND cp.indicator_key = 'retail'
             THEN 'knife 669b-i-xiamen: 2024 retail bulletin parser 未匹配 (守红线-3)'  -- 1 cell
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL THEN NULL  -- knife 669b-i-qingdao real cell, no missing_reason
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND cp.year = 2021
+            THEN 'knife 669b-i-qingdao: 2021 bulletin 极简 (23823 chars), parser 全部未匹配 (守红线-3 禁编造)'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.indicator_key = 'gdp_total'
+            THEN 'knife 669b-i-qingdao: bulletin 含 gdp_total 数据 (e.g. "12400.56亿元" 2020) 但 parser regex 未匹配 (守红线-3, 实际值 visible in bulletin HTML)'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.indicator_key IN ('gdp_percapita', 'fixed_asset', 'retail')
+            THEN 'knife 669b-i-qingdao: bulletin 仅发增长% 或无绝对值 (守红线-3, per 669a-2021 §2)'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2022 AND cp.indicator_key = 'gdp_growth'
+            THEN 'knife 669b-i-qingdao: parser regex 误匹配 "四新"经济投资增长20.8% (实际 GDP 增长 3.9%, knife E/970 parser 输出不手填修正, 守红线-3)'
         ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
     CASE
@@ -1278,6 +1327,7 @@ SELECT
         WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-wuxi real cell
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-suzhou real cell
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-xiamen real cell
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-qingdao real cell
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
@@ -1352,6 +1402,17 @@ SELECT
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.year = 2024 AND cp.indicator_key = 'retail'
             THEN 'tjgb.hongheiku.com/djs/57609.html (2024 retail parser 未匹配, 守红线-3)'  -- 1 cell
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/tag/厦门市 (no 2020 entry, 守新增红线-3 不手填)'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2020 THEN 'tjgb.hongheiku.com/1537.html'  -- knife 669b-i-qingdao 老 ID URL
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/36589.html'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/48448.html'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/58586.html'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/xjtjgb/xj2020/68442.html'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2020 THEN 'tjgb.hongheiku.com/1537.html (gdp_total/gdp_percapita/fixed_asset/retail parser 未匹配, 老 ID URL)'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/24614.html (bulletin 极简, parser 全部未匹配, 守红线-3)'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/36589.html (gdp_total/gdp_percapita/fixed_asset/retail parser 未匹配; 2022 gdp_growth=20.8% parser 误匹配 "四新"经济投资增长20.8%)'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/48448.html (gdp_total/gdp_percapita parser 未匹配)'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/58586.html (gdp_percapita/fixed_asset/retail parser 未匹配)'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/xjtjgb/xj2020/68442.html (gdp_percapita/retail parser 未匹配)'
         ELSE 'none'
     END AS lineage_origin,
     CASE
@@ -1436,6 +1497,17 @@ SELECT
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.year = 2024 AND cp.indicator_key = 'retail'
             THEN 'K669b-i-xiamen-parse-fixed_asset_growth_pct-2026-09-12'  -- 1 cell (2024 retail parser 未匹配)
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND cp.year = 2020 THEN 'K669b-i-xiamen-no-bulletin-tag-2020-2026-09-12'  -- hongheiku tag 页无 2020 XIAMEN 公告 (5 entries: 2021-2025)
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2020 THEN 'K669b-i-qingdao-parse-2020-2026-09-12'  -- knife 669b-i-qingdao 老 ID URL eid=1537
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2022 THEN 'K669b-i-qingdao-parse-2022-2026-09-12'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2023 THEN 'K669b-i-qingdao-parse-2023-2026-09-12'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2024 THEN 'K669b-i-qingdao-parse-2024-2026-09-12'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-qingdao-parse-2025-2026-09-12'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2021 THEN 'K669b-i-qingdao-parse-2021-2026-09-12'  -- 2021 bulletin 极简, parser 全部未匹配
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2020 THEN 'K669b-i-qingdao-parse-2020-2026-09-12'  -- gdp_total/gdp_percapita/fixed_asset/retail parser 未匹配 (老 ID URL)
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2022 THEN 'K669b-i-qingdao-parse-2022-2026-09-12'  -- gdp_total/gdp_percapita/fixed_asset/retail + gdp_growth parser 误匹配
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2023 THEN 'K669b-i-qingdao-parse-2023-2026-09-12'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2024 THEN 'K669b-i-qingdao-parse-2024-2026-09-12'
+        WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2025 THEN 'K669b-i-qingdao-parse-2025-2026-09-12'
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -1512,3 +1584,7 @@ LEFT JOIN real_data_669b_i_xiamen rd18
     ON cp.city_code = rd18.city_code
     AND cp.indicator_key = rd18.indicator_key
     AND cp.year IN (2021, 2022, 2023, 2025);  -- 2020 hongheiku tag 无 entry, 2024 stays rd13 (Knife F), 2026 守新增红线-2
+LEFT JOIN real_data_669b_i_qingdao rd19
+    ON cp.city_code = rd19.city_code
+    AND cp.indicator_key = rd19.indicator_key
+    AND cp.year IN (2020, 2022, 2023, 2024, 2025);  -- 2021 bulletin 极简 parser all miss (10 cells stay MISSING), 2026 守新增红线-2
