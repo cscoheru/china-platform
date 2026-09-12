@@ -1062,6 +1062,54 @@ real_data_669b_i_suzhou AS (
         ('JIANGSU_SUZHOU', 'fixed_asset',    5713.7::numeric,   2025),
         ('JIANGSU_SUZHOU', 'retail',         9092.2::numeric,   2025),
         ('JIANGSU_SUZHOU', 'trade',          28119.3::numeric,  2025)
+),
+-- knife 669b-i-xiamen sub-knife (2026-09-12): XIAMEN 5-year harvest
+-- 39 real cells = 7+9+8+7+8 for 2021/2022/2023/2024/2025
+-- eid map: {2021: 24437, 2022: 38423, 2023: 45732, 2024: 57609 (Knife F), 2025: 68649}
+-- 2020 缺 (tag page 无 entry, 守新增红线-3 禁编造)
+-- gdp_percapita 5 cells × 5 year DATA_MISSING (公报无「人均地区生产总值」关键词)
+-- fiscal_rev 2021 + fixed_asset 4 cells + 2024 retail DATA_MISSING (bulletin 无 / parser 未匹配)
+-- 2024 cells stay in rd13 (Knife F attribution), apply 跳过 2024
+real_data_669b_i_xiamen AS (
+    VALUES
+        ('FUJIAN_XIAMEN', 'gdp_total',       7033.89::numeric,  2021),  -- eid=24437
+        ('FUJIAN_XIAMEN', 'gdp_growth',      8.1::numeric,      2021),
+        ('FUJIAN_XIAMEN', 'primary_gdp',     29.06::numeric,    2021),
+        ('FUJIAN_XIAMEN', 'secondary_gdp',   2882.89::numeric,  2021),
+        ('FUJIAN_XIAMEN', 'tertiary_gdp',    4121.94::numeric,  2021),
+        ('FUJIAN_XIAMEN', 'retail',          2584.07::numeric,  2021),
+        ('FUJIAN_XIAMEN', 'trade',           8876.52::numeric,  2021),
+        ('FUJIAN_XIAMEN', 'gdp_total',       7802.66::numeric,  2022),  -- eid=38423
+        ('FUJIAN_XIAMEN', 'gdp_growth',      4.4::numeric,      2022),
+        ('FUJIAN_XIAMEN', 'primary_gdp',     29.27::numeric,    2022),
+        ('FUJIAN_XIAMEN', 'secondary_gdp',   3233.56::numeric,  2022),
+        ('FUJIAN_XIAMEN', 'tertiary_gdp',    4539.83::numeric,  2022),
+        ('FUJIAN_XIAMEN', 'fiscal_rev',      883.77::numeric,   2022),
+        ('FUJIAN_XIAMEN', 'fixed_asset',     276.84::numeric,   2022),
+        ('FUJIAN_XIAMEN', 'retail',          2665.36::numeric,  2022),
+        ('FUJIAN_XIAMEN', 'trade',           9225.59::numeric,  2022),
+        ('FUJIAN_XIAMEN', 'gdp_total',       8066.49::numeric,  2023),  -- eid=45732
+        ('FUJIAN_XIAMEN', 'gdp_growth',      3.1::numeric,      2023),
+        ('FUJIAN_XIAMEN', 'primary_gdp',     27.73::numeric,    2023),
+        ('FUJIAN_XIAMEN', 'secondary_gdp',   2867.94::numeric,  2023),
+        ('FUJIAN_XIAMEN', 'tertiary_gdp',    5170.81::numeric,  2023),
+        ('FUJIAN_XIAMEN', 'retail',          2743.33::numeric,  2023),
+        ('FUJIAN_XIAMEN', 'trade',           9470.44::numeric,  2023),
+        ('FUJIAN_XIAMEN', 'gdp_total',       2913.67::numeric,  2024),  -- eid=57609 (Knife F 收录; 2024 stays K669b-i-batch1)
+        ('FUJIAN_XIAMEN', 'gdp_growth',      5.5::numeric,      2024),
+        ('FUJIAN_XIAMEN', 'primary_gdp',     26.34::numeric,    2024),
+        ('FUJIAN_XIAMEN', 'secondary_gdp',   3147.40::numeric,  2024),
+        ('FUJIAN_XIAMEN', 'tertiary_gdp',    5415.28::numeric,  2024),
+        ('FUJIAN_XIAMEN', 'fiscal_rev',      933.19::numeric,   2024),
+        ('FUJIAN_XIAMEN', 'trade',           9326.12::numeric,  2024),
+        ('FUJIAN_XIAMEN', 'gdp_total',       3056.72::numeric,  2025),  -- eid=68649
+        ('FUJIAN_XIAMEN', 'gdp_growth',      5.7::numeric,      2025),
+        ('FUJIAN_XIAMEN', 'primary_gdp',     24.24::numeric,    2025),
+        ('FUJIAN_XIAMEN', 'secondary_gdp',   3394.74::numeric,  2025),
+        ('FUJIAN_XIAMEN', 'tertiary_gdp',    5561.39::numeric,  2025),
+        ('FUJIAN_XIAMEN', 'fiscal_rev',      961.08::numeric,   2025),
+        ('FUJIAN_XIAMEN', 'retail',          3448.60::numeric,  2025),
+        ('FUJIAN_XIAMEN', 'trade',           9600.22::numeric,  2025)
 )
 SELECT
     cp.city_code,
@@ -1071,7 +1119,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value, rd17.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value, rd17.value, rd18.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -1106,6 +1154,8 @@ SELECT
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL THEN NULL  -- knife 669b-i-suzhou real cell (2021/2022/2024/2025, 35 cells; 2024 stays in rd13 Knife F attribution)
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-suzhou: hongheiku 2020 SUZHOU 公告走 /3008.html 老 ID, 非 /djs/ 标准 pattern (Knife E 不支持)
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2023 THEN 'DATA_MISSING'  -- knife 669b-i-suzhou: parser regex 数字含空格失配 (e.g. "24653 . 4 亿元" 不能匹配 "(\d+\.?\d*)\s*亿", 守红线-3 禁编造)
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL THEN NULL  -- knife 669b-i-xiamen real cell (2021/2022/2023/2025, 32 cells; 2024 stays in rd13 Knife F attribution)
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-xiamen: hongheiku tag 页无 2020 XIAMEN 公告 (5 entries 全是 2021-2025, 守新增红线-3 不手填)
         ELSE 'DATA_MISSING'  -- 2026 待 2027 官方发布
     END AS status,
     CASE
@@ -1198,6 +1248,16 @@ SELECT
             THEN 'knife 669b-i-suzhou: 2024 retail bulletin parser 未匹配 (守红线-3)'  -- 1 cell
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.year = 2023
             THEN 'knife 669b-i-suzhou: parser regex 数字含空格失配 "24653 . 4 亿元" 不能匹配 (守红线-3, hongheiku 苏州 2023 eid 45627 bulletin 排版异常)'
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL THEN NULL  -- knife 669b-i-xiamen real cell, no missing_reason
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND cp.year = 2020 THEN 'knife 669b-i-xiamen: hongheiku tag 页无 2020 XIAMEN 公告 (5 entries: 2021/2022/2023/2024/2025, 守新增红线-3 不手填)'
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.indicator_key = 'gdp_percapita'
+            THEN 'knife 669b-i-xiamen: bulletin 无 gdp_percapita 数据 (守红线-3, per 669a-2021 §2)'  -- 5 cells (gdp_percapita ×5 for 2021/2022/2023/2024/2025; 2024 stays Knife F)
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.year = 2021 AND cp.indicator_key = 'fiscal_rev'
+            THEN 'knife 669b-i-xiamen: 2021 fiscal_rev bulletin parser 未匹配 (守红线-3)'  -- 1 cell
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.indicator_key = 'fixed_asset'
+            THEN 'knife 669b-i-xiamen: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2)'  -- 4 cells (2021/2022/2023/2025; 2024 stays Knife F)
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.year = 2024 AND cp.indicator_key = 'retail'
+            THEN 'knife 669b-i-xiamen: 2024 retail bulletin parser 未匹配 (守红线-3)'  -- 1 cell
         ELSE 'knife 669 后续 sub-knife 待 harvest'
     END AS missing_reason,
     CASE
@@ -1217,6 +1277,7 @@ SELECT
         WHEN cp.city_code = 'LIAONING_DALIAN' AND rd15.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-dalian real cell
         WHEN cp.city_code = 'JIANGSU_WUXI' AND rd16.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-wuxi real cell
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-suzhou real cell
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-xiamen real cell
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
@@ -1278,6 +1339,19 @@ SELECT
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.year = 2023
             THEN 'tjgb.hongheiku.com/djs/45627.html (2023 bulletin parser 数字含空格 regex 失配, 守红线-3 禁编造)'  -- 10 cells
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/3008.html (老 ID 非 djs pattern, Knife E 不支持, 守新增红线-3 不手填)'
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/24437.html'  -- knife 669b-i-xiamen
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/38423.html'
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/45732.html'
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/djs/68649.html'
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.indicator_key = 'gdp_percapita'
+            THEN 'tjgb.hongheiku.com/djs/{24437,38423,45732,68649}.html (bulletin 无 gdp_percapita 数据)'  -- 4 cells (2024 stays Knife F)
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.year = 2021 AND cp.indicator_key = 'fiscal_rev'
+            THEN 'tjgb.hongheiku.com/djs/24437.html (2021 fiscal_rev parser 未匹配, 守红线-3)'  -- 1 cell
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.indicator_key = 'fixed_asset'
+            THEN 'tjgb.hongheiku.com/djs/{24437,38423,45732,68649}.html (bulletin 仅发增长% 无绝对值)'  -- 4 cells
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.year = 2024 AND cp.indicator_key = 'retail'
+            THEN 'tjgb.hongheiku.com/djs/57609.html (2024 retail parser 未匹配, 守红线-3)'  -- 1 cell
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND cp.year = 2020 THEN 'tjgb.hongheiku.com/tag/厦门市 (no 2020 entry, 守新增红线-3 不手填)'
         ELSE 'none'
     END AS lineage_origin,
     CASE
@@ -1349,6 +1423,19 @@ SELECT
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NULL AND cp.year = 2023
             THEN 'K669b-i-suzhou-no-bulletin-2023-2026-09-10'  -- parser 数字含空格 regex 失配 (苏州 2023 bulletin 排版异常, hongheiku eid 45627)
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND cp.year = 2020 THEN 'K669b-i-suzhou-no-bulletin-djs-2020-2026-09-10'  -- 老 ID /3008.html 非 djs pattern
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL AND cp.year = 2021 THEN 'K669b-i-xiamen-parse-2021-2026-09-12'  -- knife 669b-i-xiamen
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL AND cp.year = 2022 THEN 'K669b-i-xiamen-parse-2022-2026-09-12'
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL AND cp.year = 2023 THEN 'K669b-i-xiamen-parse-2023-2026-09-12'
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-xiamen-parse-2025-2026-09-12'
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.indicator_key = 'gdp_percapita'
+            THEN 'K669b-i-xiamen-parse-fixed_asset_growth_pct-2026-09-12'  -- 4 cells (gdp_percapita ×4 for 2021/2022/2023/2025; 2024 stays Knife F)
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.year = 2021 AND cp.indicator_key = 'fiscal_rev'
+            THEN 'K669b-i-xiamen-parse-fixed_asset_growth_pct-2026-09-12'  -- 1 cell (2021 fiscal_rev parser 未匹配)
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.indicator_key = 'fixed_asset'
+            THEN 'K669b-i-xiamen-parse-fixed_asset_growth_pct-2026-09-12'  -- 4 cells (fixed_asset 2021/2022/2023/2025 bulletin 仅发增长%)
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NULL AND cp.year = 2024 AND cp.indicator_key = 'retail'
+            THEN 'K669b-i-xiamen-parse-fixed_asset_growth_pct-2026-09-12'  -- 1 cell (2024 retail parser 未匹配)
+        WHEN cp.city_code = 'FUJIAN_XIAMEN' AND cp.year = 2020 THEN 'K669b-i-xiamen-no-bulletin-tag-2020-2026-09-12'  -- hongheiku tag 页无 2020 XIAMEN 公告 (5 entries: 2021-2025)
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -1421,3 +1508,7 @@ LEFT JOIN real_data_669b_i_suzhou rd17
     ON cp.city_code = rd17.city_code
     AND cp.indicator_key = rd17.indicator_key
     AND cp.year IN (2021, 2022, 2024, 2025);  -- 2020 老 ID /3008.html, 2023 parser 数字含空格失配, 2026 守新增红线-2
+LEFT JOIN real_data_669b_i_xiamen rd18
+    ON cp.city_code = rd18.city_code
+    AND cp.indicator_key = rd18.indicator_key
+    AND cp.year IN (2021, 2022, 2023, 2025);  -- 2020 hongheiku tag 无 entry, 2024 stays rd13 (Knife F), 2026 守新增红线-2
