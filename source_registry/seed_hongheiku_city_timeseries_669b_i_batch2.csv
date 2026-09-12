@@ -1,0 +1,201 @@
+city_code,indicator_key,year,value,unit,status,missing_reason,source_url,bulletin_eid
+GUANGDONG_SHENZHEN,gdp_total,2021,30664.85,,real,,https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,gdp_growth,2021,6.7,,real,,https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,primary_gdp,2021,26.59,,real,,https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,secondary_gdp,2021,11338.59,,real,,https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,tertiary_gdp,2021,19299.67,,real,,https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,gdp_percapita,2021,173663,,real,,https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,fiscal_rev,2021,4257.76,,real,,https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,fixed_asset,2021,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,retail,2021,9498.12,,real,,https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,trade,2021,35435.57,,real,,https://tjgb.hongheiku.com/djs/26979.html,26979
+GUANGDONG_SHENZHEN,gdp_total,2022,32387.68,,real,,https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,gdp_growth,2022,3.3,,real,,https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,primary_gdp,2022,25.64,,real,,https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,secondary_gdp,2022,12405.88,,real,,https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,tertiary_gdp,2022,19956.16,,real,,https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,gdp_percapita,2022,183274,,real,,https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,fiscal_rev,2022,4012.27,,real,,https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,fixed_asset,2022,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,retail,2022,9708.28,,real,,https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,trade,2022,36737.52,,real,,https://tjgb.hongheiku.com/djs/38197.html,38197
+GUANGDONG_SHENZHEN,gdp_total,2023,34606.40,,real,,https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,gdp_growth,2023,6.0,,real,,https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,primary_gdp,2023,24.71,,real,,https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,secondary_gdp,2023,13015.32,,real,,https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,tertiary_gdp,2023,21566.38,,real,,https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,gdp_percapita,2023,195230.17,,real,,https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,fiscal_rev,2023,4112.78,,real,,https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,fixed_asset,2023,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,retail,2023,10486.19,,real,,https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,trade,2023,38710.70,,real,,https://tjgb.hongheiku.com/djs/49092.html,49092
+GUANGDONG_SHENZHEN,gdp_total,2024,36801.87,,real,,https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,gdp_growth,2024,5.8,,real,,https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,primary_gdp,2024,26.37,,real,,https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,secondary_gdp,2024,13909.28,,real,,https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,tertiary_gdp,2024,22866.22,,real,,https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,gdp_percapita,2024,205714,,real,,https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,fiscal_rev,2024,3914.18,,real,,https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,fixed_asset,2024,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,retail,2024,10637.70,,real,,https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,trade,2024,45048.24,,real,,https://tjgb.hongheiku.com/djs/62867.html,62867
+GUANGDONG_SHENZHEN,gdp_total,2025,38731.80,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_SHENZHEN,gdp_growth,2025,5.5,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_SHENZHEN,primary_gdp,2025,28.04,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_SHENZHEN,secondary_gdp,2025,14482.54,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_SHENZHEN,tertiary_gdp,2025,24221.22,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_SHENZHEN,gdp_percapita,2025,213763,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_SHENZHEN,fiscal_rev,2025,4163.77,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_SHENZHEN,fixed_asset,2025,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_SHENZHEN,retail,2025,10259.93,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_SHENZHEN,trade,2025,45533.89,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/72654.html,72654
+GUANGDONG_GUANGZHOU,gdp_total,2021,,,DATA_MISSING,parse miss: 地区生产总值 not found in eid 27931,https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,gdp_growth,2021,,,DATA_MISSING,parse miss: GDP 增速 not found in eid 27931,https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,primary_gdp,2021,,,DATA_MISSING,parse miss: 第一产业 not found in eid 27931,https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,secondary_gdp,2021,,,DATA_MISSING,parse miss: 第二产业 not found in eid 27931,https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,tertiary_gdp,2021,,,DATA_MISSING,parse miss: 第三产业 not found in eid 27931,https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,gdp_percapita,2021,,,DATA_MISSING,parse miss: 人均地区生产总值 not found in eid 27931,https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,fiscal_rev,2021,1883.18,,real,,https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,fixed_asset,2021,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,retail,2021,10122.56,,real,,https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,trade,2021,10825.88,,real,,https://tjgb.hongheiku.com/djs/27931.html,27931
+GUANGDONG_GUANGZHOU,gdp_total,2022,28839.00,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,gdp_growth,2022,1.0,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,primary_gdp,2022,318.31,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,secondary_gdp,2022,7909.29,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,tertiary_gdp,2022,20611.40,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,gdp_percapita,2022,153625,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,fiscal_rev,2022,1854.73,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,fixed_asset,2022,3431.90,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,retail,2022,10298.15,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,trade,2022,10948.40,,real,,https://tjgb.hongheiku.com/djs/38118.html,38118
+GUANGDONG_GUANGZHOU,gdp_total,2023,30355.73,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,gdp_growth,2023,4.6,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,primary_gdp,2023,317.78,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,secondary_gdp,2023,7775.71,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,tertiary_gdp,2023,22262.24,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,gdp_percapita,2023,161634,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,fiscal_rev,2023,1944.15,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,fixed_asset,2023,3134.40,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,retail,2023,11012.62,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,trade,2023,10914.28,,real,,https://tjgb.hongheiku.com/djs/47985.html,47985
+GUANGDONG_GUANGZHOU,gdp_total,2024,31032.50,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,gdp_growth,2024,2.1,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,primary_gdp,2024,334.47,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,secondary_gdp,2024,7839.45,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,tertiary_gdp,2024,22858.58,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,gdp_percapita,2024,164171,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,fiscal_rev,2024,1954.74,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,fixed_asset,2024,3066.03,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,retail,2024,11055.77,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,trade,2024,11238.38,,real,,https://tjgb.hongheiku.com/djs/58648.html,58648
+GUANGDONG_GUANGZHOU,gdp_total,2025,32039.46,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+GUANGDONG_GUANGZHOU,gdp_growth,2025,4.0,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+GUANGDONG_GUANGZHOU,primary_gdp,2025,317.02,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+GUANGDONG_GUANGZHOU,secondary_gdp,2025,7710.27,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+GUANGDONG_GUANGZHOU,tertiary_gdp,2025,24012.17,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+GUANGDONG_GUANGZHOU,gdp_percapita,2025,168279,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+GUANGDONG_GUANGZHOU,fiscal_rev,2025,2184.82,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+GUANGDONG_GUANGZHOU,fixed_asset,2025,12407.24,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+GUANGDONG_GUANGZHOU,retail,2025,11032.38,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+GUANGDONG_GUANGZHOU,trade,2025,12407.24,,real,,https://tjgb.hongheiku.com/djs/69954.html,69954
+ZHEJIANG_HANGZHOU,gdp_total,2021,18109,,real,,https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,gdp_growth,2021,8.5,,real,,https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,primary_gdp,2021,,,DATA_MISSING,parse miss: 第一产业 not found in eid 25516,https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,secondary_gdp,2021,15.4,,real,,https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,tertiary_gdp,2021,66.3,,real,,https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,gdp_percapita,2021,149857,,real,,https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,fiscal_rev,2021,2386.6,,real,,https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,fixed_asset,2021,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,retail,2021,6744,,real,,https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,trade,2021,7369,,real,,https://tjgb.hongheiku.com/djs/25516.html,25516
+ZHEJIANG_HANGZHOU,gdp_total,2022,,,DATA_MISSING,parse miss: 地区生产总值 not found in eid 37237,https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,gdp_growth,2022,1.5,,real,,https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,primary_gdp,2022,346,,real,,https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,secondary_gdp,2022,5620,,real,,https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,tertiary_gdp,2022,12787,,real,,https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,gdp_percapita,2022,152588,,real,,https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,fiscal_rev,2022,2451,,real,,https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,fixed_asset,2022,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,retail,2022,7294,,real,,https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,trade,2022,7565,,real,,https://tjgb.hongheiku.com/djs/37237.html,37237
+ZHEJIANG_HANGZHOU,gdp_total,2023,,,DATA_MISSING,parse miss: 地区生产总值 not found in eid 45617,https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,gdp_growth,2023,5.6,,real,,https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,primary_gdp,2023,347,,real,,https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,secondary_gdp,2023,5667,,real,,https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,tertiary_gdp,2023,14045,,real,,https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,gdp_percapita,2023,161129,,real,,https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,fiscal_rev,2023,2617,,real,,https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,fixed_asset,2023,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,retail,2023,7671,,real,,https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,trade,2023,8030,,real,,https://tjgb.hongheiku.com/djs/45617.html,45617
+ZHEJIANG_HANGZHOU,gdp_total,2024,20960,,real,,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,gdp_growth,2024,4.7,,real,,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,primary_gdp,2024,369,,real,,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,secondary_gdp,2024,5529,,real,,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,tertiary_gdp,2024,15962,,real,,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,gdp_percapita,2024,173867,,real,,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,fiscal_rev,2024,2640,,real,,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,fixed_asset,2024,,,DATA_MISSING,parse miss: 固定资产投资 not found in eid 57316,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,retail,2024,,,DATA_MISSING,parse miss: 社会消费品零售总额 not found in eid 57316,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,trade,2024,8549,,real,,https://tjgb.hongheiku.com/djs/57316.html,57316
+ZHEJIANG_HANGZHOU,gdp_total,2025,,,DATA_MISSING,parse miss: 地区生产总值 not found in eid 69708,https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_HANGZHOU,gdp_growth,2025,5.2,,real,,https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_HANGZHOU,primary_gdp,2025,383,,real,,https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_HANGZHOU,secondary_gdp,2025,5631,,real,,https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_HANGZHOU,tertiary_gdp,2025,16997,,real,,https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_HANGZHOU,gdp_percapita,2025,181732,,real,,https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_HANGZHOU,fiscal_rev,2025,2693,,real,,https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_HANGZHOU,fixed_asset,2025,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_HANGZHOU,retail,2025,9499,,real,,https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_HANGZHOU,trade,2025,9072,,real,,https://tjgb.hongheiku.com/djs/69708.html,69708
+ZHEJIANG_NINGBO,gdp_total,2021,14594.9,,real,,https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,gdp_growth,2021,8.2,,real,,https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,primary_gdp,2021,356.1,,real,,https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,secondary_gdp,2021,6997.2,,real,,https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,tertiary_gdp,2021,7241.6,,real,,https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,gdp_percapita,2021,153922,,real,,https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,fiscal_rev,2021,1723.1,,real,,https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,fixed_asset,2021,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,retail,2021,4649.1,,real,,https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,trade,2021,20531.2,,real,,https://tjgb.hongheiku.com/djs/23977.html,23977
+ZHEJIANG_NINGBO,gdp_total,2022,15704.3,,real,,https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,gdp_growth,2022,3.5,,real,,https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,primary_gdp,2022,382.0,,real,,https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,secondary_gdp,2022,7413.5,,real,,https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,tertiary_gdp,2022,7908.8,,real,,https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,gdp_percapita,2022,163911,,real,,https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,fiscal_rev,2022,1680.2,,real,,https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,fixed_asset,2022,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,retail,2022,4896.7,,real,,https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,trade,2022,24950.1,,real,,https://tjgb.hongheiku.com/djs/34936.html,34936
+ZHEJIANG_NINGBO,gdp_total,2023,16452.8,,real,,https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,gdp_growth,2023,5.5,,real,,https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,primary_gdp,2023,383.8,,real,,https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,secondary_gdp,2023,7540.5,,real,,https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,tertiary_gdp,2023,8528.5,,real,,https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,gdp_percapita,2023,170363,,real,,https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,fiscal_rev,2023,1785.9,,real,,https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,fixed_asset,2023,,,DATA_MISSING,"knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2, 4 cities affected: 13 cells)",https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,retail,2023,5212.6,,real,,https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,trade,2023,23984.5,,real,,https://tjgb.hongheiku.com/djs/45536.html,45536
+ZHEJIANG_NINGBO,gdp_total,2024,18147.7,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,gdp_growth,2024,5.4,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,primary_gdp,2024,451.1,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,secondary_gdp,2024,7882.7,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,tertiary_gdp,2024,9813.9,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,gdp_percapita,2024,186379,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,fiscal_rev,2024,1790.5,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,fixed_asset,2024,,,DATA_MISSING,parse miss: 固定资产投资 not found in eid 57318,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,retail,2024,5605.1,,real,,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,trade,2024,,,DATA_MISSING,parse miss: 进出口总额 not found in eid 57318,https://tjgb.hongheiku.com/xjtjgb/xj2020/57318.html,57318
+ZHEJIANG_NINGBO,gdp_total,2025,18716,,real,,https://tjgb.hongheiku.com/djs/69232.html,69232
+ZHEJIANG_NINGBO,gdp_growth,2025,4.9,,real,,https://tjgb.hongheiku.com/djs/69232.html,69232
+ZHEJIANG_NINGBO,primary_gdp,2025,472,,real,,https://tjgb.hongheiku.com/djs/69232.html,69232
+ZHEJIANG_NINGBO,secondary_gdp,2025,7866,,real,,https://tjgb.hongheiku.com/djs/69232.html,69232
+ZHEJIANG_NINGBO,tertiary_gdp,2025,10378,,real,,https://tjgb.hongheiku.com/djs/69232.html,69232
+ZHEJIANG_NINGBO,gdp_percapita,2025,190879,,real,,https://tjgb.hongheiku.com/djs/69232.html,69232
+ZHEJIANG_NINGBO,fiscal_rev,2025,1795,,real,,https://tjgb.hongheiku.com/djs/69232.html,69232
+ZHEJIANG_NINGBO,fixed_asset,2025,,,DATA_MISSING,parse miss: 固定资产投资 not found in eid 69232,https://tjgb.hongheiku.com/djs/69232.html,69232
+ZHEJIANG_NINGBO,retail,2025,5703,,real,,https://tjgb.hongheiku.com/djs/69232.html,69232
+ZHEJIANG_NINGBO,trade,2025,14562,,real,,https://tjgb.hongheiku.com/djs/69232.html,69232

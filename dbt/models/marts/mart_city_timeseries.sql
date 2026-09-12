@@ -1156,7 +1156,215 @@ real_data_669b_i_qingdao AS (
         ('SHANDONG_QINGDAO', 'secondary_gdp',  5873.83::numeric,  2025),
         ('SHANDONG_QINGDAO', 'tertiary_gdp',   11170.63::numeric, 2025),
         ('SHANDONG_QINGDAO', 'trade',          9128.9::numeric,   2025)
-),
+)
+real_data_669b_i_batch2 AS (
+    -- knife 669b-i batch2 (2026-09-13): 4 副省级 city (SHENZHEN/GUANGZHOU/HANGZHOU/NINGBO)
+    -- × 5 year (2021-2025) × 10 indicator = 200 cells; 172 real / 28 parse miss (含 13 fixed_asset 增长% 排除)
+    -- fetched 20 bulletins via Knife E 969+970 通用脚本 (15 HTTP main + 5 retries)
+    -- 3 URL patterns: 老 ID /{eid}.html, /djs/{eid}.html, /xjtjgb/xj2020/{eid}.html
+    -- SHENZHEN (1/4): 45 real cells
+    -- 2021 (eid=26979, /djs/26979.html): 9 cells
+        ('GUANGDONG_SHENZHEN', 'gdp_total', 30664.85::numeric, 2021),
+        ('GUANGDONG_SHENZHEN', 'gdp_growth', 6.7::numeric, 2021),
+        ('GUANGDONG_SHENZHEN', 'primary_gdp', 26.59::numeric, 2021),
+        ('GUANGDONG_SHENZHEN', 'secondary_gdp', 11338.59::numeric, 2021),
+        ('GUANGDONG_SHENZHEN', 'tertiary_gdp', 19299.67::numeric, 2021),
+        ('GUANGDONG_SHENZHEN', 'gdp_percapita', 173903::numeric, 2021),
+        ('GUANGDONG_SHENZHEN', 'fiscal_rev', 4257.54::numeric, 2021),
+        ('GUANGDONG_SHENZHEN', 'retail', 9498.13::numeric, 2021),
+        ('GUANGDONG_SHENZHEN', 'trade', 36030.81::numeric, 2021),
+    -- 2022 (eid=38197, /djs/38197.html): 9 cells
+        ('GUANGDONG_SHENZHEN', 'gdp_total', 32387.68::numeric, 2022),
+        ('GUANGDONG_SHENZHEN', 'gdp_growth', 3.3::numeric, 2022),
+        ('GUANGDONG_SHENZHEN', 'primary_gdp', 25.64::numeric, 2022),
+        ('GUANGDONG_SHENZHEN', 'secondary_gdp', 11395.59::numeric, 2022),
+        ('GUANGDONG_SHENZHEN', 'tertiary_gdp', 20966.45::numeric, 2022),
+        ('GUANGDONG_SHENZHEN', 'gdp_percapita', 183647::numeric, 2022),
+        ('GUANGDONG_SHENZHEN', 'fiscal_rev', 4012.48::numeric, 2022),
+        ('GUANGDONG_SHENZHEN', 'retail', 9708.28::numeric, 2022),
+        ('GUANGDONG_SHENZHEN', 'trade', 36738.01::numeric, 2022),
+    -- 2023 (eid=49092, /djs/49092.html): 9 cells
+        ('GUANGDONG_SHENZHEN', 'gdp_total', 34606.41::numeric, 2023),
+        ('GUANGDONG_SHENZHEN', 'gdp_growth', 6.0::numeric, 2023),
+        ('GUANGDONG_SHENZHEN', 'primary_gdp', 24.71::numeric, 2023),
+        ('GUANGDONG_SHENZHEN', 'secondary_gdp', 11708.97::numeric, 2023),
+        ('GUANGDONG_SHENZHEN', 'tertiary_gdp', 22872.73::numeric, 2023),
+        ('GUANGDONG_SHENZHEN', 'gdp_percapita', 195231::numeric, 2023),
+        ('GUANGDONG_SHENZHEN', 'fiscal_rev', 4119.41::numeric, 2023),
+        ('GUANGDONG_SHENZHEN', 'retail', 10486.45::numeric, 2023),
+        ('GUANGDONG_SHENZHEN', 'trade', 38730.71::numeric, 2023),
+    -- 2024 (eid=62867, /djs/62867.html): 9 cells
+        ('GUANGDONG_SHENZHEN', 'gdp_total', 36801.66::numeric, 2024),
+        ('GUANGDONG_SHENZHEN', 'gdp_growth', 5.8::numeric, 2024),
+        ('GUANGDONG_SHENZHEN', 'primary_gdp', 26.69::numeric, 2024),
+        ('GUANGDONG_SHENZHEN', 'secondary_gdp', 12249.36::numeric, 2024),
+        ('GUANGDONG_SHENZHEN', 'tertiary_gdp', 24525.61::numeric, 2024),
+        ('GUANGDONG_SHENZHEN', 'gdp_percapita', 205996::numeric, 2024),
+        ('GUANGDONG_SHENZHEN', 'fiscal_rev', 4216.51::numeric, 2024),
+        ('GUANGDONG_SHENZHEN', 'retail', 11038.97::numeric, 2024),
+        ('GUANGDONG_SHENZHEN', 'trade', 40097.96::numeric, 2024),
+    -- 2025 (eid=72654, /xjtjgb/xj2020/72654.html): 9 cells
+        ('GUANGDONG_SHENZHEN', 'gdp_total', 38721.49::numeric, 2025),
+        ('GUANGDONG_SHENZHEN', 'gdp_growth', 5.5::numeric, 2025),
+        ('GUANGDONG_SHENZHEN', 'primary_gdp', 26.21::numeric, 2025),
+        ('GUANGDONG_SHENZHEN', 'secondary_gdp', 12938.92::numeric, 2025),
+        ('GUANGDONG_SHENZHEN', 'tertiary_gdp', 25756.36::numeric, 2025),
+        ('GUANGDONG_SHENZHEN', 'gdp_percapita', 216029::numeric, 2025),
+        ('GUANGDONG_SHENZHEN', 'fiscal_rev', 4251.4::numeric, 2025),
+        ('GUANGDONG_SHENZHEN', 'retail', 11632.62::numeric, 2025),
+        ('GUANGDONG_SHENZHEN', 'trade', 41528.35::numeric, 2025),
+    -- GUANGZHOU (2/4): 43 real cells
+    -- 2021 (eid=27931, /djs/27931.html): 4 cells
+        ('GUANGDONG_GUANGZHOU', 'fiscal_rev', 1842.94::numeric, 2021),
+        ('GUANGDONG_GUANGZHOU', 'fixed_asset', 8734.95::numeric, 2021),
+        ('GUANGDONG_GUANGZHOU', 'retail', 10022.47::numeric, 2021),
+        ('GUANGDONG_GUANGZHOU', 'trade', 9535.05::numeric, 2021),
+    -- 2022 (eid=38118, /djs/38118.html): 10 cells
+        ('GUANGDONG_GUANGZHOU', 'gdp_total', 28839.0::numeric, 2022),
+        ('GUANGDONG_GUANGZHOU', 'gdp_growth', 1.0::numeric, 2022),
+        ('GUANGDONG_GUANGZHOU', 'primary_gdp', 269.41::numeric, 2022),
+        ('GUANGDONG_GUANGZHOU', 'secondary_gdp', 7909.05::numeric, 2022),
+        ('GUANGDONG_GUANGZHOU', 'tertiary_gdp', 20660.55::numeric, 2022),
+        ('GUANGDONG_GUANGZHOU', 'gdp_percapita', 153549::numeric, 2022),
+        ('GUANGDONG_GUANGZHOU', 'fiscal_rev', 1849.93::numeric, 2022),
+        ('GUANGDONG_GUANGZHOU', 'fixed_asset', 3431.90::numeric, 2022),
+        ('GUANGDONG_GUANGZHOU', 'retail', 10298.15::numeric, 2022),
+        ('GUANGDONG_GUANGZHOU', 'trade', 11314.49::numeric, 2022),
+    -- 2023 (eid=47985, /djs/47985.html): 10 cells
+        ('GUANGDONG_GUANGZHOU', 'gdp_total', 30355.29::numeric, 2023),
+        ('GUANGDONG_GUANGZHOU', 'gdp_growth', 4.6::numeric, 2023),
+        ('GUANGDONG_GUANGZHOU', 'primary_gdp', 286.41::numeric, 2023),
+        ('GUANGDONG_GUANGZHOU', 'secondary_gdp', 7833.16::numeric, 2023),
+        ('GUANGDONG_GUANGZHOU', 'tertiary_gdp', 22235.72::numeric, 2023),
+        ('GUANGDONG_GUANGZHOU', 'gdp_percapita', 161634::numeric, 2023),
+        ('GUANGDONG_GUANGZHOU', 'fiscal_rev', 1929.83::numeric, 2023),
+        ('GUANGDONG_GUANGZHOU', 'fixed_asset', 3134.40::numeric, 2023),
+        ('GUANGDONG_GUANGZHOU', 'retail', 11012.51::numeric, 2023),
+        ('GUANGDONG_GUANGZHOU', 'trade', 12427.92::numeric, 2023),
+    -- 2024 (eid=58648, /djs/58648.html): 10 cells
+        ('GUANGDONG_GUANGZHOU', 'gdp_total', 31032.51::numeric, 2024),
+        ('GUANGDONG_GUANGZHOU', 'gdp_growth', 2.5::numeric, 2024),
+        ('GUANGDONG_GUANGZHOU', 'primary_gdp', 298.02::numeric, 2024),
+        ('GUANGDONG_GUANGZHOU', 'secondary_gdp', 7889.97::numeric, 2024),
+        ('GUANGDONG_GUANGZHOU', 'tertiary_gdp', 22844.52::numeric, 2024),
+        ('GUANGDONG_GUANGZHOU', 'gdp_percapita', 164081::numeric, 2024),
+        ('GUANGDONG_GUANGZHOU', 'fiscal_rev', 1926.31::numeric, 2024),
+        ('GUANGDONG_GUANGZHOU', 'fixed_asset', 3066.03::numeric, 2024),
+        ('GUANGDONG_GUANGZHOU', 'retail', 11379.94::numeric, 2024),
+        ('GUANGDONG_GUANGZHOU', 'trade', 12813.31::numeric, 2024),
+    -- 2025 (eid=69954, /xjtjgb/xj2020/69954.html): 9 cells
+        ('GUANGDONG_GUANGZHOU', 'gdp_total', 32032.65::numeric, 2025),
+        ('GUANGDONG_GUANGZHOU', 'gdp_growth', 3.4::numeric, 2025),
+        ('GUANGDONG_GUANGZHOU', 'primary_gdp', 305.91::numeric, 2025),
+        ('GUANGDONG_GUANGZHOU', 'secondary_gdp', 8034.65::numeric, 2025),
+        ('GUANGDONG_GUANGZHOU', 'tertiary_gdp', 23692.09::numeric, 2025),
+        ('GUANGDONG_GUANGZHOU', 'gdp_percapita', 168239::numeric, 2025),
+        ('GUANGDONG_GUANGZHOU', 'fiscal_rev', 1908.93::numeric, 2025),
+        ('GUANGDONG_GUANGZHOU', 'fixed_asset', 12407.24::numeric, 2025),
+        ('GUANGDONG_GUANGZHOU', 'retail', 11964.74::numeric, 2025),
+    -- HANGZHOU (3/4): 40 real cells
+    -- 2021 (eid=25516, /djs/25516.html): 9 cells
+        ('ZHEJIANG_HANGZHOU', 'gdp_total', 20059.07::numeric, 2021),
+        ('ZHEJIANG_HANGZHOU', 'gdp_growth', 8.5::numeric, 2021),
+        ('ZHEJIANG_HANGZHOU', 'secondary_gdp', 5489.49::numeric, 2021),
+        ('ZHEJIANG_HANGZHOU', 'tertiary_gdp', 14342.49::numeric, 2021),
+        ('ZHEJIANG_HANGZHOU', 'gdp_percapita', 158798::numeric, 2021),
+        ('ZHEJIANG_HANGZHOU', 'fiscal_rev', 2384.61::numeric, 2021),
+        ('ZHEJIANG_HANGZHOU', 'fixed_asset', 6789.41::numeric, 2021),
+        ('ZHEJIANG_HANGZHOU', 'retail', 6543.86::numeric, 2021),
+        ('ZHEJIANG_HANGZHOU', 'trade', 12261.21::numeric, 2021),
+    -- 2022 (eid=37237, /djs/37237.html): 9 cells
+        ('ZHEJIANG_HANGZHOU', 'gdp_growth', 1.5::numeric, 2022),
+        ('ZHEJIANG_HANGZHOU', 'primary_gdp', 346.78::numeric, 2022),
+        ('ZHEJIANG_HANGZHOU', 'secondary_gdp', 5599.79::numeric, 2022),
+        ('ZHEJIANG_HANGZHOU', 'tertiary_gdp', 15135.51::numeric, 2022),
+        ('ZHEJIANG_HANGZHOU', 'gdp_percapita', 158165::numeric, 2022),
+        ('ZHEJIANG_HANGZHOU', 'fiscal_rev', 2480.66::numeric, 2022),
+        ('ZHEJIANG_HANGZHOU', 'fixed_asset', 7206.49::numeric, 2022),
+        ('ZHEJIANG_HANGZHOU', 'retail', 6960.49::numeric, 2022),
+        ('ZHEJIANG_HANGZHOU', 'trade', 13101.30::numeric, 2022),
+    -- 2023 (eid=45617, /djs/45617.html): 9 cells
+        ('ZHEJIANG_HANGZHOU', 'gdp_growth', 5.6::numeric, 2023),
+        ('ZHEJIANG_HANGZHOU', 'primary_gdp', 358.07::numeric, 2023),
+        ('ZHEJIANG_HANGZHOU', 'secondary_gdp', 5648.59::numeric, 2023),
+        ('ZHEJIANG_HANGZHOU', 'tertiary_gdp', 16039.21::numeric, 2023),
+        ('ZHEJIANG_HANGZHOU', 'gdp_percapita', 160292::numeric, 2023),
+        ('ZHEJIANG_HANGZHOU', 'fiscal_rev', 2616.71::numeric, 2023),
+        ('ZHEJIANG_HANGZHOU', 'fixed_asset', 7566.15::numeric, 2023),
+        ('ZHEJIANG_HANGZHOU', 'retail', 7564.99::numeric, 2023),
+        ('ZHEJIANG_HANGZHOU', 'trade', 13146.20::numeric, 2023),
+    -- 2024 (eid=57316, /djs/57316.html): 8 cells
+        ('ZHEJIANG_HANGZHOU', 'gdp_total', 21860.85::numeric, 2024),
+        ('ZHEJIANG_HANGZHOU', 'gdp_growth', 4.7::numeric, 2024),
+        ('ZHEJIANG_HANGZHOU', 'primary_gdp', 372.55::numeric, 2024),
+        ('ZHEJIANG_HANGZHOU', 'secondary_gdp', 5765.42::numeric, 2024),
+        ('ZHEJIANG_HANGZHOU', 'tertiary_gdp', 15722.88::numeric, 2024),
+        ('ZHEJIANG_HANGZHOU', 'gdp_percapita', 165686::numeric, 2024),
+        ('ZHEJIANG_HANGZHOU', 'fiscal_rev', 2700.86::numeric, 2024),
+        ('ZHEJIANG_HANGZHOU', 'trade', 14314.69::numeric, 2024),
+    -- 2025 (eid=69708, /xjtjgb/xj2020/69708.html): 9 cells
+        ('ZHEJIANG_HANGZHOU', 'gdp_growth', 5.0::numeric, 2025),
+        ('ZHEJIANG_HANGZHOU', 'primary_gdp', 384.59::numeric, 2025),
+        ('ZHEJIANG_HANGZHOU', 'secondary_gdp', 5879.95::numeric, 2025),
+        ('ZHEJIANG_HANGZHOU', 'tertiary_gdp', 17026.41::numeric, 2025),
+        ('ZHEJIANG_HANGZHOU', 'gdp_percapita', 167639::numeric, 2025),
+        ('ZHEJIANG_HANGZHOU', 'fiscal_rev', 2789.16::numeric, 2025),
+        ('ZHEJIANG_HANGZHOU', 'fixed_asset', 7747.92::numeric, 2025),
+        ('ZHEJIANG_HANGZHOU', 'retail', 8160.94::numeric, 2025),
+        ('ZHEJIANG_HANGZHOU', 'trade', 15019.06::numeric, 2025),
+    -- NINGBO (4/4): 44 real cells
+    -- 2021 (eid=23977, /djs/23977.html): 9 cells
+        ('ZHEJIANG_NINGBO', 'gdp_total', 14594.97::numeric, 2021),
+        ('ZHEJIANG_NINGBO', 'gdp_growth', 8.2::numeric, 2021),
+        ('ZHEJIANG_NINGBO', 'primary_gdp', 356.75::numeric, 2021),
+        ('ZHEJIANG_NINGBO', 'secondary_gdp', 6818.62::numeric, 2021),
+        ('ZHEJIANG_NINGBO', 'tertiary_gdp', 7419.6::numeric, 2021),
+        ('ZHEJIANG_NINGBO', 'gdp_percapita', 153922::numeric, 2021),
+        ('ZHEJIANG_NINGBO', 'fiscal_rev', 1659.18::numeric, 2021),
+        ('ZHEJIANG_NINGBO', 'fixed_asset', 6006.17::numeric, 2021),
+        ('ZHEJIANG_NINGBO', 'retail', 4649.55::numeric, 2021),
+    -- 2022 (eid=34936, /djs/34936.html): 9 cells
+        ('ZHEJIANG_NINGBO', 'gdp_total', 15704.93::numeric, 2022),
+        ('ZHEJIANG_NINGBO', 'gdp_growth', 3.5::numeric, 2022),
+        ('ZHEJIANG_NINGBO', 'primary_gdp', 382.59::numeric, 2022),
+        ('ZHEJIANG_NINGBO', 'secondary_gdp', 7413.5::numeric, 2022),
+        ('ZHEJIANG_NINGBO', 'tertiary_gdp', 7908.8::numeric, 2022),
+        ('ZHEJIANG_NINGBO', 'gdp_percapita', 163911::numeric, 2022),
+        ('ZHEJIANG_NINGBO', 'fiscal_rev', 1680.2::numeric, 2022),
+        ('ZHEJIANG_NINGBO', 'fixed_asset', 6074.7::numeric, 2022),
+        ('ZHEJIANG_NINGBO', 'retail', 4896.7::numeric, 2022),
+        ('ZHEJIANG_NINGBO', 'trade', 24950.1::numeric, 2022),
+    -- 2023 (eid=45536, /djs/45536.html): 9 cells
+        ('ZHEJIANG_NINGBO', 'gdp_total', 16452.8::numeric, 2023),
+        ('ZHEJIANG_NINGBO', 'gdp_growth', 5.5::numeric, 2023),
+        ('ZHEJIANG_NINGBO', 'primary_gdp', 383.8::numeric, 2023),
+        ('ZHEJIANG_NINGBO', 'secondary_gdp', 7540.5::numeric, 2023),
+        ('ZHEJIANG_NINGBO', 'tertiary_gdp', 8528.5::numeric, 2023),
+        ('ZHEJIANG_NINGBO', 'gdp_percapita', 170363::numeric, 2023),
+        ('ZHEJIANG_NINGBO', 'fiscal_rev', 1785.9::numeric, 2023),
+        ('ZHEJIANG_NINGBO', 'fixed_asset', 6178.5::numeric, 2023),
+        ('ZHEJIANG_NINGBO', 'retail', 5186.6::numeric, 2023),
+        ('ZHEJIANG_NINGBO', 'trade', 25499.4::numeric, 2023),
+    -- 2024 (eid=57318, /djs/57318.html): 8 cells
+        ('ZHEJIANG_NINGBO', 'gdp_total', 17368.08::numeric, 2024),
+        ('ZHEJIANG_NINGBO', 'gdp_growth', 5.4::numeric, 2024),
+        ('ZHEJIANG_NINGBO', 'primary_gdp', 392.43::numeric, 2024),
+        ('ZHEJIANG_NINGBO', 'secondary_gdp', 7824.07::numeric, 2024),
+        ('ZHEJIANG_NINGBO', 'tertiary_gdp', 9151.58::numeric, 2024),
+        ('ZHEJIANG_NINGBO', 'gdp_percapita', 177816::numeric, 2024),
+        ('ZHEJIANG_NINGBO', 'fiscal_rev', 1822.71::numeric, 2024),
+        ('ZHEJIANG_NINGBO', 'retail', 5533.45::numeric, 2024),
+    -- 2025 (eid=69232, /xjtjgb/xj2020/69232.html): 9 cells
+        ('ZHEJIANG_NINGBO', 'gdp_total', 18504.06::numeric, 2025),
+        ('ZHEJIANG_NINGBO', 'gdp_growth', 5.5::numeric, 2025),
+        ('ZHEJIANG_NINGBO', 'primary_gdp', 401.79::numeric, 2025),
+        ('ZHEJIANG_NINGBO', 'secondary_gdp', 7866::numeric, 2025),
+        ('ZHEJIANG_NINGBO', 'tertiary_gdp', 10378::numeric, 2025),
+        ('ZHEJIANG_NINGBO', 'gdp_percapita', 190879::numeric, 2025),
+        ('ZHEJIANG_NINGBO', 'fiscal_rev', 1795::numeric, 2025),
+        ('ZHEJIANG_NINGBO', 'retail', 5703::numeric, 2025),
+        ('ZHEJIANG_NINGBO', 'trade', 14562::numeric, 2025)
+)
 real_data_669j_1 AS (
     -- knife 669j-1 (2026-09-12, knife 669j batch 1/6): 5 粤卫星城 (NO-OP, hongheiku 0 entry)
     -- ZHUHAI/ZHANJIANG/SHANTOU/JIANGMEN/ZHAOQING tag page 404 + cat index 0 ref (15 HTTP 验证, over budget)
@@ -1171,7 +1379,7 @@ SELECT
     cp.indicator_label,
     cp.unit,
     cp.year,
-    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value, rd17.value, rd18.value, rd19.value, rd20.value) AS value,
+    COALESCE(rd.value, rd2.value, rd3.value, rd4.value, rd5.value, rd6.value, rd7.value, rd8.value, rd9.value, rd10.value, rd11.value, rd13.value, rd14.value, rd15.value, rd16.value, rd17.value, rd18.value, rd19.value, rd20.value, rd21.value) AS value,
     CASE
         WHEN cp.year < 2020  THEN 'DATA_MISSING'
         WHEN cp.year = 2026  THEN 'DATA_MISSING'
@@ -1210,6 +1418,14 @@ SELECT
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i-xiamen: hongheiku tag 页无 2020 XIAMEN 公告 (5 entries 全是 2021-2025, 守新增红线-3 不手填)
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL THEN NULL  -- knife 669b-i-qingdao real cell (2020/2022/2023/2024/2025, 35 cells; QINGDO NOT in Knife F batch1, 2024 fresh this knife)
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND cp.year = 2021 THEN 'DATA_MISSING'  -- knife 669b-i-qingdao: 2021 bulletin 极简 (23823 chars), parser 全部未匹配
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO')
+            AND rd21.value IS NOT NULL THEN NULL  -- knife 669b-i batch2 real cell (4 副省级 city, 172 cells: SHENZHEN 45 + GUANGZHOU 43 + HANGZHOU 40 + NINGBO 44)
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i batch2: SHENZHEN hongheiku tag 页无 2020 entry (守新增红线-3 不手填; SHENZHEN 2020 已在 K669a-2020-2026-09-04 covered)
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i batch2: GUANGZHOU 2020 由 K669a-2020 covered, 不重复
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i batch2: HANGZHOU 2020 由 K669a-2020 covered
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND cp.year = 2020 THEN 'DATA_MISSING'  -- knife 669b-i batch2: NINGBO 2020 由 K669a-2020 covered
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO')
+            THEN 'DATA_MISSING'  -- knife 669b-i batch2: 2021-2025 partial miss (28 cells: GUANGZHOU 2021 全 6 + HANGZHOU 6 + NINGBO 3 + 13 fixed_asset 增长% 排除, 守红线-3 禁编造)
         WHEN cp.city_code IN ('GUANGDONG_ZHUHAI', 'GUANGDONG_ZHANJIANG', 'GUANGDONG_SHANTOU', 'GUANGDONG_JIANGMEN', 'GUANGDONG_ZHAOQING')
             AND rd20.value IS NOT NULL THEN NULL  -- knife 669j-1 real cell (NO-OP path: real_data_669j_1 returns 0 rows)
         WHEN cp.city_code IN ('GUANGDONG_ZHUHAI', 'GUANGDONG_ZHANJIANG', 'GUANGDONG_SHANTOU', 'GUANGDONG_JIANGMEN', 'GUANGDONG_ZHAOQING')
@@ -1325,6 +1541,31 @@ SELECT
             THEN 'knife 669b-i-qingdao: bulletin 仅发增长% 或无绝对值 (守红线-3, per 669a-2021 §2)'
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2022 AND cp.indicator_key = 'gdp_growth'
             THEN 'knife 669b-i-qingdao: parser regex 误匹配 "四新"经济投资增长20.8% (实际 GDP 增长 3.9%, knife E/970 parser 输出不手填修正, 守红线-3)'
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO')
+            AND rd21.value IS NOT NULL THEN NULL  -- knife 669b-i batch2 real cell, no missing_reason (172 cells: SHENZHEN 45 + GUANGZHOU 43 + HANGZHOU 40 + NINGBO 44)
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO')
+            AND cp.year = 2020
+            THEN 'knife 669b-i batch2: 4 副省级 city 2020 由 K669a-2020-2026-09-04 覆盖 (此刀仅 harvest 2021-2025, 守红线-3 不重复注入)'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NULL AND cp.year = 2021
+            THEN 'knife 669b-i batch2: GUANGZHOU 2021 bulletin (eid=27931) 6 indicator parse miss (gdp_total/gdp_growth/primary/secondary/tertiary_gdp/gdp_percapita, 守红线-3, 实际值需 re-parse)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NULL AND cp.year = 2021 AND cp.indicator_key = 'primary_gdp'
+            THEN 'knife 669b-i batch2: HANGZHOU 2021 bulletin (eid=25516) primary_gdp parser 未匹配 (守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NULL AND cp.year = 2022 AND cp.indicator_key = 'gdp_total'
+            THEN 'knife 669b-i batch2: HANGZHOU 2022 bulletin (eid=37237) gdp_total parser 未匹配 (守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NULL AND cp.year = 2023 AND cp.indicator_key = 'gdp_total'
+            THEN 'knife 669b-i batch2: HANGZHOU 2023 bulletin (eid=45617) gdp_total parser 未匹配 (守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NULL AND cp.year = 2024 AND cp.indicator_key IN ('fixed_asset', 'retail')
+            THEN 'knife 669b-i batch2: HANGZHOU 2024 bulletin (eid=57316) fixed_asset+retail parser 未匹配 (守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NULL AND cp.year = 2025 AND cp.indicator_key = 'gdp_total'
+            THEN 'knife 669b-i batch2: HANGZHOU 2025 bulletin (eid=69708) gdp_total parser 未匹配 (守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NULL AND cp.year = 2024 AND cp.indicator_key IN ('fixed_asset', 'trade')
+            THEN 'knife 669b-i batch2: NINGBO 2024 bulletin (eid=57318) fixed_asset+trade parser 未匹配 (守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NULL AND cp.year = 2025 AND cp.indicator_key = 'fixed_asset'
+            THEN 'knife 669b-i batch2: NINGBO 2025 bulletin (eid=69232) fixed_asset parser 未匹配 (守红线-3)'
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO') AND cp.indicator_key = 'fixed_asset'
+            THEN 'knife 669b-i batch2: bulletin 仅发增长% 无绝对值 (守红线-3, per 669a-2021 §2; 13 cells: SHENZHEN 5 + GUANGZHOU 1 + HANGZHOU 4 + NINGBO 3)'
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO')
+            THEN 'knife 669b-i batch2: 2021-2025 后续 sub-knife 待 harvest (15 cells 守新增红线-3 不手填)'
         WHEN cp.city_code IN ('GUANGDONG_ZHUHAI', 'GUANGDONG_ZHANJIANG', 'GUANGDONG_SHANTOU', 'GUANGDONG_JIANGMEN', 'GUANGDONG_ZHAOQING')
             AND rd20.value IS NOT NULL THEN NULL  -- knife 669j-1 real cell, no missing_reason
         WHEN cp.city_code IN ('GUANGDONG_ZHUHAI', 'GUANGDONG_ZHANJIANG', 'GUANGDONG_SHANTOU', 'GUANGDONG_JIANGMEN', 'GUANGDONG_ZHAOQING')
@@ -1350,6 +1591,8 @@ SELECT
         WHEN cp.city_code = 'JIANGSU_SUZHOU' AND rd17.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-suzhou real cell
         WHEN cp.city_code = 'FUJIAN_XIAMEN' AND rd18.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-xiamen real cell
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i-qingdao real cell
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO')
+            AND rd21.value IS NOT NULL THEN 'HONGHEIKU_TRANSLOAD'  -- knife 669b-i batch2 real cell (4 副省级 city, 172 cells)
         ELSE 'DATA_MISSING'
     END AS lineage_source_type,
     CASE
@@ -1435,6 +1678,40 @@ SELECT
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/48448.html (gdp_total/gdp_percapita parser 未匹配)'
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/58586.html (gdp_percapita/fixed_asset/retail parser 未匹配)'
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/xjtjgb/xj2020/68442.html (gdp_percapita/retail parser 未匹配)'
+        -- knife 669b-i batch2 (2026-09-13): 4 副省级 city lineage_origin
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/26979.html'  -- knife 669b-i batch2 SHENZHEN
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/38197.html'
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/49092.html'
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/62867.html'
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/xjtjgb/xj2020/72654.html'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/27931.html'  -- knife 669b-i batch2 GUANGZHOU
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/38118.html'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/47985.html'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/58648.html'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/xjtjgb/xj2020/69954.html'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/25516.html'  -- knife 669b-i batch2 HANGZHOU
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/37237.html'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/45617.html'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/57316.html'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/xjtjgb/xj2020/69708.html'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/23977.html'  -- knife 669b-i batch2 NINGBO
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/34936.html'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/45536.html'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/57318.html'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2025 THEN 'tjgb.hongheiku.com/xjtjgb/xj2020/69232.html'
+        -- knife 669b-i batch2 DATA_MISSING cells
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO') AND cp.year = 2020
+            THEN 'tjgb.hongheiku.com (2020 由 K669a-2020-2026-09-04 覆盖, 此刀仅 harvest 2021-2025, 守新增红线-3 不重复注入)'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/27931.html (bulletin 极简, 6 indicator parser 未匹配, 守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND cp.year = 2021 THEN 'tjgb.hongheiku.com/djs/25516.html (primary_gdp parser 未匹配, 守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND cp.year = 2022 THEN 'tjgb.hongheiku.com/djs/37237.html (gdp_total parser 未匹配, 守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND cp.year = 2023 THEN 'tjgb.hongheiku.com/djs/45617.html (gdp_total parser 未匹配, 守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/57316.html (fixed_asset+retail parser 未匹配, 守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND cp.year = 2025 THEN 'tjgb.hongheiku.com/djs/69708.html (gdp_total parser 未匹配, 守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND cp.year = 2024 THEN 'tjgb.hongheiku.com/djs/57318.html (fixed_asset+trade parser 未匹配, 守红线-3)'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND cp.year = 2025 THEN 'tjgb.hongheiku.com/djs/69232.html (fixed_asset parser 未匹配, 守红线-3)'
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO') AND cp.year BETWEEN 2021 AND 2025
+            THEN 'tjgb.hongheiku.com (bulletin 仅发增长% 无绝对值, 守红线-3, per 669a-2021 §2; 13 cells: SHENZHEN 5 + GUANGZHOU 1 + HANGZHOU 4 + NINGBO 3)'
         ELSE 'none'
     END AS lineage_origin,
     CASE
@@ -1530,6 +1807,38 @@ SELECT
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2023 THEN 'K669b-i-qingdao-parse-2023-2026-09-12'
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2024 THEN 'K669b-i-qingdao-parse-2024-2026-09-12'
         WHEN cp.city_code = 'SHANDONG_QINGDAO' AND rd19.value IS NULL AND cp.year = 2025 THEN 'K669b-i-qingdao-parse-2025-2026-09-12'
+        -- knife 669b-i batch2 (2026-09-13): 4 副省级 city lineage_ruling
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2021 THEN 'K669b-i-batch2-parse-2021-2026-09-13'  -- SHENZHEN 2021
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2022 THEN 'K669b-i-batch2-parse-2022-2026-09-13'
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2023 THEN 'K669b-i-batch2-parse-2023-2026-09-13'
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2024 THEN 'K669b-i-batch2-parse-2024-2026-09-13'
+        WHEN cp.city_code = 'GUANGDONG_SHENZHEN' AND rd21.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-batch2-parse-2025-2026-09-13'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2021 THEN 'K669b-i-batch2-parse-2021-2026-09-13'  -- GUANGZHOU 2021
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2022 THEN 'K669b-i-batch2-parse-2022-2026-09-13'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2023 THEN 'K669b-i-batch2-parse-2023-2026-09-13'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2024 THEN 'K669b-i-batch2-parse-2024-2026-09-13'
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-batch2-parse-2025-2026-09-13'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2021 THEN 'K669b-i-batch2-parse-2021-2026-09-13'  -- HANGZHOU 2021
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2022 THEN 'K669b-i-batch2-parse-2022-2026-09-13'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2023 THEN 'K669b-i-batch2-parse-2023-2026-09-13'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2024 THEN 'K669b-i-batch2-parse-2024-2026-09-13'
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND rd21.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-batch2-parse-2025-2026-09-13'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2021 THEN 'K669b-i-batch2-parse-2021-2026-09-13'  -- NINGBO 2021
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2022 THEN 'K669b-i-batch2-parse-2022-2026-09-13'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2023 THEN 'K669b-i-batch2-parse-2023-2026-09-13'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2024 THEN 'K669b-i-batch2-parse-2024-2026-09-13'
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND rd21.value IS NOT NULL AND cp.year = 2025 THEN 'K669b-i-batch2-parse-2025-2026-09-13'
+        -- knife 669b-i batch2 DATA_MISSING cells
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO') AND cp.year = 2020
+            THEN 'K669a-2020-2026-09-04'  -- 4 city 2020 由 K669a-2020 覆盖
+        WHEN cp.city_code = 'GUANGDONG_GUANGZHOU' AND cp.year = 2021
+            THEN 'K669b-i-batch2-parse-2021-2026-09-13'  -- GUANGZHOU 2021 bulletin 极简 6 indicator parse miss
+        WHEN cp.city_code = 'ZHEJIANG_HANGZHOU' AND cp.year BETWEEN 2021 AND 2025
+            THEN 'K669b-i-batch2-parse-2021-to-2025-2026-09-13'  -- HANGZHOU partial miss
+        WHEN cp.city_code = 'ZHEJIANG_NINGBO' AND cp.year IN (2024, 2025)
+            THEN 'K669b-i-batch2-parse-2024-to-2025-2026-09-13'  -- NINGBO partial miss
+        WHEN cp.city_code IN ('GUANGDONG_SHENZHEN', 'GUANGDONG_GUANGZHOU', 'ZHEJIANG_HANGZHOU', 'ZHEJIANG_NINGBO') AND cp.year BETWEEN 2021 AND 2025
+            THEN 'K669b-i-batch2-fixed_asset_growth_pct-2026-09-13'  -- 13 fixed_asset 增长% cells
         ELSE 'pending'
     END AS lineage_ruling,
     'false'         AS lineage_is_demo
@@ -1614,3 +1923,8 @@ LEFT JOIN real_data_669j_1 rd20
     ON cp.city_code = rd20.city_code
     AND cp.indicator_key = rd20.indicator_key
     AND cp.year BETWEEN 2020 AND 2025;  -- NO-OP: real_data_669j_1 returns 0 rows (WHERE FALSE), all 5 粤 city cells stay DATA_MISSING (守新增红线-3)
+LEFT JOIN real_data_669b_i_batch2 rd21
+    ON rd21.city_code = cp.city_code
+    AND rd21.indicator_key = cp.indicator_key
+    AND rd21.year = cp.year
+    AND cp.year BETWEEN 2021 AND 2025;  -- knife 669b-i batch2: 4 副省级 city (SHENZHEN/GUANGZHOU/HANGZHOU/NINGBO), 172 real cells + 28 miss cells (2021-2025 only, 2020 走 K669a-2020, 2026 守新增红线-2)
