@@ -10,9 +10,18 @@
 //   - 用 useEffect 同步受控/非受控 (受控优先,避免 onChange re-render 时滑块跳变)
 //   - HTML range 输入原生可访问 (键盘 + 屏幕阅读器)
 //   - data-testid 命名沿用 667 tasking 规范 (year-slider-*)
+//
+// Hydration 守门 (knife hydration-fix, 2026-09-13):
+//   `<input type="range" value={number}>` 在 Next.js 16 + React 19 严格 hydration 下
+//   触发 #418/#423 (number vs string attribute mismatch + children cascade).
+//   修复: useEffect setMounted guard. 未 mount 时返回 text-only SSR skeleton
+//   (header + 数字回显 + count, 无 inputs). mount 后再渲染完整 inputs.
+//   SSR HTML 与 CSR 初次 render 完全一致 → hydration match. Post-mount re-render
+//   不在 hydration 阶段 → 不警告. (已用同 pattern 解决 Recharts SSR issue per
+//   TimeSeriesChartClient.)
 
 import type React from "react";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export interface YearSliderProps {
   yearStart: number;
@@ -38,6 +47,15 @@ export function YearSlider({
   max = DEFAULT_MAX,
   defaultRange = DEFAULT_RANGE,
 }: YearSliderProps): React.ReactElement {
+  // Hydration guard (knife hydration-fix 2026-09-13): avoid React #418/#423
+  // warnings on `<input type="range" value={number}>`. Pre-mount → SSR-friendly
+  // text-only skeleton (matches what server emits). Post-mount → full version
+  // with controlled range inputs.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const handleStartChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const v = Number(e.target.value);
@@ -61,12 +79,39 @@ export function YearSlider({
     onChange(defaultRange[0], defaultRange[1]);
   }, [defaultRange, onChange]);
 
+  // SSR / pre-hydration: text-only skeleton (matches server render).
+  // 保留 header + 数字回显 + count, 隐藏 reset 按钮 + inputs + scale.
+  if (!mounted) {
+    return (
+      <div
+        style={containerStyle}
+        data-testid="year-slider"
+        data-year-start={yearStart}
+        data-year-end={yearEnd}
+        data-hydration-state="pending"
+      >
+        <div style={headerStyle} data-testid="year-slider-header">
+          <span style={labelStyle}>年份范围:</span>
+          <span style={rangeStyle} data-testid="year-slider-range">
+            <strong>{yearStart}</strong>
+            <span style={{ margin: "0 6px", color: "#666" }}>—</span>
+            <strong>{yearEnd}</strong>
+          </span>
+          <span style={countStyle} data-testid="year-slider-count">
+            ({yearEnd - yearStart + 1} 年)
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       style={containerStyle}
       data-testid="year-slider"
       data-year-start={yearStart}
       data-year-end={yearEnd}
+      data-hydration-state="mounted"
     >
       <div style={headerStyle} data-testid="year-slider-header">
         <span style={labelStyle}>年份范围:</span>
