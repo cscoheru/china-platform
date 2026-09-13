@@ -24,6 +24,7 @@ import { notFound } from "next/navigation";
 import { CityPage } from "../../components/CityPage";
 import { CityPageMart } from "../../components/CityPageMart";
 import { CityTimeseriesLive } from "../../components/CityTimeseriesLive";
+import { CityEmptyState } from "../../components/CityEmptyState";
 import { CITY_SLUG_LIST, getCityEntry } from "../../../lib/city_slug_map";
 import { getMockCity } from "../../../lib/mock_cities";
 import { getMartCityDemo } from "../../../lib/mart_city_demo";
@@ -84,8 +85,24 @@ export default async function CityRoutePage({
       />
     );
   } catch (err) {
-    // live mart 不可用时退到 mart-shape fixture (per docs/05 §9 容错原则).
-    // 控制台可见错误, 但 UI 仍可浏览 (is_demo=true 标注).
+    // B-OPT-NT (2026-09-13): 区分两类失败 —
+    //   404 CITY_NOT_FOUND = 该 city 不在 mart 维度内 (hongheiku 0 entry, per 红线-3 禁补零)
+    //     → 走 EmptyState 告诉用户「该城市暂无收录」, 不 fallback 到 demo (避免假数据)
+    //   其他 4xx/5xx/network = live mart 暂时不可用
+    //     → 维持 fallback 到 mart_city_demo fixture (per docs/05 §9 容错原则)
+    const isNotFound =
+      err instanceof Error && /\b404\b/.test(err.message);
+    if (isNotFound) {
+      return (
+        <CityEmptyState
+          slug={entry.slug}
+          nameZh={entry.nameZh}
+          provinceSlug={entry.provinceSlug}
+          cityCode={entry.cityCode}
+        />
+      );
+    }
+    // 非 404 失败 → fallback to demo (per docs/05 §9)
     if (typeof console !== "undefined") {
       console.warn(
         `[cities/${params.slug}] getCityTimeSeries(${entry.cityCode}) failed; ` +
