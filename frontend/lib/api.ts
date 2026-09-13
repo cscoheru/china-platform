@@ -40,7 +40,11 @@ const USE_MART_FIXTURE = process.env.NEXT_PUBLIC_USE_MART_FIXTURE === "1";
 // Track B (knife 660): 静态导出模式. 当设置 NEXT_PUBLIC_MART_DATA_PATH 时,
 // listIndicators() 直接从 JSON 文件读取 mart 数据(28 省 + 3 缺失),不走 FastAPI。
 // newvps 上不需要 S1.10 FastAPI backend / dbt / DB。
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000";
+// knife api-base-fix (2026-09-13): 默认端口 8000 → 8001.
+// newvps 上 8000 端口被 portainer 占用 (返 404), FastAPI 实际在 127.0.0.1:8001
+// (docker-proxy 映射 china-platform-api 容器 8000→host 8001). 之前默认值错配,
+// 隐藏到 H-series 部署 SSR fetch 才暴露.
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://127.0.0.1:8001";
 
 export async function listIndicators(): Promise<IndicatorListResponse> {
   if (USE_MOCK) {

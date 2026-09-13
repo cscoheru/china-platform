@@ -21,6 +21,7 @@ import {
   IS_MART_FIXTURE_MODE,
   IS_STATIC_MART_DATA_MODE,
 } from "../lib/api";
+import type { IndicatorListResponse } from "../lib/types";
 import { CITY_SLUG_MAP, CITY_SLUG_LIST } from "../lib/city_slug_map";
 import { getMartProvinceGdp2024 } from "../lib/mart-static";
 import { ProvinceGdpTable } from "./components/ProvinceGdpTable";
@@ -30,7 +31,22 @@ import { DataCompletenessPanel } from "./components/DataCompletenessPanel";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const data = await listIndicators();
+  // knife api-base-fix (2026-09-13): 容错包裹 listIndicators().
+  // 仿 cities/[slug]/page.tsx:74-118 B-OPT-NT 模式. FastAPI 暂时不可用时
+  // (网络抖动 / 端口被占 / deploy 中), 不让整页 500. 错误时 console.warn
+  // + 返空 { indicators: [] } 保持后续 Indicator inventory 表正常渲染 (空 tbody).
+  // mart section (getMartProvinceGdp2024 走 static JSON) 与 city completeness
+  // (listCityDataCompleteness 内部 Promise.allSettled) 不依赖此 fetch, 不受影响.
+  let data: IndicatorListResponse;
+  try {
+    data = await listIndicators();
+  } catch (err) {
+    console.warn(
+      "[/] listIndicators() failed; rendering empty Indicator inventory.",
+      err instanceof Error ? err.message : err
+    );
+    data = { indicators: [], pagination: { page: 1, page_size: 0, total_count: 0, has_next: false } };
+  }
   // Track B (knife 660): read 28+3 province GDP from static JSON (when env set).
   // When env not set (e.g. local dev without NEXT_PUBLIC_MART_DATA_PATH), returns null
   // and the section is hidden — page still renders with existing Indicator inventory.
