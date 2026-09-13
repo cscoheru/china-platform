@@ -37,13 +37,19 @@ export default async function HomePage() {
   // + 返空 { indicators: [] } 保持后续 Indicator inventory 表正常渲染 (空 tbody).
   // mart section (getMartProvinceGdp2024 走 static JSON) 与 city completeness
   // (listCityDataCompleteness 内部 Promise.allSettled) 不依赖此 fetch, 不受影响.
+  //
+  // knife home-page-ux (2026-09-13): 把 catch 捕获的 error.message 透传给
+  // 空 state placeholder, 让 user 看到模式 + 失败原因 (e.g. "listIndicators: 404"
+  // → 知道 FastAPI 不可达 + NEXT_PUBLIC_API_BASE 需检查). 不冒充 ops 修复.
   let data: IndicatorListResponse;
+  let indicatorLoadError: string | null = null;
   try {
     data = await listIndicators();
   } catch (err) {
+    indicatorLoadError = err instanceof Error ? err.message : String(err);
     console.warn(
       "[/] listIndicators() failed; rendering empty Indicator inventory.",
-      err instanceof Error ? err.message : err
+      indicatorLoadError
     );
     data = { indicators: [], pagination: { page: 1, page_size: 0, total_count: 0, has_next: false } };
   }
@@ -143,16 +149,32 @@ export default async function HomePage() {
           </tr>
         </thead>
         <tbody>
-          {data.indicators.map((it) => (
-            <tr key={it.indicator_id}>
-              <td style={cellStyle}>
-                <code>{it.indicator_id}</code>
+          {data.indicators.length === 0 ? (
+            <tr data-testid="home-indicator-empty-state">
+              <td
+                colSpan={4}
+                style={{
+                  ...cellStyle,
+                  color: "#999",
+                  fontStyle: "italic",
+                  fontSize: 13,
+                }}
+              >
+                {getIndicatorEmptyStateMessage(indicatorLoadError)}
               </td>
-              <td style={cellStyle}>{it.geo_entity_count}</td>
-              <td style={cellStyle}>{it.observation_count}</td>
-              <td style={cellStyle}>{it.latest_period_start ?? "—"}</td>
             </tr>
-          ))}
+          ) : (
+            data.indicators.map((it) => (
+              <tr key={it.indicator_id}>
+                <td style={cellStyle}>
+                  <code>{it.indicator_id}</code>
+                </td>
+                <td style={cellStyle}>{it.geo_entity_count}</td>
+                <td style={cellStyle}>{it.observation_count}</td>
+                <td style={cellStyle}>{it.latest_period_start ?? "—"}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
 
@@ -392,6 +414,64 @@ function CompletenessCell({
           (缺 {missCount})
         </span>
       )}
+    </span>
+  );
+}
+
+/**
+ * Knife home-page-ux (2026-09-13): mode-aware empty-state message for the
+ * Indicator inventory table. Tells the user (a) which mode is active, (b) why
+ * the table is empty, and (c) how to switch modes (env var names — no ops
+ * actions implied). Does NOT diagnose / prescribe ops fixes (restarting
+ * FastAPI, editing deploy.sh, etc.); that is the user / ops owner's call.
+ */
+function getIndicatorEmptyStateMessage(loadError: string | null): React.ReactElement {
+  // Live FastAPI failed: most actionable message (user can check NEXT_PUBLIC_API_BASE).
+  if (loadError) {
+    return (
+      <span data-testid="home-indicator-empty-reason" data-reason="live-fetch-failed">
+        <strong>Live FastAPI 不可达</strong>
+        {" — "}
+        <code style={{ fontSize: 12 }}>{loadError}</code>
+        {"。"}
+        请检查 <code>NEXT_PUBLIC_API_BASE</code> 是否指向可达的 FastAPI
+        （默认 <code>http://127.0.0.1:8001</code>，newvps 上 8000 端口被 portainer 占用）。
+      </span>
+    );
+  }
+  // No error but no rows: depends on mode.
+  if (IS_STATIC_MART_DATA_MODE) {
+    return (
+      <span data-testid="home-indicator-empty-reason" data-reason="static-mart">
+        Static mart 模式（<code>NEXT_PUBLIC_MART_DATA_PATH</code> 已设置）
+        — Indicator inventory 由 <code>mart_province_gdp_2024.json</code> 派生
+        （28 省 + 3 缺失 + 1 国家锚）。当前 JSON 不含其他指标定义；
+        完整指标列表见 <a href="/indicators">/indicators</a>。
+      </span>
+    );
+  }
+  if (IS_MART_FIXTURE_MODE) {
+    return (
+      <span data-testid="home-indicator-empty-reason" data-reason="mart-fixture">
+        Mart demo 模式（<code>NEXT_PUBLIC_USE_MART_FIXTURE=1</code>）
+        — 地市走 mart-shape 演示管道，但 Indicator inventory 仍由 FastAPI
+        （或 mock）提供。当前为空说明上游未返回数据。
+      </span>
+    );
+  }
+  if (IS_MOCK_MODE) {
+    return (
+      <span data-testid="home-indicator-empty-reason" data-reason="mock">
+        Mock 模式（<code>NEXT_PUBLIC_USE_MOCK=true</code>）— 预期应至少返回 1 条
+        S1.18 DEMO sentinel。当前为空说明 mock fixture 未配置或被过滤。
+      </span>
+    );
+  }
+  // Live mode, no error, but empty (rare — could be FastAPI returned []).
+  return (
+    <span data-testid="home-indicator-empty-reason" data-reason="live-empty">
+      Live 模式 — FastAPI 返回空 Indicator 列表（HTTP 200 但 body 为空）。
+      请确认 FastAPI 已注入 indicator registry 数据。
     </span>
   );
 }
