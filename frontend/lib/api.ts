@@ -32,22 +32,17 @@ import {
   type MartProvinceGdp2024,
 } from "./mart-static";
 import { CITY_SLUG_MAP } from "./city_slug_map";
+import { ENV } from "./env";
 
-const USE_MOCK =
-  process.env.NEXT_PUBLIC_USE_MOCK === "true"; // default false (real data); set to "true" for mock fallback
-// City mart-shape demo pipeline (S2.7-b-full-lite+). Independent of FastAPI mock.
-const USE_MART_FIXTURE = process.env.NEXT_PUBLIC_USE_MART_FIXTURE === "1";
-// Track B (knife 660): 静态导出模式. 当设置 NEXT_PUBLIC_MART_DATA_PATH 时,
-// listIndicators() 直接从 JSON 文件读取 mart 数据(28 省 + 3 缺失),不走 FastAPI。
-// newvps 上不需要 S1.10 FastAPI backend / dbt / DB。
-// knife api-base-fix (2026-09-13): 默认端口 8000 → 8001.
-// newvps 上 8000 端口被 portainer 占用 (返 404), FastAPI 实际在 127.0.0.1:8001
-// (docker-proxy 映射 china-platform-api 容器 8000→host 8001). 之前默认值错配,
-// 隐藏到 H-series 部署 SSR fetch 才暴露.
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://127.0.0.1:8001";
+// knife env-config (2026-09-13): all process.env.NEXT_PUBLIC_* reads
+// consolidated in frontend/lib/env.ts. This module uses ENV.* directly;
+// IS_MOCK_MODE / IS_MART_FIXTURE_MODE / IS_STATIC_MART_DATA_MODE are
+// re-exported below from env.ts for backward compatibility.
+// knife api-base-fix (2026-09-13): API_BASE default 127.0.0.1:8001
+// (locked in env.ts; newvps 上 8000 端口被 portainer 占返 404).
 
 export async function listIndicators(): Promise<IndicatorListResponse> {
-  if (USE_MOCK) {
+  if (ENV.USE_MOCK) {
     return MOCK_INDICATOR_LIST;
   }
   if (isStaticMartDataEnabled()) {
@@ -57,7 +52,7 @@ export async function listIndicators(): Promise<IndicatorListResponse> {
       return indicatorsFromMart(mart);
     }
   }
-  const res = await fetch(`${API_BASE}/api/indicator?page=1&page_size=50`, {
+  const res = await fetch(`${ENV.API_BASE}/api/indicator?page=1&page_size=50`, {
     cache: "no-store",
   });
   if (!res.ok) throw new Error(`listIndicators: ${res.status}`);
@@ -68,7 +63,7 @@ export async function indicatorSeries(
   indicatorId: string,
   geoEntityId?: string
 ): Promise<IndicatorSeriesResponse> {
-  if (USE_MOCK) {
+  if (ENV.USE_MOCK) {
     // The mock only ships one series: MOCK_JIANGSU_GDP_SERIES.
     if (indicatorId !== MOCK_JIANGSU_GDP_SERIES.indicator_id) {
       return {
@@ -87,8 +82,8 @@ export async function indicatorSeries(
     return MOCK_JIANGSU_GDP_SERIES;
   }
   const url = geoEntityId
-    ? `${API_BASE}/api/indicator/${indicatorId}/series/${geoEntityId}`
-    : `${API_BASE}/api/indicator/${indicatorId}/series`;
+    ? `${ENV.API_BASE}/api/indicator/${indicatorId}/series/${geoEntityId}`
+    : `${ENV.API_BASE}/api/indicator/${indicatorId}/series`;
   const res = await fetch(`${url}?page=1&page_size=500`, { cache: "no-store" });
   if (!res.ok) throw new Error(`indicatorSeries: ${res.status}`);
   return (await res.json()) as IndicatorSeriesResponse;
@@ -120,10 +115,10 @@ function indicatorsFromMart(mart: MartProvinceGdp2024): IndicatorListResponse {
   };
 }
 
-// Re-export so callers can introspect which mode is active.
-// Useful for the home page to render a banner.
-export const IS_MOCK_MODE = USE_MOCK;
-export const IS_MART_FIXTURE_MODE = USE_MART_FIXTURE;
+// Re-export from env.ts so existing imports from "../lib/api" keep working.
+// knife env-config (2026-09-13): source-of-truth moved to lib/env.ts.
+export const IS_MOCK_MODE = ENV.USE_MOCK;
+export const IS_MART_FIXTURE_MODE = ENV.USE_MART_FIXTURE;
 export const IS_STATIC_MART_DATA_MODE = isStaticMartDataEnabled();
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -153,7 +148,7 @@ export async function getProvinceTimeSeries(
   }
   const [yearStart, yearEnd] = yearRange ?? [2020, 2025];
   const url =
-    `${API_BASE}/api/province-timeseries/${encodeURIComponent(provinceCode)}` +
+    `${ENV.API_BASE}/api/province-timeseries/${encodeURIComponent(provinceCode)}` +
     `?year_start=${yearStart}&year_end=${yearEnd}`;
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`getProvinceTimeSeries: ${res.status}`);
@@ -172,7 +167,7 @@ export async function listProvinceTimeSeries(
 ): Promise<Array<Pick<ProvinceTimeSeriesResponse, "province_code" | "province_name" | "indicator_count" | "year_range" | "points_count">>> {
   const [yearStart, yearEnd] = yearRange ?? [2020, 2025];
   const url =
-    `${API_BASE}/api/province-timeseries` +
+    `${ENV.API_BASE}/api/province-timeseries` +
     `?year_start=${yearStart}&year_end=${yearEnd}`;
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`listProvinceTimeSeries: ${res.status}`);
@@ -203,7 +198,7 @@ export async function getCityTimeSeries(
 ): Promise<CityTimeSeriesResponse> {
   const [yearStart, yearEnd] = yearRange ?? [2020, 2025];
   const url =
-    `${API_BASE}/api/city-timeseries/${encodeURIComponent(cityCode)}` +
+    `${ENV.API_BASE}/api/city-timeseries/${encodeURIComponent(cityCode)}` +
     `?year_start=${yearStart}&year_end=${yearEnd}`;
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) {
@@ -227,7 +222,7 @@ export async function listCityTimeSeries(
 ): Promise<Array<Pick<CityTimeSeriesResponse, "city_code" | "city_name" | "province_code" | "indicator_count" | "year_range" | "points_count">>> {
   const [yearStart, yearEnd] = yearRange ?? [2020, 2025];
   const url =
-    `${API_BASE}/api/city-timeseries` +
+    `${ENV.API_BASE}/api/city-timeseries` +
     `?year_start=${yearStart}&year_end=${yearEnd}`;
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`listCityTimeSeries: ${res.status}`);

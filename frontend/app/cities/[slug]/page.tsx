@@ -29,6 +29,7 @@ import { CITY_SLUG_LIST, getCityEntry } from "../../../lib/city_slug_map";
 import { getMockCity } from "../../../lib/mock_cities";
 import { getMartCityDemo } from "../../../lib/mart_city_demo";
 import { getCityTimeSeries } from "../../../lib/api";
+import { ENV } from "../../../lib/env";
 
 // 静态预生成 10 城路由（per `256` §NOW-1）
 export function generateStaticParams(): Array<{ slug: string }> {
@@ -45,7 +46,7 @@ interface PageProps {
 // Feature-flag 守门（knife H-series 翻转默认: 默认走 live mart）.
 // 仅当显式设 `NEXT_PUBLIC_USE_MART_FIXTURE=0` 才退到 mock fixture.
 function shouldUseMockFixture(): boolean {
-  return process.env.NEXT_PUBLIC_USE_MART_FIXTURE === "0";
+  return ENV.USE_MART_FIXTURE_OFF;
 }
 
 // 默认年份范围：与 FastAPI DEFAULT_YEAR_START/END 对齐 (per knife H1 端点).

@@ -31,6 +31,7 @@ import type {
   ProvinceTimeSeriesResponse,
   ProvinceTimeSeriesYearRange,
 } from "./types";
+import { ENV } from "./env";
 
 export interface MartProvinceGdp2024Row {
   province_code: string;
@@ -72,8 +73,7 @@ let loadError: Error | null = null;
 
 /** True iff NEXT_PUBLIC_MART_DATA_PATH is set in env (build-time injection). */
 export function isStaticMartDataEnabled(): boolean {
-  return typeof process.env.NEXT_PUBLIC_MART_DATA_PATH === "string"
-    && process.env.NEXT_PUBLIC_MART_DATA_PATH.length > 0;
+  return ENV.MART_DATA_PATH.length > 0;
 }
 
 /**
@@ -87,7 +87,7 @@ export function loadStaticMartData(): MartProvinceGdp2024 | null {
   if (cached) return cached;
   if (loadError) throw loadError;
 
-  const p = process.env.NEXT_PUBLIC_MART_DATA_PATH;
+  const p = ENV.MART_DATA_PATH;
   if (!p) return null;
 
   const resolved = path.isAbsolute(p) ? p : path.join(process.cwd(), p);
@@ -219,7 +219,7 @@ export function loadStaticIndicatorDefinitions(): MartIndicatorDefinitionsFile |
   if (indicatorDefsLoadError) throw indicatorDefsLoadError;
   if (indicatorDefsFileMissing) return null;
 
-  const martPath = process.env.NEXT_PUBLIC_MART_DATA_PATH;
+  const martPath = ENV.MART_DATA_PATH;
   if (!martPath) {
     indicatorDefsFileMissing = true;
     return null;
@@ -336,7 +336,7 @@ export function loadStaticProvinceTimeSeries(): MartProvinceTimeSeriesFile | nul
   if (timeSeriesLoadError) throw timeSeriesLoadError;
   if (timeSeriesFileMissing) return null;
 
-  const martPath = process.env.NEXT_PUBLIC_MART_DATA_PATH;
+  const martPath = ENV.MART_DATA_PATH;
   if (!martPath) {
     timeSeriesFileMissing = true;
     return null;

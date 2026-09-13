@@ -1,5 +1,6 @@
 import React from "react";
 import { IS_MOCK_MODE, IS_MART_FIXTURE_MODE } from "../lib/api";
+import { ENV } from "../lib/env";
 
 // Stage 2 / S2.0.1 — Root layout.
 //
@@ -69,8 +70,7 @@ export default function RootLayout({
             <>
               ✅ <strong>LIVE MODE</strong> — 28 省 2024 真实数据（官方 5 +
               转载锚定 23; 3 省源缺文）+ lineage 可溯。
-              FastAPI at{" "}
-              {process.env.NEXT_PUBLIC_API_BASE ?? "http://127.0.0.1:8001"}.
+              FastAPI at <code>{ENV.API_BASE}</code>.
               Per knife 659 tasking §1.659-A（USE_MOCK 语义翻转，默认 false 真数据）。
             </>
           )}
