@@ -1,0 +1,231 @@
+city_code,indicator_key,year,value,unit,status,missing_reason,source_url,bulletic_eid,lineage_ruling
+ZHEJIANG_HUZHOU,gdp_total,2021,3644.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,gdp_growth,2021,9.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,primary_gdp,2021,148.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,secondary_gdp,2021,1865.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,tertiary_gdp,2021,1631.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,gdp_percapita,2021,107534,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,fiscal_rev,2021,413.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,fixed_asset,2021,,,DATA_MISSING,"669通用 parse-2021: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,retail,2021,1556.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,trade,2021,1490.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24525.html,24525,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,gdp_total,2021,6355.28,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,gdp_growth,2021,8.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,primary_gdp,2021,131.97,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,secondary_gdp,2021,3453.75,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,tertiary_gdp,2021,2769.56,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,gdp_percapita,2021,116323,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,fiscal_rev,2021,674.80,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,fixed_asset,2021,,,DATA_MISSING,"669通用 parse-2021: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,retail,2021,2275.04,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JIAXING,trade,2021,3783.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24341.html,24341,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,gdp_total,2021,5355.44,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,gdp_growth,2021,9.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,primary_gdp,2021,150.31,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,secondary_gdp,2021,2208.71,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,tertiary_gdp,2021,2996.41,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,gdp_percapita,2021,75524,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,fiscal_rev,2021,492.32,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,fixed_asset,2021,,,DATA_MISSING,"669通用 parse-2021: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,retail,2021,2881.92,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_JINHUA,trade,2021,5880.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25370.html,25370,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,gdp_total,2021,6795,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,gdp_growth,2021,8.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,primary_gdp,2021,227,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,secondary_gdp,2021,3228,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,tertiary_gdp,2021,3340,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,gdp_percapita,2021,127875,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,fiscal_rev,2021,604,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,fixed_asset,2021,,,DATA_MISSING,"669通用 parse-2021: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,retail,2021,2477,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_SHAOXING,trade,2021,132,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25610.html,25610,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,gdp_total,2021,6850.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,gdp_growth,2021,7.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,primary_gdp,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,secondary_gdp,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,tertiary_gdp,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,gdp_percapita,2021,78879,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,fiscal_rev,2021,1081.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,fixed_asset,2021,,,DATA_MISSING,"669通用 parse-2021: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,retail,2021,3807.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_WENZHOU,trade,2021,2411.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24457.html,24457,K669b-i-batch4-parse-2021-2026-09-13
+ZHEJIANG_HUZHOU,gdp_total,2022,3850.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,gdp_growth,2022,3.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,primary_gdp,2022,161.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,secondary_gdp,2022,1966.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,tertiary_gdp,2022,1722.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,gdp_percapita,2022,112902,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,fiscal_rev,2022,387.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,fixed_asset,2022,,,DATA_MISSING,"669通用 parse-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,retail,2022,1594.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,trade,2022,1629.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42670.html,42670,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,gdp_total,2022,6739.45,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,gdp_growth,2022,2.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,primary_gdp,2022,144.01,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,secondary_gdp,2022,3719.61,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,tertiary_gdp,2022,2875.83,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,gdp_percapita,2022,121794,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,fiscal_rev,2022,596.47,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,fixed_asset,2022,,,DATA_MISSING,"669通用 parse-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,retail,2022,2342.73,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JIAXING,trade,2022,4400.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35189.html,35189,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,gdp_total,2022,5562.47,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,gdp_growth,2022,2.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,primary_gdp,2022,161.77,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,secondary_gdp,2022,2328.48,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,tertiary_gdp,2022,3072.22,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,gdp_percapita,2022,78086,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,fiscal_rev,2022,489.16,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,fixed_asset,2022,,,DATA_MISSING,"669通用 parse-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,retail,2022,2965.30,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_JINHUA,trade,2022,6838.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35560.html,35560,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,gdp_total,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,gdp_growth,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,primary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,secondary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,tertiary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,gdp_percapita,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,fiscal_rev,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,fixed_asset,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,retail,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_SHAOXING,trade,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42644.html,42644,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,gdp_total,2022,8029.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,gdp_growth,2022,3.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,primary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,secondary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,tertiary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,gdp_percapita,2022,83107,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,fiscal_rev,2022,573.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,fixed_asset,2022,,,DATA_MISSING,"669通用 parse-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,retail,2022,3944.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_WENZHOU,trade,2022,2949.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35506.html,35506,K669b-i-batch4-parse-2022-2026-09-13
+ZHEJIANG_HUZHOU,gdp_total,2023,3849.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,gdp_growth,2023,5.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,primary_gdp,2023,158.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,secondary_gdp,2023,1978.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,tertiary_gdp,2023,1877.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,gdp_percapita,2023,117195,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,fiscal_rev,2023,410.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,fixed_asset,2023,,,DATA_MISSING,"669通用 parse-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,retail,2023,1707.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,trade,2023,1618.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45666.html,45666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,gdp_total,2023,7062.45,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,gdp_growth,2023,6.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,primary_gdp,2023,141.16,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,secondary_gdp,2023,3776.84,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,tertiary_gdp,2023,3144.45,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,gdp_percapita,2023,126851,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,fiscal_rev,2023,632.02,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,fixed_asset,2023,3142.19,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,retail,2023,2513.46,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JIAXING,trade,2023,4409.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/53666.html,53666,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,gdp_total,2023,6011.27,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,gdp_growth,2023,6.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,primary_gdp,2023,156.41,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,secondary_gdp,2023,2367.41,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,tertiary_gdp,2023,3487.45,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,gdp_percapita,2023,84133,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,fiscal_rev,2023,525.80,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,fixed_asset,2023,,,DATA_MISSING,"669通用 parse-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,retail,2023,3141.76,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_JINHUA,trade,2023,7697.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/51041.html,51041,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,gdp_total,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,gdp_growth,2023,7.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,primary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,secondary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,tertiary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,gdp_percapita,2023,144992,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,fiscal_rev,2023,579,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,fixed_asset,2023,,,DATA_MISSING,"669通用 parse-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,retail,2023,2820,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_SHAOXING,trade,2023,4225,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/46070.html,46070,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,gdp_total,2023,8730.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,gdp_growth,2023,6.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,primary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,secondary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,tertiary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,gdp_percapita,2023,89821,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,fiscal_rev,2023,622.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,fixed_asset,2023,,,DATA_MISSING,"669通用 parse-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,retail,2023,4257.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_WENZHOU,trade,2023,2821.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45904.html,45904,K669b-i-batch4-parse-2023-2026-09-13
+ZHEJIANG_HUZHOU,gdp_total,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,gdp_growth,2024,5.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,primary_gdp,2024,177.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,secondary_gdp,2024,1977.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,tertiary_gdp,2024,2058.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,gdp_percapita,2024,122057,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,fiscal_rev,2024,410.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,fixed_asset,2024,,,DATA_MISSING,"669通用 parse-2024: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,retail,2024,1774.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,trade,2024,1664.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57700.html,57700,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,gdp_total,2024,6925.52,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,gdp_growth,2024,6.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,primary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,secondary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,tertiary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,gdp_percapita,2024,96375,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,fiscal_rev,2024,536.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,fixed_asset,2024,,,DATA_MISSING,"669通用 parse-2024: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,retail,2024,4610.37,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_JINHUA,trade,2024,8794.90,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/64880.html,64880,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,gdp_total,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,gdp_growth,2024,6.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,primary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,secondary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,tertiary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,gdp_percapita,2024,154645,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,fiscal_rev,2024,589,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,fixed_asset,2024,,,DATA_MISSING,"669通用 parse-2024: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,retail,2024,3105,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_SHAOXING,trade,2024,4137,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57503.html,57503,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,gdp_total,2024,9220.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,gdp_growth,2024,6.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,primary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,secondary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,tertiary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,gdp_percapita,2024,99106,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,fiscal_rev,2024,632.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,fixed_asset,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,retail,2024,4938.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_WENZHOU,trade,2024,2936.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57364.html,57364,K669b-i-batch4-parse-2024-2026-09-13
+ZHEJIANG_HUZHOU,gdp_total,2025,4452.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_HUZHOU,gdp_growth,2025,5.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_HUZHOU,primary_gdp,2025,189.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_HUZHOU,secondary_gdp,2025,2046.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_HUZHOU,tertiary_gdp,2025,2216.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_HUZHOU,gdp_percapita,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_HUZHOU,fiscal_rev,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_HUZHOU,fixed_asset,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_HUZHOU,retail,2025,1978.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_HUZHOU,trade,2025,1714.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68484.html,68484,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,gdp_total,2025,7313.47,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,gdp_growth,2025,6.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,primary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,secondary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,tertiary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,gdp_percapita,2025,101029,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,fiscal_rev,2025,555.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,fixed_asset,2025,,,DATA_MISSING,"669通用 parse-2025: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,retail,2025,4826.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_JINHUA,trade,2025,10508.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69707.html,69707,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,gdp_total,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,gdp_growth,2025,6.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,primary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,secondary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,tertiary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,gdp_percapita,2025,164314,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,fiscal_rev,2025,603,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,fixed_asset,2025,,,DATA_MISSING,"669通用 parse-2025: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,retail,2025,3255,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_SHAOXING,trade,2025,3864,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/70144.html,70144,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,gdp_total,2025,9671.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,gdp_growth,2025,6.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,primary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,secondary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,tertiary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,gdp_percapita,2025,103411,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,fiscal_rev,2025,647.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,fixed_asset,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,retail,2025,5143.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
+ZHEJIANG_WENZHOU,trade,2025,3000,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/69549.html,69549,K669b-i-batch4-parse-2025-2026-09-13
