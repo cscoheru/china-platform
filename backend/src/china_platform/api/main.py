@@ -14,6 +14,7 @@ from china_platform.api.config import get_settings
 from china_platform.api.db import Database
 from china_platform.api.errors import install_error_handlers
 from china_platform.api.routes.admin_upload import router as admin_upload_router
+from china_platform.api.routes.city_timeseries import router as city_timeseries_router
 from china_platform.api.routes.health import router as health_router
 from china_platform.api.routes.indicators import router as indicators_router
 from china_platform.api.routes.observations import router as observations_router
@@ -62,6 +63,8 @@ def create_app() -> FastAPI:
     app.include_router(admin_upload_router)
     # P2 / knife 664 — province time-series (mart query)
     app.include_router(province_timeseries_router)
+    # P2 / knife H-series — city time-series (mart query, knife H1 2026-09-13)
+    app.include_router(city_timeseries_router)
     return app
 
 
