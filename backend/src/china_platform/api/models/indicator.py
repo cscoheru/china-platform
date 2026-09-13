@@ -70,9 +70,16 @@ class IndicatorSeriesResponse(BaseModel):
 
 
 class IndicatorListItem(BaseModel):
-    """Summary of an indicator (for list endpoints)."""
+    """Summary of an indicator (for list endpoints).
 
-    indicator_id: UUID
+    P2 / knife H-series B1 (2026-09-13): indicator_id relaxed from UUID to str.
+    Previously assumed cegr_staging.stg_observation (UUID indicator_id), but
+    that table no longer exists in the knife 663+ mart-only world. Mart
+    tables (mart_province_timeseries + mart_city_timeseries) use TEXT
+    indicator_key (e.g., 'gdp_total', 'fiscal_rev'). 10 indicator_keys total.
+    """
+
+    indicator_id: str
     geo_entity_count: int = Field(ge=0)
     observation_count: int = Field(ge=0)
     latest_period_start: date | None = None
