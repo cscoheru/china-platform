@@ -68,7 +68,7 @@ def main():
             cur.execute("""
                 SELECT DISTINCT ON (indicator_key) indicator_key, indicator_label, unit
                 FROM cegr_mart.mart_city_timeseries
-                WHERE city_code = 'GUANGDONG_DONGGUAN' AND year = 2024
+                WHERE year = 2024 AND value IS NOT NULL AND indicator_label IS NOT NULL
                 ORDER BY indicator_key
             """)
             indicators = cur.fetchall()

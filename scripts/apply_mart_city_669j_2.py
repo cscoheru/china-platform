@@ -87,7 +87,7 @@ def main():
             cur.execute("""
                 SELECT DISTINCT ON (indicator_key) indicator_key, indicator_label, unit
                 FROM {TARGET_SCHEMA}.{MART_NAME}
-                WHERE city_code = 'GUANGDONG_DONGGUAN' AND year = 2024
+                WHERE year = 2024 AND value IS NOT NULL AND indicator_label IS NOT NULL
                 ORDER BY indicator_key
             """.format(**{"TARGET_SCHEMA": TARGET_SCHEMA, "MART_NAME": MART_NAME}))
             indicators = cur.fetchall()  # [(key, label, unit), ...] × 10
