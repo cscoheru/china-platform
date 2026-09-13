@@ -11,8 +11,16 @@
 // S2.8-lite / S2.9-lite 增量:附七维度 + 同类对比入口
 // (per tasking 277 §NOW「首页七维/对比导航入口」)。
 // 列表本身仅为导航入口;不评分、不对比、不排名。
+// P2 / knife H-series H3 增量:地市表新增「数据完整度」列 (real/total + miss 比例),
+//   通过 listCityDataCompleteness() SSR 并发 10 城 fetch.
 
-import { listIndicators, IS_MOCK_MODE, IS_MART_FIXTURE_MODE, IS_STATIC_MART_DATA_MODE } from "../lib/api";
+import {
+  listIndicators,
+  listCityDataCompleteness,
+  IS_MOCK_MODE,
+  IS_MART_FIXTURE_MODE,
+  IS_STATIC_MART_DATA_MODE,
+} from "../lib/api";
 import { CITY_SLUG_MAP, CITY_SLUG_LIST } from "../lib/city_slug_map";
 import { getMartProvinceGdp2024 } from "../lib/mart-static";
 import { ProvinceGdpTable } from "./components/ProvinceGdpTable";
@@ -27,6 +35,12 @@ export default async function HomePage() {
   // When env not set (e.g. local dev without NEXT_PUBLIC_MART_DATA_PATH), returns null
   // and the section is hidden — page still renders with existing Indicator inventory.
   const mart = getMartProvinceGdp2024();
+  // P2 / knife H3: 并发 10 城 fetch, 单城失败不阻断 (per docs/05 §9 容错原则).
+  // 失败城市 → error 列填消息 + realCount=0, 其他 9 城正常渲染.
+  const cityCompleteness = await listCityDataCompleteness(CITY_SLUG_LIST);
+  const completenessBySlug = new Map(
+    cityCompleteness.map((r) => [r.slug, r])
+  );
   const cityModeLabel = IS_MART_FIXTURE_MODE
     ? "mart-shape demo（is_demo=true；非 O1）"
     : "mock（S2.7-b-lite；设 NEXT_PUBLIC_USE_MART_FIXTURE=1 切 mart）";
@@ -140,6 +154,12 @@ export default async function HomePage() {
       </p>
 
       <h2 style={{ marginTop: 32 }}>地市观察入口（S2.7-b-lite / S2.7-b-full-lite 列表）</h2>
+      <p style={{ color: "#666", fontSize: 13 }}>
+        H3 增量 (knife H-series, 2026-09-13): 新增「数据完整度」列, 显示每城在
+        <code>{DEFAULT_COMPLETENESS_YEARS[0]}–{DEFAULT_COMPLETENESS_YEARS[1]}</code>
+        {" "}窗口内 real / total 计数 (via <code>listCityDataCompleteness()</code>;
+        单城 fetch 失败仅该行显示 "—" 而非整表崩).
+      </p>
       <table style={{ borderCollapse: "collapse", width: "100%", fontSize: 14 }}>
         <thead>
           <tr style={{ background: "#eee" }}>
@@ -147,19 +167,39 @@ export default async function HomePage() {
             <th style={cellStyle}>归属省份</th>
             <th style={cellStyle}>路由</th>
             <th style={cellStyle}>数据模式</th>
+            <th style={cellStyle} data-testid="home-city-completeness-header">
+              数据完整度 ({DEFAULT_COMPLETENESS_YEARS[0]}–{DEFAULT_COMPLETENESS_YEARS[1]})
+            </th>
           </tr>
         </thead>
         <tbody>
           {CITY_SLUG_LIST.map((slug) => {
             const entry = CITY_SLUG_MAP[slug];
+            const row = completenessBySlug.get(slug);
             return (
-              <tr key={slug}>
+              <tr key={slug} data-testid={`home-city-row-${slug}`}>
                 <td style={cellStyle}>{entry.nameZh}</td>
                 <td style={cellStyle}>{entry.provinceSlug}</td>
                 <td style={cellStyle}>
                   <a href={`/cities/${entry.slug}`}>/cities/{entry.slug}</a>
                 </td>
                 <td style={cellStyle}>{cityModeLabel}</td>
+                <td
+                  style={cellStyle}
+                  data-testid={`home-city-completeness-${slug}`}
+                >
+                  {row?.error ? (
+                    <span style={{ color: "#999", fontSize: 11 }}>—</span>
+                  ) : row && row.totalCount > 0 ? (
+                    <CompletenessCell
+                      realCount={row.realCount}
+                      missCount={row.missCount}
+                      totalCount={row.totalCount}
+                    />
+                  ) : (
+                    <span style={{ color: "#bbb", fontSize: 11 }}>无数据</span>
+                  )}
+                </td>
               </tr>
             );
           })}
@@ -167,6 +207,7 @@ export default async function HomePage() {
       </table>
       <p style={{ marginTop: 24, fontSize: 12, color: "#999" }}>
         注：本列表仅作导航入口；不做评分、不做对比、不排名。
+        数据完整度列仅展示 mart 中已有数据的覆盖比例（per docs/05 §9 红线-3 禁补零）。
       </p>
 
       <h2 style={{ marginTop: 32 }}>横向视角入口（S2.8-lite / S2.9-lite）</h2>
@@ -285,3 +326,56 @@ const cellStyle: React.CSSProperties = {
   padding: "6px 10px",
   textAlign: "left",
 };
+
+// H3 default window: 与 FastAPI /api/city-timeseries 默认年份范围对齐 (2020-2025).
+// 用户可在 /cities/{slug} 页面拖 YearSlider 扩到 2001-2026 (历史/未来 = DATA_MISSING).
+const DEFAULT_COMPLETENESS_YEARS: readonly [number, number] = [2020, 2025];
+
+/**
+ * H3 数据完整度单元格 (per knife H-series, 2026-09-13).
+ * 颜色编码:
+ *   - 100% real         → 绿色 #1a7f37 (全量真实数据)
+ *   - 50-99% real       → 黑色 #24292f (主显示)
+ *   - 1-49% real        → 橙色 #bf8700 (半缺失)
+ *   - 0% real (全 MISS) → 红色 + italic (hongheiku 0 entry, per 红线-3 禁补零)
+ */
+function CompletenessCell({
+  realCount,
+  missCount,
+  totalCount,
+}: {
+  realCount: number;
+  missCount: number;
+  totalCount: number;
+}): React.ReactElement {
+  const ratio = totalCount === 0 ? 0 : realCount / totalCount;
+  const color =
+    ratio === 1
+      ? "#1a7f37"
+      : ratio >= 0.5
+        ? "#24292f"
+        : ratio > 0
+          ? "#bf8700"
+          : "#cf222e";
+  return (
+    <span
+      style={{
+        color,
+        fontVariantNumeric: "tabular-nums",
+        fontSize: 13,
+        fontStyle: ratio === 0 ? "italic" : "normal",
+      }}
+    >
+      <strong data-testid="home-city-real">{realCount}</strong>
+      <span style={{ color: "#999" }}>/{totalCount}</span>
+      {missCount > 0 && (
+        <span
+          style={{ color: "#999", fontSize: 11, marginLeft: 6 }}
+          data-testid="home-city-miss"
+        >
+          (缺 {missCount})
+        </span>
+      )}
+    </span>
+  );
+}

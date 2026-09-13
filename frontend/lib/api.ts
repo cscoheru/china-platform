@@ -31,6 +31,7 @@ import {
   loadStaticMartData,
   type MartProvinceGdp2024,
 } from "./mart-static";
+import { CITY_SLUG_MAP } from "./city_slug_map";
 
 const USE_MOCK =
   process.env.NEXT_PUBLIC_USE_MOCK === "true"; // default false (real data); set to "true" for mock fallback
@@ -229,6 +230,109 @@ export async function listCityTimeSeries(
   return (await res.json()) as Array<
     Pick<CityTimeSeriesResponse, "city_code" | "city_name" | "province_code" | "indicator_count" | "year_range" | "points_count">
   >;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// P2 / knife H3 — Homepage city data-completeness helper.
+//
+// Per knife H-series plan §H3 (2026-09-13): 首页 /cities 列表新增「数据完整度」列,
+// 显示每城 real/total 计数 + 数据缺失比例. 一次性并发 fetch 10 城 (Promise.allSettled,
+// 单城失败不阻断其他 9 城).
+//
+// 调用模式:
+//   const rows = await listCityDataCompleteness(CITY_SLUG_LIST);
+//   rows.map(r => <td>{r.realCount}/{r.totalCount}</td>)
+//
+// 注意: 10 城 × 1 fetch = 10 HTTP on every homepage render. 在 Vercel Edge /
+// Next.js App Router ISR 范围内可接受 (revalidate: 3600). NANTONG / WENZHOU
+// 全 DATA_MISSING (per 红线-3 禁补零) — helper 不补零, 仍真实返回 0/N.
+// ────────────────────────────────────────────────────────────────────────────
+
+export interface CityDataCompletenessRow {
+  /** Frontend slug (e.g., "shenzhen"). */
+  slug: string;
+  /** Backend city_code (e.g., "GUANGDONG_SHENZHEN"). */
+  cityCode: string;
+  /** City 中文名 (e.g., "深圳市"). 来自 CITY_SLUG_MAP, 非 mart 字段. */
+  cityName: string;
+  /** Province slug (e.g., "guangdong"). 来自 CITY_SLUG_MAP. */
+  provinceSlug: string;
+  /** Real cells: value !== null && status !== "DATA_MISSING". */
+  realCount: number;
+  /** Missing cells: value === null || status === "DATA_MISSING". */
+  missCount: number;
+  /** Total cells = points.length (per city, indicator × year). */
+  totalCount: number;
+  /** 单城 fetch 失败时填充错误消息;null = 成功. */
+  error: string | null;
+}
+
+const EMPTY_COMPLETENESS: Omit<CityDataCompletenessRow, "slug" | "cityCode" | "cityName" | "provinceSlug"> = {
+  realCount: 0,
+  missCount: 0,
+  totalCount: 0,
+  error: null,
+};
+
+export async function listCityDataCompleteness(
+  slugs: readonly string[],
+  yearRange?: CityTimeSeriesYearRange
+): Promise<CityDataCompletenessRow[]> {
+  // 并发 10 城 fetch; 单城失败 → 该 row error 不阻断其他 9 城.
+  const settled = await Promise.allSettled(
+    slugs.map(async (slug) => {
+      const entry = CITY_SLUG_MAP[slug];
+      if (!entry) {
+        // slug 不在 10 城锁定清单 — 理论上 generateStaticParams 已守门,
+        // 但 API 层兜底不 throw, 而是返带 error 的 row.
+        return {
+          slug,
+          cityCode: "UNKNOWN",
+          cityName: slug,
+          provinceSlug: "unknown",
+          ...EMPTY_COMPLETENESS,
+          error: `unknown slug: ${slug}`,
+        } satisfies CityDataCompletenessRow;
+      }
+      const response = await getCityTimeSeries(entry.cityCode, yearRange);
+      let real = 0;
+      let miss = 0;
+      for (const p of response.points) {
+        if (p.value !== null && p.status !== "DATA_MISSING") {
+          real += 1;
+        } else {
+          miss += 1;
+        }
+      }
+      return {
+        slug: entry.slug,
+        cityCode: entry.cityCode,
+        cityName: entry.nameZh,
+        provinceSlug: entry.provinceSlug,
+        realCount: real,
+        missCount: miss,
+        totalCount: response.points.length,
+        error: null,
+      } satisfies CityDataCompletenessRow;
+    })
+  );
+
+  return settled.map((s, i) => {
+    const slug = slugs[i];
+    if (s.status === "fulfilled") return s.value;
+    // rejected: 构造带 error 的 row, 不阻断列表
+    const entry = CITY_SLUG_MAP[slug];
+    return {
+      slug,
+      cityCode: entry?.cityCode ?? "UNKNOWN",
+      cityName: entry?.nameZh ?? slug,
+      provinceSlug: entry?.provinceSlug ?? "unknown",
+      realCount: 0,
+      missCount: 0,
+      totalCount: 0,
+      error: s.reason instanceof Error ? s.reason.message : String(s.reason),
+    } satisfies CityDataCompletenessRow;
+  });
 }
 
 // ────────────────────────────────────────────────────────────────────────────
