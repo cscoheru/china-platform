@@ -16,6 +16,8 @@
 //     但 listIndicators 走静态路径,newvps 上不需要 FastAPI backend。
 
 import type {
+  CityTimeSeriesResponse,
+  CityTimeSeriesYearRange,
   IndicatorListResponse,
   IndicatorSeriesResponse,
   ProvinceTimeSeriesResponse,
@@ -171,6 +173,61 @@ export async function listProvinceTimeSeries(
   if (!res.ok) throw new Error(`listProvinceTimeSeries: ${res.status}`);
   return (await res.json()) as Array<
     Pick<ProvinceTimeSeriesResponse, "province_code" | "province_name" | "indicator_count" | "year_range" | "points_count">
+  >;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// P2 / knife H-series — City time-series fetcher.
+//
+// Mode precedence (mirrors getProvinceTimeSeries):
+//   1. static mart JSON (when NEXT_PUBLIC_MART_DATA_PATH set + file present)
+//   2. real FastAPI /api/city-timeseries/{code}?year_start=&year_end=
+//
+// city_code format: {PROVINCE}_{CITY} uppercase ASCII with underscore, must
+// match `^[A-Z][A-Z0-9_]+$`. 4 直辖市 excluded per 红线-7 (404). NANTONG /
+// WENZHOU may have all-DATA_MISSING cells per 红线-3 (禁补零) — caller must
+// handle empty `points` array gracefully.
+//
+// Year range defaults to [2020, 2025] (mart coverage; 2020 and 2026 are
+// DATA_MISSING per 红线-1/2). Backend Pydantic enforces 2001-2026 bounds.
+// ────────────────────────────────────────────────────────────────────────────
+
+export async function getCityTimeSeries(
+  cityCode: string,
+  yearRange?: CityTimeSeriesYearRange
+): Promise<CityTimeSeriesResponse> {
+  const [yearStart, yearEnd] = yearRange ?? [2020, 2025];
+  const url =
+    `${API_BASE}/api/city-timeseries/${encodeURIComponent(cityCode)}` +
+    `?year_start=${yearStart}&year_end=${yearEnd}`;
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) {
+    throw new Error(
+      `getCityTimeSeries(${cityCode}): ${res.status} ${res.statusText}`
+    );
+  }
+  return (await res.json()) as CityTimeSeriesResponse;
+}
+
+/**
+ * List 43 cities (summary only — no full points).
+ * Returns empty array if API fails or mart is empty.
+ *
+ * Used by homepage city column (H3) to render per-city data completeness
+ * indicator. One HTTP fetch per call; caller may want Promise.all batching
+ * across multiple slugs to avoid waterfall.
+ */
+export async function listCityTimeSeries(
+  yearRange?: CityTimeSeriesYearRange
+): Promise<Array<Pick<CityTimeSeriesResponse, "city_code" | "city_name" | "province_code" | "indicator_count" | "year_range" | "points_count">>> {
+  const [yearStart, yearEnd] = yearRange ?? [2020, 2025];
+  const url =
+    `${API_BASE}/api/city-timeseries` +
+    `?year_start=${yearStart}&year_end=${yearEnd}`;
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`listCityTimeSeries: ${res.status}`);
+  return (await res.json()) as Array<
+    Pick<CityTimeSeriesResponse, "city_code" | "city_name" | "province_code" | "indicator_count" | "year_range" | "points_count">
   >;
 }
 

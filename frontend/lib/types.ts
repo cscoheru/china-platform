@@ -96,6 +96,47 @@ export interface ProvinceTimeSeriesResponse {
   pagination: Pagination;
 }
 
+// Stage 2 / P2 / knife H-series — City time-series types.
+//
+// Source of truth: backend/src/china_platform/api/models/city_timeseries.py
+// (CityTimeSeriesPoint, CityTimeSeriesResponse). Keep this in sync when those
+// change.
+//
+// City code format: ^[A-Z][A-Z0-9_]+$ (must contain underscore; e.g.,
+// GUANGDONG_SHENZHEN / JIANGSU_NANJING). 4 直辖市 (BEIJING/SHANGHAI/TIANJIN/
+// CHONGQING) excluded from city mart per 红线-7 (returns 404).
+// Year range semantics identical to province (2001-2026 inclusive).
+
+export type CityTimeSeriesYearRange = readonly [number, number];
+
+export interface CityTimeSeriesPoint {
+  city_code: string;                // e.g. "GUANGDONG_SHENZHEN"
+  city_name: string;
+  province_code: string;            // e.g. "GUANGDONG"
+  indicator_key: string;
+  indicator_label: string;
+  unit: string | null;
+  year: number;
+  value: number | null;
+  status: string | null;            // null=real; 'DATA_MISSING' (per 红线-1/2/3)
+  missing_reason: string | null;
+  lineage_source_type: string;      // "OFFICIAL_INTAKED" | "HONGHEIKU_TRANSLOAD"
+  lineage_origin: string | null;
+  lineage_ruling: string;
+  lineage_is_demo: string;
+}
+
+export interface CityTimeSeriesResponse {
+  city_code: string;
+  city_name: string | null;
+  province_code: string | null;     // added vs province envelope
+  indicator_count: number;          // 10 (10 indicator_key values)
+  year_range: CityTimeSeriesYearRange;
+  points_count: number;
+  points: CityTimeSeriesPoint[];
+  pagination: Pagination;
+}
+
 // Stage 2 / S2.7-a — Six-segment evidence chain types.
 //
 // Per docs/06 §2 + tasking 168: 固定六段 CONDITION → COMMITMENT → INPUT →

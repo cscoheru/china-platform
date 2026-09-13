@@ -15,6 +15,12 @@ export interface CitySlugEntry {
   nameZh: string;
   nameEn: string;
   provinceSlug: string; // 归属省份 slug（jiangsu / zhejiang / guangdong）
+  // Stage 2 / P2 / knife H-series — mart city_code 映射。
+  // 格式 `{PROVINCE}_{CITY}` uppercase（必须含下划线）。
+  // 后端 /api/city-timeseries/{city_code} 路径参数用此字段。
+  // 4 直辖市 (BEIJING/SHANGHAI/TIANJIN/CHONGQING) 在 city mart 中被排除（红线-7），
+  // 本锁定清单不含 4 直辖市，故无对应 city_code。
+  cityCode: string;
 }
 
 // 10 地市锁定清单（per `256` §SCHEMA "10 城 slug" + docs/46 §2）
@@ -27,60 +33,70 @@ export const CITY_SLUG_MAP: Record<string, CitySlugEntry> = {
     nameZh: "南京市",
     nameEn: "Nanjing",
     provinceSlug: "jiangsu",
+    cityCode: "JIANGSU_NANJING",
   },
   suzhou: {
     slug: "suzhou",
     nameZh: "苏州市",
     nameEn: "Suzhou",
     provinceSlug: "jiangsu",
+    cityCode: "JIANGSU_SUZHOU",
   },
   wuxi: {
     slug: "wuxi",
     nameZh: "无锡市",
     nameEn: "Wuxi",
     provinceSlug: "jiangsu",
+    cityCode: "JIANGSU_WUXI",
   },
   nantong: {
     slug: "nantong",
     nameZh: "南通市",
     nameEn: "Nantong",
     provinceSlug: "jiangsu",
+    cityCode: "JIANGSU_NANTONG",
   },
   hangzhou: {
     slug: "hangzhou",
     nameZh: "杭州市",
     nameEn: "Hangzhou",
     provinceSlug: "zhejiang",
+    cityCode: "ZHEJIANG_HANGZHOU",
   },
   ningbo: {
     slug: "ningbo",
     nameZh: "宁波市",
     nameEn: "Ningbo",
     provinceSlug: "zhejiang",
+    cityCode: "ZHEJIANG_NINGBO",
   },
   wenzhou: {
     slug: "wenzhou",
     nameZh: "温州市",
     nameEn: "Wenzhou",
     provinceSlug: "zhejiang",
+    cityCode: "ZHEJIANG_WENZHOU",
   },
   guangzhou: {
     slug: "guangzhou",
     nameZh: "广州市",
     nameEn: "Guangzhou",
     provinceSlug: "guangdong",
+    cityCode: "GUANGDONG_GUANGZHOU",
   },
   shenzhen: {
     slug: "shenzhen",
     nameZh: "深圳市",
     nameEn: "Shenzhen",
     provinceSlug: "guangdong",
+    cityCode: "GUANGDONG_SHENZHEN",
   },
   dongguan: {
     slug: "dongguan",
     nameZh: "东莞市",
     nameEn: "Dongguan",
     provinceSlug: "guangdong",
+    cityCode: "GUANGDONG_DONGGUAN",
   },
 };
 
