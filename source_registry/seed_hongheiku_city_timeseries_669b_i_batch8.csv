@@ -1,0 +1,301 @@
+city_code,indicator_key,year,value,unit,status,missing_reason,source_url,bulletic_eid,lineage_ruling
+SHANDONG_WEIFANG,gdp_total,2020,5872.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,gdp_growth,2020,3.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,primary_gdp,2020,535.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,secondary_gdp,2020,2308.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,tertiary_gdp,2020,3028.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,gdp_percapita,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,fiscal_rev,2020,573.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,fixed_asset,2020,,,DATA_MISSING,"669通用 parse-2020: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,retail,2020,2389.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,trade,2020,1903.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/1759.html,1759,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,gdp_total,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,gdp_growth,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,primary_gdp,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,secondary_gdp,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,tertiary_gdp,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,gdp_percapita,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,fiscal_rev,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,fixed_asset,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,retail,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_YANTAI,trade,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1230.html,1230,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,gdp_total,2020,3673.54,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,gdp_growth,2020,2.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,primary_gdp,2020,157.18,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,secondary_gdp,2020,1777.15,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,tertiary_gdp,2020,1739.21,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,gdp_percapita,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,fiscal_rev,2020,321.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,fixed_asset,2020,,,DATA_MISSING,"669通用 parse-2020: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,retail,2020,1134.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_ZIBO,trade,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/13512.html,13512,K669b-i-batch8-parse-2020
+SHANDONG_JINING,gdp_total,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_JINING,gdp_growth,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_JINING,primary_gdp,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_JINING,secondary_gdp,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_JINING,tertiary_gdp,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_JINING,gdp_percapita,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_JINING,fiscal_rev,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_JINING,fixed_asset,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_JINING,retail,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_JINING,trade,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/1618.html,1618,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,gdp_total,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,gdp_growth,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,primary_gdp,2020,440.92,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,secondary_gdp,2020,1756.43,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,tertiary_gdp,2020,2607.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,gdp_percapita,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,fiscal_rev,2020,349.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,fixed_asset,2020,,,DATA_MISSING,"669通用 parse-2020: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,retail,2020,,,DATA_MISSING,669通用 parse-2020: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_LINYI,trade,2020,1167.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/xjtjgb/xj2020/9344.html,9344,K669b-i-batch8-parse-2020
+SHANDONG_WEIFANG,gdp_total,2021,7010.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,gdp_growth,2021,9.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,primary_gdp,2021,628.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,secondary_gdp,2021,2831.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,tertiary_gdp,2021,3550.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,gdp_percapita,2021,74606,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,fiscal_rev,2021,656.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,fixed_asset,2021,246.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,retail,2021,2781.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,trade,2021,2657.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24481.html,24481,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,gdp_total,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,gdp_growth,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,primary_gdp,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,secondary_gdp,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,tertiary_gdp,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,gdp_percapita,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,fiscal_rev,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,fixed_asset,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,retail,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_YANTAI,trade,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27763.html,27763,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,gdp_total,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,gdp_growth,2021,9.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,primary_gdp,2021,180.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,secondary_gdp,2021,2073.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,tertiary_gdp,2021,1947.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,gdp_percapita,2021,89238,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,fiscal_rev,2021,369.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,fixed_asset,2021,,,DATA_MISSING,"669通用 parse-2021: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,retail,2021,1308.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_ZIBO,trade,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/25303.html,25303,K669b-i-batch8-parse-2021
+SHANDONG_JINING,gdp_total,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_JINING,gdp_growth,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_JINING,primary_gdp,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_JINING,secondary_gdp,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_JINING,tertiary_gdp,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_JINING,gdp_percapita,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_JINING,fiscal_rev,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_JINING,fixed_asset,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_JINING,retail,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_JINING,trade,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/27760.html,27760,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,gdp_total,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,gdp_growth,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,primary_gdp,2021,484.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,secondary_gdp,2021,2116.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,tertiary_gdp,2021,2864.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,gdp_percapita,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,fiscal_rev,2021,409.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,fixed_asset,2021,,,DATA_MISSING,"669通用 parse-2021: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,retail,2021,,,DATA_MISSING,669通用 parse-2021: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_LINYI,trade,2021,1766.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/24087.html,24087,K669b-i-batch8-parse-2021
+SHANDONG_WEIFANG,gdp_total,2022,7306.45,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,gdp_growth,2022,3.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,primary_gdp,2022,646.98,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,secondary_gdp,2022,3066.61,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,tertiary_gdp,2022,3592.86,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,gdp_percapita,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,fiscal_rev,2022,608.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,fixed_asset,2022,,,DATA_MISSING,"669通用 parse-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,retail,2022,2745.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,trade,2022,3419.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/42514.html,42514,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,gdp_total,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,gdp_growth,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,primary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,secondary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,tertiary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,gdp_percapita,2022,134581,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,fiscal_rev,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,fixed_asset,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,retail,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_YANTAI,trade,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36074.html,36074,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,gdp_total,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,gdp_growth,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,primary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,secondary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,tertiary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,gdp_percapita,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,fiscal_rev,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,fixed_asset,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,retail,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_ZIBO,trade,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/42515.html,42515,K669b-i-batch8-parse-2022
+SHANDONG_JINING,gdp_total,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_JINING,gdp_growth,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_JINING,primary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_JINING,secondary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_JINING,tertiary_gdp,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_JINING,gdp_percapita,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_JINING,fiscal_rev,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_JINING,fixed_asset,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_JINING,retail,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_JINING,trade,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/36292.html,36292,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,gdp_total,2022,5778.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,gdp_growth,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,primary_gdp,2022,511.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,secondary_gdp,2022,2294.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,tertiary_gdp,2022,2973.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,gdp_percapita,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,fiscal_rev,2022,420.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,fixed_asset,2022,,,DATA_MISSING,"669通用 parse-2022: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,retail,2022,,,DATA_MISSING,669通用 parse-2022: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_LINYI,trade,2022,1875.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/35040.html,35040,K669b-i-batch8-parse-2022
+SHANDONG_WEIFANG,gdp_total,2023,7606.0,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,gdp_growth,2023,5.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,primary_gdp,2023,674.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,secondary_gdp,2023,3088.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,tertiary_gdp,2023,3843.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,gdp_percapita,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,fiscal_rev,2023,608.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,fixed_asset,2023,,,DATA_MISSING,"669通用 parse-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,retail,2023,2936.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,trade,2023,3403.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45665.html,45665,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,gdp_total,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,gdp_growth,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,primary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,secondary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,tertiary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,gdp_percapita,2023,144241,元,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,fiscal_rev,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,fixed_asset,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,retail,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_YANTAI,trade,2023,1214,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/50115.html,50115,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,gdp_total,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,gdp_growth,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,primary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,secondary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,tertiary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,gdp_percapita,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,fiscal_rev,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,fixed_asset,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,retail,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_ZIBO,trade,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/46075.html,46075,K669b-i-batch8-parse-2023
+SHANDONG_JINING,gdp_total,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_JINING,gdp_growth,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_JINING,primary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_JINING,secondary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_JINING,tertiary_gdp,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_JINING,gdp_percapita,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_JINING,fiscal_rev,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_JINING,fixed_asset,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_JINING,retail,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_JINING,trade,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/50541.html,50541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,gdp_total,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,gdp_growth,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,primary_gdp,2023,530,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,secondary_gdp,2023,2374,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,tertiary_gdp,2023,3201,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,gdp_percapita,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,fiscal_rev,2023,445.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,fixed_asset,2023,,,DATA_MISSING,"669通用 parse-2023: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,retail,2023,,,DATA_MISSING,669通用 parse-2023: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_LINYI,trade,2023,1682.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/45541.html,45541,K669b-i-batch8-parse-2023
+SHANDONG_WEIFANG,gdp_total,2024,7783,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,gdp_growth,2024,5.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,primary_gdp,2024,700.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,secondary_gdp,2024,3474.3,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,tertiary_gdp,2024,4028.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,gdp_percapita,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,fiscal_rev,2024,619.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,fixed_asset,2024,,,DATA_MISSING,"669通用 parse-2024: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,retail,2024,3131.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,trade,2024,3582.7,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57624.html,57624,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,gdp_total,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,gdp_growth,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,primary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,secondary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,tertiary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,gdp_percapita,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,fiscal_rev,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,fixed_asset,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,retail,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_YANTAI,trade,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58702.html,58702,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,gdp_total,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,gdp_growth,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,primary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,secondary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,tertiary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,gdp_percapita,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,fiscal_rev,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,fixed_asset,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,retail,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_ZIBO,trade,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58430.html,58430,K669b-i-batch8-parse-2024
+SHANDONG_JINING,gdp_total,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_JINING,gdp_growth,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_JINING,primary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_JINING,secondary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_JINING,tertiary_gdp,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_JINING,gdp_percapita,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_JINING,fiscal_rev,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_JINING,fixed_asset,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_JINING,retail,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_JINING,trade,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/58350.html,58350,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,gdp_total,2024,6555.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,gdp_growth,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,primary_gdp,2024,543.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,secondary_gdp,2024,2655.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,tertiary_gdp,2024,3357.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,gdp_percapita,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,fiscal_rev,2024,468.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,fixed_asset,2024,,,DATA_MISSING,"669通用 parse-2024: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,retail,2024,,,DATA_MISSING,669通用 parse-2024: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_LINYI,trade,2024,1691.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/57046.html,57046,K669b-i-batch8-parse-2024
+SHANDONG_WEIFANG,gdp_total,2025,8192.15,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_WEIFANG,gdp_growth,2025,5.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_WEIFANG,primary_gdp,2025,725.73,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_WEIFANG,secondary_gdp,2025,3539.67,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_WEIFANG,tertiary_gdp,2025,4321.96,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_WEIFANG,gdp_percapita,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_WEIFANG,fiscal_rev,2025,630.5,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_WEIFANG,fixed_asset,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_WEIFANG,retail,2025,3584.9,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_WEIFANG,trade,2025,3797.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/72447.html,72447,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,gdp_total,2025,11350.98,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,gdp_growth,2025,6.1,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,primary_gdp,2025,707.02,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,secondary_gdp,2025,4812.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,tertiary_gdp,2025,5831.76,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,gdp_percapita,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,fiscal_rev,2025,700.08,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,fixed_asset,2025,,,DATA_MISSING,"669通用 parse-2025: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,retail,2025,4068.85,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_YANTAI,trade,2025,5379.32,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68292.html,68292,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,gdp_total,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,gdp_growth,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,primary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,secondary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,tertiary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,gdp_percapita,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,fiscal_rev,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,fixed_asset,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,retail,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_ZIBO,trade,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68420.html,68420,K669b-i-batch8-parse-2025
+SHANDONG_JINING,gdp_total,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_total 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_JINING,gdp_growth,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_growth 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_JINING,primary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 primary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_JINING,secondary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 secondary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_JINING,tertiary_gdp,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 tertiary_gdp 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_JINING,gdp_percapita,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_JINING,fiscal_rev,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 fiscal_rev 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_JINING,fixed_asset,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 fixed_asset 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_JINING,retail,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_JINING,trade,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 trade 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/72489.html,72489,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,gdp_total,2025,6862.2,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,gdp_growth,2025,5.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,primary_gdp,2025,555.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,secondary_gdp,2025,2726.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,tertiary_gdp,2025,3580.4,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,gdp_percapita,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 gdp_percapita 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,fiscal_rev,2025,482.6,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,fixed_asset,2025,,,DATA_MISSING,"669通用 parse-2025: bulletin 仅发增长%, 无绝对值 (守红线-3, per 669a-2021 §2)",https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,retail,2025,,,DATA_MISSING,669通用 parse-2025: bulletin 无 retail 数据 (parser 未匹配),https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
+SHANDONG_LINYI,trade,2025,1775.8,亿,HONGHEIKU_TRANSLOAD,,https://tjgb.hongheiku.com/djs/68207.html,68207,K669b-i-batch8-parse-2025
