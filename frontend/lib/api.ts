@@ -117,9 +117,13 @@ function indicatorsFromMart(mart: MartProvinceGdp2024): IndicatorListResponse {
 
 // Re-export from env.ts so existing imports from "../lib/api" keep working.
 // knife env-config (2026-09-13): source-of-truth moved to lib/env.ts.
+// knife banner-config-extract (2026-09-14): also re-export deriveBannerMode
+// + BannerMode type so callers can `import { deriveBannerMode, type BannerMode }
+// from "../lib/api"` alongside the existing IS_*_MODE booleans.
 export const IS_MOCK_MODE = ENV.USE_MOCK;
 export const IS_MART_FIXTURE_MODE = ENV.USE_MART_FIXTURE;
 export const IS_STATIC_MART_DATA_MODE = isStaticMartDataEnabled();
+export { deriveBannerMode, type BannerMode } from "./env";
 
 // ────────────────────────────────────────────────────────────────────────────
 // P2 / knife 664 — Province time-series fetcher.

@@ -52,6 +52,29 @@ export const IS_MOCK_MODE = ENV.USE_MOCK;
 export const IS_MART_FIXTURE_MODE = ENV.USE_MART_FIXTURE;
 export const IS_STATIC_MART_DATA_MODE = ENV.MART_DATA_PATH.length > 0;
 
+// knife banner-config-extract (2026-09-14): single source of truth for banner mode.
+// Replaces scattered IS_*_MODE checks in layout.tsx + page.tsx with one typed string.
+// Priority order (per Plan 1, mirrors page.tsx getIndicatorEmptyStateMessage logic):
+//   1. live-fetch-failed (loadError set) — error context overrides mode
+//   2. static-mart (env NEXT_PUBLIC_MART_DATA_PATH set)
+//   3. mart-fixture (env NEXT_PUBLIC_USE_MART_FIXTURE === "1")
+//   4. mock (env NEXT_PUBLIC_USE_MOCK === "true")
+//   5. live (default — "live-empty" is a page-level sub-state handled in page.tsx)
+export type BannerMode =
+  | "live"
+  | "mock"
+  | "mart-fixture"
+  | "static-mart"
+  | "live-fetch-failed";
+
+export function deriveBannerMode(loadError?: string | null): BannerMode {
+  if (loadError) return "live-fetch-failed";
+  if (IS_STATIC_MART_DATA_MODE) return "static-mart";
+  if (IS_MART_FIXTURE_MODE) return "mart-fixture";
+  if (IS_MOCK_MODE) return "mock";
+  return "live";
+}
+
 /**
  * Exhaustive list of NEXT_PUBLIC_* env vars consumed by the frontend.
  * Used by dev-mode sanity check below; serves as a documentation index.

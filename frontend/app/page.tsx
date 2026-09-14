@@ -19,13 +19,13 @@ import {
   listCityDataCompleteness,
   IS_MOCK_MODE,
   IS_MART_FIXTURE_MODE,
-  IS_STATIC_MART_DATA_MODE,
 } from "../lib/api";
 import type { IndicatorListResponse } from "../lib/types";
 import { CITY_SLUG_MAP, CITY_SLUG_LIST } from "../lib/city_slug_map";
 import { getMartProvinceGdp2024 } from "../lib/mart-static";
 import { ProvinceGdpTable } from "./components/ProvinceGdpTable";
 import { DataCompletenessPanel } from "./components/DataCompletenessPanel";
+import { deriveBannerMode, type BannerMode } from "../lib/env";
 // MOCK_PROVINCE_LIST retained (S1.18 历史资产 + 回退通道 per 659 tasking §1.659-A; 默认渲染已移除)
 
 export const dynamic = "force-dynamic";
@@ -424,54 +424,60 @@ function CompletenessCell({
  * the table is empty, and (c) how to switch modes (env var names — no ops
  * actions implied). Does NOT diagnose / prescribe ops fixes (restarting
  * FastAPI, editing deploy.sh, etc.); that is the user / ops owner's call.
+ *
+ * Knife banner-config-extract (2026-09-14): mode derivation centralized via
+ * deriveBannerMode(loadError?) in lib/env.ts. Priority:
+ *   1. live-fetch-failed (loadError set)
+ *   2. static-mart (NEXT_PUBLIC_MART_DATA_PATH)
+ *   3. mart-fixture (NEXT_PUBLIC_USE_MART_FIXTURE=1)
+ *   4. mock (NEXT_PUBLIC_USE_MOCK=true)
+ *   5. live (default — "live-empty" is the empty body sub-state of live)
  */
 function getIndicatorEmptyStateMessage(loadError: string | null): React.ReactElement {
-  // Live FastAPI failed: most actionable message (user can check NEXT_PUBLIC_API_BASE).
-  if (loadError) {
-    return (
-      <span data-testid="home-indicator-empty-reason" data-reason="live-fetch-failed">
-        <strong>Live FastAPI 不可达</strong>
-        {" — "}
-        <code style={{ fontSize: 12 }}>{loadError}</code>
-        {"。"}
-        请检查 <code>NEXT_PUBLIC_API_BASE</code> 是否指向可达的 FastAPI
-        （默认 <code>http://127.0.0.1:8001</code>，newvps 上 8000 端口被 portainer 占用）。
-      </span>
-    );
+  const mode: BannerMode = deriveBannerMode(loadError);
+  switch (mode) {
+    case "live-fetch-failed":
+      return (
+        <span data-testid="home-indicator-empty-reason" data-reason="live-fetch-failed">
+          <strong>Live FastAPI 不可达</strong>
+          {" — "}
+          <code style={{ fontSize: 12 }}>{loadError}</code>
+          {"。"}
+          请检查 <code>NEXT_PUBLIC_API_BASE</code> 是否指向可达的 FastAPI
+          （默认 <code>http://127.0.0.1:8001</code>，newvps 上 8000 端口被 portainer 占用）。
+        </span>
+      );
+    case "static-mart":
+      return (
+        <span data-testid="home-indicator-empty-reason" data-reason="static-mart">
+          Static mart 模式（<code>NEXT_PUBLIC_MART_DATA_PATH</code> 已设置）
+          — Indicator inventory 由 <code>mart_province_gdp_2024.json</code> 派生
+          （28 省 + 3 缺失 + 1 国家锚）。当前 JSON 不含其他指标定义；
+          完整指标列表见 <a href="/indicators">/indicators</a>。
+        </span>
+      );
+    case "mart-fixture":
+      return (
+        <span data-testid="home-indicator-empty-reason" data-reason="mart-fixture">
+          Mart demo 模式（<code>NEXT_PUBLIC_USE_MART_FIXTURE=1</code>）
+          — 地市走 mart-shape 演示管道，但 Indicator inventory 仍由 FastAPI
+          （或 mock）提供。当前为空说明上游未返回数据。
+        </span>
+      );
+    case "mock":
+      return (
+        <span data-testid="home-indicator-empty-reason" data-reason="mock">
+          Mock 模式（<code>NEXT_PUBLIC_USE_MOCK=true</code>）— 预期应至少返回 1 条
+          S1.18 DEMO sentinel。当前为空说明 mock fixture 未配置或被过滤。
+        </span>
+      );
+    case "live":
+      // Live mode, no error, but empty (rare — could be FastAPI returned []).
+      return (
+        <span data-testid="home-indicator-empty-reason" data-reason="live-empty">
+          Live 模式 — FastAPI 返回空 Indicator 列表（HTTP 200 但 body 为空）。
+          请确认 FastAPI 已注入 indicator registry 数据。
+        </span>
+      );
   }
-  // No error but no rows: depends on mode.
-  if (IS_STATIC_MART_DATA_MODE) {
-    return (
-      <span data-testid="home-indicator-empty-reason" data-reason="static-mart">
-        Static mart 模式（<code>NEXT_PUBLIC_MART_DATA_PATH</code> 已设置）
-        — Indicator inventory 由 <code>mart_province_gdp_2024.json</code> 派生
-        （28 省 + 3 缺失 + 1 国家锚）。当前 JSON 不含其他指标定义；
-        完整指标列表见 <a href="/indicators">/indicators</a>。
-      </span>
-    );
-  }
-  if (IS_MART_FIXTURE_MODE) {
-    return (
-      <span data-testid="home-indicator-empty-reason" data-reason="mart-fixture">
-        Mart demo 模式（<code>NEXT_PUBLIC_USE_MART_FIXTURE=1</code>）
-        — 地市走 mart-shape 演示管道，但 Indicator inventory 仍由 FastAPI
-        （或 mock）提供。当前为空说明上游未返回数据。
-      </span>
-    );
-  }
-  if (IS_MOCK_MODE) {
-    return (
-      <span data-testid="home-indicator-empty-reason" data-reason="mock">
-        Mock 模式（<code>NEXT_PUBLIC_USE_MOCK=true</code>）— 预期应至少返回 1 条
-        S1.18 DEMO sentinel。当前为空说明 mock fixture 未配置或被过滤。
-      </span>
-    );
-  }
-  // Live mode, no error, but empty (rare — could be FastAPI returned []).
-  return (
-    <span data-testid="home-indicator-empty-reason" data-reason="live-empty">
-      Live 模式 — FastAPI 返回空 Indicator 列表（HTTP 200 但 body 为空）。
-      请确认 FastAPI 已注入 indicator registry 数据。
-    </span>
-  );
 }
