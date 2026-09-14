@@ -2,6 +2,7 @@ import React from "react";
 import { IS_MOCK_MODE } from "../lib/api";
 import { ENV } from "../lib/env";
 import { deriveBannerMode, type BannerMode } from "../lib/env";
+import { getBannerTranslations } from "../lib/i18n";
 
 // Stage 2 / S2.0.1 — Root layout.
 //
@@ -40,57 +41,83 @@ function bannerBackground(mode: BannerMode): string {
   }
 }
 
-function bannerContent(mode: BannerMode): React.ReactNode {
+/**
+ * Async server-component banner content. Reads message strings from the
+ * next-intl "banner" namespace (frontend/messages/{LANG}/banner.json).
+ *
+ * Per knife banner-i18n (2026-09-14): mart-fixture ternary split lives in
+ * getBannerMessageKey() — this function just dispatches on mode and looks
+ * up the right sub-keys. The pre-bundle BannerMode union stays at 5.
+ *
+ * live-fetch-failed is unreachable in layout (loadError not in scope here),
+ * but the switch still handles it for exhaustiveness: it falls back to the
+ * live banner content (same green background).
+ */
+async function getLayoutBannerContent(
+  mode: BannerMode
+): Promise<React.ReactNode> {
+  const t = await getBannerTranslations(mode, "layout");
   switch (mode) {
-    case "mart-fixture":
+    case "mart-fixture": {
+      const subKey = IS_MOCK_MODE ? "martFixtureMock" : "martFixtureLive";
       return (
         <>
-          ℹ️ <strong>MART DEMO PIPELINE</strong> — 地市页走 mart-shape 演示管道
-          （<code>NEXT_PUBLIC_USE_MART_FIXTURE=1</code>）。行级{" "}
-          <code>is_demo=true</code>，SHA 占位；<strong>不是</strong> O1 真样本 /
-          不宣布 Gate PASS。
-          {IS_MOCK_MODE
-            ? " Indicator 列表仍用 mock FastAPI（无后端时）。"
-            : " Indicator 列表接 Live FastAPI。"}
+          {t(`layout.${subKey}.icon`)}{" "}
+          <strong>{t(`layout.${subKey}.title`)}</strong>
+          {" — "}
+          {t(`layout.${subKey}.body`)}
+          {t(`layout.${subKey}.indicatorNote`)}
         </>
       );
+    }
     case "mock":
       return (
         <>
-          ⚠️ <strong>MOCK MODE</strong> — using mock data
-          (NEXT_PUBLIC_USE_MOCK=true). Observations shown are S1.18 DEMO
-          sentinels (placeholder SHA). 省 GDP 走 mock（S1.18 历史资产）。
+          {t("layout.mock.icon")} <strong>{t("layout.mock.title")}</strong>
+          {" — "}
+          {t("layout.mock.body")}
         </>
       );
     case "static-mart":
       return (
         <>
-          📦 <strong>STATIC MART MODE</strong> — 走 <code>NEXT_PUBLIC_MART_DATA_PATH</code>
-          {" "}JSON 文件（<code>mart_province_gdp_2024.json</code>）。28 省 2024 +
-          {" "}3 缺失 + 1 国家锚；此模式下 <strong>不需要</strong> FastAPI backend
-          {" "}（per knife 660 Track B）。
+          {t("layout.staticMart.icon")}{" "}
+          <strong>{t("layout.staticMart.title")}</strong>
+          {" — "}
+          {t("layout.staticMart.body")}
         </>
       );
     case "live":
-    case "live-fetch-failed":
       return (
         <>
-          ✅ <strong>LIVE MODE</strong> — 28 省 2024 真实数据（官方 5 +
-          转载锚定 23; 3 省源缺文）+ lineage 可溯。
-          FastAPI at <code>{ENV.API_BASE}</code>.
-          Per knife 659 tasking §1.659-A（USE_MOCK 语义翻转，默认 false 真数据）。
+          {t("layout.live.icon")} <strong>{t("layout.live.title")}</strong>
+          {" — "}
+          {t("layout.live.body")} FastAPI at <code>{ENV.API_BASE}</code>.{" "}
+          {t("layout.live.apiNote", { apiBase: ENV.API_BASE })}
+        </>
+      );
+    case "live-fetch-failed":
+      // Unreachable in layout (no fetch here), but kept for exhaustive switch.
+      // Renders the same green-banner content as "live".
+      return (
+        <>
+          {t("layout.live.icon")} <strong>{t("layout.live.title")}</strong>
+          {" — "}
+          {t("layout.live.body")} FastAPI at <code>{ENV.API_BASE}</code>.{" "}
+          {t("layout.live.apiNote", { apiBase: ENV.API_BASE })}
         </>
       );
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const bannerNode = await getLayoutBannerContent(LAYOUT_BANNER_MODE);
   return (
-    <html lang="zh-CN">
+    <html lang={ENV.LANG} data-lang={ENV.LANG}>
       <body
         style={{
           fontFamily:
@@ -113,8 +140,9 @@ export default function RootLayout({
           data-mart-fixture={LAYOUT_BANNER_MODE === "mart-fixture" ? "1" : "0"}
           data-static-mart={LAYOUT_BANNER_MODE === "static-mart" ? "1" : "0"}
           data-mock={LAYOUT_BANNER_MODE === "mock" ? "1" : "0"}
+          data-lang={ENV.LANG}
         >
-          {bannerContent(LAYOUT_BANNER_MODE)}
+          {bannerNode}
         </header>
         <nav
           style={{

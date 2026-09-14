@@ -1,0 +1,54 @@
+{
+  "layout": {
+    "live": {
+      "icon": "✅",
+      "title": "LIVE MODE",
+      "body": "28 省 2024 真实数据（官方 5 + 转载锚定 23; 3 省源缺文）+ lineage 可溯。",
+      "apiNote": "FastAPI at {apiBase}. Per knife 659 tasking §1.659-A（USE_MOCK 语义翻转，默认 false 真数据）。"
+    },
+    "mock": {
+      "icon": "⚠️",
+      "title": "MOCK MODE",
+      "body": "using mock data (NEXT_PUBLIC_USE_MOCK=true). Observations shown are S1.18 DEMO sentinels (placeholder SHA). 省 GDP 走 mock（S1.18 历史资产）。"
+    },
+    "martFixtureMock": {
+      "icon": "ℹ️",
+      "title": "MART DEMO PIPELINE",
+      "body": "地市页走 mart-shape 演示管道（NEXT_PUBLIC_USE_MART_FIXTURE=1）。行级 is_demo=true，SHA 占位；不是 O1 真样本 / 不宣布 Gate PASS。",
+      "indicatorNote": " Indicator 列表仍用 mock FastAPI（无后端时）。"
+    },
+    "martFixtureLive": {
+      "icon": "ℹ️",
+      "title": "MART DEMO PIPELINE",
+      "body": "地市页走 mart-shape 演示管道（NEXT_PUBLIC_USE_MART_FIXTURE=1）。行级 is_demo=true，SHA 占位；不是 O1 真样本 / 不宣布 Gate PASS。",
+      "indicatorNote": " Indicator 列表接 Live FastAPI。"
+    },
+    "staticMart": {
+      "icon": "📦",
+      "title": "STATIC MART MODE",
+      "body": "走 NEXT_PUBLIC_MART_DATA_PATH JSON 文件（mart_province_gdp_2024.json）。28 省 2024 + 3 缺失 + 1 国家锚；此模式下不需要 FastAPI backend（per knife 660 Track B）。"
+    }
+  },
+  "page": {
+    "liveFetchFailed": {
+      "prefix": "Live FastAPI 不可达",
+      "reason": "{errorMsg}。请检查 NEXT_PUBLIC_API_BASE 是否指向可达的 FastAPI（默认 http://127.0.0.1:8001，newvps 上 8000 端口被 portainer 占用）。"
+    },
+    "staticMart": {
+      "prefix": "Static mart 模式（NEXT_PUBLIC_MART_DATA_PATH 已设置）",
+      "reason": "Indicator inventory 由 mart_province_gdp_2024.json 派生（28 省 + 3 缺失 + 1 国家锚）。当前 JSON 不含其他指标定义；完整指标列表见 /indicators。"
+    },
+    "martFixture": {
+      "prefix": "Mart demo 模式（NEXT_PUBLIC_USE_MART_FIXTURE=1）",
+      "reason": "地市走 mart-shape 演示管道，但 Indicator inventory 仍由 FastAPI（或 mock）提供。当前为空说明上游未返回数据。"
+    },
+    "mock": {
+      "prefix": "Mock 模式（NEXT_PUBLIC_USE_MOCK=true）",
+      "reason": "预期应至少返回 1 条 S1.18 DEMO sentinel。当前为空说明 mock fixture 未配置或被过滤。"
+    },
+    "live": {
+      "prefix": "Live 模式",
+      "reason": "FastAPI 返回空 Indicator 列表（HTTP 200 但 body 为空）。请确认 FastAPI 已注入 indicator registry 数据。"
+    }
+  }
+}

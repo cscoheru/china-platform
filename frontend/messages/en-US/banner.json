@@ -1,0 +1,54 @@
+{
+  "layout": {
+    "live": {
+      "icon": "✅",
+      "title": "LIVE MODE",
+      "body": "28 provinces 2024 real data (5 official + 23 transload-anchored; 3 provinces source-missing) + lineage traceable.",
+      "apiNote": "FastAPI at {apiBase}. Per knife 659 tasking §1.659-A (USE_MOCK semantics flipped, default false for real data)."
+    },
+    "mock": {
+      "icon": "⚠️",
+      "title": "MOCK MODE",
+      "body": "using mock data (NEXT_PUBLIC_USE_MOCK=true). Observations shown are S1.18 DEMO sentinels (placeholder SHA). Province GDP via mock (S1.18 historical asset)."
+    },
+    "martFixtureMock": {
+      "icon": "ℹ️",
+      "title": "MART DEMO PIPELINE",
+      "body": "City pages go through mart-shape demo pipeline (NEXT_PUBLIC_USE_MART_FIXTURE=1). Row-level is_demo=true, SHA placeholder; NOT O1 real samples / NOT Gate PASS.",
+      "indicatorNote": " Indicator inventory still uses mock FastAPI (when backend absent)."
+    },
+    "martFixtureLive": {
+      "icon": "ℹ️",
+      "title": "MART DEMO PIPELINE",
+      "body": "City pages go through mart-shape demo pipeline (NEXT_PUBLIC_USE_MART_FIXTURE=1). Row-level is_demo=true, SHA placeholder; NOT O1 real samples / NOT Gate PASS.",
+      "indicatorNote": " Indicator inventory connects to Live FastAPI."
+    },
+    "staticMart": {
+      "icon": "📦",
+      "title": "STATIC MART MODE",
+      "body": "Reads NEXT_PUBLIC_MART_DATA_PATH JSON file (mart_province_gdp_2024.json). 28 provinces 2024 + 3 missing + 1 national anchor; FastAPI backend NOT required in this mode (per knife 660 Track B)."
+    }
+  },
+  "page": {
+    "liveFetchFailed": {
+      "prefix": "Live FastAPI unreachable",
+      "reason": "{errorMsg}. Check NEXT_PUBLIC_API_BASE points to a reachable FastAPI (default http://127.0.0.1:8001; newvps port 8000 occupied by portainer)."
+    },
+    "staticMart": {
+      "prefix": "Static mart mode (NEXT_PUBLIC_MART_DATA_PATH set)",
+      "reason": "Indicator inventory derived from mart_province_gdp_2024.json (28 provinces + 3 missing + 1 national anchor). Current JSON does not include other indicator definitions; full list at /indicators."
+    },
+    "martFixture": {
+      "prefix": "Mart demo mode (NEXT_PUBLIC_USE_MART_FIXTURE=1)",
+      "reason": "Cities go through mart-shape demo pipeline, but Indicator inventory still comes from FastAPI (or mock). Empty here means upstream returned no data."
+    },
+    "mock": {
+      "prefix": "Mock mode (NEXT_PUBLIC_USE_MOCK=true)",
+      "reason": "Should return at least 1 S1.18 DEMO sentinel. Empty here means mock fixture is not configured or filtered out."
+    },
+    "live": {
+      "prefix": "Live mode",
+      "reason": "FastAPI returned empty Indicator list (HTTP 200 but body empty). Confirm FastAPI has indicator registry data injected."
+    }
+  }
+}

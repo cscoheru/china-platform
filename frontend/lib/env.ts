@@ -44,6 +44,11 @@ export const ENV = {
   API_BASE: process.env.NEXT_PUBLIC_API_BASE ?? DEFAULT_API_BASE,
   /** NEXT_PUBLIC_MART_DATA_PATH — path to mart JSON file. Empty string = no static mart. */
   MART_DATA_PATH: process.env.NEXT_PUBLIC_MART_DATA_PATH ?? "",
+  /** NEXT_PUBLIC_LANG — UI locale for banner i18n. Default 'zh-CN'.
+   *  knife banner-i18n (2026-09-14): consumed by next-intl's getRequestConfig
+   *  (frontend/i18n/request.ts). Supported values: 'zh-CN' | 'en-US'.
+   *  Any other value falls back to 'zh-CN' (with a dev-mode warn guard below). */
+  LANG: process.env.NEXT_PUBLIC_LANG ?? "zh-CN",
 } as const;
 
 // Derived mode booleans (kept for backward compat with existing imports from lib/api.ts).
@@ -84,6 +89,7 @@ export const INJECTED_ENV_VARS = [
   "NEXT_PUBLIC_USE_MART_FIXTURE",
   "NEXT_PUBLIC_API_BASE",
   "NEXT_PUBLIC_MART_DATA_PATH",
+  "NEXT_PUBLIC_LANG",
 ] as const;
 
 export type InjectedEnvVar = (typeof INJECTED_ENV_VARS)[number];
@@ -105,5 +111,21 @@ if (process.env.NODE_ENV !== "production") {
           `If intentional, add it to INJECTED_ENV_VARS in frontend/lib/env.ts.`
       );
     }
+  }
+  // knife banner-i18n (2026-09-14): warn if NEXT_PUBLIC_LANG is set to an
+  // unsupported value. Mirrors the fallback in i18n/request.ts — both
+  // locations must agree on the supported list, otherwise the dev warn
+  // would fire for a value that request.ts silently accepts.
+  const supportedLangs = new Set(["zh-CN", "en-US"]);
+  if (
+    process.env.NEXT_PUBLIC_LANG &&
+    !supportedLangs.has(process.env.NEXT_PUBLIC_LANG)
+  ) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `[env-config] NEXT_PUBLIC_LANG="${process.env.NEXT_PUBLIC_LANG}" ` +
+        `is not in supported list ["zh-CN","en-US"]. Falling back to "zh-CN". ` +
+        `If intentional, extend the supported list in frontend/lib/env.ts + i18n/request.ts.`
+    );
   }
 }
